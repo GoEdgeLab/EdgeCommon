@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_node_cluster.proto";
+
+message Server {
+	int64 id = 1;
+	bytes config = 2;
+	string type = 3;
+	string name = 4;
+	string description = 5;
+	bytes includeNodes = 6;
+	bytes excludeNodes = 7;
+	int64 createdAt = 8;
+
+	NodeCluster cluster = 10;
+}

@@ -1,0 +1,96 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+import "model_server.proto";
+
+service ServerService {
+	// 创建服务
+	rpc createServer (CreateServerRequest) returns (CreateServerResponse);
+
+	// 修改服务
+	rpc updateServer (UpdateServerRequest) returns (UpdateServerResponse);
+
+	// 计算服务数量
+	rpc countAllEnabledServers (CountAllEnabledServersRequest) returns (CountAllEnabledServersResponse);
+
+	// 列出单页服务
+	rpc listEnabledServers (ListEnabledServersRequest) returns (ListEnabledServersResponse);
+
+	// 禁用某服务
+	rpc disableServer (DisableServerRequest) returns (DisableServerResponse);
+
+	// 查找单个服务
+	rpc findEnabledServer (FindEnabledServerRequest) returns (FindEnabledServerResponse);
+}
+
+// 创建服务
+message CreateServerRequest {
+	int64 userId = 1;
+	int64 adminId = 2;
+	string type = 3;
+	string name = 4;
+	string description = 5;
+	int64 clusterId = 6;
+	bytes config = 7;
+	bytes includeNodesJSON = 8;
+	bytes excludeNodesJSON = 9;
+}
+
+message CreateServerResponse {
+	int64 serverId = 1;
+}
+
+// 修改服务
+message UpdateServerRequest {
+	int64 serverId = 1;
+	int64 userId = 2;
+	int64 adminId = 3;
+	string name = 4;
+	string description = 5;
+	int64 clusterId = 6;
+	bytes config = 7;
+	bytes includeNodesJSON = 8;
+	bytes excludeNodesJSON = 9;
+}
+
+message UpdateServerResponse {
+
+}
+
+// 计算服务数量
+message CountAllEnabledServersRequest {
+
+}
+
+message CountAllEnabledServersResponse {
+	int64 count = 1;
+}
+
+// 列出单页服务
+message ListEnabledServersRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListEnabledServersResponse {
+	repeated Server servers = 1;
+}
+
+// 禁用服务
+message DisableServerRequest {
+	int64 serverId = 1;
+}
+
+message DisableServerResponse {
+
+}
+
+// 查找单个服务
+message FindEnabledServerRequest {
+	int64 serverId = 1;
+}
+
+message FindEnabledServerResponse {
+	Server server = 1;
+}

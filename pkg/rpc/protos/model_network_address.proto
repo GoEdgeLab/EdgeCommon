@@ -1,0 +1,10 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message NetworkAddress {
+	string protocol = 1;
+	string host = 2;
+	string portRange = 3;
+}
