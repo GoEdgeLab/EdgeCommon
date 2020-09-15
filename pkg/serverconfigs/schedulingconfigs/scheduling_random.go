@@ -1,4 +1,4 @@
-package scheduling
+package schedulingconfigs
 
 import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
@@ -72,7 +72,7 @@ func (this *RandomScheduling) Summary() maps.Map {
 	return maps.Map{
 		"code":        "random",
 		"name":        "Random随机算法",
-		"description": "根据权重设置随机分配后端服务器",
+		"description": "根据权重设置随机分配源站",
 		"networks":    []string{"http", "tcp"},
 	}
 }

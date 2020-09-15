@@ -1,4 +1,4 @@
-package scheduling
+package schedulingconfigs
 
 import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
@@ -29,14 +29,14 @@ func TestStickyScheduling_NextArgument(t *testing.T) {
 
 	t.Log(s.mapping)
 
-	req, err := http.NewRequest("GET", "http://www.example.com/?backend=c", nil)
+	req, err := http.NewRequest("GET", "http://www.example.com/?origin=c", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	options := maps.Map{
 		"type":  "argument",
-		"param": "backend",
+		"param": "origin",
 	}
 	call := shared.NewRequestCall()
 	call.Request = req
@@ -67,19 +67,19 @@ func TestStickyScheduling_NextCookie(t *testing.T) {
 
 	t.Log(s.mapping)
 
-	req, err := http.NewRequest("GET", "http://www.example.com/?backend=c", nil)
+	req, err := http.NewRequest("GET", "http://www.example.com/?origin=c", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	req.AddCookie(&http.Cookie{
-		Name:  "backend",
+		Name:  "origin",
 		Value: "c",
 	})
 
 	options := maps.Map{
 		"type":  "cookie",
-		"param": "backend",
+		"param": "origin",
 	}
 	call := shared.NewRequestCall()
 	call.Request = req
@@ -110,15 +110,15 @@ func TestStickyScheduling_NextHeader(t *testing.T) {
 
 	t.Log(s.mapping)
 
-	req, err := http.NewRequest("GET", "http://www.example.com/?backend=c", nil)
+	req, err := http.NewRequest("GET", "http://www.example.com/?origin=c", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
-	req.Header.Set("backend", "c")
+	req.Header.Set("origin", "c")
 
 	options := maps.Map{
 		"type":  "header",
-		"param": "backend",
+		"param": "origin",
 	}
 	call := shared.NewRequestCall()
 	call.Request = req

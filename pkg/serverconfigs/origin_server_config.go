@@ -22,19 +22,13 @@ type OriginServerConfig struct {
 	Description string                `yaml:"description" json:"description"` // 描述 TODO
 	Code        string                `yaml:"code" json:"code"`               // 代号 TODO
 
-	Weight       uint                `yaml:"weight" json:"weight"`             // 权重 TODO
-	IsBackup     bool                `yaml:"backup" json:"isBackup"`           // 是否为备份 TODO
-	ConnTimeout  shared.TimeDuration `yaml:"failTimeout" json:"failTimeout"`   // 连接失败超时 TODO
-	ReadTimeout  shared.TimeDuration `yaml:"readTimeout" json:"readTimeout"`   // 读取超时时间 TODO
-	IdleTimeout  shared.TimeDuration `yaml:"idleTimeout" json:"idleTimeout"`   // 空闲连接超时时间 TODO
-	MaxFails     int32               `yaml:"maxFails" json:"maxFails"`         // 最多失败次数 TODO
-	CurrentFails int32               `yaml:"currentFails" json:"currentFails"` // 当前已失败次数 TODO
-	MaxConns     int32               `yaml:"maxConns" json:"maxConns"`         // 最大并发连接数 TODO
-	CurrentConns int32               `yaml:"currentConns" json:"currentConns"` // 当前连接数 TODO
-	MaxIdleConns int32               `yaml:"idleConns" json:"idleConns"`       // 最大空闲连接数 TODO
-
-	IsDown   bool      `yaml:"down" json:"isDown"`                           // 是否下线 TODO
-	DownTime time.Time `yaml:"downTime,omitempty" json:"downTime,omitempty"` // 下线时间 TODO
+	Weight       uint                `yaml:"weight" json:"weight"`           // 权重 TODO
+	ConnTimeout  shared.TimeDuration `yaml:"failTimeout" json:"failTimeout"` // 连接失败超时 TODO
+	ReadTimeout  shared.TimeDuration `yaml:"readTimeout" json:"readTimeout"` // 读取超时时间 TODO
+	IdleTimeout  shared.TimeDuration `yaml:"idleTimeout" json:"idleTimeout"` // 空闲连接超时时间 TODO
+	MaxFails     int                 `yaml:"maxFails" json:"maxFails"`       // 最多失败次数 TODO
+	MaxConns     int                 `yaml:"maxConns" json:"maxConns"`       // 最大并发连接数 TODO
+	MaxIdleConns int                 `yaml:"idleConns" json:"idleConns"`     // 最大空闲连接数 TODO
 
 	RequestURI string `yaml:"requestURI" json:"requestURI"` // 转发后的请求URI TODO
 	Host       string `yaml:"host" json:"host"`             // 自定义主机名 TODO
@@ -172,5 +166,5 @@ func (this *OriginServerConfig) Connect() (net.Conn, error) {
 
 	// TODO 支持从Unix、Pipe、HTTP、HTTPS中读取数据
 
-	return nil, errors.New("invalid scheme '" + this.Addr.Protocol + "'")
+	return nil, errors.New("invalid scheme '" + this.Addr.Protocol.String() + "'")
 }

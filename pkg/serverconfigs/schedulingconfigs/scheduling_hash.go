@@ -1,4 +1,4 @@
-package scheduling
+package schedulingconfigs
 
 import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
@@ -39,7 +39,7 @@ func (this *HashScheduling) Summary() maps.Map {
 	return maps.Map{
 		"code":        "hash",
 		"name":        "Hash算法",
-		"description": "根据自定义的键值的Hash值分配后端服务器",
+		"description": "根据自定义的键值的Hash值分配源站",
 		"networks":    []string{"http"},
 	}
 }

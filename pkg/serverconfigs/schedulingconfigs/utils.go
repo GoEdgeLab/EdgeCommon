@@ -1,4 +1,4 @@
-package scheduling
+package schedulingconfigs
 
 import "github.com/iwind/TeaGo/maps"
 

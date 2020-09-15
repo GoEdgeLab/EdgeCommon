@@ -1,4 +1,4 @@
-package scheduling
+package schedulingconfigs
 
 import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
@@ -100,7 +100,7 @@ func (this *StickyScheduling) Summary() maps.Map {
 	return maps.Map{
 		"code":        "sticky",
 		"name":        "Sticky算法",
-		"description": "利用Cookie、URL参数或者HTTP Header来指定后端服务器",
+		"description": "利用Cookie、URL参数或者HTTP Header来指定源站",
 		"networks":    []string{"http"},
 	}
 }

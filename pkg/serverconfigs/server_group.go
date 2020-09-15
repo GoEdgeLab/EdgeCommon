@@ -24,7 +24,7 @@ func (this *ServerGroup) FullAddr() string {
 // 获取当前分组的协议
 func (this *ServerGroup) Protocol() Protocol {
 	for _, p := range AllProtocols() {
-		if strings.HasPrefix(this.fullAddr, p+":") {
+		if strings.HasPrefix(this.fullAddr, p.String()+":") {
 			return p
 		}
 	}
@@ -35,9 +35,9 @@ func (this *ServerGroup) Protocol() Protocol {
 func (this *ServerGroup) Addr() string {
 	protocol := this.Protocol()
 	if protocol == ProtocolUnix {
-		return strings.TrimPrefix(this.fullAddr, protocol+":")
+		return strings.TrimPrefix(this.fullAddr, protocol.String()+":")
 	}
-	return strings.TrimPrefix(this.fullAddr, protocol+"://")
+	return strings.TrimPrefix(this.fullAddr, protocol.String()+"://")
 }
 
 // 判断当前分组是否为HTTP

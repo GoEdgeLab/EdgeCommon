@@ -1,0 +1,85 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_reverse_proxy.proto";
+
+service ReverseProxyService {
+	// 创建反向代理
+	rpc createReverseProxy (CreateReverseProxyRequest) returns (CreateReverseProxyResponse);
+
+	// 查找反向代理
+	rpc findEnabledReverseProxy (FindEnabledReverseProxyRequest) returns (FindEnabledReverseProxyResponse);
+
+	// 查找反向代理配置
+	rpc findEnabledReverseProxyConfig (FindEnabledReverseProxyConfigRequest) returns (FindEnabledReverseProxyConfigResponse);
+
+	// 修改反向代理的调度算法
+	rpc updateReverseProxyScheduling (UpdateReverseProxySchedulingRequest) returns (UpdateReverseProxySchedulingResponse);
+
+	// 修改主要源站信息
+	rpc updateReverseProxyPrimaryOrigins (UpdateReverseProxyPrimaryOriginsRequest) returns (UpdateReverseProxyPrimaryOriginsResponse);
+
+	// 修改备用源站信息
+	rpc updateReverseProxyBackupOrigins (UpdateReverseProxyBackupOriginsRequest) returns (UpdateReverseProxyBackupOriginsResponse);
+}
+
+// 创建反向代理
+message CreateReverseProxyRequest {
+	bytes schedulingJSON = 1;
+	bytes primaryOriginsJSON = 2;
+	bytes backupOriginsJSON = 3;
+}
+
+message CreateReverseProxyResponse {
+	int64 reverseProxyId = 1;
+}
+
+// 查找反向代理
+message FindEnabledReverseProxyRequest {
+	int64 reverseProxyId = 1;
+}
+
+message FindEnabledReverseProxyResponse {
+	ReverseProxy reverseProxy = 1;
+}
+
+// 查找反向代理配置
+message FindEnabledReverseProxyConfigRequest {
+	int64 reverseProxyId = 1;
+}
+
+message FindEnabledReverseProxyConfigResponse {
+	bytes config = 1;
+}
+
+// 修改反向代理调度算法
+message UpdateReverseProxySchedulingRequest {
+	int64 reverseProxyId = 1;
+	bytes schedulingJSON = 2;
+}
+
+message UpdateReverseProxySchedulingResponse {
+
+}
+
+// 修改主要源站信息
+message UpdateReverseProxyPrimaryOriginsRequest {
+	int64 reverseProxyId = 1;
+	bytes originsJSON = 2;
+}
+
+message UpdateReverseProxyPrimaryOriginsResponse {
+
+}
+
+// 修改备用源站信息
+message UpdateReverseProxyBackupOriginsRequest {
+	int64 reverseProxyId = 1;
+	bytes originsJSON = 2;
+}
+
+message UpdateReverseProxyBackupOriginsResponse {
+
+}

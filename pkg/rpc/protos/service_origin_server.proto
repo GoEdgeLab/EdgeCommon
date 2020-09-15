@@ -15,6 +15,9 @@ service OriginServerService {
 
 	// 查找单个源站信息
 	rpc findEnabledOriginServer (FindEnabledOriginServerRequest) returns (FindEnabledOriginServerResponse);
+
+	// 查找源站配置
+	rpc findEnabledOriginServerConfig (FindEnabledOriginServerConfigRequest) returns (FindEnabledOriginServerConfigResponse);
 }
 
 // 创建源站
@@ -47,4 +50,13 @@ message FindEnabledOriginServerRequest {
 
 message FindEnabledOriginServerResponse {
 	OriginServer Origin = 1;
+}
+
+// 查找源站配置
+message FindEnabledOriginServerConfigRequest {
+	int64 originId = 1;
+}
+
+message FindEnabledOriginServerConfigResponse {
+	bytes config = 1;
 }

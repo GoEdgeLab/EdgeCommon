@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message ReverseProxy {
+	int64 id = 1;
+	bytes schedulingJSON = 2;
+	bytes primaryOriginsJSON = 3;
+	bytes backupOriginsJSON = 4;
+}

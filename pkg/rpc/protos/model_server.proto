@@ -7,13 +7,24 @@ import "model_node_cluster.proto";
 
 message Server {
 	int64 id = 1;
-	bytes config = 2;
-	string type = 3;
-	string name = 4;
-	string description = 5;
-	bytes includeNodes = 6;
-	bytes excludeNodes = 7;
-	int64 createdAt = 8;
+	string type = 2;
+	string name = 3;
+	string description = 4;
+	bytes includeNodes = 5;
+	bytes excludeNodes = 6;
+	int64 createdAt = 7;
 
-	NodeCluster cluster = 10;
+	// 配置相关
+	bytes config = 17;
+	bytes serverNamesJON = 8;
+	bytes httpJSON = 9;
+	bytes httpsJSON = 10;
+	bytes tcpJSON = 11;
+	bytes tlsJSON = 12;
+	bytes unixJSON = 13;
+	bytes udpJSON = 14;
+	int64 webId = 15;
+	int64 reverseProxyId = 16;
+
+	NodeCluster cluster = 30;
 }

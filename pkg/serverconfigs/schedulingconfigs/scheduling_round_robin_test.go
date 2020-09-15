@@ -1,4 +1,4 @@
-package scheduling
+package schedulingconfigs
 
 import "testing"
 

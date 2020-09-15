@@ -1,4 +1,4 @@
-package scheduling
+package schedulingconfigs
 
 import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
@@ -74,7 +74,7 @@ func (this *RoundRobinScheduling) Summary() maps.Map {
 	return maps.Map{
 		"code":        "roundRobin",
 		"name":        "RoundRobin轮询算法",
-		"description": "根据权重，依次分配后端服务器",
+		"description": "根据权重，依次分配源站",
 		"networks":    []string{"http", "tcp"},
 	}
 }

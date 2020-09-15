@@ -1,4 +1,4 @@
-package scheduling
+package schedulingconfigs
 
 // 候选对象接口
 type CandidateInterface interface {

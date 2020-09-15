@@ -8,8 +8,35 @@ service ServerService {
 	// 创建服务
 	rpc createServer (CreateServerRequest) returns (CreateServerResponse);
 
-	// 修改服务
-	rpc updateServer (UpdateServerRequest) returns (UpdateServerResponse);
+	// 修改服务基本信息
+	rpc updateServerBasic (UpdateServerBasicRequest) returns (UpdateServerBasicResponse);
+
+	// 修改服务的HTTP设置
+	rpc updateServerHTTP (UpdateServerHTTPRequest) returns (UpdateServerHTTPResponse);
+
+	// 修改服务的HTTPS设置
+	rpc updateServerHTTPS (UpdateServerHTTPSRequest) returns (UpdateServerHTTPSResponse);
+
+	// 修改服务的TCP设置
+	rpc updateServerTCP (UpdateServerTCPRequest) returns (UpdateServerTCPResponse);
+
+	// 修改服务的TLS设置
+	rpc updateServerTLS (UpdateServerTLSRequest) returns (UpdateServerTLSResponse);
+
+	// 修改服务的Unix设置
+	rpc updateServerUnix (UpdateServerUnixRequest) returns (UpdateServerUnixResponse);
+
+	// 修改服务的UDP设置
+	rpc updateServerUDP (UpdateServerUDPRequest) returns (UpdateServerUDPResponse);
+
+	// 修改服务的Web设置
+	rpc updateServerWeb (UpdateServerWebRequest) returns (UpdateServerWebResponse);
+
+	// 修改服务的反向代理设置
+	rpc updateServerReverseProxy (UpdateServerReverseProxyRequest) returns (UpdateServerReverseProxyResponse);
+
+	// 修改服务的域名设置
+	rpc updateServerNames (UpdateServerNamesRequest) returns (UpdateServerNamesResponse);
 
 	// 计算服务数量
 	rpc countAllEnabledServers (CountAllEnabledServersRequest) returns (CountAllEnabledServersResponse);
@@ -22,6 +49,12 @@ service ServerService {
 
 	// 查找单个服务
 	rpc findEnabledServer (FindEnabledServerRequest) returns (FindEnabledServerResponse);
+
+	// 查找服务的服务类型
+	rpc findEnabledServerType (FindEnabledServerTypeRequest) returns (FindEnabledServerTypeResponse);
+
+	// 查找反向代理设置
+	rpc findServerReverseProxy (FindServerReverseProxyRequest) returns (FindServerReverseProxyResponse);
 }
 
 // 创建服务
@@ -31,30 +64,118 @@ message CreateServerRequest {
 	string type = 3;
 	string name = 4;
 	string description = 5;
-	int64 clusterId = 6;
-	bytes config = 7;
-	bytes includeNodesJSON = 8;
-	bytes excludeNodesJSON = 9;
+
+	// 配置相关
+	bytes serverNamesJON = 8;
+	bytes httpJSON = 9;
+	bytes httpsJSON = 10;
+	bytes tcpJSON = 11;
+	bytes tlsJSON = 12;
+	bytes unixJSON = 13;
+	bytes udpJSON = 14;
+	int64 webId = 15;
+	int64 reverseProxyId = 16;
+
+	int64 clusterId = 30;
+	bytes includeNodesJSON = 31;
+	bytes excludeNodesJSON = 32;
 }
 
 message CreateServerResponse {
 	int64 serverId = 1;
 }
 
-// 修改服务
-message UpdateServerRequest {
+// 修改服务基本信息
+message UpdateServerBasicRequest {
 	int64 serverId = 1;
-	int64 userId = 2;
-	int64 adminId = 3;
-	string name = 4;
-	string description = 5;
-	int64 clusterId = 6;
-	bytes config = 7;
-	bytes includeNodesJSON = 8;
-	bytes excludeNodesJSON = 9;
+	string name = 2;
+	string description = 3;
+	int64 clusterId = 4;
 }
 
-message UpdateServerResponse {
+message UpdateServerBasicResponse {
+
+}
+
+// 修改服务的HTTP等设置
+message UpdateServerHTTPRequest {
+	int64 serverId = 1;
+	bytes config = 2;
+}
+
+message UpdateServerHTTPResponse {
+
+}
+
+message UpdateServerHTTPSRequest {
+	int64 serverId = 1;
+	bytes config = 2;
+}
+
+message UpdateServerHTTPSResponse {
+
+}
+
+message UpdateServerTCPRequest {
+	int64 serverId = 1;
+	bytes config = 2;
+}
+
+message UpdateServerTCPResponse {
+
+}
+
+message UpdateServerTLSRequest {
+	int64 serverId = 1;
+	bytes config = 2;
+}
+
+message UpdateServerTLSResponse {
+
+}
+
+message UpdateServerUnixRequest {
+	int64 serverId = 1;
+	bytes config = 2;
+}
+
+message UpdateServerUnixResponse {
+
+}
+
+message UpdateServerUDPRequest {
+	int64 serverId = 1;
+	bytes config = 2;
+}
+
+message UpdateServerUDPResponse {
+
+}
+
+message UpdateServerWebRequest {
+	int64 serverId = 1;
+	int64 webId = 2;
+}
+
+message UpdateServerWebResponse {
+
+}
+
+message UpdateServerReverseProxyRequest {
+	int64 serverId = 1;
+	int64 reverseProxyId = 2;
+}
+
+message UpdateServerReverseProxyResponse {
+
+}
+
+message UpdateServerNamesRequest {
+	int64 serverId = 1;
+	bytes config = 2;
+}
+
+message UpdateServerNamesResponse {
 
 }
 
@@ -93,4 +214,22 @@ message FindEnabledServerRequest {
 
 message FindEnabledServerResponse {
 	Server server = 1;
+}
+
+// 查找服务的服务类型
+message FindEnabledServerTypeRequest {
+	int64 serverId = 1;
+}
+
+message FindEnabledServerTypeResponse {
+	string type = 1;
+}
+
+// 查找反向代理设置
+message FindServerReverseProxyRequest {
+	int64 serverId = 1;
+}
+
+message FindServerReverseProxyResponse {
+	bytes config = 1;
 }

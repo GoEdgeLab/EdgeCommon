@@ -2,11 +2,13 @@ package serverconfigs
 
 import (
 	"encoding/json"
+	"errors"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
 )
 
 type ServerConfig struct {
-	Id          string              `yaml:"id" json:"id"`                   // ID
+	Id          int64               `yaml:"id" json:"id"`                   // ID
+	Type        string              `yaml:"type" json:"type"`               // 类型
 	IsOn        bool                `yaml:"isOn" json:"isOn"`               // 是否开启
 	Components  []*ComponentConfig  `yaml:"components" json:"components"`   // 组件
 	Filters     []*FilterConfig     `yaml:"filters" json:"filters"`         // 过滤器
@@ -94,7 +96,7 @@ func (this *ServerConfig) Init() error {
 }
 
 func (this *ServerConfig) FullAddresses() []string {
-	result := []Protocol{}
+	result := []string{}
 	if this.HTTP != nil && this.HTTP.IsOn {
 		result = append(result, this.HTTP.FullAddresses()...)
 	}
@@ -189,4 +191,17 @@ func (this *ServerConfig) SSLConfig() *sslconfigs.SSLConfig {
 		return this.TLS.SSL
 	}
 	return nil
+}
+
+// 根据条件查找ReverseProxy
+func (this *ServerConfig) FindAndCheckReverseProxy(dataType string) (*ReverseProxyConfig, error) {
+	switch dataType {
+	case "server":
+		if this.ReverseProxy == nil {
+			return nil, errors.New("reverse proxy not been configured")
+		}
+		return this.ReverseProxy, nil
+	default:
+		return nil, errors.New("invalid data type:'" + dataType + "'")
+	}
 }

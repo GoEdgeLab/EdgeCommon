@@ -35,15 +35,24 @@ type CreateServerRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId           int64  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
-	AdminId          int64  `protobuf:"varint,2,opt,name=adminId,proto3" json:"adminId,omitempty"`
-	Type             string `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
-	Name             string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	Description      string `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
-	ClusterId        int64  `protobuf:"varint,6,opt,name=clusterId,proto3" json:"clusterId,omitempty"`
-	Config           []byte `protobuf:"bytes,7,opt,name=config,proto3" json:"config,omitempty"`
-	IncludeNodesJSON []byte `protobuf:"bytes,8,opt,name=includeNodesJSON,proto3" json:"includeNodesJSON,omitempty"`
-	ExcludeNodesJSON []byte `protobuf:"bytes,9,opt,name=excludeNodesJSON,proto3" json:"excludeNodesJSON,omitempty"`
+	UserId      int64  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	AdminId     int64  `protobuf:"varint,2,opt,name=adminId,proto3" json:"adminId,omitempty"`
+	Type        string `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
+	Name        string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	Description string `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	// 配置相关
+	ServerNamesJON   []byte `protobuf:"bytes,8,opt,name=serverNamesJON,proto3" json:"serverNamesJON,omitempty"`
+	HttpJSON         []byte `protobuf:"bytes,9,opt,name=httpJSON,proto3" json:"httpJSON,omitempty"`
+	HttpsJSON        []byte `protobuf:"bytes,10,opt,name=httpsJSON,proto3" json:"httpsJSON,omitempty"`
+	TcpJSON          []byte `protobuf:"bytes,11,opt,name=tcpJSON,proto3" json:"tcpJSON,omitempty"`
+	TlsJSON          []byte `protobuf:"bytes,12,opt,name=tlsJSON,proto3" json:"tlsJSON,omitempty"`
+	UnixJSON         []byte `protobuf:"bytes,13,opt,name=unixJSON,proto3" json:"unixJSON,omitempty"`
+	UdpJSON          []byte `protobuf:"bytes,14,opt,name=udpJSON,proto3" json:"udpJSON,omitempty"`
+	WebId            int64  `protobuf:"varint,15,opt,name=webId,proto3" json:"webId,omitempty"`
+	ReverseProxyId   int64  `protobuf:"varint,16,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"`
+	ClusterId        int64  `protobuf:"varint,30,opt,name=clusterId,proto3" json:"clusterId,omitempty"`
+	IncludeNodesJSON []byte `protobuf:"bytes,31,opt,name=includeNodesJSON,proto3" json:"includeNodesJSON,omitempty"`
+	ExcludeNodesJSON []byte `protobuf:"bytes,32,opt,name=excludeNodesJSON,proto3" json:"excludeNodesJSON,omitempty"`
 }
 
 func (x *CreateServerRequest) Reset() {
@@ -113,18 +122,74 @@ func (x *CreateServerRequest) GetDescription() string {
 	return ""
 }
 
+func (x *CreateServerRequest) GetServerNamesJON() []byte {
+	if x != nil {
+		return x.ServerNamesJON
+	}
+	return nil
+}
+
+func (x *CreateServerRequest) GetHttpJSON() []byte {
+	if x != nil {
+		return x.HttpJSON
+	}
+	return nil
+}
+
+func (x *CreateServerRequest) GetHttpsJSON() []byte {
+	if x != nil {
+		return x.HttpsJSON
+	}
+	return nil
+}
+
+func (x *CreateServerRequest) GetTcpJSON() []byte {
+	if x != nil {
+		return x.TcpJSON
+	}
+	return nil
+}
+
+func (x *CreateServerRequest) GetTlsJSON() []byte {
+	if x != nil {
+		return x.TlsJSON
+	}
+	return nil
+}
+
+func (x *CreateServerRequest) GetUnixJSON() []byte {
+	if x != nil {
+		return x.UnixJSON
+	}
+	return nil
+}
+
+func (x *CreateServerRequest) GetUdpJSON() []byte {
+	if x != nil {
+		return x.UdpJSON
+	}
+	return nil
+}
+
+func (x *CreateServerRequest) GetWebId() int64 {
+	if x != nil {
+		return x.WebId
+	}
+	return 0
+}
+
+func (x *CreateServerRequest) GetReverseProxyId() int64 {
+	if x != nil {
+		return x.ReverseProxyId
+	}
+	return 0
+}
+
 func (x *CreateServerRequest) GetClusterId() int64 {
 	if x != nil {
 		return x.ClusterId
 	}
 	return 0
-}
-
-func (x *CreateServerRequest) GetConfig() []byte {
-	if x != nil {
-		return x.Config
-	}
-	return nil
 }
 
 func (x *CreateServerRequest) GetIncludeNodesJSON() []byte {
@@ -188,25 +253,20 @@ func (x *CreateServerResponse) GetServerId() int64 {
 	return 0
 }
 
-// 修改服务
-type UpdateServerRequest struct {
+// 修改服务基本信息
+type UpdateServerBasicRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId         int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
-	UserId           int64  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`
-	AdminId          int64  `protobuf:"varint,3,opt,name=adminId,proto3" json:"adminId,omitempty"`
-	Name             string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	Description      string `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
-	ClusterId        int64  `protobuf:"varint,6,opt,name=clusterId,proto3" json:"clusterId,omitempty"`
-	Config           []byte `protobuf:"bytes,7,opt,name=config,proto3" json:"config,omitempty"`
-	IncludeNodesJSON []byte `protobuf:"bytes,8,opt,name=includeNodesJSON,proto3" json:"includeNodesJSON,omitempty"`
-	ExcludeNodesJSON []byte `protobuf:"bytes,9,opt,name=excludeNodesJSON,proto3" json:"excludeNodesJSON,omitempty"`
+	ServerId    int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Name        string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	ClusterId   int64  `protobuf:"varint,4,opt,name=clusterId,proto3" json:"clusterId,omitempty"`
 }
 
-func (x *UpdateServerRequest) Reset() {
-	*x = UpdateServerRequest{}
+func (x *UpdateServerBasicRequest) Reset() {
+	*x = UpdateServerBasicRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_server_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -214,13 +274,13 @@ func (x *UpdateServerRequest) Reset() {
 	}
 }
 
-func (x *UpdateServerRequest) String() string {
+func (x *UpdateServerBasicRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateServerRequest) ProtoMessage() {}
+func (*UpdateServerBasicRequest) ProtoMessage() {}
 
-func (x *UpdateServerRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdateServerBasicRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_service_server_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -232,82 +292,47 @@ func (x *UpdateServerRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateServerRequest.ProtoReflect.Descriptor instead.
-func (*UpdateServerRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateServerBasicRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerBasicRequest) Descriptor() ([]byte, []int) {
 	return file_service_server_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *UpdateServerRequest) GetServerId() int64 {
+func (x *UpdateServerBasicRequest) GetServerId() int64 {
 	if x != nil {
 		return x.ServerId
 	}
 	return 0
 }
 
-func (x *UpdateServerRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
-}
-
-func (x *UpdateServerRequest) GetAdminId() int64 {
-	if x != nil {
-		return x.AdminId
-	}
-	return 0
-}
-
-func (x *UpdateServerRequest) GetName() string {
+func (x *UpdateServerBasicRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *UpdateServerRequest) GetDescription() string {
+func (x *UpdateServerBasicRequest) GetDescription() string {
 	if x != nil {
 		return x.Description
 	}
 	return ""
 }
 
-func (x *UpdateServerRequest) GetClusterId() int64 {
+func (x *UpdateServerBasicRequest) GetClusterId() int64 {
 	if x != nil {
 		return x.ClusterId
 	}
 	return 0
 }
 
-func (x *UpdateServerRequest) GetConfig() []byte {
-	if x != nil {
-		return x.Config
-	}
-	return nil
-}
-
-func (x *UpdateServerRequest) GetIncludeNodesJSON() []byte {
-	if x != nil {
-		return x.IncludeNodesJSON
-	}
-	return nil
-}
-
-func (x *UpdateServerRequest) GetExcludeNodesJSON() []byte {
-	if x != nil {
-		return x.ExcludeNodesJSON
-	}
-	return nil
-}
-
-type UpdateServerResponse struct {
+type UpdateServerBasicResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *UpdateServerResponse) Reset() {
-	*x = UpdateServerResponse{}
+func (x *UpdateServerBasicResponse) Reset() {
+	*x = UpdateServerBasicResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_server_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -315,13 +340,13 @@ func (x *UpdateServerResponse) Reset() {
 	}
 }
 
-func (x *UpdateServerResponse) String() string {
+func (x *UpdateServerBasicResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateServerResponse) ProtoMessage() {}
+func (*UpdateServerBasicResponse) ProtoMessage() {}
 
-func (x *UpdateServerResponse) ProtoReflect() protoreflect.Message {
+func (x *UpdateServerBasicResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_service_server_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -333,9 +358,847 @@ func (x *UpdateServerResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateServerResponse.ProtoReflect.Descriptor instead.
-func (*UpdateServerResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateServerBasicResponse.ProtoReflect.Descriptor instead.
+func (*UpdateServerBasicResponse) Descriptor() ([]byte, []int) {
 	return file_service_server_proto_rawDescGZIP(), []int{3}
+}
+
+// 修改服务的HTTP等设置
+type UpdateServerHTTPRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Config   []byte `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
+}
+
+func (x *UpdateServerHTTPRequest) Reset() {
+	*x = UpdateServerHTTPRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerHTTPRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerHTTPRequest) ProtoMessage() {}
+
+func (x *UpdateServerHTTPRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerHTTPRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerHTTPRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *UpdateServerHTTPRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *UpdateServerHTTPRequest) GetConfig() []byte {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
+type UpdateServerHTTPResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateServerHTTPResponse) Reset() {
+	*x = UpdateServerHTTPResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerHTTPResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerHTTPResponse) ProtoMessage() {}
+
+func (x *UpdateServerHTTPResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerHTTPResponse.ProtoReflect.Descriptor instead.
+func (*UpdateServerHTTPResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{5}
+}
+
+type UpdateServerHTTPSRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Config   []byte `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
+}
+
+func (x *UpdateServerHTTPSRequest) Reset() {
+	*x = UpdateServerHTTPSRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerHTTPSRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerHTTPSRequest) ProtoMessage() {}
+
+func (x *UpdateServerHTTPSRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerHTTPSRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerHTTPSRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UpdateServerHTTPSRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *UpdateServerHTTPSRequest) GetConfig() []byte {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
+type UpdateServerHTTPSResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateServerHTTPSResponse) Reset() {
+	*x = UpdateServerHTTPSResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerHTTPSResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerHTTPSResponse) ProtoMessage() {}
+
+func (x *UpdateServerHTTPSResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerHTTPSResponse.ProtoReflect.Descriptor instead.
+func (*UpdateServerHTTPSResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{7}
+}
+
+type UpdateServerTCPRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Config   []byte `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
+}
+
+func (x *UpdateServerTCPRequest) Reset() {
+	*x = UpdateServerTCPRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerTCPRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerTCPRequest) ProtoMessage() {}
+
+func (x *UpdateServerTCPRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerTCPRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerTCPRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *UpdateServerTCPRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *UpdateServerTCPRequest) GetConfig() []byte {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
+type UpdateServerTCPResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateServerTCPResponse) Reset() {
+	*x = UpdateServerTCPResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerTCPResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerTCPResponse) ProtoMessage() {}
+
+func (x *UpdateServerTCPResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerTCPResponse.ProtoReflect.Descriptor instead.
+func (*UpdateServerTCPResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{9}
+}
+
+type UpdateServerTLSRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Config   []byte `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
+}
+
+func (x *UpdateServerTLSRequest) Reset() {
+	*x = UpdateServerTLSRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerTLSRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerTLSRequest) ProtoMessage() {}
+
+func (x *UpdateServerTLSRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerTLSRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerTLSRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *UpdateServerTLSRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *UpdateServerTLSRequest) GetConfig() []byte {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
+type UpdateServerTLSResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateServerTLSResponse) Reset() {
+	*x = UpdateServerTLSResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerTLSResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerTLSResponse) ProtoMessage() {}
+
+func (x *UpdateServerTLSResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerTLSResponse.ProtoReflect.Descriptor instead.
+func (*UpdateServerTLSResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{11}
+}
+
+type UpdateServerUnixRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Config   []byte `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
+}
+
+func (x *UpdateServerUnixRequest) Reset() {
+	*x = UpdateServerUnixRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerUnixRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerUnixRequest) ProtoMessage() {}
+
+func (x *UpdateServerUnixRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerUnixRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerUnixRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *UpdateServerUnixRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *UpdateServerUnixRequest) GetConfig() []byte {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
+type UpdateServerUnixResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateServerUnixResponse) Reset() {
+	*x = UpdateServerUnixResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerUnixResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerUnixResponse) ProtoMessage() {}
+
+func (x *UpdateServerUnixResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerUnixResponse.ProtoReflect.Descriptor instead.
+func (*UpdateServerUnixResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{13}
+}
+
+type UpdateServerUDPRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Config   []byte `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
+}
+
+func (x *UpdateServerUDPRequest) Reset() {
+	*x = UpdateServerUDPRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerUDPRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerUDPRequest) ProtoMessage() {}
+
+func (x *UpdateServerUDPRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerUDPRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerUDPRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *UpdateServerUDPRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *UpdateServerUDPRequest) GetConfig() []byte {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
+type UpdateServerUDPResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateServerUDPResponse) Reset() {
+	*x = UpdateServerUDPResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerUDPResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerUDPResponse) ProtoMessage() {}
+
+func (x *UpdateServerUDPResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerUDPResponse.ProtoReflect.Descriptor instead.
+func (*UpdateServerUDPResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{15}
+}
+
+type UpdateServerWebRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	WebId    int64 `protobuf:"varint,2,opt,name=webId,proto3" json:"webId,omitempty"`
+}
+
+func (x *UpdateServerWebRequest) Reset() {
+	*x = UpdateServerWebRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerWebRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerWebRequest) ProtoMessage() {}
+
+func (x *UpdateServerWebRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerWebRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerWebRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *UpdateServerWebRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *UpdateServerWebRequest) GetWebId() int64 {
+	if x != nil {
+		return x.WebId
+	}
+	return 0
+}
+
+type UpdateServerWebResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateServerWebResponse) Reset() {
+	*x = UpdateServerWebResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerWebResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerWebResponse) ProtoMessage() {}
+
+func (x *UpdateServerWebResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerWebResponse.ProtoReflect.Descriptor instead.
+func (*UpdateServerWebResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{17}
+}
+
+type UpdateServerReverseProxyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId       int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ReverseProxyId int64 `protobuf:"varint,2,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"`
+}
+
+func (x *UpdateServerReverseProxyRequest) Reset() {
+	*x = UpdateServerReverseProxyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerReverseProxyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerReverseProxyRequest) ProtoMessage() {}
+
+func (x *UpdateServerReverseProxyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerReverseProxyRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerReverseProxyRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *UpdateServerReverseProxyRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *UpdateServerReverseProxyRequest) GetReverseProxyId() int64 {
+	if x != nil {
+		return x.ReverseProxyId
+	}
+	return 0
+}
+
+type UpdateServerReverseProxyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateServerReverseProxyResponse) Reset() {
+	*x = UpdateServerReverseProxyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerReverseProxyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerReverseProxyResponse) ProtoMessage() {}
+
+func (x *UpdateServerReverseProxyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerReverseProxyResponse.ProtoReflect.Descriptor instead.
+func (*UpdateServerReverseProxyResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{19}
+}
+
+type UpdateServerNamesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Config   []byte `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
+}
+
+func (x *UpdateServerNamesRequest) Reset() {
+	*x = UpdateServerNamesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerNamesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerNamesRequest) ProtoMessage() {}
+
+func (x *UpdateServerNamesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerNamesRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerNamesRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *UpdateServerNamesRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *UpdateServerNamesRequest) GetConfig() []byte {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
+type UpdateServerNamesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateServerNamesResponse) Reset() {
+	*x = UpdateServerNamesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerNamesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerNamesResponse) ProtoMessage() {}
+
+func (x *UpdateServerNamesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerNamesResponse.ProtoReflect.Descriptor instead.
+func (*UpdateServerNamesResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{21}
 }
 
 // 计算服务数量
@@ -348,7 +1211,7 @@ type CountAllEnabledServersRequest struct {
 func (x *CountAllEnabledServersRequest) Reset() {
 	*x = CountAllEnabledServersRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_server_proto_msgTypes[4]
+		mi := &file_service_server_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -361,7 +1224,7 @@ func (x *CountAllEnabledServersRequest) String() string {
 func (*CountAllEnabledServersRequest) ProtoMessage() {}
 
 func (x *CountAllEnabledServersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_server_proto_msgTypes[4]
+	mi := &file_service_server_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -374,7 +1237,7 @@ func (x *CountAllEnabledServersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CountAllEnabledServersRequest.ProtoReflect.Descriptor instead.
 func (*CountAllEnabledServersRequest) Descriptor() ([]byte, []int) {
-	return file_service_server_proto_rawDescGZIP(), []int{4}
+	return file_service_server_proto_rawDescGZIP(), []int{22}
 }
 
 type CountAllEnabledServersResponse struct {
@@ -388,7 +1251,7 @@ type CountAllEnabledServersResponse struct {
 func (x *CountAllEnabledServersResponse) Reset() {
 	*x = CountAllEnabledServersResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_server_proto_msgTypes[5]
+		mi := &file_service_server_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -401,7 +1264,7 @@ func (x *CountAllEnabledServersResponse) String() string {
 func (*CountAllEnabledServersResponse) ProtoMessage() {}
 
 func (x *CountAllEnabledServersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_server_proto_msgTypes[5]
+	mi := &file_service_server_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -414,7 +1277,7 @@ func (x *CountAllEnabledServersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CountAllEnabledServersResponse.ProtoReflect.Descriptor instead.
 func (*CountAllEnabledServersResponse) Descriptor() ([]byte, []int) {
-	return file_service_server_proto_rawDescGZIP(), []int{5}
+	return file_service_server_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *CountAllEnabledServersResponse) GetCount() int64 {
@@ -437,7 +1300,7 @@ type ListEnabledServersRequest struct {
 func (x *ListEnabledServersRequest) Reset() {
 	*x = ListEnabledServersRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_server_proto_msgTypes[6]
+		mi := &file_service_server_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -450,7 +1313,7 @@ func (x *ListEnabledServersRequest) String() string {
 func (*ListEnabledServersRequest) ProtoMessage() {}
 
 func (x *ListEnabledServersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_server_proto_msgTypes[6]
+	mi := &file_service_server_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -463,7 +1326,7 @@ func (x *ListEnabledServersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEnabledServersRequest.ProtoReflect.Descriptor instead.
 func (*ListEnabledServersRequest) Descriptor() ([]byte, []int) {
-	return file_service_server_proto_rawDescGZIP(), []int{6}
+	return file_service_server_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ListEnabledServersRequest) GetOffset() int64 {
@@ -491,7 +1354,7 @@ type ListEnabledServersResponse struct {
 func (x *ListEnabledServersResponse) Reset() {
 	*x = ListEnabledServersResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_server_proto_msgTypes[7]
+		mi := &file_service_server_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -504,7 +1367,7 @@ func (x *ListEnabledServersResponse) String() string {
 func (*ListEnabledServersResponse) ProtoMessage() {}
 
 func (x *ListEnabledServersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_server_proto_msgTypes[7]
+	mi := &file_service_server_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -517,7 +1380,7 @@ func (x *ListEnabledServersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEnabledServersResponse.ProtoReflect.Descriptor instead.
 func (*ListEnabledServersResponse) Descriptor() ([]byte, []int) {
-	return file_service_server_proto_rawDescGZIP(), []int{7}
+	return file_service_server_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *ListEnabledServersResponse) GetServers() []*Server {
@@ -539,7 +1402,7 @@ type DisableServerRequest struct {
 func (x *DisableServerRequest) Reset() {
 	*x = DisableServerRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_server_proto_msgTypes[8]
+		mi := &file_service_server_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -552,7 +1415,7 @@ func (x *DisableServerRequest) String() string {
 func (*DisableServerRequest) ProtoMessage() {}
 
 func (x *DisableServerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_server_proto_msgTypes[8]
+	mi := &file_service_server_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -565,7 +1428,7 @@ func (x *DisableServerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DisableServerRequest.ProtoReflect.Descriptor instead.
 func (*DisableServerRequest) Descriptor() ([]byte, []int) {
-	return file_service_server_proto_rawDescGZIP(), []int{8}
+	return file_service_server_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *DisableServerRequest) GetServerId() int64 {
@@ -584,7 +1447,7 @@ type DisableServerResponse struct {
 func (x *DisableServerResponse) Reset() {
 	*x = DisableServerResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_server_proto_msgTypes[9]
+		mi := &file_service_server_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -597,7 +1460,7 @@ func (x *DisableServerResponse) String() string {
 func (*DisableServerResponse) ProtoMessage() {}
 
 func (x *DisableServerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_server_proto_msgTypes[9]
+	mi := &file_service_server_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -610,7 +1473,7 @@ func (x *DisableServerResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DisableServerResponse.ProtoReflect.Descriptor instead.
 func (*DisableServerResponse) Descriptor() ([]byte, []int) {
-	return file_service_server_proto_rawDescGZIP(), []int{9}
+	return file_service_server_proto_rawDescGZIP(), []int{27}
 }
 
 // 查找单个服务
@@ -625,7 +1488,7 @@ type FindEnabledServerRequest struct {
 func (x *FindEnabledServerRequest) Reset() {
 	*x = FindEnabledServerRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_server_proto_msgTypes[10]
+		mi := &file_service_server_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -638,7 +1501,7 @@ func (x *FindEnabledServerRequest) String() string {
 func (*FindEnabledServerRequest) ProtoMessage() {}
 
 func (x *FindEnabledServerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_server_proto_msgTypes[10]
+	mi := &file_service_server_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -651,7 +1514,7 @@ func (x *FindEnabledServerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindEnabledServerRequest.ProtoReflect.Descriptor instead.
 func (*FindEnabledServerRequest) Descriptor() ([]byte, []int) {
-	return file_service_server_proto_rawDescGZIP(), []int{10}
+	return file_service_server_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *FindEnabledServerRequest) GetServerId() int64 {
@@ -672,7 +1535,7 @@ type FindEnabledServerResponse struct {
 func (x *FindEnabledServerResponse) Reset() {
 	*x = FindEnabledServerResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_server_proto_msgTypes[11]
+		mi := &file_service_server_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -685,7 +1548,7 @@ func (x *FindEnabledServerResponse) String() string {
 func (*FindEnabledServerResponse) ProtoMessage() {}
 
 func (x *FindEnabledServerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_server_proto_msgTypes[11]
+	mi := &file_service_server_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -698,7 +1561,7 @@ func (x *FindEnabledServerResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindEnabledServerResponse.ProtoReflect.Descriptor instead.
 func (*FindEnabledServerResponse) Descriptor() ([]byte, []int) {
-	return file_service_server_proto_rawDescGZIP(), []int{11}
+	return file_service_server_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *FindEnabledServerResponse) GetServer() *Server {
@@ -708,13 +1571,203 @@ func (x *FindEnabledServerResponse) GetServer() *Server {
 	return nil
 }
 
+// 查找服务的服务类型
+type FindEnabledServerTypeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+}
+
+func (x *FindEnabledServerTypeRequest) Reset() {
+	*x = FindEnabledServerTypeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[30]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledServerTypeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledServerTypeRequest) ProtoMessage() {}
+
+func (x *FindEnabledServerTypeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[30]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledServerTypeRequest.ProtoReflect.Descriptor instead.
+func (*FindEnabledServerTypeRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *FindEnabledServerTypeRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+type FindEnabledServerTypeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+}
+
+func (x *FindEnabledServerTypeResponse) Reset() {
+	*x = FindEnabledServerTypeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[31]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledServerTypeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledServerTypeResponse) ProtoMessage() {}
+
+func (x *FindEnabledServerTypeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[31]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledServerTypeResponse.ProtoReflect.Descriptor instead.
+func (*FindEnabledServerTypeResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *FindEnabledServerTypeResponse) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+// 查找反向代理设置
+type FindServerReverseProxyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+}
+
+func (x *FindServerReverseProxyRequest) Reset() {
+	*x = FindServerReverseProxyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[32]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindServerReverseProxyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindServerReverseProxyRequest) ProtoMessage() {}
+
+func (x *FindServerReverseProxyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[32]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindServerReverseProxyRequest.ProtoReflect.Descriptor instead.
+func (*FindServerReverseProxyRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *FindServerReverseProxyRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+type FindServerReverseProxyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Config []byte `protobuf:"bytes,1,opt,name=config,proto3" json:"config,omitempty"`
+}
+
+func (x *FindServerReverseProxyResponse) Reset() {
+	*x = FindServerReverseProxyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_proto_msgTypes[33]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindServerReverseProxyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindServerReverseProxyResponse) ProtoMessage() {}
+
+func (x *FindServerReverseProxyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_proto_msgTypes[33]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindServerReverseProxyResponse.ProtoReflect.Descriptor instead.
+func (*FindServerReverseProxyResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *FindServerReverseProxyResponse) GetConfig() []byte {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
 var File_service_server_proto protoreflect.FileDescriptor
 
 var file_service_server_proto_rawDesc = []byte{
 	0x0a, 0x14, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x1a, 0x12, 0x6d, 0x6f, 0x64, 0x65,
-	0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x9f,
-	0x02, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52,
+	0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x91,
+	0x04, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x18,
 	0x0a, 0x07, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52,
@@ -723,97 +1776,237 @@ var file_service_server_proto_rawDesc = []byte{
 	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
 	0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18,
 	0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
-	0x6f, 0x6e, 0x12, 0x1c, 0x0a, 0x09, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18,
-	0x06, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64,
-	0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0c,
-	0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x2a, 0x0a, 0x10, 0x69, 0x6e, 0x63, 0x6c,
-	0x75, 0x64, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x08, 0x20, 0x01,
-	0x28, 0x0c, 0x52, 0x10, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x73,
-	0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x2a, 0x0a, 0x10, 0x65, 0x78, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x4e,
-	0x6f, 0x64, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x10,
-	0x65, 0x78, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e,
-	0x22, 0x32, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76,
-	0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76,
-	0x65, 0x72, 0x49, 0x64, 0x22, 0xa7, 0x02, 0x0a, 0x13, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08,
-	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08,
-	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72,
-	0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64,
-	0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28,
-	0x03, 0x52, 0x07, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
-	0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x20,
-	0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e,
-	0x12, 0x1c, 0x0a, 0x09, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18, 0x06, 0x20,
-	0x01, 0x28, 0x03, 0x52, 0x09, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x16,
-	0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06,
-	0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x2a, 0x0a, 0x10, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64,
-	0x65, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0c,
-	0x52, 0x10, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x4a, 0x53,
-	0x4f, 0x4e, 0x12, 0x2a, 0x0a, 0x10, 0x65, 0x78, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x4e, 0x6f, 0x64,
-	0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x10, 0x65, 0x78,
-	0x63, 0x6c, 0x75, 0x64, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x16,
-	0x0a, 0x14, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1f, 0x0a, 0x1d, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41,
-	0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x36, 0x0a, 0x1e, 0x43, 0x6f, 0x75, 0x6e, 0x74,
-	0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
-	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75,
-	0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x22,
-	0x47, 0x0a, 0x19, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65,
-	0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06,
-	0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x6f, 0x66,
-	0x66, 0x73, 0x65, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x22, 0x42, 0x0a, 0x1a, 0x4c, 0x69, 0x73, 0x74,
-	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x24, 0x0a, 0x07, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72,
-	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x72,
-	0x76, 0x65, 0x72, 0x52, 0x07, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x22, 0x32, 0x0a, 0x14,
-	0x44, 0x69, 0x73, 0x61, 0x62, 0x6c, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64,
-	0x22, 0x17, 0x0a, 0x15, 0x44, 0x69, 0x73, 0x61, 0x62, 0x6c, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65,
-	0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x36, 0x0a, 0x18, 0x46, 0x69, 0x6e,
-	0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65,
+	0x6f, 0x6e, 0x12, 0x26, 0x0a, 0x0e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65,
+	0x73, 0x4a, 0x4f, 0x4e, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0e, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x4a, 0x4f, 0x4e, 0x12, 0x1a, 0x0a, 0x08, 0x68, 0x74,
+	0x74, 0x70, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x08, 0x68, 0x74,
+	0x74, 0x70, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x1c, 0x0a, 0x09, 0x68, 0x74, 0x74, 0x70, 0x73, 0x4a,
+	0x53, 0x4f, 0x4e, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x09, 0x68, 0x74, 0x74, 0x70, 0x73,
+	0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x18, 0x0a, 0x07, 0x74, 0x63, 0x70, 0x4a, 0x53, 0x4f, 0x4e, 0x18,
+	0x0b, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x07, 0x74, 0x63, 0x70, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x18,
+	0x0a, 0x07, 0x74, 0x6c, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x0c, 0x52,
+	0x07, 0x74, 0x6c, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x6e, 0x69, 0x78,
+	0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x08, 0x75, 0x6e, 0x69, 0x78,
+	0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x18, 0x0a, 0x07, 0x75, 0x64, 0x70, 0x4a, 0x53, 0x4f, 0x4e, 0x18,
+	0x0e, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x07, 0x75, 0x64, 0x70, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x14,
+	0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x0f, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77,
+	0x65, 0x62, 0x49, 0x64, 0x12, 0x26, 0x0a, 0x0e, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50,
+	0x72, 0x6f, 0x78, 0x79, 0x49, 0x64, 0x18, 0x10, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0e, 0x72, 0x65,
+	0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x49, 0x64, 0x12, 0x1c, 0x0a, 0x09,
+	0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18, 0x1e, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x09, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x2a, 0x0a, 0x10, 0x69, 0x6e,
+	0x63, 0x6c, 0x75, 0x64, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x1f,
+	0x20, 0x01, 0x28, 0x0c, 0x52, 0x10, 0x69, 0x6e, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x4e, 0x6f, 0x64,
+	0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x2a, 0x0a, 0x10, 0x65, 0x78, 0x63, 0x6c, 0x75, 0x64,
+	0x65, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x20, 0x20, 0x01, 0x28, 0x0c,
+	0x52, 0x10, 0x65, 0x78, 0x63, 0x6c, 0x75, 0x64, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x4a, 0x53,
+	0x4f, 0x4e, 0x22, 0x32, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x22, 0x8a, 0x01, 0x0a, 0x18, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x73, 0x69, 0x63, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12,
+	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
+	0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69,
+	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1c, 0x0a, 0x09, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x49, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x49, 0x64, 0x22, 0x1b, 0x0a, 0x19, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x42, 0x61, 0x73, 0x69, 0x63, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x4d, 0x0a, 0x17, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x48, 0x54, 0x54, 0x50, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69,
+	0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22,
+	0x1a, 0x0a, 0x18, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x48,
+	0x54, 0x54, 0x50, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4e, 0x0a, 0x18, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x48, 0x54, 0x54, 0x50, 0x53,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0c, 0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0x1b, 0x0a, 0x19, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x48, 0x54, 0x54, 0x50, 0x53,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4c, 0x0a, 0x16, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x54, 0x43, 0x50, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x16,
+	0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06,
+	0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0x19, 0x0a, 0x17, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x54, 0x43, 0x50, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x4c, 0x0a, 0x16, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x54, 0x4c, 0x53, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69,
+	0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22,
+	0x19, 0x0a, 0x17, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x54,
+	0x4c, 0x53, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4d, 0x0a, 0x17, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x55, 0x6e, 0x69, 0x78, 0x52, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49,
 	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49,
-	0x64, 0x22, 0x3f, 0x0a, 0x19, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
-	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x22,
-	0x0a, 0x06, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a,
-	0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x06, 0x73, 0x65, 0x72, 0x76,
-	0x65, 0x72, 0x32, 0xe3, 0x03, 0x0a, 0x0d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x12, 0x41, 0x0a, 0x0c, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65,
-	0x72, 0x76, 0x65, 0x72, 0x12, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e,
-	0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x41, 0x0a, 0x0c, 0x75, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x12, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76,
-	0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5f, 0x0a, 0x16, 0x63, 0x6f,
-	0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72,
-	0x76, 0x65, 0x72, 0x73, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41,
-	0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75,
-	0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76,
-	0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x12, 0x6c,
-	0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
-	0x73, 0x12, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c,
-	0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x1e, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x64, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0c, 0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0x1a, 0x0a, 0x18, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x55, 0x6e, 0x69, 0x78, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4c, 0x0a, 0x16, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x55, 0x44, 0x50, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x63,
+	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x63, 0x6f, 0x6e,
+	0x66, 0x69, 0x67, 0x22, 0x19, 0x0a, 0x17, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x55, 0x44, 0x50, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4a,
+	0x0a, 0x16, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x57, 0x65,
+	0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x22, 0x19, 0x0a, 0x17, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x65, 0x0a, 0x1f, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78,
+	0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x49, 0x64, 0x12, 0x26, 0x0a, 0x0e, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50,
+	0x72, 0x6f, 0x78, 0x79, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0e, 0x72, 0x65,
+	0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x49, 0x64, 0x22, 0x22, 0x0a, 0x20,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x76, 0x65,
+	0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x4e, 0x0a, 0x18, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x4e, 0x61, 0x6d, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08,
+	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08,
+	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66,
+	0x69, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x22, 0x1b, 0x0a, 0x19, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x4e, 0x61, 0x6d, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1f, 0x0a,
+	0x1d, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x36,
+	0x0a, 0x1e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
 	0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x44, 0x0a, 0x0d, 0x64, 0x69, 0x73, 0x61, 0x62, 0x6c, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65,
-	0x72, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x69, 0x73, 0x61, 0x62, 0x6c, 0x65, 0x53, 0x65,
-	0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62,
-	0x2e, 0x44, 0x69, 0x73, 0x61, 0x62, 0x6c, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x11, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e,
-	0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x12, 0x1c, 0x2e, 0x70, 0x62,
-	0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76,
-	0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x46,
-	0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x47, 0x0a, 0x19, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e,
+	0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x73,
+	0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x22,
+	0x42, 0x0a, 0x1a, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x24, 0x0a,
+	0x07, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a,
+	0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x07, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x73, 0x22, 0x32, 0x0a, 0x14, 0x44, 0x69, 0x73, 0x61, 0x62, 0x6c, 0x65, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x22, 0x17, 0x0a, 0x15, 0x44, 0x69, 0x73, 0x61, 0x62,
+	0x6c, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x36, 0x0a, 0x18, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08,
+	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08,
+	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x22, 0x3f, 0x0a, 0x19, 0x46, 0x69, 0x6e, 0x64,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x52, 0x06, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x22, 0x3a, 0x0a, 0x1c, 0x46, 0x69, 0x6e,
+	0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x54, 0x79,
+	0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x49, 0x64, 0x22, 0x33, 0x0a, 0x1d, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61,
+	0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x3b, 0x0a, 0x1d, 0x46, 0x69,
+	0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50,
+	0x72, 0x6f, 0x78, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x22, 0x38, 0x0a, 0x1e, 0x46, 0x69, 0x6e, 0x64, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78,
+	0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6e,
+	0x66, 0x69, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69,
+	0x67, 0x32, 0x8a, 0x0b, 0x0a, 0x0d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x12, 0x41, 0x0a, 0x0c, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x12, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x70,
+	0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x73, 0x69, 0x63, 0x12, 0x1c, 0x2e, 0x70, 0x62,
+	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x73,
+	0x69, 0x63, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x73, 0x69, 0x63,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4d, 0x0a, 0x10, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x48, 0x54, 0x54, 0x50, 0x12, 0x1b, 0x2e, 0x70,
+	0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x48, 0x54,
+	0x54, 0x50, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x48, 0x54, 0x54, 0x50, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x48, 0x54, 0x54, 0x50, 0x53, 0x12, 0x1c, 0x2e, 0x70,
+	0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x48, 0x54,
+	0x54, 0x50, 0x53, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x48, 0x54, 0x54, 0x50,
+	0x53, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4a, 0x0a, 0x0f, 0x75, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x54, 0x43, 0x50, 0x12, 0x1a, 0x2e, 0x70,
+	0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x54, 0x43,
+	0x50, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x54, 0x43, 0x50, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4a, 0x0a, 0x0f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x54, 0x4c, 0x53, 0x12, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x54, 0x4c, 0x53, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x54, 0x4c, 0x53, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x4d, 0x0a, 0x10, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x55, 0x6e, 0x69, 0x78, 0x12, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x55, 0x6e, 0x69, 0x78, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x55, 0x6e, 0x69, 0x78, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x4a, 0x0a, 0x0f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x55, 0x44, 0x50, 0x12, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x55, 0x44, 0x50, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x55, 0x44, 0x50, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4a, 0x0a, 0x0f,
+	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x57, 0x65, 0x62, 0x12,
+	0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x70, 0x62,
+	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x57, 0x65, 0x62,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x65, 0x0a, 0x18, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50,
+	0x72, 0x6f, 0x78, 0x79, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f,
+	0x78, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x76, 0x65, 0x72,
+	0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x50, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4e,
+	0x61, 0x6d, 0x65, 0x73, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x5f, 0x0a, 0x16, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61,
+	0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x12, 0x21, 0x2e, 0x70, 0x62,
+	0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22,
+	0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x53, 0x0a, 0x12, 0x6c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x12, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69,
+	0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73,
+	0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0d, 0x64, 0x69, 0x73, 0x61, 0x62,
+	0x6c, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x69,
+	0x73, 0x61, 0x62, 0x6c, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x69, 0x73, 0x61, 0x62, 0x6c, 0x65, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a,
+	0x11, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x5c, 0x0a, 0x15, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
+	0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x54,
+	0x79, 0x70, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x70, 0x62, 0x2e,
+	0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x54, 0x79, 0x70, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5f, 0x0a,
+	0x16, 0x66, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x76, 0x65, 0x72,
+	0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e,
+	0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72,
+	0x6f, 0x78, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x70, 0x62, 0x2e,
+	0x46, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73,
+	0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06,
+	0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -828,39 +2021,83 @@ func file_service_server_proto_rawDescGZIP() []byte {
 	return file_service_server_proto_rawDescData
 }
 
-var file_service_server_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_service_server_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
 var file_service_server_proto_goTypes = []interface{}{
-	(*CreateServerRequest)(nil),            // 0: pb.CreateServerRequest
-	(*CreateServerResponse)(nil),           // 1: pb.CreateServerResponse
-	(*UpdateServerRequest)(nil),            // 2: pb.UpdateServerRequest
-	(*UpdateServerResponse)(nil),           // 3: pb.UpdateServerResponse
-	(*CountAllEnabledServersRequest)(nil),  // 4: pb.CountAllEnabledServersRequest
-	(*CountAllEnabledServersResponse)(nil), // 5: pb.CountAllEnabledServersResponse
-	(*ListEnabledServersRequest)(nil),      // 6: pb.ListEnabledServersRequest
-	(*ListEnabledServersResponse)(nil),     // 7: pb.ListEnabledServersResponse
-	(*DisableServerRequest)(nil),           // 8: pb.DisableServerRequest
-	(*DisableServerResponse)(nil),          // 9: pb.DisableServerResponse
-	(*FindEnabledServerRequest)(nil),       // 10: pb.FindEnabledServerRequest
-	(*FindEnabledServerResponse)(nil),      // 11: pb.FindEnabledServerResponse
-	(*Server)(nil),                         // 12: pb.Server
+	(*CreateServerRequest)(nil),              // 0: pb.CreateServerRequest
+	(*CreateServerResponse)(nil),             // 1: pb.CreateServerResponse
+	(*UpdateServerBasicRequest)(nil),         // 2: pb.UpdateServerBasicRequest
+	(*UpdateServerBasicResponse)(nil),        // 3: pb.UpdateServerBasicResponse
+	(*UpdateServerHTTPRequest)(nil),          // 4: pb.UpdateServerHTTPRequest
+	(*UpdateServerHTTPResponse)(nil),         // 5: pb.UpdateServerHTTPResponse
+	(*UpdateServerHTTPSRequest)(nil),         // 6: pb.UpdateServerHTTPSRequest
+	(*UpdateServerHTTPSResponse)(nil),        // 7: pb.UpdateServerHTTPSResponse
+	(*UpdateServerTCPRequest)(nil),           // 8: pb.UpdateServerTCPRequest
+	(*UpdateServerTCPResponse)(nil),          // 9: pb.UpdateServerTCPResponse
+	(*UpdateServerTLSRequest)(nil),           // 10: pb.UpdateServerTLSRequest
+	(*UpdateServerTLSResponse)(nil),          // 11: pb.UpdateServerTLSResponse
+	(*UpdateServerUnixRequest)(nil),          // 12: pb.UpdateServerUnixRequest
+	(*UpdateServerUnixResponse)(nil),         // 13: pb.UpdateServerUnixResponse
+	(*UpdateServerUDPRequest)(nil),           // 14: pb.UpdateServerUDPRequest
+	(*UpdateServerUDPResponse)(nil),          // 15: pb.UpdateServerUDPResponse
+	(*UpdateServerWebRequest)(nil),           // 16: pb.UpdateServerWebRequest
+	(*UpdateServerWebResponse)(nil),          // 17: pb.UpdateServerWebResponse
+	(*UpdateServerReverseProxyRequest)(nil),  // 18: pb.UpdateServerReverseProxyRequest
+	(*UpdateServerReverseProxyResponse)(nil), // 19: pb.UpdateServerReverseProxyResponse
+	(*UpdateServerNamesRequest)(nil),         // 20: pb.UpdateServerNamesRequest
+	(*UpdateServerNamesResponse)(nil),        // 21: pb.UpdateServerNamesResponse
+	(*CountAllEnabledServersRequest)(nil),    // 22: pb.CountAllEnabledServersRequest
+	(*CountAllEnabledServersResponse)(nil),   // 23: pb.CountAllEnabledServersResponse
+	(*ListEnabledServersRequest)(nil),        // 24: pb.ListEnabledServersRequest
+	(*ListEnabledServersResponse)(nil),       // 25: pb.ListEnabledServersResponse
+	(*DisableServerRequest)(nil),             // 26: pb.DisableServerRequest
+	(*DisableServerResponse)(nil),            // 27: pb.DisableServerResponse
+	(*FindEnabledServerRequest)(nil),         // 28: pb.FindEnabledServerRequest
+	(*FindEnabledServerResponse)(nil),        // 29: pb.FindEnabledServerResponse
+	(*FindEnabledServerTypeRequest)(nil),     // 30: pb.FindEnabledServerTypeRequest
+	(*FindEnabledServerTypeResponse)(nil),    // 31: pb.FindEnabledServerTypeResponse
+	(*FindServerReverseProxyRequest)(nil),    // 32: pb.FindServerReverseProxyRequest
+	(*FindServerReverseProxyResponse)(nil),   // 33: pb.FindServerReverseProxyResponse
+	(*Server)(nil),                           // 34: pb.Server
 }
 var file_service_server_proto_depIdxs = []int32{
-	12, // 0: pb.ListEnabledServersResponse.servers:type_name -> pb.Server
-	12, // 1: pb.FindEnabledServerResponse.server:type_name -> pb.Server
+	34, // 0: pb.ListEnabledServersResponse.servers:type_name -> pb.Server
+	34, // 1: pb.FindEnabledServerResponse.server:type_name -> pb.Server
 	0,  // 2: pb.ServerService.createServer:input_type -> pb.CreateServerRequest
-	2,  // 3: pb.ServerService.updateServer:input_type -> pb.UpdateServerRequest
-	4,  // 4: pb.ServerService.countAllEnabledServers:input_type -> pb.CountAllEnabledServersRequest
-	6,  // 5: pb.ServerService.listEnabledServers:input_type -> pb.ListEnabledServersRequest
-	8,  // 6: pb.ServerService.disableServer:input_type -> pb.DisableServerRequest
-	10, // 7: pb.ServerService.findEnabledServer:input_type -> pb.FindEnabledServerRequest
-	1,  // 8: pb.ServerService.createServer:output_type -> pb.CreateServerResponse
-	3,  // 9: pb.ServerService.updateServer:output_type -> pb.UpdateServerResponse
-	5,  // 10: pb.ServerService.countAllEnabledServers:output_type -> pb.CountAllEnabledServersResponse
-	7,  // 11: pb.ServerService.listEnabledServers:output_type -> pb.ListEnabledServersResponse
-	9,  // 12: pb.ServerService.disableServer:output_type -> pb.DisableServerResponse
-	11, // 13: pb.ServerService.findEnabledServer:output_type -> pb.FindEnabledServerResponse
-	8,  // [8:14] is the sub-list for method output_type
-	2,  // [2:8] is the sub-list for method input_type
+	2,  // 3: pb.ServerService.updateServerBasic:input_type -> pb.UpdateServerBasicRequest
+	4,  // 4: pb.ServerService.updateServerHTTP:input_type -> pb.UpdateServerHTTPRequest
+	6,  // 5: pb.ServerService.updateServerHTTPS:input_type -> pb.UpdateServerHTTPSRequest
+	8,  // 6: pb.ServerService.updateServerTCP:input_type -> pb.UpdateServerTCPRequest
+	10, // 7: pb.ServerService.updateServerTLS:input_type -> pb.UpdateServerTLSRequest
+	12, // 8: pb.ServerService.updateServerUnix:input_type -> pb.UpdateServerUnixRequest
+	14, // 9: pb.ServerService.updateServerUDP:input_type -> pb.UpdateServerUDPRequest
+	16, // 10: pb.ServerService.updateServerWeb:input_type -> pb.UpdateServerWebRequest
+	18, // 11: pb.ServerService.updateServerReverseProxy:input_type -> pb.UpdateServerReverseProxyRequest
+	20, // 12: pb.ServerService.updateServerNames:input_type -> pb.UpdateServerNamesRequest
+	22, // 13: pb.ServerService.countAllEnabledServers:input_type -> pb.CountAllEnabledServersRequest
+	24, // 14: pb.ServerService.listEnabledServers:input_type -> pb.ListEnabledServersRequest
+	26, // 15: pb.ServerService.disableServer:input_type -> pb.DisableServerRequest
+	28, // 16: pb.ServerService.findEnabledServer:input_type -> pb.FindEnabledServerRequest
+	30, // 17: pb.ServerService.findEnabledServerType:input_type -> pb.FindEnabledServerTypeRequest
+	32, // 18: pb.ServerService.findServerReverseProxy:input_type -> pb.FindServerReverseProxyRequest
+	1,  // 19: pb.ServerService.createServer:output_type -> pb.CreateServerResponse
+	3,  // 20: pb.ServerService.updateServerBasic:output_type -> pb.UpdateServerBasicResponse
+	5,  // 21: pb.ServerService.updateServerHTTP:output_type -> pb.UpdateServerHTTPResponse
+	7,  // 22: pb.ServerService.updateServerHTTPS:output_type -> pb.UpdateServerHTTPSResponse
+	9,  // 23: pb.ServerService.updateServerTCP:output_type -> pb.UpdateServerTCPResponse
+	11, // 24: pb.ServerService.updateServerTLS:output_type -> pb.UpdateServerTLSResponse
+	13, // 25: pb.ServerService.updateServerUnix:output_type -> pb.UpdateServerUnixResponse
+	15, // 26: pb.ServerService.updateServerUDP:output_type -> pb.UpdateServerUDPResponse
+	17, // 27: pb.ServerService.updateServerWeb:output_type -> pb.UpdateServerWebResponse
+	19, // 28: pb.ServerService.updateServerReverseProxy:output_type -> pb.UpdateServerReverseProxyResponse
+	21, // 29: pb.ServerService.updateServerNames:output_type -> pb.UpdateServerNamesResponse
+	23, // 30: pb.ServerService.countAllEnabledServers:output_type -> pb.CountAllEnabledServersResponse
+	25, // 31: pb.ServerService.listEnabledServers:output_type -> pb.ListEnabledServersResponse
+	27, // 32: pb.ServerService.disableServer:output_type -> pb.DisableServerResponse
+	29, // 33: pb.ServerService.findEnabledServer:output_type -> pb.FindEnabledServerResponse
+	31, // 34: pb.ServerService.findEnabledServerType:output_type -> pb.FindEnabledServerTypeResponse
+	33, // 35: pb.ServerService.findServerReverseProxy:output_type -> pb.FindServerReverseProxyResponse
+	19, // [19:36] is the sub-list for method output_type
+	2,  // [2:19] is the sub-list for method input_type
 	2,  // [2:2] is the sub-list for extension type_name
 	2,  // [2:2] is the sub-list for extension extendee
 	0,  // [0:2] is the sub-list for field type_name
@@ -898,7 +2135,7 @@ func file_service_server_proto_init() {
 			}
 		}
 		file_service_server_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateServerRequest); i {
+			switch v := v.(*UpdateServerBasicRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -910,7 +2147,7 @@ func file_service_server_proto_init() {
 			}
 		}
 		file_service_server_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateServerResponse); i {
+			switch v := v.(*UpdateServerBasicResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -922,7 +2159,7 @@ func file_service_server_proto_init() {
 			}
 		}
 		file_service_server_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CountAllEnabledServersRequest); i {
+			switch v := v.(*UpdateServerHTTPRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -934,7 +2171,7 @@ func file_service_server_proto_init() {
 			}
 		}
 		file_service_server_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CountAllEnabledServersResponse); i {
+			switch v := v.(*UpdateServerHTTPResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -946,7 +2183,7 @@ func file_service_server_proto_init() {
 			}
 		}
 		file_service_server_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListEnabledServersRequest); i {
+			switch v := v.(*UpdateServerHTTPSRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -958,7 +2195,7 @@ func file_service_server_proto_init() {
 			}
 		}
 		file_service_server_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListEnabledServersResponse); i {
+			switch v := v.(*UpdateServerHTTPSResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -970,7 +2207,7 @@ func file_service_server_proto_init() {
 			}
 		}
 		file_service_server_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DisableServerRequest); i {
+			switch v := v.(*UpdateServerTCPRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -982,7 +2219,7 @@ func file_service_server_proto_init() {
 			}
 		}
 		file_service_server_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DisableServerResponse); i {
+			switch v := v.(*UpdateServerTCPResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -994,7 +2231,7 @@ func file_service_server_proto_init() {
 			}
 		}
 		file_service_server_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindEnabledServerRequest); i {
+			switch v := v.(*UpdateServerTLSRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1006,7 +2243,271 @@ func file_service_server_proto_init() {
 			}
 		}
 		file_service_server_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerTLSResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerUnixRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerUnixResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerUDPRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerUDPResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerWebRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerWebResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerReverseProxyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerReverseProxyResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerNamesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerNamesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CountAllEnabledServersRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CountAllEnabledServersResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListEnabledServersRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListEnabledServersResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DisableServerRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DisableServerResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledServerRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FindEnabledServerResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledServerTypeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledServerTypeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindServerReverseProxyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindServerReverseProxyResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1024,7 +2525,7 @@ func file_service_server_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_server_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -1052,8 +2553,26 @@ const _ = grpc.SupportPackageIsVersion6
 type ServerServiceClient interface {
 	// 创建服务
 	CreateServer(ctx context.Context, in *CreateServerRequest, opts ...grpc.CallOption) (*CreateServerResponse, error)
-	// 修改服务
-	UpdateServer(ctx context.Context, in *UpdateServerRequest, opts ...grpc.CallOption) (*UpdateServerResponse, error)
+	// 修改服务基本信息
+	UpdateServerBasic(ctx context.Context, in *UpdateServerBasicRequest, opts ...grpc.CallOption) (*UpdateServerBasicResponse, error)
+	// 修改服务的HTTP设置
+	UpdateServerHTTP(ctx context.Context, in *UpdateServerHTTPRequest, opts ...grpc.CallOption) (*UpdateServerHTTPResponse, error)
+	// 修改服务的HTTPS设置
+	UpdateServerHTTPS(ctx context.Context, in *UpdateServerHTTPSRequest, opts ...grpc.CallOption) (*UpdateServerHTTPSResponse, error)
+	// 修改服务的TCP设置
+	UpdateServerTCP(ctx context.Context, in *UpdateServerTCPRequest, opts ...grpc.CallOption) (*UpdateServerTCPResponse, error)
+	// 修改服务的TLS设置
+	UpdateServerTLS(ctx context.Context, in *UpdateServerTLSRequest, opts ...grpc.CallOption) (*UpdateServerTLSResponse, error)
+	// 修改服务的Unix设置
+	UpdateServerUnix(ctx context.Context, in *UpdateServerUnixRequest, opts ...grpc.CallOption) (*UpdateServerUnixResponse, error)
+	// 修改服务的UDP设置
+	UpdateServerUDP(ctx context.Context, in *UpdateServerUDPRequest, opts ...grpc.CallOption) (*UpdateServerUDPResponse, error)
+	// 修改服务的Web设置
+	UpdateServerWeb(ctx context.Context, in *UpdateServerWebRequest, opts ...grpc.CallOption) (*UpdateServerWebResponse, error)
+	// 修改服务的反向代理设置
+	UpdateServerReverseProxy(ctx context.Context, in *UpdateServerReverseProxyRequest, opts ...grpc.CallOption) (*UpdateServerReverseProxyResponse, error)
+	// 修改服务的域名设置
+	UpdateServerNames(ctx context.Context, in *UpdateServerNamesRequest, opts ...grpc.CallOption) (*UpdateServerNamesResponse, error)
 	// 计算服务数量
 	CountAllEnabledServers(ctx context.Context, in *CountAllEnabledServersRequest, opts ...grpc.CallOption) (*CountAllEnabledServersResponse, error)
 	// 列出单页服务
@@ -1062,6 +2581,10 @@ type ServerServiceClient interface {
 	DisableServer(ctx context.Context, in *DisableServerRequest, opts ...grpc.CallOption) (*DisableServerResponse, error)
 	// 查找单个服务
 	FindEnabledServer(ctx context.Context, in *FindEnabledServerRequest, opts ...grpc.CallOption) (*FindEnabledServerResponse, error)
+	// 查找服务的服务类型
+	FindEnabledServerType(ctx context.Context, in *FindEnabledServerTypeRequest, opts ...grpc.CallOption) (*FindEnabledServerTypeResponse, error)
+	// 查找反向代理设置
+	FindServerReverseProxy(ctx context.Context, in *FindServerReverseProxyRequest, opts ...grpc.CallOption) (*FindServerReverseProxyResponse, error)
 }
 
 type serverServiceClient struct {
@@ -1081,9 +2604,90 @@ func (c *serverServiceClient) CreateServer(ctx context.Context, in *CreateServer
 	return out, nil
 }
 
-func (c *serverServiceClient) UpdateServer(ctx context.Context, in *UpdateServerRequest, opts ...grpc.CallOption) (*UpdateServerResponse, error) {
-	out := new(UpdateServerResponse)
-	err := c.cc.Invoke(ctx, "/pb.ServerService/updateServer", in, out, opts...)
+func (c *serverServiceClient) UpdateServerBasic(ctx context.Context, in *UpdateServerBasicRequest, opts ...grpc.CallOption) (*UpdateServerBasicResponse, error) {
+	out := new(UpdateServerBasicResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/updateServerBasic", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) UpdateServerHTTP(ctx context.Context, in *UpdateServerHTTPRequest, opts ...grpc.CallOption) (*UpdateServerHTTPResponse, error) {
+	out := new(UpdateServerHTTPResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/updateServerHTTP", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) UpdateServerHTTPS(ctx context.Context, in *UpdateServerHTTPSRequest, opts ...grpc.CallOption) (*UpdateServerHTTPSResponse, error) {
+	out := new(UpdateServerHTTPSResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/updateServerHTTPS", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) UpdateServerTCP(ctx context.Context, in *UpdateServerTCPRequest, opts ...grpc.CallOption) (*UpdateServerTCPResponse, error) {
+	out := new(UpdateServerTCPResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/updateServerTCP", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) UpdateServerTLS(ctx context.Context, in *UpdateServerTLSRequest, opts ...grpc.CallOption) (*UpdateServerTLSResponse, error) {
+	out := new(UpdateServerTLSResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/updateServerTLS", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) UpdateServerUnix(ctx context.Context, in *UpdateServerUnixRequest, opts ...grpc.CallOption) (*UpdateServerUnixResponse, error) {
+	out := new(UpdateServerUnixResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/updateServerUnix", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) UpdateServerUDP(ctx context.Context, in *UpdateServerUDPRequest, opts ...grpc.CallOption) (*UpdateServerUDPResponse, error) {
+	out := new(UpdateServerUDPResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/updateServerUDP", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) UpdateServerWeb(ctx context.Context, in *UpdateServerWebRequest, opts ...grpc.CallOption) (*UpdateServerWebResponse, error) {
+	out := new(UpdateServerWebResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/updateServerWeb", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) UpdateServerReverseProxy(ctx context.Context, in *UpdateServerReverseProxyRequest, opts ...grpc.CallOption) (*UpdateServerReverseProxyResponse, error) {
+	out := new(UpdateServerReverseProxyResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/updateServerReverseProxy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) UpdateServerNames(ctx context.Context, in *UpdateServerNamesRequest, opts ...grpc.CallOption) (*UpdateServerNamesResponse, error) {
+	out := new(UpdateServerNamesResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/updateServerNames", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1126,12 +2730,48 @@ func (c *serverServiceClient) FindEnabledServer(ctx context.Context, in *FindEna
 	return out, nil
 }
 
+func (c *serverServiceClient) FindEnabledServerType(ctx context.Context, in *FindEnabledServerTypeRequest, opts ...grpc.CallOption) (*FindEnabledServerTypeResponse, error) {
+	out := new(FindEnabledServerTypeResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/findEnabledServerType", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) FindServerReverseProxy(ctx context.Context, in *FindServerReverseProxyRequest, opts ...grpc.CallOption) (*FindServerReverseProxyResponse, error) {
+	out := new(FindServerReverseProxyResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/findServerReverseProxy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServerServiceServer is the server API for ServerService service.
 type ServerServiceServer interface {
 	// 创建服务
 	CreateServer(context.Context, *CreateServerRequest) (*CreateServerResponse, error)
-	// 修改服务
-	UpdateServer(context.Context, *UpdateServerRequest) (*UpdateServerResponse, error)
+	// 修改服务基本信息
+	UpdateServerBasic(context.Context, *UpdateServerBasicRequest) (*UpdateServerBasicResponse, error)
+	// 修改服务的HTTP设置
+	UpdateServerHTTP(context.Context, *UpdateServerHTTPRequest) (*UpdateServerHTTPResponse, error)
+	// 修改服务的HTTPS设置
+	UpdateServerHTTPS(context.Context, *UpdateServerHTTPSRequest) (*UpdateServerHTTPSResponse, error)
+	// 修改服务的TCP设置
+	UpdateServerTCP(context.Context, *UpdateServerTCPRequest) (*UpdateServerTCPResponse, error)
+	// 修改服务的TLS设置
+	UpdateServerTLS(context.Context, *UpdateServerTLSRequest) (*UpdateServerTLSResponse, error)
+	// 修改服务的Unix设置
+	UpdateServerUnix(context.Context, *UpdateServerUnixRequest) (*UpdateServerUnixResponse, error)
+	// 修改服务的UDP设置
+	UpdateServerUDP(context.Context, *UpdateServerUDPRequest) (*UpdateServerUDPResponse, error)
+	// 修改服务的Web设置
+	UpdateServerWeb(context.Context, *UpdateServerWebRequest) (*UpdateServerWebResponse, error)
+	// 修改服务的反向代理设置
+	UpdateServerReverseProxy(context.Context, *UpdateServerReverseProxyRequest) (*UpdateServerReverseProxyResponse, error)
+	// 修改服务的域名设置
+	UpdateServerNames(context.Context, *UpdateServerNamesRequest) (*UpdateServerNamesResponse, error)
 	// 计算服务数量
 	CountAllEnabledServers(context.Context, *CountAllEnabledServersRequest) (*CountAllEnabledServersResponse, error)
 	// 列出单页服务
@@ -1140,6 +2780,10 @@ type ServerServiceServer interface {
 	DisableServer(context.Context, *DisableServerRequest) (*DisableServerResponse, error)
 	// 查找单个服务
 	FindEnabledServer(context.Context, *FindEnabledServerRequest) (*FindEnabledServerResponse, error)
+	// 查找服务的服务类型
+	FindEnabledServerType(context.Context, *FindEnabledServerTypeRequest) (*FindEnabledServerTypeResponse, error)
+	// 查找反向代理设置
+	FindServerReverseProxy(context.Context, *FindServerReverseProxyRequest) (*FindServerReverseProxyResponse, error)
 }
 
 // UnimplementedServerServiceServer can be embedded to have forward compatible implementations.
@@ -1149,8 +2793,35 @@ type UnimplementedServerServiceServer struct {
 func (*UnimplementedServerServiceServer) CreateServer(context.Context, *CreateServerRequest) (*CreateServerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateServer not implemented")
 }
-func (*UnimplementedServerServiceServer) UpdateServer(context.Context, *UpdateServerRequest) (*UpdateServerResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateServer not implemented")
+func (*UnimplementedServerServiceServer) UpdateServerBasic(context.Context, *UpdateServerBasicRequest) (*UpdateServerBasicResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerBasic not implemented")
+}
+func (*UnimplementedServerServiceServer) UpdateServerHTTP(context.Context, *UpdateServerHTTPRequest) (*UpdateServerHTTPResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerHTTP not implemented")
+}
+func (*UnimplementedServerServiceServer) UpdateServerHTTPS(context.Context, *UpdateServerHTTPSRequest) (*UpdateServerHTTPSResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerHTTPS not implemented")
+}
+func (*UnimplementedServerServiceServer) UpdateServerTCP(context.Context, *UpdateServerTCPRequest) (*UpdateServerTCPResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerTCP not implemented")
+}
+func (*UnimplementedServerServiceServer) UpdateServerTLS(context.Context, *UpdateServerTLSRequest) (*UpdateServerTLSResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerTLS not implemented")
+}
+func (*UnimplementedServerServiceServer) UpdateServerUnix(context.Context, *UpdateServerUnixRequest) (*UpdateServerUnixResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerUnix not implemented")
+}
+func (*UnimplementedServerServiceServer) UpdateServerUDP(context.Context, *UpdateServerUDPRequest) (*UpdateServerUDPResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerUDP not implemented")
+}
+func (*UnimplementedServerServiceServer) UpdateServerWeb(context.Context, *UpdateServerWebRequest) (*UpdateServerWebResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerWeb not implemented")
+}
+func (*UnimplementedServerServiceServer) UpdateServerReverseProxy(context.Context, *UpdateServerReverseProxyRequest) (*UpdateServerReverseProxyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerReverseProxy not implemented")
+}
+func (*UnimplementedServerServiceServer) UpdateServerNames(context.Context, *UpdateServerNamesRequest) (*UpdateServerNamesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerNames not implemented")
 }
 func (*UnimplementedServerServiceServer) CountAllEnabledServers(context.Context, *CountAllEnabledServersRequest) (*CountAllEnabledServersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CountAllEnabledServers not implemented")
@@ -1163,6 +2834,12 @@ func (*UnimplementedServerServiceServer) DisableServer(context.Context, *Disable
 }
 func (*UnimplementedServerServiceServer) FindEnabledServer(context.Context, *FindEnabledServerRequest) (*FindEnabledServerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledServer not implemented")
+}
+func (*UnimplementedServerServiceServer) FindEnabledServerType(context.Context, *FindEnabledServerTypeRequest) (*FindEnabledServerTypeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledServerType not implemented")
+}
+func (*UnimplementedServerServiceServer) FindServerReverseProxy(context.Context, *FindServerReverseProxyRequest) (*FindServerReverseProxyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindServerReverseProxy not implemented")
 }
 
 func RegisterServerServiceServer(s *grpc.Server, srv ServerServiceServer) {
@@ -1187,20 +2864,182 @@ func _ServerService_CreateServer_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServerService_UpdateServer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateServerRequest)
+func _ServerService_UpdateServerBasic_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerBasicRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServerServiceServer).UpdateServer(ctx, in)
+		return srv.(ServerServiceServer).UpdateServerBasic(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.ServerService/UpdateServer",
+		FullMethod: "/pb.ServerService/UpdateServerBasic",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServerServiceServer).UpdateServer(ctx, req.(*UpdateServerRequest))
+		return srv.(ServerServiceServer).UpdateServerBasic(ctx, req.(*UpdateServerBasicRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_UpdateServerHTTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerHTTPRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).UpdateServerHTTP(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerService/UpdateServerHTTP",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).UpdateServerHTTP(ctx, req.(*UpdateServerHTTPRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_UpdateServerHTTPS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerHTTPSRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).UpdateServerHTTPS(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerService/UpdateServerHTTPS",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).UpdateServerHTTPS(ctx, req.(*UpdateServerHTTPSRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_UpdateServerTCP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerTCPRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).UpdateServerTCP(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerService/UpdateServerTCP",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).UpdateServerTCP(ctx, req.(*UpdateServerTCPRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_UpdateServerTLS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerTLSRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).UpdateServerTLS(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerService/UpdateServerTLS",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).UpdateServerTLS(ctx, req.(*UpdateServerTLSRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_UpdateServerUnix_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerUnixRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).UpdateServerUnix(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerService/UpdateServerUnix",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).UpdateServerUnix(ctx, req.(*UpdateServerUnixRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_UpdateServerUDP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerUDPRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).UpdateServerUDP(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerService/UpdateServerUDP",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).UpdateServerUDP(ctx, req.(*UpdateServerUDPRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_UpdateServerWeb_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerWebRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).UpdateServerWeb(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerService/UpdateServerWeb",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).UpdateServerWeb(ctx, req.(*UpdateServerWebRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_UpdateServerReverseProxy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerReverseProxyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).UpdateServerReverseProxy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerService/UpdateServerReverseProxy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).UpdateServerReverseProxy(ctx, req.(*UpdateServerReverseProxyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_UpdateServerNames_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerNamesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).UpdateServerNames(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerService/UpdateServerNames",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).UpdateServerNames(ctx, req.(*UpdateServerNamesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1277,6 +3116,42 @@ func _ServerService_FindEnabledServer_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServerService_FindEnabledServerType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledServerTypeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).FindEnabledServerType(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerService/FindEnabledServerType",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).FindEnabledServerType(ctx, req.(*FindEnabledServerTypeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_FindServerReverseProxy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindServerReverseProxyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).FindServerReverseProxy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerService/FindServerReverseProxy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).FindServerReverseProxy(ctx, req.(*FindServerReverseProxyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _ServerService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.ServerService",
 	HandlerType: (*ServerServiceServer)(nil),
@@ -1286,8 +3161,44 @@ var _ServerService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _ServerService_CreateServer_Handler,
 		},
 		{
-			MethodName: "updateServer",
-			Handler:    _ServerService_UpdateServer_Handler,
+			MethodName: "updateServerBasic",
+			Handler:    _ServerService_UpdateServerBasic_Handler,
+		},
+		{
+			MethodName: "updateServerHTTP",
+			Handler:    _ServerService_UpdateServerHTTP_Handler,
+		},
+		{
+			MethodName: "updateServerHTTPS",
+			Handler:    _ServerService_UpdateServerHTTPS_Handler,
+		},
+		{
+			MethodName: "updateServerTCP",
+			Handler:    _ServerService_UpdateServerTCP_Handler,
+		},
+		{
+			MethodName: "updateServerTLS",
+			Handler:    _ServerService_UpdateServerTLS_Handler,
+		},
+		{
+			MethodName: "updateServerUnix",
+			Handler:    _ServerService_UpdateServerUnix_Handler,
+		},
+		{
+			MethodName: "updateServerUDP",
+			Handler:    _ServerService_UpdateServerUDP_Handler,
+		},
+		{
+			MethodName: "updateServerWeb",
+			Handler:    _ServerService_UpdateServerWeb_Handler,
+		},
+		{
+			MethodName: "updateServerReverseProxy",
+			Handler:    _ServerService_UpdateServerReverseProxy_Handler,
+		},
+		{
+			MethodName: "updateServerNames",
+			Handler:    _ServerService_UpdateServerNames_Handler,
 		},
 		{
 			MethodName: "countAllEnabledServers",
@@ -1304,6 +3215,14 @@ var _ServerService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findEnabledServer",
 			Handler:    _ServerService_FindEnabledServer_Handler,
+		},
+		{
+			MethodName: "findEnabledServerType",
+			Handler:    _ServerService_FindEnabledServerType_Handler,
+		},
+		{
+			MethodName: "findServerReverseProxy",
+			Handler:    _ServerService_FindServerReverseProxy_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

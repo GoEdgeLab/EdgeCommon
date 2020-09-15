@@ -1,28 +1,38 @@
 package serverconfigs
 
 import (
-	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/scheduling"
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/schedulingconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"sync"
 )
 
 // 反向代理设置
 type ReverseProxyConfig struct {
-	IsOn       bool                  `yaml:"isOn" json:"isOn"`             // 是否启用 TODO
-	Origins    []*OriginServerConfig `yaml:"origins" json:"origins"`       // 源站列表
-	Scheduling *SchedulingConfig     `yaml:"scheduling" json:"scheduling"` // 调度算法选项
+	IsOn           bool                  `yaml:"isOn" json:"isOn"`                     // 是否启用 TODO
+	PrimaryOrigins []*OriginServerConfig `yaml:"primaryOrigins" json:"primaryOrigins"` // 主要源站列表
+	BackupOrigins  []*OriginServerConfig `yaml:"backupOrigins" json:"backupOrigins"`   // 备用源站列表
+	Scheduling     *SchedulingConfig     `yaml:"scheduling" json:"scheduling"`         // 调度算法选项
 
-	hasOrigins         bool
+	hasPrimaryOrigins  bool
+	hasBackupOrigins   bool
 	schedulingIsBackup bool
-	schedulingObject   scheduling.SchedulingInterface
+	schedulingObject   schedulingconfigs.SchedulingInterface
 	schedulingLocker   sync.Mutex
 }
 
 // 初始化
 func (this *ReverseProxyConfig) Init() error {
-	this.hasOrigins = len(this.Origins) > 0
+	this.hasPrimaryOrigins = len(this.PrimaryOrigins) > 0
+	this.hasBackupOrigins = len(this.BackupOrigins) > 0
 
-	for _, origin := range this.Origins {
+	for _, origin := range this.PrimaryOrigins {
+		err := origin.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	for _, origin := range this.BackupOrigins {
 		err := origin.Init()
 		if err != nil {
 			return err
@@ -33,6 +43,16 @@ func (this *ReverseProxyConfig) Init() error {
 	this.SetupScheduling(false)
 
 	return nil
+}
+
+// 添加主源站配置
+func (this *ReverseProxyConfig) AddPrimaryOrigin(origin *OriginServerConfig) {
+	this.PrimaryOrigins = append(this.PrimaryOrigins, origin)
+}
+
+// 添加备用源站配置
+func (this *ReverseProxyConfig) AddBackupOrigin(origin *OriginServerConfig) {
+	this.BackupOrigins = append(this.BackupOrigins, origin)
 }
 
 // 取得下一个可用的后端服务
@@ -79,27 +99,39 @@ func (this *ReverseProxyConfig) SetupScheduling(isBackup bool) {
 	this.schedulingIsBackup = isBackup
 
 	if this.Scheduling == nil {
-		this.schedulingObject = &scheduling.RandomScheduling{}
+		this.schedulingObject = &schedulingconfigs.RandomScheduling{}
 	} else {
 		typeCode := this.Scheduling.Code
-		s := scheduling.FindSchedulingType(typeCode)
+		s := schedulingconfigs.FindSchedulingType(typeCode)
 		if s == nil {
 			this.Scheduling = nil
-			this.schedulingObject = &scheduling.RandomScheduling{}
+			this.schedulingObject = &schedulingconfigs.RandomScheduling{}
 		} else {
-			this.schedulingObject = s["instance"].(scheduling.SchedulingInterface)
+			this.schedulingObject = s["instance"].(schedulingconfigs.SchedulingInterface)
 		}
 	}
 
-	for _, origin := range this.Origins {
-		if origin.IsOn && !origin.IsDown {
-			if isBackup && origin.IsBackup {
+	if !isBackup {
+		for _, origin := range this.PrimaryOrigins {
+			if origin.IsOn {
 				this.schedulingObject.Add(origin)
-			} else if !isBackup && !origin.IsBackup {
+			}
+		}
+	} else {
+		for _, origin := range this.BackupOrigins {
+			if origin.IsOn {
 				this.schedulingObject.Add(origin)
 			}
 		}
 	}
 
 	this.schedulingObject.Start()
+}
+
+// 获取调度配置对象
+func (this *ReverseProxyConfig) FindSchedulingConfig() *SchedulingConfig {
+	if this.Scheduling == nil {
+		this.Scheduling = &SchedulingConfig{Code: "random"}
+	}
+	return this.Scheduling
 }
