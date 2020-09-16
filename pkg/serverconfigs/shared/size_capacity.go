@@ -1,5 +1,7 @@
 package shared
 
+import "encoding/json"
+
 type SizeCapacityUnit = string
 
 const (
@@ -27,4 +29,8 @@ func (this *SizeCapacity) Bytes() int64 {
 	default:
 		return this.Count
 	}
+}
+
+func (this *SizeCapacity) AsJSON() ([]byte, error) {
+	return json.Marshal(this)
 }

@@ -54,7 +54,10 @@ service ServerService {
 	rpc findEnabledServerType (FindEnabledServerTypeRequest) returns (FindEnabledServerTypeResponse);
 
 	// 查找反向代理设置
-	rpc findServerReverseProxy (FindServerReverseProxyRequest) returns (FindServerReverseProxyResponse);
+	rpc findServerReverseProxyConfig (FindServerReverseProxyConfigRequest) returns (FindServerReverseProxyConfigResponse);
+
+	// 初始化Web设置
+	rpc initServerWeb (InitServerWebRequest) returns (InitServerWebResponse);
 }
 
 // 创建服务
@@ -226,10 +229,19 @@ message FindEnabledServerTypeResponse {
 }
 
 // 查找反向代理设置
-message FindServerReverseProxyRequest {
+message FindServerReverseProxyConfigRequest {
 	int64 serverId = 1;
 }
 
-message FindServerReverseProxyResponse {
+message FindServerReverseProxyConfigResponse {
 	bytes config = 1;
+}
+
+// 初始化Web设置
+message InitServerWebRequest {
+	int64 serverId = 1;
+}
+
+message InitServerWebResponse {
+	int64 webId = 1;
 }

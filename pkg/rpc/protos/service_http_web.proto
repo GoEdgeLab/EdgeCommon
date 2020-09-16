@@ -12,8 +12,11 @@ service HTTPWebService {
 	// 查找Web配置
 	rpc findEnabledHTTPWeb (FindEnabledHTTPWebRequest) returns (FindEnabledHTTPWebResponse);
 
-	// 更新Web配置
+	// 更改Web配置
 	rpc updateHTTPWeb (UpdateHTTPWebRequest) returns (UpdateHTTPWebResponse);
+
+	// 更改Gzip配置
+	rpc updateHTTPWebGzip (UpdateHTTPWebGzipRequest) returns (UpdateHTTPWebGzipResponse);
 }
 
 // 创建Web配置
@@ -34,12 +37,22 @@ message FindEnabledHTTPWebResponse {
 	HTTPWeb web = 1;
 }
 
-// 更新Web配置
+// 更改Web配置
 message UpdateHTTPWebRequest {
 	int64 webId = 1;
 	string root = 2;
 }
 
 message UpdateHTTPWebResponse {
+
+}
+
+// 更改Gzip配置
+message UpdateHTTPWebGzipRequest {
+	int64 webId = 1;
+	int64 gzipId = 2;
+}
+
+message UpdateHTTPWebGzipResponse {
 
 }

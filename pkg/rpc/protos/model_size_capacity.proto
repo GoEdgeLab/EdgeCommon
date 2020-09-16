@@ -1,0 +1,9 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message SizeCapacity {
+	int64 count = 1;
+	string unit = 2;
+}

@@ -25,7 +25,7 @@ type ServerConfig struct {
 	UDP   *UDPProtocolConfig   `yaml:"udp" json:"udp"`     // UDP配置
 
 	// Web配置
-	Web *WebConfig `yaml:"web" json:"web"`
+	Web *HTTPWebConfig `yaml:"web" json:"web"`
 
 	// 反向代理配置
 	ReverseProxy *ReverseProxyConfig `yaml:"reverseProxy" json:"reverseProxy"`

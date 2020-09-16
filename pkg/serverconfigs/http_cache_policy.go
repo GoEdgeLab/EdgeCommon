@@ -15,16 +15,16 @@ import (
 var DefaultSkippedResponseCacheControlValues = []string{"private", "no-cache", "no-store"}
 
 // 缓存策略配置
-type CachePolicy struct {
+type HTTPCachePolicy struct {
 	Id   int    `yaml:"id" json:"id"`
 	IsOn bool   `yaml:"isOn" json:"isOn"` // 是否开启 TODO
 	Name string `yaml:"name" json:"name"` // 名称
 
 	Key      string              `yaml:"key" json:"key"`           // 每个缓存的Key规则，里面可以有变量
-	Capacity shared.SizeCapacity `yaml:"capacity" json:"capacity"` // 最大内容容量
-	Life     shared.TimeDuration `yaml:"life" json:"life"`         // 时间
+	Capacity *shared.SizeCapacity `yaml:"capacity" json:"capacity"` // 最大内容容量
+	Life     *shared.TimeDuration `yaml:"life" json:"life"`         // 时间
 	Status   []int               `yaml:"status" json:"status"`     // 缓存的状态码列表
-	MaxSize  shared.SizeCapacity `yaml:"maxSize" json:"maxSize"`   // 能够请求的最大尺寸
+	MaxSize  *shared.SizeCapacity `yaml:"maxSize" json:"maxSize"`   // 能够请求的最大尺寸
 
 	SkipResponseCacheControlValues []string `yaml:"skipCacheControlValues" json:"skipCacheControlValues"`     // 可以跳过的响应的Cache-Control值
 	SkipResponseSetCookie          bool     `yaml:"skipSetCookie" json:"skipSetCookie"`                       // 是否跳过响应的Set-Cookie Header
@@ -43,15 +43,15 @@ type CachePolicy struct {
 }
 
 // 获取新对象
-func NewCachePolicy() *CachePolicy {
-	return &CachePolicy{
+func NewHTTPCachePolicy() *HTTPCachePolicy {
+	return &HTTPCachePolicy{
 		SkipResponseCacheControlValues: DefaultSkippedResponseCacheControlValues,
 		SkipResponseSetCookie:          true,
 	}
 }
 
 // 从文件中读取缓存策略
-func NewCachePolicyFromFile(file string) *CachePolicy {
+func NewCachePolicyFromFile(file string) *HTTPCachePolicy {
 	if len(file) == 0 {
 		return nil
 	}
@@ -64,7 +64,7 @@ func NewCachePolicyFromFile(file string) *CachePolicy {
 		_ = reader.Close()
 	}()
 
-	p := NewCachePolicy()
+	p := NewHTTPCachePolicy()
 	err = reader.ReadYAML(p)
 	if err != nil {
 		logs.Error(err)
@@ -75,7 +75,7 @@ func NewCachePolicyFromFile(file string) *CachePolicy {
 }
 
 // 校验
-func (this *CachePolicy) Validate() error {
+func (this *HTTPCachePolicy) Validate() error {
 	var err error
 	this.maxSize = this.MaxSize.Bytes()
 	this.life = this.Life.Duration()
@@ -100,22 +100,22 @@ func (this *CachePolicy) Validate() error {
 }
 
 // 最大数据尺寸
-func (this *CachePolicy) MaxDataSize() int64 {
+func (this *HTTPCachePolicy) MaxDataSize() int64 {
 	return this.maxSize
 }
 
 // 容量
-func (this *CachePolicy) CapacitySize() int64 {
+func (this *HTTPCachePolicy) CapacitySize() int64 {
 	return this.capacity
 }
 
 // 生命周期
-func (this *CachePolicy) LifeDuration() time.Duration {
+func (this *HTTPCachePolicy) LifeDuration() time.Duration {
 	return this.life
 }
 
 // 保存
-func (this *CachePolicy) Save() error {
+func (this *HTTPCachePolicy) Save() error {
 	shared.Locker.Lock()
 	defer shared.Locker.Unlock()
 
@@ -132,18 +132,18 @@ func (this *CachePolicy) Save() error {
 }
 
 // 删除
-func (this *CachePolicy) Delete() error {
+func (this *HTTPCachePolicy) Delete() error {
 	filename := "cache.policy." + strconv.Itoa(this.Id) + ".conf"
 	return files.NewFile(Tea.ConfigFile(filename)).Delete()
 }
 
 // 是否包含某个Cache-Control值
-func (this *CachePolicy) ContainsCacheControl(value string) bool {
+func (this *HTTPCachePolicy) ContainsCacheControl(value string) bool {
 	return lists.ContainsString(this.uppercaseSkipCacheControlValues, strings.ToUpper(value))
 }
 
 // 检查是否匹配关键词
-func (this *CachePolicy) MatchKeyword(keyword string) (matched bool, name string, tags []string) {
+func (this *HTTPCachePolicy) MatchKeyword(keyword string) (matched bool, name string, tags []string) {
 	if configutils.MatchKeyword(this.Name, keyword) || configutils.MatchKeyword(this.Type, keyword) {
 		matched = true
 		name = this.Name

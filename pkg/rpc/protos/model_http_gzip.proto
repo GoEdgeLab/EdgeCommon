@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_size_capacity.proto";
+
+message HTTPGzip {
+	int64 id = 1;
+	bool isOn = 2;
+	int32 level = 3;
+	SizeCapacity minLength = 4;
+	SizeCapacity maxLength = 5;
+}

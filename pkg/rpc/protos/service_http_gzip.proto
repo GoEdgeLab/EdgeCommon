@@ -1,0 +1,49 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_size_capacity.proto";
+
+service HTTPGzipService {
+	// 创建Gzip配置
+	rpc createHTTPGzip (CreateHTTPGzipRequest) returns (CreateHTTPGzipResponse);
+
+	// 查找Gzip配置
+	rpc findEnabledHTTPGzipConfig (FindEnabledGzipConfigRequest) returns (FindEnabledGzipConfigResponse);
+
+	// 修改Gzip配置
+	rpc updateHTTPGzip (UpdateHTTPGzipRequest) returns (UpdateHTTPGzipResponse);
+}
+
+// 创建Gzip配置
+message CreateHTTPGzipRequest {
+	int32 level = 1;
+	SizeCapacity minLength = 2;
+	SizeCapacity maxLength = 3;
+}
+
+message CreateHTTPGzipResponse {
+	int64 gzipId = 1;
+}
+
+// 查找Gzip配置
+message FindEnabledGzipConfigRequest {
+	int64 gzipId = 1;
+}
+
+message FindEnabledGzipConfigResponse {
+	bytes config = 1;
+}
+
+// 修改Gzip配置
+message UpdateHTTPGzipRequest {
+	int64 gzipId = 1;
+	int32 level = 2;
+	SizeCapacity minLength = 3;
+	SizeCapacity maxLength = 4;
+}
+
+message UpdateHTTPGzipResponse {
+
+}

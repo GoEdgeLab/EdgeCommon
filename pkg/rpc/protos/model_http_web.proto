@@ -5,5 +5,7 @@ package pb;
 
 message HTTPWeb {
 	int64 id = 1;
-	string root = 2;
+	bool isOn = 2;
+	string root = 3;
+	int64 gzipId = 4;
 }
