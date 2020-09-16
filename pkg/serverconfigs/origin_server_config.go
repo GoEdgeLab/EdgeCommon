@@ -33,8 +33,8 @@ type OriginServerConfig struct {
 	RequestURI string `yaml:"requestURI" json:"requestURI"` // 转发后的请求URI TODO
 	Host       string `yaml:"host" json:"host"`             // 自定义主机名 TODO
 
-	RequestHeaders  *shared.HTTPHeadersConfig `yaml:"requestHeaders" json:"requestHeaders"` // 请求Header设置 TODO
-	ResponseHeaders *shared.HTTPHeadersConfig `yaml:"responseHeaders" json:"responseHeaders"`
+	RequestHeaders  *shared.HTTPHeaderPolicy `yaml:"requestHeaders" json:"requestHeaders"` // 请求Header设置 TODO
+	ResponseHeaders *shared.HTTPHeaderPolicy `yaml:"responseHeaders" json:"responseHeaders"`
 
 	// 健康检查URL，目前支持：
 	// - http|https 返回2xx-3xx认为成功

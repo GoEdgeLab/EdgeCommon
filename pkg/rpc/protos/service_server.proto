@@ -57,7 +57,7 @@ service ServerService {
 	rpc findServerReverseProxyConfig (FindServerReverseProxyConfigRequest) returns (FindServerReverseProxyConfigResponse);
 
 	// 初始化Web设置
-	rpc initServerWeb (InitServerWebRequest) returns (InitServerWebResponse);
+	rpc findAndInitServerWebConfig (FindAndInitServerWebRequest) returns (FindAndInitServerWebResponse);
 }
 
 // 创建服务
@@ -238,10 +238,10 @@ message FindServerReverseProxyConfigResponse {
 }
 
 // 初始化Web设置
-message InitServerWebRequest {
+message FindAndInitServerWebRequest {
 	int64 serverId = 1;
 }
 
-message InitServerWebResponse {
-	int64 webId = 1;
+message FindAndInitServerWebResponse {
+	bytes config = 1;
 }

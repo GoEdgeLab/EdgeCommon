@@ -407,6 +407,288 @@ func (*UpdateHTTPWebGzipResponse) Descriptor() ([]byte, []int) {
 	return file_service_http_web_proto_rawDescGZIP(), []int{7}
 }
 
+// 更改字符集配置
+type UpdateHTTPWebCharsetRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	WebId   int64  `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
+	Charset string `protobuf:"bytes,2,opt,name=charset,proto3" json:"charset,omitempty"`
+}
+
+func (x *UpdateHTTPWebCharsetRequest) Reset() {
+	*x = UpdateHTTPWebCharsetRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_web_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPWebCharsetRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPWebCharsetRequest) ProtoMessage() {}
+
+func (x *UpdateHTTPWebCharsetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_web_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPWebCharsetRequest.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPWebCharsetRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_web_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *UpdateHTTPWebCharsetRequest) GetWebId() int64 {
+	if x != nil {
+		return x.WebId
+	}
+	return 0
+}
+
+func (x *UpdateHTTPWebCharsetRequest) GetCharset() string {
+	if x != nil {
+		return x.Charset
+	}
+	return ""
+}
+
+type UpdateHTTPWebCharsetResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateHTTPWebCharsetResponse) Reset() {
+	*x = UpdateHTTPWebCharsetResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_web_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPWebCharsetResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPWebCharsetResponse) ProtoMessage() {}
+
+func (x *UpdateHTTPWebCharsetResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_web_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPWebCharsetResponse.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPWebCharsetResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_web_proto_rawDescGZIP(), []int{9}
+}
+
+// 更改请求Header策略
+type UpdateHTTPWebRequestHeaderPolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	WebId          int64 `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
+	HeaderPolicyId int64 `protobuf:"varint,2,opt,name=headerPolicyId,proto3" json:"headerPolicyId,omitempty"`
+}
+
+func (x *UpdateHTTPWebRequestHeaderPolicyRequest) Reset() {
+	*x = UpdateHTTPWebRequestHeaderPolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_web_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPWebRequestHeaderPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPWebRequestHeaderPolicyRequest) ProtoMessage() {}
+
+func (x *UpdateHTTPWebRequestHeaderPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_web_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPWebRequestHeaderPolicyRequest.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPWebRequestHeaderPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_web_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *UpdateHTTPWebRequestHeaderPolicyRequest) GetWebId() int64 {
+	if x != nil {
+		return x.WebId
+	}
+	return 0
+}
+
+func (x *UpdateHTTPWebRequestHeaderPolicyRequest) GetHeaderPolicyId() int64 {
+	if x != nil {
+		return x.HeaderPolicyId
+	}
+	return 0
+}
+
+type UpdateHTTPWebRequestHeaderPolicyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateHTTPWebRequestHeaderPolicyResponse) Reset() {
+	*x = UpdateHTTPWebRequestHeaderPolicyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_web_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPWebRequestHeaderPolicyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPWebRequestHeaderPolicyResponse) ProtoMessage() {}
+
+func (x *UpdateHTTPWebRequestHeaderPolicyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_web_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPWebRequestHeaderPolicyResponse.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPWebRequestHeaderPolicyResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_web_proto_rawDescGZIP(), []int{11}
+}
+
+// 更改响应Header策略
+type UpdateHTTPWebResponseHeaderPolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	WebId          int64 `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
+	HeaderPolicyId int64 `protobuf:"varint,2,opt,name=headerPolicyId,proto3" json:"headerPolicyId,omitempty"`
+}
+
+func (x *UpdateHTTPWebResponseHeaderPolicyRequest) Reset() {
+	*x = UpdateHTTPWebResponseHeaderPolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_web_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPWebResponseHeaderPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPWebResponseHeaderPolicyRequest) ProtoMessage() {}
+
+func (x *UpdateHTTPWebResponseHeaderPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_web_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPWebResponseHeaderPolicyRequest.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPWebResponseHeaderPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_web_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *UpdateHTTPWebResponseHeaderPolicyRequest) GetWebId() int64 {
+	if x != nil {
+		return x.WebId
+	}
+	return 0
+}
+
+func (x *UpdateHTTPWebResponseHeaderPolicyRequest) GetHeaderPolicyId() int64 {
+	if x != nil {
+		return x.HeaderPolicyId
+	}
+	return 0
+}
+
+type UpdateHTTPWebResponseHeaderPolicyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateHTTPWebResponseHeaderPolicyResponse) Reset() {
+	*x = UpdateHTTPWebResponseHeaderPolicyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_web_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPWebResponseHeaderPolicyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPWebResponseHeaderPolicyResponse) ProtoMessage() {}
+
+func (x *UpdateHTTPWebResponseHeaderPolicyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_web_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPWebResponseHeaderPolicyResponse.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPWebResponseHeaderPolicyResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_web_proto_rawDescGZIP(), []int{13}
+}
+
 var File_service_http_web_proto protoreflect.FileDescriptor
 
 var file_service_http_web_proto_rawDesc = []byte{
@@ -437,29 +719,76 @@ var file_service_http_web_proto_rawDesc = []byte{
 	0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x67, 0x7a,
 	0x69, 0x70, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x67, 0x7a, 0x69, 0x70,
 	0x49, 0x64, 0x22, 0x1b, 0x0a, 0x19, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50,
-	0x57, 0x65, 0x62, 0x47, 0x7a, 0x69, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32,
-	0xc3, 0x02, 0x0a, 0x0e, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x12, 0x44, 0x0a, 0x0d, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50,
-	0x57, 0x65, 0x62, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48,
-	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e,
-	0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x12, 0x66, 0x69, 0x6e, 0x64,
-	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x12, 0x1d,
-	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48,
-	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e,
-	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54,
-	0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a,
-	0x0d, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x12, 0x18,
+	0x57, 0x65, 0x62, 0x47, 0x7a, 0x69, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x4d, 0x0a, 0x1b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62,
+	0x43, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14,
+	0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77,
+	0x65, 0x62, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x22, 0x1e,
+	0x0a, 0x1c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43,
+	0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x67,
+	0x0a, 0x27, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62,
+	0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12,
+	0x26, 0x0a, 0x0e, 0x68, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49,
+	0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0e, 0x68, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x22, 0x2a, 0x0a, 0x28, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x48,
+	0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x68, 0x0a, 0x28, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
+	0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x65, 0x61, 0x64,
+	0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05,
+	0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x26, 0x0a, 0x0e, 0x68, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0e, 0x68,
+	0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x22, 0x2b, 0x0a,
+	0x29, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xa0, 0x05, 0x0a, 0x0e, 0x48,
+	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x44, 0x0a,
+	0x0d, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x12, 0x18,
+	0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65,
+	0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x12, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c,
+	0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x12, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x46,
+	0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65,
+	0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
+	0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0d, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48,
+	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50,
+	0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x47,
+	0x7a, 0x69, 0x70, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48,
+	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x47, 0x7a, 0x69, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
+	0x50, 0x57, 0x65, 0x62, 0x47, 0x7a, 0x69, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x59, 0x0a, 0x14, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65,
+	0x62, 0x43, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x68, 0x61, 0x72, 0x73,
+	0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x68, 0x61, 0x72,
+	0x73, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x7d, 0x0a, 0x20, 0x75,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12,
+	0x2b, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57,
+	0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x70,
+	0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x80, 0x01, 0x0a, 0x21, 0x75,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79,
+	0x12, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50,
+	0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x65, 0x61, 0x64, 0x65,
+	0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2d,
 	0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65,
-	0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
-	0x50, 0x57, 0x65, 0x62, 0x47, 0x7a, 0x69, 0x70, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x47, 0x7a, 0x69, 0x70, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x47, 0x7a, 0x69, 0x70, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a,
+	0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -474,33 +803,45 @@ func file_service_http_web_proto_rawDescGZIP() []byte {
 	return file_service_http_web_proto_rawDescData
 }
 
-var file_service_http_web_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_service_http_web_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_service_http_web_proto_goTypes = []interface{}{
-	(*CreateHTTPWebRequest)(nil),       // 0: pb.CreateHTTPWebRequest
-	(*CreateHTTPWebResponse)(nil),      // 1: pb.CreateHTTPWebResponse
-	(*FindEnabledHTTPWebRequest)(nil),  // 2: pb.FindEnabledHTTPWebRequest
-	(*FindEnabledHTTPWebResponse)(nil), // 3: pb.FindEnabledHTTPWebResponse
-	(*UpdateHTTPWebRequest)(nil),       // 4: pb.UpdateHTTPWebRequest
-	(*UpdateHTTPWebResponse)(nil),      // 5: pb.UpdateHTTPWebResponse
-	(*UpdateHTTPWebGzipRequest)(nil),   // 6: pb.UpdateHTTPWebGzipRequest
-	(*UpdateHTTPWebGzipResponse)(nil),  // 7: pb.UpdateHTTPWebGzipResponse
-	(*HTTPWeb)(nil),                    // 8: pb.HTTPWeb
+	(*CreateHTTPWebRequest)(nil),                      // 0: pb.CreateHTTPWebRequest
+	(*CreateHTTPWebResponse)(nil),                     // 1: pb.CreateHTTPWebResponse
+	(*FindEnabledHTTPWebRequest)(nil),                 // 2: pb.FindEnabledHTTPWebRequest
+	(*FindEnabledHTTPWebResponse)(nil),                // 3: pb.FindEnabledHTTPWebResponse
+	(*UpdateHTTPWebRequest)(nil),                      // 4: pb.UpdateHTTPWebRequest
+	(*UpdateHTTPWebResponse)(nil),                     // 5: pb.UpdateHTTPWebResponse
+	(*UpdateHTTPWebGzipRequest)(nil),                  // 6: pb.UpdateHTTPWebGzipRequest
+	(*UpdateHTTPWebGzipResponse)(nil),                 // 7: pb.UpdateHTTPWebGzipResponse
+	(*UpdateHTTPWebCharsetRequest)(nil),               // 8: pb.UpdateHTTPWebCharsetRequest
+	(*UpdateHTTPWebCharsetResponse)(nil),              // 9: pb.UpdateHTTPWebCharsetResponse
+	(*UpdateHTTPWebRequestHeaderPolicyRequest)(nil),   // 10: pb.UpdateHTTPWebRequestHeaderPolicyRequest
+	(*UpdateHTTPWebRequestHeaderPolicyResponse)(nil),  // 11: pb.UpdateHTTPWebRequestHeaderPolicyResponse
+	(*UpdateHTTPWebResponseHeaderPolicyRequest)(nil),  // 12: pb.UpdateHTTPWebResponseHeaderPolicyRequest
+	(*UpdateHTTPWebResponseHeaderPolicyResponse)(nil), // 13: pb.UpdateHTTPWebResponseHeaderPolicyResponse
+	(*HTTPWeb)(nil),                                   // 14: pb.HTTPWeb
 }
 var file_service_http_web_proto_depIdxs = []int32{
-	8, // 0: pb.FindEnabledHTTPWebResponse.web:type_name -> pb.HTTPWeb
-	0, // 1: pb.HTTPWebService.createHTTPWeb:input_type -> pb.CreateHTTPWebRequest
-	2, // 2: pb.HTTPWebService.findEnabledHTTPWeb:input_type -> pb.FindEnabledHTTPWebRequest
-	4, // 3: pb.HTTPWebService.updateHTTPWeb:input_type -> pb.UpdateHTTPWebRequest
-	6, // 4: pb.HTTPWebService.updateHTTPWebGzip:input_type -> pb.UpdateHTTPWebGzipRequest
-	1, // 5: pb.HTTPWebService.createHTTPWeb:output_type -> pb.CreateHTTPWebResponse
-	3, // 6: pb.HTTPWebService.findEnabledHTTPWeb:output_type -> pb.FindEnabledHTTPWebResponse
-	5, // 7: pb.HTTPWebService.updateHTTPWeb:output_type -> pb.UpdateHTTPWebResponse
-	7, // 8: pb.HTTPWebService.updateHTTPWebGzip:output_type -> pb.UpdateHTTPWebGzipResponse
-	5, // [5:9] is the sub-list for method output_type
-	1, // [1:5] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	14, // 0: pb.FindEnabledHTTPWebResponse.web:type_name -> pb.HTTPWeb
+	0,  // 1: pb.HTTPWebService.createHTTPWeb:input_type -> pb.CreateHTTPWebRequest
+	2,  // 2: pb.HTTPWebService.findEnabledHTTPWeb:input_type -> pb.FindEnabledHTTPWebRequest
+	4,  // 3: pb.HTTPWebService.updateHTTPWeb:input_type -> pb.UpdateHTTPWebRequest
+	6,  // 4: pb.HTTPWebService.updateHTTPWebGzip:input_type -> pb.UpdateHTTPWebGzipRequest
+	8,  // 5: pb.HTTPWebService.updateHTTPWebCharset:input_type -> pb.UpdateHTTPWebCharsetRequest
+	10, // 6: pb.HTTPWebService.updateHTTPWebRequestHeaderPolicy:input_type -> pb.UpdateHTTPWebRequestHeaderPolicyRequest
+	12, // 7: pb.HTTPWebService.updateHTTPWebResponseHeaderPolicy:input_type -> pb.UpdateHTTPWebResponseHeaderPolicyRequest
+	1,  // 8: pb.HTTPWebService.createHTTPWeb:output_type -> pb.CreateHTTPWebResponse
+	3,  // 9: pb.HTTPWebService.findEnabledHTTPWeb:output_type -> pb.FindEnabledHTTPWebResponse
+	5,  // 10: pb.HTTPWebService.updateHTTPWeb:output_type -> pb.UpdateHTTPWebResponse
+	7,  // 11: pb.HTTPWebService.updateHTTPWebGzip:output_type -> pb.UpdateHTTPWebGzipResponse
+	9,  // 12: pb.HTTPWebService.updateHTTPWebCharset:output_type -> pb.UpdateHTTPWebCharsetResponse
+	11, // 13: pb.HTTPWebService.updateHTTPWebRequestHeaderPolicy:output_type -> pb.UpdateHTTPWebRequestHeaderPolicyResponse
+	13, // 14: pb.HTTPWebService.updateHTTPWebResponseHeaderPolicy:output_type -> pb.UpdateHTTPWebResponseHeaderPolicyResponse
+	8,  // [8:15] is the sub-list for method output_type
+	1,  // [1:8] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_service_http_web_proto_init() }
@@ -606,6 +947,78 @@ func file_service_http_web_proto_init() {
 				return nil
 			}
 		}
+		file_service_http_web_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateHTTPWebCharsetRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_web_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateHTTPWebCharsetResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_web_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateHTTPWebRequestHeaderPolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_web_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateHTTPWebRequestHeaderPolicyResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_web_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateHTTPWebResponseHeaderPolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_web_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateHTTPWebResponseHeaderPolicyResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -613,7 +1026,7 @@ func file_service_http_web_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_http_web_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -647,6 +1060,12 @@ type HTTPWebServiceClient interface {
 	UpdateHTTPWeb(ctx context.Context, in *UpdateHTTPWebRequest, opts ...grpc.CallOption) (*UpdateHTTPWebResponse, error)
 	// 更改Gzip配置
 	UpdateHTTPWebGzip(ctx context.Context, in *UpdateHTTPWebGzipRequest, opts ...grpc.CallOption) (*UpdateHTTPWebGzipResponse, error)
+	// 更改字符集配置
+	UpdateHTTPWebCharset(ctx context.Context, in *UpdateHTTPWebCharsetRequest, opts ...grpc.CallOption) (*UpdateHTTPWebCharsetResponse, error)
+	// 更改请求Header策略
+	UpdateHTTPWebRequestHeaderPolicy(ctx context.Context, in *UpdateHTTPWebRequestHeaderPolicyRequest, opts ...grpc.CallOption) (*UpdateHTTPWebRequestHeaderPolicyResponse, error)
+	// 更改响应Header策略
+	UpdateHTTPWebResponseHeaderPolicy(ctx context.Context, in *UpdateHTTPWebResponseHeaderPolicyRequest, opts ...grpc.CallOption) (*UpdateHTTPWebResponseHeaderPolicyResponse, error)
 }
 
 type hTTPWebServiceClient struct {
@@ -693,6 +1112,33 @@ func (c *hTTPWebServiceClient) UpdateHTTPWebGzip(ctx context.Context, in *Update
 	return out, nil
 }
 
+func (c *hTTPWebServiceClient) UpdateHTTPWebCharset(ctx context.Context, in *UpdateHTTPWebCharsetRequest, opts ...grpc.CallOption) (*UpdateHTTPWebCharsetResponse, error) {
+	out := new(UpdateHTTPWebCharsetResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPWebCharset", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPWebServiceClient) UpdateHTTPWebRequestHeaderPolicy(ctx context.Context, in *UpdateHTTPWebRequestHeaderPolicyRequest, opts ...grpc.CallOption) (*UpdateHTTPWebRequestHeaderPolicyResponse, error) {
+	out := new(UpdateHTTPWebRequestHeaderPolicyResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPWebRequestHeaderPolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPWebServiceClient) UpdateHTTPWebResponseHeaderPolicy(ctx context.Context, in *UpdateHTTPWebResponseHeaderPolicyRequest, opts ...grpc.CallOption) (*UpdateHTTPWebResponseHeaderPolicyResponse, error) {
+	out := new(UpdateHTTPWebResponseHeaderPolicyResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPWebResponseHeaderPolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HTTPWebServiceServer is the server API for HTTPWebService service.
 type HTTPWebServiceServer interface {
 	// 创建Web配置
@@ -703,6 +1149,12 @@ type HTTPWebServiceServer interface {
 	UpdateHTTPWeb(context.Context, *UpdateHTTPWebRequest) (*UpdateHTTPWebResponse, error)
 	// 更改Gzip配置
 	UpdateHTTPWebGzip(context.Context, *UpdateHTTPWebGzipRequest) (*UpdateHTTPWebGzipResponse, error)
+	// 更改字符集配置
+	UpdateHTTPWebCharset(context.Context, *UpdateHTTPWebCharsetRequest) (*UpdateHTTPWebCharsetResponse, error)
+	// 更改请求Header策略
+	UpdateHTTPWebRequestHeaderPolicy(context.Context, *UpdateHTTPWebRequestHeaderPolicyRequest) (*UpdateHTTPWebRequestHeaderPolicyResponse, error)
+	// 更改响应Header策略
+	UpdateHTTPWebResponseHeaderPolicy(context.Context, *UpdateHTTPWebResponseHeaderPolicyRequest) (*UpdateHTTPWebResponseHeaderPolicyResponse, error)
 }
 
 // UnimplementedHTTPWebServiceServer can be embedded to have forward compatible implementations.
@@ -720,6 +1172,15 @@ func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWeb(context.Context, *Update
 }
 func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebGzip(context.Context, *UpdateHTTPWebGzipRequest) (*UpdateHTTPWebGzipResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebGzip not implemented")
+}
+func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebCharset(context.Context, *UpdateHTTPWebCharsetRequest) (*UpdateHTTPWebCharsetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebCharset not implemented")
+}
+func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebRequestHeaderPolicy(context.Context, *UpdateHTTPWebRequestHeaderPolicyRequest) (*UpdateHTTPWebRequestHeaderPolicyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebRequestHeaderPolicy not implemented")
+}
+func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebResponseHeaderPolicy(context.Context, *UpdateHTTPWebResponseHeaderPolicyRequest) (*UpdateHTTPWebResponseHeaderPolicyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebResponseHeaderPolicy not implemented")
 }
 
 func RegisterHTTPWebServiceServer(s *grpc.Server, srv HTTPWebServiceServer) {
@@ -798,6 +1259,60 @@ func _HTTPWebService_UpdateHTTPWebGzip_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HTTPWebService_UpdateHTTPWebCharset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPWebCharsetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebCharset(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPWebService/UpdateHTTPWebCharset",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebCharset(ctx, req.(*UpdateHTTPWebCharsetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPWebService_UpdateHTTPWebRequestHeaderPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPWebRequestHeaderPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebRequestHeaderPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPWebService/UpdateHTTPWebRequestHeaderPolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebRequestHeaderPolicy(ctx, req.(*UpdateHTTPWebRequestHeaderPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPWebService_UpdateHTTPWebResponseHeaderPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPWebResponseHeaderPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebResponseHeaderPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPWebService/UpdateHTTPWebResponseHeaderPolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebResponseHeaderPolicy(ctx, req.(*UpdateHTTPWebResponseHeaderPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _HTTPWebService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.HTTPWebService",
 	HandlerType: (*HTTPWebServiceServer)(nil),
@@ -817,6 +1332,18 @@ var _HTTPWebService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "updateHTTPWebGzip",
 			Handler:    _HTTPWebService_UpdateHTTPWebGzip_Handler,
+		},
+		{
+			MethodName: "updateHTTPWebCharset",
+			Handler:    _HTTPWebService_UpdateHTTPWebCharset_Handler,
+		},
+		{
+			MethodName: "updateHTTPWebRequestHeaderPolicy",
+			Handler:    _HTTPWebService_UpdateHTTPWebRequestHeaderPolicy_Handler,
+		},
+		{
+			MethodName: "updateHTTPWebResponseHeaderPolicy",
+			Handler:    _HTTPWebService_UpdateHTTPWebResponseHeaderPolicy_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

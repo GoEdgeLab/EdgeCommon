@@ -5,7 +5,7 @@ import (
 )
 
 func TestHeaderList_FormatHeaders(t *testing.T) {
-	list := NewHTTPHeaders()
+	list := NewHTTPHeaderPolicy()
 	err := list.Init()
 	if err != nil {
 		t.Fatal(err)

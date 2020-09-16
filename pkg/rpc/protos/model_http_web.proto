@@ -8,4 +8,7 @@ message HTTPWeb {
 	bool isOn = 2;
 	string root = 3;
 	int64 gzipId = 4;
+	string charset = 5;
+	int64 requestHeaderPolicyId = 6;
+	int64 responseHeaderPolicyId = 7;
 }

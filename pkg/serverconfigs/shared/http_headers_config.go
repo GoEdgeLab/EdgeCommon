@@ -1,22 +1,26 @@
 package shared
 
 // HeaderList定义
-type HTTPHeadersConfig struct {
+type HTTPHeaderPolicy struct {
+	Id   int64 `yaml:"id" json:"id"`
+	IsOn bool  `yaml:"isOn" json:"isOn"` // TODO
+
 	AddHeaders     []*HTTPHeaderConfig `yaml:"addHeaders" json:"addHeaders"`         // TODO
 	AddTrailers    []*HTTPHeaderConfig `yaml:"addTrailers" json:"addTrailers"`       // TODO
 	SetHeaders     []*HTTPHeaderConfig `yaml:"setHeaders" json:"setHeaders"`         // TODO
-	ReplaceHeaders []*HTTPHeaderConfig `yaml:"replaceHeaders" json:"replaceHeaders"` // TODO
+	ReplaceHeaders []*HTTPHeaderConfig `yaml:"replaceHeaders" json:"replaceHeaders"` // 替换Header内容 TODO
+	DeletedHeaders []string            `yaml:"deleteHeaders" json:"deleteHeaders"`   // 删除的Header TODO
 
 	Expires *HTTPExpireHeaderConfig `yaml:"expires" json:"expires"` // TODO
 }
 
 // 获取新对象
-func NewHTTPHeaders() *HTTPHeadersConfig {
-	return &HTTPHeadersConfig{}
+func NewHTTPHeaderPolicy() *HTTPHeaderPolicy {
+	return &HTTPHeaderPolicy{}
 }
 
 // 校验
-func (this *HTTPHeadersConfig) Init() error {
+func (this *HTTPHeaderPolicy) Init() error {
 	for _, h := range this.AddHeaders {
 		err := h.Init()
 		if err != nil {
@@ -49,6 +53,6 @@ func (this *HTTPHeadersConfig) Init() error {
 }
 
 // 判断是否为空
-func (this *HTTPHeadersConfig) IsEmpty() bool {
+func (this *HTTPHeaderPolicy) IsEmpty() bool {
 	return len(this.AddHeaders) == 0 && len(this.AddTrailers) == 0 && len(this.SetHeaders) == 0 && len(this.ReplaceHeaders) == 0 && this.Expires == nil
 }

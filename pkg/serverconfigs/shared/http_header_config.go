@@ -8,7 +8,7 @@ var regexpNamedVariable = regexp.MustCompile("\\${[\\w.-]+}")
 
 // 头部信息定义
 type HTTPHeaderConfig struct {
-	Id     int               `yaml:"id" json:"id"`         // ID
+	Id     int64             `yaml:"id" json:"id"`         // ID
 	IsOn   bool              `yaml:"isOn" json:"isOn"`     // 是否开启
 	Name   string            `yaml:"name" json:"name"`     // Name
 	Value  string            `yaml:"value" json:"value"`   // Value

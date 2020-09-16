@@ -17,6 +17,15 @@ service HTTPWebService {
 
 	// 更改Gzip配置
 	rpc updateHTTPWebGzip (UpdateHTTPWebGzipRequest) returns (UpdateHTTPWebGzipResponse);
+
+	// 更改字符集配置
+	rpc updateHTTPWebCharset (UpdateHTTPWebCharsetRequest) returns (UpdateHTTPWebCharsetResponse);
+
+	// 更改请求Header策略
+	rpc updateHTTPWebRequestHeaderPolicy (UpdateHTTPWebRequestHeaderPolicyRequest) returns (UpdateHTTPWebRequestHeaderPolicyResponse);
+
+	// 更改响应Header策略
+	rpc updateHTTPWebResponseHeaderPolicy (UpdateHTTPWebResponseHeaderPolicyRequest) returns (UpdateHTTPWebResponseHeaderPolicyResponse);
 }
 
 // 创建Web配置
@@ -54,5 +63,35 @@ message UpdateHTTPWebGzipRequest {
 }
 
 message UpdateHTTPWebGzipResponse {
+
+}
+
+// 更改字符集配置
+message UpdateHTTPWebCharsetRequest {
+	int64 webId = 1;
+	string charset = 2;
+}
+
+message UpdateHTTPWebCharsetResponse {
+
+}
+
+// 更改请求Header策略
+message UpdateHTTPWebRequestHeaderPolicyRequest {
+	int64 webId = 1;
+	int64 headerPolicyId = 2;
+}
+
+message UpdateHTTPWebRequestHeaderPolicyResponse {
+
+}
+
+// 更改响应Header策略
+message UpdateHTTPWebResponseHeaderPolicyRequest {
+	int64 webId = 1;
+	int64 headerPolicyId = 2;
+}
+
+message UpdateHTTPWebResponseHeaderPolicyResponse {
 
 }

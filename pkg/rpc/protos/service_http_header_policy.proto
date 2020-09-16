@@ -1,0 +1,95 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+service HTTPHeaderPolicyService {
+	// 查找策略配置
+	rpc findEnabledHTTPHeaderPolicyConfig (FindEnabledHTTPHeaderPolicyConfigRequest) returns (FindEnabledHTTPHeaderPolicyConfigResponse);
+
+	// 创建策略
+	rpc createHTTPHeaderPolicy (CreateHTTPHeaderPolicyRequest) returns (CreateHTTPHeaderPolicyResponse);
+
+	// 修改AddHeaders
+	rpc updateHTTPHeaderPolicyAddingHeaders (UpdateHTTPHeaderPolicyAddingHeadersRequest) returns (UpdateHTTPHeaderPolicyAddingHeadersResponse);
+
+	// 修改SetHeaders
+	rpc updateHTTPHeaderPolicySettingHeaders (UpdateHTTPHeaderPolicySettingHeadersRequest) returns (UpdateHTTPHeaderPolicySettingHeadersResponse);
+
+	// 修改AddTrailers
+	rpc updateHTTPHeaderPolicyAddingTrailers (UpdateHTTPHeaderPolicyAddingTrailersRequest) returns (UpdateHTTPHeaderPolicyAddingTrailersResponse);
+
+	// 修改ReplaceHeaders
+	rpc updateHTTPHeaderPolicyReplacingHeaders (UpdateHTTPHeaderPolicyReplacingHeadersRequest) returns (UpdateHTTPHeaderPolicyReplacingHeadersResponse);
+
+	// 修改删除的Headers
+	rpc updateHTTPHeaderPolicyDeletingHeaders (UpdateHTTPHeaderPolicyDeletingHeadersRequest) returns (UpdateHTTPHeaderPolicyDeletingHeadersResponse);
+}
+
+// 查找策略
+message FindEnabledHTTPHeaderPolicyConfigRequest {
+	int64 headerPolicyId = 1;
+}
+
+message FindEnabledHTTPHeaderPolicyConfigResponse {
+	bytes config = 1;
+}
+
+// 创建策略
+message CreateHTTPHeaderPolicyRequest {
+
+}
+
+message CreateHTTPHeaderPolicyResponse {
+	int64 headerPolicyId = 1;
+}
+
+// 修改AddHeaders
+message UpdateHTTPHeaderPolicyAddingHeadersRequest {
+	int64 headerPolicyId = 1;
+	bytes headersJSON = 2;
+}
+
+message UpdateHTTPHeaderPolicyAddingHeadersResponse {
+
+}
+
+// 修改SetHeaders
+message UpdateHTTPHeaderPolicySettingHeadersRequest {
+	int64 headerPolicyId = 1;
+	bytes headersJSON = 2;
+}
+
+message UpdateHTTPHeaderPolicySettingHeadersResponse {
+
+}
+
+// 修改AddTrailers
+message UpdateHTTPHeaderPolicyAddingTrailersRequest {
+	int64 headerPolicyId = 1;
+	bytes headersJSON = 2;
+}
+
+message UpdateHTTPHeaderPolicyAddingTrailersResponse {
+
+}
+
+// 修改ReplaceHeaders
+message UpdateHTTPHeaderPolicyReplacingHeadersRequest {
+	int64 headerPolicyId = 1;
+	bytes headersJSON = 2;
+}
+
+message UpdateHTTPHeaderPolicyReplacingHeadersResponse {
+
+}
+
+// 修改删除的Headers
+message UpdateHTTPHeaderPolicyDeletingHeadersRequest {
+	int64 headerPolicyId = 1;
+	repeated string headerNames = 2;
+}
+
+message UpdateHTTPHeaderPolicyDeletingHeadersResponse {
+
+}

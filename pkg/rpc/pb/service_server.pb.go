@@ -1762,7 +1762,7 @@ func (x *FindServerReverseProxyConfigResponse) GetConfig() []byte {
 }
 
 // 初始化Web设置
-type InitServerWebRequest struct {
+type FindAndInitServerWebRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1770,8 +1770,8 @@ type InitServerWebRequest struct {
 	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
 }
 
-func (x *InitServerWebRequest) Reset() {
-	*x = InitServerWebRequest{}
+func (x *FindAndInitServerWebRequest) Reset() {
+	*x = FindAndInitServerWebRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_server_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1779,13 +1779,13 @@ func (x *InitServerWebRequest) Reset() {
 	}
 }
 
-func (x *InitServerWebRequest) String() string {
+func (x *FindAndInitServerWebRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*InitServerWebRequest) ProtoMessage() {}
+func (*FindAndInitServerWebRequest) ProtoMessage() {}
 
-func (x *InitServerWebRequest) ProtoReflect() protoreflect.Message {
+func (x *FindAndInitServerWebRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_service_server_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1797,28 +1797,28 @@ func (x *InitServerWebRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use InitServerWebRequest.ProtoReflect.Descriptor instead.
-func (*InitServerWebRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use FindAndInitServerWebRequest.ProtoReflect.Descriptor instead.
+func (*FindAndInitServerWebRequest) Descriptor() ([]byte, []int) {
 	return file_service_server_proto_rawDescGZIP(), []int{34}
 }
 
-func (x *InitServerWebRequest) GetServerId() int64 {
+func (x *FindAndInitServerWebRequest) GetServerId() int64 {
 	if x != nil {
 		return x.ServerId
 	}
 	return 0
 }
 
-type InitServerWebResponse struct {
+type FindAndInitServerWebResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	WebId int64 `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
+	Config []byte `protobuf:"bytes,1,opt,name=config,proto3" json:"config,omitempty"`
 }
 
-func (x *InitServerWebResponse) Reset() {
-	*x = InitServerWebResponse{}
+func (x *FindAndInitServerWebResponse) Reset() {
+	*x = FindAndInitServerWebResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_server_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1826,13 +1826,13 @@ func (x *InitServerWebResponse) Reset() {
 	}
 }
 
-func (x *InitServerWebResponse) String() string {
+func (x *FindAndInitServerWebResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*InitServerWebResponse) ProtoMessage() {}
+func (*FindAndInitServerWebResponse) ProtoMessage() {}
 
-func (x *InitServerWebResponse) ProtoReflect() protoreflect.Message {
+func (x *FindAndInitServerWebResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_service_server_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1844,16 +1844,16 @@ func (x *InitServerWebResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use InitServerWebResponse.ProtoReflect.Descriptor instead.
-func (*InitServerWebResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use FindAndInitServerWebResponse.ProtoReflect.Descriptor instead.
+func (*FindAndInitServerWebResponse) Descriptor() ([]byte, []int) {
 	return file_service_server_proto_rawDescGZIP(), []int{35}
 }
 
-func (x *InitServerWebResponse) GetWebId() int64 {
+func (x *FindAndInitServerWebResponse) GetConfig() []byte {
 	if x != nil {
-		return x.WebId
+		return x.Config
 	}
-	return 0
+	return nil
 }
 
 var File_service_server_proto protoreflect.FileDescriptor
@@ -2012,14 +2012,15 @@ var file_service_server_proto_rawDesc = []byte{
 	0x24, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x76, 0x65, 0x72,
 	0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73,
 	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0x32, 0x0a,
-	0x14, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x57, 0x65, 0x62, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49,
-	0x64, 0x22, 0x2d, 0x0a, 0x15, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x57,
-	0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65,
-	0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64,
-	0x32, 0xe2, 0x0b, 0x0a, 0x0d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0x39, 0x0a,
+	0x1b, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08,
+	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08,
+	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x22, 0x36, 0x0a, 0x1c, 0x46, 0x69, 0x6e, 0x64,
+	0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x57, 0x65, 0x62,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x63, 0x6f, 0x6e, 0x66,
+	0x69, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x32, 0xfd, 0x0b, 0x0a, 0x0d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69,
 	0x63, 0x65, 0x12, 0x41, 0x0a, 0x0c, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76,
 	0x65, 0x72, 0x12, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65,
 	0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x70, 0x62,
@@ -2109,12 +2110,13 @@ var file_service_server_proto_rawDesc = []byte{
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x53,
 	0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78,
 	0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x44, 0x0a, 0x0d, 0x69, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x57, 0x65, 0x62,
-	0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
-	0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e,
-	0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x5f, 0x0a, 0x1a, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x57, 0x65, 0x62, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x1f, 0x2e,
+	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20,
+	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2165,8 +2167,8 @@ var file_service_server_proto_goTypes = []interface{}{
 	(*FindEnabledServerTypeResponse)(nil),        // 31: pb.FindEnabledServerTypeResponse
 	(*FindServerReverseProxyConfigRequest)(nil),  // 32: pb.FindServerReverseProxyConfigRequest
 	(*FindServerReverseProxyConfigResponse)(nil), // 33: pb.FindServerReverseProxyConfigResponse
-	(*InitServerWebRequest)(nil),                 // 34: pb.InitServerWebRequest
-	(*InitServerWebResponse)(nil),                // 35: pb.InitServerWebResponse
+	(*FindAndInitServerWebRequest)(nil),          // 34: pb.FindAndInitServerWebRequest
+	(*FindAndInitServerWebResponse)(nil),         // 35: pb.FindAndInitServerWebResponse
 	(*Server)(nil),                               // 36: pb.Server
 }
 var file_service_server_proto_depIdxs = []int32{
@@ -2189,7 +2191,7 @@ var file_service_server_proto_depIdxs = []int32{
 	28, // 16: pb.ServerService.findEnabledServer:input_type -> pb.FindEnabledServerRequest
 	30, // 17: pb.ServerService.findEnabledServerType:input_type -> pb.FindEnabledServerTypeRequest
 	32, // 18: pb.ServerService.findServerReverseProxyConfig:input_type -> pb.FindServerReverseProxyConfigRequest
-	34, // 19: pb.ServerService.initServerWeb:input_type -> pb.InitServerWebRequest
+	34, // 19: pb.ServerService.findAndInitServerWebConfig:input_type -> pb.FindAndInitServerWebRequest
 	1,  // 20: pb.ServerService.createServer:output_type -> pb.CreateServerResponse
 	3,  // 21: pb.ServerService.updateServerBasic:output_type -> pb.UpdateServerBasicResponse
 	5,  // 22: pb.ServerService.updateServerHTTP:output_type -> pb.UpdateServerHTTPResponse
@@ -2207,7 +2209,7 @@ var file_service_server_proto_depIdxs = []int32{
 	29, // 34: pb.ServerService.findEnabledServer:output_type -> pb.FindEnabledServerResponse
 	31, // 35: pb.ServerService.findEnabledServerType:output_type -> pb.FindEnabledServerTypeResponse
 	33, // 36: pb.ServerService.findServerReverseProxyConfig:output_type -> pb.FindServerReverseProxyConfigResponse
-	35, // 37: pb.ServerService.initServerWeb:output_type -> pb.InitServerWebResponse
+	35, // 37: pb.ServerService.findAndInitServerWebConfig:output_type -> pb.FindAndInitServerWebResponse
 	20, // [20:38] is the sub-list for method output_type
 	2,  // [2:20] is the sub-list for method input_type
 	2,  // [2:2] is the sub-list for extension type_name
@@ -2631,7 +2633,7 @@ func file_service_server_proto_init() {
 			}
 		}
 		file_service_server_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InitServerWebRequest); i {
+			switch v := v.(*FindAndInitServerWebRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2643,7 +2645,7 @@ func file_service_server_proto_init() {
 			}
 		}
 		file_service_server_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InitServerWebResponse); i {
+			switch v := v.(*FindAndInitServerWebResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2722,7 +2724,7 @@ type ServerServiceClient interface {
 	// 查找反向代理设置
 	FindServerReverseProxyConfig(ctx context.Context, in *FindServerReverseProxyConfigRequest, opts ...grpc.CallOption) (*FindServerReverseProxyConfigResponse, error)
 	// 初始化Web设置
-	InitServerWeb(ctx context.Context, in *InitServerWebRequest, opts ...grpc.CallOption) (*InitServerWebResponse, error)
+	FindAndInitServerWebConfig(ctx context.Context, in *FindAndInitServerWebRequest, opts ...grpc.CallOption) (*FindAndInitServerWebResponse, error)
 }
 
 type serverServiceClient struct {
@@ -2886,9 +2888,9 @@ func (c *serverServiceClient) FindServerReverseProxyConfig(ctx context.Context, 
 	return out, nil
 }
 
-func (c *serverServiceClient) InitServerWeb(ctx context.Context, in *InitServerWebRequest, opts ...grpc.CallOption) (*InitServerWebResponse, error) {
-	out := new(InitServerWebResponse)
-	err := c.cc.Invoke(ctx, "/pb.ServerService/initServerWeb", in, out, opts...)
+func (c *serverServiceClient) FindAndInitServerWebConfig(ctx context.Context, in *FindAndInitServerWebRequest, opts ...grpc.CallOption) (*FindAndInitServerWebResponse, error) {
+	out := new(FindAndInitServerWebResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerService/findAndInitServerWebConfig", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2932,7 +2934,7 @@ type ServerServiceServer interface {
 	// 查找反向代理设置
 	FindServerReverseProxyConfig(context.Context, *FindServerReverseProxyConfigRequest) (*FindServerReverseProxyConfigResponse, error)
 	// 初始化Web设置
-	InitServerWeb(context.Context, *InitServerWebRequest) (*InitServerWebResponse, error)
+	FindAndInitServerWebConfig(context.Context, *FindAndInitServerWebRequest) (*FindAndInitServerWebResponse, error)
 }
 
 // UnimplementedServerServiceServer can be embedded to have forward compatible implementations.
@@ -2990,8 +2992,8 @@ func (*UnimplementedServerServiceServer) FindEnabledServerType(context.Context, 
 func (*UnimplementedServerServiceServer) FindServerReverseProxyConfig(context.Context, *FindServerReverseProxyConfigRequest) (*FindServerReverseProxyConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindServerReverseProxyConfig not implemented")
 }
-func (*UnimplementedServerServiceServer) InitServerWeb(context.Context, *InitServerWebRequest) (*InitServerWebResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method InitServerWeb not implemented")
+func (*UnimplementedServerServiceServer) FindAndInitServerWebConfig(context.Context, *FindAndInitServerWebRequest) (*FindAndInitServerWebResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAndInitServerWebConfig not implemented")
 }
 
 func RegisterServerServiceServer(s *grpc.Server, srv ServerServiceServer) {
@@ -3304,20 +3306,20 @@ func _ServerService_FindServerReverseProxyConfig_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServerService_InitServerWeb_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InitServerWebRequest)
+func _ServerService_FindAndInitServerWebConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAndInitServerWebRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServerServiceServer).InitServerWeb(ctx, in)
+		return srv.(ServerServiceServer).FindAndInitServerWebConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.ServerService/InitServerWeb",
+		FullMethod: "/pb.ServerService/FindAndInitServerWebConfig",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServerServiceServer).InitServerWeb(ctx, req.(*InitServerWebRequest))
+		return srv.(ServerServiceServer).FindAndInitServerWebConfig(ctx, req.(*FindAndInitServerWebRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3395,8 +3397,8 @@ var _ServerService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _ServerService_FindServerReverseProxyConfig_Handler,
 		},
 		{
-			MethodName: "initServerWeb",
-			Handler:    _ServerService_InitServerWeb_Handler,
+			MethodName: "findAndInitServerWebConfig",
+			Handler:    _ServerService_FindAndInitServerWebConfig_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
