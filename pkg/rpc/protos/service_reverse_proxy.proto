@@ -4,6 +4,7 @@ option go_package = "./pb";
 package pb;
 
 import "model_reverse_proxy.proto";
+import "rpc_messages.proto";
 
 service ReverseProxyService {
 	// 创建反向代理
@@ -16,16 +17,16 @@ service ReverseProxyService {
 	rpc findEnabledReverseProxyConfig (FindEnabledReverseProxyConfigRequest) returns (FindEnabledReverseProxyConfigResponse);
 
 	// 修改反向代理的调度算法
-	rpc updateReverseProxyScheduling (UpdateReverseProxySchedulingRequest) returns (UpdateReverseProxySchedulingResponse);
+	rpc updateReverseProxyScheduling (UpdateReverseProxySchedulingRequest) returns (RPCUpdateSuccess);
 
 	// 修改主要源站信息
-	rpc updateReverseProxyPrimaryOrigins (UpdateReverseProxyPrimaryOriginsRequest) returns (UpdateReverseProxyPrimaryOriginsResponse);
+	rpc updateReverseProxyPrimaryOrigins (UpdateReverseProxyPrimaryOriginsRequest) returns (RPCUpdateSuccess);
 
 	// 修改备用源站信息
-	rpc updateReverseProxyBackupOrigins (UpdateReverseProxyBackupOriginsRequest) returns (UpdateReverseProxyBackupOriginsResponse);
+	rpc updateReverseProxyBackupOrigins (UpdateReverseProxyBackupOriginsRequest) returns (RPCUpdateSuccess);
 
 	// 修改是否启用
-	rpc updateReverseProxyIsOn (UpdateReverseProxyIsOnRequest) returns (UpdateReverseProxyIsOnResponse);
+	rpc updateReverseProxyIsOn (UpdateReverseProxyIsOnRequest) returns (RPCUpdateSuccess);
 }
 
 // 创建反向代理
@@ -63,18 +64,10 @@ message UpdateReverseProxySchedulingRequest {
 	bytes schedulingJSON = 2;
 }
 
-message UpdateReverseProxySchedulingResponse {
-
-}
-
 // 修改主要源站信息
 message UpdateReverseProxyPrimaryOriginsRequest {
 	int64 reverseProxyId = 1;
 	bytes originsJSON = 2;
-}
-
-message UpdateReverseProxyPrimaryOriginsResponse {
-
 }
 
 // 修改备用源站信息
@@ -83,16 +76,8 @@ message UpdateReverseProxyBackupOriginsRequest {
 	bytes originsJSON = 2;
 }
 
-message UpdateReverseProxyBackupOriginsResponse {
-
-}
-
 // 修改是否启用
 message UpdateReverseProxyIsOnRequest {
 	int64 reverseProxyId = 1;
 	bool isOn = 2;
-}
-
-message UpdateReverseProxyIsOnResponse {
-
 }

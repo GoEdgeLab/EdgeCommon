@@ -2,41 +2,43 @@ syntax = "proto3";
 option go_package = "./pb";
 
 package pb;
+
 import "model_server.proto";
+import "rpc_messages.proto";
 
 service ServerService {
 	// 创建服务
 	rpc createServer (CreateServerRequest) returns (CreateServerResponse);
 
 	// 修改服务基本信息
-	rpc updateServerBasic (UpdateServerBasicRequest) returns (UpdateServerBasicResponse);
+	rpc updateServerBasic (UpdateServerBasicRequest) returns (RPCUpdateSuccess);
 
 	// 修改服务的HTTP设置
-	rpc updateServerHTTP (UpdateServerHTTPRequest) returns (UpdateServerHTTPResponse);
+	rpc updateServerHTTP (UpdateServerHTTPRequest) returns (RPCUpdateSuccess);
 
 	// 修改服务的HTTPS设置
-	rpc updateServerHTTPS (UpdateServerHTTPSRequest) returns (UpdateServerHTTPSResponse);
+	rpc updateServerHTTPS (UpdateServerHTTPSRequest) returns (RPCUpdateSuccess);
 
 	// 修改服务的TCP设置
-	rpc updateServerTCP (UpdateServerTCPRequest) returns (UpdateServerTCPResponse);
+	rpc updateServerTCP (UpdateServerTCPRequest) returns (RPCUpdateSuccess);
 
 	// 修改服务的TLS设置
-	rpc updateServerTLS (UpdateServerTLSRequest) returns (UpdateServerTLSResponse);
+	rpc updateServerTLS (UpdateServerTLSRequest) returns (RPCUpdateSuccess);
 
 	// 修改服务的Unix设置
-	rpc updateServerUnix (UpdateServerUnixRequest) returns (UpdateServerUnixResponse);
+	rpc updateServerUnix (UpdateServerUnixRequest) returns (RPCUpdateSuccess);
 
 	// 修改服务的UDP设置
-	rpc updateServerUDP (UpdateServerUDPRequest) returns (UpdateServerUDPResponse);
+	rpc updateServerUDP (UpdateServerUDPRequest) returns (RPCUpdateSuccess);
 
 	// 修改服务的Web设置
-	rpc updateServerWeb (UpdateServerWebRequest) returns (UpdateServerWebResponse);
+	rpc updateServerWeb (UpdateServerWebRequest) returns (RPCUpdateSuccess);
 
 	// 修改服务的反向代理设置
-	rpc updateServerReverseProxy (UpdateServerReverseProxyRequest) returns (UpdateServerReverseProxyResponse);
+	rpc updateServerReverseProxy (UpdateServerReverseProxyRequest) returns (RPCUpdateSuccess);
 
 	// 修改服务的域名设置
-	rpc updateServerNames (UpdateServerNamesRequest) returns (UpdateServerNamesResponse);
+	rpc updateServerNames (UpdateServerNamesRequest) returns (RPCUpdateSuccess);
 
 	// 计算服务数量
 	rpc countAllEnabledServers (CountAllEnabledServersRequest) returns (CountAllEnabledServersResponse);
@@ -96,18 +98,10 @@ message UpdateServerBasicRequest {
 	int64 clusterId = 4;
 }
 
-message UpdateServerBasicResponse {
-
-}
-
 // 修改服务的HTTP等设置
 message UpdateServerHTTPRequest {
 	int64 serverId = 1;
 	bytes config = 2;
-}
-
-message UpdateServerHTTPResponse {
-
 }
 
 message UpdateServerHTTPSRequest {
@@ -115,17 +109,9 @@ message UpdateServerHTTPSRequest {
 	bytes config = 2;
 }
 
-message UpdateServerHTTPSResponse {
-
-}
-
 message UpdateServerTCPRequest {
 	int64 serverId = 1;
 	bytes config = 2;
-}
-
-message UpdateServerTCPResponse {
-
 }
 
 message UpdateServerTLSRequest {
@@ -133,17 +119,9 @@ message UpdateServerTLSRequest {
 	bytes config = 2;
 }
 
-message UpdateServerTLSResponse {
-
-}
-
 message UpdateServerUnixRequest {
 	int64 serverId = 1;
 	bytes config = 2;
-}
-
-message UpdateServerUnixResponse {
-
 }
 
 message UpdateServerUDPRequest {
@@ -151,17 +129,9 @@ message UpdateServerUDPRequest {
 	bytes config = 2;
 }
 
-message UpdateServerUDPResponse {
-
-}
-
 message UpdateServerWebRequest {
 	int64 serverId = 1;
 	int64 webId = 2;
-}
-
-message UpdateServerWebResponse {
-
 }
 
 message UpdateServerReverseProxyRequest {
@@ -169,17 +139,9 @@ message UpdateServerReverseProxyRequest {
 	int64 reverseProxyId = 2;
 }
 
-message UpdateServerReverseProxyResponse {
-
-}
-
 message UpdateServerNamesRequest {
 	int64 serverId = 1;
 	bytes config = 2;
-}
-
-message UpdateServerNamesResponse {
-
 }
 
 // 计算服务数量

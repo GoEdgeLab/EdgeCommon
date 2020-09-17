@@ -5,13 +5,14 @@ package pb;
 
 import "model_origin_server.proto";
 import "model_network_address.proto";
+import "rpc_messages.proto";
 
 service OriginServerService {
 	// 创建源站
 	rpc createOriginServer (CreateOriginServerRequest) returns (CreateOriginServerResponse);
 
 	// 修改源站
-	rpc updateOriginServer (UpdateOriginServerRequest) returns (UpdateOriginServerResponse);
+	rpc updateOriginServer (UpdateOriginServerRequest) returns (RPCUpdateSuccess);
 
 	// 查找单个源站信息
 	rpc findEnabledOriginServer (FindEnabledOriginServerRequest) returns (FindEnabledOriginServerResponse);
@@ -37,10 +38,6 @@ message UpdateOriginServerRequest {
 	string name = 2;
 	NetworkAddress addr = 3;
 	string description = 4;
-}
-
-message UpdateOriginServerResponse {
-
 }
 
 // 查找单个源站信息

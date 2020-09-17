@@ -3,13 +3,14 @@ option go_package = "./pb";
 
 package pb;
 import "model_node_cluster.proto";
+import "rpc_messages.proto";
 
 service NodeClusterService {
 	// 创建集群
 	rpc createNodeCluster (CreateNodeClusterRequest) returns (CreateNodeClusterResponse);
 
 	// 修改集群
-	rpc updateNodeCluster (UpdateNodeClusterRequest) returns (UpdateNodeClusterResponse);
+	rpc updateNodeCluster (UpdateNodeClusterRequest) returns (RPCUpdateSuccess);
 
 	// 禁用集群
 	rpc disableNodeCluster (DisableNodeClusterRequest) returns (DisableNodeClusterResponse);
@@ -65,10 +66,6 @@ message UpdateNodeClusterRequest {
 	string name = 2;
 	int64 grantId = 3;
 	string installDir = 4;
-}
-
-message UpdateNodeClusterResponse {
-
 }
 
 // 禁用集群

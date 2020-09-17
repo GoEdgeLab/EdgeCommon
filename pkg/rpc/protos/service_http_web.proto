@@ -4,6 +4,7 @@ option go_package = "./pb";
 package pb;
 
 import "model_http_web.proto";
+import "rpc_messages.proto";
 
 service HTTPWebService {
 	// 创建Web配置
@@ -13,19 +14,25 @@ service HTTPWebService {
 	rpc findEnabledHTTPWeb (FindEnabledHTTPWebRequest) returns (FindEnabledHTTPWebResponse);
 
 	// 更改Web配置
-	rpc updateHTTPWeb (UpdateHTTPWebRequest) returns (UpdateHTTPWebResponse);
+	rpc updateHTTPWeb (UpdateHTTPWebRequest) returns (RPCUpdateSuccess);
 
 	// 更改Gzip配置
-	rpc updateHTTPWebGzip (UpdateHTTPWebGzipRequest) returns (UpdateHTTPWebGzipResponse);
+	rpc updateHTTPWebGzip (UpdateHTTPWebGzipRequest) returns (RPCUpdateSuccess);
 
 	// 更改字符集配置
-	rpc updateHTTPWebCharset (UpdateHTTPWebCharsetRequest) returns (UpdateHTTPWebCharsetResponse);
+	rpc updateHTTPWebCharset (UpdateHTTPWebCharsetRequest) returns (RPCUpdateSuccess);
 
 	// 更改请求Header策略
-	rpc updateHTTPWebRequestHeaderPolicy (UpdateHTTPWebRequestHeaderPolicyRequest) returns (UpdateHTTPWebRequestHeaderPolicyResponse);
+	rpc updateHTTPWebRequestHeaderPolicy (UpdateHTTPWebRequestHeaderPolicyRequest) returns (RPCUpdateSuccess);
 
 	// 更改响应Header策略
-	rpc updateHTTPWebResponseHeaderPolicy (UpdateHTTPWebResponseHeaderPolicyRequest) returns (UpdateHTTPWebResponseHeaderPolicyResponse);
+	rpc updateHTTPWebResponseHeaderPolicy (UpdateHTTPWebResponseHeaderPolicyRequest) returns (RPCUpdateSuccess);
+
+	// 更改Shutdown
+	rpc updateHTTPWebShutdown (UpdateHTTPWebShutdownRequest) returns (RPCUpdateSuccess);
+
+	// 更改Pages
+	rpc updateHTTPWebPages (UpdateHTTPWebPagesRequest) returns (RPCUpdateSuccess);
 }
 
 // 创建Web配置
@@ -52,18 +59,10 @@ message UpdateHTTPWebRequest {
 	string root = 2;
 }
 
-message UpdateHTTPWebResponse {
-
-}
-
 // 更改Gzip配置
 message UpdateHTTPWebGzipRequest {
 	int64 webId = 1;
 	int64 gzipId = 2;
-}
-
-message UpdateHTTPWebGzipResponse {
-
 }
 
 // 更改字符集配置
@@ -72,18 +71,10 @@ message UpdateHTTPWebCharsetRequest {
 	string charset = 2;
 }
 
-message UpdateHTTPWebCharsetResponse {
-
-}
-
 // 更改请求Header策略
 message UpdateHTTPWebRequestHeaderPolicyRequest {
 	int64 webId = 1;
 	int64 headerPolicyId = 2;
-}
-
-message UpdateHTTPWebRequestHeaderPolicyResponse {
-
 }
 
 // 更改响应Header策略
@@ -92,6 +83,14 @@ message UpdateHTTPWebResponseHeaderPolicyRequest {
 	int64 headerPolicyId = 2;
 }
 
-message UpdateHTTPWebResponseHeaderPolicyResponse {
+// 更改Shutdown
+message UpdateHTTPWebShutdownRequest {
+	int64 webId = 1;
+	bytes shutdownJSON = 2;
+}
 
+// 更改Pages
+message UpdateHTTPWebPagesRequest {
+	int64 webId = 1;
+	bytes pagesJSON = 2;
 }

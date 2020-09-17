@@ -1,0 +1,45 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+
+service HTTPPageService {
+	// 创建Page
+	rpc createHTTPPage (CreateHTTPPageRequest) returns (CreateHTTPPageResponse);
+
+	// 修改Page
+	rpc updateHTTPPage (UpdateHTTPPageRequest) returns (RPCUpdateSuccess);
+
+	// 查找单个Page配置
+	rpc findEnabledHTTPPageConfig (FindEnabledHTTPPageConfigRequest) returns (FindEnabledHTTPPageConfigResponse);
+}
+
+// 创建Page
+message CreateHTTPPageRequest {
+	repeated string statusList = 1;
+	string url = 2;
+	int32 newStatus = 3;
+}
+
+message CreateHTTPPageResponse {
+	int64 pageId = 1;
+}
+
+// 修改Page
+message UpdateHTTPPageRequest {
+	int64 pageId = 1;
+	repeated string statusList = 2;
+	string url = 3;
+	int32 newStatus = 4;
+}
+
+// 查找单个Page配置
+message FindEnabledHTTPPageConfigRequest {
+	int64 pageId = 1;
+}
+
+message FindEnabledHTTPPageConfigResponse {
+	bytes config = 1;
+}

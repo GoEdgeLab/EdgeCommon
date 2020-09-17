@@ -3,13 +3,14 @@ option go_package = "./pb";
 
 package pb;
 import "model_api_node.proto";
+import "rpc_messages.proto";
 
 service APINodeService {
 	// 创建API节点
 	rpc createAPINode (CreateAPINodeRequest) returns (CreateAPINodeResponse);
 
 	// 修改API节点
-	rpc updateAPINode (UpdateAPINodeRequest) returns (UpdateAPINodeResponse);
+	rpc updateAPINode (UpdateAPINodeRequest) returns (RPCUpdateSuccess);
 
 	// 删除API节点
 	rpc deleteAPINode (DeleteAPINodeRequest) returns (DeleteAPINodeResponse);
@@ -46,10 +47,6 @@ message UpdateAPINodeRequest {
 	string description = 3;
 	string host = 4;
 	int32 port = 5;
-}
-
-message UpdateAPINodeResponse {
-
 }
 
 // 删除API节点

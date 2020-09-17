@@ -4,16 +4,17 @@ option go_package = "./pb";
 package pb;
 
 import "model_node_ip_address.proto";
+import "rpc_messages.proto";
 
 service NodeIPAddressService {
 	// 创建IP地址
 	rpc createNodeIPAddress (CreateNodeIPAddressRequest) returns (CreateNodeIPAddressResponse);
 
 	// 修改IP地址
-	rpc updateNodeIPAddress (UpdateNodeIPAddressRequest) returns (UpdateNodeIPAddressResponse);
+	rpc updateNodeIPAddress (UpdateNodeIPAddressRequest) returns (RPCUpdateSuccess);
 
 	// 修改IP地址所属节点
-	rpc updateNodeIPAddressNodeId (UpdateNodeIPAddressNodeIdRequest) returns (UpdateNodeIPAddressNodeIdResponse);
+	rpc updateNodeIPAddressNodeId (UpdateNodeIPAddressNodeIdRequest) returns (RPCUpdateSuccess);
 
 	// 禁用单个IP地址
 	rpc disableNodeIPAddress (DisableNodeIPAddressRequest) returns (DisableNodeIPAddressResponse);
@@ -46,18 +47,10 @@ message UpdateNodeIPAddressRequest {
 	string ip = 3;
 }
 
-message UpdateNodeIPAddressResponse {
-
-}
-
 // 修改IP地址所属节点
 message UpdateNodeIPAddressNodeIdRequest {
 	int64 addressId = 1;
 	int64 nodeId = 2;
-}
-
-message UpdateNodeIPAddressNodeIdResponse {
-
 }
 
 // 禁用单个IP地址
