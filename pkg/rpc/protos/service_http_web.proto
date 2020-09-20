@@ -42,6 +42,9 @@ service HTTPWebService {
 
 	// 更改缓存配置
 	rpc updateHTTPCache (UpdateHTTPCacheRequest) returns (RPCUpdateSuccess);
+
+	// 更改防火墙设置
+	rpc updateHTTPFirewall (UpdateHTTPFirewallRequest) returns (RPCUpdateSuccess);
 }
 
 // 创建Web配置
@@ -120,4 +123,10 @@ message UpdateHTTPStatRequest {
 message UpdateHTTPCacheRequest {
 	int64 webId = 1;
 	bytes cacheJSON = 2;
+}
+
+// 更改防火墙设置
+message UpdateHTTPFirewallRequest {
+	int64 webId = 1;
+	bytes firewallJSON = 2;
 }

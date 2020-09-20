@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_http_firewall_policy.proto";
+
+service HTTPFirewallPolicyService {
+	// 获取所有可用策略
+	rpc findAllEnabledHTTPFirewallPolicies (FindAllEnabledHTTPFirewallPoliciesRequest) returns (FindAllEnabledHTTPFirewallPoliciesResponse);
+}
+
+// 获取所有可用策略
+message FindAllEnabledHTTPFirewallPoliciesRequest {
+
+}
+
+message FindAllEnabledHTTPFirewallPoliciesResponse {
+	repeated HTTPFirewallPolicy firewallPolicies = 1;
+}
+

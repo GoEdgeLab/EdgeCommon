@@ -19,5 +19,6 @@ type HTTPWebConfig struct {
 	ResponseHeaders    *shared.HTTPHeaderPolicy   `yaml:"responseHeaders" json:"responseHeaders"`       // 响应Header`
 	AccessLogRef       *HTTPAccessLogRef          `yaml:"accessLog" json:"accessLog"`                   // 访问日志配置
 	StatRef            *HTTPStatRef               `yaml:"statRef" json:"statRef"`                       // 统计配置
-	CacheRef           *HTTPCacheRef              `yaml:"cache" json:"cacheRef"`
+	CacheRef           *HTTPCacheRef              `yaml:"cacheRef" json:"cacheRef"`                     // 缓存配置
+	FirewallRef        *HTTPFirewallRef           `yaml:"firewallRef" json:"firewallRef"`               // 防火墙设置
 }
