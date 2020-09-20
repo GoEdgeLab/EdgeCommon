@@ -49,7 +49,7 @@ func NewRequestCond() *RequestCond {
 }
 
 // 校验配置
-func (this *RequestCond) Validate() error {
+func (this *RequestCond) Init() error {
 	this.isInt = RegexpDigitNumber.MatchString(this.Value)
 	this.isFloat = RegexpFloatNumber.MatchString(this.Value)
 

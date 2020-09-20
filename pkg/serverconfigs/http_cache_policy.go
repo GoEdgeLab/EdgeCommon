@@ -20,10 +20,10 @@ type HTTPCachePolicy struct {
 	IsOn bool   `yaml:"isOn" json:"isOn"` // 是否开启 TODO
 	Name string `yaml:"name" json:"name"` // 名称
 
-	Key      string              `yaml:"key" json:"key"`           // 每个缓存的Key规则，里面可以有变量
+	Key      string               `yaml:"key" json:"key"`           // 每个缓存的Key规则，里面可以有变量
 	Capacity *shared.SizeCapacity `yaml:"capacity" json:"capacity"` // 最大内容容量
 	Life     *shared.TimeDuration `yaml:"life" json:"life"`         // 时间
-	Status   []int               `yaml:"status" json:"status"`     // 缓存的状态码列表
+	Status   []int                `yaml:"status" json:"status"`     // 缓存的状态码列表
 	MaxSize  *shared.SizeCapacity `yaml:"maxSize" json:"maxSize"`   // 能够请求的最大尺寸
 
 	SkipResponseCacheControlValues []string `yaml:"skipCacheControlValues" json:"skipCacheControlValues"`     // 可以跳过的响应的Cache-Control值
@@ -75,7 +75,7 @@ func NewCachePolicyFromFile(file string) *HTTPCachePolicy {
 }
 
 // 校验
-func (this *HTTPCachePolicy) Validate() error {
+func (this *HTTPCachePolicy) Init() error {
 	var err error
 	this.maxSize = this.MaxSize.Bytes()
 	this.life = this.Life.Duration()
@@ -89,7 +89,7 @@ func (this *HTTPCachePolicy) Validate() error {
 	// cond
 	if len(this.Cond) > 0 {
 		for _, cond := range this.Cond {
-			err := cond.Validate()
+			err := cond.Init()
 			if err != nil {
 				return err
 			}

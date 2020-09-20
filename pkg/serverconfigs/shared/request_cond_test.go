@@ -19,7 +19,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorRegexp,
 			Value:    "abc",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(format string) string {
 			return format
 		}))
@@ -31,7 +31,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorRegexp,
 			Value:    "/\\w+",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(format string) string {
 			return format
 		}))
@@ -43,7 +43,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorRegexp,
 			Value:    `^/article/\d+\.html$`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(format string) string {
 			return format
 		}))
@@ -55,7 +55,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorRegexp,
 			Value:    "[",
 		}
-		a.IsNotNil(cond.Validate())
+		a.IsNotNil(cond.Init())
 		a.IsFalse(cond.Match(func(format string) string {
 			return format
 		}))
@@ -67,7 +67,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorNotRegexp,
 			Value:    "abc",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(format string) string {
 			return format
 		}))
@@ -79,7 +79,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorNotRegexp,
 			Value:    "/\\w+",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(format string) string {
 			return format
 		}))
@@ -91,7 +91,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorEqInt,
 			Value:    "123",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -103,7 +103,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorEqInt,
 			Value:    "123",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -115,7 +115,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorEqInt,
 			Value:    "abc",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -127,7 +127,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorEqFloat,
 			Value:    "123",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -139,7 +139,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorEqFloat,
 			Value:    "123",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -151,7 +151,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorEqFloat,
 			Value:    "123.12",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -163,7 +163,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorGtFloat,
 			Value:    "1",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -175,7 +175,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorGtFloat,
 			Value:    "125",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -187,7 +187,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorGteFloat,
 			Value:    "125",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -199,7 +199,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorLtFloat,
 			Value:    "127",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -211,7 +211,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorLteFloat,
 			Value:    "127",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -223,7 +223,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorEqString,
 			Value:    "125",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -235,7 +235,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorNeqString,
 			Value:    "125",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -247,7 +247,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorNeqString,
 			Value:    "127",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -259,7 +259,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorHasPrefix,
 			Value:    "/hello",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -271,7 +271,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorHasPrefix,
 			Value:    "/hello2",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -283,7 +283,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorHasSuffix,
 			Value:    "world",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -295,7 +295,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorHasSuffix,
 			Value:    "world/",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -307,7 +307,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorContainsString,
 			Value:    "wo",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -319,7 +319,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorContainsString,
 			Value:    "wr",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -331,7 +331,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorNotContainsString,
 			Value:    "HELLO",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -343,7 +343,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 			Operator: RequestCondOperatorNotContainsString,
 			Value:    "hello",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -359,7 +359,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorEqIP,
 			Value:    "hello",
 		}
-		a.IsNotNil(cond.Validate())
+		a.IsNotNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -371,7 +371,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorEqIP,
 			Value:    "hello",
 		}
-		a.IsNotNil(cond.Validate())
+		a.IsNotNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -383,7 +383,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorEqIP,
 			Value:    "192.168.1.100",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -395,7 +395,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorGtIP,
 			Value:    "192.168.1.90",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -407,7 +407,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorGteIP,
 			Value:    "192.168.1.90",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -419,7 +419,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorLtIP,
 			Value:    "192.168.1.90",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -431,7 +431,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorLteIP,
 			Value:    "192.168.1.90",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -443,7 +443,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorIPRange,
 			Value:    "192.168.0.90,",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -455,7 +455,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorIPRange,
 			Value:    "192.168.0.90,192.168.1.100",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -467,7 +467,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorIPRange,
 			Value:    ",192.168.1.100",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -479,7 +479,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorIPRange,
 			Value:    "192.168.0.90,192.168.1.99",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -491,7 +491,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorIPRange,
 			Value:    "192.168.0.90/24",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -503,7 +503,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorIPRange,
 			Value:    "192.168.0.90/18",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -515,7 +515,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorIPRange,
 			Value:    "a/18",
 		}
-		a.IsNotNil(cond.Validate())
+		a.IsNotNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -527,7 +527,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorIPMod10,
 			Value:    "6",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -539,7 +539,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorIPMod100,
 			Value:    "76",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -551,7 +551,7 @@ func TestRequestCond_IP(t *testing.T) {
 			Operator: RequestCondOperatorIPMod,
 			Value:    "10,6",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -605,7 +605,7 @@ func TestRequestCond_In(t *testing.T) {
 			Operator: RequestCondOperatorIn,
 			Value:    `a`,
 		}
-		a.IsNotNil(cond.Validate())
+		a.IsNotNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -617,7 +617,7 @@ func TestRequestCond_In(t *testing.T) {
 			Operator: RequestCondOperatorIn,
 			Value:    `["a", "b"]`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -629,7 +629,7 @@ func TestRequestCond_In(t *testing.T) {
 			Operator: RequestCondOperatorNotIn,
 			Value:    `["a", "b"]`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -641,7 +641,7 @@ func TestRequestCond_In(t *testing.T) {
 			Operator: RequestCondOperatorNotIn,
 			Value:    `["a", "b"]`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -657,7 +657,7 @@ func TestRequestCond_File(t *testing.T) {
 			Operator: RequestCondOperatorFileExt,
 			Value:    `["jpeg", "jpg", "png"]`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -669,7 +669,7 @@ func TestRequestCond_File(t *testing.T) {
 			Operator: RequestCondOperatorFileExt,
 			Value:    `["jpeg", "jpg", "png"]`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -681,7 +681,7 @@ func TestRequestCond_File(t *testing.T) {
 			Operator: RequestCondOperatorFileExt,
 			Value:    `["jpeg", "jpg", "png"]`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -692,7 +692,7 @@ func TestRequestCond_File(t *testing.T) {
 			Param:    "a.png",
 			Operator: RequestCondOperatorFileExist,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -703,7 +703,7 @@ func TestRequestCond_File(t *testing.T) {
 			Param:    Tea.Root + "/README.md",
 			Operator: RequestCondOperatorFileExist,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -714,7 +714,7 @@ func TestRequestCond_File(t *testing.T) {
 			Param:    Tea.Root + "/README.md?v=1",
 			Operator: RequestCondOperatorFileExist,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -725,7 +725,7 @@ func TestRequestCond_File(t *testing.T) {
 			Param:    Tea.Root,
 			Operator: RequestCondOperatorFileExist,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -736,7 +736,7 @@ func TestRequestCond_File(t *testing.T) {
 			Param:    Tea.Root,
 			Operator: RequestCondOperatorFileExist,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -747,7 +747,7 @@ func TestRequestCond_File(t *testing.T) {
 			Param:    "a.png",
 			Operator: RequestCondOperatorFileNotExist,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -758,7 +758,7 @@ func TestRequestCond_File(t *testing.T) {
 			Param:    Tea.Root + "/README.md",
 			Operator: RequestCondOperatorFileNotExist,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -774,7 +774,7 @@ func TestRequestCond_MimeType(t *testing.T) {
 			Operator: RequestCondOperatorFileMimeType,
 			Value:    `["text/html"]`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -786,7 +786,7 @@ func TestRequestCond_MimeType(t *testing.T) {
 			Operator: RequestCondOperatorFileMimeType,
 			Value:    `["text/*"]`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -798,7 +798,7 @@ func TestRequestCond_MimeType(t *testing.T) {
 			Operator: RequestCondOperatorFileMimeType,
 			Value:    `["image/*"]`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -810,7 +810,7 @@ func TestRequestCond_MimeType(t *testing.T) {
 			Operator: RequestCondOperatorFileMimeType,
 			Value:    `["text/html", "image/jpeg", "image/png"]`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -826,7 +826,7 @@ func TestRequestCond_Version(t *testing.T) {
 			Operator: RequestCondOperatorVersionRange,
 			Value:    `1.0,1.1`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -838,7 +838,7 @@ func TestRequestCond_Version(t *testing.T) {
 			Operator: RequestCondOperatorVersionRange,
 			Value:    `1.0,`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -850,7 +850,7 @@ func TestRequestCond_Version(t *testing.T) {
 			Operator: RequestCondOperatorVersionRange,
 			Value:    `,1.1`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -862,7 +862,7 @@ func TestRequestCond_Version(t *testing.T) {
 			Operator: RequestCondOperatorVersionRange,
 			Value:    `1.0,1.1`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -874,7 +874,7 @@ func TestRequestCond_Version(t *testing.T) {
 			Operator: RequestCondOperatorVersionRange,
 			Value:    `1.0`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -886,7 +886,7 @@ func TestRequestCond_Version(t *testing.T) {
 			Operator: RequestCondOperatorVersionRange,
 			Value:    `1.0`,
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -908,7 +908,7 @@ func TestRequestCond_Mod(t *testing.T) {
 			Operator: RequestCondOperatorMod,
 			Value:    "1",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -920,7 +920,7 @@ func TestRequestCond_Mod(t *testing.T) {
 			Operator: RequestCondOperatorMod,
 			Value:    "2",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsFalse(cond.Match(func(source string) string {
 			return source
 		}))
@@ -932,7 +932,7 @@ func TestRequestCond_Mod(t *testing.T) {
 			Operator: RequestCondOperatorMod,
 			Value:    "3",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -944,7 +944,7 @@ func TestRequestCond_Mod(t *testing.T) {
 			Operator: RequestCondOperatorMod,
 			Value:    "11,1",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -956,7 +956,7 @@ func TestRequestCond_Mod(t *testing.T) {
 			Operator: RequestCondOperatorMod,
 			Value:    "11,3",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -968,7 +968,7 @@ func TestRequestCond_Mod(t *testing.T) {
 			Operator: RequestCondOperatorMod,
 			Value:    "2,0",
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -980,7 +980,7 @@ func TestRequestCond_Mod(t *testing.T) {
 			Operator: RequestCondOperatorMod10,
 			Value:    fmt.Sprintf("%d", i%10),
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))
@@ -992,7 +992,7 @@ func TestRequestCond_Mod(t *testing.T) {
 			Operator: RequestCondOperatorMod100,
 			Value:    fmt.Sprintf("%d", i%100),
 		}
-		a.IsNil(cond.Validate())
+		a.IsNil(cond.Init())
 		a.IsTrue(cond.Match(func(source string) string {
 			return source
 		}))

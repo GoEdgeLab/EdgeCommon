@@ -16,4 +16,5 @@ type HTTPWebConfig struct {
 	MaxRequestBodySize string                     `yaml:"maxRequestBodySize" json:"maxRequestBodySize"` // 请求body最大尺寸
 	RequestHeaders     *shared.HTTPHeaderPolicy   `yaml:"requestHeaders" json:"requestHeaders"`         // 请求Header
 	ResponseHeaders    *shared.HTTPHeaderPolicy   `yaml:"responseHeaders" json:"responseHeaders"`       // 响应Header`
+	AccessLog          *HTTPAccessLogConfig       `yaml:"accessLog" json:"accessLog"`                   // 访问日志配置
 }

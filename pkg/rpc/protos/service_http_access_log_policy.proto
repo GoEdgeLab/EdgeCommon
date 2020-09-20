@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_http_access_log_policy.proto";
+
+service HTTPAccessLogPolicyService {
+	// 获取所有可用策略
+	rpc findAllEnabledHTTPAccessLogPolicies (FindAllEnabledHTTPAccessLogPoliciesRequest) returns (FindAllEnabledHTTPAccessLogPoliciesResponse);
+}
+
+// 获取所有可用策略
+message FindAllEnabledHTTPAccessLogPoliciesRequest {
+
+}
+
+message FindAllEnabledHTTPAccessLogPoliciesResponse {
+	repeated HTTPAccessLogPolicy accessLogPolicies = 1;
+}
+

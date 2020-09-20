@@ -33,6 +33,9 @@ service HTTPWebService {
 
 	// 更改Pages
 	rpc updateHTTPWebPages (UpdateHTTPWebPagesRequest) returns (RPCUpdateSuccess);
+
+	// 更改访问日志配置
+	rpc updateHTTPAccessLog (UpdateHTTPAccessLogRequest) returns (RPCUpdateSuccess);
 }
 
 // 创建Web配置
@@ -93,4 +96,10 @@ message UpdateHTTPWebShutdownRequest {
 message UpdateHTTPWebPagesRequest {
 	int64 webId = 1;
 	bytes pagesJSON = 2;
+}
+
+// 更改访问日志配置
+message UpdateHTTPAccessLogRequest {
+	int64 webId = 1;
+	bytes accessLogJSON = 2;
 }
