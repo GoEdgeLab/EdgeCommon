@@ -39,6 +39,9 @@ service HTTPWebService {
 
 	// 更改统计配置
 	rpc updateHTTPStat (UpdateHTTPStatRequest) returns (RPCUpdateSuccess);
+
+	// 更改缓存配置
+	rpc updateHTTPCache (UpdateHTTPCacheRequest) returns (RPCUpdateSuccess);
 }
 
 // 创建Web配置
@@ -68,7 +71,7 @@ message UpdateHTTPWebRequest {
 // 更改Gzip配置
 message UpdateHTTPWebGzipRequest {
 	int64 webId = 1;
-	int64 gzipId = 2;
+	bytes gzipJSON = 2;
 }
 
 // 更改字符集配置
@@ -111,4 +114,10 @@ message UpdateHTTPAccessLogRequest {
 message UpdateHTTPStatRequest {
 	int64 webId = 1;
 	bytes statJSON = 2;
+}
+
+// 更改缓存配置
+message UpdateHTTPCacheRequest {
+	int64 webId = 1;
+	bytes cacheJSON = 2;
 }

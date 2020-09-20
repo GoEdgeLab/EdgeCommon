@@ -1,7 +1,7 @@
 package serverconfigs
 
 // 代理访问日志配置
-type HTTPAccessLogConfig struct {
+type HTTPAccessLogRef struct {
 	IsOn bool `yaml:"isOn" json:"isOn"`
 
 	Fields []int `yaml:"fields" json:"fields"` // 记录的字段
@@ -17,8 +17,8 @@ type HTTPAccessLogConfig struct {
 }
 
 // 获取新对象
-func NewHTTPAccessLogConfig() *HTTPAccessLogConfig {
-	return &HTTPAccessLogConfig{
+func NewHTTPAccessLogRef() *HTTPAccessLogRef {
+	return &HTTPAccessLogRef{
 		IsOn:    true,
 		Fields:  []int{},
 		Status1: true,
@@ -30,12 +30,12 @@ func NewHTTPAccessLogConfig() *HTTPAccessLogConfig {
 }
 
 // 校验
-func (this *HTTPAccessLogConfig) Init() error {
+func (this *HTTPAccessLogRef) Init() error {
 	return nil
 }
 
 // 判断是否应该记录
-func (this *HTTPAccessLogConfig) Match(status int) bool {
+func (this *HTTPAccessLogRef) Match(status int) bool {
 	s := status / 100
 	switch s {
 	case 1:
@@ -64,7 +64,7 @@ func (this *HTTPAccessLogConfig) Match(status int) bool {
 }
 
 // 是否包含某个存储策略
-func (this *HTTPAccessLogConfig) ContainsStoragePolicy(storagePolicyId int64) bool {
+func (this *HTTPAccessLogRef) ContainsStoragePolicy(storagePolicyId int64) bool {
 	for _, s := range this.StoragePolicies {
 		if s == storagePolicyId {
 			return true

@@ -1,9 +1,9 @@
 package serverconfigs
 
-type HTTPStatConfig struct {
+type HTTPStatRef struct {
 	IsOn bool `yaml:"isOn" json:"isOn"` // 是否开启
 }
 
-func (this *HTTPStatConfig) Init() error {
+func (this *HTTPStatRef) Init() error {
 	return nil
 }

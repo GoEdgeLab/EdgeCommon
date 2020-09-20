@@ -9,7 +9,7 @@ func TestHTTPAccessLogConfig_Match(t *testing.T) {
 	a := assert.NewAssertion(t)
 
 	{
-		accessLog := NewHTTPAccessLogConfig()
+		accessLog := NewHTTPAccessLogRef()
 		a.IsNil(accessLog.Init())
 		a.IsTrue(accessLog.Match(100))
 		a.IsTrue(accessLog.Match(200))
@@ -19,7 +19,7 @@ func TestHTTPAccessLogConfig_Match(t *testing.T) {
 	}
 
 	{
-		accessLog := NewHTTPAccessLogConfig()
+		accessLog := NewHTTPAccessLogRef()
 		accessLog.Status1 = false
 		accessLog.Status2 = false
 		a.IsNil(accessLog.Init())
@@ -31,7 +31,7 @@ func TestHTTPAccessLogConfig_Match(t *testing.T) {
 	}
 
 	{
-		accessLog := NewHTTPAccessLogConfig()
+		accessLog := NewHTTPAccessLogRef()
 		accessLog.Status3 = false
 		accessLog.Status4 = false
 		accessLog.Status5 = false

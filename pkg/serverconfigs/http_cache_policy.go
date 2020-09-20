@@ -7,7 +7,6 @@ import (
 	"github.com/iwind/TeaGo/files"
 	"github.com/iwind/TeaGo/lists"
 	"github.com/iwind/TeaGo/logs"
-	"strconv"
 	"strings"
 	"time"
 )
@@ -16,7 +15,7 @@ var DefaultSkippedResponseCacheControlValues = []string{"private", "no-cache", "
 
 // 缓存策略配置
 type HTTPCachePolicy struct {
-	Id   int    `yaml:"id" json:"id"`
+	Id   int64  `yaml:"id" json:"id"`
 	IsOn bool   `yaml:"isOn" json:"isOn"` // 是否开启 TODO
 	Name string `yaml:"name" json:"name"` // 名称
 
@@ -112,29 +111,6 @@ func (this *HTTPCachePolicy) CapacitySize() int64 {
 // 生命周期
 func (this *HTTPCachePolicy) LifeDuration() time.Duration {
 	return this.life
-}
-
-// 保存
-func (this *HTTPCachePolicy) Save() error {
-	shared.Locker.Lock()
-	defer shared.Locker.Unlock()
-
-	filename := "cache.policy." + strconv.Itoa(this.Id) + ".conf"
-	writer, err := files.NewWriter(Tea.ConfigFile(filename))
-	if err != nil {
-		return err
-	}
-	defer func() {
-		_ = writer.Close()
-	}()
-	_, err = writer.WriteYAML(this)
-	return err
-}
-
-// 删除
-func (this *HTTPCachePolicy) Delete() error {
-	filename := "cache.policy." + strconv.Itoa(this.Id) + ".conf"
-	return files.NewFile(Tea.ConfigFile(filename)).Delete()
 }
 
 // 是否包含某个Cache-Control值

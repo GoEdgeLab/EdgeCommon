@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_http_cache_policy.proto";
+
+service HTTPCachePolicyService {
+	// 获取所有可用策略
+	rpc findAllEnabledHTTPCachePolicies (FindAllEnabledHTTPCachePoliciesRequest) returns (FindAllEnabledHTTPCachePoliciesResponse);
+}
+
+// 获取所有可用策略
+message FindAllEnabledHTTPCachePoliciesRequest {
+
+}
+
+message FindAllEnabledHTTPCachePoliciesResponse {
+	repeated HTTPCachePolicy cachePolicies = 1;
+}
+
