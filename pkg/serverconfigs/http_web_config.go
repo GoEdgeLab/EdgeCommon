@@ -17,4 +17,5 @@ type HTTPWebConfig struct {
 	RequestHeaders     *shared.HTTPHeaderPolicy   `yaml:"requestHeaders" json:"requestHeaders"`         // 请求Header
 	ResponseHeaders    *shared.HTTPHeaderPolicy   `yaml:"responseHeaders" json:"responseHeaders"`       // 响应Header`
 	AccessLog          *HTTPAccessLogConfig       `yaml:"accessLog" json:"accessLog"`                   // 访问日志配置
+	Stat               *HTTPStatConfig            `yaml:"stat" json:"stat"`                             // 统计配置
 }
