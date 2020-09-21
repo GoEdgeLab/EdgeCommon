@@ -7,33 +7,33 @@ import "model_origin_server.proto";
 import "model_network_address.proto";
 import "rpc_messages.proto";
 
-service OriginServerService {
+service OriginService {
 	// 创建源站
-	rpc createOriginServer (CreateOriginServerRequest) returns (CreateOriginServerResponse);
+	rpc createOrigin (CreateOriginRequest) returns (CreateOriginResponse);
 
 	// 修改源站
-	rpc updateOriginServer (UpdateOriginServerRequest) returns (RPCUpdateSuccess);
+	rpc updateOrigin (UpdateOriginRequest) returns (RPCUpdateSuccess);
 
 	// 查找单个源站信息
-	rpc findEnabledOriginServer (FindEnabledOriginServerRequest) returns (FindEnabledOriginServerResponse);
+	rpc findEnabledOrigin (FindEnabledOriginRequest) returns (FindEnabledOriginResponse);
 
 	// 查找源站配置
-	rpc findEnabledOriginServerConfig (FindEnabledOriginServerConfigRequest) returns (FindEnabledOriginServerConfigResponse);
+	rpc findEnabledOriginConfig (FindEnabledOriginConfigRequest) returns (FindEnabledOriginConfigResponse);
 }
 
 // 创建源站
-message CreateOriginServerRequest {
+message CreateOriginRequest {
 	string name = 1;
 	NetworkAddress addr = 2;
 	string description = 3;
 }
 
-message CreateOriginServerResponse {
+message CreateOriginResponse {
 	int64 originId = 1;
 }
 
 // 修改源站
-message UpdateOriginServerRequest {
+message UpdateOriginRequest {
 	int64 originId = 1;
 	string name = 2;
 	NetworkAddress addr = 3;
@@ -41,19 +41,19 @@ message UpdateOriginServerRequest {
 }
 
 // 查找单个源站信息
-message FindEnabledOriginServerRequest {
+message FindEnabledOriginRequest {
 	int64 originId = 1;
 }
 
-message FindEnabledOriginServerResponse {
-	OriginServer Origin = 1;
+message FindEnabledOriginResponse {
+	Origin Origin = 1;
 }
 
 // 查找源站配置
-message FindEnabledOriginServerConfigRequest {
+message FindEnabledOriginConfigRequest {
 	int64 originId = 1;
 }
 
-message FindEnabledOriginServerConfigResponse {
+message FindEnabledOriginConfigResponse {
 	bytes originJSON = 1;
 }

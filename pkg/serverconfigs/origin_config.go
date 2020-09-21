@@ -13,7 +13,7 @@ import (
 )
 
 // 源站服务配置
-type OriginServerConfig struct {
+type OriginConfig struct {
 	Id          int64                 `yaml:"id" json:"id"`                   // ID
 	IsOn        bool                  `yaml:"isOn" json:"isOn"`               // 是否启用 TODO
 	Version     int                   `yaml:"version" json:"version"`         // 版本
@@ -43,7 +43,7 @@ type OriginServerConfig struct {
 	Cert *sslconfigs.SSLCertConfig `yaml:"cert" json:"cert"` // 请求源服务器用的证书
 
 	// ftp
-	FTP *OriginServerFTPConfig `yaml:"ftp" json:"ftp"`
+	FTP *OriginFTPConfig `yaml:"ftp" json:"ftp"`
 
 	connTimeoutDuration time.Duration
 	readTimeoutDuration time.Duration
@@ -64,7 +64,7 @@ type OriginServerConfig struct {
 }
 
 // 校验
-func (this *OriginServerConfig) Init() error {
+func (this *OriginConfig) Init() error {
 	// 证书
 	if this.Cert != nil {
 		err := this.Cert.Init()
@@ -131,7 +131,7 @@ func (this *OriginServerConfig) Init() error {
 }
 
 // 候选对象代号
-func (this *OriginServerConfig) CandidateCodes() []string {
+func (this *OriginConfig) CandidateCodes() []string {
 	codes := []string{strconv.FormatInt(this.Id, 10)}
 	if len(this.Code) > 0 {
 		codes = append(codes, this.Code)
@@ -140,12 +140,12 @@ func (this *OriginServerConfig) CandidateCodes() []string {
 }
 
 // 候选对象权重
-func (this *OriginServerConfig) CandidateWeight() uint {
+func (this *OriginConfig) CandidateWeight() uint {
 	return this.Weight
 }
 
 // 连接源站
-func (this *OriginServerConfig) Connect() (net.Conn, error) {
+func (this *OriginConfig) Connect() (net.Conn, error) {
 	if this.Addr == nil {
 		return nil, errors.New("origin server address should not be empty")
 	}

@@ -8,11 +8,13 @@ import (
 
 // 反向代理设置
 type ReverseProxyConfig struct {
-	Id             int64                 `yaml:"id" json:"id"`                         // ID
-	IsOn           bool                  `yaml:"isOn" json:"isOn"`                     // 是否启用
-	PrimaryOrigins []*OriginServerConfig `yaml:"primaryOrigins" json:"primaryOrigins"` // 主要源站列表
-	BackupOrigins  []*OriginServerConfig `yaml:"backupOrigins" json:"backupOrigins"`   // 备用源站列表
-	Scheduling     *SchedulingConfig     `yaml:"scheduling" json:"scheduling"`         // 调度算法选项
+	Id                int64             `yaml:"id" json:"id"`                               // ID
+	IsOn              bool              `yaml:"isOn" json:"isOn"`                           // 是否启用
+	PrimaryOrigins    []*OriginConfig   `yaml:"primaryOrigins" json:"primaryOrigins"`       // 主要源站列表
+	PrimaryOriginRefs []*OriginRef      `yaml:"primaryOriginRefs" json:"primaryOriginRefs"` // 主要源站引用
+	BackupOrigins     []*OriginConfig   `yaml:"backupOrigins" json:"backupOrigins"`         // 备用源站列表
+	BackupOriginRefs  []*OriginRef      `yaml:"backupOriginRefs" json:"backupOriginRefs"`   // 备用源站引用
+	Scheduling        *SchedulingConfig `yaml:"scheduling" json:"scheduling"`               // 调度算法选项
 
 	hasPrimaryOrigins  bool
 	hasBackupOrigins   bool
@@ -47,17 +49,17 @@ func (this *ReverseProxyConfig) Init() error {
 }
 
 // 添加主源站配置
-func (this *ReverseProxyConfig) AddPrimaryOrigin(origin *OriginServerConfig) {
+func (this *ReverseProxyConfig) AddPrimaryOrigin(origin *OriginConfig) {
 	this.PrimaryOrigins = append(this.PrimaryOrigins, origin)
 }
 
 // 添加备用源站配置
-func (this *ReverseProxyConfig) AddBackupOrigin(origin *OriginServerConfig) {
+func (this *ReverseProxyConfig) AddBackupOrigin(origin *OriginConfig) {
 	this.BackupOrigins = append(this.BackupOrigins, origin)
 }
 
 // 取得下一个可用的后端服务
-func (this *ReverseProxyConfig) NextOrigin(call *shared.RequestCall) *OriginServerConfig {
+func (this *ReverseProxyConfig) NextOrigin(call *shared.RequestCall) *OriginConfig {
 	this.schedulingLocker.Lock()
 	defer this.schedulingLocker.Unlock()
 
@@ -88,7 +90,7 @@ func (this *ReverseProxyConfig) NextOrigin(call *shared.RequestCall) *OriginServ
 		}
 	}
 
-	return candidate.(*OriginServerConfig)
+	return candidate.(*OriginConfig)
 }
 
 // 设置调度算法
