@@ -56,7 +56,7 @@ service ServerService {
 	rpc findEnabledServerType (FindEnabledServerTypeRequest) returns (FindEnabledServerTypeResponse);
 
 	// 查找反向代理设置
-	rpc findServerReverseProxyConfig (FindServerReverseProxyConfigRequest) returns (FindServerReverseProxyConfigResponse);
+	rpc findAndInitServerReverseProxyConfig (FindAndInitServerReverseProxyConfigRequest) returns (FindAndInitServerReverseProxyConfigResponse);
 
 	// 初始化Web设置
 	rpc findAndInitServerWebConfig (FindAndInitServerWebRequest) returns (FindAndInitServerWebResponse);
@@ -79,7 +79,7 @@ message CreateServerRequest {
 	bytes unixJSON = 13;
 	bytes udpJSON = 14;
 	int64 webId = 15;
-	int64 reverseProxyId = 16;
+	bytes reverseProxyJSON = 16;
 
 	int64 clusterId = 30;
 	bytes includeNodesJSON = 31;
@@ -136,7 +136,7 @@ message UpdateServerWebRequest {
 
 message UpdateServerReverseProxyRequest {
 	int64 serverId = 1;
-	int64 reverseProxyId = 2;
+	bytes reverseProxyJSON = 2;
 }
 
 message UpdateServerNamesRequest {
@@ -191,12 +191,13 @@ message FindEnabledServerTypeResponse {
 }
 
 // 查找反向代理设置
-message FindServerReverseProxyConfigRequest {
+message FindAndInitServerReverseProxyConfigRequest {
 	int64 serverId = 1;
 }
 
-message FindServerReverseProxyConfigResponse {
-	bytes config = 1;
+message FindAndInitServerReverseProxyConfigResponse {
+	bytes reverseProxy = 1;
+	bytes reverseProxyRef = 2;
 }
 
 // 初始化Web设置

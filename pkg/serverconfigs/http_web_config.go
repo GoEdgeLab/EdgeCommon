@@ -5,7 +5,7 @@ import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 type HTTPWebConfig struct {
 	Id                 int64                      `yaml:"id" json:"id"`               // ID
 	IsOn               bool                       `yaml:"isOn" json:"isOn"`           // 是否启用
-	Locations          []*LocationConfig          `yaml:"locations" json:"locations"` // 路径规则 TODO
+	Locations          []*HTTPLocationConfig      `yaml:"locations" json:"locations"` // 路径规则 TODO
 	GzipRef            *HTTPGzipRef               `yaml:"gzipRef" json:"gzipRef"`
 	Gzip               *HTTPGzipConfig            `yaml:"gzip" json:"gzip"`                             // Gzip配置
 	Charset            string                     `yaml:"charset" json:"charset"`                       // 字符编码
@@ -21,4 +21,10 @@ type HTTPWebConfig struct {
 	StatRef            *HTTPStatRef               `yaml:"statRef" json:"statRef"`                       // 统计配置
 	CacheRef           *HTTPCacheRef              `yaml:"cacheRef" json:"cacheRef"`                     // 缓存配置
 	FirewallRef        *HTTPFirewallRef           `yaml:"firewallRef" json:"firewallRef"`               // 防火墙设置
+	WebsocketRef       *HTTPWebsocketRef          `yaml:"websocketRef" json:"websocketRef"`             // Websocket应用配置
+	Websocket          *HTTPWebsocketConfig       `yaml:"websocket" json:"websocket"`                   // Websocket配置
+}
+
+func (this *HTTPWebConfig) Init() error {
+	return nil
 }

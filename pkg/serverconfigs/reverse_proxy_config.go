@@ -8,7 +8,8 @@ import (
 
 // 反向代理设置
 type ReverseProxyConfig struct {
-	IsOn           bool                  `yaml:"isOn" json:"isOn"`                     // 是否启用 TODO
+	Id             int64                 `yaml:"id" json:"id"`                         // ID
+	IsOn           bool                  `yaml:"isOn" json:"isOn"`                     // 是否启用
 	PrimaryOrigins []*OriginServerConfig `yaml:"primaryOrigins" json:"primaryOrigins"` // 主要源站列表
 	BackupOrigins  []*OriginServerConfig `yaml:"backupOrigins" json:"backupOrigins"`   // 备用源站列表
 	Scheduling     *SchedulingConfig     `yaml:"scheduling" json:"scheduling"`         // 调度算法选项

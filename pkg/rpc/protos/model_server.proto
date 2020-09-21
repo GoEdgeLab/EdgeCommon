@@ -24,7 +24,7 @@ message Server {
 	bytes unixJSON = 13;
 	bytes udpJSON = 14;
 	int64 webId = 15;
-	int64 reverseProxyId = 16;
+	bytes reverseProxyJSON = 16;
 
 	NodeCluster cluster = 30;
 }

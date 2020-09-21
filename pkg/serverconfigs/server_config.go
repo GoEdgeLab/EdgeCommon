@@ -28,7 +28,8 @@ type ServerConfig struct {
 	Web *HTTPWebConfig `yaml:"web" json:"web"`
 
 	// 反向代理配置
-	ReverseProxy *ReverseProxyConfig `yaml:"reverseProxy" json:"reverseProxy"`
+	ReverseProxyRef *ReverseProxyRef    `yaml:"reverseProxyRef" json:"reverseProxyRef"`
+	ReverseProxy    *ReverseProxyConfig `yaml:"reverseProxy" json:"reverseProxy"`
 }
 
 // 从JSON中解析Server配置
