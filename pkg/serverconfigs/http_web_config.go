@@ -3,9 +3,10 @@ package serverconfigs
 import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 
 type HTTPWebConfig struct {
-	Id                 int64                      `yaml:"id" json:"id"`               // ID
-	IsOn               bool                       `yaml:"isOn" json:"isOn"`           // 是否启用
-	Locations          []*HTTPLocationConfig      `yaml:"locations" json:"locations"` // 路径规则 TODO
+	Id                 int64                      `yaml:"id" json:"id"`                     // ID
+	IsOn               bool                       `yaml:"isOn" json:"isOn"`                 // 是否启用
+	Locations          []*HTTPLocationConfig      `yaml:"locations" json:"locations"`       // 路径规则 TODO
+	LocationRefs       []*HTTPLocationRef         `yaml:"locationRefs" json:"locationRefs"` // 路径规则应用
 	GzipRef            *HTTPGzipRef               `yaml:"gzipRef" json:"gzipRef"`
 	Gzip               *HTTPGzipConfig            `yaml:"gzip" json:"gzip"`                             // Gzip配置
 	Charset            string                     `yaml:"charset" json:"charset"`                       // 字符编码
@@ -27,4 +28,21 @@ type HTTPWebConfig struct {
 
 func (this *HTTPWebConfig) Init() error {
 	return nil
+}
+
+func (this *HTTPWebConfig) RemoveLocationRef(locationId int64) {
+	this.LocationRefs = this.removeLocationRef(this.LocationRefs, locationId)
+}
+
+func (this *HTTPWebConfig) removeLocationRef(refs []*HTTPLocationRef, locationId int64) []*HTTPLocationRef {
+	result := []*HTTPLocationRef{}
+	for _, ref := range refs {
+		if ref.LocationId == locationId {
+			continue
+		}
+
+		ref.Children = this.removeLocationRef(ref.Children, locationId)
+		result = append(result, ref)
+	}
+	return result
 }

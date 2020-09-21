@@ -41,5 +41,5 @@ message FindEnabledHTTPPageConfigRequest {
 }
 
 message FindEnabledHTTPPageConfigResponse {
-	bytes config = 1;
+	bytes pageJSON = 1;
 }

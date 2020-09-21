@@ -55,5 +55,5 @@ message FindEnabledOriginServerConfigRequest {
 }
 
 message FindEnabledOriginServerConfigResponse {
-	bytes config = 1;
+	bytes originJSON = 1;
 }

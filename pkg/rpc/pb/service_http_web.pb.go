@@ -124,7 +124,7 @@ func (x *CreateHTTPWebResponse) GetWebId() int64 {
 	return 0
 }
 
-// 查找Web配置
+// 查找Web信息
 type FindEnabledHTTPWebRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -219,6 +219,101 @@ func (x *FindEnabledHTTPWebResponse) GetWeb() *HTTPWeb {
 	return nil
 }
 
+// 查找Web配置
+type FindEnabledHTTPWebConfigRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	WebId int64 `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
+}
+
+func (x *FindEnabledHTTPWebConfigRequest) Reset() {
+	*x = FindEnabledHTTPWebConfigRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_web_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledHTTPWebConfigRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledHTTPWebConfigRequest) ProtoMessage() {}
+
+func (x *FindEnabledHTTPWebConfigRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_web_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledHTTPWebConfigRequest.ProtoReflect.Descriptor instead.
+func (*FindEnabledHTTPWebConfigRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_web_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *FindEnabledHTTPWebConfigRequest) GetWebId() int64 {
+	if x != nil {
+		return x.WebId
+	}
+	return 0
+}
+
+type FindEnabledHTTPWebConfigResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	WebJSON []byte `protobuf:"bytes,1,opt,name=webJSON,proto3" json:"webJSON,omitempty"`
+}
+
+func (x *FindEnabledHTTPWebConfigResponse) Reset() {
+	*x = FindEnabledHTTPWebConfigResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_web_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledHTTPWebConfigResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledHTTPWebConfigResponse) ProtoMessage() {}
+
+func (x *FindEnabledHTTPWebConfigResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_web_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledHTTPWebConfigResponse.ProtoReflect.Descriptor instead.
+func (*FindEnabledHTTPWebConfigResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_web_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *FindEnabledHTTPWebConfigResponse) GetWebJSON() []byte {
+	if x != nil {
+		return x.WebJSON
+	}
+	return nil
+}
+
 // 更改Web配置
 type UpdateHTTPWebRequest struct {
 	state         protoimpl.MessageState
@@ -232,7 +327,7 @@ type UpdateHTTPWebRequest struct {
 func (x *UpdateHTTPWebRequest) Reset() {
 	*x = UpdateHTTPWebRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[4]
+		mi := &file_service_http_web_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -245,7 +340,7 @@ func (x *UpdateHTTPWebRequest) String() string {
 func (*UpdateHTTPWebRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[4]
+	mi := &file_service_http_web_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -258,7 +353,7 @@ func (x *UpdateHTTPWebRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{4}
+	return file_service_http_web_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UpdateHTTPWebRequest) GetWebId() int64 {
@@ -288,7 +383,7 @@ type UpdateHTTPWebGzipRequest struct {
 func (x *UpdateHTTPWebGzipRequest) Reset() {
 	*x = UpdateHTTPWebGzipRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[5]
+		mi := &file_service_http_web_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -301,7 +396,7 @@ func (x *UpdateHTTPWebGzipRequest) String() string {
 func (*UpdateHTTPWebGzipRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebGzipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[5]
+	mi := &file_service_http_web_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -314,7 +409,7 @@ func (x *UpdateHTTPWebGzipRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebGzipRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebGzipRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{5}
+	return file_service_http_web_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateHTTPWebGzipRequest) GetWebId() int64 {
@@ -344,7 +439,7 @@ type UpdateHTTPWebCharsetRequest struct {
 func (x *UpdateHTTPWebCharsetRequest) Reset() {
 	*x = UpdateHTTPWebCharsetRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[6]
+		mi := &file_service_http_web_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -357,7 +452,7 @@ func (x *UpdateHTTPWebCharsetRequest) String() string {
 func (*UpdateHTTPWebCharsetRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebCharsetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[6]
+	mi := &file_service_http_web_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -370,7 +465,7 @@ func (x *UpdateHTTPWebCharsetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebCharsetRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebCharsetRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{6}
+	return file_service_http_web_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UpdateHTTPWebCharsetRequest) GetWebId() int64 {
@@ -400,7 +495,7 @@ type UpdateHTTPWebRequestHeaderPolicyRequest struct {
 func (x *UpdateHTTPWebRequestHeaderPolicyRequest) Reset() {
 	*x = UpdateHTTPWebRequestHeaderPolicyRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[7]
+		mi := &file_service_http_web_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -413,7 +508,7 @@ func (x *UpdateHTTPWebRequestHeaderPolicyRequest) String() string {
 func (*UpdateHTTPWebRequestHeaderPolicyRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebRequestHeaderPolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[7]
+	mi := &file_service_http_web_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -426,7 +521,7 @@ func (x *UpdateHTTPWebRequestHeaderPolicyRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use UpdateHTTPWebRequestHeaderPolicyRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebRequestHeaderPolicyRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{7}
+	return file_service_http_web_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UpdateHTTPWebRequestHeaderPolicyRequest) GetWebId() int64 {
@@ -456,7 +551,7 @@ type UpdateHTTPWebResponseHeaderPolicyRequest struct {
 func (x *UpdateHTTPWebResponseHeaderPolicyRequest) Reset() {
 	*x = UpdateHTTPWebResponseHeaderPolicyRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[8]
+		mi := &file_service_http_web_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -469,7 +564,7 @@ func (x *UpdateHTTPWebResponseHeaderPolicyRequest) String() string {
 func (*UpdateHTTPWebResponseHeaderPolicyRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebResponseHeaderPolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[8]
+	mi := &file_service_http_web_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -482,7 +577,7 @@ func (x *UpdateHTTPWebResponseHeaderPolicyRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use UpdateHTTPWebResponseHeaderPolicyRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebResponseHeaderPolicyRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{8}
+	return file_service_http_web_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UpdateHTTPWebResponseHeaderPolicyRequest) GetWebId() int64 {
@@ -512,7 +607,7 @@ type UpdateHTTPWebShutdownRequest struct {
 func (x *UpdateHTTPWebShutdownRequest) Reset() {
 	*x = UpdateHTTPWebShutdownRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[9]
+		mi := &file_service_http_web_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -525,7 +620,7 @@ func (x *UpdateHTTPWebShutdownRequest) String() string {
 func (*UpdateHTTPWebShutdownRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebShutdownRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[9]
+	mi := &file_service_http_web_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -538,7 +633,7 @@ func (x *UpdateHTTPWebShutdownRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebShutdownRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebShutdownRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{9}
+	return file_service_http_web_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *UpdateHTTPWebShutdownRequest) GetWebId() int64 {
@@ -568,7 +663,7 @@ type UpdateHTTPWebPagesRequest struct {
 func (x *UpdateHTTPWebPagesRequest) Reset() {
 	*x = UpdateHTTPWebPagesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[10]
+		mi := &file_service_http_web_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -581,7 +676,7 @@ func (x *UpdateHTTPWebPagesRequest) String() string {
 func (*UpdateHTTPWebPagesRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebPagesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[10]
+	mi := &file_service_http_web_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -594,7 +689,7 @@ func (x *UpdateHTTPWebPagesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebPagesRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebPagesRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{10}
+	return file_service_http_web_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *UpdateHTTPWebPagesRequest) GetWebId() int64 {
@@ -612,7 +707,7 @@ func (x *UpdateHTTPWebPagesRequest) GetPagesJSON() []byte {
 }
 
 // 更改访问日志配置
-type UpdateHTTPAccessLogRequest struct {
+type UpdateHTTPWebAccessLogRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -621,120 +716,8 @@ type UpdateHTTPAccessLogRequest struct {
 	AccessLogJSON []byte `protobuf:"bytes,2,opt,name=accessLogJSON,proto3" json:"accessLogJSON,omitempty"`
 }
 
-func (x *UpdateHTTPAccessLogRequest) Reset() {
-	*x = UpdateHTTPAccessLogRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[11]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *UpdateHTTPAccessLogRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateHTTPAccessLogRequest) ProtoMessage() {}
-
-func (x *UpdateHTTPAccessLogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[11]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateHTTPAccessLogRequest.ProtoReflect.Descriptor instead.
-func (*UpdateHTTPAccessLogRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *UpdateHTTPAccessLogRequest) GetWebId() int64 {
-	if x != nil {
-		return x.WebId
-	}
-	return 0
-}
-
-func (x *UpdateHTTPAccessLogRequest) GetAccessLogJSON() []byte {
-	if x != nil {
-		return x.AccessLogJSON
-	}
-	return nil
-}
-
-// 更改统计配置
-type UpdateHTTPStatRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	WebId    int64  `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
-	StatJSON []byte `protobuf:"bytes,2,opt,name=statJSON,proto3" json:"statJSON,omitempty"`
-}
-
-func (x *UpdateHTTPStatRequest) Reset() {
-	*x = UpdateHTTPStatRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[12]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *UpdateHTTPStatRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateHTTPStatRequest) ProtoMessage() {}
-
-func (x *UpdateHTTPStatRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[12]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateHTTPStatRequest.ProtoReflect.Descriptor instead.
-func (*UpdateHTTPStatRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *UpdateHTTPStatRequest) GetWebId() int64 {
-	if x != nil {
-		return x.WebId
-	}
-	return 0
-}
-
-func (x *UpdateHTTPStatRequest) GetStatJSON() []byte {
-	if x != nil {
-		return x.StatJSON
-	}
-	return nil
-}
-
-// 更改缓存配置
-type UpdateHTTPCacheRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	WebId     int64  `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
-	CacheJSON []byte `protobuf:"bytes,2,opt,name=cacheJSON,proto3" json:"cacheJSON,omitempty"`
-}
-
-func (x *UpdateHTTPCacheRequest) Reset() {
-	*x = UpdateHTTPCacheRequest{}
+func (x *UpdateHTTPWebAccessLogRequest) Reset() {
+	*x = UpdateHTTPWebAccessLogRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_http_web_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -742,13 +725,13 @@ func (x *UpdateHTTPCacheRequest) Reset() {
 	}
 }
 
-func (x *UpdateHTTPCacheRequest) String() string {
+func (x *UpdateHTTPWebAccessLogRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateHTTPCacheRequest) ProtoMessage() {}
+func (*UpdateHTTPWebAccessLogRequest) ProtoMessage() {}
 
-func (x *UpdateHTTPCacheRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdateHTTPWebAccessLogRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_service_http_web_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -760,37 +743,37 @@ func (x *UpdateHTTPCacheRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateHTTPCacheRequest.ProtoReflect.Descriptor instead.
-func (*UpdateHTTPCacheRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateHTTPWebAccessLogRequest.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPWebAccessLogRequest) Descriptor() ([]byte, []int) {
 	return file_service_http_web_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *UpdateHTTPCacheRequest) GetWebId() int64 {
+func (x *UpdateHTTPWebAccessLogRequest) GetWebId() int64 {
 	if x != nil {
 		return x.WebId
 	}
 	return 0
 }
 
-func (x *UpdateHTTPCacheRequest) GetCacheJSON() []byte {
+func (x *UpdateHTTPWebAccessLogRequest) GetAccessLogJSON() []byte {
 	if x != nil {
-		return x.CacheJSON
+		return x.AccessLogJSON
 	}
 	return nil
 }
 
-// 更改防火墙设置
-type UpdateHTTPFirewallRequest struct {
+// 更改统计配置
+type UpdateHTTPWebStatRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	WebId        int64  `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
-	FirewallJSON []byte `protobuf:"bytes,2,opt,name=firewallJSON,proto3" json:"firewallJSON,omitempty"`
+	WebId    int64  `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
+	StatJSON []byte `protobuf:"bytes,2,opt,name=statJSON,proto3" json:"statJSON,omitempty"`
 }
 
-func (x *UpdateHTTPFirewallRequest) Reset() {
-	*x = UpdateHTTPFirewallRequest{}
+func (x *UpdateHTTPWebStatRequest) Reset() {
+	*x = UpdateHTTPWebStatRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_http_web_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -798,13 +781,13 @@ func (x *UpdateHTTPFirewallRequest) Reset() {
 	}
 }
 
-func (x *UpdateHTTPFirewallRequest) String() string {
+func (x *UpdateHTTPWebStatRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateHTTPFirewallRequest) ProtoMessage() {}
+func (*UpdateHTTPWebStatRequest) ProtoMessage() {}
 
-func (x *UpdateHTTPFirewallRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdateHTTPWebStatRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_service_http_web_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -816,21 +799,189 @@ func (x *UpdateHTTPFirewallRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateHTTPFirewallRequest.ProtoReflect.Descriptor instead.
-func (*UpdateHTTPFirewallRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdateHTTPWebStatRequest.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPWebStatRequest) Descriptor() ([]byte, []int) {
 	return file_service_http_web_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *UpdateHTTPFirewallRequest) GetWebId() int64 {
+func (x *UpdateHTTPWebStatRequest) GetWebId() int64 {
 	if x != nil {
 		return x.WebId
 	}
 	return 0
 }
 
-func (x *UpdateHTTPFirewallRequest) GetFirewallJSON() []byte {
+func (x *UpdateHTTPWebStatRequest) GetStatJSON() []byte {
+	if x != nil {
+		return x.StatJSON
+	}
+	return nil
+}
+
+// 更改缓存配置
+type UpdateHTTPWebCacheRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	WebId     int64  `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
+	CacheJSON []byte `protobuf:"bytes,2,opt,name=cacheJSON,proto3" json:"cacheJSON,omitempty"`
+}
+
+func (x *UpdateHTTPWebCacheRequest) Reset() {
+	*x = UpdateHTTPWebCacheRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_web_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPWebCacheRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPWebCacheRequest) ProtoMessage() {}
+
+func (x *UpdateHTTPWebCacheRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_web_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPWebCacheRequest.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPWebCacheRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_web_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *UpdateHTTPWebCacheRequest) GetWebId() int64 {
+	if x != nil {
+		return x.WebId
+	}
+	return 0
+}
+
+func (x *UpdateHTTPWebCacheRequest) GetCacheJSON() []byte {
+	if x != nil {
+		return x.CacheJSON
+	}
+	return nil
+}
+
+// 更改防火墙设置
+type UpdateHTTPWebFirewallRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	WebId        int64  `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
+	FirewallJSON []byte `protobuf:"bytes,2,opt,name=firewallJSON,proto3" json:"firewallJSON,omitempty"`
+}
+
+func (x *UpdateHTTPWebFirewallRequest) Reset() {
+	*x = UpdateHTTPWebFirewallRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_web_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPWebFirewallRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPWebFirewallRequest) ProtoMessage() {}
+
+func (x *UpdateHTTPWebFirewallRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_web_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPWebFirewallRequest.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPWebFirewallRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_web_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *UpdateHTTPWebFirewallRequest) GetWebId() int64 {
+	if x != nil {
+		return x.WebId
+	}
+	return 0
+}
+
+func (x *UpdateHTTPWebFirewallRequest) GetFirewallJSON() []byte {
 	if x != nil {
 		return x.FirewallJSON
+	}
+	return nil
+}
+
+// 更改路径规则配置
+type UpdateHTTPWebLocationsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	WebId         int64  `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
+	LocationsJSON []byte `protobuf:"bytes,3,opt,name=locationsJSON,proto3" json:"locationsJSON,omitempty"`
+}
+
+func (x *UpdateHTTPWebLocationsRequest) Reset() {
+	*x = UpdateHTTPWebLocationsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_web_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPWebLocationsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPWebLocationsRequest) ProtoMessage() {}
+
+func (x *UpdateHTTPWebLocationsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_web_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPWebLocationsRequest.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPWebLocationsRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_web_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *UpdateHTTPWebLocationsRequest) GetWebId() int64 {
+	if x != nil {
+		return x.WebId
+	}
+	return 0
+}
+
+func (x *UpdateHTTPWebLocationsRequest) GetLocationsJSON() []byte {
+	if x != nil {
+		return x.LocationsJSON
 	}
 	return nil
 }
@@ -855,65 +1006,79 @@ var file_service_http_web_proto_rawDesc = []byte{
 	0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x12, 0x1d, 0x0a, 0x03, 0x77, 0x65, 0x62, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x0b, 0x2e, 0x70, 0x62, 0x2e, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x03, 0x77, 0x65,
-	0x62, 0x22, 0x40, 0x0a, 0x14, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57,
-	0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62,
-	0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12,
-	0x12, 0x0a, 0x04, 0x72, 0x6f, 0x6f, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x72,
-	0x6f, 0x6f, 0x74, 0x22, 0x4c, 0x0a, 0x18, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
-	0x50, 0x57, 0x65, 0x62, 0x47, 0x7a, 0x69, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
-	0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05,
-	0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x67, 0x7a, 0x69, 0x70, 0x4a, 0x53, 0x4f,
-	0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x08, 0x67, 0x7a, 0x69, 0x70, 0x4a, 0x53, 0x4f,
-	0x4e, 0x22, 0x4d, 0x0a, 0x1b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57,
-	0x65, 0x62, 0x43, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x62, 0x22, 0x37, 0x0a, 0x1f, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x22, 0x3c, 0x0a, 0x20, 0x46, 0x69,
+	0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62,
+	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18,
+	0x0a, 0x07, 0x77, 0x65, 0x62, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52,
+	0x07, 0x77, 0x65, 0x62, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x40, 0x0a, 0x14, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
-	0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x72, 0x73, 0x65,
-	0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74,
-	0x22, 0x67, 0x0a, 0x27, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65,
-	0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f,
-	0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77,
-	0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49,
-	0x64, 0x12, 0x26, 0x0a, 0x0e, 0x68, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63,
-	0x79, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0e, 0x68, 0x65, 0x61, 0x64, 0x65,
-	0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x22, 0x68, 0x0a, 0x28, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x26, 0x0a, 0x0e, 0x68,
-	0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x03, 0x52, 0x0e, 0x68, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63,
-	0x79, 0x49, 0x64, 0x22, 0x58, 0x0a, 0x1c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
-	0x50, 0x57, 0x65, 0x62, 0x53, 0x68, 0x75, 0x74, 0x64, 0x6f, 0x77, 0x6e, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x22, 0x0a, 0x0c, 0x73, 0x68, 0x75,
-	0x74, 0x64, 0x6f, 0x77, 0x6e, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52,
-	0x0c, 0x73, 0x68, 0x75, 0x74, 0x64, 0x6f, 0x77, 0x6e, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x4f, 0x0a,
-	0x19, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x50, 0x61,
-	0x67, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65,
-	0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64,
-	0x12, 0x1c, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0c, 0x52, 0x09, 0x70, 0x61, 0x67, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x58,
-	0x0a, 0x1a, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65,
-	0x73, 0x73, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
+	0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x72, 0x6f, 0x6f, 0x74, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x72, 0x6f, 0x6f, 0x74, 0x22, 0x4c, 0x0a, 0x18, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x47, 0x7a, 0x69, 0x70, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08,
+	0x67, 0x7a, 0x69, 0x70, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x08,
+	0x67, 0x7a, 0x69, 0x70, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x4d, 0x0a, 0x1b, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x18, 0x0a,
+	0x07, 0x63, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
+	0x63, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x22, 0x67, 0x0a, 0x27, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x48,
+	0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x26, 0x0a, 0x0e, 0x68, 0x65, 0x61, 0x64,
+	0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x0e, 0x68, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64,
+	0x22, 0x68, 0x0a, 0x28, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65,
+	0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
 	0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62,
-	0x49, 0x64, 0x12, 0x24, 0x0a, 0x0d, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x4a,
-	0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0d, 0x61, 0x63, 0x63, 0x65, 0x73,
-	0x73, 0x4c, 0x6f, 0x67, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x49, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x53, 0x74, 0x61, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x49, 0x64, 0x12, 0x26, 0x0a, 0x0e, 0x68, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0e, 0x68, 0x65, 0x61, 0x64,
+	0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x22, 0x58, 0x0a, 0x1c, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x68, 0x75, 0x74, 0x64,
+	0x6f, 0x77, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65,
+	0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64,
+	0x12, 0x22, 0x0a, 0x0c, 0x73, 0x68, 0x75, 0x74, 0x64, 0x6f, 0x77, 0x6e, 0x4a, 0x53, 0x4f, 0x4e,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0c, 0x73, 0x68, 0x75, 0x74, 0x64, 0x6f, 0x77, 0x6e,
+	0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x4f, 0x0a, 0x19, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
+	0x54, 0x50, 0x57, 0x65, 0x62, 0x50, 0x61, 0x67, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
 	0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
-	0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x74, 0x61, 0x74, 0x4a,
-	0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x08, 0x73, 0x74, 0x61, 0x74, 0x4a,
-	0x53, 0x4f, 0x4e, 0x22, 0x4c, 0x0a, 0x16, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
-	0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a,
+	0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x1c, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x73,
+	0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x09, 0x70, 0x61, 0x67, 0x65,
+	0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x5b, 0x0a, 0x1d, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48,
+	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x24, 0x0a, 0x0d,
+	0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0c, 0x52, 0x0d, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x4a, 0x53,
+	0x4f, 0x4e, 0x22, 0x4c, 0x0a, 0x18, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50,
+	0x57, 0x65, 0x62, 0x53, 0x74, 0x61, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14,
+	0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77,
+	0x65, 0x62, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x74, 0x61, 0x74, 0x4a, 0x53, 0x4f, 0x4e,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x08, 0x73, 0x74, 0x61, 0x74, 0x4a, 0x53, 0x4f, 0x4e,
+	0x22, 0x4f, 0x0a, 0x19, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65,
+	0x62, 0x43, 0x61, 0x63, 0x68, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a,
 	0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65,
 	0x62, 0x49, 0x64, 0x12, 0x1c, 0x0a, 0x09, 0x63, 0x61, 0x63, 0x68, 0x65, 0x4a, 0x53, 0x4f, 0x4e,
 	0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x09, 0x63, 0x61, 0x63, 0x68, 0x65, 0x4a, 0x53, 0x4f,
-	0x4e, 0x22, 0x55, 0x0a, 0x19, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x46,
-	0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14,
-	0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77,
-	0x65, 0x62, 0x49, 0x64, 0x12, 0x22, 0x0a, 0x0c, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c,
-	0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0c, 0x66, 0x69, 0x72, 0x65,
-	0x77, 0x61, 0x6c, 0x6c, 0x4a, 0x53, 0x4f, 0x4e, 0x32, 0x90, 0x08, 0x0a, 0x0e, 0x48, 0x54, 0x54,
+	0x4e, 0x22, 0x58, 0x0a, 0x1c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57,
+	0x65, 0x62, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x22, 0x0a, 0x0c, 0x66, 0x69, 0x72, 0x65, 0x77,
+	0x61, 0x6c, 0x6c, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0c, 0x66,
+	0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x5b, 0x0a, 0x1d, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x4c, 0x6f, 0x63, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
+	0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62,
+	0x49, 0x64, 0x12, 0x24, 0x0a, 0x0d, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x4a,
+	0x53, 0x4f, 0x4e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0d, 0x6c, 0x6f, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x32, 0xe2, 0x09, 0x0a, 0x0e, 0x48, 0x54, 0x54,
 	0x50, 0x57, 0x65, 0x62, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x44, 0x0a, 0x0d, 0x63,
 	0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x12, 0x18, 0x2e, 0x70,
 	0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52,
@@ -924,62 +1089,75 @@ var file_service_http_web_proto_rawDesc = []byte{
 	0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
 	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3f, 0x0a, 0x0d, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x65, 0x0a, 0x18, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e,
+	0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x6f, 0x6e, 0x66,
+	0x69, 0x67, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e,
+	0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43,
+	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3f, 0x0a,
+	0x0d, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x12, 0x18,
+	0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65,
+	0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50,
+	0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x47,
+	0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x47,
+	0x7a, 0x69, 0x70, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48,
+	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x47, 0x7a, 0x69, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
 	0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x47, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x47, 0x7a, 0x69, 0x70, 0x12, 0x1c, 0x2e, 0x70,
-	0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x47,
-	0x7a, 0x69, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e,
-	0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73,
-	0x12, 0x4d, 0x0a, 0x14, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65,
-	0x62, 0x43, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x68, 0x61, 0x72, 0x73,
-	0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52,
-	0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12,
-	0x65, 0x0a, 0x20, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c,
-	0x69, 0x63, 0x79, 0x12, 0x2b, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48,
-	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x48, 0x65, 0x61,
+	0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x4d, 0x0a, 0x14, 0x75, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x12,
+	0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57,
+	0x65, 0x62, 0x43, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
+	0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x65, 0x0a, 0x20, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x48, 0x65,
+	0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x2b, 0x2e, 0x70, 0x62, 0x2e,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x67, 0x0a,
+	0x21, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x12, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
+	0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x65, 0x61,
 	0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
-	0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x67, 0x0a, 0x21, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48,
-	0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x2c, 0x2e, 0x70, 0x62,
-	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x50, 0x6f, 0x6c, 0x69,
-	0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52,
-	0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12,
-	0x4f, 0x0a, 0x15, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62,
-	0x53, 0x68, 0x75, 0x74, 0x64, 0x6f, 0x77, 0x6e, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x68, 0x75, 0x74, 0x64,
-	0x6f, 0x77, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e,
-	0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73,
-	0x12, 0x49, 0x0a, 0x12, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65,
-	0x62, 0x50, 0x61, 0x67, 0x65, 0x73, 0x12, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x50, 0x61, 0x67, 0x65, 0x73, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x4b, 0x0a, 0x13, 0x75,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c,
-	0x6f, 0x67, 0x12, 0x1e, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
-	0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x41, 0x0a, 0x0e, 0x75, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x53, 0x74, 0x61, 0x74, 0x12, 0x19, 0x2e, 0x70, 0x62, 0x2e,
-	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x53, 0x74, 0x61, 0x74, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x43, 0x0a, 0x0f, 0x75,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x12, 0x1a,
-	0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61,
-	0x63, 0x68, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e,
-	0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73,
-	0x12, 0x49, 0x0a, 0x12, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69,
-	0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x12, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e,
-	0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x4f, 0x0a, 0x15, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x68, 0x75, 0x74, 0x64, 0x6f, 0x77, 0x6e, 0x12,
+	0x20, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57,
+	0x65, 0x62, 0x53, 0x68, 0x75, 0x74, 0x64, 0x6f, 0x77, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x49, 0x0a, 0x12, 0x75, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x50, 0x61, 0x67, 0x65, 0x73, 0x12, 0x1d, 0x2e,
+	0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62,
+	0x50, 0x61, 0x67, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70,
+	0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65,
+	0x73, 0x73, 0x12, 0x51, 0x0a, 0x16, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50,
+	0x57, 0x65, 0x62, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x12, 0x21, 0x2e, 0x70,
+	0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x41,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x47, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48,
+	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x74, 0x61, 0x74, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x74, 0x61,
+	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50,
+	0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x49,
+	0x0a, 0x12, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43,
+	0x61, 0x63, 0x68, 0x65, 0x12, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x61, 0x63, 0x68, 0x65, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x4f, 0x0a, 0x15, 0x75, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61,
+	0x6c, 0x6c, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
+	0x54, 0x50, 0x57, 0x65, 0x62, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x51, 0x0a, 0x16, 0x75, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x4c, 0x6f, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x73, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x4c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x42, 0x06, 0x5a,
+	0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -994,56 +1172,63 @@ func file_service_http_web_proto_rawDescGZIP() []byte {
 	return file_service_http_web_proto_rawDescData
 }
 
-var file_service_http_web_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_service_http_web_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_service_http_web_proto_goTypes = []interface{}{
 	(*CreateHTTPWebRequest)(nil),                     // 0: pb.CreateHTTPWebRequest
 	(*CreateHTTPWebResponse)(nil),                    // 1: pb.CreateHTTPWebResponse
 	(*FindEnabledHTTPWebRequest)(nil),                // 2: pb.FindEnabledHTTPWebRequest
 	(*FindEnabledHTTPWebResponse)(nil),               // 3: pb.FindEnabledHTTPWebResponse
-	(*UpdateHTTPWebRequest)(nil),                     // 4: pb.UpdateHTTPWebRequest
-	(*UpdateHTTPWebGzipRequest)(nil),                 // 5: pb.UpdateHTTPWebGzipRequest
-	(*UpdateHTTPWebCharsetRequest)(nil),              // 6: pb.UpdateHTTPWebCharsetRequest
-	(*UpdateHTTPWebRequestHeaderPolicyRequest)(nil),  // 7: pb.UpdateHTTPWebRequestHeaderPolicyRequest
-	(*UpdateHTTPWebResponseHeaderPolicyRequest)(nil), // 8: pb.UpdateHTTPWebResponseHeaderPolicyRequest
-	(*UpdateHTTPWebShutdownRequest)(nil),             // 9: pb.UpdateHTTPWebShutdownRequest
-	(*UpdateHTTPWebPagesRequest)(nil),                // 10: pb.UpdateHTTPWebPagesRequest
-	(*UpdateHTTPAccessLogRequest)(nil),               // 11: pb.UpdateHTTPAccessLogRequest
-	(*UpdateHTTPStatRequest)(nil),                    // 12: pb.UpdateHTTPStatRequest
-	(*UpdateHTTPCacheRequest)(nil),                   // 13: pb.UpdateHTTPCacheRequest
-	(*UpdateHTTPFirewallRequest)(nil),                // 14: pb.UpdateHTTPFirewallRequest
-	(*HTTPWeb)(nil),                                  // 15: pb.HTTPWeb
-	(*RPCUpdateSuccess)(nil),                         // 16: pb.RPCUpdateSuccess
+	(*FindEnabledHTTPWebConfigRequest)(nil),          // 4: pb.FindEnabledHTTPWebConfigRequest
+	(*FindEnabledHTTPWebConfigResponse)(nil),         // 5: pb.FindEnabledHTTPWebConfigResponse
+	(*UpdateHTTPWebRequest)(nil),                     // 6: pb.UpdateHTTPWebRequest
+	(*UpdateHTTPWebGzipRequest)(nil),                 // 7: pb.UpdateHTTPWebGzipRequest
+	(*UpdateHTTPWebCharsetRequest)(nil),              // 8: pb.UpdateHTTPWebCharsetRequest
+	(*UpdateHTTPWebRequestHeaderPolicyRequest)(nil),  // 9: pb.UpdateHTTPWebRequestHeaderPolicyRequest
+	(*UpdateHTTPWebResponseHeaderPolicyRequest)(nil), // 10: pb.UpdateHTTPWebResponseHeaderPolicyRequest
+	(*UpdateHTTPWebShutdownRequest)(nil),             // 11: pb.UpdateHTTPWebShutdownRequest
+	(*UpdateHTTPWebPagesRequest)(nil),                // 12: pb.UpdateHTTPWebPagesRequest
+	(*UpdateHTTPWebAccessLogRequest)(nil),            // 13: pb.UpdateHTTPWebAccessLogRequest
+	(*UpdateHTTPWebStatRequest)(nil),                 // 14: pb.UpdateHTTPWebStatRequest
+	(*UpdateHTTPWebCacheRequest)(nil),                // 15: pb.UpdateHTTPWebCacheRequest
+	(*UpdateHTTPWebFirewallRequest)(nil),             // 16: pb.UpdateHTTPWebFirewallRequest
+	(*UpdateHTTPWebLocationsRequest)(nil),            // 17: pb.UpdateHTTPWebLocationsRequest
+	(*HTTPWeb)(nil),                                  // 18: pb.HTTPWeb
+	(*RPCUpdateSuccess)(nil),                         // 19: pb.RPCUpdateSuccess
 }
 var file_service_http_web_proto_depIdxs = []int32{
-	15, // 0: pb.FindEnabledHTTPWebResponse.web:type_name -> pb.HTTPWeb
+	18, // 0: pb.FindEnabledHTTPWebResponse.web:type_name -> pb.HTTPWeb
 	0,  // 1: pb.HTTPWebService.createHTTPWeb:input_type -> pb.CreateHTTPWebRequest
 	2,  // 2: pb.HTTPWebService.findEnabledHTTPWeb:input_type -> pb.FindEnabledHTTPWebRequest
-	4,  // 3: pb.HTTPWebService.updateHTTPWeb:input_type -> pb.UpdateHTTPWebRequest
-	5,  // 4: pb.HTTPWebService.updateHTTPWebGzip:input_type -> pb.UpdateHTTPWebGzipRequest
-	6,  // 5: pb.HTTPWebService.updateHTTPWebCharset:input_type -> pb.UpdateHTTPWebCharsetRequest
-	7,  // 6: pb.HTTPWebService.updateHTTPWebRequestHeaderPolicy:input_type -> pb.UpdateHTTPWebRequestHeaderPolicyRequest
-	8,  // 7: pb.HTTPWebService.updateHTTPWebResponseHeaderPolicy:input_type -> pb.UpdateHTTPWebResponseHeaderPolicyRequest
-	9,  // 8: pb.HTTPWebService.updateHTTPWebShutdown:input_type -> pb.UpdateHTTPWebShutdownRequest
-	10, // 9: pb.HTTPWebService.updateHTTPWebPages:input_type -> pb.UpdateHTTPWebPagesRequest
-	11, // 10: pb.HTTPWebService.updateHTTPAccessLog:input_type -> pb.UpdateHTTPAccessLogRequest
-	12, // 11: pb.HTTPWebService.updateHTTPStat:input_type -> pb.UpdateHTTPStatRequest
-	13, // 12: pb.HTTPWebService.updateHTTPCache:input_type -> pb.UpdateHTTPCacheRequest
-	14, // 13: pb.HTTPWebService.updateHTTPFirewall:input_type -> pb.UpdateHTTPFirewallRequest
-	1,  // 14: pb.HTTPWebService.createHTTPWeb:output_type -> pb.CreateHTTPWebResponse
-	3,  // 15: pb.HTTPWebService.findEnabledHTTPWeb:output_type -> pb.FindEnabledHTTPWebResponse
-	16, // 16: pb.HTTPWebService.updateHTTPWeb:output_type -> pb.RPCUpdateSuccess
-	16, // 17: pb.HTTPWebService.updateHTTPWebGzip:output_type -> pb.RPCUpdateSuccess
-	16, // 18: pb.HTTPWebService.updateHTTPWebCharset:output_type -> pb.RPCUpdateSuccess
-	16, // 19: pb.HTTPWebService.updateHTTPWebRequestHeaderPolicy:output_type -> pb.RPCUpdateSuccess
-	16, // 20: pb.HTTPWebService.updateHTTPWebResponseHeaderPolicy:output_type -> pb.RPCUpdateSuccess
-	16, // 21: pb.HTTPWebService.updateHTTPWebShutdown:output_type -> pb.RPCUpdateSuccess
-	16, // 22: pb.HTTPWebService.updateHTTPWebPages:output_type -> pb.RPCUpdateSuccess
-	16, // 23: pb.HTTPWebService.updateHTTPAccessLog:output_type -> pb.RPCUpdateSuccess
-	16, // 24: pb.HTTPWebService.updateHTTPStat:output_type -> pb.RPCUpdateSuccess
-	16, // 25: pb.HTTPWebService.updateHTTPCache:output_type -> pb.RPCUpdateSuccess
-	16, // 26: pb.HTTPWebService.updateHTTPFirewall:output_type -> pb.RPCUpdateSuccess
-	14, // [14:27] is the sub-list for method output_type
-	1,  // [1:14] is the sub-list for method input_type
+	4,  // 3: pb.HTTPWebService.findEnabledHTTPWebConfig:input_type -> pb.FindEnabledHTTPWebConfigRequest
+	6,  // 4: pb.HTTPWebService.updateHTTPWeb:input_type -> pb.UpdateHTTPWebRequest
+	7,  // 5: pb.HTTPWebService.updateHTTPWebGzip:input_type -> pb.UpdateHTTPWebGzipRequest
+	8,  // 6: pb.HTTPWebService.updateHTTPWebCharset:input_type -> pb.UpdateHTTPWebCharsetRequest
+	9,  // 7: pb.HTTPWebService.updateHTTPWebRequestHeaderPolicy:input_type -> pb.UpdateHTTPWebRequestHeaderPolicyRequest
+	10, // 8: pb.HTTPWebService.updateHTTPWebResponseHeaderPolicy:input_type -> pb.UpdateHTTPWebResponseHeaderPolicyRequest
+	11, // 9: pb.HTTPWebService.updateHTTPWebShutdown:input_type -> pb.UpdateHTTPWebShutdownRequest
+	12, // 10: pb.HTTPWebService.updateHTTPWebPages:input_type -> pb.UpdateHTTPWebPagesRequest
+	13, // 11: pb.HTTPWebService.updateHTTPWebAccessLog:input_type -> pb.UpdateHTTPWebAccessLogRequest
+	14, // 12: pb.HTTPWebService.updateHTTPWebStat:input_type -> pb.UpdateHTTPWebStatRequest
+	15, // 13: pb.HTTPWebService.updateHTTPWebCache:input_type -> pb.UpdateHTTPWebCacheRequest
+	16, // 14: pb.HTTPWebService.updateHTTPWebFirewall:input_type -> pb.UpdateHTTPWebFirewallRequest
+	17, // 15: pb.HTTPWebService.updateHTTPWebLocations:input_type -> pb.UpdateHTTPWebLocationsRequest
+	1,  // 16: pb.HTTPWebService.createHTTPWeb:output_type -> pb.CreateHTTPWebResponse
+	3,  // 17: pb.HTTPWebService.findEnabledHTTPWeb:output_type -> pb.FindEnabledHTTPWebResponse
+	5,  // 18: pb.HTTPWebService.findEnabledHTTPWebConfig:output_type -> pb.FindEnabledHTTPWebConfigResponse
+	19, // 19: pb.HTTPWebService.updateHTTPWeb:output_type -> pb.RPCUpdateSuccess
+	19, // 20: pb.HTTPWebService.updateHTTPWebGzip:output_type -> pb.RPCUpdateSuccess
+	19, // 21: pb.HTTPWebService.updateHTTPWebCharset:output_type -> pb.RPCUpdateSuccess
+	19, // 22: pb.HTTPWebService.updateHTTPWebRequestHeaderPolicy:output_type -> pb.RPCUpdateSuccess
+	19, // 23: pb.HTTPWebService.updateHTTPWebResponseHeaderPolicy:output_type -> pb.RPCUpdateSuccess
+	19, // 24: pb.HTTPWebService.updateHTTPWebShutdown:output_type -> pb.RPCUpdateSuccess
+	19, // 25: pb.HTTPWebService.updateHTTPWebPages:output_type -> pb.RPCUpdateSuccess
+	19, // 26: pb.HTTPWebService.updateHTTPWebAccessLog:output_type -> pb.RPCUpdateSuccess
+	19, // 27: pb.HTTPWebService.updateHTTPWebStat:output_type -> pb.RPCUpdateSuccess
+	19, // 28: pb.HTTPWebService.updateHTTPWebCache:output_type -> pb.RPCUpdateSuccess
+	19, // 29: pb.HTTPWebService.updateHTTPWebFirewall:output_type -> pb.RPCUpdateSuccess
+	19, // 30: pb.HTTPWebService.updateHTTPWebLocations:output_type -> pb.RPCUpdateSuccess
+	16, // [16:31] is the sub-list for method output_type
+	1,  // [1:16] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name
 	1,  // [1:1] is the sub-list for extension extendee
 	0,  // [0:1] is the sub-list for field type_name
@@ -1106,7 +1291,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebRequest); i {
+			switch v := v.(*FindEnabledHTTPWebConfigRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1118,7 +1303,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebGzipRequest); i {
+			switch v := v.(*FindEnabledHTTPWebConfigResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1130,7 +1315,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebCharsetRequest); i {
+			switch v := v.(*UpdateHTTPWebRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1142,7 +1327,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebRequestHeaderPolicyRequest); i {
+			switch v := v.(*UpdateHTTPWebGzipRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1154,7 +1339,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebResponseHeaderPolicyRequest); i {
+			switch v := v.(*UpdateHTTPWebCharsetRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1166,7 +1351,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebShutdownRequest); i {
+			switch v := v.(*UpdateHTTPWebRequestHeaderPolicyRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1178,7 +1363,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebPagesRequest); i {
+			switch v := v.(*UpdateHTTPWebResponseHeaderPolicyRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1190,7 +1375,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPAccessLogRequest); i {
+			switch v := v.(*UpdateHTTPWebShutdownRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1202,7 +1387,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPStatRequest); i {
+			switch v := v.(*UpdateHTTPWebPagesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1214,7 +1399,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPCacheRequest); i {
+			switch v := v.(*UpdateHTTPWebAccessLogRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1226,7 +1411,43 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPFirewallRequest); i {
+			switch v := v.(*UpdateHTTPWebStatRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_web_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateHTTPWebCacheRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_web_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateHTTPWebFirewallRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_web_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateHTTPWebLocationsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1244,7 +1465,7 @@ func file_service_http_web_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_http_web_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -1272,8 +1493,10 @@ const _ = grpc.SupportPackageIsVersion6
 type HTTPWebServiceClient interface {
 	// 创建Web配置
 	CreateHTTPWeb(ctx context.Context, in *CreateHTTPWebRequest, opts ...grpc.CallOption) (*CreateHTTPWebResponse, error)
-	// 查找Web配置
+	// 查找Web信息
 	FindEnabledHTTPWeb(ctx context.Context, in *FindEnabledHTTPWebRequest, opts ...grpc.CallOption) (*FindEnabledHTTPWebResponse, error)
+	// 查找Web配置
+	FindEnabledHTTPWebConfig(ctx context.Context, in *FindEnabledHTTPWebConfigRequest, opts ...grpc.CallOption) (*FindEnabledHTTPWebConfigResponse, error)
 	// 更改Web配置
 	UpdateHTTPWeb(ctx context.Context, in *UpdateHTTPWebRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
 	// 更改Gzip配置
@@ -1289,13 +1512,15 @@ type HTTPWebServiceClient interface {
 	// 更改Pages
 	UpdateHTTPWebPages(ctx context.Context, in *UpdateHTTPWebPagesRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
 	// 更改访问日志配置
-	UpdateHTTPAccessLog(ctx context.Context, in *UpdateHTTPAccessLogRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
+	UpdateHTTPWebAccessLog(ctx context.Context, in *UpdateHTTPWebAccessLogRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
 	// 更改统计配置
-	UpdateHTTPStat(ctx context.Context, in *UpdateHTTPStatRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
+	UpdateHTTPWebStat(ctx context.Context, in *UpdateHTTPWebStatRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
 	// 更改缓存配置
-	UpdateHTTPCache(ctx context.Context, in *UpdateHTTPCacheRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
+	UpdateHTTPWebCache(ctx context.Context, in *UpdateHTTPWebCacheRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
 	// 更改防火墙设置
-	UpdateHTTPFirewall(ctx context.Context, in *UpdateHTTPFirewallRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
+	UpdateHTTPWebFirewall(ctx context.Context, in *UpdateHTTPWebFirewallRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
+	// 更改路径规则配置
+	UpdateHTTPWebLocations(ctx context.Context, in *UpdateHTTPWebLocationsRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
 }
 
 type hTTPWebServiceClient struct {
@@ -1318,6 +1543,15 @@ func (c *hTTPWebServiceClient) CreateHTTPWeb(ctx context.Context, in *CreateHTTP
 func (c *hTTPWebServiceClient) FindEnabledHTTPWeb(ctx context.Context, in *FindEnabledHTTPWebRequest, opts ...grpc.CallOption) (*FindEnabledHTTPWebResponse, error) {
 	out := new(FindEnabledHTTPWebResponse)
 	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/findEnabledHTTPWeb", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPWebServiceClient) FindEnabledHTTPWebConfig(ctx context.Context, in *FindEnabledHTTPWebConfigRequest, opts ...grpc.CallOption) (*FindEnabledHTTPWebConfigResponse, error) {
+	out := new(FindEnabledHTTPWebConfigResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/findEnabledHTTPWebConfig", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1387,36 +1621,45 @@ func (c *hTTPWebServiceClient) UpdateHTTPWebPages(ctx context.Context, in *Updat
 	return out, nil
 }
 
-func (c *hTTPWebServiceClient) UpdateHTTPAccessLog(ctx context.Context, in *UpdateHTTPAccessLogRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error) {
+func (c *hTTPWebServiceClient) UpdateHTTPWebAccessLog(ctx context.Context, in *UpdateHTTPWebAccessLogRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error) {
 	out := new(RPCUpdateSuccess)
-	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPAccessLog", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPWebAccessLog", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *hTTPWebServiceClient) UpdateHTTPStat(ctx context.Context, in *UpdateHTTPStatRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error) {
+func (c *hTTPWebServiceClient) UpdateHTTPWebStat(ctx context.Context, in *UpdateHTTPWebStatRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error) {
 	out := new(RPCUpdateSuccess)
-	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPStat", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPWebStat", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *hTTPWebServiceClient) UpdateHTTPCache(ctx context.Context, in *UpdateHTTPCacheRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error) {
+func (c *hTTPWebServiceClient) UpdateHTTPWebCache(ctx context.Context, in *UpdateHTTPWebCacheRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error) {
 	out := new(RPCUpdateSuccess)
-	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPCache", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPWebCache", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *hTTPWebServiceClient) UpdateHTTPFirewall(ctx context.Context, in *UpdateHTTPFirewallRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error) {
+func (c *hTTPWebServiceClient) UpdateHTTPWebFirewall(ctx context.Context, in *UpdateHTTPWebFirewallRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error) {
 	out := new(RPCUpdateSuccess)
-	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPFirewall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPWebFirewall", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPWebServiceClient) UpdateHTTPWebLocations(ctx context.Context, in *UpdateHTTPWebLocationsRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error) {
+	out := new(RPCUpdateSuccess)
+	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPWebLocations", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1427,8 +1670,10 @@ func (c *hTTPWebServiceClient) UpdateHTTPFirewall(ctx context.Context, in *Updat
 type HTTPWebServiceServer interface {
 	// 创建Web配置
 	CreateHTTPWeb(context.Context, *CreateHTTPWebRequest) (*CreateHTTPWebResponse, error)
-	// 查找Web配置
+	// 查找Web信息
 	FindEnabledHTTPWeb(context.Context, *FindEnabledHTTPWebRequest) (*FindEnabledHTTPWebResponse, error)
+	// 查找Web配置
+	FindEnabledHTTPWebConfig(context.Context, *FindEnabledHTTPWebConfigRequest) (*FindEnabledHTTPWebConfigResponse, error)
 	// 更改Web配置
 	UpdateHTTPWeb(context.Context, *UpdateHTTPWebRequest) (*RPCUpdateSuccess, error)
 	// 更改Gzip配置
@@ -1444,13 +1689,15 @@ type HTTPWebServiceServer interface {
 	// 更改Pages
 	UpdateHTTPWebPages(context.Context, *UpdateHTTPWebPagesRequest) (*RPCUpdateSuccess, error)
 	// 更改访问日志配置
-	UpdateHTTPAccessLog(context.Context, *UpdateHTTPAccessLogRequest) (*RPCUpdateSuccess, error)
+	UpdateHTTPWebAccessLog(context.Context, *UpdateHTTPWebAccessLogRequest) (*RPCUpdateSuccess, error)
 	// 更改统计配置
-	UpdateHTTPStat(context.Context, *UpdateHTTPStatRequest) (*RPCUpdateSuccess, error)
+	UpdateHTTPWebStat(context.Context, *UpdateHTTPWebStatRequest) (*RPCUpdateSuccess, error)
 	// 更改缓存配置
-	UpdateHTTPCache(context.Context, *UpdateHTTPCacheRequest) (*RPCUpdateSuccess, error)
+	UpdateHTTPWebCache(context.Context, *UpdateHTTPWebCacheRequest) (*RPCUpdateSuccess, error)
 	// 更改防火墙设置
-	UpdateHTTPFirewall(context.Context, *UpdateHTTPFirewallRequest) (*RPCUpdateSuccess, error)
+	UpdateHTTPWebFirewall(context.Context, *UpdateHTTPWebFirewallRequest) (*RPCUpdateSuccess, error)
+	// 更改路径规则配置
+	UpdateHTTPWebLocations(context.Context, *UpdateHTTPWebLocationsRequest) (*RPCUpdateSuccess, error)
 }
 
 // UnimplementedHTTPWebServiceServer can be embedded to have forward compatible implementations.
@@ -1462,6 +1709,9 @@ func (*UnimplementedHTTPWebServiceServer) CreateHTTPWeb(context.Context, *Create
 }
 func (*UnimplementedHTTPWebServiceServer) FindEnabledHTTPWeb(context.Context, *FindEnabledHTTPWebRequest) (*FindEnabledHTTPWebResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledHTTPWeb not implemented")
+}
+func (*UnimplementedHTTPWebServiceServer) FindEnabledHTTPWebConfig(context.Context, *FindEnabledHTTPWebConfigRequest) (*FindEnabledHTTPWebConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledHTTPWebConfig not implemented")
 }
 func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWeb(context.Context, *UpdateHTTPWebRequest) (*RPCUpdateSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWeb not implemented")
@@ -1484,17 +1734,20 @@ func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebShutdown(context.Context,
 func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebPages(context.Context, *UpdateHTTPWebPagesRequest) (*RPCUpdateSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebPages not implemented")
 }
-func (*UnimplementedHTTPWebServiceServer) UpdateHTTPAccessLog(context.Context, *UpdateHTTPAccessLogRequest) (*RPCUpdateSuccess, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPAccessLog not implemented")
+func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebAccessLog(context.Context, *UpdateHTTPWebAccessLogRequest) (*RPCUpdateSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebAccessLog not implemented")
 }
-func (*UnimplementedHTTPWebServiceServer) UpdateHTTPStat(context.Context, *UpdateHTTPStatRequest) (*RPCUpdateSuccess, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPStat not implemented")
+func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebStat(context.Context, *UpdateHTTPWebStatRequest) (*RPCUpdateSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebStat not implemented")
 }
-func (*UnimplementedHTTPWebServiceServer) UpdateHTTPCache(context.Context, *UpdateHTTPCacheRequest) (*RPCUpdateSuccess, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPCache not implemented")
+func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebCache(context.Context, *UpdateHTTPWebCacheRequest) (*RPCUpdateSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebCache not implemented")
 }
-func (*UnimplementedHTTPWebServiceServer) UpdateHTTPFirewall(context.Context, *UpdateHTTPFirewallRequest) (*RPCUpdateSuccess, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPFirewall not implemented")
+func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebFirewall(context.Context, *UpdateHTTPWebFirewallRequest) (*RPCUpdateSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebFirewall not implemented")
+}
+func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebLocations(context.Context, *UpdateHTTPWebLocationsRequest) (*RPCUpdateSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebLocations not implemented")
 }
 
 func RegisterHTTPWebServiceServer(s *grpc.Server, srv HTTPWebServiceServer) {
@@ -1533,6 +1786,24 @@ func _HTTPWebService_FindEnabledHTTPWeb_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(HTTPWebServiceServer).FindEnabledHTTPWeb(ctx, req.(*FindEnabledHTTPWebRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPWebService_FindEnabledHTTPWebConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledHTTPWebConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPWebServiceServer).FindEnabledHTTPWebConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPWebService/FindEnabledHTTPWebConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPWebServiceServer).FindEnabledHTTPWebConfig(ctx, req.(*FindEnabledHTTPWebConfigRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1663,74 +1934,92 @@ func _HTTPWebService_UpdateHTTPWebPages_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HTTPWebService_UpdateHTTPAccessLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateHTTPAccessLogRequest)
+func _HTTPWebService_UpdateHTTPWebAccessLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPWebAccessLogRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HTTPWebServiceServer).UpdateHTTPAccessLog(ctx, in)
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebAccessLog(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.HTTPWebService/UpdateHTTPAccessLog",
+		FullMethod: "/pb.HTTPWebService/UpdateHTTPWebAccessLog",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HTTPWebServiceServer).UpdateHTTPAccessLog(ctx, req.(*UpdateHTTPAccessLogRequest))
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebAccessLog(ctx, req.(*UpdateHTTPWebAccessLogRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HTTPWebService_UpdateHTTPStat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateHTTPStatRequest)
+func _HTTPWebService_UpdateHTTPWebStat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPWebStatRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HTTPWebServiceServer).UpdateHTTPStat(ctx, in)
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebStat(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.HTTPWebService/UpdateHTTPStat",
+		FullMethod: "/pb.HTTPWebService/UpdateHTTPWebStat",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HTTPWebServiceServer).UpdateHTTPStat(ctx, req.(*UpdateHTTPStatRequest))
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebStat(ctx, req.(*UpdateHTTPWebStatRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HTTPWebService_UpdateHTTPCache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateHTTPCacheRequest)
+func _HTTPWebService_UpdateHTTPWebCache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPWebCacheRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HTTPWebServiceServer).UpdateHTTPCache(ctx, in)
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebCache(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.HTTPWebService/UpdateHTTPCache",
+		FullMethod: "/pb.HTTPWebService/UpdateHTTPWebCache",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HTTPWebServiceServer).UpdateHTTPCache(ctx, req.(*UpdateHTTPCacheRequest))
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebCache(ctx, req.(*UpdateHTTPWebCacheRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HTTPWebService_UpdateHTTPFirewall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateHTTPFirewallRequest)
+func _HTTPWebService_UpdateHTTPWebFirewall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPWebFirewallRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HTTPWebServiceServer).UpdateHTTPFirewall(ctx, in)
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebFirewall(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.HTTPWebService/UpdateHTTPFirewall",
+		FullMethod: "/pb.HTTPWebService/UpdateHTTPWebFirewall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HTTPWebServiceServer).UpdateHTTPFirewall(ctx, req.(*UpdateHTTPFirewallRequest))
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebFirewall(ctx, req.(*UpdateHTTPWebFirewallRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPWebService_UpdateHTTPWebLocations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPWebLocationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebLocations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPWebService/UpdateHTTPWebLocations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebLocations(ctx, req.(*UpdateHTTPWebLocationsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1746,6 +2035,10 @@ var _HTTPWebService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findEnabledHTTPWeb",
 			Handler:    _HTTPWebService_FindEnabledHTTPWeb_Handler,
+		},
+		{
+			MethodName: "findEnabledHTTPWebConfig",
+			Handler:    _HTTPWebService_FindEnabledHTTPWebConfig_Handler,
 		},
 		{
 			MethodName: "updateHTTPWeb",
@@ -1776,20 +2069,24 @@ var _HTTPWebService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _HTTPWebService_UpdateHTTPWebPages_Handler,
 		},
 		{
-			MethodName: "updateHTTPAccessLog",
-			Handler:    _HTTPWebService_UpdateHTTPAccessLog_Handler,
+			MethodName: "updateHTTPWebAccessLog",
+			Handler:    _HTTPWebService_UpdateHTTPWebAccessLog_Handler,
 		},
 		{
-			MethodName: "updateHTTPStat",
-			Handler:    _HTTPWebService_UpdateHTTPStat_Handler,
+			MethodName: "updateHTTPWebStat",
+			Handler:    _HTTPWebService_UpdateHTTPWebStat_Handler,
 		},
 		{
-			MethodName: "updateHTTPCache",
-			Handler:    _HTTPWebService_UpdateHTTPCache_Handler,
+			MethodName: "updateHTTPWebCache",
+			Handler:    _HTTPWebService_UpdateHTTPWebCache_Handler,
 		},
 		{
-			MethodName: "updateHTTPFirewall",
-			Handler:    _HTTPWebService_UpdateHTTPFirewall_Handler,
+			MethodName: "updateHTTPWebFirewall",
+			Handler:    _HTTPWebService_UpdateHTTPWebFirewall_Handler,
+		},
+		{
+			MethodName: "updateHTTPWebLocations",
+			Handler:    _HTTPWebService_UpdateHTTPWebLocations_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

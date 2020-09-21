@@ -1,0 +1,82 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+
+service HTTPLocationService {
+	// 创建路径规则
+	rpc createHTTPLocation (CreateHTTPLocationRequest) returns (CreateHTTPLocationResponse);
+
+	// 修改路径规则
+	rpc updateHTTPLocation (UpdateHTTPLocationRequest) returns (RPCUpdateSuccess);
+
+	// 查找路径规则配置
+	rpc findEnabledHTTPLocationConfig (FindEnabledHTTPLocationConfigRequest) returns (FindEnabledHTTPLocationConfigResponse);
+
+	// 删除路径规则
+	rpc deleteHTTPLocation (DeleteHTTPLocationRequest) returns (RPCDeleteSuccess);
+
+	// 查找反向代理设置
+	rpc findAndInitHTTPLocationReverseProxyConfig (FindAndInitHTTPLocationReverseProxyConfigRequest) returns (FindAndInitHTTPLocationReverseProxyConfigResponse);
+
+	// 初始化Web设置
+	rpc findAndInitHTTPLocationWebConfig (FindAndInitHTTPLocationWebConfigRequest) returns (FindAndInitHTTPLocationWebConfigResponse);
+}
+
+// 创建路径规则
+message CreateHTTPLocationRequest {
+	int64 parentId = 1;
+	string name = 2;
+	string description = 3;
+	string pattern = 4;
+	bool isBreak = 5;
+}
+
+message CreateHTTPLocationResponse {
+	int64 locationId = 1;
+}
+
+// 修改路径规则
+message UpdateHTTPLocationRequest {
+	int64 locationId = 1;
+	string name = 2;
+	string description = 3;
+	string pattern = 4;
+	bool isOn = 5;
+	bool isBreak = 6;
+}
+
+// 查找路径规则配置
+message FindEnabledHTTPLocationConfigRequest {
+	int64 locationId = 1;
+}
+
+message FindEnabledHTTPLocationConfigResponse {
+	bytes locationJSON = 1;
+}
+
+// 删除路径规则
+message DeleteHTTPLocationRequest {
+	int64 locationId = 1;
+}
+
+// 查找反向代理设置
+message FindAndInitHTTPLocationReverseProxyConfigRequest {
+	int64 locationId = 1;
+}
+
+message FindAndInitHTTPLocationReverseProxyConfigResponse {
+	bytes reverseProxyJSON = 1;
+	bytes reverseProxyRefJSON = 2;
+}
+
+// 初始化Web设置
+message FindAndInitHTTPLocationWebConfigRequest {
+	int64 locationId = 1;
+}
+
+message FindAndInitHTTPLocationWebConfigResponse {
+	bytes webJSON = 1;
+}

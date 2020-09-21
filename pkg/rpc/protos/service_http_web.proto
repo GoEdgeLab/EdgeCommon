@@ -10,8 +10,11 @@ service HTTPWebService {
 	// 创建Web配置
 	rpc createHTTPWeb (CreateHTTPWebRequest) returns (CreateHTTPWebResponse);
 
-	// 查找Web配置
+	// 查找Web信息
 	rpc findEnabledHTTPWeb (FindEnabledHTTPWebRequest) returns (FindEnabledHTTPWebResponse);
+
+	// 查找Web配置
+	rpc findEnabledHTTPWebConfig (FindEnabledHTTPWebConfigRequest) returns (FindEnabledHTTPWebConfigResponse);
 
 	// 更改Web配置
 	rpc updateHTTPWeb (UpdateHTTPWebRequest) returns (RPCUpdateSuccess);
@@ -35,16 +38,19 @@ service HTTPWebService {
 	rpc updateHTTPWebPages (UpdateHTTPWebPagesRequest) returns (RPCUpdateSuccess);
 
 	// 更改访问日志配置
-	rpc updateHTTPAccessLog (UpdateHTTPAccessLogRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebAccessLog (UpdateHTTPWebAccessLogRequest) returns (RPCUpdateSuccess);
 
 	// 更改统计配置
-	rpc updateHTTPStat (UpdateHTTPStatRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebStat (UpdateHTTPWebStatRequest) returns (RPCUpdateSuccess);
 
 	// 更改缓存配置
-	rpc updateHTTPCache (UpdateHTTPCacheRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebCache (UpdateHTTPWebCacheRequest) returns (RPCUpdateSuccess);
 
 	// 更改防火墙设置
-	rpc updateHTTPFirewall (UpdateHTTPFirewallRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebFirewall (UpdateHTTPWebFirewallRequest) returns (RPCUpdateSuccess);
+
+	// 更改路径规则配置
+	rpc updateHTTPWebLocations (UpdateHTTPWebLocationsRequest) returns (RPCUpdateSuccess);
 }
 
 // 创建Web配置
@@ -56,13 +62,22 @@ message CreateHTTPWebResponse {
 	int64 webId = 1;
 }
 
-// 查找Web配置
+// 查找Web信息
 message FindEnabledHTTPWebRequest {
 	int64 webId = 1;
 }
 
 message FindEnabledHTTPWebResponse {
 	HTTPWeb web = 1;
+}
+
+// 查找Web配置
+message FindEnabledHTTPWebConfigRequest {
+	int64 webId = 1;
+}
+
+message FindEnabledHTTPWebConfigResponse {
+	bytes webJSON = 1;
 }
 
 // 更改Web配置
@@ -108,25 +123,31 @@ message UpdateHTTPWebPagesRequest {
 }
 
 // 更改访问日志配置
-message UpdateHTTPAccessLogRequest {
+message UpdateHTTPWebAccessLogRequest {
 	int64 webId = 1;
 	bytes accessLogJSON = 2;
 }
 
 // 更改统计配置
-message UpdateHTTPStatRequest {
+message UpdateHTTPWebStatRequest {
 	int64 webId = 1;
 	bytes statJSON = 2;
 }
 
 // 更改缓存配置
-message UpdateHTTPCacheRequest {
+message UpdateHTTPWebCacheRequest {
 	int64 webId = 1;
 	bytes cacheJSON = 2;
 }
 
 // 更改防火墙设置
-message UpdateHTTPFirewallRequest {
+message UpdateHTTPWebFirewallRequest {
 	int64 webId = 1;
 	bytes firewallJSON = 2;
+}
+
+// 更改路径规则配置
+message UpdateHTTPWebLocationsRequest {
+	int64 webId = 1;
+	bytes locationsJSON = 3;
 }

@@ -111,7 +111,7 @@ message ComposeNodeConfigRequest {
 }
 
 message ComposeNodeConfigResponse {
-	bytes configJSON = 1;
+	bytes nodeJSON = 1;
 }
 
 // 节点stream

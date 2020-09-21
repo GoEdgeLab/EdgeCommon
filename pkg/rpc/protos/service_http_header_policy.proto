@@ -34,7 +34,7 @@ message FindEnabledHTTPHeaderPolicyConfigRequest {
 }
 
 message FindEnabledHTTPHeaderPolicyConfigResponse {
-	bytes config = 1;
+	bytes headerPolicyJSON = 1;
 }
 
 // 创建策略

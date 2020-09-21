@@ -13,7 +13,7 @@ service APINodeService {
 	rpc updateAPINode (UpdateAPINodeRequest) returns (RPCUpdateSuccess);
 
 	// 删除API节点
-	rpc deleteAPINode (DeleteAPINodeRequest) returns (DeleteAPINodeResponse);
+	rpc deleteAPINode (DeleteAPINodeRequest) returns (RPCDeleteSuccess);
 
 	// 列出所有可用API节点
 	rpc findAllEnabledAPINodes (FindAllEnabledAPINodesRequest) returns (FindAllEnabledAPINodesResponse);
@@ -52,10 +52,6 @@ message UpdateAPINodeRequest {
 // 删除API节点
 message DeleteAPINodeRequest {
 	int64 nodeId = 1;
-}
-
-message DeleteAPINodeResponse {
-
 }
 
 // 列出所有可用API节点

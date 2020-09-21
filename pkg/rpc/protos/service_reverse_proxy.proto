@@ -55,7 +55,7 @@ message FindEnabledReverseProxyConfigRequest {
 }
 
 message FindEnabledReverseProxyConfigResponse {
-	bytes config = 1;
+	bytes reverseProxyJSON = 1;
 }
 
 // 修改反向代理调度算法

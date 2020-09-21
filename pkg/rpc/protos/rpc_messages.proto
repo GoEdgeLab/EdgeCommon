@@ -6,3 +6,7 @@ package pb;
 message RPCUpdateSuccess {
 
 }
+
+message RPCDeleteSuccess {
+
+}

@@ -39,5 +39,5 @@ message FindEnabledHTTPHeaderConfigRequest {
 }
 
 message FindEnabledHTTPHeaderConfigResponse {
-	bytes config = 1;
+	bytes headerJSON = 1;
 }

@@ -34,7 +34,7 @@ message FindEnabledGzipConfigRequest {
 }
 
 message FindEnabledGzipConfigResponse {
-	bytes config = 1;
+	bytes gzipJSON = 1;
 }
 
 // 修改Gzip配置
