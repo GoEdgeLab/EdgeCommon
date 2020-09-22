@@ -1,5 +1,10 @@
 package serverconfigs
 
+import (
+	"regexp"
+	"strings"
+)
+
 type HTTPLocationConfig struct {
 	Id              int64                 `yaml:"id" json:"id"`                           // ID
 	IsOn            bool                  `yaml:"isOn" json:"isOn"`                       // 是否启用
@@ -12,9 +17,22 @@ type HTTPLocationConfig struct {
 	ReverseProxy    *ReverseProxyConfig   `yaml:"reverseProxy" json:"reverseProxy"`       // 反向代理设置
 	IsBreak         bool                  `yaml:"isBreak" json:"isBreak"`                 // 终止向下解析
 	Children        []*HTTPLocationConfig `yaml:"children" json:"children"`               // 子规则
+
+	patternType HTTPLocationPatternType // 规则类型：LocationPattern*
+	prefix      string                  // 前缀
+	path        string                  // 精确的路径
+
+	reg             *regexp.Regexp // 匹配规则
+	caseInsensitive bool           // 大小写不敏感
+	reverse         bool           // 是否翻转规则，比如非前缀，非路径
 }
 
 func (this *HTTPLocationConfig) Init() error {
+	err := this.parsePattern()
+	if err != nil {
+		return err
+	}
+
 	if this.Web != nil {
 		err := this.Web.Init()
 		if err != nil {
@@ -24,6 +42,14 @@ func (this *HTTPLocationConfig) Init() error {
 
 	if this.ReverseProxy != nil {
 		err := this.Web.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// Children
+	for _, child := range this.Children {
+		err := child.Init()
 		if err != nil {
 			return err
 		}
@@ -67,4 +93,119 @@ func (this *HTTPLocationConfig) SetPattern(pattern string, patternType int, case
 		pattern = op + " " + pattern
 	}
 	this.Pattern = pattern
+}
+
+// 模式类型
+func (this *HTTPLocationConfig) PatternType() int {
+	return this.patternType
+}
+
+// 模式字符串
+// 去掉了模式字符
+func (this *HTTPLocationConfig) PatternString() string {
+	if this.patternType == HTTPLocationPatternTypePrefix {
+		return this.prefix
+	}
+	return this.path
+}
+
+// 是否翻转
+func (this *HTTPLocationConfig) IsReverse() bool {
+	return this.reverse
+}
+
+// 是否大小写非敏感
+func (this *HTTPLocationConfig) IsCaseInsensitive() bool {
+	return this.caseInsensitive
+}
+
+// 分析匹配条件
+func (this *HTTPLocationConfig) parsePattern() error {
+	// 分析pattern
+	this.reverse = false
+	this.caseInsensitive = false
+	if len(this.Pattern) > 0 {
+		spaceIndex := strings.Index(this.Pattern, " ")
+		if spaceIndex < 0 {
+			this.patternType = HTTPLocationPatternTypePrefix
+			this.prefix = this.Pattern
+		} else {
+			cmd := this.Pattern[:spaceIndex]
+			pattern := strings.TrimSpace(this.Pattern[spaceIndex+1:])
+			if cmd == "*" { // 大小写非敏感
+				this.patternType = HTTPLocationPatternTypePrefix
+				this.prefix = pattern
+				this.caseInsensitive = true
+			} else if cmd == "!*" { // 大小写非敏感，翻转
+				this.patternType = HTTPLocationPatternTypePrefix
+				this.prefix = pattern
+				this.caseInsensitive = true
+				this.reverse = true
+			} else if cmd == "!" {
+				this.patternType = HTTPLocationPatternTypePrefix
+				this.prefix = pattern
+				this.reverse = true
+			} else if cmd == "=" {
+				this.patternType = HTTPLocationPatternTypeExact
+				this.path = pattern
+			} else if cmd == "=*" {
+				this.patternType = HTTPLocationPatternTypeExact
+				this.path = pattern
+				this.caseInsensitive = true
+			} else if cmd == "!=" {
+				this.patternType = HTTPLocationPatternTypeExact
+				this.path = pattern
+				this.reverse = true
+			} else if cmd == "!=*" {
+				this.patternType = HTTPLocationPatternTypeExact
+				this.path = pattern
+				this.reverse = true
+				this.caseInsensitive = true
+			} else if cmd == "~" { // 正则
+				this.patternType = HTTPLocationPatternTypeRegexp
+				reg, err := regexp.Compile(pattern)
+				if err != nil {
+					return err
+				}
+				this.reg = reg
+				this.path = pattern
+			} else if cmd == "!~" {
+				this.patternType = HTTPLocationPatternTypeRegexp
+				reg, err := regexp.Compile(pattern)
+				if err != nil {
+					return err
+				}
+				this.reg = reg
+				this.reverse = true
+				this.path = pattern
+			} else if cmd == "~*" { // 大小写非敏感小写
+				this.patternType = HTTPLocationPatternTypeRegexp
+				reg, err := regexp.Compile("(?i)" + pattern)
+				if err != nil {
+					return err
+				}
+				this.reg = reg
+				this.caseInsensitive = true
+				this.path = pattern
+			} else if cmd == "!~*" {
+				this.patternType = HTTPLocationPatternTypeRegexp
+				reg, err := regexp.Compile("(?i)" + pattern)
+				if err != nil {
+					return err
+				}
+				this.reg = reg
+				this.reverse = true
+				this.caseInsensitive = true
+				this.path = pattern
+			} else {
+				this.patternType = HTTPLocationPatternTypePrefix
+				this.prefix = pattern
+			}
+		}
+	} else {
+		this.patternType = HTTPLocationPatternTypePrefix
+		this.prefix = this.Pattern
+	}
+
+	return nil
 }

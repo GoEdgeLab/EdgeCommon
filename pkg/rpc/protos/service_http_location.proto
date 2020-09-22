@@ -23,6 +23,9 @@ service HTTPLocationService {
 
 	// 初始化Web设置
 	rpc findAndInitHTTPLocationWebConfig (FindAndInitHTTPLocationWebConfigRequest) returns (FindAndInitHTTPLocationWebConfigResponse);
+
+	// 修改反向代理设置
+	rpc updateHTTPLocationReverseProxy (UpdateHTTPLocationReverseProxyRequest) returns (RPCUpdateSuccess);
 }
 
 // 创建路径规则
@@ -79,4 +82,10 @@ message FindAndInitHTTPLocationWebConfigRequest {
 
 message FindAndInitHTTPLocationWebConfigResponse {
 	bytes webJSON = 1;
+}
+
+// 修改反向代理设置
+message UpdateHTTPLocationReverseProxyRequest {
+	int64 locationId = 1;
+	bytes reverseProxyJSON = 2;
 }
