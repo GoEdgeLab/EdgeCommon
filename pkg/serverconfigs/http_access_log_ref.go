@@ -2,7 +2,8 @@ package serverconfigs
 
 // 代理访问日志配置
 type HTTPAccessLogRef struct {
-	IsOn bool `yaml:"isOn" json:"isOn"`
+	IsPrior bool `yaml:"isPrior" json:"isPrior"` // 是否覆盖
+	IsOn    bool `yaml:"isOn" json:"isOn"`       // 是否启用
 
 	Fields []int `yaml:"fields" json:"fields"` // 记录的字段
 

@@ -2,8 +2,10 @@ package shared
 
 // HeaderList定义
 type HTTPHeaderPolicy struct {
-	Id   int64 `yaml:"id" json:"id"`
-	IsOn bool  `yaml:"isOn" json:"isOn"` // TODO
+	Id          int64  `yaml:"id" json:"id"`                   // ID
+	Name        string `yaml:"name" json:"name"`               // 名称 TODO
+	IsOn        bool   `yaml:"isOn" json:"isOn"`               // 是否启用 TODO
+	Description string `yaml:"description" json:"description"` // 描述 TODO
 
 	AddHeaders     []*HTTPHeaderConfig `yaml:"addHeaders" json:"addHeaders"`         // TODO
 	AddTrailers    []*HTTPHeaderConfig `yaml:"addTrailers" json:"addTrailers"`       // TODO

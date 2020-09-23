@@ -1,7 +1,8 @@
 package serverconfigs
 
 type HTTPStatRef struct {
-	IsOn bool `yaml:"isOn" json:"isOn"` // 是否开启
+	IsPrior bool `yaml:"isPrior" json:"isPrior"` // 是否覆盖
+	IsOn    bool `yaml:"isOn" json:"isOn"`       // 是否开启
 }
 
 func (this *HTTPStatRef) Init() error {

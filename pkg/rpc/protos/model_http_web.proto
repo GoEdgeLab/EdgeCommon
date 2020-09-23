@@ -7,7 +7,4 @@ message HTTPWeb {
 	int64 id = 1;
 	bool isOn = 2;
 	string root = 3;
-	string charset = 4;
-	int64 requestHeaderPolicyId = 5;
-	int64 responseHeaderPolicyId = 6;
 }

@@ -9,7 +9,8 @@ import (
 
 // websocket设置
 type HTTPWebsocketConfig struct {
-	IsOn bool `yaml:"isOn" json:"isOn"` // 是否开启
+	Id   int64 `yaml:"id" json:"id"`     // ID
+	IsOn bool  `yaml:"isOn" json:"isOn"` // 是否开启
 
 	// 握手超时时间
 	HandshakeTimeout *shared.TimeDuration `yaml:"handshakeTimeout" json:"handshakeTimeout"`

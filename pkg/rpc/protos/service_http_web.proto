@@ -26,10 +26,10 @@ service HTTPWebService {
 	rpc updateHTTPWebCharset (UpdateHTTPWebCharsetRequest) returns (RPCUpdateSuccess);
 
 	// 更改请求Header策略
-	rpc updateHTTPWebRequestHeaderPolicy (UpdateHTTPWebRequestHeaderPolicyRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebRequestHeader (UpdateHTTPWebRequestHeaderRequest) returns (RPCUpdateSuccess);
 
 	// 更改响应Header策略
-	rpc updateHTTPWebResponseHeaderPolicy (UpdateHTTPWebResponseHeaderPolicyRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebResponseHeader (UpdateHTTPWebResponseHeaderRequest) returns (RPCUpdateSuccess);
 
 	// 更改Shutdown
 	rpc updateHTTPWebShutdown (UpdateHTTPWebShutdownRequest) returns (RPCUpdateSuccess);
@@ -51,6 +51,9 @@ service HTTPWebService {
 
 	// 更改路径规则配置
 	rpc updateHTTPWebLocations (UpdateHTTPWebLocationsRequest) returns (RPCUpdateSuccess);
+
+	// 跳转到HTTPS
+	rpc updateHTTPWebRedirectToHTTPS (UpdateHTTPWebRedirectToHTTPSRequest) returns (RPCUpdateSuccess);
 }
 
 // 创建Web配置
@@ -95,19 +98,19 @@ message UpdateHTTPWebGzipRequest {
 // 更改字符集配置
 message UpdateHTTPWebCharsetRequest {
 	int64 webId = 1;
-	string charset = 2;
+	bytes charsetJSON = 2;
 }
 
 // 更改请求Header策略
-message UpdateHTTPWebRequestHeaderPolicyRequest {
+message UpdateHTTPWebRequestHeaderRequest {
 	int64 webId = 1;
-	int64 headerPolicyId = 2;
+	bytes headerJSON = 2;
 }
 
 // 更改响应Header策略
-message UpdateHTTPWebResponseHeaderPolicyRequest {
+message UpdateHTTPWebResponseHeaderRequest {
 	int64 webId = 1;
-	int64 headerPolicyId = 2;
+	bytes headerJSON = 2;
 }
 
 // 更改Shutdown
@@ -150,4 +153,10 @@ message UpdateHTTPWebFirewallRequest {
 message UpdateHTTPWebLocationsRequest {
 	int64 webId = 1;
 	bytes locationsJSON = 3;
+}
+
+// 跳转到HTTPS
+message UpdateHTTPWebRedirectToHTTPSRequest {
+	int64 webId = 1;
+	bytes redirectToHTTPSJSON = 2;
 }
