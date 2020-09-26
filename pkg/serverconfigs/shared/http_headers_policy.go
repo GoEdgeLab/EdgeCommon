@@ -21,16 +21,20 @@ type HTTPHeaderPolicy struct {
 
 	Expires *HTTPExpireHeaderConfig `yaml:"expires" json:"expires"` // TODO
 
+	addHeaderNames  []string
+	setHeaderNames  []string
 	deleteHeaderMap map[string]bool // header => bool
 }
 
 // 校验
 func (this *HTTPHeaderPolicy) Init() error {
+	this.addHeaderNames = []string{}
 	for _, h := range this.AddHeaders {
 		err := h.Init()
 		if err != nil {
 			return err
 		}
+		this.addHeaderNames = append(this.addHeaderNames, strings.ToUpper(h.Name))
 	}
 
 	for _, h := range this.AddTrailers {
@@ -40,11 +44,13 @@ func (this *HTTPHeaderPolicy) Init() error {
 		}
 	}
 
+	this.setHeaderNames = []string{}
 	for _, h := range this.SetHeaders {
 		err := h.Init()
 		if err != nil {
 			return err
 		}
+		this.setHeaderNames = append(this.setHeaderNames, strings.ToUpper(h.Name))
 	}
 
 	for _, h := range this.ReplaceHeaders {
@@ -68,8 +74,25 @@ func (this *HTTPHeaderPolicy) IsEmpty() bool {
 	return len(this.AddHeaders) == 0 && len(this.AddTrailers) == 0 && len(this.SetHeaders) == 0 && len(this.ReplaceHeaders) == 0 && this.Expires == nil
 }
 
+// 判断Add和Set中是否包含某个Header
+func (this *HTTPHeaderPolicy) ContainsHeader(name string) bool {
+	name = strings.ToUpper(name)
+
+	for _, n := range this.addHeaderNames {
+		if n == name {
+			return true
+		}
+	}
+	for _, n := range this.setHeaderNames {
+		if n == name {
+			return true
+		}
+	}
+	return false
+}
+
 // 判断删除列表中是否包含某个Header
-func (this *HTTPHeaderPolicy) ContainsDeletedHeader(header string) bool {
-	_, ok := this.deleteHeaderMap[strings.ToUpper(header)]
+func (this *HTTPHeaderPolicy) ContainsDeletedHeader(name string) bool {
+	_, ok := this.deleteHeaderMap[strings.ToUpper(name)]
 	return ok
 }

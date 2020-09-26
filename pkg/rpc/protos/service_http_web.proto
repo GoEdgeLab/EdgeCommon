@@ -58,7 +58,7 @@ service HTTPWebService {
 
 // 创建Web配置
 message CreateHTTPWebRequest {
-	string root = 1;
+	bytes rootJSON = 1;
 }
 
 message CreateHTTPWebResponse {
@@ -86,7 +86,7 @@ message FindEnabledHTTPWebConfigResponse {
 // 更改Web配置
 message UpdateHTTPWebRequest {
 	int64 webId = 1;
-	string root = 2;
+	bytes rootJSON = 2;
 }
 
 // 更改Gzip配置

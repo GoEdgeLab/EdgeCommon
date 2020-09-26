@@ -13,9 +13,8 @@ type HTTPWebConfig struct {
 	Shutdown           *HTTPShutdownConfig        `yaml:"shutdown" json:"shutdown"`                     // 临时关闭配置
 	Pages              []*HTTPPageConfig          `yaml:"pages" json:"pages"`                           // 特殊页面配置
 	RedirectToHttps    *HTTPRedirectToHTTPSConfig `yaml:"redirectToHttps" json:"redirectToHttps"`       // 是否自动跳转到Https
-	Root               string                     `yaml:"root" json:"root"`                             // 资源根目录 TODO
-	Indexes            []string                   `yaml:"indexes" json:"indexes"`                       // 默认首页文件
-	MaxRequestBodySize string                     `yaml:"maxRequestBodySize" json:"maxRequestBodySize"` // 请求body最大尺寸
+	Root               *HTTPRootConfig            `yaml:"root" json:"root"`                             // 资源根目录 TODO
+	MaxRequestBodySize string                     `yaml:"maxRequestBodySize" json:"maxRequestBodySize"` // 请求body最大尺寸 TODO 需要实现
 	AccessLogRef       *HTTPAccessLogRef          `yaml:"accessLog" json:"accessLog"`                   // 访问日志配置
 	StatRef            *HTTPStatRef               `yaml:"statRef" json:"statRef"`                       // 统计配置
 	CacheRef           *HTTPCacheRef              `yaml:"cacheRef" json:"cacheRef"`                     // 缓存配置
@@ -33,6 +32,14 @@ type HTTPWebConfig struct {
 }
 
 func (this *HTTPWebConfig) Init() error {
+	// root
+	if this.Root != nil {
+		err := this.Root.Init()
+		if err != nil {
+			return err
+		}
+	}
+
 	// 路径规则
 	if len(this.Locations) > 0 {
 		for _, location := range this.Locations {
