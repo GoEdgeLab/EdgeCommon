@@ -73,6 +73,7 @@ message ListEnabledNodesMatchRequest {
 	int64 size = 2;
 	int64 clusterId = 3;
 	int32 installState = 4;
+	int32 activeState = 5;
 }
 
 message ListEnabledNodesMatchResponse {
@@ -141,6 +142,7 @@ message SyncNodesVersionWithClusterResponse {
 message CountAllEnabledNodesMatchRequest {
 	int64 clusterId = 1;
 	int32 installState = 2;
+	int32 activeState = 3;
 }
 
 message CountAllEnabledNodesMatchResponse {

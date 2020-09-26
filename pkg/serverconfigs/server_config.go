@@ -10,8 +10,6 @@ type ServerConfig struct {
 	Id          int64               `yaml:"id" json:"id"`                   // ID
 	Type        string              `yaml:"type" json:"type"`               // 类型
 	IsOn        bool                `yaml:"isOn" json:"isOn"`               // 是否开启
-	Components  []*ComponentConfig  `yaml:"components" json:"components"`   // 组件
-	Filters     []*FilterConfig     `yaml:"filters" json:"filters"`         // 过滤器
 	Name        string              `yaml:"name" json:"name"`               // 名称
 	Description string              `yaml:"description" json:"description"` // 描述
 	ServerNames []*ServerNameConfig `yaml:"serverNames" json:"serverNames"` // 域名
@@ -88,6 +86,13 @@ func (this *ServerConfig) Init() error {
 
 	if this.ReverseProxy != nil {
 		err := this.ReverseProxy.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	if this.Web != nil {
+		err := this.Web.Init()
 		if err != nil {
 			return err
 		}

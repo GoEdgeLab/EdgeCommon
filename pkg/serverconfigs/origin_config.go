@@ -33,8 +33,10 @@ type OriginConfig struct {
 	RequestURI string `yaml:"requestURI" json:"requestURI"` // 转发后的请求URI TODO
 	Host       string `yaml:"host" json:"host"`             // 自定义主机名 TODO
 
-	RequestHeaders  *shared.HTTPHeaderPolicy `yaml:"requestHeaders" json:"requestHeaders"` // 请求Header设置 TODO
-	ResponseHeaders *shared.HTTPHeaderPolicy `yaml:"responseHeaders" json:"responseHeaders"`
+	RequestHeaderPolicyRef  *shared.HTTPHeaderPolicyRef `yaml:"requestHeaderPolicyRef" json:"requestHeaderPolicyRef"`   // 请求Header
+	RequestHeaderPolicy     *shared.HTTPHeaderPolicy    `yaml:"requestHeaderPolicy" json:"requestHeaderPolicy"`         // 请求Header策略
+	ResponseHeaderPolicyRef *shared.HTTPHeaderPolicyRef `yaml:"responseHeaderPolicyRef" json:"responseHeaderPolicyRef"` // 响应Header`
+	ResponseHeaderPolicy    *shared.HTTPHeaderPolicy    `yaml:"responseHeaderPolicy" json:"responseHeaderPolicy"`       // 响应Header策略
 
 	// 健康检查URL，目前支持：
 	// - http|https 返回2xx-3xx认为成功
@@ -61,6 +63,8 @@ type OriginConfig struct {
 	uniqueKey string
 
 	hasAddrVariables bool // 地址中是否含有变量
+
+	realAddr string // 最终的Addr TODO
 }
 
 // 校验
@@ -77,23 +81,29 @@ func (this *OriginConfig) Init() error {
 	this.uniqueKey = strconv.FormatInt(this.Id, 10) + "@" + fmt.Sprintf("%d", this.Version)
 
 	// failTimeout
-	this.connTimeoutDuration = this.ConnTimeout.Duration()
+	if this.ConnTimeout != nil {
+		this.connTimeoutDuration = this.ConnTimeout.Duration()
+	}
 
 	// readTimeout
-	this.readTimeoutDuration = this.ReadTimeout.Duration()
+	if this.ReadTimeout != nil {
+		this.readTimeoutDuration = this.ReadTimeout.Duration()
+	}
 
 	// idleTimeout
-	this.idleTimeoutDuration = this.IdleTimeout.Duration()
+	if this.IdleTimeout != nil {
+		this.idleTimeoutDuration = this.IdleTimeout.Duration()
+	}
 
 	// Headers
-	if this.RequestHeaders != nil {
-		err := this.RequestHeaders.Init()
+	if this.RequestHeaderPolicy != nil {
+		err := this.RequestHeaderPolicy.Init()
 		if err != nil {
 			return err
 		}
 	}
-	if this.ResponseHeaders != nil {
-		err := this.ResponseHeaders.Init()
+	if this.ResponseHeaderPolicy != nil {
+		err := this.ResponseHeaderPolicy.Init()
 		if err != nil {
 			return err
 		}
@@ -115,10 +125,6 @@ func (this *OriginConfig) Init() error {
 	}
 
 	// TODO init health check
-
-	// headers
-	this.hasRequestHeaders = this.RequestHeaders != nil && !this.RequestHeaders.IsEmpty()
-	this.hasRequestHeaders = this.ResponseHeaders != nil && !this.ResponseHeaders.IsEmpty()
 
 	// host
 	this.hasHost = len(this.Host) > 0
@@ -167,4 +173,14 @@ func (this *OriginConfig) Connect() (net.Conn, error) {
 	// TODO 支持从Unix、Pipe、HTTP、HTTPS中读取数据
 
 	return nil, errors.New("invalid scheme '" + this.Addr.Protocol.String() + "'")
+}
+
+// 获取最终请求的地址
+func (this *OriginConfig) RealAddr() string {
+	return this.realAddr
+}
+
+// 设置最终请求的地址 TODO 需要实现
+func (this *OriginConfig) SetRealAddr(realAddr string) {
+	this.realAddr = realAddr
 }

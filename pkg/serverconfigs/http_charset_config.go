@@ -5,3 +5,7 @@ type HTTPCharsetConfig struct {
 	IsOn    bool   `yaml:"isOn" json:"isOn"`       // 是否启用
 	Charset string `yaml:"charset" json:"charset"` // 字符集
 }
+
+func (this *HTTPCharsetConfig) Init() error {
+	return nil
+}

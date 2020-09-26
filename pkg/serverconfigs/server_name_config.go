@@ -1,6 +1,6 @@
 package serverconfigs
 
-import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/configutils"
+import "github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 
 type ServerNameType = string
 

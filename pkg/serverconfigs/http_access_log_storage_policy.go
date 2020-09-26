@@ -1,7 +1,7 @@
 package serverconfigs
 
 import (
-	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/configutils"
+	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/Tea"
 	"github.com/iwind/TeaGo/logs"
@@ -14,12 +14,12 @@ import (
 // 日志存储策略
 // 存储在configs/accesslog.storage.$id.conf
 type HTTPAccessLogStoragePolicy struct {
-	Id      int64                  `yaml:"id" json:"id"`
-	Name    string                 `yaml:"name" json:"name"`
-	IsOn    bool                   `yaml:"isOn" json:"isOn"`
-	Type    string                 `yaml:"type" json:"type"`       // 存储类型
-	Options map[string]interface{} `yaml:"options" json:"options"` // 存储选项
-	Conds   []*shared.RequestCond  `yaml:"conds" json:"conds"`     // 请求条件
+	Id         int64                          `yaml:"id" json:"id"`
+	Name       string                         `yaml:"name" json:"name"`
+	IsOn       bool                           `yaml:"isOn" json:"isOn"`
+	Type       string                         `yaml:"type" json:"type"`              // 存储类型
+	Options    map[string]interface{}         `yaml:"options" json:"options"`        // 存储选项
+	CondGroups []*shared.HTTPRequestCondGroup `yaml:"condGroups" json:"condsGroups"` // 请求条件
 }
 
 // 创建新策略
@@ -49,8 +49,8 @@ func NewAccessLogStoragePolicyFromId(id string) *HTTPAccessLogStoragePolicy {
 // 校验
 func (this *HTTPAccessLogStoragePolicy) Init() error {
 	// cond
-	if len(this.Conds) > 0 {
-		for _, cond := range this.Conds {
+	if len(this.CondGroups) > 0 {
+		for _, cond := range this.CondGroups {
 			err := cond.Init()
 			if err != nil {
 				return err
@@ -95,10 +95,10 @@ func (this *HTTPAccessLogStoragePolicy) MatchKeyword(keyword string) (matched bo
 
 // 匹配条件
 func (this *HTTPAccessLogStoragePolicy) MatchConds(formatter func(string) string) bool {
-	if len(this.Conds) == 0 {
+	if len(this.CondGroups) == 0 {
 		return true
 	}
-	for _, cond := range this.Conds {
+	for _, cond := range this.CondGroups {
 		if !cond.Match(formatter) {
 			return false
 		}

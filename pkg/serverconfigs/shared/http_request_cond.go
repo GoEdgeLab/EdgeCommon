@@ -17,8 +17,9 @@ import (
 )
 
 // 重写条件定义
-type RequestCond struct {
-	Id string `yaml:"id" json:"id"` // ID
+type HTTPRequestCond struct {
+	Id   string `yaml:"id" json:"id"`     // ID
+	IsOn bool   `yaml:"isOn" json:"isOn"` // 是否启用
 
 	// 要测试的字符串
 	// 其中可以使用跟请求相关的参数，比如：
@@ -41,15 +42,8 @@ type RequestCond struct {
 	arrayValue []string
 }
 
-// 取得新对象
-func NewRequestCond() *RequestCond {
-	return &RequestCond{
-		Id: stringutil.Rand(16),
-	}
-}
-
 // 校验配置
-func (this *RequestCond) Init() error {
+func (this *HTTPRequestCond) Init() error {
 	this.isInt = RegexpDigitNumber.MatchString(this.Value)
 	this.isFloat = RegexpFloatNumber.MatchString(this.Value)
 
@@ -144,7 +138,7 @@ func (this *RequestCond) Init() error {
 }
 
 // 将此条件应用于请求，检查是否匹配
-func (this *RequestCond) Match(formatter func(source string) string) bool {
+func (this *HTTPRequestCond) Match(formatter func(source string) string) bool {
 	paramValue := formatter(this.Param)
 	switch this.Operator {
 	case RequestCondOperatorRegexp:
@@ -361,7 +355,7 @@ func (this *RequestCond) Match(formatter func(source string) string) bool {
 	return false
 }
 
-func (this *RequestCond) ipToInt64(ip net.IP) int64 {
+func (this *HTTPRequestCond) ipToInt64(ip net.IP) int64 {
 	if len(ip) == 0 {
 		return 0
 	}

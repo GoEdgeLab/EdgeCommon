@@ -16,6 +16,8 @@ message Node {
 	string code = 6;
 	string uniqueId = 7;
 	string secret = 8;
+	int64 version = 9;
+	int64 latestVersion = 10;
 
 	NodeCluster cluster = 32;
 	NodeLogin login = 33;

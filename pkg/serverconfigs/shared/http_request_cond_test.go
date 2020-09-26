@@ -14,7 +14,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	a := assert.NewAssertion(t)
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello",
 			Operator: RequestCondOperatorRegexp,
 			Value:    "abc",
@@ -26,7 +26,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello",
 			Operator: RequestCondOperatorRegexp,
 			Value:    "/\\w+",
@@ -38,7 +38,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/article/123.html",
 			Operator: RequestCondOperatorRegexp,
 			Value:    `^/article/\d+\.html$`,
@@ -50,7 +50,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello",
 			Operator: RequestCondOperatorRegexp,
 			Value:    "[",
@@ -62,7 +62,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello",
 			Operator: RequestCondOperatorNotRegexp,
 			Value:    "abc",
@@ -74,7 +74,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello",
 			Operator: RequestCondOperatorNotRegexp,
 			Value:    "/\\w+",
@@ -86,7 +86,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "123.123",
 			Operator: RequestCondOperatorEqInt,
 			Value:    "123",
@@ -98,7 +98,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "123",
 			Operator: RequestCondOperatorEqInt,
 			Value:    "123",
@@ -110,7 +110,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "abc",
 			Operator: RequestCondOperatorEqInt,
 			Value:    "abc",
@@ -122,7 +122,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "123",
 			Operator: RequestCondOperatorEqFloat,
 			Value:    "123",
@@ -134,7 +134,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "123.0",
 			Operator: RequestCondOperatorEqFloat,
 			Value:    "123",
@@ -146,7 +146,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "123.123",
 			Operator: RequestCondOperatorEqFloat,
 			Value:    "123.12",
@@ -158,7 +158,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "123",
 			Operator: RequestCondOperatorGtFloat,
 			Value:    "1",
@@ -170,7 +170,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "123",
 			Operator: RequestCondOperatorGtFloat,
 			Value:    "125",
@@ -182,7 +182,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "125",
 			Operator: RequestCondOperatorGteFloat,
 			Value:    "125",
@@ -194,7 +194,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "125",
 			Operator: RequestCondOperatorLtFloat,
 			Value:    "127",
@@ -206,7 +206,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "125",
 			Operator: RequestCondOperatorLteFloat,
 			Value:    "127",
@@ -218,7 +218,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "125",
 			Operator: RequestCondOperatorEqString,
 			Value:    "125",
@@ -230,7 +230,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "125",
 			Operator: RequestCondOperatorNeqString,
 			Value:    "125",
@@ -242,7 +242,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "125",
 			Operator: RequestCondOperatorNeqString,
 			Value:    "127",
@@ -254,7 +254,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello/world",
 			Operator: RequestCondOperatorHasPrefix,
 			Value:    "/hello",
@@ -266,7 +266,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello/world",
 			Operator: RequestCondOperatorHasPrefix,
 			Value:    "/hello2",
@@ -278,7 +278,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello/world",
 			Operator: RequestCondOperatorHasSuffix,
 			Value:    "world",
@@ -290,7 +290,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello/world",
 			Operator: RequestCondOperatorHasSuffix,
 			Value:    "world/",
@@ -302,7 +302,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello/world",
 			Operator: RequestCondOperatorContainsString,
 			Value:    "wo",
@@ -314,7 +314,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello/world",
 			Operator: RequestCondOperatorContainsString,
 			Value:    "wr",
@@ -326,7 +326,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello/world",
 			Operator: RequestCondOperatorNotContainsString,
 			Value:    "HELLO",
@@ -338,7 +338,7 @@ func TestRequestCond_Compare1(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "/hello/world",
 			Operator: RequestCondOperatorNotContainsString,
 			Value:    "hello",
@@ -354,7 +354,7 @@ func TestRequestCond_IP(t *testing.T) {
 	a := assert.NewAssertion(t)
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "hello",
 			Operator: RequestCondOperatorEqIP,
 			Value:    "hello",
@@ -366,7 +366,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.1.100",
 			Operator: RequestCondOperatorEqIP,
 			Value:    "hello",
@@ -378,7 +378,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.1.100",
 			Operator: RequestCondOperatorEqIP,
 			Value:    "192.168.1.100",
@@ -390,7 +390,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.1.100",
 			Operator: RequestCondOperatorGtIP,
 			Value:    "192.168.1.90",
@@ -402,7 +402,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.1.100",
 			Operator: RequestCondOperatorGteIP,
 			Value:    "192.168.1.90",
@@ -414,7 +414,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.1.80",
 			Operator: RequestCondOperatorLtIP,
 			Value:    "192.168.1.90",
@@ -426,7 +426,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.0.100",
 			Operator: RequestCondOperatorLteIP,
 			Value:    "192.168.1.90",
@@ -438,7 +438,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.0.100",
 			Operator: RequestCondOperatorIPRange,
 			Value:    "192.168.0.90,",
@@ -450,7 +450,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.0.100",
 			Operator: RequestCondOperatorIPRange,
 			Value:    "192.168.0.90,192.168.1.100",
@@ -462,7 +462,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.0.100",
 			Operator: RequestCondOperatorIPRange,
 			Value:    ",192.168.1.100",
@@ -474,7 +474,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.1.100",
 			Operator: RequestCondOperatorIPRange,
 			Value:    "192.168.0.90,192.168.1.99",
@@ -486,7 +486,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.1.100",
 			Operator: RequestCondOperatorIPRange,
 			Value:    "192.168.0.90/24",
@@ -498,7 +498,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.1.100",
 			Operator: RequestCondOperatorIPRange,
 			Value:    "192.168.0.90/18",
@@ -510,7 +510,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.1.100",
 			Operator: RequestCondOperatorIPRange,
 			Value:    "a/18",
@@ -522,7 +522,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.1.100",
 			Operator: RequestCondOperatorIPMod10,
 			Value:    "6",
@@ -534,7 +534,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.1.100",
 			Operator: RequestCondOperatorIPMod100,
 			Value:    "76",
@@ -546,7 +546,7 @@ func TestRequestCond_IP(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "192.168.1.100",
 			Operator: RequestCondOperatorIPMod,
 			Value:    "10,6",
@@ -585,7 +585,7 @@ func TestRequestCondIPCompare(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{}
+		cond := HTTPRequestCond{}
 		t.Log(cond.ipToInt64(net.ParseIP("192.168.1.100")))
 		t.Log(cond.ipToInt64(net.ParseIP("192.168.1.99")))
 		t.Log(cond.ipToInt64(net.ParseIP("0.0.0.0")))
@@ -600,7 +600,7 @@ func TestRequestCond_In(t *testing.T) {
 	a := assert.NewAssertion(t)
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "a",
 			Operator: RequestCondOperatorIn,
 			Value:    `a`,
@@ -612,7 +612,7 @@ func TestRequestCond_In(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "a",
 			Operator: RequestCondOperatorIn,
 			Value:    `["a", "b"]`,
@@ -624,7 +624,7 @@ func TestRequestCond_In(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "c",
 			Operator: RequestCondOperatorNotIn,
 			Value:    `["a", "b"]`,
@@ -636,7 +636,7 @@ func TestRequestCond_In(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "a",
 			Operator: RequestCondOperatorNotIn,
 			Value:    `["a", "b"]`,
@@ -652,7 +652,7 @@ func TestRequestCond_File(t *testing.T) {
 	a := assert.NewAssertion(t)
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "a",
 			Operator: RequestCondOperatorFileExt,
 			Value:    `["jpeg", "jpg", "png"]`,
@@ -664,7 +664,7 @@ func TestRequestCond_File(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "a.gif",
 			Operator: RequestCondOperatorFileExt,
 			Value:    `["jpeg", "jpg", "png"]`,
@@ -676,7 +676,7 @@ func TestRequestCond_File(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "a.png",
 			Operator: RequestCondOperatorFileExt,
 			Value:    `["jpeg", "jpg", "png"]`,
@@ -688,7 +688,7 @@ func TestRequestCond_File(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "a.png",
 			Operator: RequestCondOperatorFileExist,
 		}
@@ -699,7 +699,7 @@ func TestRequestCond_File(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    Tea.Root + "/README.md",
 			Operator: RequestCondOperatorFileExist,
 		}
@@ -710,7 +710,7 @@ func TestRequestCond_File(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    Tea.Root + "/README.md?v=1",
 			Operator: RequestCondOperatorFileExist,
 		}
@@ -721,7 +721,7 @@ func TestRequestCond_File(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    Tea.Root,
 			Operator: RequestCondOperatorFileExist,
 		}
@@ -732,7 +732,7 @@ func TestRequestCond_File(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    Tea.Root,
 			Operator: RequestCondOperatorFileExist,
 		}
@@ -743,7 +743,7 @@ func TestRequestCond_File(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "a.png",
 			Operator: RequestCondOperatorFileNotExist,
 		}
@@ -754,7 +754,7 @@ func TestRequestCond_File(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    Tea.Root + "/README.md",
 			Operator: RequestCondOperatorFileNotExist,
 		}
@@ -769,7 +769,7 @@ func TestRequestCond_MimeType(t *testing.T) {
 	a := assert.NewAssertion(t)
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "text/html; charset=utf-8",
 			Operator: RequestCondOperatorFileMimeType,
 			Value:    `["text/html"]`,
@@ -781,7 +781,7 @@ func TestRequestCond_MimeType(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "text/html; charset=utf-8",
 			Operator: RequestCondOperatorFileMimeType,
 			Value:    `["text/*"]`,
@@ -793,7 +793,7 @@ func TestRequestCond_MimeType(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "text/html; charset=utf-8",
 			Operator: RequestCondOperatorFileMimeType,
 			Value:    `["image/*"]`,
@@ -805,7 +805,7 @@ func TestRequestCond_MimeType(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "text/plain; charset=utf-8",
 			Operator: RequestCondOperatorFileMimeType,
 			Value:    `["text/html", "image/jpeg", "image/png"]`,
@@ -821,7 +821,7 @@ func TestRequestCond_Version(t *testing.T) {
 	a := assert.NewAssertion(t)
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "1.0",
 			Operator: RequestCondOperatorVersionRange,
 			Value:    `1.0,1.1`,
@@ -833,7 +833,7 @@ func TestRequestCond_Version(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "1.0",
 			Operator: RequestCondOperatorVersionRange,
 			Value:    `1.0,`,
@@ -845,7 +845,7 @@ func TestRequestCond_Version(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "1.0",
 			Operator: RequestCondOperatorVersionRange,
 			Value:    `,1.1`,
@@ -857,7 +857,7 @@ func TestRequestCond_Version(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "0.9",
 			Operator: RequestCondOperatorVersionRange,
 			Value:    `1.0,1.1`,
@@ -869,7 +869,7 @@ func TestRequestCond_Version(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "0.9",
 			Operator: RequestCondOperatorVersionRange,
 			Value:    `1.0`,
@@ -881,7 +881,7 @@ func TestRequestCond_Version(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "1.1",
 			Operator: RequestCondOperatorVersionRange,
 			Value:    `1.0`,
@@ -903,7 +903,7 @@ func TestRequestCond_Mod(t *testing.T) {
 	a := assert.NewAssertion(t)
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "1",
 			Operator: RequestCondOperatorMod,
 			Value:    "1",
@@ -915,7 +915,7 @@ func TestRequestCond_Mod(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "1",
 			Operator: RequestCondOperatorMod,
 			Value:    "2",
@@ -927,7 +927,7 @@ func TestRequestCond_Mod(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "3",
 			Operator: RequestCondOperatorMod,
 			Value:    "3",
@@ -939,7 +939,7 @@ func TestRequestCond_Mod(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "1",
 			Operator: RequestCondOperatorMod,
 			Value:    "11,1",
@@ -951,7 +951,7 @@ func TestRequestCond_Mod(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "3",
 			Operator: RequestCondOperatorMod,
 			Value:    "11,3",
@@ -963,7 +963,7 @@ func TestRequestCond_Mod(t *testing.T) {
 	}
 
 	{
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    "4",
 			Operator: RequestCondOperatorMod,
 			Value:    "2,0",
@@ -975,7 +975,7 @@ func TestRequestCond_Mod(t *testing.T) {
 	}
 
 	for i := 0; i < 100; i++ {
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    fmt.Sprintf("%d", i),
 			Operator: RequestCondOperatorMod10,
 			Value:    fmt.Sprintf("%d", i%10),
@@ -987,7 +987,7 @@ func TestRequestCond_Mod(t *testing.T) {
 	}
 
 	for i := 0; i < 2000; i++ {
-		cond := RequestCond{
+		cond := HTTPRequestCond{
 			Param:    fmt.Sprintf("%d", i),
 			Operator: RequestCondOperatorMod100,
 			Value:    fmt.Sprintf("%d", i%100),

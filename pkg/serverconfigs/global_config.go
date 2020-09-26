@@ -1,13 +1,5 @@
 package serverconfigs
 
-import (
-	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/configutils"
-	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
-)
-
-var globalConfig *GlobalConfig = nil
-var globalConfigFile = "global.yaml"
-
 // 全局设置
 type GlobalConfig struct {
 	HTTPAll struct {
@@ -20,22 +12,6 @@ type GlobalConfig struct {
 	TLS    struct{} `yaml:"tls" json:"tls"`
 	Unix   struct{} `yaml:"unix" json:"unix"`
 	UDP    struct{} `yaml:"udp" json:"udp"`
-}
-
-func SharedGlobalConfig() *GlobalConfig {
-	shared.Locker.Lock()
-	defer shared.Locker.Unlock()
-
-	if globalConfig != nil {
-		return globalConfig
-	}
-
-	err := configutils.UnmarshalYamlFile(globalConfigFile, globalConfig)
-	if err != nil {
-		configutils.LogError("[SharedGlobalConfig]" + err.Error())
-		globalConfig = &GlobalConfig{}
-	}
-	return globalConfig
 }
 
 func (this *GlobalConfig) Init() error {

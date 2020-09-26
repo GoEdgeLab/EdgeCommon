@@ -27,9 +27,156 @@ type HTTPWebConfig struct {
 	RequestHeaderPolicy     *shared.HTTPHeaderPolicy    `yaml:"requestHeaderPolicy" json:"requestHeaderPolicy"`         // 请求Header策略
 	ResponseHeaderPolicyRef *shared.HTTPHeaderPolicyRef `yaml:"responseHeaderPolicyRef" json:"responseHeaderPolicyRef"` // 响应Header`
 	ResponseHeaderPolicy    *shared.HTTPHeaderPolicy    `yaml:"responseHeaderPolicy" json:"responseHeaderPolicy"`       // 响应Header策略
+
+	FilterRefs     []*HTTPFilterRef    `yaml:"filterRefs" json:"filterRefs"`         // 筛选配置 TODO
+	FilterPolicies []*HTTPFilterPolicy `yaml:"filterPolicies" json:"filterPolicies"` // 筛选策略
 }
 
 func (this *HTTPWebConfig) Init() error {
+	// 路径规则
+	if len(this.Locations) > 0 {
+		for _, location := range this.Locations {
+			err := location.Init()
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	// gzip
+	if this.Gzip != nil {
+		err := this.Gzip.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// charset
+	if this.Charset != nil {
+		err := this.Charset.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// shutdown
+	if this.Shutdown != nil {
+		err := this.Shutdown.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// pages
+	if len(this.Pages) > 0 {
+		for _, page := range this.Pages {
+			err := page.Init()
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	// redirectToHTTPS
+	if this.RedirectToHttps != nil {
+		err := this.RedirectToHttps.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// accessLog
+	if this.AccessLogRef != nil {
+		err := this.AccessLogRef.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// stat
+	if this.StatRef != nil {
+		err := this.StatRef.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// cache
+	if this.CacheRef != nil {
+		err := this.CacheRef.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// firewall
+	if this.FirewallRef != nil {
+		err := this.FirewallRef.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// websocket
+	if this.WebsocketRef != nil {
+		err := this.WebsocketRef.Init()
+		if err != nil {
+			return err
+		}
+	}
+	if this.Websocket != nil {
+		err := this.Websocket.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// request header
+	if this.RequestHeaderPolicyRef != nil {
+		err := this.RequestHeaderPolicyRef.Init()
+		if err != nil {
+			return err
+		}
+	}
+	if this.RequestHeaderPolicy != nil {
+		err := this.RequestHeaderPolicy.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// response header
+	if this.ResponseHeaderPolicyRef != nil {
+		err := this.ResponseHeaderPolicyRef.Init()
+		if err != nil {
+			return err
+		}
+	}
+	if this.ResponseHeaderPolicy != nil {
+		err := this.ResponseHeaderPolicy.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// filters
+	if this.FilterRefs != nil {
+		for _, ref := range this.FilterRefs {
+			err := ref.Init()
+			if err != nil {
+				return err
+			}
+		}
+	}
+	if this.FilterPolicies != nil {
+		for _, policy := range this.FilterPolicies {
+			err := policy.Init()
+			if err != nil {
+				return err
+			}
+		}
+	}
+
 	return nil
 }
 

@@ -5,3 +5,7 @@ type HTTPWebsocketRef struct {
 	IsOn        bool  `yaml:"isOn" json:"isOn"`
 	WebsocketId int64 `yaml:"websocketId" json:"websocketId"`
 }
+
+func (this *HTTPWebsocketRef) Init() error {
+	return nil
+}

@@ -1,7 +1,7 @@
 package serverconfigs
 
 import (
-	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/configutils"
+	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/Tea"
 	"github.com/iwind/TeaGo/files"
@@ -29,7 +29,7 @@ type HTTPCachePolicy struct {
 	SkipResponseSetCookie          bool     `yaml:"skipSetCookie" json:"skipSetCookie"`                       // 是否跳过响应的Set-Cookie Header
 	EnableRequestCachePragma       bool     `yaml:"enableRequestCachePragma" json:"enableRequestCachePragma"` // 是否支持客户端的Pragma: no-cache
 
-	Cond []*shared.RequestCond `yaml:"cond" json:"cond"`
+	CondGroups []*shared.HTTPRequestCondGroup `yaml:"condGroups" json:"condGroups"`
 
 	life     time.Duration
 	maxSize  int64
@@ -86,8 +86,8 @@ func (this *HTTPCachePolicy) Init() error {
 	}
 
 	// cond
-	if len(this.Cond) > 0 {
-		for _, cond := range this.Cond {
+	if len(this.CondGroups) > 0 {
+		for _, cond := range this.CondGroups {
 			err := cond.Init()
 			if err != nil {
 				return err

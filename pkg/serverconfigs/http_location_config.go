@@ -1,22 +1,26 @@
 package serverconfigs
 
 import (
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
 type HTTPLocationConfig struct {
-	Id              int64                 `yaml:"id" json:"id"`                           // ID
-	IsOn            bool                  `yaml:"isOn" json:"isOn"`                       // 是否启用
-	Pattern         string                `yaml:"pattern" json:"pattern"`                 // 匹配规则 TODO 未来支持更多样的匹配规则
-	Name            string                `yaml:"name" json:"name"`                       // 名称
-	Web             *HTTPWebConfig        `yaml:"web" json:"web"`                         // Web配置
-	URLPrefix       string                `yaml:"urlPrefix" json:"urlPrefix"`             // 实际的URL前缀，TODO 未来支持变量
-	Description     string                `yaml:"description" json:"description"`         // 描述
-	ReverseProxyRef *ReverseProxyRef      `yaml:"reverseProxyRef" json:"reverseProxyRef"` // 反向代理引用
-	ReverseProxy    *ReverseProxyConfig   `yaml:"reverseProxy" json:"reverseProxy"`       // 反向代理设置
-	IsBreak         bool                  `yaml:"isBreak" json:"isBreak"`                 // 终止向下解析
-	Children        []*HTTPLocationConfig `yaml:"children" json:"children"`               // 子规则
+	Id              int64                          `yaml:"id" json:"id"`                           // ID
+	IsOn            bool                           `yaml:"isOn" json:"isOn"`                       // 是否启用
+	Pattern         string                         `yaml:"pattern" json:"pattern"`                 // 匹配规则 TODO 未来支持更多样的匹配规则
+	Name            string                         `yaml:"name" json:"name"`                       // 名称
+	Web             *HTTPWebConfig                 `yaml:"web" json:"web"`                         // Web配置
+	URLPrefix       string                         `yaml:"urlPrefix" json:"urlPrefix"`             // 实际的URL前缀，TODO 未来支持变量
+	Description     string                         `yaml:"description" json:"description"`         // 描述
+	ReverseProxyRef *ReverseProxyRef               `yaml:"reverseProxyRef" json:"reverseProxyRef"` // 反向代理引用
+	ReverseProxy    *ReverseProxyConfig            `yaml:"reverseProxy" json:"reverseProxy"`       // 反向代理设置
+	IsBreak         bool                           `yaml:"isBreak" json:"isBreak"`                 // 终止向下解析
+	Children        []*HTTPLocationConfig          `yaml:"children" json:"children"`               // 子规则
+	CondGroups      []*shared.HTTPRequestCondGroup `yaml:"condGroups" json:"condGroups"`           // 匹配条件 TODO
+	AutoFlush       bool                           `yaml:"autoFlush" json:"autoFlush"`             // 自动Flush TODO
 
 	patternType HTTPLocationPatternType // 规则类型：LocationPattern*
 	prefix      string                  // 前缀
@@ -50,6 +54,14 @@ func (this *HTTPLocationConfig) Init() error {
 	// Children
 	for _, child := range this.Children {
 		err := child.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// conds
+	for _, group := range this.CondGroups {
+		err := group.Init()
 		if err != nil {
 			return err
 		}
@@ -208,4 +220,82 @@ func (this *HTTPLocationConfig) parsePattern() error {
 	}
 
 	return nil
+}
+
+// 判断是否匹配路径
+// TODO 支持子Location
+func (this *HTTPLocationConfig) Match(path string, formatter func(source string) string) (vars map[string]string, isMatched bool) {
+	// 判断条件
+	if len(this.CondGroups) > 0 {
+		for _, condGroup := range this.CondGroups {
+			if !condGroup.IsOn {
+				continue
+			}
+
+			if !condGroup.Match(formatter) {
+				return nil, false
+			}
+		}
+	}
+
+	if this.patternType == HTTPLocationPatternTypePrefix {
+		if this.reverse {
+			if this.caseInsensitive {
+				return nil, !strings.HasPrefix(strings.ToLower(path), strings.ToLower(this.prefix))
+			} else {
+				return nil, !strings.HasPrefix(path, this.prefix)
+			}
+		} else {
+			if this.caseInsensitive {
+				return nil, strings.HasPrefix(strings.ToLower(path), strings.ToLower(this.prefix))
+			} else {
+				return nil, strings.HasPrefix(path, this.prefix)
+			}
+		}
+	}
+
+	if this.patternType == HTTPLocationPatternTypeExact {
+		if this.reverse {
+			if this.caseInsensitive {
+				return nil, strings.ToLower(path) != strings.ToLower(this.path)
+			} else {
+				return nil, path != this.path
+			}
+		} else {
+			if this.caseInsensitive {
+				return nil, strings.ToLower(path) == strings.ToLower(this.path)
+			} else {
+				return nil, path == this.path
+			}
+		}
+	}
+
+	// TODO 正则表达式匹配会让请求延迟0.01-0.02ms，可以使用缓存加速正则匹配，因为大部分路径都是不变的
+	if this.patternType == HTTPLocationPatternTypeRegexp {
+		if this.reg != nil {
+			if this.reverse {
+				return nil, !this.reg.MatchString(path)
+			} else {
+				b := this.reg.MatchString(path)
+				if b {
+					result := map[string]string{}
+					matches := this.reg.FindStringSubmatch(path)
+					subNames := this.reg.SubexpNames()
+					for index, value := range matches {
+						result[strconv.Itoa(index)] = value
+						subName := subNames[index]
+						if len(subName) > 0 {
+							result[subName] = value
+						}
+					}
+					return result, true
+				}
+				return nil, b
+			}
+		}
+
+		return nil, this.reverse
+	}
+
+	return nil, false
 }

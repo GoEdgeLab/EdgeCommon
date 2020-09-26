@@ -5,3 +5,7 @@ type HTTPHeaderPolicyRef struct {
 	IsOn           bool  `yaml:"isOn" json:"isOn"`
 	HeaderPolicyId int64 `yaml:"headerPolicyId" json:"headerPolicyId"`
 }
+
+func (this *HTTPHeaderPolicyRef) Init() error {
+	return nil
+}
