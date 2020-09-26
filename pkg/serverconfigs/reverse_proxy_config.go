@@ -16,6 +16,8 @@ type ReverseProxyConfig struct {
 	BackupOriginRefs  []*OriginRef      `yaml:"backupOriginRefs" json:"backupOriginRefs"`   // 备用源站引用
 	Scheduling        *SchedulingConfig `yaml:"scheduling" json:"scheduling"`               // 调度算法选项
 
+	// TODO 可以设置同后端交互的主机名（Host），并支持变量
+
 	hasPrimaryOrigins  bool
 	hasBackupOrigins   bool
 	schedulingIsBackup bool

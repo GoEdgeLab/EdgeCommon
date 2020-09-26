@@ -52,8 +52,11 @@ service HTTPWebService {
 	// 更改路径规则配置
 	rpc updateHTTPWebLocations (UpdateHTTPWebLocationsRequest) returns (RPCUpdateSuccess);
 
-	// 跳转到HTTPS
+	// 更改跳转到HTTPS设置
 	rpc updateHTTPWebRedirectToHTTPS (UpdateHTTPWebRedirectToHTTPSRequest) returns (RPCUpdateSuccess);
+
+	// 更改Websocket设置
+	rpc updateHTTPWebWebsocket (UpdateHTTPWebWebsocketRequest) returns (RPCUpdateSuccess);
 }
 
 // 创建Web配置
@@ -155,8 +158,14 @@ message UpdateHTTPWebLocationsRequest {
 	bytes locationsJSON = 3;
 }
 
-// 跳转到HTTPS
+// 更改跳转到HTTPS设置
 message UpdateHTTPWebRedirectToHTTPSRequest {
 	int64 webId = 1;
 	bytes redirectToHTTPSJSON = 2;
+}
+
+// 更改Websocket设置
+message UpdateHTTPWebWebsocketRequest {
+	int64 webId = 1;
+	bytes websocketJSON = 2;
 }

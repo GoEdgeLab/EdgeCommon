@@ -3,7 +3,6 @@ package serverconfigs
 import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
-	"github.com/iwind/TeaGo/maps"
 	"time"
 )
 
@@ -15,21 +14,16 @@ type HTTPWebsocketConfig struct {
 	// 握手超时时间
 	HandshakeTimeout *shared.TimeDuration `yaml:"handshakeTimeout" json:"handshakeTimeout"`
 
-	// 允许的域名，支持 www.example.com, example.com, .example.com, *.example.com
+	// 允许的来源域名，支持 www.example.com, example.com, .example.com, *.example.com
 	AllowAllOrigins bool     `yaml:"allowAllOrigins" json:"allowAllOrigins"`
-	Origins         []string `yaml:"origins" json:"origins"`
+	AllowedOrigins  []string `yaml:"allowedOrigins" json:"allowedOrigins"`
 
-	// 转发方式
-	ForwardMode HTTPWebsocketForwardMode `yaml:"forwardMode" json:"forwardMode"`
+	// 向后传递的来源
+	RequestSameOrigin bool   `yaml:"requestSameOrigin" json:"requestSameOrigin"` // 和请求一致
+	RequestOrigin     string `yaml:"requestOrigin" json:"requestOrigin"`         // 自行指定Origin，支持变量
 
-	handshakeTimeoutDuration time.Duration
-}
-
-// 获取新对象
-func NewHTTPWebsocketConfig() *HTTPWebsocketConfig {
-	return &HTTPWebsocketConfig{
-		IsOn: true,
-	}
+	handshakeTimeoutDuration  time.Duration
+	requestOriginHasVariables bool
 }
 
 // 校验
@@ -39,6 +33,9 @@ func (this *HTTPWebsocketConfig) Init() error {
 		this.handshakeTimeoutDuration = this.HandshakeTimeout.Duration()
 	}
 
+	// requestOrigin
+	this.requestOriginHasVariables = configutils.HasVariables(this.RequestOrigin)
+
 	return nil
 }
 
@@ -47,20 +44,15 @@ func (this *HTTPWebsocketConfig) HandshakeTimeoutDuration() time.Duration {
 	return this.handshakeTimeoutDuration
 }
 
-// 转发模式名称
-func (this *HTTPWebsocketConfig) ForwardModeSummary() maps.Map {
-	for _, mode := range AllWebsocketForwardModes() {
-		if mode["mode"] == this.ForwardMode {
-			return mode
-		}
-	}
-	return nil
-}
-
 // 匹配域名
 func (this *HTTPWebsocketConfig) MatchOrigin(origin string) bool {
 	if this.AllowAllOrigins {
 		return true
 	}
-	return configutils.MatchDomains(this.Origins, origin)
+	return configutils.MatchDomains(this.AllowedOrigins, origin)
+}
+
+// 判断请求Origin是否有变量
+func (this *HTTPWebsocketConfig) RequestOriginHasVariables() bool {
+	return this.requestOriginHasVariables
 }

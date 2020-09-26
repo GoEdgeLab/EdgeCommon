@@ -84,6 +84,13 @@ func (this *ServerConfig) Init() error {
 		}
 	}
 
+	if this.ReverseProxyRef != nil {
+		err := this.ReverseProxyRef.Init()
+		if err != nil {
+			return err
+		}
+	}
+
 	if this.ReverseProxy != nil {
 		err := this.ReverseProxy.Init()
 		if err != nil {

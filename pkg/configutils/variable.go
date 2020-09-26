@@ -52,3 +52,8 @@ func ParseVariables(source string, replacer func(varName string) (value string))
 	}
 	return result.String()
 }
+
+// 判断是否有变量
+func HasVariables(source string) bool {
+	return regexpNamedVariable.MatchString(source)
+}

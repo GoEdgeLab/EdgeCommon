@@ -1,12 +1,9 @@
 package serverconfigs
 
 import (
-	"crypto/tls"
-	"errors"
 	"fmt"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
-	"net"
 	"strconv"
 	"strings"
 	"time"
@@ -96,8 +93,20 @@ func (this *OriginConfig) Init() error {
 	}
 
 	// Headers
+	if this.RequestHeaderPolicyRef != nil {
+		err := this.RequestHeaderPolicyRef.Init()
+		if err != nil {
+			return err
+		}
+	}
 	if this.RequestHeaderPolicy != nil {
 		err := this.RequestHeaderPolicy.Init()
+		if err != nil {
+			return err
+		}
+	}
+	if this.ResponseHeaderPolicyRef != nil {
+		err := this.ResponseHeaderPolicyRef.Init()
 		if err != nil {
 			return err
 		}
@@ -150,31 +159,6 @@ func (this *OriginConfig) CandidateWeight() uint {
 	return this.Weight
 }
 
-// 连接源站
-func (this *OriginConfig) Connect() (net.Conn, error) {
-	if this.Addr == nil {
-		return nil, errors.New("origin server address should not be empty")
-	}
-
-	switch this.Addr.Protocol {
-	case "", ProtocolTCP:
-		// TODO 支持TCP4/TCP6
-		// TODO 支持指定特定网卡
-		// TODO Addr支持端口范围，如果有多个端口时，随机一个端口使用
-		return net.DialTimeout("tcp", this.Addr.Host+":"+this.Addr.PortRange, this.connTimeoutDuration)
-	case ProtocolTLS:
-		// TODO 支持TCP4/TCP6
-		// TODO 支持指定特定网卡
-		// TODO Addr支持端口范围，如果有多个端口时，随机一个端口使用
-		// TODO 支持使用证书
-		return tls.Dial("tcp", this.Addr.Host+":"+this.Addr.PortRange, &tls.Config{})
-	}
-
-	// TODO 支持从Unix、Pipe、HTTP、HTTPS中读取数据
-
-	return nil, errors.New("invalid scheme '" + this.Addr.Protocol.String() + "'")
-}
-
 // 获取最终请求的地址
 func (this *OriginConfig) RealAddr() string {
 	return this.realAddr
@@ -183,4 +167,9 @@ func (this *OriginConfig) RealAddr() string {
 // 设置最终请求的地址 TODO 需要实现
 func (this *OriginConfig) SetRealAddr(realAddr string) {
 	this.realAddr = realAddr
+}
+
+// 连接超时时间
+func (this *OriginConfig) ConnTimeoutDuration() time.Duration {
+	return this.connTimeoutDuration
 }

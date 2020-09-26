@@ -1,0 +1,37 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+
+service HTTPWebsocketService {
+	// 创建Websocket配置
+	rpc createHTTPWebsocket (CreateHTTPWebsocketRequest) returns (CreateHTTPWebsocketResponse);
+
+	// 修改Websocket配置
+	rpc updateHTTPWebsocket (UpdateHTTPWebsocketRequest) returns (RPCUpdateSuccess);
+}
+
+// 创建Websocket配置
+message CreateHTTPWebsocketRequest {
+	bytes handshakeTimeoutJSON = 1;
+	bool allowAllOrigins = 2;
+	repeated string allowedOrigins = 3;
+	bool requestSameOrigin = 4;
+	string requestOrigin = 5;
+}
+
+message CreateHTTPWebsocketResponse {
+	int64 websocketId = 1;
+}
+
+// 修改Websocket配置
+message UpdateHTTPWebsocketRequest {
+	int64 websocketId = 1;
+	bytes handshakeTimeoutJSON = 2;
+	bool allowAllOrigins = 3;
+	repeated string allowedOrigins = 4;
+	bool requestSameOrigin = 5;
+	string requestOrigin = 6;
+}

@@ -1,10 +1,8 @@
 package shared
 
 import (
-	"regexp"
+	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 )
-
-var regexpNamedVariable = regexp.MustCompile("\\${[\\w.-]+}")
 
 // 头部信息定义
 type HTTPHeaderConfig struct {
@@ -26,7 +24,7 @@ func NewHeaderConfig() *HTTPHeaderConfig {
 
 // 校验
 func (this *HTTPHeaderConfig) Init() error {
-	this.hasVariables = regexpNamedVariable.MatchString(this.Value)
+	this.hasVariables = configutils.HasVariables(this.Value)
 
 	if this.Status != nil {
 		err := this.Status.Init()
