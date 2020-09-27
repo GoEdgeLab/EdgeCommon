@@ -82,4 +82,5 @@ message UpdateReverseProxyRequest {
 	string requestHost = 2;
 	string requestURI = 3;
 	string stripPrefix = 4;
+	bool autoFlush = 5;
 }

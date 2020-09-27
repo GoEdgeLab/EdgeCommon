@@ -20,7 +20,6 @@ type HTTPLocationConfig struct {
 	IsBreak         bool                           `yaml:"isBreak" json:"isBreak"`                 // 终止向下解析
 	Children        []*HTTPLocationConfig          `yaml:"children" json:"children"`               // 子规则
 	CondGroups      []*shared.HTTPRequestCondGroup `yaml:"condGroups" json:"condGroups"`           // 匹配条件 TODO
-	AutoFlush       bool                           `yaml:"autoFlush" json:"autoFlush"`             // 自动Flush TODO
 
 	patternType HTTPLocationPatternType // 规则类型：LocationPattern*
 	prefix      string                  // 前缀

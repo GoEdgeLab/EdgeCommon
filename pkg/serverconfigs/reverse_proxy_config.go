@@ -21,6 +21,8 @@ type ReverseProxyConfig struct {
 	RequestHost string `yaml:"requestHost" json:"requestHost"` // 请求Host，支持变量
 	RequestURI  string `yaml:"requestURI" json:"requestURI"`   // 请求URI，支持变量，如果同时定义了StripPrefix，则先执行StripPrefix
 
+	AutoFlush bool `yaml:"autoFlush" json:"autoFlush"` // 是否自动刷新缓冲区，在比如SSE（server-sent events）场景下很有用
+
 	requestHostHasVariables bool
 	requestURIHasVariables  bool
 

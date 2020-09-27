@@ -12,7 +12,7 @@ type HTTPWebConfig struct {
 	Charset            *HTTPCharsetConfig         `yaml:"charset" json:"charset"`                       // 字符编码
 	Shutdown           *HTTPShutdownConfig        `yaml:"shutdown" json:"shutdown"`                     // 临时关闭配置
 	Pages              []*HTTPPageConfig          `yaml:"pages" json:"pages"`                           // 特殊页面配置
-	RedirectToHttps    *HTTPRedirectToHTTPSConfig `yaml:"redirectToHttps" json:"redirectToHttps"`       // 是否自动跳转到Https
+	RedirectToHttps    *HTTPRedirectToHTTPSConfig `yaml:"redirectToHTTPS" json:"redirectToHTTPS"`       // 是否自动跳转到Https
 	Root               *HTTPRootConfig            `yaml:"root" json:"root"`                             // 资源根目录 TODO
 	MaxRequestBodySize string                     `yaml:"maxRequestBodySize" json:"maxRequestBodySize"` // 请求body最大尺寸 TODO 需要实现
 	AccessLogRef       *HTTPAccessLogRef          `yaml:"accessLog" json:"accessLog"`                   // 访问日志配置
