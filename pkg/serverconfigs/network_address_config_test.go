@@ -55,3 +55,51 @@ func TestNetworkAddressConfig_FullAddresses(t *testing.T) {
 		t.Log(addr.FullAddresses())
 	}
 }
+
+func TestNetworkAddressConfig_PickAddress(t *testing.T) {
+	{
+		addr := &NetworkAddressConfig{
+			Host:      "127.0.0.1",
+			PortRange: "1234",
+		}
+		err := addr.Init()
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Log(addr.PickAddress())
+	}
+
+	{
+		addr := &NetworkAddressConfig{
+			Host:      "127.0.0.1",
+			PortRange: "8000-9000",
+		}
+		err := addr.Init()
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Log(addr.PickAddress())
+	}
+	{
+		addr := &NetworkAddressConfig{
+			Host:      "127.0.0.1",
+			PortRange: "8000-8001",
+		}
+		err := addr.Init()
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Log(addr.PickAddress())
+	}
+	{
+		addr := &NetworkAddressConfig{
+			Host:      "127.0.0.1",
+			PortRange: "9000-8000",
+		}
+		err := addr.Init()
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Log(addr.PickAddress())
+	}
+}

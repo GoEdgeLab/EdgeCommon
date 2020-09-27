@@ -72,6 +72,11 @@ func (this Protocol) Primary() Protocol {
 	}
 }
 
+// Scheme
+func (this Protocol) Scheme() string {
+	return string(this)
+}
+
 // 转换为字符串
 func (this Protocol) String() string {
 	return string(this)
