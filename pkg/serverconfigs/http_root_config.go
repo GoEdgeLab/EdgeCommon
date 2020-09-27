@@ -8,7 +8,7 @@ type HTTPRootConfig struct {
 	IsOn        bool     `yaml:"isOn" json:"isOn"`               // 是否启用
 	Dir         string   `yaml:"dir" json:"dir"`                 // 目录
 	Indexes     []string `yaml:"indexes" json:"indexes"`         // 默认首页文件
-	StripPrefix string   `yaml:"stripPrefix" json:"stripPrefix"` // 去除前缀
+	StripPrefix string   `yaml:"stripPrefix" json:"stripPrefix"` // 去除URL前缀
 	DecodePath  bool     `yaml:"decodePath" json:"decodePath"`   // 是否对请求路径进行解码
 	IsBreak     bool     `yaml:"isBreak" json:"isBreak"`         // 找不到文件的情况下是否终止
 

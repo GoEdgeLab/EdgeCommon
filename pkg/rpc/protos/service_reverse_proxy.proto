@@ -26,7 +26,7 @@ service ReverseProxyService {
 	rpc updateReverseProxyBackupOrigins (UpdateReverseProxyBackupOriginsRequest) returns (RPCUpdateSuccess);
 
 	// 修改是否启用
-	rpc updateReverseProxyIsOn (UpdateReverseProxyIsOnRequest) returns (RPCUpdateSuccess);
+	rpc updateReverseProxy (UpdateReverseProxyRequest) returns (RPCUpdateSuccess);
 }
 
 // 创建反向代理
@@ -77,7 +77,9 @@ message UpdateReverseProxyBackupOriginsRequest {
 }
 
 // 修改是否启用
-message UpdateReverseProxyIsOnRequest {
+message UpdateReverseProxyRequest {
 	int64 reverseProxyId = 1;
-	bool isOn = 2;
+	string requestHost = 2;
+	string requestURI = 3;
+	string stripPrefix = 4;
 }

@@ -1,6 +1,7 @@
 package serverconfigs
 
 import (
+	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/schedulingconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"sync"
@@ -16,7 +17,12 @@ type ReverseProxyConfig struct {
 	BackupOriginRefs  []*OriginRef      `yaml:"backupOriginRefs" json:"backupOriginRefs"`   // 备用源站引用
 	Scheduling        *SchedulingConfig `yaml:"scheduling" json:"scheduling"`               // 调度算法选项
 
-	// TODO 可以设置同后端交互的主机名（Host），并支持变量
+	StripPrefix string `yaml:"stripPrefix" json:"stripPrefix"` // 去除URL前缀
+	RequestHost string `yaml:"requestHost" json:"requestHost"` // 请求Host，支持变量
+	RequestURI  string `yaml:"requestURI" json:"requestURI"`   // 请求URI，支持变量，如果同时定义了StripPrefix，则先执行StripPrefix
+
+	requestHostHasVariables bool
+	requestURIHasVariables  bool
 
 	hasPrimaryOrigins  bool
 	hasBackupOrigins   bool
@@ -27,6 +33,9 @@ type ReverseProxyConfig struct {
 
 // 初始化
 func (this *ReverseProxyConfig) Init() error {
+	this.requestHostHasVariables = configutils.HasVariables(this.RequestHost)
+	this.requestURIHasVariables = configutils.HasVariables(this.RequestURI)
+
 	this.hasPrimaryOrigins = len(this.PrimaryOrigins) > 0
 	this.hasBackupOrigins = len(this.BackupOrigins) > 0
 
@@ -139,4 +148,14 @@ func (this *ReverseProxyConfig) FindSchedulingConfig() *SchedulingConfig {
 		this.Scheduling = &SchedulingConfig{Code: "random"}
 	}
 	return this.Scheduling
+}
+
+// 判断RequestHost是否有变量
+func (this *ReverseProxyConfig) RequestHostHasVariables() bool {
+	return this.requestHostHasVariables
+}
+
+// 判断RequestURI是否有变量
+func (this *ReverseProxyConfig) RequestURIHasVariables() bool {
+	return this.requestURIHasVariables
 }
