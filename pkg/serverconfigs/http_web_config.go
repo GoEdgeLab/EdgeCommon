@@ -21,6 +21,8 @@ type HTTPWebConfig struct {
 	FirewallRef        *HTTPFirewallRef           `yaml:"firewallRef" json:"firewallRef"`               // 防火墙设置
 	WebsocketRef       *HTTPWebsocketRef          `yaml:"websocketRef" json:"websocketRef"`             // Websocket应用配置
 	Websocket          *HTTPWebsocketConfig       `yaml:"websocket" json:"websocket"`                   // Websocket配置
+	RewriteRefs        []*HTTPRewriteRef          `yaml:"rewriteRefs" json:"rewriteRefs"`               // 重写规则配置
+	RewriteRules       []*HTTPRewriteRule         `yaml:"rewriteRules" json:"rewriteRules"`             // 重写规则
 
 	RequestHeaderPolicyRef  *shared.HTTPHeaderPolicyRef `yaml:"requestHeaderPolicyRef" json:"requestHeaderPolicyRef"`   // 请求Header
 	RequestHeaderPolicy     *shared.HTTPHeaderPolicy    `yaml:"requestHeaderPolicy" json:"requestHeaderPolicy"`         // 请求Header策略
@@ -181,6 +183,14 @@ func (this *HTTPWebConfig) Init() error {
 			if err != nil {
 				return err
 			}
+		}
+	}
+
+	// rewrite rules
+	for _, rewriteRule := range this.RewriteRules {
+		err := rewriteRule.Init()
+		if err != nil {
+			return err
 		}
 	}
 

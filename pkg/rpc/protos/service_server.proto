@@ -96,6 +96,7 @@ message UpdateServerBasicRequest {
 	string name = 2;
 	string description = 3;
 	int64 clusterId = 4;
+	bool isOn = 5;
 }
 
 // 修改服务的HTTP等设置

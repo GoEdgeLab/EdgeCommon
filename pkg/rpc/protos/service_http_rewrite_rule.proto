@@ -1,0 +1,41 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+
+service HTTPRewriteRuleService {
+	// 创建重写规则
+	rpc createHTTPRewriteRule (CreateHTTPRewriteRuleRequest) returns (CreateHTTPRewriteRuleResponse);
+
+	// 修改重写规则
+	rpc updateHTTPRewriteRule (UpdateHTTPRewriteRuleRequest) returns (RPCUpdateSuccess);
+}
+
+// 创建重写规则
+message CreateHTTPRewriteRuleRequest {
+	string pattern = 1;
+	string replace = 2;
+	string mode = 3;
+	int32 redirectStatus = 4;
+	bool isBreak = 5;
+	string proxyHost = 6;
+	bool isOn = 7;
+}
+
+message CreateHTTPRewriteRuleResponse {
+	int64 rewriteRuleId = 1;
+}
+
+// 修改重写规则
+message UpdateHTTPRewriteRuleRequest {
+	int64 rewriteRuleId = 1;
+	string pattern = 2;
+	string replace = 3;
+	string mode = 4;
+	int32 redirectStatus = 5;
+	bool isBreak = 6;
+	string proxyHost = 7;
+	bool isOn = 8;
+}

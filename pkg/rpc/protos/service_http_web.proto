@@ -57,6 +57,9 @@ service HTTPWebService {
 
 	// 更改Websocket设置
 	rpc updateHTTPWebWebsocket (UpdateHTTPWebWebsocketRequest) returns (RPCUpdateSuccess);
+
+	// 更改重写规则设置
+	rpc updateHTTPWebRewriteRules (UpdateHTTPWebRewriteRulesRequest) returns (RPCUpdateSuccess);
 }
 
 // 创建Web配置
@@ -168,4 +171,10 @@ message UpdateHTTPWebRedirectToHTTPSRequest {
 message UpdateHTTPWebWebsocketRequest {
 	int64 webId = 1;
 	bytes websocketJSON = 2;
+}
+
+// 更改重写规则设置
+message UpdateHTTPWebRewriteRulesRequest {
+	int64 webId = 1;
+	bytes rewriteRulesJSON = 2;
 }
