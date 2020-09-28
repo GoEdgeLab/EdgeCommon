@@ -22,6 +22,7 @@ message CreateHTTPRewriteRuleRequest {
 	bool isBreak = 5;
 	string proxyHost = 6;
 	bool isOn = 7;
+	bool withQuery = 8;
 }
 
 message CreateHTTPRewriteRuleResponse {
@@ -38,4 +39,5 @@ message UpdateHTTPRewriteRuleRequest {
 	bool isBreak = 6;
 	string proxyHost = 7;
 	bool isOn = 8;
+	bool withQuery = 9;
 }
