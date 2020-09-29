@@ -19,7 +19,7 @@ type HTTPLocationConfig struct {
 	ReverseProxy    *ReverseProxyConfig            `yaml:"reverseProxy" json:"reverseProxy"`       // 反向代理设置
 	IsBreak         bool                           `yaml:"isBreak" json:"isBreak"`                 // 终止向下解析
 	Children        []*HTTPLocationConfig          `yaml:"children" json:"children"`               // 子规则
-	CondGroups      []*shared.HTTPRequestCondGroup `yaml:"condGroups" json:"condGroups"`           // 匹配条件 TODO
+	Conds           *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"`                     // 匹配条件 TODO
 
 	patternType HTTPLocationPatternType // 规则类型：LocationPattern*
 	prefix      string                  // 前缀
@@ -66,8 +66,8 @@ func (this *HTTPLocationConfig) Init() error {
 	}
 
 	// conds
-	for _, group := range this.CondGroups {
-		err := group.Init()
+	if this.Conds != nil {
+		err := this.Conds.Init()
 		if err != nil {
 			return err
 		}
@@ -232,16 +232,8 @@ func (this *HTTPLocationConfig) parsePattern() error {
 // TODO 支持子Location
 func (this *HTTPLocationConfig) Match(path string, formatter func(source string) string) (vars map[string]string, isMatched bool) {
 	// 判断条件
-	if len(this.CondGroups) > 0 {
-		for _, condGroup := range this.CondGroups {
-			if !condGroup.IsOn {
-				continue
-			}
-
-			if !condGroup.Match(formatter) {
-				return nil, false
-			}
-		}
+	if this.Conds != nil && !this.Conds.MatchRequest(formatter) {
+		return
 	}
 
 	if this.patternType == HTTPLocationPatternTypePrefix {

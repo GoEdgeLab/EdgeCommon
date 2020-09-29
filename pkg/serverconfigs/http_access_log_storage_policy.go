@@ -4,7 +4,6 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/Tea"
-	"github.com/iwind/TeaGo/logs"
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
 	"os"
@@ -14,47 +13,21 @@ import (
 // 日志存储策略
 // 存储在configs/accesslog.storage.$id.conf
 type HTTPAccessLogStoragePolicy struct {
-	Id         int64                          `yaml:"id" json:"id"`
-	Name       string                         `yaml:"name" json:"name"`
-	IsOn       bool                           `yaml:"isOn" json:"isOn"`
-	Type       string                         `yaml:"type" json:"type"`              // 存储类型
-	Options    map[string]interface{}         `yaml:"options" json:"options"`        // 存储选项
-	CondGroups []*shared.HTTPRequestCondGroup `yaml:"condGroups" json:"condsGroups"` // 请求条件
-}
-
-// 创建新策略
-func NewHTTPAccessLogStoragePolicy() *HTTPAccessLogStoragePolicy {
-	return &HTTPAccessLogStoragePolicy{
-		IsOn: true,
-	}
-}
-
-// 从文件中加载策略
-func NewAccessLogStoragePolicyFromId(id string) *HTTPAccessLogStoragePolicy {
-	filename := "accesslog.storage." + id + ".conf"
-	data, err := ioutil.ReadFile(Tea.ConfigFile(filename))
-	if err != nil {
-		logs.Error(err)
-		return nil
-	}
-	policy := NewHTTPAccessLogStoragePolicy()
-	err = yaml.Unmarshal(data, policy)
-	if err != nil {
-		logs.Error(err)
-		return nil
-	}
-	return policy
+	Id      int64                          `yaml:"id" json:"id"`
+	Name    string                         `yaml:"name" json:"name"`
+	IsOn    bool                           `yaml:"isOn" json:"isOn"`
+	Type    string                         `yaml:"type" json:"type"`       // 存储类型
+	Options map[string]interface{}         `yaml:"options" json:"options"` // 存储选项
+	Conds   *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"`     // 请求条件
 }
 
 // 校验
 func (this *HTTPAccessLogStoragePolicy) Init() error {
 	// cond
-	if len(this.CondGroups) > 0 {
-		for _, cond := range this.CondGroups {
-			err := cond.Init()
-			if err != nil {
-				return err
-			}
+	if this.Conds != nil {
+		err := this.Conds.Init()
+		if err != nil {
+			return err
 		}
 	}
 
@@ -91,19 +64,6 @@ func (this *HTTPAccessLogStoragePolicy) MatchKeyword(keyword string) (matched bo
 		}
 	}
 	return
-}
-
-// 匹配条件
-func (this *HTTPAccessLogStoragePolicy) MatchConds(formatter func(string) string) bool {
-	if len(this.CondGroups) == 0 {
-		return true
-	}
-	for _, cond := range this.CondGroups {
-		if !cond.Match(formatter) {
-			return false
-		}
-	}
-	return true
 }
 
 // 将ID转换为字符串

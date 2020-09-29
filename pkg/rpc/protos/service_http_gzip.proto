@@ -22,7 +22,7 @@ message CreateHTTPGzipRequest {
 	int32 level = 1;
 	SizeCapacity minLength = 2;
 	SizeCapacity maxLength = 3;
-	bytes condGroupsJSON = 4;
+	bytes condsJSON = 4;
 }
 
 message CreateHTTPGzipResponse {
@@ -44,5 +44,5 @@ message UpdateHTTPGzipRequest {
 	int32 level = 2;
 	SizeCapacity minLength = 3;
 	SizeCapacity maxLength = 4;
-	bytes condGroupsJSON = 5;
+	bytes condsJSON = 5;
 }

@@ -18,7 +18,8 @@ import (
 
 // 重写条件定义
 type HTTPRequestCond struct {
-	Type string `yaml:"type" json:"type"` // 类型，在特殊条件时使用
+	Type      string `yaml:"type" json:"type"`           // 类型，在特殊条件时使用
+	IsRequest bool   `yaml:"isRequest" json:"isRequest"` // 是否为请求的条件，用来区分在什么阶段执行
 
 	// 要测试的字符串
 	// 其中可以使用跟请求相关的参数，比如：

@@ -35,7 +35,7 @@ type HTTPRewriteRule struct {
 	// - cond ${status} gte 200
 	// - cond ${arg.name} eq lily
 	// - cond ${requestPath} regexp .*\.png
-	CondGroups []*shared.HTTPRequestCondGroup `yaml:"condGroups" json:"condGroups"` // 匹配条件 TODO
+	Conds *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"` // 匹配条件 TODO
 
 	// 规则
 	// 语法为：pattern regexp 比如：
@@ -73,8 +73,8 @@ func (this *HTTPRewriteRule) Init() error {
 	this.reg = reg
 
 	// 校验条件
-	for _, condGroup := range this.CondGroups {
-		err := condGroup.Init()
+	if this.Conds != nil {
+		err := this.Conds.Init()
 		if err != nil {
 			return err
 		}
@@ -84,7 +84,7 @@ func (this *HTTPRewriteRule) Init() error {
 }
 
 // 对某个请求执行规则
-func (this *HTTPRewriteRule) Match(requestPath string, formatter func(source string) string) (replace string, varMapping map[string]string, matched bool) {
+func (this *HTTPRewriteRule) MatchRequest(requestPath string, formatter func(source string) string) (replace string, varMapping map[string]string, matched bool) {
 	if this.reg == nil {
 		return "", nil, false
 	}
@@ -95,12 +95,8 @@ func (this *HTTPRewriteRule) Match(requestPath string, formatter func(source str
 	}
 
 	// 判断条件
-	if len(this.CondGroups) > 0 {
-		for _, cond := range this.CondGroups {
-			if !cond.Match(formatter) {
-				return "", nil, false
-			}
-		}
+	if this.Conds != nil && !this.Conds.MatchRequest(formatter) {
+		return "", nil, false
 	}
 
 	varMapping = map[string]string{}

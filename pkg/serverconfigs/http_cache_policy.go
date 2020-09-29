@@ -29,7 +29,7 @@ type HTTPCachePolicy struct {
 	SkipResponseSetCookie          bool     `yaml:"skipSetCookie" json:"skipSetCookie"`                       // 是否跳过响应的Set-Cookie Header
 	EnableRequestCachePragma       bool     `yaml:"enableRequestCachePragma" json:"enableRequestCachePragma"` // 是否支持客户端的Pragma: no-cache
 
-	CondGroups []*shared.HTTPRequestCondGroup `yaml:"condGroups" json:"condGroups"`
+	Conds *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"` // 请求条件
 
 	life     time.Duration
 	maxSize  int64
@@ -86,12 +86,10 @@ func (this *HTTPCachePolicy) Init() error {
 	}
 
 	// cond
-	if len(this.CondGroups) > 0 {
-		for _, cond := range this.CondGroups {
-			err := cond.Init()
-			if err != nil {
-				return err
-			}
+	if this.Conds != nil {
+		err := this.Conds.Init()
+		if err != nil {
+			return err
 		}
 	}
 

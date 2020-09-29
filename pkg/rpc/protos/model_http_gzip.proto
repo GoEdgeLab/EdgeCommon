@@ -11,5 +11,5 @@ message HTTPGzip {
 	int32 level = 3;
 	SizeCapacity minLength = 4;
 	SizeCapacity maxLength = 5;
-	bytes CondGroupsJSON = 6;
+	bytes condsJSON = 6;
 }
