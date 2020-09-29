@@ -18,19 +18,15 @@ import (
 
 // 重写条件定义
 type HTTPRequestCond struct {
-	Id   string `yaml:"id" json:"id"`     // ID
-	IsOn bool   `yaml:"isOn" json:"isOn"` // 是否启用
+	Type string `yaml:"type" json:"type"` // 类型，在特殊条件时使用
 
 	// 要测试的字符串
 	// 其中可以使用跟请求相关的参数，比如：
 	// ${arg.name}, ${requestPath}
 	Param string `yaml:"param" json:"param"`
 
-	// 运算符
-	Operator RequestCondOperator `yaml:"operator" json:"operator"`
-
-	// 对比
-	Value string `yaml:"value" json:"value"`
+	Operator RequestCondOperator `yaml:"operator" json:"operator"` // 运算符
+	Value    string              `yaml:"value" json:"value"`       // 对比值
 
 	isInt   bool
 	isFloat bool

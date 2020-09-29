@@ -2,7 +2,6 @@ package serverconfigs
 
 import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
-	"regexp"
 	"strings"
 )
 
@@ -13,12 +12,12 @@ var (
 
 // gzip配置
 type HTTPGzipConfig struct {
-	Id        int64                `yaml:"id" json:"id"`               // ID
-	IsOn      bool                 `yaml:"isOn" json:"isOn"`           // 是否启用
-	Level     int8                 `yaml:"level" json:"level"`         // 1-9
-	MinLength *shared.SizeCapacity `yaml:"minLength" json:"minLength"` // 最小压缩对象比如4m, 24k
-	MaxLength *shared.SizeCapacity `yaml:"minLength" json:"maxLength"` // 最大压缩对象 TODO 需要实现
-	MimeTypes []string             `yaml:"mimeTypes" json:"mimeTypes"` // 比如text/html, text/* // TODO 需要实现，可能需要用RequestConds替代
+	Id         int64                          `yaml:"id" json:"id"`                 // ID
+	IsOn       bool                           `yaml:"isOn" json:"isOn"`             // 是否启用
+	Level      int8                           `yaml:"level" json:"level"`           // 1-9
+	MinLength  *shared.SizeCapacity           `yaml:"minLength" json:"minLength"`   // 最小压缩对象比如4m, 24k
+	MaxLength  *shared.SizeCapacity           `yaml:"maxLength" json:"maxLength"`   // 最大压缩对象 TODO 需要实现
+	CondGroups []*shared.HTTPRequestCondGroup `yaml:"condGroups" json:"condGroups"` // 匹配条件
 
 	minLength int64
 	mimeTypes []*MimeTypeRule
@@ -30,30 +29,6 @@ func (this *HTTPGzipConfig) Init() error {
 		this.minLength = this.MinLength.Bytes()
 	}
 
-	if len(this.MimeTypes) == 0 {
-		this.MimeTypes = DefaultGzipMimeTypes
-	}
-
-	this.mimeTypes = []*MimeTypeRule{}
-	for _, mimeType := range this.MimeTypes {
-		if strings.Contains(mimeType, "*") {
-			mimeType = regexp.QuoteMeta(mimeType)
-			mimeType = strings.Replace(mimeType, "\\*", ".*", -1)
-			reg, err := regexp.Compile("^" + mimeType + "$")
-			if err != nil {
-				return err
-			}
-			this.mimeTypes = append(this.mimeTypes, &MimeTypeRule{
-				Value:  mimeType,
-				Regexp: reg,
-			})
-		} else {
-			this.mimeTypes = append(this.mimeTypes, &MimeTypeRule{
-				Value:  mimeType,
-				Regexp: nil,
-			})
-		}
-	}
 	return nil
 }
 

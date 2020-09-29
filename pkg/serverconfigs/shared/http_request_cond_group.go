@@ -2,10 +2,11 @@ package shared
 
 // 请求条件分组
 type HTTPRequestCondGroup struct {
-	IsOn      bool               `yaml:"isOn" json:"isOn"`           // 是否启用
-	Connector string             `yaml:"connector" json:"connector"` // 条件之间的关系
-	Conds     []*HTTPRequestCond `yaml:"conds" json:"conds"`         // 条件列表
-	IsReverse bool               `yaml:"isReverse" json:"isReverse"` // 是否反向匹配
+	IsOn        bool               `yaml:"isOn" json:"isOn"`               // 是否启用
+	Connector   string             `yaml:"connector" json:"connector"`     // 条件之间的关系
+	Conds       []*HTTPRequestCond `yaml:"conds" json:"conds"`             // 条件列表
+	IsReverse   bool               `yaml:"isReverse" json:"isReverse"`     // 是否反向匹配
+	Description string             `yaml:"description" json:"description"` // 说明
 }
 
 // 初始化
