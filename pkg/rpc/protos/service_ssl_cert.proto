@@ -1,0 +1,103 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+
+service SSLCertService {
+	// 创建Cert
+	rpc createSSLCert (CreateSSLCertRequest) returns (CreateSSLCertResponse);
+
+	// 修改Cert
+	rpc updateSSLCert (UpdateSSLCertRequest) returns (RPCUpdateSuccess);
+
+	// 删除Cert
+	rpc deleteSSLCert (DeleteSSLCertRequest) returns (RPCDeleteSuccess);
+
+	// 查找证书配置
+	rpc findEnabledSSLCertConfig (FindEnabledSSLCertConfigRequest) returns (FindEnabledSSLCertConfigResponse);
+
+	// 计算匹配的Cert数量
+	rpc countSSLCerts (CountSSLCertRequest) returns (CountSSLCertResponse);
+
+	// 列出单页匹配的Cert
+	rpc listSSLCerts (ListSSLCertsRequest) returns (ListSSLCertsResponse);
+}
+
+// 创建Cert
+message CreateSSLCertRequest {
+	bool isOn = 1;
+	string name = 2;
+	string description = 3;
+	string serverName = 4;
+	bool isCA = 5;
+	bytes certData = 6;
+	bytes keyData = 7;
+	int64 timeBeginAt = 8;
+	int64 timeEndAt = 9;
+	repeated string dnsNames = 10;
+	repeated string commonNames = 11;
+}
+
+message CreateSSLCertResponse {
+	int64 certId = 1;
+}
+
+// 修改Cert
+message UpdateSSLCertRequest {
+	int64 certId = 1;
+	bool isOn = 2;
+	string name = 3;
+	string description = 4;
+	string serverName = 5;
+	bool isCA = 6;
+	bytes certData = 7;
+	bytes keyData = 8;
+	int64 timeBeginAt = 9;
+	int64 timeEndAt = 10;
+	repeated string dnsNames = 11;
+	repeated string commonNames = 12;
+}
+
+// 查找证书配置
+message FindEnabledSSLCertConfigRequest {
+	int64 certId = 1;
+}
+
+message FindEnabledSSLCertConfigResponse {
+	bytes certJSON = 1;
+}
+
+// 删除证书
+message DeleteSSLCertRequest {
+	int64 certId = 1;
+}
+
+// 计算匹配的Cert数量
+message CountSSLCertRequest {
+	bool isCA = 1;
+	bool isAvailable = 2;
+	bool isExpired = 3;
+	int32 expiringDays = 4;
+	string keyword = 5;
+}
+
+message CountSSLCertResponse {
+	int64 count = 1;
+}
+
+// 列出单页匹配的Cert
+message ListSSLCertsRequest {
+	bool isCA = 1;
+	bool isAvailable = 2;
+	bool isExpired = 3;
+	int32 expiringDays = 4;
+	string keyword = 5;
+	int64 offset = 6;
+	int64 size = 7;
+}
+
+message ListSSLCertsResponse {
+	bytes certsJSON = 1;
+}

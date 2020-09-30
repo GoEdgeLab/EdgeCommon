@@ -4,11 +4,6 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 )
 
-// 默认的文件类型
-var (
-	DefaultGzipMimeTypes = []string{"text/html", "application/json"}
-)
-
 // gzip配置
 type HTTPGzipConfig struct {
 	Id        int64                          `yaml:"id" json:"id"`               // ID

@@ -196,12 +196,12 @@ func (this *ServerConfig) MatchNameStrictly(name string) bool {
 }
 
 // SSL信息
-func (this *ServerConfig) SSLConfig() *sslconfigs.SSLConfig {
+func (this *ServerConfig) SSLPolicy() *sslconfigs.SSLPolicy {
 	if this.HTTPS != nil {
-		return this.HTTPS.SSL
+		return this.HTTPS.SSLPolicy
 	}
 	if this.TLS != nil {
-		return this.TLS.SSL
+		return this.TLS.SSLPolicy
 	}
 	return nil
 }

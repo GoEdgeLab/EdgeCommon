@@ -7,33 +7,54 @@ import (
 
 func TestHSTSConfig(t *testing.T) {
 	h := &HSTSConfig{}
-	h.Init()
+	err := h.Init()
+	if err != nil {
+		t.Fatal(err)
+	}
 	t.Log(h.HeaderValue())
 
 	h.IncludeSubDomains = true
-	h.Init()
+	err = h.Init()
+	if err != nil {
+		t.Fatal(err)
+	}
 	t.Log(h.HeaderValue())
 
 	h.Preload = true
-	h.Init()
+	err = h.Init()
+	if err != nil {
+		t.Fatal(err)
+	}
 	t.Log(h.HeaderValue())
 
 	h.IncludeSubDomains = false
-	h.Init()
+	err = h.Init()
+	if err != nil {
+		t.Fatal(err)
+	}
 	t.Log(h.HeaderValue())
 
 	h.MaxAge = 86400
-	h.Init()
+	err = h.Init()
+	if err != nil {
+		t.Fatal(err)
+	}
 	t.Log(h.HeaderValue())
 
 	a := assert.NewAssertion(t)
 	a.IsTrue(h.Match("abc.com"))
 
 	h.Domains = []string{"abc.com"}
-	h.Init()
+	err = h.Init()
+	if err != nil {
+		t.Fatal(err)
+	}
 	a.IsTrue(h.Match("abc.com"))
 
 	h.Domains = []string{"1.abc.com"}
-	h.Init()
+	err = h.Init()
+	if err != nil {
+		t.Fatal(err)
+	}
 	a.IsFalse(h.Match("abc.com"))
 }

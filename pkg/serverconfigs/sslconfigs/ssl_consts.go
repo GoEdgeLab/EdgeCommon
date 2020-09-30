@@ -1,5 +1,3 @@
-// +build go1.12
-
 package sslconfigs
 
 import (
@@ -68,7 +66,7 @@ var TLSIntermediateCipherSuites = []string{
 	"TLS_RSA_WITH_3DES_EDE_CBC_SHA",
 }
 
-func (this *SSLConfig) convertMinVersion() {
+func (this *SSLPolicy) convertMinVersion() {
 	switch this.MinVersion {
 	case "SSL 3.0":
 		this.minVersion = tls.VersionSSL30
@@ -87,7 +85,7 @@ func (this *SSLConfig) convertMinVersion() {
 	}
 }
 
-func (this *SSLConfig) initCipherSuites() {
+func (this *SSLPolicy) initCipherSuites() {
 	// cipher suites
 	suites := []uint16{}
 	for _, suite := range this.CipherSuites {

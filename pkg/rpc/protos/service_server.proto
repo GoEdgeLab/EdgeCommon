@@ -60,6 +60,12 @@ service ServerService {
 
 	// 初始化Web设置
 	rpc findAndInitServerWebConfig (FindAndInitServerWebConfigRequest) returns (FindAndInitServerWebConfigResponse);
+
+	// 计算使用某个SSL证书的服务数量
+	rpc countServersWithSSLCertId (CountServersWithSSLCertIdRequest) returns (CountServersWithSSLCertIdResponse);
+
+	// 查找使用某个SSL证书的所有服务
+	rpc findAllServersWithSSLCertId (FindAllServersWithSSLCertIdRequest) returns (FindAllServersWithSSLCertIdResponse);
 }
 
 // 创建服务
@@ -208,4 +214,22 @@ message FindAndInitServerWebConfigRequest {
 
 message FindAndInitServerWebConfigResponse {
 	bytes webJSON = 1;
+}
+
+// 计算使用某个SSL证书的服务数量
+message CountServersWithSSLCertIdRequest {
+	int64 certId = 1;
+}
+
+message CountServersWithSSLCertIdResponse {
+	int64 count = 1;
+}
+
+// 查找使用某个SSL证书的所有服务
+message FindAllServersWithSSLCertIdRequest {
+	int64 certId = 1;
+}
+
+message FindAllServersWithSSLCertIdResponse {
+	repeated Server servers = 1;
 }
