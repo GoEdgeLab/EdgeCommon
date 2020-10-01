@@ -1,6 +1,6 @@
 package sslconfigs
 
-type SSLRef struct {
+type SSLPolicyRef struct {
 	IsOn        bool  `yaml:"isOn" json:"isOn"`
 	SSLPolicyId int64 `yaml:"sslPolicyId" json:"sslPolicyId"`
 }

@@ -6,8 +6,8 @@ import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
 type HTTPSProtocolConfig struct {
 	BaseProtocol `yaml:",inline"`
 
-	SSLPolicyRef *sslconfigs.SSLRef    `yaml:"sslPolicyRef" json:"sslPolicyRef"`
-	SSLPolicy    *sslconfigs.SSLPolicy `yaml:"sslPolicy" json:"sslPolicy"`
+	SSLPolicyRef *sslconfigs.SSLPolicyRef `yaml:"sslPolicyRef" json:"sslPolicyRef"`
+	SSLPolicy    *sslconfigs.SSLPolicy    `yaml:"sslPolicy" json:"sslPolicy"`
 }
 
 // 初始化

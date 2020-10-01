@@ -3,7 +3,6 @@ package sslconfigs
 import (
 	"crypto/tls"
 	"crypto/x509"
-	"errors"
 )
 
 // TLS Version
@@ -20,11 +19,14 @@ type SSLPolicy struct {
 	CertRefs       []*SSLCertRef     `yaml:"certRefs" json:"certRefs"`
 	Certs          []*SSLCertConfig  `yaml:"certs" json:"certs"`
 	ClientAuthType SSLClientAuthType `yaml:"clientAuthType" json:"clientAuthType"` // 客户端认证类型
+	ClientCARefs   []*SSLCertRef     `yaml:"clientCARefs" json:"clientCARefs"`     // 客户端认证CA证书引用
+	ClientCACerts  []*SSLCertConfig  `yaml:"clientCACerts" json:"clientCACerts"`   // 客户端认证CA
 
-	MinVersion   TLSVersion       `yaml:"minVersion" json:"minVersion"`     // 支持的最小版本
-	CipherSuites []TLSCipherSuite `yaml:"cipherSuites" json:"cipherSuites"` // 加密算法套件
+	MinVersion       TLSVersion       `yaml:"minVersion" json:"minVersion"`             // 支持的最小版本
+	CipherSuitesIsOn bool             `yaml:"cipherSuitesIsOn" json:"cipherSuitesIsOn"` // 是否自定义加密算法套件
+	CipherSuites     []TLSCipherSuite `yaml:"cipherSuites" json:"cipherSuites"`         // 加密算法套件
 
-	HSTS         *HSTSConfig `yaml:"hsts2" json:"hsts"`                // HSTS配置，yaml之所以使用hsts2，是因为要和以前的版本分开
+	HSTS         *HSTSConfig `yaml:"hsts" json:"hsts"`                 // HSTS配置
 	HTTP2Enabled bool        `yaml:"http2Enabled" json:"http2Enabled"` // 是否启用HTTP2
 
 	nameMapping map[string]*tls.Certificate // dnsName => cert
@@ -37,11 +39,16 @@ type SSLPolicy struct {
 
 // 校验配置
 func (this *SSLPolicy) Init() error {
-	if len(this.Certs) == 0 {
-		return errors.New("no certificates in https config")
+	// certs
+	for _, cert := range this.Certs {
+		err := cert.Init()
+		if err != nil {
+			return err
+		}
 	}
 
-	for _, cert := range this.Certs {
+	// CA certs
+	for _, cert := range this.ClientCACerts {
 		err := cert.Init()
 		if err != nil {
 			return err

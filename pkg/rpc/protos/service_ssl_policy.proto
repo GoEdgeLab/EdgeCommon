@@ -1,0 +1,55 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+
+service SSLPolicyService {
+	// 创建Policy
+	rpc createSSLPolicy (CreateSSLPolicyRequest) returns (CreateSSLPolicyResponse);
+
+	// 修改Policy
+	rpc updateSSLPolicy (UpdateSSLPolicyRequest) returns (RPCUpdateSuccess);
+
+	// 查找Policy
+	rpc findEnabledSSLPolicyConfig (FindEnabledSSLPolicyConfigRequest) returns (FindEnabledSSLPolicyConfigResponse);
+}
+
+// 创建Policy
+message CreateSSLPolicyRequest {
+	bool http2Enabled = 1;
+	string minVersion = 2;
+	bytes certsJSON = 3;
+	bytes hstsJSON = 4;
+	int32 clientAuthType = 5;
+	bytes clientCACertsJSON = 6;
+	repeated string cipherSuites = 7;
+	bool cipherSuitesIsOn = 8;
+}
+
+message CreateSSLPolicyResponse {
+	int64 sslPolicyId = 1;
+}
+
+// 修改Policy
+message UpdateSSLPolicyRequest {
+	int64 sslPolicyId = 1;
+	bool http2Enabled = 2;
+	string minVersion = 3;
+	bytes certsJSON = 4;
+	bytes hstsJSON = 5;
+	int32 clientAuthType = 6;
+	bytes clientCACertsJSON = 7;
+	repeated string cipherSuites = 8;
+	bool cipherSuitesIsOn = 9;
+}
+
+// 查找Policy
+message FindEnabledSSLPolicyConfigRequest {
+	int64 sslPolicyId = 1;
+}
+
+message FindEnabledSSLPolicyConfigResponse {
+	bytes sslPolicyJSON = 1;
+}
