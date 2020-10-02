@@ -78,8 +78,17 @@ func (this *NodeConfig) AvailableGroups() []*serverconfigs.ServerGroup {
 }
 
 func (this *NodeConfig) Init() error {
+	// servers
 	for _, server := range this.Servers {
 		err := server.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// global config
+	if this.GlobalConfig != nil {
+		err := this.GlobalConfig.Init()
 		if err != nil {
 			return err
 		}

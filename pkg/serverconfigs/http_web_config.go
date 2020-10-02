@@ -17,7 +17,8 @@ type HTTPWebConfig struct {
 	MaxRequestBodySize string                     `yaml:"maxRequestBodySize" json:"maxRequestBodySize"` // 请求body最大尺寸 TODO 需要实现
 	AccessLogRef       *HTTPAccessLogRef          `yaml:"accessLog" json:"accessLog"`                   // 访问日志配置
 	StatRef            *HTTPStatRef               `yaml:"statRef" json:"statRef"`                       // 统计配置
-	CacheRef           *HTTPCacheRef              `yaml:"cacheRef" json:"cacheRef"`                     // 缓存配置
+	CacheRefs          []*HTTPCacheRef            `yaml:"cacheRefs" json:"cacheRefs"`                   // 缓存配置
+	CachePolicies      []*HTTPCachePolicy         `yaml:"cachePolicies" json:"cachePolicies"`           // 缓存策略
 	FirewallRef        *HTTPFirewallRef           `yaml:"firewallRef" json:"firewallRef"`               // 防火墙设置
 	WebsocketRef       *HTTPWebsocketRef          `yaml:"websocketRef" json:"websocketRef"`             // Websocket应用配置
 	Websocket          *HTTPWebsocketConfig       `yaml:"websocket" json:"websocket"`                   // Websocket配置
@@ -111,8 +112,14 @@ func (this *HTTPWebConfig) Init() error {
 	}
 
 	// cache
-	if this.CacheRef != nil {
-		err := this.CacheRef.Init()
+	for _, cacheRef := range this.CacheRefs {
+		err := cacheRef.Init()
+		if err != nil {
+			return err
+		}
+	}
+	for _, cachePolicy := range this.CachePolicies {
+		err := cachePolicy.Init()
 		if err != nil {
 			return err
 		}

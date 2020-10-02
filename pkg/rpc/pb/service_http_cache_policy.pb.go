@@ -115,6 +115,601 @@ func (x *FindAllEnabledHTTPCachePoliciesResponse) GetCachePolicies() []*HTTPCach
 	return nil
 }
 
+// 创建缓存策略
+type CreateHTTPCachePolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IsOn         bool   `protobuf:"varint,1,opt,name=isOn,proto3" json:"isOn,omitempty"`
+	Name         string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Description  string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	CapacityJSON []byte `protobuf:"bytes,4,opt,name=capacityJSON,proto3" json:"capacityJSON,omitempty"`
+	MaxKeys      int64  `protobuf:"varint,5,opt,name=maxKeys,proto3" json:"maxKeys,omitempty"`
+	MaxSizeJSON  []byte `protobuf:"bytes,6,opt,name=maxSizeJSON,proto3" json:"maxSizeJSON,omitempty"`
+	Type         string `protobuf:"bytes,7,opt,name=type,proto3" json:"type,omitempty"`
+	OptionsJSON  []byte `protobuf:"bytes,8,opt,name=optionsJSON,proto3" json:"optionsJSON,omitempty"`
+}
+
+func (x *CreateHTTPCachePolicyRequest) Reset() {
+	*x = CreateHTTPCachePolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_cache_policy_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateHTTPCachePolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateHTTPCachePolicyRequest) ProtoMessage() {}
+
+func (x *CreateHTTPCachePolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_cache_policy_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateHTTPCachePolicyRequest.ProtoReflect.Descriptor instead.
+func (*CreateHTTPCachePolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_cache_policy_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CreateHTTPCachePolicyRequest) GetIsOn() bool {
+	if x != nil {
+		return x.IsOn
+	}
+	return false
+}
+
+func (x *CreateHTTPCachePolicyRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateHTTPCachePolicyRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *CreateHTTPCachePolicyRequest) GetCapacityJSON() []byte {
+	if x != nil {
+		return x.CapacityJSON
+	}
+	return nil
+}
+
+func (x *CreateHTTPCachePolicyRequest) GetMaxKeys() int64 {
+	if x != nil {
+		return x.MaxKeys
+	}
+	return 0
+}
+
+func (x *CreateHTTPCachePolicyRequest) GetMaxSizeJSON() []byte {
+	if x != nil {
+		return x.MaxSizeJSON
+	}
+	return nil
+}
+
+func (x *CreateHTTPCachePolicyRequest) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *CreateHTTPCachePolicyRequest) GetOptionsJSON() []byte {
+	if x != nil {
+		return x.OptionsJSON
+	}
+	return nil
+}
+
+type CreateHTTPCachePolicyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CachePolicyId int64 `protobuf:"varint,1,opt,name=cachePolicyId,proto3" json:"cachePolicyId,omitempty"`
+}
+
+func (x *CreateHTTPCachePolicyResponse) Reset() {
+	*x = CreateHTTPCachePolicyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_cache_policy_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateHTTPCachePolicyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateHTTPCachePolicyResponse) ProtoMessage() {}
+
+func (x *CreateHTTPCachePolicyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_cache_policy_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateHTTPCachePolicyResponse.ProtoReflect.Descriptor instead.
+func (*CreateHTTPCachePolicyResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_cache_policy_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CreateHTTPCachePolicyResponse) GetCachePolicyId() int64 {
+	if x != nil {
+		return x.CachePolicyId
+	}
+	return 0
+}
+
+// 修改缓存策略
+type UpdateHTTPCachePolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CachePolicyId int64  `protobuf:"varint,1,opt,name=cachePolicyId,proto3" json:"cachePolicyId,omitempty"`
+	IsOn          bool   `protobuf:"varint,2,opt,name=isOn,proto3" json:"isOn,omitempty"`
+	Name          string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Description   string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	CapacityJSON  []byte `protobuf:"bytes,5,opt,name=capacityJSON,proto3" json:"capacityJSON,omitempty"`
+	MaxKeys       int64  `protobuf:"varint,6,opt,name=maxKeys,proto3" json:"maxKeys,omitempty"`
+	MaxSizeJSON   []byte `protobuf:"bytes,7,opt,name=maxSizeJSON,proto3" json:"maxSizeJSON,omitempty"`
+	Type          string `protobuf:"bytes,8,opt,name=type,proto3" json:"type,omitempty"`
+	OptionsJSON   []byte `protobuf:"bytes,9,opt,name=optionsJSON,proto3" json:"optionsJSON,omitempty"`
+}
+
+func (x *UpdateHTTPCachePolicyRequest) Reset() {
+	*x = UpdateHTTPCachePolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_cache_policy_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPCachePolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPCachePolicyRequest) ProtoMessage() {}
+
+func (x *UpdateHTTPCachePolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_cache_policy_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPCachePolicyRequest.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPCachePolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_cache_policy_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *UpdateHTTPCachePolicyRequest) GetCachePolicyId() int64 {
+	if x != nil {
+		return x.CachePolicyId
+	}
+	return 0
+}
+
+func (x *UpdateHTTPCachePolicyRequest) GetIsOn() bool {
+	if x != nil {
+		return x.IsOn
+	}
+	return false
+}
+
+func (x *UpdateHTTPCachePolicyRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateHTTPCachePolicyRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *UpdateHTTPCachePolicyRequest) GetCapacityJSON() []byte {
+	if x != nil {
+		return x.CapacityJSON
+	}
+	return nil
+}
+
+func (x *UpdateHTTPCachePolicyRequest) GetMaxKeys() int64 {
+	if x != nil {
+		return x.MaxKeys
+	}
+	return 0
+}
+
+func (x *UpdateHTTPCachePolicyRequest) GetMaxSizeJSON() []byte {
+	if x != nil {
+		return x.MaxSizeJSON
+	}
+	return nil
+}
+
+func (x *UpdateHTTPCachePolicyRequest) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *UpdateHTTPCachePolicyRequest) GetOptionsJSON() []byte {
+	if x != nil {
+		return x.OptionsJSON
+	}
+	return nil
+}
+
+// 删除缓存策略
+type DeleteHTTPCachePolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CachePolicyId int64 `protobuf:"varint,1,opt,name=cachePolicyId,proto3" json:"cachePolicyId,omitempty"`
+}
+
+func (x *DeleteHTTPCachePolicyRequest) Reset() {
+	*x = DeleteHTTPCachePolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_cache_policy_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteHTTPCachePolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteHTTPCachePolicyRequest) ProtoMessage() {}
+
+func (x *DeleteHTTPCachePolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_cache_policy_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteHTTPCachePolicyRequest.ProtoReflect.Descriptor instead.
+func (*DeleteHTTPCachePolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_cache_policy_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *DeleteHTTPCachePolicyRequest) GetCachePolicyId() int64 {
+	if x != nil {
+		return x.CachePolicyId
+	}
+	return 0
+}
+
+// 计算缓存策略数量
+type CountAllEnabledHTTPCachePoliciesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *CountAllEnabledHTTPCachePoliciesRequest) Reset() {
+	*x = CountAllEnabledHTTPCachePoliciesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_cache_policy_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CountAllEnabledHTTPCachePoliciesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountAllEnabledHTTPCachePoliciesRequest) ProtoMessage() {}
+
+func (x *CountAllEnabledHTTPCachePoliciesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_cache_policy_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountAllEnabledHTTPCachePoliciesRequest.ProtoReflect.Descriptor instead.
+func (*CountAllEnabledHTTPCachePoliciesRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_cache_policy_proto_rawDescGZIP(), []int{6}
+}
+
+type CountAllEnabledHTTPCachePoliciesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Count int64 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+}
+
+func (x *CountAllEnabledHTTPCachePoliciesResponse) Reset() {
+	*x = CountAllEnabledHTTPCachePoliciesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_cache_policy_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CountAllEnabledHTTPCachePoliciesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountAllEnabledHTTPCachePoliciesResponse) ProtoMessage() {}
+
+func (x *CountAllEnabledHTTPCachePoliciesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_cache_policy_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountAllEnabledHTTPCachePoliciesResponse.ProtoReflect.Descriptor instead.
+func (*CountAllEnabledHTTPCachePoliciesResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_cache_policy_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *CountAllEnabledHTTPCachePoliciesResponse) GetCount() int64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+// 列出单页的缓存策略
+type ListEnabledHTTPCachePoliciesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Offset int64 `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Size   int64 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+}
+
+func (x *ListEnabledHTTPCachePoliciesRequest) Reset() {
+	*x = ListEnabledHTTPCachePoliciesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_cache_policy_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListEnabledHTTPCachePoliciesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListEnabledHTTPCachePoliciesRequest) ProtoMessage() {}
+
+func (x *ListEnabledHTTPCachePoliciesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_cache_policy_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListEnabledHTTPCachePoliciesRequest.ProtoReflect.Descriptor instead.
+func (*ListEnabledHTTPCachePoliciesRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_cache_policy_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ListEnabledHTTPCachePoliciesRequest) GetOffset() int64 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *ListEnabledHTTPCachePoliciesRequest) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+type ListEnabledHTTPCachePoliciesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CachePoliciesJSON []byte `protobuf:"bytes,1,opt,name=cachePoliciesJSON,proto3" json:"cachePoliciesJSON,omitempty"`
+}
+
+func (x *ListEnabledHTTPCachePoliciesResponse) Reset() {
+	*x = ListEnabledHTTPCachePoliciesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_cache_policy_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListEnabledHTTPCachePoliciesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListEnabledHTTPCachePoliciesResponse) ProtoMessage() {}
+
+func (x *ListEnabledHTTPCachePoliciesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_cache_policy_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListEnabledHTTPCachePoliciesResponse.ProtoReflect.Descriptor instead.
+func (*ListEnabledHTTPCachePoliciesResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_cache_policy_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ListEnabledHTTPCachePoliciesResponse) GetCachePoliciesJSON() []byte {
+	if x != nil {
+		return x.CachePoliciesJSON
+	}
+	return nil
+}
+
+// 查找单个缓存策略配置
+type FindEnabledHTTPCachePolicyConfigRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CachePolicyId int64 `protobuf:"varint,1,opt,name=cachePolicyId,proto3" json:"cachePolicyId,omitempty"`
+}
+
+func (x *FindEnabledHTTPCachePolicyConfigRequest) Reset() {
+	*x = FindEnabledHTTPCachePolicyConfigRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_cache_policy_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledHTTPCachePolicyConfigRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledHTTPCachePolicyConfigRequest) ProtoMessage() {}
+
+func (x *FindEnabledHTTPCachePolicyConfigRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_cache_policy_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledHTTPCachePolicyConfigRequest.ProtoReflect.Descriptor instead.
+func (*FindEnabledHTTPCachePolicyConfigRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_cache_policy_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *FindEnabledHTTPCachePolicyConfigRequest) GetCachePolicyId() int64 {
+	if x != nil {
+		return x.CachePolicyId
+	}
+	return 0
+}
+
+type FindEnabledHTTPCachePolicyConfigResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CachePolicyJSON []byte `protobuf:"bytes,1,opt,name=cachePolicyJSON,proto3" json:"cachePolicyJSON,omitempty"`
+}
+
+func (x *FindEnabledHTTPCachePolicyConfigResponse) Reset() {
+	*x = FindEnabledHTTPCachePolicyConfigResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_cache_policy_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledHTTPCachePolicyConfigResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledHTTPCachePolicyConfigResponse) ProtoMessage() {}
+
+func (x *FindEnabledHTTPCachePolicyConfigResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_cache_policy_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledHTTPCachePolicyConfigResponse.ProtoReflect.Descriptor instead.
+func (*FindEnabledHTTPCachePolicyConfigResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_cache_policy_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *FindEnabledHTTPCachePolicyConfigResponse) GetCachePolicyJSON() []byte {
+	if x != nil {
+		return x.CachePolicyJSON
+	}
+	return nil
+}
+
 var File_service_http_cache_policy_proto protoreflect.FileDescriptor
 
 var file_service_http_cache_policy_proto_rawDesc = []byte{
@@ -122,26 +717,138 @@ var file_service_http_cache_policy_proto_rawDesc = []byte{
 	0x61, 0x63, 0x68, 0x65, 0x5f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x12, 0x02, 0x70, 0x62, 0x1a, 0x1d, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x68, 0x74, 0x74,
 	0x70, 0x5f, 0x63, 0x61, 0x63, 0x68, 0x65, 0x5f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x22, 0x28, 0x0a, 0x26, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45,
-	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50,
-	0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x64,
-	0x0a, 0x27, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x12, 0x72, 0x70, 0x63, 0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x28, 0x0a, 0x26, 0x46, 0x69, 0x6e, 0x64,
+	0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61,
+	0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x22, 0x64, 0x0a, 0x27, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61,
+	0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c,
+	0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a,
+	0x0d, 0x63, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61,
+	0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x0d, 0x63, 0x61, 0x63, 0x68, 0x65,
+	0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x22, 0xfe, 0x01, 0x0a, 0x1c, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x73, 0x4f,
+	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x12, 0x12, 0x0a,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74,
+	0x69, 0x6f, 0x6e, 0x12, 0x22, 0x0a, 0x0c, 0x63, 0x61, 0x70, 0x61, 0x63, 0x69, 0x74, 0x79, 0x4a,
+	0x53, 0x4f, 0x4e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0c, 0x63, 0x61, 0x70, 0x61, 0x63,
+	0x69, 0x74, 0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x61, 0x78, 0x4b, 0x65,
+	0x79, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x6d, 0x61, 0x78, 0x4b, 0x65, 0x79,
+	0x73, 0x12, 0x20, 0x0a, 0x0b, 0x6d, 0x61, 0x78, 0x53, 0x69, 0x7a, 0x65, 0x4a, 0x53, 0x4f, 0x4e,
+	0x18, 0x06, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0b, 0x6d, 0x61, 0x78, 0x53, 0x69, 0x7a, 0x65, 0x4a,
+	0x53, 0x4f, 0x4e, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x6f, 0x70, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0b, 0x6f, 0x70,
+	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x45, 0x0a, 0x1d, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x24, 0x0a, 0x0d, 0x63, 0x61,
+	0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x0d, 0x63, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64,
+	0x22, 0xa4, 0x02, 0x0a, 0x1c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43,
+	0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x24, 0x0a, 0x0d, 0x63, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79,
+	0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d, 0x63, 0x61, 0x63, 0x68, 0x65, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12,
+	0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x04,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f,
+	0x6e, 0x12, 0x22, 0x0a, 0x0c, 0x63, 0x61, 0x70, 0x61, 0x63, 0x69, 0x74, 0x79, 0x4a, 0x53, 0x4f,
+	0x4e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0c, 0x63, 0x61, 0x70, 0x61, 0x63, 0x69, 0x74,
+	0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x61, 0x78, 0x4b, 0x65, 0x79, 0x73,
+	0x18, 0x06, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x6d, 0x61, 0x78, 0x4b, 0x65, 0x79, 0x73, 0x12,
+	0x20, 0x0a, 0x0b, 0x6d, 0x61, 0x78, 0x53, 0x69, 0x7a, 0x65, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x07,
+	0x20, 0x01, 0x28, 0x0c, 0x52, 0x0b, 0x6d, 0x61, 0x78, 0x53, 0x69, 0x7a, 0x65, 0x4a, 0x53, 0x4f,
+	0x4e, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0b, 0x6f, 0x70, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x44, 0x0a, 0x1c, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x63, 0x61, 0x63, 0x68, 0x65,
+	0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d,
+	0x63, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x22, 0x29, 0x0a,
+	0x27, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
 	0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65,
-	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x0d, 0x63, 0x61, 0x63,
-	0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50,
-	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x0d, 0x63, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69,
-	0x63, 0x69, 0x65, 0x73, 0x32, 0x94, 0x01, 0x0a, 0x16, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63,
-	0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
-	0x7a, 0x0a, 0x1f, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
-	0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69,
-	0x65, 0x73, 0x12, 0x2a, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45,
-	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50,
-	0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b,
-	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x40, 0x0a, 0x28, 0x43, 0x6f, 0x75, 0x6e,
+	0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43,
+	0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x51, 0x0a, 0x23, 0x4c, 0x69,
+	0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63,
+	0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x22, 0x54, 0x0a,
+	0x24, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50,
+	0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2c, 0x0a, 0x11, 0x63, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f,
+	0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c,
+	0x52, 0x11, 0x63, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x4a,
+	0x53, 0x4f, 0x4e, 0x22, 0x4f, 0x0a, 0x27, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c,
 	0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63,
-	0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e,
-	0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x24,
+	0x0a, 0x0d, 0x63, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d, 0x63, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x49, 0x64, 0x22, 0x54, 0x0a, 0x28, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x28, 0x0a, 0x0f, 0x63, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x4a,
+	0x53, 0x4f, 0x4e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0f, 0x63, 0x61, 0x63, 0x68, 0x65,
+	0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x32, 0x85, 0x06, 0x0a, 0x16, 0x48,
+	0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x53, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x7a, 0x0a, 0x1f, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65,
+	0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x12, 0x2a, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
+	0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50,
+	0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c,
+	0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68,
+	0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x5c, 0x0a, 0x15, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43,
+	0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x70,
+	0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68,
+	0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x4f, 0x0a, 0x15, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63,
+	0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c,
+	0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e,
+	0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x12, 0x4f, 0x0a, 0x15, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61,
+	0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62,
+	0x2e, 0x52, 0x50, 0x43, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73,
+	0x73, 0x12, 0x7d, 0x0a, 0x20, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61,
+	0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c,
+	0x69, 0x63, 0x69, 0x65, 0x73, 0x12, 0x2b, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74,
+	0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61,
+	0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65,
+	0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x71, 0x0a, 0x1c, 0x6c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48,
+	0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73,
+	0x12, 0x27, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69,
+	0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x70, 0x62, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61,
+	0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x7d, 0x0a, 0x20, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c,
+	0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63,
+	0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x2b, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e,
+	0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68,
+	0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e,
+	0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -156,21 +863,45 @@ func file_service_http_cache_policy_proto_rawDescGZIP() []byte {
 	return file_service_http_cache_policy_proto_rawDescData
 }
 
-var file_service_http_cache_policy_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_service_http_cache_policy_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_service_http_cache_policy_proto_goTypes = []interface{}{
-	(*FindAllEnabledHTTPCachePoliciesRequest)(nil),  // 0: pb.FindAllEnabledHTTPCachePoliciesRequest
-	(*FindAllEnabledHTTPCachePoliciesResponse)(nil), // 1: pb.FindAllEnabledHTTPCachePoliciesResponse
-	(*HTTPCachePolicy)(nil),                         // 2: pb.HTTPCachePolicy
+	(*FindAllEnabledHTTPCachePoliciesRequest)(nil),   // 0: pb.FindAllEnabledHTTPCachePoliciesRequest
+	(*FindAllEnabledHTTPCachePoliciesResponse)(nil),  // 1: pb.FindAllEnabledHTTPCachePoliciesResponse
+	(*CreateHTTPCachePolicyRequest)(nil),             // 2: pb.CreateHTTPCachePolicyRequest
+	(*CreateHTTPCachePolicyResponse)(nil),            // 3: pb.CreateHTTPCachePolicyResponse
+	(*UpdateHTTPCachePolicyRequest)(nil),             // 4: pb.UpdateHTTPCachePolicyRequest
+	(*DeleteHTTPCachePolicyRequest)(nil),             // 5: pb.DeleteHTTPCachePolicyRequest
+	(*CountAllEnabledHTTPCachePoliciesRequest)(nil),  // 6: pb.CountAllEnabledHTTPCachePoliciesRequest
+	(*CountAllEnabledHTTPCachePoliciesResponse)(nil), // 7: pb.CountAllEnabledHTTPCachePoliciesResponse
+	(*ListEnabledHTTPCachePoliciesRequest)(nil),      // 8: pb.ListEnabledHTTPCachePoliciesRequest
+	(*ListEnabledHTTPCachePoliciesResponse)(nil),     // 9: pb.ListEnabledHTTPCachePoliciesResponse
+	(*FindEnabledHTTPCachePolicyConfigRequest)(nil),  // 10: pb.FindEnabledHTTPCachePolicyConfigRequest
+	(*FindEnabledHTTPCachePolicyConfigResponse)(nil), // 11: pb.FindEnabledHTTPCachePolicyConfigResponse
+	(*HTTPCachePolicy)(nil),                          // 12: pb.HTTPCachePolicy
+	(*RPCUpdateSuccess)(nil),                         // 13: pb.RPCUpdateSuccess
+	(*RPCDeleteSuccess)(nil),                         // 14: pb.RPCDeleteSuccess
 }
 var file_service_http_cache_policy_proto_depIdxs = []int32{
-	2, // 0: pb.FindAllEnabledHTTPCachePoliciesResponse.cachePolicies:type_name -> pb.HTTPCachePolicy
-	0, // 1: pb.HTTPCachePolicyService.findAllEnabledHTTPCachePolicies:input_type -> pb.FindAllEnabledHTTPCachePoliciesRequest
-	1, // 2: pb.HTTPCachePolicyService.findAllEnabledHTTPCachePolicies:output_type -> pb.FindAllEnabledHTTPCachePoliciesResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	12, // 0: pb.FindAllEnabledHTTPCachePoliciesResponse.cachePolicies:type_name -> pb.HTTPCachePolicy
+	0,  // 1: pb.HTTPCachePolicyService.findAllEnabledHTTPCachePolicies:input_type -> pb.FindAllEnabledHTTPCachePoliciesRequest
+	2,  // 2: pb.HTTPCachePolicyService.createHTTPCachePolicy:input_type -> pb.CreateHTTPCachePolicyRequest
+	4,  // 3: pb.HTTPCachePolicyService.updateHTTPCachePolicy:input_type -> pb.UpdateHTTPCachePolicyRequest
+	5,  // 4: pb.HTTPCachePolicyService.deleteHTTPCachePolicy:input_type -> pb.DeleteHTTPCachePolicyRequest
+	6,  // 5: pb.HTTPCachePolicyService.countAllEnabledHTTPCachePolicies:input_type -> pb.CountAllEnabledHTTPCachePoliciesRequest
+	8,  // 6: pb.HTTPCachePolicyService.listEnabledHTTPCachePolicies:input_type -> pb.ListEnabledHTTPCachePoliciesRequest
+	10, // 7: pb.HTTPCachePolicyService.findEnabledHTTPCachePolicyConfig:input_type -> pb.FindEnabledHTTPCachePolicyConfigRequest
+	1,  // 8: pb.HTTPCachePolicyService.findAllEnabledHTTPCachePolicies:output_type -> pb.FindAllEnabledHTTPCachePoliciesResponse
+	3,  // 9: pb.HTTPCachePolicyService.createHTTPCachePolicy:output_type -> pb.CreateHTTPCachePolicyResponse
+	13, // 10: pb.HTTPCachePolicyService.updateHTTPCachePolicy:output_type -> pb.RPCUpdateSuccess
+	14, // 11: pb.HTTPCachePolicyService.deleteHTTPCachePolicy:output_type -> pb.RPCDeleteSuccess
+	7,  // 12: pb.HTTPCachePolicyService.countAllEnabledHTTPCachePolicies:output_type -> pb.CountAllEnabledHTTPCachePoliciesResponse
+	9,  // 13: pb.HTTPCachePolicyService.listEnabledHTTPCachePolicies:output_type -> pb.ListEnabledHTTPCachePoliciesResponse
+	11, // 14: pb.HTTPCachePolicyService.findEnabledHTTPCachePolicyConfig:output_type -> pb.FindEnabledHTTPCachePolicyConfigResponse
+	8,  // [8:15] is the sub-list for method output_type
+	1,  // [1:8] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_service_http_cache_policy_proto_init() }
@@ -179,6 +910,7 @@ func file_service_http_cache_policy_proto_init() {
 		return
 	}
 	file_model_http_cache_policy_proto_init()
+	file_rpc_messages_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_service_http_cache_policy_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FindAllEnabledHTTPCachePoliciesRequest); i {
@@ -204,6 +936,126 @@ func file_service_http_cache_policy_proto_init() {
 				return nil
 			}
 		}
+		file_service_http_cache_policy_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateHTTPCachePolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_cache_policy_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateHTTPCachePolicyResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_cache_policy_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateHTTPCachePolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_cache_policy_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteHTTPCachePolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_cache_policy_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CountAllEnabledHTTPCachePoliciesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_cache_policy_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CountAllEnabledHTTPCachePoliciesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_cache_policy_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListEnabledHTTPCachePoliciesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_cache_policy_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListEnabledHTTPCachePoliciesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_cache_policy_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledHTTPCachePolicyConfigRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_cache_policy_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledHTTPCachePolicyConfigResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -211,7 +1063,7 @@ func file_service_http_cache_policy_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_http_cache_policy_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -239,6 +1091,18 @@ const _ = grpc.SupportPackageIsVersion6
 type HTTPCachePolicyServiceClient interface {
 	// 获取所有可用策略
 	FindAllEnabledHTTPCachePolicies(ctx context.Context, in *FindAllEnabledHTTPCachePoliciesRequest, opts ...grpc.CallOption) (*FindAllEnabledHTTPCachePoliciesResponse, error)
+	// 创建缓存策略
+	CreateHTTPCachePolicy(ctx context.Context, in *CreateHTTPCachePolicyRequest, opts ...grpc.CallOption) (*CreateHTTPCachePolicyResponse, error)
+	// 修改缓存策略
+	UpdateHTTPCachePolicy(ctx context.Context, in *UpdateHTTPCachePolicyRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
+	// 删除缓存策略
+	DeleteHTTPCachePolicy(ctx context.Context, in *DeleteHTTPCachePolicyRequest, opts ...grpc.CallOption) (*RPCDeleteSuccess, error)
+	// 计算缓存策略数量
+	CountAllEnabledHTTPCachePolicies(ctx context.Context, in *CountAllEnabledHTTPCachePoliciesRequest, opts ...grpc.CallOption) (*CountAllEnabledHTTPCachePoliciesResponse, error)
+	// 列出单页的缓存策略
+	ListEnabledHTTPCachePolicies(ctx context.Context, in *ListEnabledHTTPCachePoliciesRequest, opts ...grpc.CallOption) (*ListEnabledHTTPCachePoliciesResponse, error)
+	// 查找单个缓存策略配置
+	FindEnabledHTTPCachePolicyConfig(ctx context.Context, in *FindEnabledHTTPCachePolicyConfigRequest, opts ...grpc.CallOption) (*FindEnabledHTTPCachePolicyConfigResponse, error)
 }
 
 type hTTPCachePolicyServiceClient struct {
@@ -258,10 +1122,76 @@ func (c *hTTPCachePolicyServiceClient) FindAllEnabledHTTPCachePolicies(ctx conte
 	return out, nil
 }
 
+func (c *hTTPCachePolicyServiceClient) CreateHTTPCachePolicy(ctx context.Context, in *CreateHTTPCachePolicyRequest, opts ...grpc.CallOption) (*CreateHTTPCachePolicyResponse, error) {
+	out := new(CreateHTTPCachePolicyResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPCachePolicyService/createHTTPCachePolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPCachePolicyServiceClient) UpdateHTTPCachePolicy(ctx context.Context, in *UpdateHTTPCachePolicyRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error) {
+	out := new(RPCUpdateSuccess)
+	err := c.cc.Invoke(ctx, "/pb.HTTPCachePolicyService/updateHTTPCachePolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPCachePolicyServiceClient) DeleteHTTPCachePolicy(ctx context.Context, in *DeleteHTTPCachePolicyRequest, opts ...grpc.CallOption) (*RPCDeleteSuccess, error) {
+	out := new(RPCDeleteSuccess)
+	err := c.cc.Invoke(ctx, "/pb.HTTPCachePolicyService/deleteHTTPCachePolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPCachePolicyServiceClient) CountAllEnabledHTTPCachePolicies(ctx context.Context, in *CountAllEnabledHTTPCachePoliciesRequest, opts ...grpc.CallOption) (*CountAllEnabledHTTPCachePoliciesResponse, error) {
+	out := new(CountAllEnabledHTTPCachePoliciesResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPCachePolicyService/countAllEnabledHTTPCachePolicies", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPCachePolicyServiceClient) ListEnabledHTTPCachePolicies(ctx context.Context, in *ListEnabledHTTPCachePoliciesRequest, opts ...grpc.CallOption) (*ListEnabledHTTPCachePoliciesResponse, error) {
+	out := new(ListEnabledHTTPCachePoliciesResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPCachePolicyService/listEnabledHTTPCachePolicies", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPCachePolicyServiceClient) FindEnabledHTTPCachePolicyConfig(ctx context.Context, in *FindEnabledHTTPCachePolicyConfigRequest, opts ...grpc.CallOption) (*FindEnabledHTTPCachePolicyConfigResponse, error) {
+	out := new(FindEnabledHTTPCachePolicyConfigResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPCachePolicyService/findEnabledHTTPCachePolicyConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HTTPCachePolicyServiceServer is the server API for HTTPCachePolicyService service.
 type HTTPCachePolicyServiceServer interface {
 	// 获取所有可用策略
 	FindAllEnabledHTTPCachePolicies(context.Context, *FindAllEnabledHTTPCachePoliciesRequest) (*FindAllEnabledHTTPCachePoliciesResponse, error)
+	// 创建缓存策略
+	CreateHTTPCachePolicy(context.Context, *CreateHTTPCachePolicyRequest) (*CreateHTTPCachePolicyResponse, error)
+	// 修改缓存策略
+	UpdateHTTPCachePolicy(context.Context, *UpdateHTTPCachePolicyRequest) (*RPCUpdateSuccess, error)
+	// 删除缓存策略
+	DeleteHTTPCachePolicy(context.Context, *DeleteHTTPCachePolicyRequest) (*RPCDeleteSuccess, error)
+	// 计算缓存策略数量
+	CountAllEnabledHTTPCachePolicies(context.Context, *CountAllEnabledHTTPCachePoliciesRequest) (*CountAllEnabledHTTPCachePoliciesResponse, error)
+	// 列出单页的缓存策略
+	ListEnabledHTTPCachePolicies(context.Context, *ListEnabledHTTPCachePoliciesRequest) (*ListEnabledHTTPCachePoliciesResponse, error)
+	// 查找单个缓存策略配置
+	FindEnabledHTTPCachePolicyConfig(context.Context, *FindEnabledHTTPCachePolicyConfigRequest) (*FindEnabledHTTPCachePolicyConfigResponse, error)
 }
 
 // UnimplementedHTTPCachePolicyServiceServer can be embedded to have forward compatible implementations.
@@ -270,6 +1200,24 @@ type UnimplementedHTTPCachePolicyServiceServer struct {
 
 func (*UnimplementedHTTPCachePolicyServiceServer) FindAllEnabledHTTPCachePolicies(context.Context, *FindAllEnabledHTTPCachePoliciesRequest) (*FindAllEnabledHTTPCachePoliciesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllEnabledHTTPCachePolicies not implemented")
+}
+func (*UnimplementedHTTPCachePolicyServiceServer) CreateHTTPCachePolicy(context.Context, *CreateHTTPCachePolicyRequest) (*CreateHTTPCachePolicyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateHTTPCachePolicy not implemented")
+}
+func (*UnimplementedHTTPCachePolicyServiceServer) UpdateHTTPCachePolicy(context.Context, *UpdateHTTPCachePolicyRequest) (*RPCUpdateSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPCachePolicy not implemented")
+}
+func (*UnimplementedHTTPCachePolicyServiceServer) DeleteHTTPCachePolicy(context.Context, *DeleteHTTPCachePolicyRequest) (*RPCDeleteSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteHTTPCachePolicy not implemented")
+}
+func (*UnimplementedHTTPCachePolicyServiceServer) CountAllEnabledHTTPCachePolicies(context.Context, *CountAllEnabledHTTPCachePoliciesRequest) (*CountAllEnabledHTTPCachePoliciesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountAllEnabledHTTPCachePolicies not implemented")
+}
+func (*UnimplementedHTTPCachePolicyServiceServer) ListEnabledHTTPCachePolicies(context.Context, *ListEnabledHTTPCachePoliciesRequest) (*ListEnabledHTTPCachePoliciesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListEnabledHTTPCachePolicies not implemented")
+}
+func (*UnimplementedHTTPCachePolicyServiceServer) FindEnabledHTTPCachePolicyConfig(context.Context, *FindEnabledHTTPCachePolicyConfigRequest) (*FindEnabledHTTPCachePolicyConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledHTTPCachePolicyConfig not implemented")
 }
 
 func RegisterHTTPCachePolicyServiceServer(s *grpc.Server, srv HTTPCachePolicyServiceServer) {
@@ -294,6 +1242,114 @@ func _HTTPCachePolicyService_FindAllEnabledHTTPCachePolicies_Handler(srv interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HTTPCachePolicyService_CreateHTTPCachePolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateHTTPCachePolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPCachePolicyServiceServer).CreateHTTPCachePolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPCachePolicyService/CreateHTTPCachePolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPCachePolicyServiceServer).CreateHTTPCachePolicy(ctx, req.(*CreateHTTPCachePolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPCachePolicyService_UpdateHTTPCachePolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPCachePolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPCachePolicyServiceServer).UpdateHTTPCachePolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPCachePolicyService/UpdateHTTPCachePolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPCachePolicyServiceServer).UpdateHTTPCachePolicy(ctx, req.(*UpdateHTTPCachePolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPCachePolicyService_DeleteHTTPCachePolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteHTTPCachePolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPCachePolicyServiceServer).DeleteHTTPCachePolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPCachePolicyService/DeleteHTTPCachePolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPCachePolicyServiceServer).DeleteHTTPCachePolicy(ctx, req.(*DeleteHTTPCachePolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPCachePolicyService_CountAllEnabledHTTPCachePolicies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountAllEnabledHTTPCachePoliciesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPCachePolicyServiceServer).CountAllEnabledHTTPCachePolicies(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPCachePolicyService/CountAllEnabledHTTPCachePolicies",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPCachePolicyServiceServer).CountAllEnabledHTTPCachePolicies(ctx, req.(*CountAllEnabledHTTPCachePoliciesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPCachePolicyService_ListEnabledHTTPCachePolicies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListEnabledHTTPCachePoliciesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPCachePolicyServiceServer).ListEnabledHTTPCachePolicies(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPCachePolicyService/ListEnabledHTTPCachePolicies",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPCachePolicyServiceServer).ListEnabledHTTPCachePolicies(ctx, req.(*ListEnabledHTTPCachePoliciesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPCachePolicyService_FindEnabledHTTPCachePolicyConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledHTTPCachePolicyConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPCachePolicyServiceServer).FindEnabledHTTPCachePolicyConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPCachePolicyService/FindEnabledHTTPCachePolicyConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPCachePolicyServiceServer).FindEnabledHTTPCachePolicyConfig(ctx, req.(*FindEnabledHTTPCachePolicyConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _HTTPCachePolicyService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.HTTPCachePolicyService",
 	HandlerType: (*HTTPCachePolicyServiceServer)(nil),
@@ -301,6 +1357,30 @@ var _HTTPCachePolicyService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findAllEnabledHTTPCachePolicies",
 			Handler:    _HTTPCachePolicyService_FindAllEnabledHTTPCachePolicies_Handler,
+		},
+		{
+			MethodName: "createHTTPCachePolicy",
+			Handler:    _HTTPCachePolicyService_CreateHTTPCachePolicy_Handler,
+		},
+		{
+			MethodName: "updateHTTPCachePolicy",
+			Handler:    _HTTPCachePolicyService_UpdateHTTPCachePolicy_Handler,
+		},
+		{
+			MethodName: "deleteHTTPCachePolicy",
+			Handler:    _HTTPCachePolicyService_DeleteHTTPCachePolicy_Handler,
+		},
+		{
+			MethodName: "countAllEnabledHTTPCachePolicies",
+			Handler:    _HTTPCachePolicyService_CountAllEnabledHTTPCachePolicies_Handler,
+		},
+		{
+			MethodName: "listEnabledHTTPCachePolicies",
+			Handler:    _HTTPCachePolicyService_ListEnabledHTTPCachePolicies_Handler,
+		},
+		{
+			MethodName: "findEnabledHTTPCachePolicyConfig",
+			Handler:    _HTTPCachePolicyService_FindEnabledHTTPCachePolicyConfig_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

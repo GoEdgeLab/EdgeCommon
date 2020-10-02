@@ -62,10 +62,16 @@ service ServerService {
 	rpc findAndInitServerWebConfig (FindAndInitServerWebConfigRequest) returns (FindAndInitServerWebConfigResponse);
 
 	// 计算使用某个SSL证书的服务数量
-	rpc countServersWithSSLCertId (CountServersWithSSLCertIdRequest) returns (CountServersWithSSLCertIdResponse);
+	rpc countAllEnabledServersWithSSLCertId (CountAllEnabledServersWithSSLCertIdRequest) returns (CountAllEnabledServersWithSSLCertIdResponse);
 
 	// 查找使用某个SSL证书的所有服务
-	rpc findAllServersWithSSLCertId (FindAllServersWithSSLCertIdRequest) returns (FindAllServersWithSSLCertIdResponse);
+	rpc findAllEnabledServersWithSSLCertId (FindAllEnabledServersWithSSLCertIdRequest) returns (FindAllEnabledServersWithSSLCertIdResponse);
+
+	// 计算使用某个缓存策略的服务数量
+	rpc countAllEnabledServersWithCachePolicyId (CountAllEnabledServersWithCachePolicyIdRequest) returns (CountAllEnabledServersWithCachePolicyIdResponse);
+
+	// 查找使用某个缓存策略的所有服务
+	rpc findAllEnabledServersWithCachePolicyId (FindAllEnabledServersWithCachePolicyIdRequest) returns (FindAllEnabledServersWithCachePolicyIdResponse);
 }
 
 // 创建服务
@@ -217,19 +223,38 @@ message FindAndInitServerWebConfigResponse {
 }
 
 // 计算使用某个SSL证书的服务数量
-message CountServersWithSSLCertIdRequest {
+message CountAllEnabledServersWithSSLCertIdRequest {
 	int64 certId = 1;
 }
 
-message CountServersWithSSLCertIdResponse {
+message CountAllEnabledServersWithSSLCertIdResponse {
 	int64 count = 1;
 }
 
 // 查找使用某个SSL证书的所有服务
-message FindAllServersWithSSLCertIdRequest {
+message FindAllEnabledServersWithSSLCertIdRequest {
 	int64 certId = 1;
 }
 
-message FindAllServersWithSSLCertIdResponse {
+message FindAllEnabledServersWithSSLCertIdResponse {
 	repeated Server servers = 1;
 }
+
+// 计算使用某个缓存策略的服务数量
+message CountAllEnabledServersWithCachePolicyIdRequest {
+	int64 cachePolicyId = 1;
+}
+
+message CountAllEnabledServersWithCachePolicyIdResponse {
+	int64 count = 1;
+}
+
+// 查找使用某个缓存策略的所有服务
+message FindAllEnabledServersWithCachePolicyIdRequest {
+	int64 cachePolicyId = 1;
+}
+
+message FindAllEnabledServersWithCachePolicyIdResponse {
+	repeated Server servers = 1;
+}
+

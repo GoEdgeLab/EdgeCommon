@@ -4,10 +4,29 @@ option go_package = "./pb";
 package pb;
 
 import "model_http_cache_policy.proto";
+import "rpc_messages.proto";
 
 service HTTPCachePolicyService {
 	// 获取所有可用策略
 	rpc findAllEnabledHTTPCachePolicies (FindAllEnabledHTTPCachePoliciesRequest) returns (FindAllEnabledHTTPCachePoliciesResponse);
+
+	// 创建缓存策略
+	rpc createHTTPCachePolicy (CreateHTTPCachePolicyRequest) returns (CreateHTTPCachePolicyResponse);
+
+	// 修改缓存策略
+	rpc updateHTTPCachePolicy (UpdateHTTPCachePolicyRequest) returns (RPCUpdateSuccess);
+
+	// 删除缓存策略
+	rpc deleteHTTPCachePolicy (DeleteHTTPCachePolicyRequest) returns (RPCDeleteSuccess);
+
+	// 计算缓存策略数量
+	rpc countAllEnabledHTTPCachePolicies (CountAllEnabledHTTPCachePoliciesRequest) returns (CountAllEnabledHTTPCachePoliciesResponse);
+
+	// 列出单页的缓存策略
+	rpc listEnabledHTTPCachePolicies (ListEnabledHTTPCachePoliciesRequest) returns (ListEnabledHTTPCachePoliciesResponse);
+
+	// 查找单个缓存策略配置
+	rpc findEnabledHTTPCachePolicyConfig (FindEnabledHTTPCachePolicyConfigRequest) returns (FindEnabledHTTPCachePolicyConfigResponse);
 }
 
 // 获取所有可用策略
@@ -19,3 +38,63 @@ message FindAllEnabledHTTPCachePoliciesResponse {
 	repeated HTTPCachePolicy cachePolicies = 1;
 }
 
+// 创建缓存策略
+message CreateHTTPCachePolicyRequest {
+	bool isOn = 1;
+	string name = 2;
+	string description = 3;
+	bytes capacityJSON = 4;
+	int64 maxKeys = 5;
+	bytes maxSizeJSON = 6;
+	string type = 7;
+	bytes optionsJSON = 8;
+}
+
+message CreateHTTPCachePolicyResponse {
+	int64 cachePolicyId = 1;
+}
+
+// 修改缓存策略
+message UpdateHTTPCachePolicyRequest {
+	int64 cachePolicyId = 1;
+	bool isOn = 2;
+	string name = 3;
+	string description = 4;
+	bytes capacityJSON = 5;
+	int64 maxKeys = 6;
+	bytes maxSizeJSON = 7;
+	string type = 8;
+	bytes optionsJSON = 9;
+}
+
+// 删除缓存策略
+message DeleteHTTPCachePolicyRequest {
+	int64 cachePolicyId = 1;
+}
+
+// 计算缓存策略数量
+message CountAllEnabledHTTPCachePoliciesRequest {
+}
+
+message CountAllEnabledHTTPCachePoliciesResponse {
+	int64 count = 1;
+}
+
+// 列出单页的缓存策略
+message ListEnabledHTTPCachePoliciesRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListEnabledHTTPCachePoliciesResponse {
+	bytes cachePoliciesJSON = 1;
+}
+
+// 查找单个缓存策略配置
+message FindEnabledHTTPCachePolicyConfigRequest {
+	int64 cachePolicyId = 1;
+}
+
+message FindEnabledHTTPCachePolicyConfigResponse {
+	bytes cachePolicyJSON = 1;
+}
