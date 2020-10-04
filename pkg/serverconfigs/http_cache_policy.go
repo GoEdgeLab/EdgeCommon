@@ -15,7 +15,7 @@ type HTTPCachePolicy struct {
 	Capacity    *shared.SizeCapacity   `yaml:"capacity" json:"capacity"`       // 最大内容容量 TODO 需要实现
 	MaxKeys     int64                  `yaml:"maxKeys" json:"maxKeys"`         // 最多Key值 TODO 需要实现
 	MaxSize     *shared.SizeCapacity   `yaml:"maxSize" json:"maxSize"`         // 单个缓存最大尺寸 TODO 需要实现
-	Type        CachePolicyType        `yaml:"type" json:"type"`               // 类型
+	Type        CachePolicyStorageType `yaml:"type" json:"type"`               // 类型
 	Options     map[string]interface{} `yaml:"options" json:"options"`         // 选项
 
 	capacity int64

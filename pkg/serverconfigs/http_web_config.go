@@ -17,13 +17,12 @@ type HTTPWebConfig struct {
 	MaxRequestBodySize string                     `yaml:"maxRequestBodySize" json:"maxRequestBodySize"` // 请求body最大尺寸 TODO 需要实现
 	AccessLogRef       *HTTPAccessLogRef          `yaml:"accessLog" json:"accessLog"`                   // 访问日志配置
 	StatRef            *HTTPStatRef               `yaml:"statRef" json:"statRef"`                       // 统计配置
-	CacheRefs          []*HTTPCacheRef            `yaml:"cacheRefs" json:"cacheRefs"`                   // 缓存配置
-	CachePolicies      []*HTTPCachePolicy         `yaml:"cachePolicies" json:"cachePolicies"`           // 缓存策略
-	FirewallRef        *HTTPFirewallRef           `yaml:"firewallRef" json:"firewallRef"`               // 防火墙设置
-	WebsocketRef       *HTTPWebsocketRef          `yaml:"websocketRef" json:"websocketRef"`             // Websocket应用配置
-	Websocket          *HTTPWebsocketConfig       `yaml:"websocket" json:"websocket"`                   // Websocket配置
-	RewriteRefs        []*HTTPRewriteRef          `yaml:"rewriteRefs" json:"rewriteRefs"`               // 重写规则配置
-	RewriteRules       []*HTTPRewriteRule         `yaml:"rewriteRules" json:"rewriteRules"`             // 重写规则
+	Cache              *HTTPCacheConfig           `yaml:"cache" json:"cache"`
+	FirewallRef        *HTTPFirewallRef           `yaml:"firewallRef" json:"firewallRef"`   // 防火墙设置
+	WebsocketRef       *HTTPWebsocketRef          `yaml:"websocketRef" json:"websocketRef"` // Websocket应用配置
+	Websocket          *HTTPWebsocketConfig       `yaml:"websocket" json:"websocket"`       // Websocket配置
+	RewriteRefs        []*HTTPRewriteRef          `yaml:"rewriteRefs" json:"rewriteRefs"`   // 重写规则配置
+	RewriteRules       []*HTTPRewriteRule         `yaml:"rewriteRules" json:"rewriteRules"` // 重写规则
 
 	RequestHeaderPolicyRef  *shared.HTTPHeaderPolicyRef `yaml:"requestHeaderPolicyRef" json:"requestHeaderPolicyRef"`   // 请求Header
 	RequestHeaderPolicy     *shared.HTTPHeaderPolicy    `yaml:"requestHeaderPolicy" json:"requestHeaderPolicy"`         // 请求Header策略
@@ -112,14 +111,8 @@ func (this *HTTPWebConfig) Init() error {
 	}
 
 	// cache
-	for _, cacheRef := range this.CacheRefs {
-		err := cacheRef.Init()
-		if err != nil {
-			return err
-		}
-	}
-	for _, cachePolicy := range this.CachePolicies {
-		err := cachePolicy.Init()
+	if this.Cache != nil {
+		err := this.Cache.Init()
 		if err != nil {
 			return err
 		}
