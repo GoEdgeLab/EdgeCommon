@@ -11,8 +11,8 @@ message APINode {
 	string secret = 5;
 	string name = 6;
 	string description = 7;
-	string host = 8;
-	int32 port = 9;
-
-	string address = 100;
+	bytes httpJSON = 8;
+	bytes httpsJSON = 9;
+	bytes accessAddrsJSON = 10;
+	repeated string accessAddrs = 11;
 }

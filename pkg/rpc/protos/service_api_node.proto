@@ -32,8 +32,10 @@ service APINodeService {
 message CreateAPINodeRequest {
 	string name = 1;
 	string description = 2;
-	string host = 3;
-	int32 port = 4;
+	bytes httpJSON = 3;
+	bytes httpsJSON = 4;
+	bytes accessAddrsJSON = 5;
+	bool isOn = 6;
 }
 
 message CreateAPINodeResponse {
@@ -45,8 +47,10 @@ message UpdateAPINodeRequest {
 	int64 nodeId = 1;
 	string name = 2;
 	string description = 3;
-	string host = 4;
-	int32 port = 5;
+	bytes httpJSON = 4;
+	bytes httpsJSON = 5;
+	bytes accessAddrsJSON = 6;
+	bool isOn = 7;
 }
 
 // 删除API节点

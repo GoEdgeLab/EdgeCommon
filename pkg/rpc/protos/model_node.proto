@@ -18,6 +18,7 @@ message Node {
 	string secret = 8;
 	int64 version = 9;
 	int64 latestVersion = 10;
+	repeated int64 connectedAPINodeIds = 11;
 
 	NodeCluster cluster = 32;
 	NodeLogin login = 33;
