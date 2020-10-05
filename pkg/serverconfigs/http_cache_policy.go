@@ -12,9 +12,9 @@ type HTTPCachePolicy struct {
 	IsOn        bool                   `yaml:"isOn" json:"isOn"`               // 是否开启
 	Name        string                 `yaml:"name" json:"name"`               // 名称
 	Description string                 `yaml:"description" json:"description"` // 描述
-	Capacity    *shared.SizeCapacity   `yaml:"capacity" json:"capacity"`       // 最大内容容量 TODO 需要实现
-	MaxKeys     int64                  `yaml:"maxKeys" json:"maxKeys"`         // 最多Key值 TODO 需要实现
-	MaxSize     *shared.SizeCapacity   `yaml:"maxSize" json:"maxSize"`         // 单个缓存最大尺寸 TODO 需要实现
+	Capacity    *shared.SizeCapacity   `yaml:"capacity" json:"capacity"`       // 最大内容容量
+	MaxKeys     int64                  `yaml:"maxKeys" json:"maxKeys"`         // 最多Key值
+	MaxSize     *shared.SizeCapacity   `yaml:"maxSize" json:"maxSize"`         // 单个缓存最大尺寸
 	Type        CachePolicyStorageType `yaml:"type" json:"type"`               // 类型
 	Options     map[string]interface{} `yaml:"options" json:"options"`         // 选项
 	Life        *shared.TimeDuration   `yaml:"life" json:"life"`               // 默认有效期 TODO 需要实现
@@ -41,7 +41,7 @@ func (this *HTTPCachePolicy) Init() error {
 }
 
 // 容量
-func (this *HTTPCachePolicy) CapacitySize() int64 {
+func (this *HTTPCachePolicy) CapacityBytes() int64 {
 	return this.capacity
 }
 
