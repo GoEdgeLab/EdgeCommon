@@ -4,7 +4,6 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/lists"
 	"strings"
-	"time"
 )
 
 var DefaultSkippedResponseCacheControlValues = []string{"private", "no-cache", "no-store"}
@@ -26,7 +25,7 @@ type HTTPCacheRef struct {
 
 	CachePolicy *HTTPCachePolicy `yaml:"cachePolicy" json:"cachePolicy"`
 
-	life                            time.Duration
+	lifeSeconds                     int64
 	maxSize                         int64
 	uppercaseSkipCacheControlValues []string
 }
@@ -36,7 +35,7 @@ func (this *HTTPCacheRef) Init() error {
 		this.maxSize = this.MaxSize.Bytes()
 	}
 	if this.Life != nil {
-		this.life = this.Life.Duration()
+		this.lifeSeconds = int64(this.Life.Duration().Seconds())
 	}
 
 	// control-values
@@ -65,13 +64,13 @@ func (this *HTTPCacheRef) Init() error {
 }
 
 // 最大数据尺寸
-func (this *HTTPCacheRef) MaxDataSize() int64 {
+func (this *HTTPCacheRef) MaxSizeBytes() int64 {
 	return this.maxSize
 }
 
 // 生命周期
-func (this *HTTPCacheRef) LifeDuration() time.Duration {
-	return this.life
+func (this *HTTPCacheRef) LifeSeconds() int64 {
+	return this.lifeSeconds
 }
 
 // 是否包含某个Cache-Control值

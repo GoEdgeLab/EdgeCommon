@@ -6,6 +6,9 @@ type HTTPRequestCondsConfig struct {
 	IsOn      bool                    `yaml:"isOn" json:"isOn"`
 	Connector string                  `yaml:"connector" json:"connector"`
 	Groups    []*HTTPRequestCondGroup `yaml:"groups" json:"groups"`
+
+	hasRequestConds  bool
+	hasResponseConds bool
 }
 
 // 初始化
@@ -18,6 +21,18 @@ func (this *HTTPRequestCondsConfig) Init() error {
 		err := group.Init()
 		if err != nil {
 			return err
+		}
+	}
+
+	// 是否有请求条件
+	for _, group := range this.Groups {
+		if group.IsOn {
+			if group.HasRequestConds() {
+				this.hasRequestConds = true
+			}
+			if group.HasResponseConds() {
+				this.hasResponseConds = true
+			}
 		}
 	}
 
@@ -66,4 +81,14 @@ func (this *HTTPRequestCondsConfig) MatchResponse(formatter func(s string) strin
 		}
 	}
 	return ok
+}
+
+// 判断是否有请求条件
+func (this *HTTPRequestCondsConfig) HasRequestConds() bool {
+	return this.hasRequestConds
+}
+
+// 判断是否有响应条件
+func (this *HTTPRequestCondsConfig) HasResponseConds() bool {
+	return this.hasResponseConds
 }

@@ -17,8 +17,12 @@ type HTTPCachePolicy struct {
 	MaxSize     *shared.SizeCapacity   `yaml:"maxSize" json:"maxSize"`         // 单个缓存最大尺寸 TODO 需要实现
 	Type        CachePolicyStorageType `yaml:"type" json:"type"`               // 类型
 	Options     map[string]interface{} `yaml:"options" json:"options"`         // 选项
+	Life        *shared.TimeDuration   `yaml:"life" json:"life"`               // 默认有效期 TODO 需要实现
+	MinLife     *shared.TimeDuration   `yaml:"minLife" json:"minLife"`         // 最小有效期 TODO 需要实现
+	MaxLife     *shared.TimeDuration   `yaml:"maxLife" json:"maxLife"`         // 最大有效期 TODO 需要实现
 
 	capacity int64
+	maxSize  int64
 }
 
 // 校验
@@ -29,12 +33,21 @@ func (this *HTTPCachePolicy) Init() error {
 		this.capacity = this.Capacity.Bytes()
 	}
 
+	if this.maxSize > 0 {
+		this.maxSize = this.MaxSize.Bytes()
+	}
+
 	return err
 }
 
 // 容量
 func (this *HTTPCachePolicy) CapacitySize() int64 {
 	return this.capacity
+}
+
+// 单个缓存最大尺寸
+func (this *HTTPCachePolicy) MaxSizeBytes() int64 {
+	return this.maxSize
 }
 
 // 对比Policy是否有变化

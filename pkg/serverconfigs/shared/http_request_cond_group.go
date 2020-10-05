@@ -17,7 +17,7 @@ func (this *HTTPRequestCondGroup) Init() error {
 	if len(this.Connector) == 0 {
 		this.Connector = "or"
 	}
-	
+
 	if len(this.Conds) > 0 {
 		for _, cond := range this.Conds {
 			err := cond.Init()
@@ -41,6 +41,14 @@ func (this *HTTPRequestCondGroup) MatchRequest(formatter func(source string) str
 
 func (this *HTTPRequestCondGroup) MatchResponse(formatter func(source string) string) bool {
 	return this.match(this.responseConds, formatter)
+}
+
+func (this *HTTPRequestCondGroup) HasRequestConds() bool {
+	return len(this.requestConds) > 0
+}
+
+func (this *HTTPRequestCondGroup) HasResponseConds() bool {
+	return len(this.responseConds) > 0
 }
 
 func (this *HTTPRequestCondGroup) match(conds []*HTTPRequestCond, formatter func(source string) string) bool {
