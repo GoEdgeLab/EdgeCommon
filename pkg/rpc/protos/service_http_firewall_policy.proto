@@ -4,10 +4,32 @@ option go_package = "./pb";
 package pb;
 
 import "model_http_firewall_policy.proto";
+import "rpc_messages.proto";
 
 service HTTPFirewallPolicyService {
 	// 获取所有可用策略
 	rpc findAllEnabledHTTPFirewallPolicies (FindAllEnabledHTTPFirewallPoliciesRequest) returns (FindAllEnabledHTTPFirewallPoliciesResponse);
+
+	// 创建防火墙策略
+	rpc createHTTPFirewallPolicy (CreateHTTPFirewallPolicyRequest) returns (CreateHTTPFirewallPolicyResponse);
+
+	// 修改防火墙策略
+	rpc updateHTTPFirewallPolicy (UpdateHTTPFirewallPolicyRequest) returns (RPCUpdateSuccess);
+
+	// 计算可用的防火墙策略数量
+	rpc countAllEnabledFirewallPolicies (CountAllEnabledFirewallPoliciesRequest) returns (CountAllEnabledFirewallPoliciesResponse);
+
+	// 列出单页的防火墙策略
+	rpc listEnabledFirewallPolicies (ListEnabledFirewallPoliciesRequest) returns (ListEnabledFirewallPoliciesResponse);
+
+	// 删除某个防火墙策略
+	rpc deleteFirewallPolicy (DeleteFirewallPolicyRequest) returns (RPCDeleteSuccess);
+
+	// 查找单个防火墙配置
+	rpc findEnabledFirewallPolicyConfig (FindEnabledFirewallPolicyConfigRequest) returns (FindEnabledFirewallPolicyConfigResponse);
+
+	// 获取防火墙的基本信息
+	rpc findEnabledFirewallPolicy (FindEnabledFirewallPolicyRequest) returns (FindEnabledFirewallPolicyResponse);
 }
 
 // 获取所有可用策略
@@ -19,3 +41,64 @@ message FindAllEnabledHTTPFirewallPoliciesResponse {
 	repeated HTTPFirewallPolicy firewallPolicies = 1;
 }
 
+// 创建防火墙策略
+message CreateHTTPFirewallPolicyRequest {
+	bool isOn = 1;
+	string name = 2;
+	string description = 3;
+	repeated string firewallGroupCodes = 4;
+}
+
+message CreateHTTPFirewallPolicyResponse {
+	int64 firewallPolicyId = 1;
+}
+
+// 修改防火墙策略
+message UpdateHTTPFirewallPolicyRequest {
+	int64 firewallPolicyId = 1;
+	bool isOn = 2;
+	string name = 3;
+	string description = 4;
+	repeated string firewallGroupCodes = 5;
+}
+
+// 计算可用的防火墙策略数量
+message CountAllEnabledFirewallPoliciesRequest {
+}
+
+message CountAllEnabledFirewallPoliciesResponse {
+	int64 count = 1;
+}
+
+// 列出单页的防火墙策略
+message ListEnabledFirewallPoliciesRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListEnabledFirewallPoliciesResponse {
+	repeated HTTPFirewallPolicy firewallPolicies = 1;
+}
+
+// 删除某个防火墙策略
+message DeleteFirewallPolicyRequest {
+	int64 firewallPolicyId = 1;
+}
+
+// 查找单个防火墙配置
+message FindEnabledFirewallPolicyConfigRequest {
+	int64 firewallPolicyId = 1;
+}
+
+message FindEnabledFirewallPolicyConfigResponse {
+	bytes firewallPolicyJSON = 1;
+}
+
+// 获取防火墙的基本信息
+message FindEnabledFirewallPolicyRequest {
+	int64 firewallPolicyId = 1;
+}
+
+message FindEnabledFirewallPolicyResponse {
+	HTTPFirewallPolicy firewallPolicy = 1;
+}

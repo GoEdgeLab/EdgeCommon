@@ -1,4 +1,4 @@
-package serverconfigs
+package firewallconfigs
 
 type HTTPFirewallRef struct {
 	IsPrior          bool  `yaml:"isPrior" json:"isPrior"`

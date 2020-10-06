@@ -115,6 +115,632 @@ func (x *FindAllEnabledHTTPFirewallPoliciesResponse) GetFirewallPolicies() []*HT
 	return nil
 }
 
+// 创建防火墙策略
+type CreateHTTPFirewallPolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IsOn               bool     `protobuf:"varint,1,opt,name=isOn,proto3" json:"isOn,omitempty"`
+	Name               string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Description        string   `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	FirewallGroupCodes []string `protobuf:"bytes,4,rep,name=firewallGroupCodes,proto3" json:"firewallGroupCodes,omitempty"`
+}
+
+func (x *CreateHTTPFirewallPolicyRequest) Reset() {
+	*x = CreateHTTPFirewallPolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_firewall_policy_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateHTTPFirewallPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateHTTPFirewallPolicyRequest) ProtoMessage() {}
+
+func (x *CreateHTTPFirewallPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_firewall_policy_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateHTTPFirewallPolicyRequest.ProtoReflect.Descriptor instead.
+func (*CreateHTTPFirewallPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_firewall_policy_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CreateHTTPFirewallPolicyRequest) GetIsOn() bool {
+	if x != nil {
+		return x.IsOn
+	}
+	return false
+}
+
+func (x *CreateHTTPFirewallPolicyRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateHTTPFirewallPolicyRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *CreateHTTPFirewallPolicyRequest) GetFirewallGroupCodes() []string {
+	if x != nil {
+		return x.FirewallGroupCodes
+	}
+	return nil
+}
+
+type CreateHTTPFirewallPolicyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FirewallPolicyId int64 `protobuf:"varint,1,opt,name=firewallPolicyId,proto3" json:"firewallPolicyId,omitempty"`
+}
+
+func (x *CreateHTTPFirewallPolicyResponse) Reset() {
+	*x = CreateHTTPFirewallPolicyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_firewall_policy_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateHTTPFirewallPolicyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateHTTPFirewallPolicyResponse) ProtoMessage() {}
+
+func (x *CreateHTTPFirewallPolicyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_firewall_policy_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateHTTPFirewallPolicyResponse.ProtoReflect.Descriptor instead.
+func (*CreateHTTPFirewallPolicyResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_firewall_policy_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CreateHTTPFirewallPolicyResponse) GetFirewallPolicyId() int64 {
+	if x != nil {
+		return x.FirewallPolicyId
+	}
+	return 0
+}
+
+// 修改防火墙策略
+type UpdateHTTPFirewallPolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FirewallPolicyId   int64    `protobuf:"varint,1,opt,name=firewallPolicyId,proto3" json:"firewallPolicyId,omitempty"`
+	IsOn               bool     `protobuf:"varint,2,opt,name=isOn,proto3" json:"isOn,omitempty"`
+	Name               string   `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Description        string   `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	FirewallGroupCodes []string `protobuf:"bytes,5,rep,name=firewallGroupCodes,proto3" json:"firewallGroupCodes,omitempty"`
+}
+
+func (x *UpdateHTTPFirewallPolicyRequest) Reset() {
+	*x = UpdateHTTPFirewallPolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_firewall_policy_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPFirewallPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPFirewallPolicyRequest) ProtoMessage() {}
+
+func (x *UpdateHTTPFirewallPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_firewall_policy_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPFirewallPolicyRequest.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPFirewallPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_firewall_policy_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *UpdateHTTPFirewallPolicyRequest) GetFirewallPolicyId() int64 {
+	if x != nil {
+		return x.FirewallPolicyId
+	}
+	return 0
+}
+
+func (x *UpdateHTTPFirewallPolicyRequest) GetIsOn() bool {
+	if x != nil {
+		return x.IsOn
+	}
+	return false
+}
+
+func (x *UpdateHTTPFirewallPolicyRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateHTTPFirewallPolicyRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *UpdateHTTPFirewallPolicyRequest) GetFirewallGroupCodes() []string {
+	if x != nil {
+		return x.FirewallGroupCodes
+	}
+	return nil
+}
+
+// 计算可用的防火墙策略数量
+type CountAllEnabledFirewallPoliciesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *CountAllEnabledFirewallPoliciesRequest) Reset() {
+	*x = CountAllEnabledFirewallPoliciesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_firewall_policy_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CountAllEnabledFirewallPoliciesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountAllEnabledFirewallPoliciesRequest) ProtoMessage() {}
+
+func (x *CountAllEnabledFirewallPoliciesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_firewall_policy_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountAllEnabledFirewallPoliciesRequest.ProtoReflect.Descriptor instead.
+func (*CountAllEnabledFirewallPoliciesRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_firewall_policy_proto_rawDescGZIP(), []int{5}
+}
+
+type CountAllEnabledFirewallPoliciesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Count int64 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+}
+
+func (x *CountAllEnabledFirewallPoliciesResponse) Reset() {
+	*x = CountAllEnabledFirewallPoliciesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_firewall_policy_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CountAllEnabledFirewallPoliciesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountAllEnabledFirewallPoliciesResponse) ProtoMessage() {}
+
+func (x *CountAllEnabledFirewallPoliciesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_firewall_policy_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountAllEnabledFirewallPoliciesResponse.ProtoReflect.Descriptor instead.
+func (*CountAllEnabledFirewallPoliciesResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_firewall_policy_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *CountAllEnabledFirewallPoliciesResponse) GetCount() int64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+// 列出单页的防火墙策略
+type ListEnabledFirewallPoliciesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Offset int64 `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Size   int64 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+}
+
+func (x *ListEnabledFirewallPoliciesRequest) Reset() {
+	*x = ListEnabledFirewallPoliciesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_firewall_policy_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListEnabledFirewallPoliciesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListEnabledFirewallPoliciesRequest) ProtoMessage() {}
+
+func (x *ListEnabledFirewallPoliciesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_firewall_policy_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListEnabledFirewallPoliciesRequest.ProtoReflect.Descriptor instead.
+func (*ListEnabledFirewallPoliciesRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_firewall_policy_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ListEnabledFirewallPoliciesRequest) GetOffset() int64 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *ListEnabledFirewallPoliciesRequest) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+type ListEnabledFirewallPoliciesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FirewallPolicies []*HTTPFirewallPolicy `protobuf:"bytes,1,rep,name=firewallPolicies,proto3" json:"firewallPolicies,omitempty"`
+}
+
+func (x *ListEnabledFirewallPoliciesResponse) Reset() {
+	*x = ListEnabledFirewallPoliciesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_firewall_policy_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListEnabledFirewallPoliciesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListEnabledFirewallPoliciesResponse) ProtoMessage() {}
+
+func (x *ListEnabledFirewallPoliciesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_firewall_policy_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListEnabledFirewallPoliciesResponse.ProtoReflect.Descriptor instead.
+func (*ListEnabledFirewallPoliciesResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_firewall_policy_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ListEnabledFirewallPoliciesResponse) GetFirewallPolicies() []*HTTPFirewallPolicy {
+	if x != nil {
+		return x.FirewallPolicies
+	}
+	return nil
+}
+
+// 删除某个防火墙策略
+type DeleteFirewallPolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FirewallPolicyId int64 `protobuf:"varint,1,opt,name=firewallPolicyId,proto3" json:"firewallPolicyId,omitempty"`
+}
+
+func (x *DeleteFirewallPolicyRequest) Reset() {
+	*x = DeleteFirewallPolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_firewall_policy_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteFirewallPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteFirewallPolicyRequest) ProtoMessage() {}
+
+func (x *DeleteFirewallPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_firewall_policy_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteFirewallPolicyRequest.ProtoReflect.Descriptor instead.
+func (*DeleteFirewallPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_firewall_policy_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *DeleteFirewallPolicyRequest) GetFirewallPolicyId() int64 {
+	if x != nil {
+		return x.FirewallPolicyId
+	}
+	return 0
+}
+
+// 查找单个防火墙配置
+type FindEnabledFirewallPolicyConfigRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FirewallPolicyId int64 `protobuf:"varint,1,opt,name=firewallPolicyId,proto3" json:"firewallPolicyId,omitempty"`
+}
+
+func (x *FindEnabledFirewallPolicyConfigRequest) Reset() {
+	*x = FindEnabledFirewallPolicyConfigRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_firewall_policy_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledFirewallPolicyConfigRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledFirewallPolicyConfigRequest) ProtoMessage() {}
+
+func (x *FindEnabledFirewallPolicyConfigRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_firewall_policy_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledFirewallPolicyConfigRequest.ProtoReflect.Descriptor instead.
+func (*FindEnabledFirewallPolicyConfigRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_firewall_policy_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *FindEnabledFirewallPolicyConfigRequest) GetFirewallPolicyId() int64 {
+	if x != nil {
+		return x.FirewallPolicyId
+	}
+	return 0
+}
+
+type FindEnabledFirewallPolicyConfigResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FirewallPolicyJSON []byte `protobuf:"bytes,1,opt,name=firewallPolicyJSON,proto3" json:"firewallPolicyJSON,omitempty"`
+}
+
+func (x *FindEnabledFirewallPolicyConfigResponse) Reset() {
+	*x = FindEnabledFirewallPolicyConfigResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_firewall_policy_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledFirewallPolicyConfigResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledFirewallPolicyConfigResponse) ProtoMessage() {}
+
+func (x *FindEnabledFirewallPolicyConfigResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_firewall_policy_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledFirewallPolicyConfigResponse.ProtoReflect.Descriptor instead.
+func (*FindEnabledFirewallPolicyConfigResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_firewall_policy_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *FindEnabledFirewallPolicyConfigResponse) GetFirewallPolicyJSON() []byte {
+	if x != nil {
+		return x.FirewallPolicyJSON
+	}
+	return nil
+}
+
+// 获取防火墙的基本信息
+type FindEnabledFirewallPolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FirewallPolicyId int64 `protobuf:"varint,1,opt,name=firewallPolicyId,proto3" json:"firewallPolicyId,omitempty"`
+}
+
+func (x *FindEnabledFirewallPolicyRequest) Reset() {
+	*x = FindEnabledFirewallPolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_firewall_policy_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledFirewallPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledFirewallPolicyRequest) ProtoMessage() {}
+
+func (x *FindEnabledFirewallPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_firewall_policy_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledFirewallPolicyRequest.ProtoReflect.Descriptor instead.
+func (*FindEnabledFirewallPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_firewall_policy_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *FindEnabledFirewallPolicyRequest) GetFirewallPolicyId() int64 {
+	if x != nil {
+		return x.FirewallPolicyId
+	}
+	return 0
+}
+
+type FindEnabledFirewallPolicyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FirewallPolicy *HTTPFirewallPolicy `protobuf:"bytes,1,opt,name=firewallPolicy,proto3" json:"firewallPolicy,omitempty"`
+}
+
+func (x *FindEnabledFirewallPolicyResponse) Reset() {
+	*x = FindEnabledFirewallPolicyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_firewall_policy_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledFirewallPolicyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledFirewallPolicyResponse) ProtoMessage() {}
+
+func (x *FindEnabledFirewallPolicyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_firewall_policy_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledFirewallPolicyResponse.ProtoReflect.Descriptor instead.
+func (*FindEnabledFirewallPolicyResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_firewall_policy_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *FindEnabledFirewallPolicyResponse) GetFirewallPolicy() *HTTPFirewallPolicy {
+	if x != nil {
+		return x.FirewallPolicy
+	}
+	return nil
+}
+
 var File_service_http_firewall_policy_proto protoreflect.FileDescriptor
 
 var file_service_http_firewall_policy_proto_rawDesc = []byte{
@@ -122,28 +748,149 @@ var file_service_http_firewall_policy_proto_rawDesc = []byte{
 	0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x5f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x1a, 0x20, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f,
 	0x68, 0x74, 0x74, 0x70, 0x5f, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x5f, 0x70, 0x6f,
-	0x6c, 0x69, 0x63, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2b, 0x0a, 0x29, 0x46, 0x69,
-	0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50,
-	0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x70, 0x0a, 0x2a, 0x46, 0x69, 0x6e, 0x64, 0x41,
-	0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72,
-	0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x42, 0x0a, 0x10, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c,
-	0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x16, 0x2e, 0x70, 0x62, 0x2e, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c,
-	0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x10, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c,
-	0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x32, 0xa1, 0x01, 0x0a, 0x19, 0x48, 0x54,
-	0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x83, 0x01, 0x0a, 0x22, 0x66, 0x69, 0x6e, 0x64,
-	0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69,
-	0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x12, 0x2d,
-	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c,
-	0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f,
-	0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2e, 0x2e,
-	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
-	0x64, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c,
-	0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a,
-	0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6c, 0x69, 0x63, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x12, 0x72, 0x70, 0x63, 0x5f,
+	0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2b,
+	0x0a, 0x29, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x70, 0x0a, 0x2a, 0x46,
+	0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54,
+	0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x42, 0x0a, 0x10, 0x66, 0x69, 0x72,
+	0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x70, 0x62, 0x2e, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72,
+	0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x10, 0x66, 0x69, 0x72,
+	0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x22, 0x9b, 0x01,
+	0x0a, 0x1f, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65,
+	0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52,
+	0x04, 0x69, 0x73, 0x4f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73,
+	0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b,
+	0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2e, 0x0a, 0x12, 0x66,
+	0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x43, 0x6f, 0x64, 0x65,
+	0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x12, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c,
+	0x6c, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x43, 0x6f, 0x64, 0x65, 0x73, 0x22, 0x4e, 0x0a, 0x20, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c,
+	0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x2a, 0x0a, 0x10, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63,
+	0x79, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x10, 0x66, 0x69, 0x72, 0x65, 0x77,
+	0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x22, 0xc7, 0x01, 0x0a, 0x1f,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61,
+	0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x2a, 0x0a, 0x10, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63,
+	0x79, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x10, 0x66, 0x69, 0x72, 0x65, 0x77,
+	0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x69,
+	0x73, 0x4f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x12,
+	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
+	0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69,
+	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2e, 0x0a, 0x12, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c,
+	0x6c, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x43, 0x6f, 0x64, 0x65, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28,
+	0x09, 0x52, 0x12, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x47, 0x72, 0x6f, 0x75, 0x70,
+	0x43, 0x6f, 0x64, 0x65, 0x73, 0x22, 0x28, 0x0a, 0x26, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c,
+	0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c,
+	0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22,
+	0x3f, 0x0a, 0x27, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c,
+	0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69,
+	0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x22, 0x50, 0x0a, 0x22, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46,
+	0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x12,
+	0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69,
+	0x7a, 0x65, 0x22, 0x69, 0x0a, 0x23, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x42, 0x0a, 0x10, 0x66, 0x69, 0x72,
+	0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x70, 0x62, 0x2e, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72,
+	0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x10, 0x66, 0x69, 0x72,
+	0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x22, 0x49, 0x0a,
+	0x1b, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2a, 0x0a, 0x10,
+	0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x10, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c,
+	0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x22, 0x54, 0x0a, 0x26, 0x46, 0x69, 0x6e, 0x64,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x2a, 0x0a, 0x10, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x10, 0x66, 0x69,
+	0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x22, 0x59,
+	0x0a, 0x27, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72,
+	0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69,
+	0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x12, 0x66, 0x69, 0x72,
+	0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x12, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x4e, 0x0a, 0x20, 0x46, 0x69, 0x6e,
+	0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c,
+	0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2a, 0x0a,
+	0x10, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x10, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c,
+	0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x22, 0x63, 0x0a, 0x21, 0x46, 0x69, 0x6e,
+	0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c,
+	0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3e,
+	0x0a, 0x0e, 0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x70, 0x62, 0x2e, 0x48, 0x54, 0x54, 0x50,
+	0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x0e,
+	0x66, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x32, 0x80,
+	0x07, 0x0a, 0x19, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x83, 0x01, 0x0a,
+	0x22, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48,
+	0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63,
+	0x69, 0x65, 0x73, 0x12, 0x2d, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77,
+	0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x2e, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45,
+	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61,
+	0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x65, 0x0a, 0x18, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50,
+	0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x23,
+	0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69,
+	0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48,
+	0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63,
+	0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x55, 0x0a, 0x18, 0x75, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c,
+	0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e,
+	0x52, 0x50, 0x43, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x12, 0x7a, 0x0a, 0x1f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63,
+	0x69, 0x65, 0x73, 0x12, 0x2a, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c,
+	0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c,
+	0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x2b, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61,
+	0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6e, 0x0a, 0x1b,
+	0x6c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77,
+	0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x12, 0x26, 0x2e, 0x70, 0x62,
+	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65,
+	0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61,
+	0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4d, 0x0a, 0x14,
+	0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x7a, 0x0a, 0x1f, 0x66,
+	0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61,
+	0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x2a,
+	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46,
+	0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x43, 0x6f, 0x6e,
+	0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x70, 0x62, 0x2e,
+	0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77,
+	0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x68, 0x0a, 0x19, 0x66, 0x69, 0x6e, 0x64, 0x45,
+	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e,
+	0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c,
+	0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x70, 0x62, 0x2e,
+	0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x46, 0x69, 0x72, 0x65, 0x77,
+	0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -158,21 +905,51 @@ func file_service_http_firewall_policy_proto_rawDescGZIP() []byte {
 	return file_service_http_firewall_policy_proto_rawDescData
 }
 
-var file_service_http_firewall_policy_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_service_http_firewall_policy_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_service_http_firewall_policy_proto_goTypes = []interface{}{
 	(*FindAllEnabledHTTPFirewallPoliciesRequest)(nil),  // 0: pb.FindAllEnabledHTTPFirewallPoliciesRequest
 	(*FindAllEnabledHTTPFirewallPoliciesResponse)(nil), // 1: pb.FindAllEnabledHTTPFirewallPoliciesResponse
-	(*HTTPFirewallPolicy)(nil),                         // 2: pb.HTTPFirewallPolicy
+	(*CreateHTTPFirewallPolicyRequest)(nil),            // 2: pb.CreateHTTPFirewallPolicyRequest
+	(*CreateHTTPFirewallPolicyResponse)(nil),           // 3: pb.CreateHTTPFirewallPolicyResponse
+	(*UpdateHTTPFirewallPolicyRequest)(nil),            // 4: pb.UpdateHTTPFirewallPolicyRequest
+	(*CountAllEnabledFirewallPoliciesRequest)(nil),     // 5: pb.CountAllEnabledFirewallPoliciesRequest
+	(*CountAllEnabledFirewallPoliciesResponse)(nil),    // 6: pb.CountAllEnabledFirewallPoliciesResponse
+	(*ListEnabledFirewallPoliciesRequest)(nil),         // 7: pb.ListEnabledFirewallPoliciesRequest
+	(*ListEnabledFirewallPoliciesResponse)(nil),        // 8: pb.ListEnabledFirewallPoliciesResponse
+	(*DeleteFirewallPolicyRequest)(nil),                // 9: pb.DeleteFirewallPolicyRequest
+	(*FindEnabledFirewallPolicyConfigRequest)(nil),     // 10: pb.FindEnabledFirewallPolicyConfigRequest
+	(*FindEnabledFirewallPolicyConfigResponse)(nil),    // 11: pb.FindEnabledFirewallPolicyConfigResponse
+	(*FindEnabledFirewallPolicyRequest)(nil),           // 12: pb.FindEnabledFirewallPolicyRequest
+	(*FindEnabledFirewallPolicyResponse)(nil),          // 13: pb.FindEnabledFirewallPolicyResponse
+	(*HTTPFirewallPolicy)(nil),                         // 14: pb.HTTPFirewallPolicy
+	(*RPCUpdateSuccess)(nil),                           // 15: pb.RPCUpdateSuccess
+	(*RPCDeleteSuccess)(nil),                           // 16: pb.RPCDeleteSuccess
 }
 var file_service_http_firewall_policy_proto_depIdxs = []int32{
-	2, // 0: pb.FindAllEnabledHTTPFirewallPoliciesResponse.firewallPolicies:type_name -> pb.HTTPFirewallPolicy
-	0, // 1: pb.HTTPFirewallPolicyService.findAllEnabledHTTPFirewallPolicies:input_type -> pb.FindAllEnabledHTTPFirewallPoliciesRequest
-	1, // 2: pb.HTTPFirewallPolicyService.findAllEnabledHTTPFirewallPolicies:output_type -> pb.FindAllEnabledHTTPFirewallPoliciesResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	14, // 0: pb.FindAllEnabledHTTPFirewallPoliciesResponse.firewallPolicies:type_name -> pb.HTTPFirewallPolicy
+	14, // 1: pb.ListEnabledFirewallPoliciesResponse.firewallPolicies:type_name -> pb.HTTPFirewallPolicy
+	14, // 2: pb.FindEnabledFirewallPolicyResponse.firewallPolicy:type_name -> pb.HTTPFirewallPolicy
+	0,  // 3: pb.HTTPFirewallPolicyService.findAllEnabledHTTPFirewallPolicies:input_type -> pb.FindAllEnabledHTTPFirewallPoliciesRequest
+	2,  // 4: pb.HTTPFirewallPolicyService.createHTTPFirewallPolicy:input_type -> pb.CreateHTTPFirewallPolicyRequest
+	4,  // 5: pb.HTTPFirewallPolicyService.updateHTTPFirewallPolicy:input_type -> pb.UpdateHTTPFirewallPolicyRequest
+	5,  // 6: pb.HTTPFirewallPolicyService.countAllEnabledFirewallPolicies:input_type -> pb.CountAllEnabledFirewallPoliciesRequest
+	7,  // 7: pb.HTTPFirewallPolicyService.listEnabledFirewallPolicies:input_type -> pb.ListEnabledFirewallPoliciesRequest
+	9,  // 8: pb.HTTPFirewallPolicyService.deleteFirewallPolicy:input_type -> pb.DeleteFirewallPolicyRequest
+	10, // 9: pb.HTTPFirewallPolicyService.findEnabledFirewallPolicyConfig:input_type -> pb.FindEnabledFirewallPolicyConfigRequest
+	12, // 10: pb.HTTPFirewallPolicyService.findEnabledFirewallPolicy:input_type -> pb.FindEnabledFirewallPolicyRequest
+	1,  // 11: pb.HTTPFirewallPolicyService.findAllEnabledHTTPFirewallPolicies:output_type -> pb.FindAllEnabledHTTPFirewallPoliciesResponse
+	3,  // 12: pb.HTTPFirewallPolicyService.createHTTPFirewallPolicy:output_type -> pb.CreateHTTPFirewallPolicyResponse
+	15, // 13: pb.HTTPFirewallPolicyService.updateHTTPFirewallPolicy:output_type -> pb.RPCUpdateSuccess
+	6,  // 14: pb.HTTPFirewallPolicyService.countAllEnabledFirewallPolicies:output_type -> pb.CountAllEnabledFirewallPoliciesResponse
+	8,  // 15: pb.HTTPFirewallPolicyService.listEnabledFirewallPolicies:output_type -> pb.ListEnabledFirewallPoliciesResponse
+	16, // 16: pb.HTTPFirewallPolicyService.deleteFirewallPolicy:output_type -> pb.RPCDeleteSuccess
+	11, // 17: pb.HTTPFirewallPolicyService.findEnabledFirewallPolicyConfig:output_type -> pb.FindEnabledFirewallPolicyConfigResponse
+	13, // 18: pb.HTTPFirewallPolicyService.findEnabledFirewallPolicy:output_type -> pb.FindEnabledFirewallPolicyResponse
+	11, // [11:19] is the sub-list for method output_type
+	3,  // [3:11] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_service_http_firewall_policy_proto_init() }
@@ -181,6 +958,7 @@ func file_service_http_firewall_policy_proto_init() {
 		return
 	}
 	file_model_http_firewall_policy_proto_init()
+	file_rpc_messages_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_service_http_firewall_policy_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FindAllEnabledHTTPFirewallPoliciesRequest); i {
@@ -206,6 +984,150 @@ func file_service_http_firewall_policy_proto_init() {
 				return nil
 			}
 		}
+		file_service_http_firewall_policy_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateHTTPFirewallPolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_firewall_policy_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateHTTPFirewallPolicyResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_firewall_policy_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateHTTPFirewallPolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_firewall_policy_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CountAllEnabledFirewallPoliciesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_firewall_policy_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CountAllEnabledFirewallPoliciesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_firewall_policy_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListEnabledFirewallPoliciesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_firewall_policy_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListEnabledFirewallPoliciesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_firewall_policy_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteFirewallPolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_firewall_policy_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledFirewallPolicyConfigRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_firewall_policy_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledFirewallPolicyConfigResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_firewall_policy_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledFirewallPolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_firewall_policy_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledFirewallPolicyResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -213,7 +1135,7 @@ func file_service_http_firewall_policy_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_http_firewall_policy_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -241,6 +1163,20 @@ const _ = grpc.SupportPackageIsVersion6
 type HTTPFirewallPolicyServiceClient interface {
 	// 获取所有可用策略
 	FindAllEnabledHTTPFirewallPolicies(ctx context.Context, in *FindAllEnabledHTTPFirewallPoliciesRequest, opts ...grpc.CallOption) (*FindAllEnabledHTTPFirewallPoliciesResponse, error)
+	// 创建防火墙策略
+	CreateHTTPFirewallPolicy(ctx context.Context, in *CreateHTTPFirewallPolicyRequest, opts ...grpc.CallOption) (*CreateHTTPFirewallPolicyResponse, error)
+	// 修改防火墙策略
+	UpdateHTTPFirewallPolicy(ctx context.Context, in *UpdateHTTPFirewallPolicyRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
+	// 计算可用的防火墙策略数量
+	CountAllEnabledFirewallPolicies(ctx context.Context, in *CountAllEnabledFirewallPoliciesRequest, opts ...grpc.CallOption) (*CountAllEnabledFirewallPoliciesResponse, error)
+	// 列出单页的防火墙策略
+	ListEnabledFirewallPolicies(ctx context.Context, in *ListEnabledFirewallPoliciesRequest, opts ...grpc.CallOption) (*ListEnabledFirewallPoliciesResponse, error)
+	// 删除某个防火墙策略
+	DeleteFirewallPolicy(ctx context.Context, in *DeleteFirewallPolicyRequest, opts ...grpc.CallOption) (*RPCDeleteSuccess, error)
+	// 查找单个防火墙配置
+	FindEnabledFirewallPolicyConfig(ctx context.Context, in *FindEnabledFirewallPolicyConfigRequest, opts ...grpc.CallOption) (*FindEnabledFirewallPolicyConfigResponse, error)
+	// 获取防火墙的基本信息
+	FindEnabledFirewallPolicy(ctx context.Context, in *FindEnabledFirewallPolicyRequest, opts ...grpc.CallOption) (*FindEnabledFirewallPolicyResponse, error)
 }
 
 type hTTPFirewallPolicyServiceClient struct {
@@ -260,10 +1196,87 @@ func (c *hTTPFirewallPolicyServiceClient) FindAllEnabledHTTPFirewallPolicies(ctx
 	return out, nil
 }
 
+func (c *hTTPFirewallPolicyServiceClient) CreateHTTPFirewallPolicy(ctx context.Context, in *CreateHTTPFirewallPolicyRequest, opts ...grpc.CallOption) (*CreateHTTPFirewallPolicyResponse, error) {
+	out := new(CreateHTTPFirewallPolicyResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPFirewallPolicyService/createHTTPFirewallPolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPFirewallPolicyServiceClient) UpdateHTTPFirewallPolicy(ctx context.Context, in *UpdateHTTPFirewallPolicyRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error) {
+	out := new(RPCUpdateSuccess)
+	err := c.cc.Invoke(ctx, "/pb.HTTPFirewallPolicyService/updateHTTPFirewallPolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPFirewallPolicyServiceClient) CountAllEnabledFirewallPolicies(ctx context.Context, in *CountAllEnabledFirewallPoliciesRequest, opts ...grpc.CallOption) (*CountAllEnabledFirewallPoliciesResponse, error) {
+	out := new(CountAllEnabledFirewallPoliciesResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPFirewallPolicyService/countAllEnabledFirewallPolicies", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPFirewallPolicyServiceClient) ListEnabledFirewallPolicies(ctx context.Context, in *ListEnabledFirewallPoliciesRequest, opts ...grpc.CallOption) (*ListEnabledFirewallPoliciesResponse, error) {
+	out := new(ListEnabledFirewallPoliciesResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPFirewallPolicyService/listEnabledFirewallPolicies", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPFirewallPolicyServiceClient) DeleteFirewallPolicy(ctx context.Context, in *DeleteFirewallPolicyRequest, opts ...grpc.CallOption) (*RPCDeleteSuccess, error) {
+	out := new(RPCDeleteSuccess)
+	err := c.cc.Invoke(ctx, "/pb.HTTPFirewallPolicyService/deleteFirewallPolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPFirewallPolicyServiceClient) FindEnabledFirewallPolicyConfig(ctx context.Context, in *FindEnabledFirewallPolicyConfigRequest, opts ...grpc.CallOption) (*FindEnabledFirewallPolicyConfigResponse, error) {
+	out := new(FindEnabledFirewallPolicyConfigResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPFirewallPolicyService/findEnabledFirewallPolicyConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPFirewallPolicyServiceClient) FindEnabledFirewallPolicy(ctx context.Context, in *FindEnabledFirewallPolicyRequest, opts ...grpc.CallOption) (*FindEnabledFirewallPolicyResponse, error) {
+	out := new(FindEnabledFirewallPolicyResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPFirewallPolicyService/findEnabledFirewallPolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HTTPFirewallPolicyServiceServer is the server API for HTTPFirewallPolicyService service.
 type HTTPFirewallPolicyServiceServer interface {
 	// 获取所有可用策略
 	FindAllEnabledHTTPFirewallPolicies(context.Context, *FindAllEnabledHTTPFirewallPoliciesRequest) (*FindAllEnabledHTTPFirewallPoliciesResponse, error)
+	// 创建防火墙策略
+	CreateHTTPFirewallPolicy(context.Context, *CreateHTTPFirewallPolicyRequest) (*CreateHTTPFirewallPolicyResponse, error)
+	// 修改防火墙策略
+	UpdateHTTPFirewallPolicy(context.Context, *UpdateHTTPFirewallPolicyRequest) (*RPCUpdateSuccess, error)
+	// 计算可用的防火墙策略数量
+	CountAllEnabledFirewallPolicies(context.Context, *CountAllEnabledFirewallPoliciesRequest) (*CountAllEnabledFirewallPoliciesResponse, error)
+	// 列出单页的防火墙策略
+	ListEnabledFirewallPolicies(context.Context, *ListEnabledFirewallPoliciesRequest) (*ListEnabledFirewallPoliciesResponse, error)
+	// 删除某个防火墙策略
+	DeleteFirewallPolicy(context.Context, *DeleteFirewallPolicyRequest) (*RPCDeleteSuccess, error)
+	// 查找单个防火墙配置
+	FindEnabledFirewallPolicyConfig(context.Context, *FindEnabledFirewallPolicyConfigRequest) (*FindEnabledFirewallPolicyConfigResponse, error)
+	// 获取防火墙的基本信息
+	FindEnabledFirewallPolicy(context.Context, *FindEnabledFirewallPolicyRequest) (*FindEnabledFirewallPolicyResponse, error)
 }
 
 // UnimplementedHTTPFirewallPolicyServiceServer can be embedded to have forward compatible implementations.
@@ -272,6 +1285,27 @@ type UnimplementedHTTPFirewallPolicyServiceServer struct {
 
 func (*UnimplementedHTTPFirewallPolicyServiceServer) FindAllEnabledHTTPFirewallPolicies(context.Context, *FindAllEnabledHTTPFirewallPoliciesRequest) (*FindAllEnabledHTTPFirewallPoliciesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllEnabledHTTPFirewallPolicies not implemented")
+}
+func (*UnimplementedHTTPFirewallPolicyServiceServer) CreateHTTPFirewallPolicy(context.Context, *CreateHTTPFirewallPolicyRequest) (*CreateHTTPFirewallPolicyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateHTTPFirewallPolicy not implemented")
+}
+func (*UnimplementedHTTPFirewallPolicyServiceServer) UpdateHTTPFirewallPolicy(context.Context, *UpdateHTTPFirewallPolicyRequest) (*RPCUpdateSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPFirewallPolicy not implemented")
+}
+func (*UnimplementedHTTPFirewallPolicyServiceServer) CountAllEnabledFirewallPolicies(context.Context, *CountAllEnabledFirewallPoliciesRequest) (*CountAllEnabledFirewallPoliciesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountAllEnabledFirewallPolicies not implemented")
+}
+func (*UnimplementedHTTPFirewallPolicyServiceServer) ListEnabledFirewallPolicies(context.Context, *ListEnabledFirewallPoliciesRequest) (*ListEnabledFirewallPoliciesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListEnabledFirewallPolicies not implemented")
+}
+func (*UnimplementedHTTPFirewallPolicyServiceServer) DeleteFirewallPolicy(context.Context, *DeleteFirewallPolicyRequest) (*RPCDeleteSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFirewallPolicy not implemented")
+}
+func (*UnimplementedHTTPFirewallPolicyServiceServer) FindEnabledFirewallPolicyConfig(context.Context, *FindEnabledFirewallPolicyConfigRequest) (*FindEnabledFirewallPolicyConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledFirewallPolicyConfig not implemented")
+}
+func (*UnimplementedHTTPFirewallPolicyServiceServer) FindEnabledFirewallPolicy(context.Context, *FindEnabledFirewallPolicyRequest) (*FindEnabledFirewallPolicyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledFirewallPolicy not implemented")
 }
 
 func RegisterHTTPFirewallPolicyServiceServer(s *grpc.Server, srv HTTPFirewallPolicyServiceServer) {
@@ -296,6 +1330,132 @@ func _HTTPFirewallPolicyService_FindAllEnabledHTTPFirewallPolicies_Handler(srv i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HTTPFirewallPolicyService_CreateHTTPFirewallPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateHTTPFirewallPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPFirewallPolicyServiceServer).CreateHTTPFirewallPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPFirewallPolicyService/CreateHTTPFirewallPolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPFirewallPolicyServiceServer).CreateHTTPFirewallPolicy(ctx, req.(*CreateHTTPFirewallPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPFirewallPolicyService_UpdateHTTPFirewallPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPFirewallPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPFirewallPolicyServiceServer).UpdateHTTPFirewallPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPFirewallPolicyService/UpdateHTTPFirewallPolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPFirewallPolicyServiceServer).UpdateHTTPFirewallPolicy(ctx, req.(*UpdateHTTPFirewallPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPFirewallPolicyService_CountAllEnabledFirewallPolicies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountAllEnabledFirewallPoliciesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPFirewallPolicyServiceServer).CountAllEnabledFirewallPolicies(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPFirewallPolicyService/CountAllEnabledFirewallPolicies",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPFirewallPolicyServiceServer).CountAllEnabledFirewallPolicies(ctx, req.(*CountAllEnabledFirewallPoliciesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPFirewallPolicyService_ListEnabledFirewallPolicies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListEnabledFirewallPoliciesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPFirewallPolicyServiceServer).ListEnabledFirewallPolicies(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPFirewallPolicyService/ListEnabledFirewallPolicies",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPFirewallPolicyServiceServer).ListEnabledFirewallPolicies(ctx, req.(*ListEnabledFirewallPoliciesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPFirewallPolicyService_DeleteFirewallPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFirewallPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPFirewallPolicyServiceServer).DeleteFirewallPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPFirewallPolicyService/DeleteFirewallPolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPFirewallPolicyServiceServer).DeleteFirewallPolicy(ctx, req.(*DeleteFirewallPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPFirewallPolicyService_FindEnabledFirewallPolicyConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledFirewallPolicyConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPFirewallPolicyServiceServer).FindEnabledFirewallPolicyConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPFirewallPolicyService/FindEnabledFirewallPolicyConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPFirewallPolicyServiceServer).FindEnabledFirewallPolicyConfig(ctx, req.(*FindEnabledFirewallPolicyConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPFirewallPolicyService_FindEnabledFirewallPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledFirewallPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPFirewallPolicyServiceServer).FindEnabledFirewallPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPFirewallPolicyService/FindEnabledFirewallPolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPFirewallPolicyServiceServer).FindEnabledFirewallPolicy(ctx, req.(*FindEnabledFirewallPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _HTTPFirewallPolicyService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.HTTPFirewallPolicyService",
 	HandlerType: (*HTTPFirewallPolicyServiceServer)(nil),
@@ -303,6 +1463,34 @@ var _HTTPFirewallPolicyService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findAllEnabledHTTPFirewallPolicies",
 			Handler:    _HTTPFirewallPolicyService_FindAllEnabledHTTPFirewallPolicies_Handler,
+		},
+		{
+			MethodName: "createHTTPFirewallPolicy",
+			Handler:    _HTTPFirewallPolicyService_CreateHTTPFirewallPolicy_Handler,
+		},
+		{
+			MethodName: "updateHTTPFirewallPolicy",
+			Handler:    _HTTPFirewallPolicyService_UpdateHTTPFirewallPolicy_Handler,
+		},
+		{
+			MethodName: "countAllEnabledFirewallPolicies",
+			Handler:    _HTTPFirewallPolicyService_CountAllEnabledFirewallPolicies_Handler,
+		},
+		{
+			MethodName: "listEnabledFirewallPolicies",
+			Handler:    _HTTPFirewallPolicyService_ListEnabledFirewallPolicies_Handler,
+		},
+		{
+			MethodName: "deleteFirewallPolicy",
+			Handler:    _HTTPFirewallPolicyService_DeleteFirewallPolicy_Handler,
+		},
+		{
+			MethodName: "findEnabledFirewallPolicyConfig",
+			Handler:    _HTTPFirewallPolicyService_FindEnabledFirewallPolicyConfig_Handler,
+		},
+		{
+			MethodName: "findEnabledFirewallPolicy",
+			Handler:    _HTTPFirewallPolicyService_FindEnabledFirewallPolicy_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

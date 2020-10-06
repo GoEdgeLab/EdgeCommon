@@ -72,6 +72,9 @@ service ServerService {
 
 	// 查找使用某个缓存策略的所有服务
 	rpc findAllEnabledServersWithCachePolicyId (FindAllEnabledServersWithCachePolicyIdRequest) returns (FindAllEnabledServersWithCachePolicyIdResponse);
+
+	// 计算使用某个WAF策略的服务数量
+	rpc countAllEnabledServersWithHTTPFirewallPolicyId (CountAllEnabledServersWithHTTPFirewallPolicyIdRequest) returns (CountAllEnabledServersWithHTTPFirewallPolicyIdResponse);
 }
 
 // 创建服务
@@ -258,3 +261,11 @@ message FindAllEnabledServersWithCachePolicyIdResponse {
 	repeated Server servers = 1;
 }
 
+// 计算使用某个WAF策略的服务数量
+message CountAllEnabledServersWithHTTPFirewallPolicyIdRequest {
+	int64 firewallPolicyId = 1;
+}
+
+message CountAllEnabledServersWithHTTPFirewallPolicyIdResponse {
+	int64 count = 1;
+}
