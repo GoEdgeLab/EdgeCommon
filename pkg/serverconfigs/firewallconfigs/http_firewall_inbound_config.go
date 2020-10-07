@@ -26,3 +26,23 @@ func (this *HTTPFirewallInboundConfig) FindGroupWithCode(code string) *HTTPFirew
 	}
 	return nil
 }
+
+// 删除某个分组
+func (this *HTTPFirewallInboundConfig) RemoveRuleGroup(groupId int64) {
+	groups := []*HTTPFirewallRuleGroup{}
+	refs := []*HTTPFirewallRuleGroupRef{}
+	for _, g := range this.Groups {
+		if g.Id == groupId {
+			continue
+		}
+		groups = append(groups, g)
+	}
+	for _, ref := range this.GroupRefs {
+		if ref.GroupId == groupId {
+			continue
+		}
+		refs = append(refs, ref)
+	}
+	this.Groups = groups
+	this.GroupRefs = refs
+}

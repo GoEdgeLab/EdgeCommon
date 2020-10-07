@@ -1,0 +1,54 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+
+service HTTPFirewallRuleGroupService {
+	// 设置是否启用分组
+	rpc updateHTTPFirewallRuleGroupIsOn (UpdateHTTPFirewallRuleGroupIsOnRequest) returns (RPCUpdateSuccess);
+
+	// 创建分组
+	rpc createHTTPFirewallRuleGroup (CreateHTTPFirewallRuleGroupRequest) returns (CreateHTTPFirewallRuleGroupResponse);
+
+	// 修改分组
+	rpc updateHTTPFirewallRuleGroup (UpdateHTTPFirewallRuleGroupRequest) returns (RPCUpdateSuccess);
+
+	// 获取分组配置
+	rpc findHTTPFirewallRuleGroupConfig (FindHTTPFirewallRuleGroupConfigRequest) returns (FindHTTPFirewallRuleGroupConfigResponse);
+}
+
+// 设置是否启用分组
+message UpdateHTTPFirewallRuleGroupIsOnRequest {
+	int64 firewallRuleGroupId = 1;
+	bool isOn = 2;
+}
+
+// 创建分组
+message CreateHTTPFirewallRuleGroupRequest {
+	bool isOn = 1;
+	string name = 2;
+	string description = 3;
+}
+
+message CreateHTTPFirewallRuleGroupResponse {
+	int64 firewallRuleGroupId = 1;
+}
+
+// 修改分组
+message UpdateHTTPFirewallRuleGroupRequest {
+	int64 firewallRuleGroupId = 1;
+	bool isOn = 2;
+	string name = 3;
+	string description = 4;
+}
+
+// 获取分组配置
+message FindHTTPFirewallRuleGroupConfigRequest {
+	int64 firewallRuleGroupId = 1;
+}
+
+message FindHTTPFirewallRuleGroupConfigResponse {
+	bytes firewallRuleGroupJSON = 1;
+}

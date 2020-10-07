@@ -1,5 +1,7 @@
 package firewallconfigs
 
+import "encoding/json"
+
 // 防火墙策略
 type HTTPFirewallPolicy struct {
 	Id          int64                       `yaml:"id" json:"id"`
@@ -48,4 +50,40 @@ func (this *HTTPFirewallPolicy) FindRuleGroupWithCode(code string) *HTTPFirewall
 		}
 	}
 	return nil
+}
+
+// 删除某个分组
+func (this *HTTPFirewallPolicy) RemoveRuleGroup(groupId int64) {
+	if this.Inbound != nil {
+		this.Inbound.RemoveRuleGroup(groupId)
+	}
+	if this.Outbound != nil {
+		this.Outbound.RemoveRuleGroup(groupId)
+	}
+}
+
+// Inbound JSON
+func (this *HTTPFirewallPolicy) InboundJSON() ([]byte, error) {
+	if this.Inbound == nil {
+		return []byte("null"), nil
+	}
+	groups := this.Inbound.Groups
+	this.Inbound.Groups = nil
+	defer func() {
+		this.Inbound.Groups = groups
+	}()
+	return json.Marshal(this.Inbound)
+}
+
+// Outbound JSON
+func (this *HTTPFirewallPolicy) OutboundJSON() ([]byte, error) {
+	if this.Inbound == nil {
+		return []byte("null"), nil
+	}
+	groups := this.Outbound.Groups
+	this.Outbound.Groups = nil
+	defer func() {
+		this.Outbound.Groups = groups
+	}()
+	return json.Marshal(this.Outbound)
 }
