@@ -3,6 +3,7 @@ package nodeconfigs
 import (
 	"encoding/json"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs"
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/firewallconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/Tea"
 	"io/ioutil"
@@ -20,7 +21,8 @@ type NodeConfig struct {
 	// 全局配置
 	GlobalConfig *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置
 
-	cachePolicies []*serverconfigs.HTTPCachePolicy
+	cachePolicies    []*serverconfigs.HTTPCachePolicy
+	firewallPolicies []*firewallconfigs.HTTPFirewallPolicy
 }
 
 // 取得当前节点配置单例
@@ -76,7 +78,15 @@ func (this *NodeConfig) Init() error {
 	this.cachePolicies = []*serverconfigs.HTTPCachePolicy{}
 	for _, server := range this.Servers {
 		if server.Web != nil {
-			this.lookupCachePolicy(server.Web)
+			this.lookupWeb(server.Web)
+		}
+	}
+
+	// firewall policies
+	this.firewallPolicies = []*firewallconfigs.HTTPFirewallPolicy{}
+	for _, server := range this.Servers {
+		if server.Web != nil {
+			this.lookupWeb(server.Web)
 		}
 	}
 
@@ -113,6 +123,11 @@ func (this *NodeConfig) AllCachePolicies() []*serverconfigs.HTTPCachePolicy {
 	return this.cachePolicies
 }
 
+// 获取使用的所有的WAF策略
+func (this *NodeConfig) AllHTTPFirewallPolicies() []*firewallconfigs.HTTPFirewallPolicy {
+	return this.firewallPolicies
+}
+
 // 写入到文件
 func (this *NodeConfig) Save() error {
 	shared.Locker.Lock()
@@ -126,11 +141,13 @@ func (this *NodeConfig) Save() error {
 	return ioutil.WriteFile(Tea.ConfigFile("node.json"), data, 0777)
 }
 
-// 查找Web中的缓存策略
-func (this *NodeConfig) lookupCachePolicy(web *serverconfigs.HTTPWebConfig) {
+// 查找Web中的缓存策略、防火墙策略等
+func (this *NodeConfig) lookupWeb(web *serverconfigs.HTTPWebConfig) {
 	if web == nil {
 		return
 	}
+
+	// cache
 	if web.Cache != nil && len(web.Cache.CacheRefs) > 0 {
 		for _, cacheRef := range web.Cache.CacheRefs {
 			if cacheRef.CachePolicy != nil && !this.hasCachePolicy(cacheRef.CachePolicyId) {
@@ -139,8 +156,13 @@ func (this *NodeConfig) lookupCachePolicy(web *serverconfigs.HTTPWebConfig) {
 		}
 	}
 
+	// firewall
+	if web.FirewallPolicy != nil && !this.hasHTTPFirewallPolicy(web.FirewallPolicy.Id) {
+		this.firewallPolicies = append(this.firewallPolicies, web.FirewallPolicy)
+	}
+
 	for _, location := range web.Locations {
-		this.lookupCachePolicy(location.Web)
+		this.lookupWeb(location.Web)
 	}
 }
 
@@ -148,6 +170,16 @@ func (this *NodeConfig) lookupCachePolicy(web *serverconfigs.HTTPWebConfig) {
 func (this *NodeConfig) hasCachePolicy(cachePolicyId int64) bool {
 	for _, cachePolicy := range this.cachePolicies {
 		if cachePolicy.Id == cachePolicyId {
+			return true
+		}
+	}
+	return false
+}
+
+// 检查防火墙策略是否已收集
+func (this *NodeConfig) hasHTTPFirewallPolicy(firewallPolicyId int64) bool {
+	for _, p := range this.firewallPolicies {
+		if p.Id == firewallPolicyId {
 			return true
 		}
 	}

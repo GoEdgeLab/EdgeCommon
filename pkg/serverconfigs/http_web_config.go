@@ -20,13 +20,13 @@ type HTTPWebConfig struct {
 	MaxRequestBodySize string                              `yaml:"maxRequestBodySize" json:"maxRequestBodySize"` // 请求body最大尺寸 TODO 需要实现
 	AccessLogRef       *HTTPAccessLogRef                   `yaml:"accessLog" json:"accessLog"`                   // 访问日志配置
 	StatRef            *HTTPStatRef                        `yaml:"statRef" json:"statRef"`                       // 统计配置
-	Cache              *HTTPCacheConfig                    `yaml:"cache" json:"cache"`
-	FirewallRef        *firewallconfigs.HTTPFirewallRef    `yaml:"firewallRef" json:"firewallRef"`       // 防火墙设置
-	FirewallPolicy     *firewallconfigs.HTTPFirewallPolicy `yaml:"firewallPolicy" json:"firewallPolicy"` // 防火墙策略
-	WebsocketRef       *HTTPWebsocketRef                   `yaml:"websocketRef" json:"websocketRef"`     // Websocket应用配置
-	Websocket          *HTTPWebsocketConfig                `yaml:"websocket" json:"websocket"`           // Websocket配置
-	RewriteRefs        []*HTTPRewriteRef                   `yaml:"rewriteRefs" json:"rewriteRefs"`       // 重写规则配置
-	RewriteRules       []*HTTPRewriteRule                  `yaml:"rewriteRules" json:"rewriteRules"`     // 重写规则
+	Cache              *HTTPCacheConfig                    `yaml:"cache" json:"cache"`                           // 缓存配置
+	FirewallRef        *firewallconfigs.HTTPFirewallRef    `yaml:"firewallRef" json:"firewallRef"`               // 防火墙设置
+	FirewallPolicy     *firewallconfigs.HTTPFirewallPolicy `yaml:"firewallPolicy" json:"firewallPolicy"`         // 防火墙策略
+	WebsocketRef       *HTTPWebsocketRef                   `yaml:"websocketRef" json:"websocketRef"`             // Websocket应用配置
+	Websocket          *HTTPWebsocketConfig                `yaml:"websocket" json:"websocket"`                   // Websocket配置
+	RewriteRefs        []*HTTPRewriteRef                   `yaml:"rewriteRefs" json:"rewriteRefs"`               // 重写规则配置
+	RewriteRules       []*HTTPRewriteRule                  `yaml:"rewriteRules" json:"rewriteRules"`             // 重写规则
 
 	RequestHeaderPolicyRef  *shared.HTTPHeaderPolicyRef `yaml:"requestHeaderPolicyRef" json:"requestHeaderPolicyRef"`   // 请求Header
 	RequestHeaderPolicy     *shared.HTTPHeaderPolicy    `yaml:"requestHeaderPolicy" json:"requestHeaderPolicy"`         // 请求Header策略
