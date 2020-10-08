@@ -42,10 +42,20 @@ func (this *HTTPFirewallPolicy) AllRuleGroups() []*HTTPFirewallRuleGroup {
 	return result
 }
 
-// 根据代号获取分组
+// 根据代号查找分组
 func (this *HTTPFirewallPolicy) FindRuleGroupWithCode(code string) *HTTPFirewallRuleGroup {
 	for _, g := range this.AllRuleGroups() {
 		if g.Code == code {
+			return g
+		}
+	}
+	return nil
+}
+
+// 根据ID查找分组
+func (this *HTTPFirewallPolicy) FindRuleGroup(groupId int64) *HTTPFirewallRuleGroup {
+	for _, g := range this.AllRuleGroups() {
+		if g.Id == groupId {
 			return g
 		}
 	}

@@ -12,5 +12,6 @@ type HTTPFirewallRule struct {
 }
 
 func (this *HTTPFirewallRule) Init() error {
+	// TODO 执行更严谨的校验
 	return nil
 }

@@ -1,0 +1,41 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+
+service HTTPFirewallRuleSetService {
+	// 根据配置创建或修改规则集
+	rpc createOrUpdateHTTPFirewallRuleSetFromConfig (CreateOrUpdateHTTPFirewallRuleSetFromConfigRequest) returns (CreateOrUpdateHTTPFirewallRuleSetFromConfigResponse);
+
+	// 设置开启状态
+	rpc updateHTTPFirewallRuleSetIsOn (UpdateHTTPFirewallRuleSetIsOnRequest) returns (RPCUpdateSuccess);
+
+	// 查找规则集配置
+	rpc findHTTPFirewallRuleSetConfig (FindHTTPFirewallRuleSetConfigRequest) returns (FindHTTPFirewallRuleSetConfigResponse);
+}
+
+// 根据配置创建或修改规则集
+message CreateOrUpdateHTTPFirewallRuleSetFromConfigRequest {
+	bytes firewallRuleSetConfigJSON = 1;
+}
+
+message CreateOrUpdateHTTPFirewallRuleSetFromConfigResponse {
+	int64 firewallRuleSetId = 1;
+}
+
+// 设置开启状态
+message UpdateHTTPFirewallRuleSetIsOnRequest {
+	int64 firewallRuleSetId = 1;
+	bool isOn = 2;
+}
+
+// 查找规则集配置
+message FindHTTPFirewallRuleSetConfigRequest {
+	int64 firewallRuleSetId = 1;
+}
+
+message FindHTTPFirewallRuleSetConfigResponse {
+	bytes firewallRuleSetJSON = 1;
+}

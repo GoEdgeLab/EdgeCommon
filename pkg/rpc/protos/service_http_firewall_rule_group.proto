@@ -17,6 +17,9 @@ service HTTPFirewallRuleGroupService {
 
 	// 获取分组配置
 	rpc findHTTPFirewallRuleGroupConfig (FindHTTPFirewallRuleGroupConfigRequest) returns (FindHTTPFirewallRuleGroupConfigResponse);
+
+	// 修改分组的规则集
+	rpc updateHTTPFirewallRuleGroupSets (UpdateHTTPFirewallRuleGroupSetsRequest) returns (RPCUpdateSuccess);
 }
 
 // 设置是否启用分组
@@ -51,4 +54,10 @@ message FindHTTPFirewallRuleGroupConfigRequest {
 
 message FindHTTPFirewallRuleGroupConfigResponse {
 	bytes firewallRuleGroupJSON = 1;
+}
+
+// 修改分组的规则集
+message UpdateHTTPFirewallRuleGroupSetsRequest {
+	int64 firewallRuleGroupId = 1;
+	bytes firewallRuleSetsJSON = 2;
 }
