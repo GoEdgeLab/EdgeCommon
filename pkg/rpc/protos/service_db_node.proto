@@ -1,0 +1,91 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_db_node.proto";
+import "rpc_messages.proto";
+
+service DBNodeService {
+	// 创建数据库节点
+	rpc createDBNode (CreateDBNodeRequest) returns (CreateDBNodeResponse);
+
+	// 修改数据库节点
+	rpc updateDBNode (UpdateDBNodeRequest) returns (RPCUpdateSuccess);
+
+	// 删除节点
+	rpc deleteDBNode (DeleteDBNodeRequest) returns (RPCDeleteSuccess);
+
+	// 计算可用的数据库节点数量
+	rpc countAllEnabledDBNodes (CountAllEnabledDBNodesRequest) returns (CountAllEnabledDBNodesResponse);
+
+	// 列出单页的数据库节点
+	rpc listEnabledDBNodes (ListEnabledDBNodesRequest) returns (ListEnabledDBNodesResponse);
+
+	// 根据ID查找可用的数据库节点
+	rpc findEnabledDBNode (FindEnabledDBNodeRequest) returns (FindEnabledDBNodeResponse);
+}
+
+// 创建数据库节点
+message CreateDBNodeRequest {
+	bool isOn = 1;
+	string name = 2;
+	string description = 3;
+	string host = 4;
+	int32 port = 5;
+	string database = 6;
+	string username = 7;
+	string password = 8;
+	string charset = 9;
+}
+
+message CreateDBNodeResponse {
+	int64 nodeId = 1;
+}
+
+// 修改数据库节点
+message UpdateDBNodeRequest {
+	int64 nodeId = 1;
+	string name = 2;
+	string description = 3;
+	bool isOn = 4;
+	string host = 5;
+	int32 port = 6;
+	string database = 7;
+	string username = 8;
+	string password = 9;
+	string charset = 10;
+}
+
+// 删除节点
+message DeleteDBNodeRequest {
+	int64 nodeId = 1;
+}
+
+// 计算可用的数据库节点数量
+message CountAllEnabledDBNodesRequest {
+
+}
+
+message CountAllEnabledDBNodesResponse {
+	int64 count = 1;
+}
+
+// 列出单页的数据库节点
+message ListEnabledDBNodesRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListEnabledDBNodesResponse {
+	repeated DBNode nodes = 1;
+}
+
+// 根据ID查找可用的数据库节点
+message FindEnabledDBNodeRequest {
+	int64 nodeId = 1;
+}
+
+message FindEnabledDBNodeResponse {
+	DBNode node = 1;
+}

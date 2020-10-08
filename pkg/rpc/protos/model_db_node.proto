@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message DBNode {
+	int64 id = 1;
+	string name = 2;
+	string description = 3;
+	bool isOn = 4;
+	string host = 5;
+	int32 port = 6;
+	string database = 7;
+	string username = 8;
+	string password = 9;
+	string charset = 10;
+}
