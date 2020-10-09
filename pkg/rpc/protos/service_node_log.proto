@@ -1,0 +1,49 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_node_log.proto";
+
+// 节点日志相关服务
+service NodeLogService {
+	// 创建日志
+	rpc createNodeLogs (CreateNodeLogsRequest) returns (CreateNodeLogsResponse);
+
+	// 查询日志数量
+	rpc countNodeLogs (CountNodeLogsRequest) returns (CountNodeLogsResponse);
+
+	// 列出单页日志
+	rpc listNodeLogs (ListNodeLogsRequest) returns (ListNodeLogsResponse);
+}
+
+// 创建日志
+message CreateNodeLogsRequest {
+	repeated NodeLog nodeLogs = 1;
+}
+
+message CreateNodeLogsResponse {
+
+}
+
+// 查询日志数量
+message CountNodeLogsRequest {
+	int64 nodeId = 1;
+	string role = 2;
+}
+
+message CountNodeLogsResponse {
+	int64 count = 1;
+}
+
+// 列出单页日志
+message ListNodeLogsRequest {
+	int64 nodeId = 1;
+	string role = 2;
+	int64 offset = 3;
+	int64 size = 4;
+}
+
+message ListNodeLogsResponse {
+	repeated NodeLog nodeLogs = 1;
+}
