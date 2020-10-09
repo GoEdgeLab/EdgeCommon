@@ -10,6 +10,7 @@ const (
 	MessageCodePurgeCache       MessageCode = "purgeCache"       // 删除缓存
 	MessageCodeCleanCache       MessageCode = "cleanCache"       // 清理缓存
 	MessageCodePreheatCache     MessageCode = "preheatCache"     // 预热缓存
+	MessageCodeConfigChanged    MessageCode = "configChanged"    // 配置已改变
 )
 
 // 连接API节点成功
@@ -51,4 +52,8 @@ type PurgeCacheMessage struct {
 type PreheatCacheMessage struct {
 	CachePolicyJSON []byte   `json:"cachePolicyJSON"`
 	Keys            []string `json:"keys"`
+}
+
+// 配置已改变
+type ConfigChangedMessage struct {
 }
