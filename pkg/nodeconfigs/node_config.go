@@ -2,6 +2,7 @@ package nodeconfigs
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/firewallconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
@@ -23,6 +24,7 @@ type NodeConfig struct {
 	// 全局配置
 	GlobalConfig *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置
 
+	paddedId         string
 	cachePolicies    []*serverconfigs.HTTPCachePolicy
 	firewallPolicies []*firewallconfigs.HTTPFirewallPolicy
 }
@@ -60,6 +62,8 @@ func ResetNodeConfig(nodeConfig *NodeConfig) {
 
 // 初始化
 func (this *NodeConfig) Init() error {
+	this.paddedId = fmt.Sprintf("%08d", this.Id)
+
 	// servers
 	for _, server := range this.Servers {
 		err := server.Init()
@@ -141,6 +145,11 @@ func (this *NodeConfig) Save() error {
 	}
 
 	return ioutil.WriteFile(Tea.ConfigFile("node.json"), data, 0777)
+}
+
+// 获取填充后的ID
+func (this *NodeConfig) PaddedId() string {
+	return this.paddedId
 }
 
 // 查找Web中的缓存策略、防火墙策略等

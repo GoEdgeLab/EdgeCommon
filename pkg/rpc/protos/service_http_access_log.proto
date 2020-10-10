@@ -9,6 +9,9 @@ import "model_http_access_log.proto";
 service HTTPAccessLogService {
 	// 创建访问日志
 	rpc createHTTPAccessLogs (CreateHTTPAccessLogsRequest) returns (CreateHTTPAccessLogsResponse);
+
+	// 列出单页访问日志
+	rpc listHTTPAccessLogs (ListHTTPAccessLogsRequest) returns (ListHTTPAccessLogsResponse);
 }
 
 // 创建访问日志
@@ -19,3 +22,19 @@ message CreateHTTPAccessLogsRequest {
 message CreateHTTPAccessLogsResponse {
 
 }
+
+// 列出往前的单页访问日志
+message ListHTTPAccessLogsRequest {
+	string requestId = 1;
+	int64 serverId = 2;
+	int64 size = 3;
+	string day = 4;
+	bool reverse = 5; // 是否反向查找
+}
+
+message ListHTTPAccessLogsResponse {
+	repeated HTTPAccessLog accessLogs = 1;
+	string requestId = 2;
+	bool hasMore = 3;
+}
+

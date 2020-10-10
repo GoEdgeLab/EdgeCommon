@@ -5,6 +5,8 @@ package pb;
 
 // HTTP访问日志
 message HTTPAccessLog {
+	string requestId = 48;
+
 	int64 serverId = 1;
 	int64 nodeId = 2;
 	int64 locationId = 3;

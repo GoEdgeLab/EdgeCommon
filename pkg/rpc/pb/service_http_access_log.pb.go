@@ -115,6 +115,149 @@ func (*CreateHTTPAccessLogsResponse) Descriptor() ([]byte, []int) {
 	return file_service_http_access_log_proto_rawDescGZIP(), []int{1}
 }
 
+// 列出往前的单页访问日志
+type ListHTTPAccessLogsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	RequestId string `protobuf:"bytes,1,opt,name=requestId,proto3" json:"requestId,omitempty"`
+	ServerId  int64  `protobuf:"varint,2,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Size      int64  `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
+	Day       string `protobuf:"bytes,4,opt,name=day,proto3" json:"day,omitempty"`
+	Reverse   bool   `protobuf:"varint,5,opt,name=reverse,proto3" json:"reverse,omitempty"` // 是否反向查找
+}
+
+func (x *ListHTTPAccessLogsRequest) Reset() {
+	*x = ListHTTPAccessLogsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_access_log_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListHTTPAccessLogsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListHTTPAccessLogsRequest) ProtoMessage() {}
+
+func (x *ListHTTPAccessLogsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_access_log_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListHTTPAccessLogsRequest.ProtoReflect.Descriptor instead.
+func (*ListHTTPAccessLogsRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_access_log_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ListHTTPAccessLogsRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *ListHTTPAccessLogsRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *ListHTTPAccessLogsRequest) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *ListHTTPAccessLogsRequest) GetDay() string {
+	if x != nil {
+		return x.Day
+	}
+	return ""
+}
+
+func (x *ListHTTPAccessLogsRequest) GetReverse() bool {
+	if x != nil {
+		return x.Reverse
+	}
+	return false
+}
+
+type ListHTTPAccessLogsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AccessLogs []*HTTPAccessLog `protobuf:"bytes,1,rep,name=accessLogs,proto3" json:"accessLogs,omitempty"`
+	RequestId  string           `protobuf:"bytes,2,opt,name=requestId,proto3" json:"requestId,omitempty"`
+	HasMore    bool             `protobuf:"varint,3,opt,name=hasMore,proto3" json:"hasMore,omitempty"`
+}
+
+func (x *ListHTTPAccessLogsResponse) Reset() {
+	*x = ListHTTPAccessLogsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_access_log_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListHTTPAccessLogsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListHTTPAccessLogsResponse) ProtoMessage() {}
+
+func (x *ListHTTPAccessLogsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_access_log_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListHTTPAccessLogsResponse.ProtoReflect.Descriptor instead.
+func (*ListHTTPAccessLogsResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_access_log_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ListHTTPAccessLogsResponse) GetAccessLogs() []*HTTPAccessLog {
+	if x != nil {
+		return x.AccessLogs
+	}
+	return nil
+}
+
+func (x *ListHTTPAccessLogsResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *ListHTTPAccessLogsResponse) GetHasMore() bool {
+	if x != nil {
+		return x.HasMore
+	}
+	return false
+}
+
 var File_service_http_access_log_proto protoreflect.FileDescriptor
 
 var file_service_http_access_log_proto_rawDesc = []byte{
@@ -129,15 +272,38 @@ var file_service_http_access_log_proto_rawDesc = []byte{
 	0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x52, 0x0a, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f,
 	0x67, 0x73, 0x22, 0x1e, 0x0a, 0x1c, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50,
 	0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x32, 0x71, 0x0a, 0x14, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73,
-	0x4c, 0x6f, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x59, 0x0a, 0x14, 0x63, 0x72,
-	0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f,
-	0x67, 0x73, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54,
-	0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48,
-	0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x65, 0x22, 0x95, 0x01, 0x0a, 0x19, 0x4c, 0x69, 0x73, 0x74, 0x48, 0x54, 0x54, 0x50, 0x41,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x1c, 0x0a, 0x09, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x49, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x09, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x49, 0x64, 0x12, 0x1a,
+	0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69,
+	0x7a, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x10,
+	0x0a, 0x03, 0x64, 0x61, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x64, 0x61, 0x79,
+	0x12, 0x18, 0x0a, 0x07, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28,
+	0x08, 0x52, 0x07, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x22, 0x87, 0x01, 0x0a, 0x1a, 0x4c,
+	0x69, 0x73, 0x74, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x31, 0x0a, 0x0a, 0x61, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x11, 0x2e,
+	0x70, 0x62, 0x2e, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67,
+	0x52, 0x0a, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x73, 0x12, 0x1c, 0x0a, 0x09,
+	0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x09, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x68, 0x61,
+	0x73, 0x4d, 0x6f, 0x72, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x68, 0x61, 0x73,
+	0x4d, 0x6f, 0x72, 0x65, 0x32, 0xc6, 0x01, 0x0a, 0x14, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x59, 0x0a,
+	0x14, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73,
+	0x73, 0x4c, 0x6f, 0x67, 0x73, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x12, 0x6c, 0x69, 0x73, 0x74,
+	0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x73, 0x12, 0x1d,
+	0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65,
+	0x73, 0x73, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e,
+	0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73,
+	0x73, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a,
+	0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -152,21 +318,26 @@ func file_service_http_access_log_proto_rawDescGZIP() []byte {
 	return file_service_http_access_log_proto_rawDescData
 }
 
-var file_service_http_access_log_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_service_http_access_log_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_service_http_access_log_proto_goTypes = []interface{}{
 	(*CreateHTTPAccessLogsRequest)(nil),  // 0: pb.CreateHTTPAccessLogsRequest
 	(*CreateHTTPAccessLogsResponse)(nil), // 1: pb.CreateHTTPAccessLogsResponse
-	(*HTTPAccessLog)(nil),                // 2: pb.HTTPAccessLog
+	(*ListHTTPAccessLogsRequest)(nil),    // 2: pb.ListHTTPAccessLogsRequest
+	(*ListHTTPAccessLogsResponse)(nil),   // 3: pb.ListHTTPAccessLogsResponse
+	(*HTTPAccessLog)(nil),                // 4: pb.HTTPAccessLog
 }
 var file_service_http_access_log_proto_depIdxs = []int32{
-	2, // 0: pb.CreateHTTPAccessLogsRequest.accessLogs:type_name -> pb.HTTPAccessLog
-	0, // 1: pb.HTTPAccessLogService.createHTTPAccessLogs:input_type -> pb.CreateHTTPAccessLogsRequest
-	1, // 2: pb.HTTPAccessLogService.createHTTPAccessLogs:output_type -> pb.CreateHTTPAccessLogsResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	4, // 0: pb.CreateHTTPAccessLogsRequest.accessLogs:type_name -> pb.HTTPAccessLog
+	4, // 1: pb.ListHTTPAccessLogsResponse.accessLogs:type_name -> pb.HTTPAccessLog
+	0, // 2: pb.HTTPAccessLogService.createHTTPAccessLogs:input_type -> pb.CreateHTTPAccessLogsRequest
+	2, // 3: pb.HTTPAccessLogService.listHTTPAccessLogs:input_type -> pb.ListHTTPAccessLogsRequest
+	1, // 4: pb.HTTPAccessLogService.createHTTPAccessLogs:output_type -> pb.CreateHTTPAccessLogsResponse
+	3, // 5: pb.HTTPAccessLogService.listHTTPAccessLogs:output_type -> pb.ListHTTPAccessLogsResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_service_http_access_log_proto_init() }
@@ -200,6 +371,30 @@ func file_service_http_access_log_proto_init() {
 				return nil
 			}
 		}
+		file_service_http_access_log_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListHTTPAccessLogsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_access_log_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListHTTPAccessLogsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -207,7 +402,7 @@ func file_service_http_access_log_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_http_access_log_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -235,6 +430,8 @@ const _ = grpc.SupportPackageIsVersion6
 type HTTPAccessLogServiceClient interface {
 	// 创建访问日志
 	CreateHTTPAccessLogs(ctx context.Context, in *CreateHTTPAccessLogsRequest, opts ...grpc.CallOption) (*CreateHTTPAccessLogsResponse, error)
+	// 列出单页访问日志
+	ListHTTPAccessLogs(ctx context.Context, in *ListHTTPAccessLogsRequest, opts ...grpc.CallOption) (*ListHTTPAccessLogsResponse, error)
 }
 
 type hTTPAccessLogServiceClient struct {
@@ -254,10 +451,21 @@ func (c *hTTPAccessLogServiceClient) CreateHTTPAccessLogs(ctx context.Context, i
 	return out, nil
 }
 
+func (c *hTTPAccessLogServiceClient) ListHTTPAccessLogs(ctx context.Context, in *ListHTTPAccessLogsRequest, opts ...grpc.CallOption) (*ListHTTPAccessLogsResponse, error) {
+	out := new(ListHTTPAccessLogsResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPAccessLogService/listHTTPAccessLogs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HTTPAccessLogServiceServer is the server API for HTTPAccessLogService service.
 type HTTPAccessLogServiceServer interface {
 	// 创建访问日志
 	CreateHTTPAccessLogs(context.Context, *CreateHTTPAccessLogsRequest) (*CreateHTTPAccessLogsResponse, error)
+	// 列出单页访问日志
+	ListHTTPAccessLogs(context.Context, *ListHTTPAccessLogsRequest) (*ListHTTPAccessLogsResponse, error)
 }
 
 // UnimplementedHTTPAccessLogServiceServer can be embedded to have forward compatible implementations.
@@ -266,6 +474,9 @@ type UnimplementedHTTPAccessLogServiceServer struct {
 
 func (*UnimplementedHTTPAccessLogServiceServer) CreateHTTPAccessLogs(context.Context, *CreateHTTPAccessLogsRequest) (*CreateHTTPAccessLogsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateHTTPAccessLogs not implemented")
+}
+func (*UnimplementedHTTPAccessLogServiceServer) ListHTTPAccessLogs(context.Context, *ListHTTPAccessLogsRequest) (*ListHTTPAccessLogsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListHTTPAccessLogs not implemented")
 }
 
 func RegisterHTTPAccessLogServiceServer(s *grpc.Server, srv HTTPAccessLogServiceServer) {
@@ -290,6 +501,24 @@ func _HTTPAccessLogService_CreateHTTPAccessLogs_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HTTPAccessLogService_ListHTTPAccessLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListHTTPAccessLogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPAccessLogServiceServer).ListHTTPAccessLogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPAccessLogService/ListHTTPAccessLogs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPAccessLogServiceServer).ListHTTPAccessLogs(ctx, req.(*ListHTTPAccessLogsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _HTTPAccessLogService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.HTTPAccessLogService",
 	HandlerType: (*HTTPAccessLogServiceServer)(nil),
@@ -297,6 +526,10 @@ var _HTTPAccessLogService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "createHTTPAccessLogs",
 			Handler:    _HTTPAccessLogService_CreateHTTPAccessLogs_Handler,
+		},
+		{
+			MethodName: "listHTTPAccessLogs",
+			Handler:    _HTTPAccessLogService_ListHTTPAccessLogs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
