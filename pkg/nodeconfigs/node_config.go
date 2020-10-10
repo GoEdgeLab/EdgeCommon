@@ -18,6 +18,7 @@ type NodeConfig struct {
 	Servers []*serverconfigs.ServerConfig `yaml:"servers" json:"servers"`
 	Version int64                         `yaml:"version" json:"version"`
 	Name    string                        `yaml:"name" json:"name"`
+	MaxCPU  int32                         `yaml:"maxCPU" json:"maxCPU"`
 
 	// 全局配置
 	GlobalConfig *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置

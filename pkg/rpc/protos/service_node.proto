@@ -113,6 +113,8 @@ message UpdateNodeRequest {
 	string name = 2;
 	int64 clusterId = 3;
 	NodeLogin Login = 4;
+	int32 maxCPU = 5;
+	bool isOn = 6;
 }
 
 // 查找节点
