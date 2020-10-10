@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_http_access_log.proto";
+
+// 访问日志相关服务
+service HTTPAccessLogService {
+	// 创建访问日志
+	rpc createHTTPAccessLogs (CreateHTTPAccessLogsRequest) returns (CreateHTTPAccessLogsResponse);
+}
+
+// 创建访问日志
+message CreateHTTPAccessLogsRequest {
+	repeated HTTPAccessLog accessLogs = 1;
+}
+
+message CreateHTTPAccessLogsResponse {
+
+}

@@ -1,5 +1,8 @@
 package serverconfigs
 
+// 默认的访问日志配置
+var DefaultHTTPAccessLogRef = NewHTTPAccessLogRef()
+
 // 代理访问日志配置
 type HTTPAccessLogRef struct {
 	IsPrior bool `yaml:"isPrior" json:"isPrior"` // 是否覆盖
@@ -68,6 +71,16 @@ func (this *HTTPAccessLogRef) Match(status int) bool {
 func (this *HTTPAccessLogRef) ContainsStoragePolicy(storagePolicyId int64) bool {
 	for _, s := range this.StoragePolicies {
 		if s == storagePolicyId {
+			return true
+		}
+	}
+	return false
+}
+
+// 检查是否包含某个Field
+func (this *HTTPAccessLogRef) ContainsField(field int) bool {
+	for _, f := range this.Fields {
+		if f == field {
 			return true
 		}
 	}

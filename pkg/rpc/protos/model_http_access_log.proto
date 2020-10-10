@@ -1,0 +1,68 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// HTTP访问日志
+message HTTPAccessLog {
+	int64 serverId = 1;
+	int64 nodeId = 2;
+	int64 locationId = 3;
+	int64 rewriteId = 4;
+	int64 originId = 5;
+
+	string remoteAddr = 6;
+	string rawRemoteAddr = 7;
+	int32 remotePort = 8;
+	string remoteUser = 9;
+	string requestURI = 10;
+	string requestPath = 11;
+	int64 requestLength = 12;
+	double requestTime = 13;
+	string requestMethod = 14;
+	string requestFilename = 15;
+	string scheme = 16;
+	string proto = 17;
+	int64 bytesSent = 18;
+	int64 bodyBytesSent = 19;
+	int32 status = 20;
+	string statusMessage = 21;
+	map<string, Strings> sentHeader = 22;
+
+	string timeISO8601 = 23;
+	string timeLocal = 24;
+	double msec = 25;
+	int64 timestamp = 26;
+	string host = 27;
+	string referer = 28;
+	string userAgent = 29;
+	string request = 30;
+	string contentType = 31;
+	map<string, string> cookie = 32;
+	string args = 34;
+	string queryString = 35;
+	map<string, Strings> header = 36;
+	string serverName = 37;
+	int32 serverPort = 38;
+	string serverProtocol = 39;
+	string hostname = 40;
+
+	// 代理相关
+	string originAddress = 41;
+
+	// 错误信息
+	repeated string errors = 42;
+
+	// 扩展
+	map<string, string> attrs = 43;
+
+	// WAF相关
+	int64 firewallPolicyId = 44;
+	int64 firewallRuleGroupId = 45;
+	int64 firewallRuleSetId = 46;
+	int64 firewallRuleId = 47;
+}
+
+message Strings {
+	repeated string values = 1;
+}
