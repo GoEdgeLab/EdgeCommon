@@ -26,6 +26,9 @@ service APINodeService {
 
 	// 根据ID查找节点
 	rpc findEnabledAPINode (FindEnabledAPINodeRequest) returns (FindEnabledAPINodeResponse);
+
+	// 获取当前API节点的版本
+	rpc findCurrentAPINodeVersion (FindCurrentAPINodeVersionRequest) returns (FindCurrentAPINodeVersionResponse);
 }
 
 // 创建API节点
@@ -93,4 +96,13 @@ message FindEnabledAPINodeRequest {
 
 message FindEnabledAPINodeResponse {
 	APINode node = 1;
+}
+
+// 获取当前API节点的版本
+message FindCurrentAPINodeVersionRequest {
+
+}
+
+message FindCurrentAPINodeVersionResponse {
+	string version = 1;
 }

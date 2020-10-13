@@ -6,23 +6,22 @@ package pb;
 
 service AdminService {
 	// 登录
-	rpc loginAdmin (LoginAdminRequest) returns (LoginAdminResponse) {
-	}
+	rpc loginAdmin (LoginAdminRequest) returns (LoginAdminResponse);
 
 	// 创建操作日志
-	rpc createAdminLog (CreateAdminLogRequest) returns (CreateAdminLogResponse) {
-	}
+	rpc createAdminLog (CreateAdminLogRequest) returns (CreateAdminLogResponse);
 
 	// 检查管理员是否存在
-	rpc checkAdminExists (CheckAdminExistsRequest) returns (CheckAdminExistsResponse) {
-	}
+	rpc checkAdminExists (CheckAdminExistsRequest) returns (CheckAdminExistsResponse);
 
 	// 获取管理员名称
-	rpc findAdminFullname (FindAdminFullnameRequest) returns (FindAdminFullnameResponse) {
-	}
+	rpc findAdminFullname (FindAdminFullnameRequest) returns (FindAdminFullnameResponse);
 
+	// 创建或修改管理员
+	rpc createOrUpdateAdmin (CreateOrUpdateAdminRequest) returns (CreateOrUpdateAdminResponse);
 }
 
+// 登录
 message LoginAdminRequest {
 	string username = 1;
 	string password = 2;
@@ -34,6 +33,7 @@ message LoginAdminResponse {
 	string message = 3;
 }
 
+// 创建操作日志
 message CreateAdminLogRequest {
 	string level = 1;
 	string description = 2;
@@ -42,9 +42,9 @@ message CreateAdminLogRequest {
 }
 
 message CreateAdminLogResponse {
-	bool isOk = 1;
 }
 
+// 检查管理员是否存在
 message CheckAdminExistsRequest {
 	int64 adminId = 1;
 }
@@ -54,7 +54,7 @@ message CheckAdminExistsResponse {
 	string message = 2;
 }
 
-
+// 获取管理员名称
 message FindAdminFullnameRequest {
 	int64 adminId = 1;
 }
@@ -63,3 +63,12 @@ message FindAdminFullnameResponse {
 	string fullname = 1;
 }
 
+// 创建或修改管理员
+message CreateOrUpdateAdminRequest {
+	string username = 1;
+	string password = 2;
+}
+
+message CreateOrUpdateAdminResponse {
+	int64 adminId = 1;
+}
