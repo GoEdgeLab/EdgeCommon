@@ -3,6 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
+import "model_admin.proto";
+import "rpc_messages.proto";
 
 service AdminService {
 	// 登录
@@ -14,11 +16,23 @@ service AdminService {
 	// 检查管理员是否存在
 	rpc checkAdminExists (CheckAdminExistsRequest) returns (CheckAdminExistsResponse);
 
+	// 检查用户名是否存在
+	rpc checkAdminUsername (CheckAdminUsernameRequest) returns (CheckAdminUsernameResponse);
+
 	// 获取管理员名称
 	rpc findAdminFullname (FindAdminFullnameRequest) returns (FindAdminFullnameResponse);
 
+	// 获取管理员信息
+	rpc findEnabledAdmin (FindEnabledAdminRequest) returns (FindEnabledAdminResponse);
+
 	// 创建或修改管理员
 	rpc createOrUpdateAdmin (CreateOrUpdateAdminRequest) returns (CreateOrUpdateAdminResponse);
+
+	// 修改管理员信息
+	rpc updateAdmin (UpdateAdminRequest) returns (RPCUpdateSuccess);
+
+	// 修改管理员登录信息
+	rpc updateAdminLogin (UpdateAdminLoginRequest) returns (RPCUpdateSuccess);
 }
 
 // 登录
@@ -54,6 +68,16 @@ message CheckAdminExistsResponse {
 	string message = 2;
 }
 
+// 检查用户名是否存在
+message CheckAdminUsernameRequest {
+	int64 adminId = 1;
+	string username = 2;
+}
+
+message CheckAdminUsernameResponse {
+	bool exists = 1;
+}
+
 // 获取管理员名称
 message FindAdminFullnameRequest {
 	int64 adminId = 1;
@@ -61,6 +85,15 @@ message FindAdminFullnameRequest {
 
 message FindAdminFullnameResponse {
 	string fullname = 1;
+}
+
+// 获取管理员信息
+message FindEnabledAdminRequest {
+	int64 adminId = 1;
+}
+
+message FindEnabledAdminResponse {
+	Admin admin = 1;
 }
 
 // 创建或修改管理员
@@ -71,4 +104,17 @@ message CreateOrUpdateAdminRequest {
 
 message CreateOrUpdateAdminResponse {
 	int64 adminId = 1;
+}
+
+// 修改管理员信息
+message UpdateAdminRequest {
+	int64 adminId = 1;
+	string fullname = 2;
+}
+
+// 修改管理员登录信息
+message UpdateAdminLoginRequest {
+	int64 adminId = 1;
+	string username = 2;
+	string password = 3;
 }

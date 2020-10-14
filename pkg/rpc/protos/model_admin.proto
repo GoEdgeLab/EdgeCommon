@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message Admin {
+	int64 id = 1;
+	string fullname = 2;
+	string username = 3;
+	bool isOn = 4;
+}
