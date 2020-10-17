@@ -3,6 +3,7 @@ option go_package = "./pb";
 
 package pb;
 import "model_node_cluster.proto";
+import "model_api_node.proto";
 import "rpc_messages.proto";
 
 service NodeClusterService {
@@ -18,7 +19,10 @@ service NodeClusterService {
 	// 查找单个集群信息
 	rpc findEnabledNodeCluster (FindEnabledNodeClusterRequest) returns (FindEnabledNodeClusterResponse);
 
-	// 获取所有集群的信息
+	// 查找集群的API节点信息
+	rpc findAPINodesWithNodeCluster (FindAPINodesWithNodeClusterRequest) returns (FindAPINodesWithNodeClusterResponse);
+
+	// 获取所有可用集群
 	rpc findAllEnabledNodeClusters (FindAllEnabledNodeClustersRequest) returns (FindAllEnabledNodeClustersResponse);
 
 	// 获取变更的集群
@@ -84,6 +88,16 @@ message FindEnabledNodeClusterRequest {
 
 message FindEnabledNodeClusterResponse {
 	NodeCluster cluster = 1;
+}
+
+// 查找集群的API节点信息
+message FindAPINodesWithNodeClusterRequest {
+	int64 clusterId = 1;
+}
+
+message FindAPINodesWithNodeClusterResponse {
+	bool useAllAPINodes = 1;
+	repeated APINode apiNodes = 2;
 }
 
 // 计算所有集群数量
