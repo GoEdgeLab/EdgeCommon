@@ -11,4 +11,5 @@ message NodeIPAddress {
 	string description = 5;
 	int64 state = 6;
 	int64 order = 7;
+	bool canAccess = 8;
 }

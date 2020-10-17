@@ -1,14 +1,21 @@
 package serverconfigs
 
-import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
+import (
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
+	"github.com/iwind/TeaGo/maps"
+)
 
 // 健康检查设置
 type HealthCheckConfig struct {
-	IsOn        bool                 `yaml:"isOn" json:"isOn"`               // 是否开启 TODO
-	URL         string               `yaml:"url" json:"url"`                 // TODO
-	Interval    int                  `yaml:"interval" json:"interval"`       // TODO
-	StatusCodes []int                `yaml:"statusCodes" json:"statusCodes"` // TODO
-	Timeout     *shared.TimeDuration `yaml:"timeout" json:"timeout"`         // 超时时间 TODO
+	IsOn           bool                 `yaml:"isOn" json:"isOn"`                     // 是否开启
+	URL            string               `yaml:"url" json:"url"`                       // 读取的URL
+	Interval       *shared.TimeDuration `yaml:"interval" json:"interval"`             // 检测周期
+	StatusCodes    []int                `yaml:"statusCodes" json:"statusCodes"`       // 返回的状态码要求
+	Timeout        *shared.TimeDuration `yaml:"timeout" json:"timeout"`               // 超时时间
+	CountTries     int64                `yaml:"countTries" json:"countTries"`         // 尝试次数
+	TryDelay       *shared.TimeDuration `yaml:"tryDelay" json:"tryDelay"`             // 尝试间隔
+	FailActions    []maps.Map           `yaml:"failActions" json:"failActions"`       // 失败采取的动作
+	RecoverActions []maps.Map           `yaml:"recoverActions" json:"recoverActions"` // 恢复采取的动作
 }
 
 // 初始化

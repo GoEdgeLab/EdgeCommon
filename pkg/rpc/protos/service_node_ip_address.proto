@@ -34,6 +34,7 @@ message CreateNodeIPAddressRequest {
 	int64 nodeId = 1;
 	string name = 2;
 	string ip = 3;
+	bool canAccess = 4;
 }
 
 message CreateNodeIPAddressResponse {
@@ -45,6 +46,7 @@ message UpdateNodeIPAddressRequest {
 	int64 addressId = 1;
 	string name = 2;
 	string ip = 3;
+	bool canAccess = 4;
 }
 
 // 修改IP地址所属节点
