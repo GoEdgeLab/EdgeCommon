@@ -1,0 +1,61 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_message.proto";
+import "rpc_messages.proto";
+
+// 消息相关服务
+service MessageService {
+	// 计算未读消息数
+	rpc countUnreadMessages (CountUnreadMessagesRequest) returns (CountUnreadMessagesResponse);
+
+	// 列出单页未读消息
+	rpc listUnreadMessages (ListUnreadMessagesRequest) returns (ListUnreadMessagesResponse);
+
+	// 设置消息已读状态
+	rpc updateMessageRead (UpdateMessageReadRequest) returns (RPCUpdateSuccess);
+
+	// 设置一组消息已读状态
+	rpc updateMessagesRead (UpdateMessagesReadRequest) returns (RPCUpdateSuccess);
+
+	// 设置所有消息为已读
+	rpc updateAllMessagesRead (UpdateAllMessagesReadRequest) returns (RPCUpdateSuccess);
+}
+
+// 计算未读消息数
+message CountUnreadMessagesRequest {
+
+}
+
+message CountUnreadMessagesResponse {
+	int64 count = 1;
+}
+
+// 列出单页未读消息
+message ListUnreadMessagesRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListUnreadMessagesResponse {
+	repeated Message messages = 1;
+}
+
+// 设置消息已读状态
+message UpdateMessageReadRequest {
+	int64 messageId = 1;
+	bool isRead = 2;
+}
+
+// 设置一组消息已读状态
+message UpdateMessagesReadRequest {
+	repeated int64 messageIds = 1;
+	bool isRead = 2;
+}
+
+// 设置所有消息为已读
+message UpdateAllMessagesReadRequest {
+
+}
