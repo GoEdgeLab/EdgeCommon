@@ -15,8 +15,8 @@ service NodeClusterService {
 	// 修改集群
 	rpc updateNodeCluster (UpdateNodeClusterRequest) returns (RPCUpdateSuccess);
 
-	// 禁用集群
-	rpc disableNodeCluster (DisableNodeClusterRequest) returns (DisableNodeClusterResponse);
+	// 删除集群
+	rpc deleteNodeCluster (DeleteNodeClusterRequest) returns (RPCDeleteSuccess);
 
 	// 查找单个集群信息
 	rpc findEnabledNodeCluster (FindEnabledNodeClusterRequest) returns (FindEnabledNodeClusterResponse);
@@ -83,13 +83,9 @@ message UpdateNodeClusterRequest {
 	string installDir = 4;
 }
 
-// 禁用集群
-message DisableNodeClusterRequest {
+// 删除集群
+message DeleteNodeClusterRequest {
 	int64 clusterId = 1;
-}
-
-message DisableNodeClusterResponse {
-
 }
 
 // 查找单个集群信息
