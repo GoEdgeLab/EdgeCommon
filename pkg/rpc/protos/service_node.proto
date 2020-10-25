@@ -57,6 +57,12 @@ service NodeService {
 
 	// 更改节点连接的API节点信息
 	rpc updateNodeConnectedAPINodes (UpdateNodeConnectedAPINodesRequest) returns (RPCUpdateSuccess);
+
+	// 计算使用某个认证的节点数量
+	rpc countAllEnabledNodesWithGrantId (CountAllEnabledNodesWithGrantIdRequest) returns (CountAllEnabledNodesWithGrantIdResponse);
+
+	// 查找使用某个认证的所有节点
+	rpc findAllEnabledNodesWithGrantId (FindAllEnabledNodesWithGrantIdRequest) returns (FindAllEnabledNodesWithGrantIdResponse);
 }
 
 // 创建节点
@@ -203,4 +209,22 @@ message InstallNodeResponse {
 // 更改节点连接的API节点信息
 message UpdateNodeConnectedAPINodesRequest {
 	repeated int64 apiNodeIds = 1;
+}
+
+// 计算使用某个认证的节点数量
+message CountAllEnabledNodesWithGrantIdRequest {
+	int64 grantId = 1;
+}
+
+message CountAllEnabledNodesWithGrantIdResponse {
+	int64 count = 1;
+}
+
+// 查找使用某个认证的所有节点
+message FindAllEnabledNodesWithGrantIdRequest {
+	int64 grantId = 1;
+}
+
+message FindAllEnabledNodesWithGrantIdResponse {
+	repeated Node nodes = 1;
 }

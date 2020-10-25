@@ -44,6 +44,12 @@ service NodeClusterService {
 
 	// 执行健康检查
 	rpc executeNodeClusterHealthCheck (ExecuteNodeClusterHealthCheckRequest) returns (ExecuteNodeClusterHealthCheckResponse);
+
+	// 计算使用某个认证的集群数量
+	rpc countAllEnabledNodeClustersWithGrantId (CountAllEnabledNodeClustersWithGrantIdRequest) returns (CountAllEnabledNodeClustersWithGrantIdResponse);
+
+	// 查找使用某个认证的所有集群
+	rpc findAllEnabledNodeClustersWithGrantId (FindAllEnabledNodeClustersWithGrantIdRequest) returns (FindAllEnabledNodeClustersWithGrantIdResponse);
 }
 
 // 获取所有集群的信息
@@ -156,4 +162,22 @@ message ExecuteNodeClusterHealthCheckResponse {
 		string error = 4;
 		float costMs = 5;
 	}
+}
+
+// 计算使用某个认证的集群数量
+message CountAllEnabledNodeClustersWithGrantIdRequest {
+	int64 grantId = 1;
+}
+
+message CountAllEnabledNodeClustersWithGrantIdResponse {
+	int64 count = 1;
+}
+
+// 查找使用某个认证的所有集群
+message FindAllEnabledNodeClustersWithGrantIdRequest {
+	int64 grantId = 1;
+}
+
+message FindAllEnabledNodeClustersWithGrantIdResponse {
+	repeated NodeCluster clusters = 1;
 }
