@@ -8,5 +8,6 @@ message NodeInstallStatus {
 	bool isFinished = 2;
 	bool isOk = 3;
 	string error = 4;
+	string errorCode = 6;
 	int64 updatedAt = 5;
 }

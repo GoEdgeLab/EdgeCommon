@@ -2,8 +2,10 @@ syntax = "proto3";
 option go_package = "./pb";
 
 package pb;
+
 import "model_node.proto";
 import "model_node_login.proto";
+import "model_node_install_status.proto";
 import "rpc_messages.proto";
 
 service NodeService {
@@ -63,6 +65,15 @@ service NodeService {
 
 	// 查找使用某个认证的所有节点
 	rpc findAllEnabledNodesWithGrantId (FindAllEnabledNodesWithGrantIdRequest) returns (FindAllEnabledNodesWithGrantIdResponse);
+
+	// 列出所有未安装的节点
+	rpc findAllNotInstalledNodesWithClusterId (FindAllNotInstalledNodesWithClusterIdRequest) returns (FindAllNotInstalledNodesWithClusterIdResponse);
+
+	// 读取节点安装状态
+	rpc findNodeInstallStatus (FindNodeInstallStatusRequest) returns (FindNodeInstallStatusResponse);
+
+	// 修改节点登录信息
+	rpc updateNodeLogin (UpdateNodeLoginRequest) returns (RPCUpdateSuccess);
 }
 
 // 创建节点
@@ -227,4 +238,28 @@ message FindAllEnabledNodesWithGrantIdRequest {
 
 message FindAllEnabledNodesWithGrantIdResponse {
 	repeated Node nodes = 1;
+}
+
+// 列出所有未安装的节点
+message FindAllNotInstalledNodesWithClusterIdRequest {
+	int64 clusterId = 1;
+}
+
+message FindAllNotInstalledNodesWithClusterIdResponse {
+	repeated Node nodes = 1;
+}
+
+// 读取节点安装状态
+message FindNodeInstallStatusRequest {
+	int64 nodeId = 1;
+}
+
+message FindNodeInstallStatusResponse {
+	NodeInstallStatus installStatus = 1;
+}
+
+// 修改节点登录信息
+message UpdateNodeLoginRequest {
+	int64 nodeId = 1;
+	NodeLogin Login = 2;
 }
