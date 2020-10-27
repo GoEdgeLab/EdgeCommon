@@ -57,6 +57,12 @@ service NodeService {
 	// 安装节点
 	rpc installNode (InstallNodeRequest) returns (InstallNodeResponse);
 
+	// 启动节点
+	rpc startNode (StartNodeRequest) returns (StartNodeResponse);
+
+	// 停止节点
+	rpc stopNode (StopNodeRequest) returns (StopNodeResponse);
+
 	// 更改节点连接的API节点信息
 	rpc updateNodeConnectedAPINodes (UpdateNodeConnectedAPINodesRequest) returns (RPCUpdateSuccess);
 
@@ -215,6 +221,26 @@ message InstallNodeRequest {
 
 message InstallNodeResponse {
 
+}
+
+// 启动节点
+message StartNodeRequest {
+	int64 nodeId = 1;
+}
+
+message StartNodeResponse {
+	bool isOk = 1;
+	string error = 2;
+}
+
+// 停止节点
+message StopNodeRequest {
+	int64 nodeId = 1;
+}
+
+message StopNodeResponse {
+	bool isOk = 1;
+	string error = 2;
 }
 
 // 更改节点连接的API节点信息
