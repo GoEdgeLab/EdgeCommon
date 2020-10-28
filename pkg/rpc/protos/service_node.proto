@@ -86,6 +86,9 @@ service NodeService {
 
 	// 修改节点登录信息
 	rpc updateNodeLogin (UpdateNodeLoginRequest) returns (RPCUpdateSuccess);
+
+	// 计算某个节点分组内的节点数量
+	rpc countAllEnabledNodesWithGroupId (CountAllEnabledNodesWithGroupIdRequest) returns (CountAllEnabledNodesWithGroupIdResponse);
 }
 
 // 创建节点
@@ -126,6 +129,8 @@ message ListEnabledNodesMatchRequest {
 	int64 clusterId = 3;
 	int32 installState = 4;
 	int32 activeState = 5;
+	string keyword = 6;
+	int64 groupId = 7;
 }
 
 message ListEnabledNodesMatchResponse {
@@ -208,6 +213,8 @@ message CountAllEnabledNodesMatchRequest {
 	int64 clusterId = 1;
 	int32 installState = 2;
 	int32 activeState = 3;
+	string keyword = 4;
+	int64 groupId = 5;
 }
 
 message CountAllEnabledNodesMatchResponse {
@@ -319,4 +326,13 @@ message FindNodeInstallStatusResponse {
 message UpdateNodeLoginRequest {
 	int64 nodeId = 1;
 	NodeLogin Login = 2;
+}
+
+// 计算某个节点分组内的节点数量
+message CountAllEnabledNodesWithGroupIdRequest {
+	int64 groupId = 1;
+}
+
+message CountAllEnabledNodesWithGroupIdResponse {
+	int64 count = 1;
 }
