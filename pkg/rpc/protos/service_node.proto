@@ -96,6 +96,7 @@ message CreateNodeRequest {
 	string name = 1;
 	int64 clusterId = 2;
 	NodeLogin Login = 3;
+	int64 groupId = 4;
 }
 
 message CreateNodeResponse {
@@ -163,6 +164,7 @@ message UpdateNodeRequest {
 	NodeLogin Login = 4;
 	int32 maxCPU = 5;
 	bool isOn = 6;
+	int64 groupId = 7;
 }
 
 // 查找节点

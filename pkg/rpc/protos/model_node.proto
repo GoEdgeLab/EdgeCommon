@@ -7,6 +7,7 @@ import "model_node_cluster.proto";
 import "model_node_login.proto";
 import "model_node_install_status.proto";
 import "model_node_ip_address.proto";
+import "model_node_group.proto";
 
 message Node {
 	int64 id = 1;
@@ -27,4 +28,5 @@ message Node {
 	NodeLogin login = 33;
 	NodeInstallStatus installStatus = 34;
 	repeated NodeIPAddress ipAddresses = 35;
+	NodeGroup group = 36;
 }
