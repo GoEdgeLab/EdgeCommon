@@ -57,6 +57,9 @@ service NodeService {
 	// 安装节点
 	rpc installNode (InstallNodeRequest) returns (InstallNodeResponse);
 
+	// 升级节点
+	rpc upgradeNode (UpgradeNodeRequest) returns (UpgradeNodeResponse);
+
 	// 启动节点
 	rpc startNode (StartNodeRequest) returns (StartNodeResponse);
 
@@ -74,6 +77,9 @@ service NodeService {
 
 	// 列出所有未安装的节点
 	rpc findAllNotInstalledNodesWithClusterId (FindAllNotInstalledNodesWithClusterIdRequest) returns (FindAllNotInstalledNodesWithClusterIdResponse);
+
+	// 列出所有需要升级的节点
+	rpc findAllUpgradeNodesWithClusterId (FindAllUpgradeNodesWithClusterIdRequest) returns (FindAllUpgradeNodesWithClusterIdResponse);
 
 	// 读取节点安装状态
 	rpc findNodeInstallStatus (FindNodeInstallStatusRequest) returns (FindNodeInstallStatusResponse);
@@ -223,6 +229,14 @@ message InstallNodeResponse {
 
 }
 
+// 升级节点
+message UpgradeNodeRequest {
+	int64 nodeId = 1;
+}
+
+message UpgradeNodeResponse {
+}
+
 // 启动节点
 message StartNodeRequest {
 	int64 nodeId = 1;
@@ -273,6 +287,23 @@ message FindAllNotInstalledNodesWithClusterIdRequest {
 
 message FindAllNotInstalledNodesWithClusterIdResponse {
 	repeated Node nodes = 1;
+}
+
+// 列出所有需要升级的节点
+message FindAllUpgradeNodesWithClusterIdRequest {
+	int64 clusterId = 1;
+}
+
+message FindAllUpgradeNodesWithClusterIdResponse {
+	repeated NodeUpgrade nodes = 1;
+
+	message NodeUpgrade {
+		Node node = 1;
+		string os = 2;
+		string arch = 3;
+		string oldVersion = 4;
+		string newVersion = 5;
+	}
 }
 
 // 读取节点安装状态
