@@ -4,6 +4,7 @@ option go_package = "./pb";
 package pb;
 
 import "model_node_cluster.proto";
+import "model_server_group.proto";
 
 message Server {
 	int64 id = 1;
@@ -28,4 +29,5 @@ message Server {
 	bytes reverseProxyJSON = 16;
 
 	NodeCluster cluster = 30;
+	repeated ServerGroup groups = 31;
 }

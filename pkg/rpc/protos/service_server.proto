@@ -101,6 +101,7 @@ message CreateServerRequest {
 	bytes udpJSON = 14;
 	int64 webId = 15;
 	bytes reverseProxyJSON = 16;
+	repeated int64 groupIds = 17;
 
 	int64 clusterId = 30;
 	bytes includeNodesJSON = 31;
@@ -118,6 +119,7 @@ message UpdateServerBasicRequest {
 	string description = 3;
 	int64 clusterId = 4;
 	bool isOn = 5;
+	repeated int64 groupIds = 6;
 }
 
 // 修改服务的HTTP等设置
