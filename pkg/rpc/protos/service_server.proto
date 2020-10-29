@@ -78,6 +78,9 @@ service ServerService {
 
 	// 计算运行在某个集群上的所有服务数量
 	rpc countAllEnabledServersWithNodeClusterId (CountAllEnabledServersWithNodeClusterIdRequest) returns (CountAllEnabledServersWithNodeClusterIdResponse);
+
+	// 计算使用某个分组的服务数量
+	rpc countAllEnabledServersWithGroupId (CountAllEnabledServersWithGroupIdRequest) returns (CountAllEnabledServersWithGroupIdResponse);
 }
 
 // 创建服务
@@ -281,3 +284,13 @@ message CountAllEnabledServersWithNodeClusterIdRequest {
 message CountAllEnabledServersWithNodeClusterIdResponse {
 	int64 count = 1;
 }
+
+// 计算使用某个分组的服务数量
+message CountAllEnabledServersWithGroupIdRequest {
+	int64 groupId = 1;
+}
+
+message CountAllEnabledServersWithGroupIdResponse {
+	int64 count = 1;
+}
+

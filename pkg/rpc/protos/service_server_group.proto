@@ -3,3 +3,68 @@ option go_package = "./pb";
 
 package pb;
 
+import "model_server_group.proto";
+import "rpc_messages.proto";
+
+// 服务分组服务
+service ServerGroupService {
+	// 创建分组
+	rpc createServerGroup (CreateServerGroupRequest) returns (CreateServerGroupResponse);
+
+	// 修改分组
+	rpc updateServerGroup (UpdateServerGroupRequest) returns (RPCUpdateSuccess);
+
+	// 删除分组
+	rpc deleteServerGroup (DeleteServerGroupRequest) returns (RPCDeleteSuccess);
+
+	// 查询所有分组
+	rpc findAllEnabledServerGroups (FindAllEnabledServerGroupsRequest) returns (FindAllEnabledServerGroupsResponse);
+
+	// 修改分组排序
+	rpc updateServerGroupOrders (UpdateServerGroupOrdersRequest) returns (RPCUpdateSuccess);
+
+	// 查找单个分组信息
+	rpc findEnabledServerGroup (FindEnabledServerGroupRequest) returns (FindEnabledServerGroupResponse);
+}
+
+// 创建分组
+message CreateServerGroupRequest {
+	string name = 1;
+}
+
+message CreateServerGroupResponse {
+	int64 groupId = 1;
+}
+
+// 修改分组
+message UpdateServerGroupRequest {
+	int64 groupId = 1;
+	string name = 2;
+}
+
+// 删除分组
+message DeleteServerGroupRequest {
+	int64 groupId = 1;
+}
+
+// 查询所有分组
+message FindAllEnabledServerGroupsRequest {
+}
+
+message FindAllEnabledServerGroupsResponse {
+	repeated ServerGroup groups = 1;
+}
+
+// 修改分组排序
+message UpdateServerGroupOrdersRequest {
+	repeated int64 groupIds = 1;
+}
+
+// 查找单个分组信息
+message FindEnabledServerGroupRequest {
+	int64 groupId = 1;
+}
+
+message FindEnabledServerGroupResponse {
+	ServerGroup group = 1;
+}
