@@ -1,6 +1,6 @@
 package serverconfigs
 
-// 全局设置
+// 服务相关的全局设置
 type GlobalConfig struct {
 	HTTPAll struct {
 		MatchDomainStrictly bool `yaml:"matchDomainStrictly" json:"matchDomainStrictly"`

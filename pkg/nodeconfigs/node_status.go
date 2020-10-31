@@ -22,6 +22,7 @@ type NodeStatus struct {
 	Load1m                float64 `json:"load1m"`
 	Load5m                float64 `json:"load5m"`
 	Load15m               float64 `json:"load15m"`
+	ConnectionCount       int     `json:"connectionCount"` // 连接数
 
 	IsActive bool   `json:"isActive"`
 	Error    string `json:"error"`

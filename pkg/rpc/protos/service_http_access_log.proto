@@ -30,6 +30,7 @@ message ListHTTPAccessLogsRequest {
 	int64 size = 3;
 	string day = 4;
 	bool reverse = 5; // 是否反向查找
+	bool hasError = 6;
 }
 
 message ListHTTPAccessLogsResponse {
