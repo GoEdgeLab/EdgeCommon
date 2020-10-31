@@ -40,11 +40,11 @@ service ServerService {
 	// 修改服务的域名设置
 	rpc updateServerNames (UpdateServerNamesRequest) returns (RPCUpdateSuccess);
 
-	// 计算服务数量
-	rpc countAllEnabledServers (CountAllEnabledServersRequest) returns (CountAllEnabledServersResponse);
+	// 计算匹配的服务数量
+	rpc countAllEnabledServersMatch (CountAllEnabledServersMatchRequest) returns (CountAllEnabledServersMatchResponse);
 
 	// 列出单页服务
-	rpc listEnabledServers (ListEnabledServersRequest) returns (ListEnabledServersResponse);
+	rpc listEnabledServersMatch (ListEnabledServersMatchRequest) returns (ListEnabledServersMatchResponse);
 
 	// 禁用某服务
 	rpc disableServer (DisableServerRequest) returns (DisableServerResponse);
@@ -169,21 +169,24 @@ message UpdateServerNamesRequest {
 }
 
 // 计算服务数量
-message CountAllEnabledServersRequest {
-
+message CountAllEnabledServersMatchRequest {
+	int64 groupId = 1;
+	string keyword = 2;
 }
 
-message CountAllEnabledServersResponse {
+message CountAllEnabledServersMatchResponse {
 	int64 count = 1;
 }
 
 // 列出单页服务
-message ListEnabledServersRequest {
+message ListEnabledServersMatchRequest {
 	int64 offset = 1;
 	int64 size = 2;
+	int64 groupId = 3;
+	string keyword = 4;
 }
 
-message ListEnabledServersResponse {
+message ListEnabledServersMatchResponse {
 	repeated Server servers = 1;
 }
 
