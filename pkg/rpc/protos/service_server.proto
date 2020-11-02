@@ -81,6 +81,9 @@ service ServerService {
 
 	// 计算使用某个分组的服务数量
 	rpc countAllEnabledServersWithGroupId (CountAllEnabledServersWithGroupIdRequest) returns (CountAllEnabledServersWithGroupIdResponse);
+
+	// 通知更新
+	rpc notifyServersChange (NotifyServersChangeRequest) returns (NotifyServersChangeResponse);
 }
 
 // 创建服务
@@ -299,3 +302,11 @@ message CountAllEnabledServersWithGroupIdResponse {
 	int64 count = 1;
 }
 
+// 通知更新
+message NotifyServersChangeRequest {
+
+}
+
+message NotifyServersChangeResponse {
+
+}
