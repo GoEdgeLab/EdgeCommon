@@ -36,8 +36,8 @@ service NodeService {
 	// 查看单个节点
 	rpc findEnabledNode (FindEnabledNodeRequest) returns (FindEnabledNodeResponse);
 
-	// 组合单个节点配置
-	rpc composeNodeConfig (ComposeNodeConfigRequest) returns (ComposeNodeConfigResponse);
+	// 获取当前节点配置
+	rpc findCurrentNodeConfig (FindCurrentNodeConfigRequest) returns (FindCurrentNodeConfigResponse);
 
 	// 节点stream
 	rpc nodeStream (stream NodeStreamMessage) returns (stream NodeStreamMessage);
@@ -177,11 +177,11 @@ message FindEnabledNodeResponse {
 }
 
 // 组合单个节点配置
-message ComposeNodeConfigRequest {
-
+message FindCurrentNodeConfigRequest {
+	// 由于登录信息中已经包含了节点信息，所以这里不需要nodeId
 }
 
-message ComposeNodeConfigResponse {
+message FindCurrentNodeConfigResponse {
 	bytes nodeJSON = 1;
 }
 
