@@ -31,6 +31,9 @@ message ListHTTPAccessLogsRequest {
 	string day = 4;
 	bool reverse = 5; // 是否反向查找
 	bool hasError = 6;
+	int64 firewallPolicyId = 7; // WAF策略ID
+	int64 firewallRuleGroupId = 8; // WAF分组ID
+	int64 firewallRuleSetId = 9; // WAF规则集ID
 }
 
 message ListHTTPAccessLogsResponse {
