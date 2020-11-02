@@ -12,6 +12,9 @@ service HTTPAccessLogService {
 
 	// 列出单页访问日志
 	rpc listHTTPAccessLogs (ListHTTPAccessLogsRequest) returns (ListHTTPAccessLogsResponse);
+
+	// 查找单个日志
+	rpc findHTTPAccessLog (FindHTTPAccessLogRequest) returns (FindHTTPAccessLogResponse);
 }
 
 // 创建访问日志
@@ -42,3 +45,11 @@ message ListHTTPAccessLogsResponse {
 	bool hasMore = 3;
 }
 
+// 查找单个日志
+message FindHTTPAccessLogRequest {
+	string requestId = 1;
+}
+
+message FindHTTPAccessLogResponse {
+	HTTPAccessLog accessLog = 1;
+}

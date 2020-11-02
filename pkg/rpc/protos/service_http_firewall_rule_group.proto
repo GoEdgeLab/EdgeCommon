@@ -4,6 +4,7 @@ option go_package = "./pb";
 package pb;
 
 import "rpc_messages.proto";
+import "model_http_firewall_rule_group.proto";
 
 service HTTPFirewallRuleGroupService {
 	// 设置是否启用分组
@@ -16,7 +17,10 @@ service HTTPFirewallRuleGroupService {
 	rpc updateHTTPFirewallRuleGroup (UpdateHTTPFirewallRuleGroupRequest) returns (RPCUpdateSuccess);
 
 	// 获取分组配置
-	rpc findHTTPFirewallRuleGroupConfig (FindHTTPFirewallRuleGroupConfigRequest) returns (FindHTTPFirewallRuleGroupConfigResponse);
+	rpc findEnabledHTTPFirewallRuleGroupConfig (FindEnabledHTTPFirewallRuleGroupConfigRequest) returns (FindEnabledHTTPFirewallRuleGroupConfigResponse);
+
+	// 获取分组信息
+	rpc findEnabledHTTPFirewallRuleGroup (FindEnabledHTTPFirewallRuleGroupRequest) returns (FindEnabledHTTPFirewallRuleGroupResponse);
 
 	// 修改分组的规则集
 	rpc updateHTTPFirewallRuleGroupSets (UpdateHTTPFirewallRuleGroupSetsRequest) returns (RPCUpdateSuccess);
@@ -48,12 +52,21 @@ message UpdateHTTPFirewallRuleGroupRequest {
 }
 
 // 获取分组配置
-message FindHTTPFirewallRuleGroupConfigRequest {
+message FindEnabledHTTPFirewallRuleGroupConfigRequest {
 	int64 firewallRuleGroupId = 1;
 }
 
-message FindHTTPFirewallRuleGroupConfigResponse {
+message FindEnabledHTTPFirewallRuleGroupConfigResponse {
 	bytes firewallRuleGroupJSON = 1;
+}
+
+// 获取分组信息
+message FindEnabledHTTPFirewallRuleGroupRequest {
+	int64 firewallRuleGroupId = 1;
+}
+
+message FindEnabledHTTPFirewallRuleGroupResponse {
+	HTTPFirewallRuleGroup firewallRuleGroup = 1;
 }
 
 // 修改分组的规则集

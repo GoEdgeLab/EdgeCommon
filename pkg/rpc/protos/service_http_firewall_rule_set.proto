@@ -4,6 +4,7 @@ option go_package = "./pb";
 package pb;
 
 import "rpc_messages.proto";
+import "model_http_firewall_rule_set.proto";
 
 service HTTPFirewallRuleSetService {
 	// 根据配置创建或修改规则集
@@ -13,7 +14,10 @@ service HTTPFirewallRuleSetService {
 	rpc updateHTTPFirewallRuleSetIsOn (UpdateHTTPFirewallRuleSetIsOnRequest) returns (RPCUpdateSuccess);
 
 	// 查找规则集配置
-	rpc findHTTPFirewallRuleSetConfig (FindHTTPFirewallRuleSetConfigRequest) returns (FindHTTPFirewallRuleSetConfigResponse);
+	rpc findEnabledHTTPFirewallRuleSetConfig (FindEnabledHTTPFirewallRuleSetConfigRequest) returns (FindEnabledHTTPFirewallRuleSetConfigResponse);
+
+	// 查找规则集信息
+	rpc findEnabledHTTPFirewallRuleSet (FindEnabledHTTPFirewallRuleSetRequest) returns (FindEnabledHTTPFirewallRuleSetResponse);
 }
 
 // 根据配置创建或修改规则集
@@ -32,10 +36,19 @@ message UpdateHTTPFirewallRuleSetIsOnRequest {
 }
 
 // 查找规则集配置
-message FindHTTPFirewallRuleSetConfigRequest {
+message FindEnabledHTTPFirewallRuleSetConfigRequest {
 	int64 firewallRuleSetId = 1;
 }
 
-message FindHTTPFirewallRuleSetConfigResponse {
+message FindEnabledHTTPFirewallRuleSetConfigResponse {
 	bytes firewallRuleSetJSON = 1;
+}
+
+// 查找规则集
+message FindEnabledHTTPFirewallRuleSetRequest {
+	int64 firewallRuleSetId = 1;
+}
+
+message FindEnabledHTTPFirewallRuleSetResponse {
+	HTTPFirewallRuleSet firewallRuleSet = 1;
 }
