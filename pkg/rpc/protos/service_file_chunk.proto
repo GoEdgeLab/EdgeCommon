@@ -1,0 +1,46 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_file_chunk.proto";
+
+// 文件片段相关服务
+service FileChunkService {
+	// 创建文件片段
+	rpc createFileChunk (CreateFileChunkRequest) returns (CreateFileChunkResponse);
+
+	// 获取的一个文件的所有片段IDs
+	rpc findAllFileChunkIds (FindAllFileChunkIdsRequest) returns (FindAllFileChunkIdsResponse);
+
+	// 下载文件片段
+	rpc downloadFileChunk (DownloadFileChunkRequest) returns (DownloadFileChunkResponse);
+}
+
+// 创建文件片段
+message CreateFileChunkRequest {
+	int64 fileId = 1;
+	bytes data = 2;
+}
+
+message CreateFileChunkResponse {
+	int64 fileChunkId = 1;
+}
+
+// 获取的一个文件的所有片段IDs
+message FindAllFileChunkIdsRequest {
+	int64 fileId = 1;
+}
+
+message FindAllFileChunkIdsResponse {
+	repeated int64 fileChunkIds = 1;
+}
+
+// 下载文件片段
+message DownloadFileChunkRequest {
+	int64 fileChunkId = 1;
+}
+
+message DownloadFileChunkResponse {
+	FileChunk fileChunk = 1;
+}

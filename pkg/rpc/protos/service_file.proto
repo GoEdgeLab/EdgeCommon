@@ -1,0 +1,30 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+
+// 文件相关服务
+service FileService {
+	// 创建文件
+	rpc createFile (CreateFileRequest) returns (CreateFileResponse);
+
+	// 将文件置为已完成
+	rpc updateFileFinished (UpdateFileFinishedRequest) returns (RPCUpdateSuccess);
+}
+
+// 创建文件
+message CreateFileRequest {
+	string filename = 1;
+	int64 size = 2;
+}
+
+message CreateFileResponse {
+	int64 fileId = 1;
+}
+
+// 将文件置为已完成
+message UpdateFileFinishedRequest {
+	int64 fileId = 1;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message File {
+	int64 id = 1;
+	string filename = 2;
+	int64 size = 3;
+}

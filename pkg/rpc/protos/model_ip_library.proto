@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_file.proto";
+
+message IPLibrary {
+	int64 id = 1;
+	string type = 2;
+	int64 createdAt = 3;
+
+	File file = 30;
+}
