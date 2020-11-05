@@ -22,6 +22,9 @@ service IPLibraryService {
 
 	// 删除IP库
 	rpc deleteIPLibrary (DeleteIPLibraryRequest) returns (RPCDeleteSuccess);
+
+	// 查询某个IP信息
+	rpc lookupIPRegion (LookupIPRegionRequest) returns (LookupIPRegionResponse);
 }
 
 // 创建IP库
@@ -64,4 +67,22 @@ message FindAllEnabledIPLibrariesWithTypeResponse {
 // 删除IP库
 message DeleteIPLibraryRequest {
 	int64 ipLibraryId = 1;
+}
+
+// 查询某个IP信息
+message LookupIPRegionRequest {
+	string ip = 1;
+}
+
+message LookupIPRegionResponse {
+	IPRegion region = 1;
+}
+
+// IP信息
+message IPRegion {
+	string country = 1;
+	string region = 2;
+	string province = 3;
+	string city = 4;
+	string isp = 5;
 }
