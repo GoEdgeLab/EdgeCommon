@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_region_province.proto";
+
+// 省份相关服务
+service RegionProvinceService {
+	// 查找所有省份
+	rpc findAllEnabledRegionProvincesWithCountryId (FindAllEnabledRegionProvincesWithCountryIdRequest) returns (FindAllEnabledRegionProvincesWithCountryIdResponse);
+}
+
+// 查找所有省份
+message FindAllEnabledRegionProvincesWithCountryIdRequest {
+	int64 countryId = 1;
+}
+
+message FindAllEnabledRegionProvincesWithCountryIdResponse {
+	repeated RegionProvince provinces = 1;
+}

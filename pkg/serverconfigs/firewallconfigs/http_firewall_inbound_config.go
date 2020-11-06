@@ -4,6 +4,9 @@ type HTTPFirewallInboundConfig struct {
 	IsOn      bool                        `yaml:"isOn" json:"isOn"`
 	GroupRefs []*HTTPFirewallRuleGroupRef `yaml:"groupRefs" json:"groupRefs"`
 	Groups    []*HTTPFirewallRuleGroup    `yaml:"groups" json:"groups"`
+
+	// 地区相关
+	Region *HTTPFirewallRegionConfig `yaml:"region" json:"region"`
 }
 
 // 初始化

@@ -19,6 +19,9 @@ service HTTPFirewallPolicyService {
 	// 修改分组信息
 	rpc updateHTTPFirewallPolicyGroups (UpdateHTTPFirewallPolicyGroupsRequest) returns (RPCUpdateSuccess);
 
+	// 修改inbound信息
+	rpc updateHTTPFirewallInboundConfig (UpdateHTTPFirewallInboundConfigRequest) returns (RPCUpdateSuccess);
+
 	// 计算可用的防火墙策略数量
 	rpc countAllEnabledFirewallPolicies (CountAllEnabledFirewallPoliciesRequest) returns (CountAllEnabledFirewallPoliciesResponse);
 
@@ -70,6 +73,12 @@ message UpdateHTTPFirewallPolicyGroupsRequest {
 	int64 firewallPolicyId = 1;
 	bytes inboundJSON = 2;
 	bytes outboundJSON = 3;
+}
+
+// 修改inbound信息
+message UpdateHTTPFirewallInboundConfigRequest {
+	int64 firewallPolicyId = 1;
+	bytes inboundJSON = 2;
 }
 
 // 计算可用的防火墙策略数量

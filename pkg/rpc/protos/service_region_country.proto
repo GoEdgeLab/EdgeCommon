@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_region_country.proto";
+
+// 国家相关服务
+service RegionCountryService {
+	// 查找所有的国家列表
+	rpc findAllEnabledRegionCountries (FindAllEnabledRegionCountriesRequest) returns (FindAllEnabledRegionCountriesResponse);
+}
+
+// 查找所有的国家列表
+message FindAllEnabledRegionCountriesRequest {
+
+}
+
+message FindAllEnabledRegionCountriesResponse {
+	repeated RegionCountry countries = 1;
+}
