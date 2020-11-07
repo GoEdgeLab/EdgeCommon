@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message IPItem {
+	int64 id = 1;
+	string ipFrom = 2;
+	string ipTo = 3;
+	int64 version = 4;
+	int64 expiredAt = 5;
+	string reason = 6;
+}

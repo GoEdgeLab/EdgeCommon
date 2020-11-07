@@ -1,5 +1,7 @@
 package firewallconfigs
 
+import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/ipconfigs"
+
 type HTTPFirewallInboundConfig struct {
 	IsOn      bool                        `yaml:"isOn" json:"isOn"`
 	GroupRefs []*HTTPFirewallRuleGroupRef `yaml:"groupRefs" json:"groupRefs"`
@@ -7,6 +9,11 @@ type HTTPFirewallInboundConfig struct {
 
 	// 地区相关
 	Region *HTTPFirewallRegionConfig `yaml:"region" json:"region"`
+
+	// IP名单
+	WhiteListRef *ipconfigs.IPListRef `yaml:"whiteListRef" json:"whiteListRef"`
+	BlackListRef *ipconfigs.IPListRef `yaml:"blackListRef" json:"blackListRef"`
+	GreyListRef  *ipconfigs.IPListRef `yaml:"greyListRef" json:"greyListRef"`
 }
 
 // 初始化

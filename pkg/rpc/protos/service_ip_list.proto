@@ -1,0 +1,48 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+import "model_ip_list.proto";
+
+// IP列表
+service IPListService {
+	// 创建IP列表
+	rpc createIPList (CreateIPListRequest) returns (CreateIPListResponse);
+
+	// 修改IP列表
+	rpc updateIPList (UpdateIPListRequest) returns (RPCUpdateSuccess);
+
+	// 查找IP列表
+	rpc findEnabledIPList (FindEnabledIPListRequest) returns (FindEnabledIPListResponse);
+}
+
+// 创建IP列表
+message CreateIPListRequest {
+	string type = 1;
+	string name = 2;
+	string code = 3;
+	bytes timeoutJSON = 4;
+}
+
+message CreateIPListResponse {
+	int64 ipListId = 1;
+}
+
+// 修改IP列表
+message UpdateIPListRequest {
+	int64 ipListId = 1;
+	string name = 2;
+	string code = 3;
+	bytes timeoutJSON = 4;
+}
+
+// 查找IP列表
+message FindEnabledIPListRequest {
+	int64 ipListId = 1;
+}
+
+message FindEnabledIPListResponse {
+	IPList ipList = 1;
+}

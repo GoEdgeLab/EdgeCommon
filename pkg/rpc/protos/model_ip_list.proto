@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message IPList {
+	int64 id = 1;
+	bool isOn = 2;
+	string type = 3;
+	string name = 4;
+	string code = 5;
+	bytes timeoutJSON = 6;
+}

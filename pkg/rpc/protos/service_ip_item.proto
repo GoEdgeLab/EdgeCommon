@@ -1,0 +1,84 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+import "model_ip_item.proto";
+
+// IP条目管理
+service IPItemService {
+	// 创建IP
+	rpc createIPItem (CreateIPItemRequest) returns (CreateIPItemResponse);
+
+	// 修改IP
+	rpc updateIPItem (UpdateIPItemRequest) returns (RPCUpdateSuccess);
+
+	// 删除IP
+	rpc deleteIPItem (DeleteIPItemRequest) returns (RPCDeleteSuccess);
+
+	// 计算IP数量
+	rpc countIPItemsWithListId (CountIPItemsWithListIdRequest) returns (CountIPItemsWithListIdResponse);
+
+	// 列出单页的IP
+	rpc listIPItemsWithListId (ListIPItemsWithListIdRequest) returns (ListIPItemsWithListIdResponse);
+
+	// 查找单个IP
+	rpc findEnabledIPItem (FindEnabledIPItemRequest) returns (FindEnabledIPItemResponse);
+}
+
+// 创建IP
+message CreateIPItemRequest {
+	int64 ipListId = 1;
+	string ipFrom = 2;
+	string ipTo = 3;
+	int64 expiredAt = 4;
+	string reason = 5;
+}
+
+message CreateIPItemResponse {
+	int64 ipItemId = 1;
+}
+
+// 修改IP
+message UpdateIPItemRequest {
+	int64 ipItemId = 1;
+	string ipFrom = 2;
+	string ipTo = 3;
+	int64 expiredAt = 4;
+	string reason = 5;
+}
+
+// 删除IP
+message DeleteIPItemRequest {
+	int64 ipItemId = 1;
+}
+
+// 计算IP数量
+message CountIPItemsWithListIdRequest {
+	int64 ipListId = 1;
+}
+
+message CountIPItemsWithListIdResponse {
+	int64 count = 1;
+}
+
+// 列出单页的IP
+message ListIPItemsWithListIdRequest {
+	int64 ipListId = 1;
+	int64 offset = 2;
+	int64 size = 3;
+}
+
+message ListIPItemsWithListIdResponse {
+	repeated IPItem ipItems = 1;
+}
+
+// 查找单个IP
+message FindEnabledIPItemRequest {
+	int64 ipItemId = 1;
+}
+
+message FindEnabledIPItemResponse {
+	IPItem ipItem = 1;
+}
