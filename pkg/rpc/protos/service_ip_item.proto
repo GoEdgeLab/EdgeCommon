@@ -25,6 +25,9 @@ service IPItemService {
 
 	// 查找单个IP
 	rpc findEnabledIPItem (FindEnabledIPItemRequest) returns (FindEnabledIPItemResponse);
+
+	// 根据版本列出一组IP
+	rpc listIPItemsAfterVersion (ListIPItemsAfterVersionRequest) returns (ListIPItemsAfterVersionResponse);
 }
 
 // 创建IP
@@ -81,4 +84,14 @@ message FindEnabledIPItemRequest {
 
 message FindEnabledIPItemResponse {
 	IPItem ipItem = 1;
+}
+
+// 根据版本列出一组IP
+message ListIPItemsAfterVersionRequest {
+	int64 version = 1;
+	int64 size = 2;
+}
+
+message ListIPItemsAfterVersionResponse {
+	repeated IPItem ipItems = 1;
 }

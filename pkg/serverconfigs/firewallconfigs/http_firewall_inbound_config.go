@@ -24,6 +24,14 @@ func (this *HTTPFirewallInboundConfig) Init() error {
 			return err
 		}
 	}
+
+	if this.Region != nil {
+		err := this.Region.Init()
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 

@@ -10,4 +10,6 @@ message IPItem {
 	int64 version = 4;
 	int64 expiredAt = 5;
 	string reason = 6;
+	int64 listId = 7;
+	bool isDeleted = 8;
 }
