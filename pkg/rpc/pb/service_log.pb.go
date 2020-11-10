@@ -7,10 +7,15 @@
 package pb
 
 import (
+	context "context"
 	proto "github.com/golang/protobuf/proto"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 )
 
 const (
@@ -24,21 +29,380 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+// 创建日志
+type CreateLogRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Level       string `protobuf:"bytes,1,opt,name=level,proto3" json:"level,omitempty"`
+	Description string `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	Action      string `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"`
+	Ip          string `protobuf:"bytes,4,opt,name=ip,proto3" json:"ip,omitempty"`
+}
+
+func (x *CreateLogRequest) Reset() {
+	*x = CreateLogRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_log_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateLogRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateLogRequest) ProtoMessage() {}
+
+func (x *CreateLogRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_log_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateLogRequest.ProtoReflect.Descriptor instead.
+func (*CreateLogRequest) Descriptor() ([]byte, []int) {
+	return file_service_log_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *CreateLogRequest) GetLevel() string {
+	if x != nil {
+		return x.Level
+	}
+	return ""
+}
+
+func (x *CreateLogRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *CreateLogRequest) GetAction() string {
+	if x != nil {
+		return x.Action
+	}
+	return ""
+}
+
+func (x *CreateLogRequest) GetIp() string {
+	if x != nil {
+		return x.Ip
+	}
+	return ""
+}
+
+type CreateLogResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *CreateLogResponse) Reset() {
+	*x = CreateLogResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_log_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateLogResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateLogResponse) ProtoMessage() {}
+
+func (x *CreateLogResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_log_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateLogResponse.ProtoReflect.Descriptor instead.
+func (*CreateLogResponse) Descriptor() ([]byte, []int) {
+	return file_service_log_proto_rawDescGZIP(), []int{1}
+}
+
+// 计算日志数量
+type CountLogRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *CountLogRequest) Reset() {
+	*x = CountLogRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_log_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CountLogRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountLogRequest) ProtoMessage() {}
+
+func (x *CountLogRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_log_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountLogRequest.ProtoReflect.Descriptor instead.
+func (*CountLogRequest) Descriptor() ([]byte, []int) {
+	return file_service_log_proto_rawDescGZIP(), []int{2}
+}
+
+type CountLogResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Count int64 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+}
+
+func (x *CountLogResponse) Reset() {
+	*x = CountLogResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_log_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CountLogResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountLogResponse) ProtoMessage() {}
+
+func (x *CountLogResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_log_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountLogResponse.ProtoReflect.Descriptor instead.
+func (*CountLogResponse) Descriptor() ([]byte, []int) {
+	return file_service_log_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CountLogResponse) GetCount() int64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+// 列出单页日志
+type ListLogsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Offset int64 `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Size   int64 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+}
+
+func (x *ListLogsRequest) Reset() {
+	*x = ListLogsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_log_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListLogsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListLogsRequest) ProtoMessage() {}
+
+func (x *ListLogsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_log_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListLogsRequest.ProtoReflect.Descriptor instead.
+func (*ListLogsRequest) Descriptor() ([]byte, []int) {
+	return file_service_log_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ListLogsRequest) GetOffset() int64 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *ListLogsRequest) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+type ListLogsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Logs []*Log `protobuf:"bytes,1,rep,name=logs,proto3" json:"logs,omitempty"`
+}
+
+func (x *ListLogsResponse) Reset() {
+	*x = ListLogsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_log_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListLogsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListLogsResponse) ProtoMessage() {}
+
+func (x *ListLogsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_log_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListLogsResponse.ProtoReflect.Descriptor instead.
+func (*ListLogsResponse) Descriptor() ([]byte, []int) {
+	return file_service_log_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ListLogsResponse) GetLogs() []*Log {
+	if x != nil {
+		return x.Logs
+	}
+	return nil
+}
+
 var File_service_log_proto protoreflect.FileDescriptor
 
 var file_service_log_proto_rawDesc = []byte{
 	0x0a, 0x11, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x6c, 0x6f, 0x67, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x1a, 0x0f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x6c,
+	0x6f, 0x67, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x72, 0x0a, 0x10, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
+	0x6c, 0x65, 0x76, 0x65, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x65, 0x76,
+	0x65, 0x6c, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f,
+	0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70,
+	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x70, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x70, 0x22, 0x13, 0x0a, 0x11,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x11, 0x0a, 0x0f, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x22, 0x28, 0x0a, 0x10, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x4c, 0x6f, 0x67,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x3d,
+	0x0a, 0x0f, 0x4c, 0x69, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x22, 0x2f, 0x0a,
+	0x10, 0x4c, 0x69, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x1b, 0x0a, 0x04, 0x6c, 0x6f, 0x67, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x07, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x6f, 0x67, 0x52, 0x04, 0x6c, 0x6f, 0x67, 0x73, 0x32, 0xb5,
+	0x01, 0x0a, 0x0a, 0x4c, 0x6f, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x38, 0x0a,
+	0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x12, 0x14, 0x2e, 0x70, 0x62, 0x2e,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x15, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x09, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x4c, 0x6f, 0x67, 0x73, 0x12, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x4c,
+	0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x43,
+	0x6f, 0x75, 0x6e, 0x74, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x35, 0x0a, 0x08, 0x6c, 0x69, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x73, 0x12, 0x13, 0x2e, 0x70, 0x62,
+	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
-var file_service_log_proto_goTypes = []interface{}{}
+var (
+	file_service_log_proto_rawDescOnce sync.Once
+	file_service_log_proto_rawDescData = file_service_log_proto_rawDesc
+)
+
+func file_service_log_proto_rawDescGZIP() []byte {
+	file_service_log_proto_rawDescOnce.Do(func() {
+		file_service_log_proto_rawDescData = protoimpl.X.CompressGZIP(file_service_log_proto_rawDescData)
+	})
+	return file_service_log_proto_rawDescData
+}
+
+var file_service_log_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_service_log_proto_goTypes = []interface{}{
+	(*CreateLogRequest)(nil),  // 0: pb.CreateLogRequest
+	(*CreateLogResponse)(nil), // 1: pb.CreateLogResponse
+	(*CountLogRequest)(nil),   // 2: pb.CountLogRequest
+	(*CountLogResponse)(nil),  // 3: pb.CountLogResponse
+	(*ListLogsRequest)(nil),   // 4: pb.ListLogsRequest
+	(*ListLogsResponse)(nil),  // 5: pb.ListLogsResponse
+	(*Log)(nil),               // 6: pb.Log
+}
 var file_service_log_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	6, // 0: pb.ListLogsResponse.logs:type_name -> pb.Log
+	0, // 1: pb.LogService.createLog:input_type -> pb.CreateLogRequest
+	2, // 2: pb.LogService.countLogs:input_type -> pb.CountLogRequest
+	4, // 3: pb.LogService.listLogs:input_type -> pb.ListLogsRequest
+	1, // 4: pb.LogService.createLog:output_type -> pb.CreateLogResponse
+	3, // 5: pb.LogService.countLogs:output_type -> pb.CountLogResponse
+	5, // 6: pb.LogService.listLogs:output_type -> pb.ListLogsResponse
+	4, // [4:7] is the sub-list for method output_type
+	1, // [1:4] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_service_log_proto_init() }
@@ -46,21 +410,255 @@ func file_service_log_proto_init() {
 	if File_service_log_proto != nil {
 		return
 	}
+	file_model_log_proto_init()
+	if !protoimpl.UnsafeEnabled {
+		file_service_log_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateLogRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_log_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateLogResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_log_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CountLogRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_log_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CountLogResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_log_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListLogsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_log_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListLogsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_log_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   6,
 			NumExtensions: 0,
-			NumServices:   0,
+			NumServices:   1,
 		},
 		GoTypes:           file_service_log_proto_goTypes,
 		DependencyIndexes: file_service_log_proto_depIdxs,
+		MessageInfos:      file_service_log_proto_msgTypes,
 	}.Build()
 	File_service_log_proto = out.File
 	file_service_log_proto_rawDesc = nil
 	file_service_log_proto_goTypes = nil
 	file_service_log_proto_depIdxs = nil
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConnInterface
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion6
+
+// LogServiceClient is the client API for LogService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type LogServiceClient interface {
+	// 创建日志
+	CreateLog(ctx context.Context, in *CreateLogRequest, opts ...grpc.CallOption) (*CreateLogResponse, error)
+	// 计算日志数量
+	CountLogs(ctx context.Context, in *CountLogRequest, opts ...grpc.CallOption) (*CountLogResponse, error)
+	// 列出单页日志
+	ListLogs(ctx context.Context, in *ListLogsRequest, opts ...grpc.CallOption) (*ListLogsResponse, error)
+}
+
+type logServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewLogServiceClient(cc grpc.ClientConnInterface) LogServiceClient {
+	return &logServiceClient{cc}
+}
+
+func (c *logServiceClient) CreateLog(ctx context.Context, in *CreateLogRequest, opts ...grpc.CallOption) (*CreateLogResponse, error) {
+	out := new(CreateLogResponse)
+	err := c.cc.Invoke(ctx, "/pb.LogService/createLog", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *logServiceClient) CountLogs(ctx context.Context, in *CountLogRequest, opts ...grpc.CallOption) (*CountLogResponse, error) {
+	out := new(CountLogResponse)
+	err := c.cc.Invoke(ctx, "/pb.LogService/countLogs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *logServiceClient) ListLogs(ctx context.Context, in *ListLogsRequest, opts ...grpc.CallOption) (*ListLogsResponse, error) {
+	out := new(ListLogsResponse)
+	err := c.cc.Invoke(ctx, "/pb.LogService/listLogs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// LogServiceServer is the server API for LogService service.
+type LogServiceServer interface {
+	// 创建日志
+	CreateLog(context.Context, *CreateLogRequest) (*CreateLogResponse, error)
+	// 计算日志数量
+	CountLogs(context.Context, *CountLogRequest) (*CountLogResponse, error)
+	// 列出单页日志
+	ListLogs(context.Context, *ListLogsRequest) (*ListLogsResponse, error)
+}
+
+// UnimplementedLogServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedLogServiceServer struct {
+}
+
+func (*UnimplementedLogServiceServer) CreateLog(context.Context, *CreateLogRequest) (*CreateLogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateLog not implemented")
+}
+func (*UnimplementedLogServiceServer) CountLogs(context.Context, *CountLogRequest) (*CountLogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountLogs not implemented")
+}
+func (*UnimplementedLogServiceServer) ListLogs(context.Context, *ListLogsRequest) (*ListLogsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListLogs not implemented")
+}
+
+func RegisterLogServiceServer(s *grpc.Server, srv LogServiceServer) {
+	s.RegisterService(&_LogService_serviceDesc, srv)
+}
+
+func _LogService_CreateLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateLogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LogServiceServer).CreateLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.LogService/CreateLog",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LogServiceServer).CreateLog(ctx, req.(*CreateLogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LogService_CountLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountLogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LogServiceServer).CountLogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.LogService/CountLogs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LogServiceServer).CountLogs(ctx, req.(*CountLogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LogService_ListLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListLogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LogServiceServer).ListLogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.LogService/ListLogs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LogServiceServer).ListLogs(ctx, req.(*ListLogsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _LogService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "pb.LogService",
+	HandlerType: (*LogServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "createLog",
+			Handler:    _LogService_CreateLog_Handler,
+		},
+		{
+			MethodName: "countLogs",
+			Handler:    _LogService_CountLogs_Handler,
+		},
+		{
+			MethodName: "listLogs",
+			Handler:    _LogService_ListLogs_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "service_log.proto",
 }
