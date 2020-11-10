@@ -11,6 +11,7 @@ const (
 	MessageCodeCleanCache       MessageCode = "cleanCache"       // 清理缓存
 	MessageCodePreheatCache     MessageCode = "preheatCache"     // 预热缓存
 	MessageCodeConfigChanged    MessageCode = "configChanged"    // 配置已改变
+	MessageCodeIPListChanged    MessageCode = "ipListChanged"    // IP列表变化
 )
 
 // 连接API节点成功
@@ -56,4 +57,8 @@ type PreheatCacheMessage struct {
 
 // 配置已改变
 type ConfigChangedMessage struct {
+}
+
+// IPList变化
+type IPListChangedMessage struct {
 }

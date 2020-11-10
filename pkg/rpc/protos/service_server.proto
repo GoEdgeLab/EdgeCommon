@@ -76,6 +76,9 @@ service ServerService {
 	// 计算使用某个WAF策略的服务数量
 	rpc countAllEnabledServersWithHTTPFirewallPolicyId (CountAllEnabledServersWithHTTPFirewallPolicyIdRequest) returns (CountAllEnabledServersWithHTTPFirewallPolicyIdResponse);
 
+	// 查找使用WAF策略的所有服务
+	rpc findAllEnabledServersWithHTTPFirewallPolicyId (FindAllEnabledServersWithHTTPFirewallPolicyIdRequest) returns (FindAllEnabledServersWithHTTPFirewallPolicyIdResponse);
+
 	// 计算运行在某个集群上的所有服务数量
 	rpc countAllEnabledServersWithNodeClusterId (CountAllEnabledServersWithNodeClusterIdRequest) returns (CountAllEnabledServersWithNodeClusterIdResponse);
 
@@ -282,6 +285,15 @@ message CountAllEnabledServersWithHTTPFirewallPolicyIdRequest {
 
 message CountAllEnabledServersWithHTTPFirewallPolicyIdResponse {
 	int64 count = 1;
+}
+
+// 查找使用某个WAF策略的所有服务
+message FindAllEnabledServersWithHTTPFirewallPolicyIdRequest {
+	int64 firewallPolicyId = 1;
+}
+
+message FindAllEnabledServersWithHTTPFirewallPolicyIdResponse {
+	repeated Server servers = 1;
 }
 
 // 计算运行在某个集群上的所有服务数量
