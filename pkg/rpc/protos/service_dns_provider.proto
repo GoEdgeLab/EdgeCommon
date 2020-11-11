@@ -1,0 +1,98 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+import "model_dns_provider.proto";
+
+// DNS服务商相关服务
+service DNSProviderService {
+	// 创建服务商
+	rpc createDNSProvider (CreateDNSProviderRequest) returns (CreateDNSProviderResponse);
+
+	// 修改服务商
+	rpc updateDNSProvider (UpdateDNSProviderRequest) returns (RPCUpdateSuccess);
+
+	// 计算服务商数量
+	rpc countAllEnabledDNSProviders (CountAllEnabledDNSProvidersRequest) returns (CountAllEnabledDNSProvidersResponse);
+
+	// 列出单页服务商信息
+	rpc listEnabledDNSProviders (ListEnabledDNSProvidersRequest) returns (ListEnabledDNSProvidersResponse);
+
+	// 删除服务商
+	rpc deleteDNSProvider (DeleteDNSProviderRequest) returns (RPCDeleteSuccess);
+
+	// 查找单个服务商
+	rpc findEnabledDNSProvider (FindEnabledDNSProviderRequest) returns (FindEnabledDNSProviderResponse);
+
+	// 取得所有服务商类型
+	rpc findAllDNSProviderTypes (FindAllDNSProviderTypesRequest) returns (FindAllDNSProviderTypesResponse);
+}
+
+// 创建服务商
+message CreateDNSProviderRequest {
+	string name = 1;
+	string type = 2;
+	bytes apiParamsJSON = 3;
+	bytes routesJSON = 4;
+}
+
+message CreateDNSProviderResponse {
+	int64 dnsProviderId = 1;
+}
+
+// 修改服务商
+message UpdateDNSProviderRequest {
+	int64 dnsProviderId = 1;
+	string name = 2;
+	bytes apiParamsJSON = 3;
+	bytes routesJSON = 4;
+}
+
+// 计算服务商数量
+message CountAllEnabledDNSProvidersRequest {
+
+}
+
+message CountAllEnabledDNSProvidersResponse {
+	int64 count = 1;
+}
+
+// 列出单页的服务商信息
+message ListEnabledDNSProvidersRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListEnabledDNSProvidersResponse {
+	repeated DNSProvider dnsProviders = 1;
+}
+
+// 删除服务商
+message DeleteDNSProviderRequest {
+	int64 dnsProviderId = 1;
+}
+
+// 查找单个服务商
+message FindEnabledDNSProviderRequest {
+	int64 dnsProviderId = 1;
+}
+
+message FindEnabledDNSProviderResponse {
+	DNSProvider dnsProvider = 1;
+}
+
+// 取得所有服务商类型
+message FindAllDNSProviderTypesRequest {
+
+}
+
+message FindAllDNSProviderTypesResponse {
+	repeated DNSProviderType providerTypes = 1;
+}
+
+message DNSProviderType {
+	string name = 1;
+	string code = 2;
+}

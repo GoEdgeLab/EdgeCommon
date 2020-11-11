@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message DNSProvider {
+	int64 id = 1;
+	string name = 2;
+	string type = 3;
+	string typeName = 4;
+	bytes apiParamsJSON = 5;
+	bytes routesJSON = 6;
+	int64 dataUpdatedAt = 7;
+}

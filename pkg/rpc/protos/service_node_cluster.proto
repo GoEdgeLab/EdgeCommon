@@ -7,6 +7,7 @@ import "model_node_cluster.proto";
 import "model_api_node.proto";
 import "model_node.proto";
 import "rpc_messages.proto";
+import "model_dns_provider.proto";
 
 service NodeClusterService {
 	// 创建集群
@@ -50,6 +51,12 @@ service NodeClusterService {
 
 	// 查找使用某个认证的所有集群
 	rpc findAllEnabledNodeClustersWithGrantId (FindAllEnabledNodeClustersWithGrantIdRequest) returns (FindAllEnabledNodeClustersWithGrantIdResponse);
+
+	// 查找集群的DNS配置
+	rpc findEnabledNodeClusterDNS (FindEnabledNodeClusterDNSRequest) returns (FindEnabledNodeClusterDNSResponse);
+
+	// 计算使用某个DNS服务商的集群数量
+	rpc countAllEnabledNodeClustersWithDNSProviderId (CountAllEnabledNodeClustersWithDNSProviderIdRequest) returns (CountAllEnabledNodeClustersWithDNSProviderIdResponse);
 }
 
 // 获取所有集群的信息
@@ -180,4 +187,24 @@ message FindAllEnabledNodeClustersWithGrantIdRequest {
 
 message FindAllEnabledNodeClustersWithGrantIdResponse {
 	repeated NodeCluster clusters = 1;
+}
+
+// 查找集群的DNS配置
+message FindEnabledNodeClusterDNSRequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindEnabledNodeClusterDNSResponse {
+	string name = 1;
+	string domain = 2;
+	DNSProvider provider = 3;
+}
+
+// 计算使用某个DNS服务商的集群数量
+message CountAllEnabledNodeClustersWithDNSProviderIdRequest {
+	int64 dnsProviderId = 1;
+}
+
+message CountAllEnabledNodeClustersWithDNSProviderIdResponse {
+	int64 count = 1;
 }
