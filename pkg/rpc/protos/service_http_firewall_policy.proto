@@ -23,7 +23,7 @@ service HTTPFirewallPolicyService {
 	rpc updateHTTPFirewallInboundConfig (UpdateHTTPFirewallInboundConfigRequest) returns (RPCUpdateSuccess);
 
 	// 计算可用的防火墙策略数量
-	rpc countAllEnabledFirewallPolicies (CountAllEnabledFirewallPoliciesRequest) returns (CountAllEnabledFirewallPoliciesResponse);
+	rpc countAllEnabledFirewallPolicies (CountAllEnabledFirewallPoliciesRequest) returns (RPCCountResponse);
 
 	// 列出单页的防火墙策略
 	rpc listEnabledFirewallPolicies (ListEnabledFirewallPoliciesRequest) returns (ListEnabledFirewallPoliciesResponse);
@@ -83,10 +83,6 @@ message UpdateHTTPFirewallInboundConfigRequest {
 
 // 计算可用的防火墙策略数量
 message CountAllEnabledFirewallPoliciesRequest {
-}
-
-message CountAllEnabledFirewallPoliciesResponse {
-	int64 count = 1;
 }
 
 // 列出单页的防火墙策略

@@ -19,7 +19,7 @@ service SSLCertService {
 	rpc findEnabledSSLCertConfig (FindEnabledSSLCertConfigRequest) returns (FindEnabledSSLCertConfigResponse);
 
 	// 计算匹配的Cert数量
-	rpc countSSLCerts (CountSSLCertRequest) returns (CountSSLCertResponse);
+	rpc countSSLCerts (CountSSLCertRequest) returns (RPCCountResponse);
 
 	// 列出单页匹配的Cert
 	rpc listSSLCerts (ListSSLCertsRequest) returns (ListSSLCertsResponse);
@@ -81,10 +81,6 @@ message CountSSLCertRequest {
 	bool isExpired = 3;
 	int32 expiringDays = 4;
 	string keyword = 5;
-}
-
-message CountSSLCertResponse {
-	int64 count = 1;
 }
 
 // 列出单页匹配的Cert

@@ -19,7 +19,7 @@ service APINodeService {
 	rpc findAllEnabledAPINodes (FindAllEnabledAPINodesRequest) returns (FindAllEnabledAPINodesResponse);
 
 	// 计算API节点数量
-	rpc countAllEnabledAPINodes (CountAllEnabledAPINodesRequest) returns (CountAllEnabledAPINodesResponse);
+	rpc countAllEnabledAPINodes (CountAllEnabledAPINodesRequest) returns (RPCCountResponse);
 
 	// 列出单页的API节点
 	rpc listEnabledAPINodes (ListEnabledAPINodesRequest) returns (ListEnabledAPINodesResponse);
@@ -73,10 +73,6 @@ message FindAllEnabledAPINodesResponse {
 // 计算API节点数量
 message CountAllEnabledAPINodesRequest {
 
-}
-
-message CountAllEnabledAPINodesResponse {
-	int64 count = 1;
 }
 
 // 列出单页的API节点

@@ -18,7 +18,7 @@ service IPItemService {
 	rpc deleteIPItem (DeleteIPItemRequest) returns (RPCDeleteSuccess);
 
 	// 计算IP数量
-	rpc countIPItemsWithListId (CountIPItemsWithListIdRequest) returns (CountIPItemsWithListIdResponse);
+	rpc countIPItemsWithListId (CountIPItemsWithListIdRequest) returns (RPCCountResponse);
 
 	// 列出单页的IP
 	rpc listIPItemsWithListId (ListIPItemsWithListIdRequest) returns (ListIPItemsWithListIdResponse);
@@ -60,10 +60,6 @@ message DeleteIPItemRequest {
 // 计算IP数量
 message CountIPItemsWithListIdRequest {
 	int64 ipListId = 1;
-}
-
-message CountIPItemsWithListIdResponse {
-	int64 count = 1;
 }
 
 // 列出单页的IP

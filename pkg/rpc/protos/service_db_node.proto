@@ -17,7 +17,7 @@ service DBNodeService {
 	rpc deleteDBNode (DeleteDBNodeRequest) returns (RPCDeleteSuccess);
 
 	// 计算可用的数据库节点数量
-	rpc countAllEnabledDBNodes (CountAllEnabledDBNodesRequest) returns (CountAllEnabledDBNodesResponse);
+	rpc countAllEnabledDBNodes (CountAllEnabledDBNodesRequest) returns (RPCCountResponse);
 
 	// 列出单页的数据库节点
 	rpc listEnabledDBNodes (ListEnabledDBNodesRequest) returns (ListEnabledDBNodesResponse);
@@ -65,10 +65,6 @@ message DeleteDBNodeRequest {
 // 计算可用的数据库节点数量
 message CountAllEnabledDBNodesRequest {
 
-}
-
-message CountAllEnabledDBNodesResponse {
-	int64 count = 1;
 }
 
 // 列出单页的数据库节点

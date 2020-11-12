@@ -20,7 +20,7 @@ service HTTPCachePolicyService {
 	rpc deleteHTTPCachePolicy (DeleteHTTPCachePolicyRequest) returns (RPCDeleteSuccess);
 
 	// 计算缓存策略数量
-	rpc countAllEnabledHTTPCachePolicies (CountAllEnabledHTTPCachePoliciesRequest) returns (CountAllEnabledHTTPCachePoliciesResponse);
+	rpc countAllEnabledHTTPCachePolicies (CountAllEnabledHTTPCachePoliciesRequest) returns (RPCCountResponse);
 
 	// 列出单页的缓存策略
 	rpc listEnabledHTTPCachePolicies (ListEnabledHTTPCachePoliciesRequest) returns (ListEnabledHTTPCachePoliciesResponse);
@@ -74,10 +74,6 @@ message DeleteHTTPCachePolicyRequest {
 
 // 计算缓存策略数量
 message CountAllEnabledHTTPCachePoliciesRequest {
-}
-
-message CountAllEnabledHTTPCachePoliciesResponse {
-	int64 count = 1;
 }
 
 // 列出单页的缓存策略

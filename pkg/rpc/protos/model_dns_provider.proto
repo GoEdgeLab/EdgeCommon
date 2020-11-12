@@ -9,6 +9,5 @@ message DNSProvider {
 	string type = 3;
 	string typeName = 4;
 	bytes apiParamsJSON = 5;
-	bytes routesJSON = 6;
-	int64 dataUpdatedAt = 7;
+	int64 dataUpdatedAt = 6;
 }

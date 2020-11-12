@@ -16,10 +16,10 @@ service NodeService {
 	rpc registerClusterNode (RegisterClusterNodeRequest) returns (RegisterClusterNodeResponse);
 
 	// 节点数量
-	rpc countAllEnabledNodes (CountAllEnabledNodesRequest) returns (CountAllEnabledNodesResponse);
+	rpc countAllEnabledNodes (CountAllEnabledNodesRequest) returns (RPCCountResponse);
 
 	// 计算匹配的节点数量
-	rpc countAllEnabledNodesMatch (CountAllEnabledNodesMatchRequest) returns (CountAllEnabledNodesMatchResponse);
+	rpc countAllEnabledNodesMatch (CountAllEnabledNodesMatchRequest) returns (RPCCountResponse);
 
 	// 列出单页节点
 	rpc listEnabledNodesMatch (ListEnabledNodesMatchRequest) returns (ListEnabledNodesMatchResponse);
@@ -70,7 +70,7 @@ service NodeService {
 	rpc updateNodeConnectedAPINodes (UpdateNodeConnectedAPINodesRequest) returns (RPCUpdateSuccess);
 
 	// 计算使用某个认证的节点数量
-	rpc countAllEnabledNodesWithGrantId (CountAllEnabledNodesWithGrantIdRequest) returns (CountAllEnabledNodesWithGrantIdResponse);
+	rpc countAllEnabledNodesWithGrantId (CountAllEnabledNodesWithGrantIdRequest) returns (RPCCountResponse);
 
 	// 查找使用某个认证的所有节点
 	rpc findAllEnabledNodesWithGrantId (FindAllEnabledNodesWithGrantIdRequest) returns (FindAllEnabledNodesWithGrantIdResponse);
@@ -88,7 +88,7 @@ service NodeService {
 	rpc updateNodeLogin (UpdateNodeLoginRequest) returns (RPCUpdateSuccess);
 
 	// 计算某个节点分组内的节点数量
-	rpc countAllEnabledNodesWithGroupId (CountAllEnabledNodesWithGroupIdRequest) returns (CountAllEnabledNodesWithGroupIdResponse);
+	rpc countAllEnabledNodesWithGroupId (CountAllEnabledNodesWithGroupIdRequest) returns (RPCCountResponse);
 }
 
 // 创建节点
@@ -117,10 +117,6 @@ message RegisterClusterNodeResponse {
 // 节点数量
 message CountAllEnabledNodesRequest {
 
-}
-
-message CountAllEnabledNodesResponse {
-	int64 count = 1;
 }
 
 // 列出单页节点
@@ -219,10 +215,6 @@ message CountAllEnabledNodesMatchRequest {
 	int64 groupId = 5;
 }
 
-message CountAllEnabledNodesMatchResponse {
-	int64 count = 1;
-}
-
 // 修改节点安装状态
 message UpdateNodeIsInstalledRequest {
 	int64 nodeId = 1;
@@ -274,10 +266,6 @@ message UpdateNodeConnectedAPINodesRequest {
 // 计算使用某个认证的节点数量
 message CountAllEnabledNodesWithGrantIdRequest {
 	int64 grantId = 1;
-}
-
-message CountAllEnabledNodesWithGrantIdResponse {
-	int64 count = 1;
 }
 
 // 查找使用某个认证的所有节点
@@ -333,8 +321,4 @@ message UpdateNodeLoginRequest {
 // 计算某个节点分组内的节点数量
 message CountAllEnabledNodesWithGroupIdRequest {
 	int64 groupId = 1;
-}
-
-message CountAllEnabledNodesWithGroupIdResponse {
-	int64 count = 1;
 }

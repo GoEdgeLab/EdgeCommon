@@ -16,7 +16,7 @@ service NodeGrantService {
 	rpc disableNodeGrant (DisableNodeGrantRequest) returns (DisableNodeGrantResponse);
 
 	// 计算认证的数量
-	rpc countAllEnabledNodeGrants (CountAllEnabledNodeGrantsRequest) returns (CountAllEnabledNodeGrantsResponse);
+	rpc countAllEnabledNodeGrants (CountAllEnabledNodeGrantsRequest) returns (RPCCountResponse);
 
 	// 列出单页认证
 	rpc ListEnabledNodeGrants (ListEnabledNodeGrantsRequest) returns (ListEnabledNodeGrantsResponse);
@@ -67,10 +67,6 @@ message DisableNodeGrantResponse {
 // 计算节点认证数量
 message CountAllEnabledNodeGrantsRequest {
 
-}
-
-message CountAllEnabledNodeGrantsResponse {
-	int64 count = 1;
 }
 
 // 列出单页认证

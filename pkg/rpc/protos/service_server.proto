@@ -41,7 +41,7 @@ service ServerService {
 	rpc updateServerNames (UpdateServerNamesRequest) returns (RPCUpdateSuccess);
 
 	// 计算匹配的服务数量
-	rpc countAllEnabledServersMatch (CountAllEnabledServersMatchRequest) returns (CountAllEnabledServersMatchResponse);
+	rpc countAllEnabledServersMatch (CountAllEnabledServersMatchRequest) returns (RPCCountResponse);
 
 	// 列出单页服务
 	rpc listEnabledServersMatch (ListEnabledServersMatchRequest) returns (ListEnabledServersMatchResponse);
@@ -62,28 +62,28 @@ service ServerService {
 	rpc findAndInitServerWebConfig (FindAndInitServerWebConfigRequest) returns (FindAndInitServerWebConfigResponse);
 
 	// 计算使用某个SSL证书的服务数量
-	rpc countAllEnabledServersWithSSLCertId (CountAllEnabledServersWithSSLCertIdRequest) returns (CountAllEnabledServersWithSSLCertIdResponse);
+	rpc countAllEnabledServersWithSSLCertId (CountAllEnabledServersWithSSLCertIdRequest) returns (RPCCountResponse);
 
 	// 查找使用某个SSL证书的所有服务
 	rpc findAllEnabledServersWithSSLCertId (FindAllEnabledServersWithSSLCertIdRequest) returns (FindAllEnabledServersWithSSLCertIdResponse);
 
 	// 计算使用某个缓存策略的服务数量
-	rpc countAllEnabledServersWithCachePolicyId (CountAllEnabledServersWithCachePolicyIdRequest) returns (CountAllEnabledServersWithCachePolicyIdResponse);
+	rpc countAllEnabledServersWithCachePolicyId (CountAllEnabledServersWithCachePolicyIdRequest) returns (RPCCountResponse);
 
 	// 查找使用某个缓存策略的所有服务
 	rpc findAllEnabledServersWithCachePolicyId (FindAllEnabledServersWithCachePolicyIdRequest) returns (FindAllEnabledServersWithCachePolicyIdResponse);
 
 	// 计算使用某个WAF策略的服务数量
-	rpc countAllEnabledServersWithHTTPFirewallPolicyId (CountAllEnabledServersWithHTTPFirewallPolicyIdRequest) returns (CountAllEnabledServersWithHTTPFirewallPolicyIdResponse);
+	rpc countAllEnabledServersWithHTTPFirewallPolicyId (CountAllEnabledServersWithHTTPFirewallPolicyIdRequest) returns (RPCCountResponse);
 
 	// 查找使用WAF策略的所有服务
 	rpc findAllEnabledServersWithHTTPFirewallPolicyId (FindAllEnabledServersWithHTTPFirewallPolicyIdRequest) returns (FindAllEnabledServersWithHTTPFirewallPolicyIdResponse);
 
 	// 计算运行在某个集群上的所有服务数量
-	rpc countAllEnabledServersWithNodeClusterId (CountAllEnabledServersWithNodeClusterIdRequest) returns (CountAllEnabledServersWithNodeClusterIdResponse);
+	rpc countAllEnabledServersWithNodeClusterId (CountAllEnabledServersWithNodeClusterIdRequest) returns (RPCCountResponse);
 
 	// 计算使用某个分组的服务数量
-	rpc countAllEnabledServersWithGroupId (CountAllEnabledServersWithGroupIdRequest) returns (CountAllEnabledServersWithGroupIdResponse);
+	rpc countAllEnabledServersWithGroupId (CountAllEnabledServersWithGroupIdRequest) returns (RPCCountResponse);
 
 	// 通知更新
 	rpc notifyServersChange (NotifyServersChangeRequest) returns (NotifyServersChangeResponse);
@@ -180,10 +180,6 @@ message CountAllEnabledServersMatchRequest {
 	string keyword = 2;
 }
 
-message CountAllEnabledServersMatchResponse {
-	int64 count = 1;
-}
-
 // 列出单页服务
 message ListEnabledServersMatchRequest {
 	int64 offset = 1;
@@ -247,10 +243,6 @@ message CountAllEnabledServersWithSSLCertIdRequest {
 	int64 certId = 1;
 }
 
-message CountAllEnabledServersWithSSLCertIdResponse {
-	int64 count = 1;
-}
-
 // 查找使用某个SSL证书的所有服务
 message FindAllEnabledServersWithSSLCertIdRequest {
 	int64 certId = 1;
@@ -263,10 +255,6 @@ message FindAllEnabledServersWithSSLCertIdResponse {
 // 计算使用某个缓存策略的服务数量
 message CountAllEnabledServersWithCachePolicyIdRequest {
 	int64 cachePolicyId = 1;
-}
-
-message CountAllEnabledServersWithCachePolicyIdResponse {
-	int64 count = 1;
 }
 
 // 查找使用某个缓存策略的所有服务
@@ -283,10 +271,6 @@ message CountAllEnabledServersWithHTTPFirewallPolicyIdRequest {
 	int64 firewallPolicyId = 1;
 }
 
-message CountAllEnabledServersWithHTTPFirewallPolicyIdResponse {
-	int64 count = 1;
-}
-
 // 查找使用某个WAF策略的所有服务
 message FindAllEnabledServersWithHTTPFirewallPolicyIdRequest {
 	int64 firewallPolicyId = 1;
@@ -301,17 +285,9 @@ message CountAllEnabledServersWithNodeClusterIdRequest {
 	int64 nodeClusterId = 1;
 }
 
-message CountAllEnabledServersWithNodeClusterIdResponse {
-	int64 count = 1;
-}
-
 // 计算使用某个分组的服务数量
 message CountAllEnabledServersWithGroupIdRequest {
 	int64 groupId = 1;
-}
-
-message CountAllEnabledServersWithGroupIdResponse {
-	int64 count = 1;
 }
 
 // 通知更新

@@ -10,3 +10,7 @@ message RPCUpdateSuccess {
 message RPCDeleteSuccess {
 
 }
+
+message RPCCountResponse {
+	int64 count = 1;
+}
