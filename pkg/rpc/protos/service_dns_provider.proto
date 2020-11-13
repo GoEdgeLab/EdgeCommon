@@ -12,7 +12,7 @@ service DNSProviderService {
 	rpc createDNSProvider (CreateDNSProviderRequest) returns (CreateDNSProviderResponse);
 
 	// 修改服务商
-	rpc updateDNSProvider (UpdateDNSProviderRequest) returns (RPCUpdateSuccess);
+	rpc updateDNSProvider (UpdateDNSProviderRequest) returns (RPCSuccess);
 
 	// 计算服务商数量
 	rpc countAllEnabledDNSProviders (CountAllEnabledDNSProvidersRequest) returns (RPCCountResponse);
@@ -21,7 +21,7 @@ service DNSProviderService {
 	rpc listEnabledDNSProviders (ListEnabledDNSProvidersRequest) returns (ListEnabledDNSProvidersResponse);
 
 	// 删除服务商
-	rpc deleteDNSProvider (DeleteDNSProviderRequest) returns (RPCDeleteSuccess);
+	rpc deleteDNSProvider (DeleteDNSProviderRequest) returns (RPCSuccess);
 
 	// 查找单个服务商
 	rpc findEnabledDNSProvider (FindEnabledDNSProviderRequest) returns (FindEnabledDNSProviderResponse);
@@ -29,8 +29,8 @@ service DNSProviderService {
 	// 取得所有服务商类型
 	rpc findAllDNSProviderTypes (FindAllDNSProviderTypesRequest) returns (FindAllDNSProviderTypesResponse);
 
-	// 更新数据
-	rpc updateDNSProviderData (UpdateDNSProviderDataRequest) returns (UpdateDNSProviderDataResponse);
+	// 取得某个类型的所有服务商
+	rpc findAllEnabledDNSProvidersWithType (FindAllEnabledDNSProvidersWithTypeRequest) returns (FindAllEnabledDNSProvidersWithTypeResponse);
 }
 
 // 创建服务商
@@ -94,12 +94,11 @@ message DNSProviderType {
 	string code = 2;
 }
 
-// 更新数据
-message UpdateDNSProviderDataRequest {
-	int64 dnsProviderId = 1;
+// 取得某个类型的所有服务商
+message FindAllEnabledDNSProvidersWithTypeRequest {
+	string providerTypeCode = 1;
 }
 
-message UpdateDNSProviderDataResponse {
-	bool isOk = 1;
-	string error = 2;
+message FindAllEnabledDNSProvidersWithTypeResponse {
+	repeated DNSProvider dnsProviders = 1;
 }

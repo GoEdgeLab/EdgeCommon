@@ -8,13 +8,13 @@ import "model_http_firewall_rule_group.proto";
 
 service HTTPFirewallRuleGroupService {
 	// 设置是否启用分组
-	rpc updateHTTPFirewallRuleGroupIsOn (UpdateHTTPFirewallRuleGroupIsOnRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPFirewallRuleGroupIsOn (UpdateHTTPFirewallRuleGroupIsOnRequest) returns (RPCSuccess);
 
 	// 创建分组
 	rpc createHTTPFirewallRuleGroup (CreateHTTPFirewallRuleGroupRequest) returns (CreateHTTPFirewallRuleGroupResponse);
 
 	// 修改分组
-	rpc updateHTTPFirewallRuleGroup (UpdateHTTPFirewallRuleGroupRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPFirewallRuleGroup (UpdateHTTPFirewallRuleGroupRequest) returns (RPCSuccess);
 
 	// 获取分组配置
 	rpc findEnabledHTTPFirewallRuleGroupConfig (FindEnabledHTTPFirewallRuleGroupConfigRequest) returns (FindEnabledHTTPFirewallRuleGroupConfigResponse);
@@ -23,7 +23,7 @@ service HTTPFirewallRuleGroupService {
 	rpc findEnabledHTTPFirewallRuleGroup (FindEnabledHTTPFirewallRuleGroupRequest) returns (FindEnabledHTTPFirewallRuleGroupResponse);
 
 	// 修改分组的规则集
-	rpc updateHTTPFirewallRuleGroupSets (UpdateHTTPFirewallRuleGroupSetsRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPFirewallRuleGroupSets (UpdateHTTPFirewallRuleGroupSetsRequest) returns (RPCSuccess);
 }
 
 // 设置是否启用分组

@@ -3,14 +3,12 @@ option go_package = "./pb";
 
 package pb;
 
-message RPCUpdateSuccess {
+// 操作成功
+message RPCSuccess {
 
 }
 
-message RPCDeleteSuccess {
-
-}
-
+// 返回数量
 message RPCCountResponse {
 	int64 count = 1;
 }

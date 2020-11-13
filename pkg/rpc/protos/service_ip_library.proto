@@ -21,7 +21,7 @@ service IPLibraryService {
 	rpc findAllEnabledIPLibrariesWithType (FindAllEnabledIPLibrariesWithTypeRequest) returns (FindAllEnabledIPLibrariesWithTypeResponse);
 
 	// 删除IP库
-	rpc deleteIPLibrary (DeleteIPLibraryRequest) returns (RPCDeleteSuccess);
+	rpc deleteIPLibrary (DeleteIPLibraryRequest) returns (RPCSuccess);
 
 	// 查询某个IP信息
 	rpc lookupIPRegion (LookupIPRegionRequest) returns (LookupIPRegionResponse);

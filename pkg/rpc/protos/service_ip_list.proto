@@ -12,7 +12,7 @@ service IPListService {
 	rpc createIPList (CreateIPListRequest) returns (CreateIPListResponse);
 
 	// 修改IP列表
-	rpc updateIPList (UpdateIPListRequest) returns (RPCUpdateSuccess);
+	rpc updateIPList (UpdateIPListRequest) returns (RPCSuccess);
 
 	// 查找IP列表
 	rpc findEnabledIPList (FindEnabledIPListRequest) returns (FindEnabledIPListResponse);

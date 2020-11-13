@@ -12,16 +12,16 @@ service NodeGroupService {
 	rpc createNodeGroup (CreateNodeGroupRequest) returns (CreateNodeGroupResponse);
 
 	// 修改分组
-	rpc updateNodeGroup (UpdateNodeGroupRequest) returns (RPCUpdateSuccess);
+	rpc updateNodeGroup (UpdateNodeGroupRequest) returns (RPCSuccess);
 
 	// 删除分组
-	rpc deleteNodeGroup (DeleteNodeGroupRequest) returns (RPCDeleteSuccess);
+	rpc deleteNodeGroup (DeleteNodeGroupRequest) returns (RPCSuccess);
 
 	// 查询所有分组
 	rpc findAllEnabledNodeGroupsWithClusterId (FindAllEnabledNodeGroupsWithClusterIdRequest) returns (FindAllEnabledNodeGroupsWithClusterIdResponse);
 
 	// 修改分组排序
-	rpc updateNodeGroupOrders (UpdateNodeGroupOrdersRequest) returns (RPCUpdateSuccess);
+	rpc updateNodeGroupOrders (UpdateNodeGroupOrdersRequest) returns (RPCSuccess);
 
 	// 查找单个分组信息
 	rpc findEnabledNodeGroup (FindEnabledNodeGroupRequest) returns (FindEnabledNodeGroupResponse);

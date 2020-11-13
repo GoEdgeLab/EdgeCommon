@@ -31,7 +31,7 @@ service NodeService {
 	rpc disableNode (DisableNodeRequest) returns (DisableNodeResponse);
 
 	// 修改节点
-	rpc updateNode (UpdateNodeRequest) returns (RPCUpdateSuccess);
+	rpc updateNode (UpdateNodeRequest) returns (RPCSuccess);
 
 	// 查看单个节点
 	rpc findEnabledNode (FindEnabledNodeRequest) returns (FindEnabledNodeResponse);
@@ -46,13 +46,13 @@ service NodeService {
 	rpc sendCommandToNode (NodeStreamMessage) returns (NodeStreamMessage);
 
 	// 更新节点状态
-	rpc updateNodeStatus (UpdateNodeStatusRequest) returns (RPCUpdateSuccess);
+	rpc updateNodeStatus (UpdateNodeStatusRequest) returns (RPCSuccess);
 
 	// 同步集群中的节点版本
 	rpc syncNodesVersionWithCluster (SyncNodesVersionWithClusterRequest) returns (SyncNodesVersionWithClusterResponse);
 
 	// 修改节点安装状态
-	rpc updateNodeIsInstalled (UpdateNodeIsInstalledRequest) returns (RPCUpdateSuccess);
+	rpc updateNodeIsInstalled (UpdateNodeIsInstalledRequest) returns (RPCSuccess);
 
 	// 安装节点
 	rpc installNode (InstallNodeRequest) returns (InstallNodeResponse);
@@ -67,7 +67,7 @@ service NodeService {
 	rpc stopNode (StopNodeRequest) returns (StopNodeResponse);
 
 	// 更改节点连接的API节点信息
-	rpc updateNodeConnectedAPINodes (UpdateNodeConnectedAPINodesRequest) returns (RPCUpdateSuccess);
+	rpc updateNodeConnectedAPINodes (UpdateNodeConnectedAPINodesRequest) returns (RPCSuccess);
 
 	// 计算使用某个认证的节点数量
 	rpc countAllEnabledNodesWithGrantId (CountAllEnabledNodesWithGrantIdRequest) returns (RPCCountResponse);
@@ -85,7 +85,7 @@ service NodeService {
 	rpc findNodeInstallStatus (FindNodeInstallStatusRequest) returns (FindNodeInstallStatusResponse);
 
 	// 修改节点登录信息
-	rpc updateNodeLogin (UpdateNodeLoginRequest) returns (RPCUpdateSuccess);
+	rpc updateNodeLogin (UpdateNodeLoginRequest) returns (RPCSuccess);
 
 	// 计算某个节点分组内的节点数量
 	rpc countAllEnabledNodesWithGroupId (CountAllEnabledNodesWithGroupIdRequest) returns (RPCCountResponse);

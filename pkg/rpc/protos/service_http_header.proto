@@ -10,7 +10,7 @@ service HTTPHeaderService {
 	rpc createHTTPHeader (CreateHTTPHeaderRequest) returns (CreateHTTPHeaderResponse);
 
 	// 修改Header
-	rpc updateHTTPHeader (UpdateHTTPHeaderRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPHeader (UpdateHTTPHeaderRequest) returns (RPCSuccess);
 
 	// 查找配置
 	rpc findEnabledHTTPHeaderConfig (FindEnabledHTTPHeaderConfigRequest) returns (FindEnabledHTTPHeaderConfigResponse);

@@ -10,7 +10,7 @@ service HTTPWebsocketService {
 	rpc createHTTPWebsocket (CreateHTTPWebsocketRequest) returns (CreateHTTPWebsocketResponse);
 
 	// 修改Websocket配置
-	rpc updateHTTPWebsocket (UpdateHTTPWebsocketRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebsocket (UpdateHTTPWebsocketRequest) returns (RPCSuccess);
 }
 
 // 创建Websocket配置

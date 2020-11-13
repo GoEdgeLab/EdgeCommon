@@ -14,7 +14,7 @@ service HTTPGzipService {
 	rpc findEnabledHTTPGzipConfig (FindEnabledGzipConfigRequest) returns (FindEnabledGzipConfigResponse);
 
 	// 修改Gzip配置
-	rpc updateHTTPGzip (UpdateHTTPGzipRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPGzip (UpdateHTTPGzipRequest) returns (RPCSuccess);
 }
 
 // 创建Gzip配置

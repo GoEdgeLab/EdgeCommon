@@ -11,10 +11,10 @@ service NodeIPAddressService {
 	rpc createNodeIPAddress (CreateNodeIPAddressRequest) returns (CreateNodeIPAddressResponse);
 
 	// 修改IP地址
-	rpc updateNodeIPAddress (UpdateNodeIPAddressRequest) returns (RPCUpdateSuccess);
+	rpc updateNodeIPAddress (UpdateNodeIPAddressRequest) returns (RPCSuccess);
 
 	// 修改IP地址所属节点
-	rpc updateNodeIPAddressNodeId (UpdateNodeIPAddressNodeIdRequest) returns (RPCUpdateSuccess);
+	rpc updateNodeIPAddressNodeId (UpdateNodeIPAddressNodeIdRequest) returns (RPCSuccess);
 
 	// 禁用单个IP地址
 	rpc disableNodeIPAddress (DisableNodeIPAddressRequest) returns (DisableNodeIPAddressResponse);

@@ -8,4 +8,19 @@ message DNSDomain {
 	string name = 2;
 	bool isOn = 3;
 	int64 dataUpdatedAt = 4;
+	string dataError = 5;
+	repeated DNSRecord serverRecords = 6;
+	bool allServersResolved = 7;
+	repeated DNSRecord clusterRecords = 8;
+	bool allClustersResolved = 9;
+	repeated string routes = 10;
+	int64 providerId = 11;
+}
+
+message DNSRecord {
+	string id = 1;
+	string name = 2;
+	string value = 3;
+	string type = 4;
+	string route = 5;
 }

@@ -12,16 +12,16 @@ service ServerGroupService {
 	rpc createServerGroup (CreateServerGroupRequest) returns (CreateServerGroupResponse);
 
 	// 修改分组
-	rpc updateServerGroup (UpdateServerGroupRequest) returns (RPCUpdateSuccess);
+	rpc updateServerGroup (UpdateServerGroupRequest) returns (RPCSuccess);
 
 	// 删除分组
-	rpc deleteServerGroup (DeleteServerGroupRequest) returns (RPCDeleteSuccess);
+	rpc deleteServerGroup (DeleteServerGroupRequest) returns (RPCSuccess);
 
 	// 查询所有分组
 	rpc findAllEnabledServerGroups (FindAllEnabledServerGroupsRequest) returns (FindAllEnabledServerGroupsResponse);
 
 	// 修改分组排序
-	rpc updateServerGroupOrders (UpdateServerGroupOrdersRequest) returns (RPCUpdateSuccess);
+	rpc updateServerGroupOrders (UpdateServerGroupOrdersRequest) returns (RPCSuccess);
 
 	// 查找单个分组信息
 	rpc findEnabledServerGroup (FindEnabledServerGroupRequest) returns (FindEnabledServerGroupResponse);

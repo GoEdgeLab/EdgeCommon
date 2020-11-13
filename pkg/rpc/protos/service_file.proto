@@ -11,7 +11,7 @@ service FileService {
 	rpc createFile (CreateFileRequest) returns (CreateFileResponse);
 
 	// 将文件置为已完成
-	rpc updateFileFinished (UpdateFileFinishedRequest) returns (RPCUpdateSuccess);
+	rpc updateFileFinished (UpdateFileFinishedRequest) returns (RPCSuccess);
 }
 
 // 创建文件

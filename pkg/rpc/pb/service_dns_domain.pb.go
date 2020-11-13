@@ -244,6 +244,196 @@ func (x *DeleteDNSDomainRequest) GetDnsDomainId() int64 {
 	return 0
 }
 
+// 查询单个域名信息
+type FindEnabledDNSDomainRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DnsDomainId int64 `protobuf:"varint,1,opt,name=dnsDomainId,proto3" json:"dnsDomainId,omitempty"`
+}
+
+func (x *FindEnabledDNSDomainRequest) Reset() {
+	*x = FindEnabledDNSDomainRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_dns_domain_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledDNSDomainRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledDNSDomainRequest) ProtoMessage() {}
+
+func (x *FindEnabledDNSDomainRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_dns_domain_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledDNSDomainRequest.ProtoReflect.Descriptor instead.
+func (*FindEnabledDNSDomainRequest) Descriptor() ([]byte, []int) {
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *FindEnabledDNSDomainRequest) GetDnsDomainId() int64 {
+	if x != nil {
+		return x.DnsDomainId
+	}
+	return 0
+}
+
+type FindEnabledDNSDomainResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DnsDomain *DNSDomain `protobuf:"bytes,1,opt,name=dnsDomain,proto3" json:"dnsDomain,omitempty"`
+}
+
+func (x *FindEnabledDNSDomainResponse) Reset() {
+	*x = FindEnabledDNSDomainResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_dns_domain_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledDNSDomainResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledDNSDomainResponse) ProtoMessage() {}
+
+func (x *FindEnabledDNSDomainResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_dns_domain_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledDNSDomainResponse.ProtoReflect.Descriptor instead.
+func (*FindEnabledDNSDomainResponse) Descriptor() ([]byte, []int) {
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *FindEnabledDNSDomainResponse) GetDnsDomain() *DNSDomain {
+	if x != nil {
+		return x.DnsDomain
+	}
+	return nil
+}
+
+// 查询单个域名的基础信息
+type FindEnabledBasicDNSDomainRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DnsDomainId int64 `protobuf:"varint,1,opt,name=dnsDomainId,proto3" json:"dnsDomainId,omitempty"`
+}
+
+func (x *FindEnabledBasicDNSDomainRequest) Reset() {
+	*x = FindEnabledBasicDNSDomainRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_dns_domain_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledBasicDNSDomainRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledBasicDNSDomainRequest) ProtoMessage() {}
+
+func (x *FindEnabledBasicDNSDomainRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_dns_domain_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledBasicDNSDomainRequest.ProtoReflect.Descriptor instead.
+func (*FindEnabledBasicDNSDomainRequest) Descriptor() ([]byte, []int) {
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *FindEnabledBasicDNSDomainRequest) GetDnsDomainId() int64 {
+	if x != nil {
+		return x.DnsDomainId
+	}
+	return 0
+}
+
+type FindEnabledBasicDNSDomainResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DnsDomain *DNSDomain `protobuf:"bytes,1,opt,name=dnsDomain,proto3" json:"dnsDomain,omitempty"`
+}
+
+func (x *FindEnabledBasicDNSDomainResponse) Reset() {
+	*x = FindEnabledBasicDNSDomainResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_dns_domain_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledBasicDNSDomainResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledBasicDNSDomainResponse) ProtoMessage() {}
+
+func (x *FindEnabledBasicDNSDomainResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_dns_domain_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledBasicDNSDomainResponse.ProtoReflect.Descriptor instead.
+func (*FindEnabledBasicDNSDomainResponse) Descriptor() ([]byte, []int) {
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *FindEnabledBasicDNSDomainResponse) GetDnsDomain() *DNSDomain {
+	if x != nil {
+		return x.DnsDomain
+	}
+	return nil
+}
+
 // 计算服务商下的域名数量
 type CountAllEnabledDNSDomainsWithDNSProviderIdRequest struct {
 	state         protoimpl.MessageState
@@ -256,7 +446,7 @@ type CountAllEnabledDNSDomainsWithDNSProviderIdRequest struct {
 func (x *CountAllEnabledDNSDomainsWithDNSProviderIdRequest) Reset() {
 	*x = CountAllEnabledDNSDomainsWithDNSProviderIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_dns_domain_proto_msgTypes[4]
+		mi := &file_service_dns_domain_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -269,7 +459,7 @@ func (x *CountAllEnabledDNSDomainsWithDNSProviderIdRequest) String() string {
 func (*CountAllEnabledDNSDomainsWithDNSProviderIdRequest) ProtoMessage() {}
 
 func (x *CountAllEnabledDNSDomainsWithDNSProviderIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_dns_domain_proto_msgTypes[4]
+	mi := &file_service_dns_domain_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -282,7 +472,7 @@ func (x *CountAllEnabledDNSDomainsWithDNSProviderIdRequest) ProtoReflect() proto
 
 // Deprecated: Use CountAllEnabledDNSDomainsWithDNSProviderIdRequest.ProtoReflect.Descriptor instead.
 func (*CountAllEnabledDNSDomainsWithDNSProviderIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_dns_domain_proto_rawDescGZIP(), []int{4}
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CountAllEnabledDNSDomainsWithDNSProviderIdRequest) GetDnsProviderId() int64 {
@@ -304,7 +494,7 @@ type FindAllEnabledDNSDomainsWithDNSProviderIdRequest struct {
 func (x *FindAllEnabledDNSDomainsWithDNSProviderIdRequest) Reset() {
 	*x = FindAllEnabledDNSDomainsWithDNSProviderIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_dns_domain_proto_msgTypes[5]
+		mi := &file_service_dns_domain_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -317,7 +507,7 @@ func (x *FindAllEnabledDNSDomainsWithDNSProviderIdRequest) String() string {
 func (*FindAllEnabledDNSDomainsWithDNSProviderIdRequest) ProtoMessage() {}
 
 func (x *FindAllEnabledDNSDomainsWithDNSProviderIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_dns_domain_proto_msgTypes[5]
+	mi := &file_service_dns_domain_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -330,7 +520,7 @@ func (x *FindAllEnabledDNSDomainsWithDNSProviderIdRequest) ProtoReflect() protor
 
 // Deprecated: Use FindAllEnabledDNSDomainsWithDNSProviderIdRequest.ProtoReflect.Descriptor instead.
 func (*FindAllEnabledDNSDomainsWithDNSProviderIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_dns_domain_proto_rawDescGZIP(), []int{5}
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *FindAllEnabledDNSDomainsWithDNSProviderIdRequest) GetDnsProviderId() int64 {
@@ -351,7 +541,7 @@ type FindAllEnabledDNSDomainsWithDNSProviderIdResponse struct {
 func (x *FindAllEnabledDNSDomainsWithDNSProviderIdResponse) Reset() {
 	*x = FindAllEnabledDNSDomainsWithDNSProviderIdResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_dns_domain_proto_msgTypes[6]
+		mi := &file_service_dns_domain_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -364,7 +554,7 @@ func (x *FindAllEnabledDNSDomainsWithDNSProviderIdResponse) String() string {
 func (*FindAllEnabledDNSDomainsWithDNSProviderIdResponse) ProtoMessage() {}
 
 func (x *FindAllEnabledDNSDomainsWithDNSProviderIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_dns_domain_proto_msgTypes[6]
+	mi := &file_service_dns_domain_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -377,12 +567,313 @@ func (x *FindAllEnabledDNSDomainsWithDNSProviderIdResponse) ProtoReflect() proto
 
 // Deprecated: Use FindAllEnabledDNSDomainsWithDNSProviderIdResponse.ProtoReflect.Descriptor instead.
 func (*FindAllEnabledDNSDomainsWithDNSProviderIdResponse) Descriptor() ([]byte, []int) {
-	return file_service_dns_domain_proto_rawDescGZIP(), []int{6}
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *FindAllEnabledDNSDomainsWithDNSProviderIdResponse) GetDnsDomains() []*DNSDomain {
 	if x != nil {
 		return x.DnsDomains
+	}
+	return nil
+}
+
+// 列出服务商下的所有域名基本信息
+type FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DnsProviderId int64 `protobuf:"varint,1,opt,name=dnsProviderId,proto3" json:"dnsProviderId,omitempty"`
+}
+
+func (x *FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest) Reset() {
+	*x = FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_dns_domain_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest) ProtoMessage() {}
+
+func (x *FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_dns_domain_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest.ProtoReflect.Descriptor instead.
+func (*FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest) Descriptor() ([]byte, []int) {
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest) GetDnsProviderId() int64 {
+	if x != nil {
+		return x.DnsProviderId
+	}
+	return 0
+}
+
+type FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DnsDomains []*DNSDomain `protobuf:"bytes,1,rep,name=dnsDomains,proto3" json:"dnsDomains,omitempty"`
+}
+
+func (x *FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse) Reset() {
+	*x = FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_dns_domain_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse) ProtoMessage() {}
+
+func (x *FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_dns_domain_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse.ProtoReflect.Descriptor instead.
+func (*FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse) Descriptor() ([]byte, []int) {
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse) GetDnsDomains() []*DNSDomain {
+	if x != nil {
+		return x.DnsDomains
+	}
+	return nil
+}
+
+// 同步域名数据
+type SyncDNSDomainDataRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DnsDomainId int64 `protobuf:"varint,1,opt,name=dnsDomainId,proto3" json:"dnsDomainId,omitempty"`
+}
+
+func (x *SyncDNSDomainDataRequest) Reset() {
+	*x = SyncDNSDomainDataRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_dns_domain_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SyncDNSDomainDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SyncDNSDomainDataRequest) ProtoMessage() {}
+
+func (x *SyncDNSDomainDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_dns_domain_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SyncDNSDomainDataRequest.ProtoReflect.Descriptor instead.
+func (*SyncDNSDomainDataRequest) Descriptor() ([]byte, []int) {
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *SyncDNSDomainDataRequest) GetDnsDomainId() int64 {
+	if x != nil {
+		return x.DnsDomainId
+	}
+	return 0
+}
+
+type SyncDNSDomainDataResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IsOk      bool   `protobuf:"varint,1,opt,name=isOk,proto3" json:"isOk,omitempty"`
+	Error     string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	ShouldFix bool   `protobuf:"varint,3,opt,name=shouldFix,proto3" json:"shouldFix,omitempty"`
+}
+
+func (x *SyncDNSDomainDataResponse) Reset() {
+	*x = SyncDNSDomainDataResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_dns_domain_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SyncDNSDomainDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SyncDNSDomainDataResponse) ProtoMessage() {}
+
+func (x *SyncDNSDomainDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_dns_domain_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SyncDNSDomainDataResponse.ProtoReflect.Descriptor instead.
+func (*SyncDNSDomainDataResponse) Descriptor() ([]byte, []int) {
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *SyncDNSDomainDataResponse) GetIsOk() bool {
+	if x != nil {
+		return x.IsOk
+	}
+	return false
+}
+
+func (x *SyncDNSDomainDataResponse) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
+func (x *SyncDNSDomainDataResponse) GetShouldFix() bool {
+	if x != nil {
+		return x.ShouldFix
+	}
+	return false
+}
+
+// 查看支持的线路
+type FindAllDNSDomainRoutesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DnsDomainId int64 `protobuf:"varint,1,opt,name=dnsDomainId,proto3" json:"dnsDomainId,omitempty"`
+}
+
+func (x *FindAllDNSDomainRoutesRequest) Reset() {
+	*x = FindAllDNSDomainRoutesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_dns_domain_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllDNSDomainRoutesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllDNSDomainRoutesRequest) ProtoMessage() {}
+
+func (x *FindAllDNSDomainRoutesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_dns_domain_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllDNSDomainRoutesRequest.ProtoReflect.Descriptor instead.
+func (*FindAllDNSDomainRoutesRequest) Descriptor() ([]byte, []int) {
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *FindAllDNSDomainRoutesRequest) GetDnsDomainId() int64 {
+	if x != nil {
+		return x.DnsDomainId
+	}
+	return 0
+}
+
+type FindAllDNSDomainRoutesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Routes []string `protobuf:"bytes,1,rep,name=routes,proto3" json:"routes,omitempty"`
+}
+
+func (x *FindAllDNSDomainRoutesResponse) Reset() {
+	*x = FindAllDNSDomainRoutesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_dns_domain_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllDNSDomainRoutesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllDNSDomainRoutesResponse) ProtoMessage() {}
+
+func (x *FindAllDNSDomainRoutesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_dns_domain_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllDNSDomainRoutesResponse.ProtoReflect.Descriptor instead.
+func (*FindAllDNSDomainRoutesResponse) Descriptor() ([]byte, []int) {
+	return file_service_dns_domain_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *FindAllDNSDomainRoutesResponse) GetRoutes() []string {
+	if x != nil {
+		return x.Routes
 	}
 	return nil
 }
@@ -413,58 +904,140 @@ var file_service_dns_domain_proto_rawDesc = []byte{
 	0x3a, 0x0a, 0x16, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61,
 	0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x6e, 0x73,
 	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b,
-	0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x59, 0x0a, 0x31, 0x43,
-	0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e,
+	0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x3f, 0x0a, 0x1b, 0x46,
+	0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x6e,
+	0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x0b, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x4b, 0x0a, 0x1c,
+	0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f,
+	0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x09,
+	0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x0d, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x09,
+	0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x22, 0x44, 0x0a, 0x20, 0x46, 0x69, 0x6e,
+	0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x42, 0x61, 0x73, 0x69, 0x63, 0x44, 0x4e, 0x53,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a,
+	0x0b, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x0b, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22,
+	0x50, 0x0a, 0x21, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x42, 0x61,
+	0x73, 0x69, 0x63, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x09, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x4e, 0x53,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x09, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x22, 0x59, 0x0a, 0x31, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61,
+	0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69,
+	0x74, 0x68, 0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x64, 0x6e, 0x73, 0x50, 0x72, 0x6f,
+	0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d, 0x64,
+	0x6e, 0x73, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x22, 0x58, 0x0a, 0x30,
+	0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e,
 	0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e, 0x53, 0x50,
 	0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x12, 0x24, 0x0a, 0x0d, 0x64, 0x6e, 0x73, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49,
 	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d, 0x64, 0x6e, 0x73, 0x50, 0x72, 0x6f, 0x76,
-	0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x22, 0x58, 0x0a, 0x30, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c,
+	0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x22, 0x62, 0x0a, 0x31, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c,
 	0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69,
 	0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65,
-	0x72, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x64, 0x6e,
-	0x73, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x03, 0x52, 0x0d, 0x64, 0x6e, 0x73, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64,
-	0x22, 0x62, 0x0a, 0x31, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c,
-	0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68,
-	0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2d, 0x0a, 0x0a, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61,
-	0x69, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x70, 0x62, 0x2e, 0x44,
-	0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x0a, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d,
-	0x61, 0x69, 0x6e, 0x73, 0x32, 0xfe, 0x03, 0x0a, 0x10, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61,
-	0x69, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x4a, 0x0a, 0x0f, 0x63, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x1a, 0x2e, 0x70,
-	0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69,
-	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72,
-	0x65, 0x61, 0x74, 0x65, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x43, 0x0a, 0x0f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44,
-	0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x43, 0x0a, 0x0f, 0x64, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x1a, 0x2e,
-	0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61,
-	0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52,
-	0x50, 0x43, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12,
-	0x79, 0x0a, 0x2a, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c,
-	0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68,
-	0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x12, 0x35, 0x2e,
-	0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c,
-	0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68,
-	0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75,
-	0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x98, 0x01, 0x0a, 0x29, 0x66,
-	0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53,
-	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e, 0x53, 0x50, 0x72,
-	0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x12, 0x34, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
-	0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53, 0x44,
-	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f,
-	0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x35,
-	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c,
-	0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68,
-	0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x72, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2d, 0x0a, 0x0a, 0x64,
+	0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x0d, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x0a,
+	0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x22, 0x5d, 0x0a, 0x35, 0x46, 0x69,
+	0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x42, 0x61, 0x73, 0x69,
+	0x63, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44,
+	0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x64, 0x6e, 0x73, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64,
+	0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d, 0x64, 0x6e, 0x73, 0x50,
+	0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x22, 0x67, 0x0a, 0x36, 0x46, 0x69, 0x6e,
+	0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x42, 0x61, 0x73, 0x69, 0x63,
+	0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e,
+	0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x2d, 0x0a, 0x0a, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x4e, 0x53,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x0a, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x73, 0x22, 0x3c, 0x0a, 0x18, 0x53, 0x79, 0x6e, 0x63, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20,
+	0x0a, 0x0b, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x0b, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64,
+	0x22, 0x63, 0x0a, 0x19, 0x53, 0x79, 0x6e, 0x63, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a,
+	0x04, 0x69, 0x73, 0x4f, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73, 0x4f,
+	0x6b, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x12, 0x1c, 0x0a, 0x09, 0x73, 0x68, 0x6f, 0x75, 0x6c,
+	0x64, 0x46, 0x69, 0x78, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x73, 0x68, 0x6f, 0x75,
+	0x6c, 0x64, 0x46, 0x69, 0x78, 0x22, 0x41, 0x0a, 0x1d, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c,
+	0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x64, 0x6e, 0x73,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x38, 0x0a, 0x1e, 0x46, 0x69, 0x6e, 0x64,
+	0x41, 0x6c, 0x6c, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x75, 0x74,
+	0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x6f,
+	0x75, 0x74, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x06, 0x72, 0x6f, 0x75, 0x74,
+	0x65, 0x73, 0x32, 0x94, 0x08, 0x0a, 0x10, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x4a, 0x0a, 0x0f, 0x63, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x1a, 0x2e, 0x70, 0x62, 0x2e,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x3d, 0x0a, 0x0f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x44, 0x4e, 0x53,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65,
+	0x73, 0x73, 0x12, 0x3d, 0x0a, 0x0f, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x44, 0x4e, 0x53, 0x44,
+	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74,
+	0x65, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73,
+	0x73, 0x12, 0x59, 0x0a, 0x14, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x46,
+	0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x70, 0x62, 0x2e,
+	0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f,
+	0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x68, 0x0a, 0x19,
+	0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x42, 0x61, 0x73, 0x69, 0x63,
+	0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x46,
+	0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x42, 0x61, 0x73, 0x69, 0x63, 0x44,
+	0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x25, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x42, 0x61, 0x73, 0x69, 0x63, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x79, 0x0a, 0x2a, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41,
+	0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64,
+	0x65, 0x72, 0x49, 0x64, 0x12, 0x35, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41,
+	0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64,
+	0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62,
+	0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x98, 0x01, 0x0a, 0x29, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61,
+	0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69,
+	0x74, 0x68, 0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x12,
+	0x34, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69, 0x74,
+	0x68, 0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x35, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41,
+	0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64,
+	0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0xa7, 0x01, 0x0a,
+	0x2e, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x42,
+	0x61, 0x73, 0x69, 0x63, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69,
+	0x74, 0x68, 0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x12,
+	0x39, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x42, 0x61, 0x73, 0x69, 0x63, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65,
+	0x72, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3a, 0x2e, 0x70, 0x62, 0x2e,
+	0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x42, 0x61,
+	0x73, 0x69, 0x63, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x57, 0x69, 0x74,
+	0x68, 0x44, 0x4e, 0x53, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x11, 0x73, 0x79, 0x6e, 0x63, 0x44, 0x4e,
+	0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x44, 0x61, 0x74, 0x61, 0x12, 0x1c, 0x2e, 0x70, 0x62,
+	0x2e, 0x53, 0x79, 0x6e, 0x63, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x44, 0x61,
+	0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x53,
+	0x79, 0x6e, 0x63, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x44, 0x61, 0x74, 0x61,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5f, 0x0a, 0x16, 0x66, 0x69, 0x6e, 0x64,
+	0x41, 0x6c, 0x6c, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x75, 0x74,
+	0x65, 0x73, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44,
+	0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41,
+	0x6c, 0x6c, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x6f, 0x75, 0x74, 0x65,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70,
+	0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -479,37 +1052,59 @@ func file_service_dns_domain_proto_rawDescGZIP() []byte {
 	return file_service_dns_domain_proto_rawDescData
 }
 
-var file_service_dns_domain_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_service_dns_domain_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_service_dns_domain_proto_goTypes = []interface{}{
-	(*CreateDNSDomainRequest)(nil),                            // 0: pb.CreateDNSDomainRequest
-	(*CreateDNSDomainResponse)(nil),                           // 1: pb.CreateDNSDomainResponse
-	(*UpdateDNSDomainRequest)(nil),                            // 2: pb.UpdateDNSDomainRequest
-	(*DeleteDNSDomainRequest)(nil),                            // 3: pb.DeleteDNSDomainRequest
-	(*CountAllEnabledDNSDomainsWithDNSProviderIdRequest)(nil), // 4: pb.CountAllEnabledDNSDomainsWithDNSProviderIdRequest
-	(*FindAllEnabledDNSDomainsWithDNSProviderIdRequest)(nil),  // 5: pb.FindAllEnabledDNSDomainsWithDNSProviderIdRequest
-	(*FindAllEnabledDNSDomainsWithDNSProviderIdResponse)(nil), // 6: pb.FindAllEnabledDNSDomainsWithDNSProviderIdResponse
-	(*DNSDomain)(nil),                                         // 7: pb.DNSDomain
-	(*RPCUpdateSuccess)(nil),                                  // 8: pb.RPCUpdateSuccess
-	(*RPCDeleteSuccess)(nil),                                  // 9: pb.RPCDeleteSuccess
-	(*RPCCountResponse)(nil),                                  // 10: pb.RPCCountResponse
+	(*CreateDNSDomainRequest)(nil),                                 // 0: pb.CreateDNSDomainRequest
+	(*CreateDNSDomainResponse)(nil),                                // 1: pb.CreateDNSDomainResponse
+	(*UpdateDNSDomainRequest)(nil),                                 // 2: pb.UpdateDNSDomainRequest
+	(*DeleteDNSDomainRequest)(nil),                                 // 3: pb.DeleteDNSDomainRequest
+	(*FindEnabledDNSDomainRequest)(nil),                            // 4: pb.FindEnabledDNSDomainRequest
+	(*FindEnabledDNSDomainResponse)(nil),                           // 5: pb.FindEnabledDNSDomainResponse
+	(*FindEnabledBasicDNSDomainRequest)(nil),                       // 6: pb.FindEnabledBasicDNSDomainRequest
+	(*FindEnabledBasicDNSDomainResponse)(nil),                      // 7: pb.FindEnabledBasicDNSDomainResponse
+	(*CountAllEnabledDNSDomainsWithDNSProviderIdRequest)(nil),      // 8: pb.CountAllEnabledDNSDomainsWithDNSProviderIdRequest
+	(*FindAllEnabledDNSDomainsWithDNSProviderIdRequest)(nil),       // 9: pb.FindAllEnabledDNSDomainsWithDNSProviderIdRequest
+	(*FindAllEnabledDNSDomainsWithDNSProviderIdResponse)(nil),      // 10: pb.FindAllEnabledDNSDomainsWithDNSProviderIdResponse
+	(*FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest)(nil),  // 11: pb.FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest
+	(*FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse)(nil), // 12: pb.FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse
+	(*SyncDNSDomainDataRequest)(nil),                               // 13: pb.SyncDNSDomainDataRequest
+	(*SyncDNSDomainDataResponse)(nil),                              // 14: pb.SyncDNSDomainDataResponse
+	(*FindAllDNSDomainRoutesRequest)(nil),                          // 15: pb.FindAllDNSDomainRoutesRequest
+	(*FindAllDNSDomainRoutesResponse)(nil),                         // 16: pb.FindAllDNSDomainRoutesResponse
+	(*DNSDomain)(nil),                                              // 17: pb.DNSDomain
+	(*RPCSuccess)(nil),                                             // 18: pb.RPCSuccess
+	(*RPCCountResponse)(nil),                                       // 19: pb.RPCCountResponse
 }
 var file_service_dns_domain_proto_depIdxs = []int32{
-	7,  // 0: pb.FindAllEnabledDNSDomainsWithDNSProviderIdResponse.dnsDomains:type_name -> pb.DNSDomain
-	0,  // 1: pb.DNSDomainService.createDNSDomain:input_type -> pb.CreateDNSDomainRequest
-	2,  // 2: pb.DNSDomainService.updateDNSDomain:input_type -> pb.UpdateDNSDomainRequest
-	3,  // 3: pb.DNSDomainService.deleteDNSDomain:input_type -> pb.DeleteDNSDomainRequest
-	4,  // 4: pb.DNSDomainService.countAllEnabledDNSDomainsWithDNSProviderId:input_type -> pb.CountAllEnabledDNSDomainsWithDNSProviderIdRequest
-	5,  // 5: pb.DNSDomainService.findAllEnabledDNSDomainsWithDNSProviderId:input_type -> pb.FindAllEnabledDNSDomainsWithDNSProviderIdRequest
-	1,  // 6: pb.DNSDomainService.createDNSDomain:output_type -> pb.CreateDNSDomainResponse
-	8,  // 7: pb.DNSDomainService.updateDNSDomain:output_type -> pb.RPCUpdateSuccess
-	9,  // 8: pb.DNSDomainService.deleteDNSDomain:output_type -> pb.RPCDeleteSuccess
-	10, // 9: pb.DNSDomainService.countAllEnabledDNSDomainsWithDNSProviderId:output_type -> pb.RPCCountResponse
-	6,  // 10: pb.DNSDomainService.findAllEnabledDNSDomainsWithDNSProviderId:output_type -> pb.FindAllEnabledDNSDomainsWithDNSProviderIdResponse
-	6,  // [6:11] is the sub-list for method output_type
-	1,  // [1:6] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	17, // 0: pb.FindEnabledDNSDomainResponse.dnsDomain:type_name -> pb.DNSDomain
+	17, // 1: pb.FindEnabledBasicDNSDomainResponse.dnsDomain:type_name -> pb.DNSDomain
+	17, // 2: pb.FindAllEnabledDNSDomainsWithDNSProviderIdResponse.dnsDomains:type_name -> pb.DNSDomain
+	17, // 3: pb.FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse.dnsDomains:type_name -> pb.DNSDomain
+	0,  // 4: pb.DNSDomainService.createDNSDomain:input_type -> pb.CreateDNSDomainRequest
+	2,  // 5: pb.DNSDomainService.updateDNSDomain:input_type -> pb.UpdateDNSDomainRequest
+	3,  // 6: pb.DNSDomainService.deleteDNSDomain:input_type -> pb.DeleteDNSDomainRequest
+	4,  // 7: pb.DNSDomainService.findEnabledDNSDomain:input_type -> pb.FindEnabledDNSDomainRequest
+	6,  // 8: pb.DNSDomainService.findEnabledBasicDNSDomain:input_type -> pb.FindEnabledBasicDNSDomainRequest
+	8,  // 9: pb.DNSDomainService.countAllEnabledDNSDomainsWithDNSProviderId:input_type -> pb.CountAllEnabledDNSDomainsWithDNSProviderIdRequest
+	9,  // 10: pb.DNSDomainService.findAllEnabledDNSDomainsWithDNSProviderId:input_type -> pb.FindAllEnabledDNSDomainsWithDNSProviderIdRequest
+	11, // 11: pb.DNSDomainService.findAllEnabledBasicDNSDomainsWithDNSProviderId:input_type -> pb.FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest
+	13, // 12: pb.DNSDomainService.syncDNSDomainData:input_type -> pb.SyncDNSDomainDataRequest
+	15, // 13: pb.DNSDomainService.findAllDNSDomainRoutes:input_type -> pb.FindAllDNSDomainRoutesRequest
+	1,  // 14: pb.DNSDomainService.createDNSDomain:output_type -> pb.CreateDNSDomainResponse
+	18, // 15: pb.DNSDomainService.updateDNSDomain:output_type -> pb.RPCSuccess
+	18, // 16: pb.DNSDomainService.deleteDNSDomain:output_type -> pb.RPCSuccess
+	5,  // 17: pb.DNSDomainService.findEnabledDNSDomain:output_type -> pb.FindEnabledDNSDomainResponse
+	7,  // 18: pb.DNSDomainService.findEnabledBasicDNSDomain:output_type -> pb.FindEnabledBasicDNSDomainResponse
+	19, // 19: pb.DNSDomainService.countAllEnabledDNSDomainsWithDNSProviderId:output_type -> pb.RPCCountResponse
+	10, // 20: pb.DNSDomainService.findAllEnabledDNSDomainsWithDNSProviderId:output_type -> pb.FindAllEnabledDNSDomainsWithDNSProviderIdResponse
+	12, // 21: pb.DNSDomainService.findAllEnabledBasicDNSDomainsWithDNSProviderId:output_type -> pb.FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse
+	14, // 22: pb.DNSDomainService.syncDNSDomainData:output_type -> pb.SyncDNSDomainDataResponse
+	16, // 23: pb.DNSDomainService.findAllDNSDomainRoutes:output_type -> pb.FindAllDNSDomainRoutesResponse
+	14, // [14:24] is the sub-list for method output_type
+	4,  // [4:14] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_service_dns_domain_proto_init() }
@@ -569,7 +1164,7 @@ func file_service_dns_domain_proto_init() {
 			}
 		}
 		file_service_dns_domain_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CountAllEnabledDNSDomainsWithDNSProviderIdRequest); i {
+			switch v := v.(*FindEnabledDNSDomainRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -581,7 +1176,7 @@ func file_service_dns_domain_proto_init() {
 			}
 		}
 		file_service_dns_domain_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindAllEnabledDNSDomainsWithDNSProviderIdRequest); i {
+			switch v := v.(*FindEnabledDNSDomainResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -593,7 +1188,127 @@ func file_service_dns_domain_proto_init() {
 			}
 		}
 		file_service_dns_domain_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledBasicDNSDomainRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_dns_domain_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledBasicDNSDomainResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_dns_domain_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CountAllEnabledDNSDomainsWithDNSProviderIdRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_dns_domain_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllEnabledDNSDomainsWithDNSProviderIdRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_dns_domain_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FindAllEnabledDNSDomainsWithDNSProviderIdResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_dns_domain_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_dns_domain_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_dns_domain_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SyncDNSDomainDataRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_dns_domain_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SyncDNSDomainDataResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_dns_domain_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllDNSDomainRoutesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_dns_domain_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllDNSDomainRoutesResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -611,7 +1326,7 @@ func file_service_dns_domain_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_dns_domain_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -640,13 +1355,23 @@ type DNSDomainServiceClient interface {
 	// 创建域名
 	CreateDNSDomain(ctx context.Context, in *CreateDNSDomainRequest, opts ...grpc.CallOption) (*CreateDNSDomainResponse, error)
 	// 修改域名
-	UpdateDNSDomain(ctx context.Context, in *UpdateDNSDomainRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error)
+	UpdateDNSDomain(ctx context.Context, in *UpdateDNSDomainRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 删除域名
-	DeleteDNSDomain(ctx context.Context, in *DeleteDNSDomainRequest, opts ...grpc.CallOption) (*RPCDeleteSuccess, error)
+	DeleteDNSDomain(ctx context.Context, in *DeleteDNSDomainRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 查询单个域名完整信息
+	FindEnabledDNSDomain(ctx context.Context, in *FindEnabledDNSDomainRequest, opts ...grpc.CallOption) (*FindEnabledDNSDomainResponse, error)
+	// 查询单个域名基础信息
+	FindEnabledBasicDNSDomain(ctx context.Context, in *FindEnabledBasicDNSDomainRequest, opts ...grpc.CallOption) (*FindEnabledBasicDNSDomainResponse, error)
 	// 计算服务商下的域名数量
 	CountAllEnabledDNSDomainsWithDNSProviderId(ctx context.Context, in *CountAllEnabledDNSDomainsWithDNSProviderIdRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 列出服务商下的所有域名
 	FindAllEnabledDNSDomainsWithDNSProviderId(ctx context.Context, in *FindAllEnabledDNSDomainsWithDNSProviderIdRequest, opts ...grpc.CallOption) (*FindAllEnabledDNSDomainsWithDNSProviderIdResponse, error)
+	// 列出服务商下的所有域名基本信息
+	FindAllEnabledBasicDNSDomainsWithDNSProviderId(ctx context.Context, in *FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest, opts ...grpc.CallOption) (*FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse, error)
+	// 同步域名解析
+	SyncDNSDomainData(ctx context.Context, in *SyncDNSDomainDataRequest, opts ...grpc.CallOption) (*SyncDNSDomainDataResponse, error)
+	// 查看支持的线路
+	FindAllDNSDomainRoutes(ctx context.Context, in *FindAllDNSDomainRoutesRequest, opts ...grpc.CallOption) (*FindAllDNSDomainRoutesResponse, error)
 }
 
 type dNSDomainServiceClient struct {
@@ -666,8 +1391,8 @@ func (c *dNSDomainServiceClient) CreateDNSDomain(ctx context.Context, in *Create
 	return out, nil
 }
 
-func (c *dNSDomainServiceClient) UpdateDNSDomain(ctx context.Context, in *UpdateDNSDomainRequest, opts ...grpc.CallOption) (*RPCUpdateSuccess, error) {
-	out := new(RPCUpdateSuccess)
+func (c *dNSDomainServiceClient) UpdateDNSDomain(ctx context.Context, in *UpdateDNSDomainRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
 	err := c.cc.Invoke(ctx, "/pb.DNSDomainService/updateDNSDomain", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -675,9 +1400,27 @@ func (c *dNSDomainServiceClient) UpdateDNSDomain(ctx context.Context, in *Update
 	return out, nil
 }
 
-func (c *dNSDomainServiceClient) DeleteDNSDomain(ctx context.Context, in *DeleteDNSDomainRequest, opts ...grpc.CallOption) (*RPCDeleteSuccess, error) {
-	out := new(RPCDeleteSuccess)
+func (c *dNSDomainServiceClient) DeleteDNSDomain(ctx context.Context, in *DeleteDNSDomainRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
 	err := c.cc.Invoke(ctx, "/pb.DNSDomainService/deleteDNSDomain", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dNSDomainServiceClient) FindEnabledDNSDomain(ctx context.Context, in *FindEnabledDNSDomainRequest, opts ...grpc.CallOption) (*FindEnabledDNSDomainResponse, error) {
+	out := new(FindEnabledDNSDomainResponse)
+	err := c.cc.Invoke(ctx, "/pb.DNSDomainService/findEnabledDNSDomain", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dNSDomainServiceClient) FindEnabledBasicDNSDomain(ctx context.Context, in *FindEnabledBasicDNSDomainRequest, opts ...grpc.CallOption) (*FindEnabledBasicDNSDomainResponse, error) {
+	out := new(FindEnabledBasicDNSDomainResponse)
+	err := c.cc.Invoke(ctx, "/pb.DNSDomainService/findEnabledBasicDNSDomain", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -702,18 +1445,55 @@ func (c *dNSDomainServiceClient) FindAllEnabledDNSDomainsWithDNSProviderId(ctx c
 	return out, nil
 }
 
+func (c *dNSDomainServiceClient) FindAllEnabledBasicDNSDomainsWithDNSProviderId(ctx context.Context, in *FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest, opts ...grpc.CallOption) (*FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse, error) {
+	out := new(FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse)
+	err := c.cc.Invoke(ctx, "/pb.DNSDomainService/findAllEnabledBasicDNSDomainsWithDNSProviderId", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dNSDomainServiceClient) SyncDNSDomainData(ctx context.Context, in *SyncDNSDomainDataRequest, opts ...grpc.CallOption) (*SyncDNSDomainDataResponse, error) {
+	out := new(SyncDNSDomainDataResponse)
+	err := c.cc.Invoke(ctx, "/pb.DNSDomainService/syncDNSDomainData", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dNSDomainServiceClient) FindAllDNSDomainRoutes(ctx context.Context, in *FindAllDNSDomainRoutesRequest, opts ...grpc.CallOption) (*FindAllDNSDomainRoutesResponse, error) {
+	out := new(FindAllDNSDomainRoutesResponse)
+	err := c.cc.Invoke(ctx, "/pb.DNSDomainService/findAllDNSDomainRoutes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DNSDomainServiceServer is the server API for DNSDomainService service.
 type DNSDomainServiceServer interface {
 	// 创建域名
 	CreateDNSDomain(context.Context, *CreateDNSDomainRequest) (*CreateDNSDomainResponse, error)
 	// 修改域名
-	UpdateDNSDomain(context.Context, *UpdateDNSDomainRequest) (*RPCUpdateSuccess, error)
+	UpdateDNSDomain(context.Context, *UpdateDNSDomainRequest) (*RPCSuccess, error)
 	// 删除域名
-	DeleteDNSDomain(context.Context, *DeleteDNSDomainRequest) (*RPCDeleteSuccess, error)
+	DeleteDNSDomain(context.Context, *DeleteDNSDomainRequest) (*RPCSuccess, error)
+	// 查询单个域名完整信息
+	FindEnabledDNSDomain(context.Context, *FindEnabledDNSDomainRequest) (*FindEnabledDNSDomainResponse, error)
+	// 查询单个域名基础信息
+	FindEnabledBasicDNSDomain(context.Context, *FindEnabledBasicDNSDomainRequest) (*FindEnabledBasicDNSDomainResponse, error)
 	// 计算服务商下的域名数量
 	CountAllEnabledDNSDomainsWithDNSProviderId(context.Context, *CountAllEnabledDNSDomainsWithDNSProviderIdRequest) (*RPCCountResponse, error)
 	// 列出服务商下的所有域名
 	FindAllEnabledDNSDomainsWithDNSProviderId(context.Context, *FindAllEnabledDNSDomainsWithDNSProviderIdRequest) (*FindAllEnabledDNSDomainsWithDNSProviderIdResponse, error)
+	// 列出服务商下的所有域名基本信息
+	FindAllEnabledBasicDNSDomainsWithDNSProviderId(context.Context, *FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest) (*FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse, error)
+	// 同步域名解析
+	SyncDNSDomainData(context.Context, *SyncDNSDomainDataRequest) (*SyncDNSDomainDataResponse, error)
+	// 查看支持的线路
+	FindAllDNSDomainRoutes(context.Context, *FindAllDNSDomainRoutesRequest) (*FindAllDNSDomainRoutesResponse, error)
 }
 
 // UnimplementedDNSDomainServiceServer can be embedded to have forward compatible implementations.
@@ -723,17 +1503,32 @@ type UnimplementedDNSDomainServiceServer struct {
 func (*UnimplementedDNSDomainServiceServer) CreateDNSDomain(context.Context, *CreateDNSDomainRequest) (*CreateDNSDomainResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDNSDomain not implemented")
 }
-func (*UnimplementedDNSDomainServiceServer) UpdateDNSDomain(context.Context, *UpdateDNSDomainRequest) (*RPCUpdateSuccess, error) {
+func (*UnimplementedDNSDomainServiceServer) UpdateDNSDomain(context.Context, *UpdateDNSDomainRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateDNSDomain not implemented")
 }
-func (*UnimplementedDNSDomainServiceServer) DeleteDNSDomain(context.Context, *DeleteDNSDomainRequest) (*RPCDeleteSuccess, error) {
+func (*UnimplementedDNSDomainServiceServer) DeleteDNSDomain(context.Context, *DeleteDNSDomainRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteDNSDomain not implemented")
+}
+func (*UnimplementedDNSDomainServiceServer) FindEnabledDNSDomain(context.Context, *FindEnabledDNSDomainRequest) (*FindEnabledDNSDomainResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledDNSDomain not implemented")
+}
+func (*UnimplementedDNSDomainServiceServer) FindEnabledBasicDNSDomain(context.Context, *FindEnabledBasicDNSDomainRequest) (*FindEnabledBasicDNSDomainResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledBasicDNSDomain not implemented")
 }
 func (*UnimplementedDNSDomainServiceServer) CountAllEnabledDNSDomainsWithDNSProviderId(context.Context, *CountAllEnabledDNSDomainsWithDNSProviderIdRequest) (*RPCCountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CountAllEnabledDNSDomainsWithDNSProviderId not implemented")
 }
 func (*UnimplementedDNSDomainServiceServer) FindAllEnabledDNSDomainsWithDNSProviderId(context.Context, *FindAllEnabledDNSDomainsWithDNSProviderIdRequest) (*FindAllEnabledDNSDomainsWithDNSProviderIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllEnabledDNSDomainsWithDNSProviderId not implemented")
+}
+func (*UnimplementedDNSDomainServiceServer) FindAllEnabledBasicDNSDomainsWithDNSProviderId(context.Context, *FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest) (*FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllEnabledBasicDNSDomainsWithDNSProviderId not implemented")
+}
+func (*UnimplementedDNSDomainServiceServer) SyncDNSDomainData(context.Context, *SyncDNSDomainDataRequest) (*SyncDNSDomainDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SyncDNSDomainData not implemented")
+}
+func (*UnimplementedDNSDomainServiceServer) FindAllDNSDomainRoutes(context.Context, *FindAllDNSDomainRoutesRequest) (*FindAllDNSDomainRoutesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllDNSDomainRoutes not implemented")
 }
 
 func RegisterDNSDomainServiceServer(s *grpc.Server, srv DNSDomainServiceServer) {
@@ -794,6 +1589,42 @@ func _DNSDomainService_DeleteDNSDomain_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DNSDomainService_FindEnabledDNSDomain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledDNSDomainRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DNSDomainServiceServer).FindEnabledDNSDomain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.DNSDomainService/FindEnabledDNSDomain",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DNSDomainServiceServer).FindEnabledDNSDomain(ctx, req.(*FindEnabledDNSDomainRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DNSDomainService_FindEnabledBasicDNSDomain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledBasicDNSDomainRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DNSDomainServiceServer).FindEnabledBasicDNSDomain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.DNSDomainService/FindEnabledBasicDNSDomain",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DNSDomainServiceServer).FindEnabledBasicDNSDomain(ctx, req.(*FindEnabledBasicDNSDomainRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DNSDomainService_CountAllEnabledDNSDomainsWithDNSProviderId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CountAllEnabledDNSDomainsWithDNSProviderIdRequest)
 	if err := dec(in); err != nil {
@@ -830,6 +1661,60 @@ func _DNSDomainService_FindAllEnabledDNSDomainsWithDNSProviderId_Handler(srv int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DNSDomainService_FindAllEnabledBasicDNSDomainsWithDNSProviderId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DNSDomainServiceServer).FindAllEnabledBasicDNSDomainsWithDNSProviderId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.DNSDomainService/FindAllEnabledBasicDNSDomainsWithDNSProviderId",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DNSDomainServiceServer).FindAllEnabledBasicDNSDomainsWithDNSProviderId(ctx, req.(*FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DNSDomainService_SyncDNSDomainData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SyncDNSDomainDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DNSDomainServiceServer).SyncDNSDomainData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.DNSDomainService/SyncDNSDomainData",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DNSDomainServiceServer).SyncDNSDomainData(ctx, req.(*SyncDNSDomainDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DNSDomainService_FindAllDNSDomainRoutes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllDNSDomainRoutesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DNSDomainServiceServer).FindAllDNSDomainRoutes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.DNSDomainService/FindAllDNSDomainRoutes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DNSDomainServiceServer).FindAllDNSDomainRoutes(ctx, req.(*FindAllDNSDomainRoutesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _DNSDomainService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.DNSDomainService",
 	HandlerType: (*DNSDomainServiceServer)(nil),
@@ -847,12 +1732,32 @@ var _DNSDomainService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _DNSDomainService_DeleteDNSDomain_Handler,
 		},
 		{
+			MethodName: "findEnabledDNSDomain",
+			Handler:    _DNSDomainService_FindEnabledDNSDomain_Handler,
+		},
+		{
+			MethodName: "findEnabledBasicDNSDomain",
+			Handler:    _DNSDomainService_FindEnabledBasicDNSDomain_Handler,
+		},
+		{
 			MethodName: "countAllEnabledDNSDomainsWithDNSProviderId",
 			Handler:    _DNSDomainService_CountAllEnabledDNSDomainsWithDNSProviderId_Handler,
 		},
 		{
 			MethodName: "findAllEnabledDNSDomainsWithDNSProviderId",
 			Handler:    _DNSDomainService_FindAllEnabledDNSDomainsWithDNSProviderId_Handler,
+		},
+		{
+			MethodName: "findAllEnabledBasicDNSDomainsWithDNSProviderId",
+			Handler:    _DNSDomainService_FindAllEnabledBasicDNSDomainsWithDNSProviderId_Handler,
+		},
+		{
+			MethodName: "syncDNSDomainData",
+			Handler:    _DNSDomainService_SyncDNSDomainData_Handler,
+		},
+		{
+			MethodName: "findAllDNSDomainRoutes",
+			Handler:    _DNSDomainService_FindAllDNSDomainRoutes_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

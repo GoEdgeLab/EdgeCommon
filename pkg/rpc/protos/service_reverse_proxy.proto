@@ -17,16 +17,16 @@ service ReverseProxyService {
 	rpc findEnabledReverseProxyConfig (FindEnabledReverseProxyConfigRequest) returns (FindEnabledReverseProxyConfigResponse);
 
 	// 修改反向代理的调度算法
-	rpc updateReverseProxyScheduling (UpdateReverseProxySchedulingRequest) returns (RPCUpdateSuccess);
+	rpc updateReverseProxyScheduling (UpdateReverseProxySchedulingRequest) returns (RPCSuccess);
 
 	// 修改主要源站信息
-	rpc updateReverseProxyPrimaryOrigins (UpdateReverseProxyPrimaryOriginsRequest) returns (RPCUpdateSuccess);
+	rpc updateReverseProxyPrimaryOrigins (UpdateReverseProxyPrimaryOriginsRequest) returns (RPCSuccess);
 
 	// 修改备用源站信息
-	rpc updateReverseProxyBackupOrigins (UpdateReverseProxyBackupOriginsRequest) returns (RPCUpdateSuccess);
+	rpc updateReverseProxyBackupOrigins (UpdateReverseProxyBackupOriginsRequest) returns (RPCSuccess);
 
 	// 修改是否启用
-	rpc updateReverseProxy (UpdateReverseProxyRequest) returns (RPCUpdateSuccess);
+	rpc updateReverseProxy (UpdateReverseProxyRequest) returns (RPCSuccess);
 }
 
 // 创建反向代理

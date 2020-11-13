@@ -11,34 +11,34 @@ service ServerService {
 	rpc createServer (CreateServerRequest) returns (CreateServerResponse);
 
 	// 修改服务基本信息
-	rpc updateServerBasic (UpdateServerBasicRequest) returns (RPCUpdateSuccess);
+	rpc updateServerBasic (UpdateServerBasicRequest) returns (RPCSuccess);
 
 	// 修改服务的HTTP设置
-	rpc updateServerHTTP (UpdateServerHTTPRequest) returns (RPCUpdateSuccess);
+	rpc updateServerHTTP (UpdateServerHTTPRequest) returns (RPCSuccess);
 
 	// 修改服务的HTTPS设置
-	rpc updateServerHTTPS (UpdateServerHTTPSRequest) returns (RPCUpdateSuccess);
+	rpc updateServerHTTPS (UpdateServerHTTPSRequest) returns (RPCSuccess);
 
 	// 修改服务的TCP设置
-	rpc updateServerTCP (UpdateServerTCPRequest) returns (RPCUpdateSuccess);
+	rpc updateServerTCP (UpdateServerTCPRequest) returns (RPCSuccess);
 
 	// 修改服务的TLS设置
-	rpc updateServerTLS (UpdateServerTLSRequest) returns (RPCUpdateSuccess);
+	rpc updateServerTLS (UpdateServerTLSRequest) returns (RPCSuccess);
 
 	// 修改服务的Unix设置
-	rpc updateServerUnix (UpdateServerUnixRequest) returns (RPCUpdateSuccess);
+	rpc updateServerUnix (UpdateServerUnixRequest) returns (RPCSuccess);
 
 	// 修改服务的UDP设置
-	rpc updateServerUDP (UpdateServerUDPRequest) returns (RPCUpdateSuccess);
+	rpc updateServerUDP (UpdateServerUDPRequest) returns (RPCSuccess);
 
 	// 修改服务的Web设置
-	rpc updateServerWeb (UpdateServerWebRequest) returns (RPCUpdateSuccess);
+	rpc updateServerWeb (UpdateServerWebRequest) returns (RPCSuccess);
 
 	// 修改服务的反向代理设置
-	rpc updateServerReverseProxy (UpdateServerReverseProxyRequest) returns (RPCUpdateSuccess);
+	rpc updateServerReverseProxy (UpdateServerReverseProxyRequest) returns (RPCSuccess);
 
 	// 修改服务的域名设置
-	rpc updateServerNames (UpdateServerNamesRequest) returns (RPCUpdateSuccess);
+	rpc updateServerNames (UpdateServerNamesRequest) returns (RPCSuccess);
 
 	// 计算匹配的服务数量
 	rpc countAllEnabledServersMatch (CountAllEnabledServersMatchRequest) returns (RPCCountResponse);

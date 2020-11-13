@@ -13,19 +13,19 @@ service HTTPHeaderPolicyService {
 	rpc createHTTPHeaderPolicy (CreateHTTPHeaderPolicyRequest) returns (CreateHTTPHeaderPolicyResponse);
 
 	// 修改AddHeaders
-	rpc updateHTTPHeaderPolicyAddingHeaders (UpdateHTTPHeaderPolicyAddingHeadersRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPHeaderPolicyAddingHeaders (UpdateHTTPHeaderPolicyAddingHeadersRequest) returns (RPCSuccess);
 
 	// 修改SetHeaders
-	rpc updateHTTPHeaderPolicySettingHeaders (UpdateHTTPHeaderPolicySettingHeadersRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPHeaderPolicySettingHeaders (UpdateHTTPHeaderPolicySettingHeadersRequest) returns (RPCSuccess);
 
 	// 修改AddTrailers
-	rpc updateHTTPHeaderPolicyAddingTrailers (UpdateHTTPHeaderPolicyAddingTrailersRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPHeaderPolicyAddingTrailers (UpdateHTTPHeaderPolicyAddingTrailersRequest) returns (RPCSuccess);
 
 	// 修改ReplaceHeaders
-	rpc updateHTTPHeaderPolicyReplacingHeaders (UpdateHTTPHeaderPolicyReplacingHeadersRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPHeaderPolicyReplacingHeaders (UpdateHTTPHeaderPolicyReplacingHeadersRequest) returns (RPCSuccess);
 
 	// 修改删除的Headers
-	rpc updateHTTPHeaderPolicyDeletingHeaders (UpdateHTTPHeaderPolicyDeletingHeadersRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPHeaderPolicyDeletingHeaders (UpdateHTTPHeaderPolicyDeletingHeadersRequest) returns (RPCSuccess);
 }
 
 // 查找策略

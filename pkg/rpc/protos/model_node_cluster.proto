@@ -11,4 +11,6 @@ message NodeCluster {
 	string installDir = 5;
 	string uniqueId = 6;
 	string secret = 7;
+	string dnsName = 8;
+	int64 dnsDomainId = 9;
 }

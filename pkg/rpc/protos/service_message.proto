@@ -15,13 +15,13 @@ service MessageService {
 	rpc listUnreadMessages (ListUnreadMessagesRequest) returns (ListUnreadMessagesResponse);
 
 	// 设置消息已读状态
-	rpc updateMessageRead (UpdateMessageReadRequest) returns (RPCUpdateSuccess);
+	rpc updateMessageRead (UpdateMessageReadRequest) returns (RPCSuccess);
 
 	// 设置一组消息已读状态
-	rpc updateMessagesRead (UpdateMessagesReadRequest) returns (RPCUpdateSuccess);
+	rpc updateMessagesRead (UpdateMessagesReadRequest) returns (RPCSuccess);
 
 	// 设置所有消息为已读
-	rpc updateAllMessagesRead (UpdateAllMessagesReadRequest) returns (RPCUpdateSuccess);
+	rpc updateAllMessagesRead (UpdateAllMessagesReadRequest) returns (RPCSuccess);
 }
 
 // 计算未读消息数

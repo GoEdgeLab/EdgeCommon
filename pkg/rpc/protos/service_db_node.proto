@@ -11,10 +11,10 @@ service DBNodeService {
 	rpc createDBNode (CreateDBNodeRequest) returns (CreateDBNodeResponse);
 
 	// 修改数据库节点
-	rpc updateDBNode (UpdateDBNodeRequest) returns (RPCUpdateSuccess);
+	rpc updateDBNode (UpdateDBNodeRequest) returns (RPCSuccess);
 
 	// 删除节点
-	rpc deleteDBNode (DeleteDBNodeRequest) returns (RPCDeleteSuccess);
+	rpc deleteDBNode (DeleteDBNodeRequest) returns (RPCSuccess);
 
 	// 计算可用的数据库节点数量
 	rpc countAllEnabledDBNodes (CountAllEnabledDBNodesRequest) returns (RPCCountResponse);

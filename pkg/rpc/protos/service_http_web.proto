@@ -17,49 +17,49 @@ service HTTPWebService {
 	rpc findEnabledHTTPWebConfig (FindEnabledHTTPWebConfigRequest) returns (FindEnabledHTTPWebConfigResponse);
 
 	// 更改Web配置
-	rpc updateHTTPWeb (UpdateHTTPWebRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWeb (UpdateHTTPWebRequest) returns (RPCSuccess);
 
 	// 更改Gzip配置
-	rpc updateHTTPWebGzip (UpdateHTTPWebGzipRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebGzip (UpdateHTTPWebGzipRequest) returns (RPCSuccess);
 
 	// 更改字符集配置
-	rpc updateHTTPWebCharset (UpdateHTTPWebCharsetRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebCharset (UpdateHTTPWebCharsetRequest) returns (RPCSuccess);
 
 	// 更改请求Header策略
-	rpc updateHTTPWebRequestHeader (UpdateHTTPWebRequestHeaderRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebRequestHeader (UpdateHTTPWebRequestHeaderRequest) returns (RPCSuccess);
 
 	// 更改响应Header策略
-	rpc updateHTTPWebResponseHeader (UpdateHTTPWebResponseHeaderRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebResponseHeader (UpdateHTTPWebResponseHeaderRequest) returns (RPCSuccess);
 
 	// 更改Shutdown
-	rpc updateHTTPWebShutdown (UpdateHTTPWebShutdownRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebShutdown (UpdateHTTPWebShutdownRequest) returns (RPCSuccess);
 
 	// 更改Pages
-	rpc updateHTTPWebPages (UpdateHTTPWebPagesRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebPages (UpdateHTTPWebPagesRequest) returns (RPCSuccess);
 
 	// 更改访问日志配置
-	rpc updateHTTPWebAccessLog (UpdateHTTPWebAccessLogRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebAccessLog (UpdateHTTPWebAccessLogRequest) returns (RPCSuccess);
 
 	// 更改统计配置
-	rpc updateHTTPWebStat (UpdateHTTPWebStatRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebStat (UpdateHTTPWebStatRequest) returns (RPCSuccess);
 
 	// 更改缓存配置
-	rpc updateHTTPWebCache (UpdateHTTPWebCacheRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebCache (UpdateHTTPWebCacheRequest) returns (RPCSuccess);
 
 	// 更改防火墙设置
-	rpc updateHTTPWebFirewall (UpdateHTTPWebFirewallRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebFirewall (UpdateHTTPWebFirewallRequest) returns (RPCSuccess);
 
 	// 更改路径规则配置
-	rpc updateHTTPWebLocations (UpdateHTTPWebLocationsRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebLocations (UpdateHTTPWebLocationsRequest) returns (RPCSuccess);
 
 	// 更改跳转到HTTPS设置
-	rpc updateHTTPWebRedirectToHTTPS (UpdateHTTPWebRedirectToHTTPSRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebRedirectToHTTPS (UpdateHTTPWebRedirectToHTTPSRequest) returns (RPCSuccess);
 
 	// 更改Websocket设置
-	rpc updateHTTPWebWebsocket (UpdateHTTPWebWebsocketRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebWebsocket (UpdateHTTPWebWebsocketRequest) returns (RPCSuccess);
 
 	// 更改重写规则设置
-	rpc updateHTTPWebRewriteRules (UpdateHTTPWebRewriteRulesRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPWebRewriteRules (UpdateHTTPWebRewriteRulesRequest) returns (RPCSuccess);
 }
 
 // 创建Web配置

@@ -26,10 +26,10 @@ service AdminService {
 	rpc createOrUpdateAdmin (CreateOrUpdateAdminRequest) returns (CreateOrUpdateAdminResponse);
 
 	// 修改管理员信息
-	rpc updateAdmin (UpdateAdminRequest) returns (RPCUpdateSuccess);
+	rpc updateAdmin (UpdateAdminRequest) returns (RPCSuccess);
 
 	// 修改管理员登录信息
-	rpc updateAdminLogin (UpdateAdminLoginRequest) returns (RPCUpdateSuccess);
+	rpc updateAdminLogin (UpdateAdminLoginRequest) returns (RPCSuccess);
 }
 
 // 登录

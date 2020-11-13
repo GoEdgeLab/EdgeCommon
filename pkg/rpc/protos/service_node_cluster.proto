@@ -15,10 +15,10 @@ service NodeClusterService {
 	rpc createNodeCluster (CreateNodeClusterRequest) returns (CreateNodeClusterResponse);
 
 	// 修改集群
-	rpc updateNodeCluster (UpdateNodeClusterRequest) returns (RPCUpdateSuccess);
+	rpc updateNodeCluster (UpdateNodeClusterRequest) returns (RPCSuccess);
 
 	// 删除集群
-	rpc deleteNodeCluster (DeleteNodeClusterRequest) returns (RPCDeleteSuccess);
+	rpc deleteNodeCluster (DeleteNodeClusterRequest) returns (RPCSuccess);
 
 	// 查找单个集群信息
 	rpc findEnabledNodeCluster (FindEnabledNodeClusterRequest) returns (FindEnabledNodeClusterResponse);
@@ -42,7 +42,7 @@ service NodeClusterService {
 	rpc findNodeClusterHealthCheckConfig (FindNodeClusterHealthCheckConfigRequest) returns (FindNodeClusterHealthCheckConfigResponse);
 
 	// 修改集群健康检查设置
-	rpc updateNodeClusterHealthCheck (UpdateNodeClusterHealthCheckRequest) returns (RPCUpdateSuccess);
+	rpc updateNodeClusterHealthCheck (UpdateNodeClusterHealthCheckRequest) returns (RPCSuccess);
 
 	// 执行健康检查
 	rpc executeNodeClusterHealthCheck (ExecuteNodeClusterHealthCheckRequest) returns (ExecuteNodeClusterHealthCheckResponse);
@@ -61,6 +61,12 @@ service NodeClusterService {
 
 	// 计算使用某个DNS域名的集群数量
 	rpc countAllEnabledNodeClustersWithDNSDomainId (CountAllEnabledNodeClustersWithDNSDomainIdRequest) returns (RPCCountResponse);
+
+	// 检查集群域名是否已经被使用
+	rpc checkNodeClusterDNSName (CheckNodeClusterDNSNameRequest) returns (CheckNodeClusterDNSNameResponse);
+
+	// 修改集群的域名设置
+	rpc updateNodeClusterDNS (UpdateNodeClusterDNSRequest) returns (RPCSuccess);
 }
 
 // 获取所有集群的信息
@@ -204,4 +210,21 @@ message CountAllEnabledNodeClustersWithDNSProviderIdRequest {
 // 计算使用某个DNS域名的集群数量
 message CountAllEnabledNodeClustersWithDNSDomainIdRequest {
 	int64 dnsDomainId = 1;
+}
+
+// 检查集群域名是否已经被使用
+message CheckNodeClusterDNSNameRequest {
+	int64 nodeClusterId = 1;
+	string dnsName = 2;
+}
+
+message CheckNodeClusterDNSNameResponse {
+	bool isUsed = 1;
+}
+
+// 修改集群的域名设置
+message UpdateNodeClusterDNSRequest {
+	int64 nodeClusterId = 1;
+	string dnsName = 2;
+	int64 dnsDomainId = 3;
 }

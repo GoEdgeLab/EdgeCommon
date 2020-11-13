@@ -10,10 +10,10 @@ service SSLCertService {
 	rpc createSSLCert (CreateSSLCertRequest) returns (CreateSSLCertResponse);
 
 	// 修改Cert
-	rpc updateSSLCert (UpdateSSLCertRequest) returns (RPCUpdateSuccess);
+	rpc updateSSLCert (UpdateSSLCertRequest) returns (RPCSuccess);
 
 	// 删除Cert
-	rpc deleteSSLCert (DeleteSSLCertRequest) returns (RPCDeleteSuccess);
+	rpc deleteSSLCert (DeleteSSLCertRequest) returns (RPCSuccess);
 
 	// 查找证书配置
 	rpc findEnabledSSLCertConfig (FindEnabledSSLCertConfigRequest) returns (FindEnabledSSLCertConfigResponse);

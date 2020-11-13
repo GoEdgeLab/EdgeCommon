@@ -12,16 +12,31 @@ service DNSDomainService {
 	rpc createDNSDomain (CreateDNSDomainRequest) returns (CreateDNSDomainResponse);
 
 	// 修改域名
-	rpc updateDNSDomain (UpdateDNSDomainRequest) returns (RPCUpdateSuccess);
+	rpc updateDNSDomain (UpdateDNSDomainRequest) returns (RPCSuccess);
 
 	// 删除域名
-	rpc deleteDNSDomain (DeleteDNSDomainRequest) returns (RPCDeleteSuccess);
+	rpc deleteDNSDomain (DeleteDNSDomainRequest) returns (RPCSuccess);
+
+	// 查询单个域名完整信息
+	rpc findEnabledDNSDomain (FindEnabledDNSDomainRequest) returns (FindEnabledDNSDomainResponse);
+
+	// 查询单个域名基础信息
+	rpc findEnabledBasicDNSDomain (FindEnabledBasicDNSDomainRequest) returns (FindEnabledBasicDNSDomainResponse);
 
 	// 计算服务商下的域名数量
 	rpc countAllEnabledDNSDomainsWithDNSProviderId (CountAllEnabledDNSDomainsWithDNSProviderIdRequest) returns (RPCCountResponse);
 
 	// 列出服务商下的所有域名
 	rpc findAllEnabledDNSDomainsWithDNSProviderId (FindAllEnabledDNSDomainsWithDNSProviderIdRequest) returns (FindAllEnabledDNSDomainsWithDNSProviderIdResponse);
+
+	// 列出服务商下的所有域名基本信息
+	rpc findAllEnabledBasicDNSDomainsWithDNSProviderId (FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest) returns (FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse);
+
+	// 同步域名解析
+	rpc syncDNSDomainData (SyncDNSDomainDataRequest) returns (SyncDNSDomainDataResponse);
+
+	// 查看支持的线路
+	rpc findAllDNSDomainRoutes (FindAllDNSDomainRoutesRequest) returns (FindAllDNSDomainRoutesResponse);
 }
 
 // 创建域名
@@ -46,6 +61,24 @@ message DeleteDNSDomainRequest {
 	int64 dnsDomainId = 1;
 }
 
+// 查询单个域名信息
+message FindEnabledDNSDomainRequest {
+	int64 dnsDomainId = 1;
+}
+
+message FindEnabledDNSDomainResponse {
+	DNSDomain dnsDomain = 1;
+}
+
+// 查询单个域名的基础信息
+message FindEnabledBasicDNSDomainRequest {
+	int64 dnsDomainId = 1;
+}
+
+message FindEnabledBasicDNSDomainResponse {
+	DNSDomain dnsDomain = 1;
+}
+
 // 计算服务商下的域名数量
 message CountAllEnabledDNSDomainsWithDNSProviderIdRequest {
 	int64 dnsProviderId = 1;
@@ -58,4 +91,33 @@ message FindAllEnabledDNSDomainsWithDNSProviderIdRequest {
 
 message FindAllEnabledDNSDomainsWithDNSProviderIdResponse {
 	repeated DNSDomain dnsDomains = 1;
+}
+
+// 列出服务商下的所有域名基本信息
+message FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest {
+	int64 dnsProviderId = 1;
+}
+
+message FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse {
+	repeated DNSDomain dnsDomains = 1;
+}
+
+// 同步域名数据
+message SyncDNSDomainDataRequest {
+	int64 dnsDomainId = 1;
+}
+
+message SyncDNSDomainDataResponse {
+	bool isOk = 1;
+	string error = 2;
+	bool shouldFix = 3;
+}
+
+// 查看支持的线路
+message FindAllDNSDomainRoutesRequest {
+	int64 dnsDomainId = 1;
+}
+
+message FindAllDNSDomainRoutesResponse {
+	repeated string routes = 1;
 }

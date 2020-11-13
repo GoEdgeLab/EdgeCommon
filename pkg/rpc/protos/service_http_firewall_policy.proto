@@ -14,13 +14,13 @@ service HTTPFirewallPolicyService {
 	rpc createHTTPFirewallPolicy (CreateHTTPFirewallPolicyRequest) returns (CreateHTTPFirewallPolicyResponse);
 
 	// 修改防火墙策略
-	rpc updateHTTPFirewallPolicy (UpdateHTTPFirewallPolicyRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPFirewallPolicy (UpdateHTTPFirewallPolicyRequest) returns (RPCSuccess);
 
 	// 修改分组信息
-	rpc updateHTTPFirewallPolicyGroups (UpdateHTTPFirewallPolicyGroupsRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPFirewallPolicyGroups (UpdateHTTPFirewallPolicyGroupsRequest) returns (RPCSuccess);
 
 	// 修改inbound信息
-	rpc updateHTTPFirewallInboundConfig (UpdateHTTPFirewallInboundConfigRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPFirewallInboundConfig (UpdateHTTPFirewallInboundConfigRequest) returns (RPCSuccess);
 
 	// 计算可用的防火墙策略数量
 	rpc countAllEnabledFirewallPolicies (CountAllEnabledFirewallPoliciesRequest) returns (RPCCountResponse);
@@ -29,7 +29,7 @@ service HTTPFirewallPolicyService {
 	rpc listEnabledFirewallPolicies (ListEnabledFirewallPoliciesRequest) returns (ListEnabledFirewallPoliciesResponse);
 
 	// 删除某个防火墙策略
-	rpc deleteFirewallPolicy (DeleteFirewallPolicyRequest) returns (RPCDeleteSuccess);
+	rpc deleteFirewallPolicy (DeleteFirewallPolicyRequest) returns (RPCSuccess);
 
 	// 查找单个防火墙配置
 	rpc findEnabledFirewallPolicyConfig (FindEnabledFirewallPolicyConfigRequest) returns (FindEnabledFirewallPolicyConfigResponse);

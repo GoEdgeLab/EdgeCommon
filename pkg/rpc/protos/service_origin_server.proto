@@ -12,7 +12,7 @@ service OriginService {
 	rpc createOrigin (CreateOriginRequest) returns (CreateOriginResponse);
 
 	// 修改源站
-	rpc updateOrigin (UpdateOriginRequest) returns (RPCUpdateSuccess);
+	rpc updateOrigin (UpdateOriginRequest) returns (RPCSuccess);
 
 	// 查找单个源站信息
 	rpc findEnabledOrigin (FindEnabledOriginRequest) returns (FindEnabledOriginResponse);

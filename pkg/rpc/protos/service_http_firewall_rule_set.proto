@@ -11,7 +11,7 @@ service HTTPFirewallRuleSetService {
 	rpc createOrUpdateHTTPFirewallRuleSetFromConfig (CreateOrUpdateHTTPFirewallRuleSetFromConfigRequest) returns (CreateOrUpdateHTTPFirewallRuleSetFromConfigResponse);
 
 	// 设置开启状态
-	rpc updateHTTPFirewallRuleSetIsOn (UpdateHTTPFirewallRuleSetIsOnRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPFirewallRuleSetIsOn (UpdateHTTPFirewallRuleSetIsOnRequest) returns (RPCSuccess);
 
 	// 查找规则集配置
 	rpc findEnabledHTTPFirewallRuleSetConfig (FindEnabledHTTPFirewallRuleSetConfigRequest) returns (FindEnabledHTTPFirewallRuleSetConfigResponse);

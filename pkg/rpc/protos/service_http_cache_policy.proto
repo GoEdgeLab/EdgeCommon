@@ -14,10 +14,10 @@ service HTTPCachePolicyService {
 	rpc createHTTPCachePolicy (CreateHTTPCachePolicyRequest) returns (CreateHTTPCachePolicyResponse);
 
 	// 修改缓存策略
-	rpc updateHTTPCachePolicy (UpdateHTTPCachePolicyRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPCachePolicy (UpdateHTTPCachePolicyRequest) returns (RPCSuccess);
 
 	// 删除缓存策略
-	rpc deleteHTTPCachePolicy (DeleteHTTPCachePolicyRequest) returns (RPCDeleteSuccess);
+	rpc deleteHTTPCachePolicy (DeleteHTTPCachePolicyRequest) returns (RPCSuccess);
 
 	// 计算缓存策略数量
 	rpc countAllEnabledHTTPCachePolicies (CountAllEnabledHTTPCachePoliciesRequest) returns (RPCCountResponse);

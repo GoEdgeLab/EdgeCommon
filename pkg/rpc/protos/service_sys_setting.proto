@@ -7,7 +7,7 @@ import "rpc_messages.proto";
 
 service SysSettingService {
 	// 更改配置
-	rpc updateSysSetting (UpdateSysSettingRequest) returns (RPCUpdateSuccess);
+	rpc updateSysSetting (UpdateSysSettingRequest) returns (RPCSuccess);
 
 	// 读取配置
 	rpc readSysSetting (ReadSysSettingRequest) returns (ReadSysSettingResponse);

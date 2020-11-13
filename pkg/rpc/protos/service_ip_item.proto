@@ -12,10 +12,10 @@ service IPItemService {
 	rpc createIPItem (CreateIPItemRequest) returns (CreateIPItemResponse);
 
 	// 修改IP
-	rpc updateIPItem (UpdateIPItemRequest) returns (RPCUpdateSuccess);
+	rpc updateIPItem (UpdateIPItemRequest) returns (RPCSuccess);
 
 	// 删除IP
-	rpc deleteIPItem (DeleteIPItemRequest) returns (RPCDeleteSuccess);
+	rpc deleteIPItem (DeleteIPItemRequest) returns (RPCSuccess);
 
 	// 计算IP数量
 	rpc countIPItemsWithListId (CountIPItemsWithListIdRequest) returns (RPCCountResponse);

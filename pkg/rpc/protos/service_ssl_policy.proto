@@ -10,7 +10,7 @@ service SSLPolicyService {
 	rpc createSSLPolicy (CreateSSLPolicyRequest) returns (CreateSSLPolicyResponse);
 
 	// 修改Policy
-	rpc updateSSLPolicy (UpdateSSLPolicyRequest) returns (RPCUpdateSuccess);
+	rpc updateSSLPolicy (UpdateSSLPolicyRequest) returns (RPCSuccess);
 
 	// 查找Policy
 	rpc findEnabledSSLPolicyConfig (FindEnabledSSLPolicyConfigRequest) returns (FindEnabledSSLPolicyConfigResponse);

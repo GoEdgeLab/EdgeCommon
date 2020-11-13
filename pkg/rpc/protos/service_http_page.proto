@@ -10,7 +10,7 @@ service HTTPPageService {
 	rpc createHTTPPage (CreateHTTPPageRequest) returns (CreateHTTPPageResponse);
 
 	// 修改Page
-	rpc updateHTTPPage (UpdateHTTPPageRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPPage (UpdateHTTPPageRequest) returns (RPCSuccess);
 
 	// 查找单个Page配置
 	rpc findEnabledHTTPPageConfig (FindEnabledHTTPPageConfigRequest) returns (FindEnabledHTTPPageConfigResponse);

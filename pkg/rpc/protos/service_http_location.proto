@@ -10,13 +10,13 @@ service HTTPLocationService {
 	rpc createHTTPLocation (CreateHTTPLocationRequest) returns (CreateHTTPLocationResponse);
 
 	// 修改路径规则
-	rpc updateHTTPLocation (UpdateHTTPLocationRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPLocation (UpdateHTTPLocationRequest) returns (RPCSuccess);
 
 	// 查找路径规则配置
 	rpc findEnabledHTTPLocationConfig (FindEnabledHTTPLocationConfigRequest) returns (FindEnabledHTTPLocationConfigResponse);
 
 	// 删除路径规则
-	rpc deleteHTTPLocation (DeleteHTTPLocationRequest) returns (RPCDeleteSuccess);
+	rpc deleteHTTPLocation (DeleteHTTPLocationRequest) returns (RPCSuccess);
 
 	// 查找反向代理设置
 	rpc findAndInitHTTPLocationReverseProxyConfig (FindAndInitHTTPLocationReverseProxyConfigRequest) returns (FindAndInitHTTPLocationReverseProxyConfigResponse);
@@ -25,7 +25,7 @@ service HTTPLocationService {
 	rpc findAndInitHTTPLocationWebConfig (FindAndInitHTTPLocationWebConfigRequest) returns (FindAndInitHTTPLocationWebConfigResponse);
 
 	// 修改反向代理设置
-	rpc updateHTTPLocationReverseProxy (UpdateHTTPLocationReverseProxyRequest) returns (RPCUpdateSuccess);
+	rpc updateHTTPLocationReverseProxy (UpdateHTTPLocationReverseProxyRequest) returns (RPCSuccess);
 }
 
 // 创建路径规则

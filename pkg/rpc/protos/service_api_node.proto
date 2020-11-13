@@ -10,10 +10,10 @@ service APINodeService {
 	rpc createAPINode (CreateAPINodeRequest) returns (CreateAPINodeResponse);
 
 	// 修改API节点
-	rpc updateAPINode (UpdateAPINodeRequest) returns (RPCUpdateSuccess);
+	rpc updateAPINode (UpdateAPINodeRequest) returns (RPCSuccess);
 
 	// 删除API节点
-	rpc deleteAPINode (DeleteAPINodeRequest) returns (RPCDeleteSuccess);
+	rpc deleteAPINode (DeleteAPINodeRequest) returns (RPCSuccess);
 
 	// 列出所有可用API节点
 	rpc findAllEnabledAPINodes (FindAllEnabledAPINodesRequest) returns (FindAllEnabledAPINodesResponse);

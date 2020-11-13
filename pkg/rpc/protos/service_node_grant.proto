@@ -10,7 +10,7 @@ service NodeGrantService {
 	rpc createNodeGrant (CreateNodeGrantRequest) returns (CreateNodeGrantResponse);
 
 	// 修改认证
-	rpc updateNodeGrant (UpdateNodeGrantRequest) returns (RPCUpdateSuccess);
+	rpc updateNodeGrant (UpdateNodeGrantRequest) returns (RPCSuccess);
 
 	// 禁用认证
 	rpc disableNodeGrant (DisableNodeGrantRequest) returns (DisableNodeGrantResponse);
