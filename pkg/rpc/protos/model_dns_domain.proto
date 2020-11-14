@@ -9,10 +9,10 @@ message DNSDomain {
 	bool isOn = 3;
 	int64 dataUpdatedAt = 4;
 	string dataError = 5;
-	repeated DNSRecord serverRecords = 6;
-	bool allServersResolved = 7;
-	repeated DNSRecord clusterRecords = 8;
-	bool allClustersResolved = 9;
+	int64 countServerRecords = 6;
+	bool serversChanged = 7;
+	int64 countNodeRecords = 8;
+	bool nodesChanged = 9;
 	repeated string routes = 10;
 	int64 providerId = 11;
 }

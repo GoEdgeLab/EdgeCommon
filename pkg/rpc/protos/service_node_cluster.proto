@@ -67,6 +67,9 @@ service NodeClusterService {
 
 	// 修改集群的域名设置
 	rpc updateNodeClusterDNS (UpdateNodeClusterDNSRequest) returns (RPCSuccess);
+
+	// 检查集群的DNS是否有变化
+	rpc checkNodeClusterDNSChanges (CheckNodeClusterDNSChangesRequest) returns (CheckNodeClusterDNSChangesResponse);
 }
 
 // 获取所有集群的信息
@@ -227,4 +230,13 @@ message UpdateNodeClusterDNSRequest {
 	int64 nodeClusterId = 1;
 	string dnsName = 2;
 	int64 dnsDomainId = 3;
+}
+
+// 检查集群的DNS是否有变化
+message CheckNodeClusterDNSChangesRequest {
+	int64 nodeClusterId = 1;
+}
+
+message CheckNodeClusterDNSChangesResponse {
+	bool isChanged = 1;
 }

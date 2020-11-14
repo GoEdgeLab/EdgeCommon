@@ -348,6 +348,7 @@ message NodeDNSInfo {
 	string route = 4;
 	int64 clusterId = 5;
 	int64 dnsDomainId = 6;
+	string dnsDomainName = 7;
 }
 
 // 查找单个节点的域名解析信息

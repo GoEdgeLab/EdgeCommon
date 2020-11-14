@@ -105,6 +105,7 @@ message FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse {
 // 同步域名数据
 message SyncDNSDomainDataRequest {
 	int64 dnsDomainId = 1;
+	int64 nodeClusterId = 2; // 如果指定，表示只更新单个集群ID
 }
 
 message SyncDNSDomainDataResponse {
