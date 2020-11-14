@@ -3918,7 +3918,7 @@ type NodeServiceClient interface {
 	UpdateNodeLogin(ctx context.Context, in *UpdateNodeLoginRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 计算某个节点分组内的节点数量
 	CountAllEnabledNodesWithGroupId(ctx context.Context, in *CountAllEnabledNodesWithGroupIdRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
-	// 取得某个集群下的所有节点
+	// 取得某个集群下的所有节点DNS信息
 	FindAllEnabledNodesDNSWithClusterId(ctx context.Context, in *FindAllEnabledNodesDNSWithClusterIdRequest, opts ...grpc.CallOption) (*FindAllEnabledNodesDNSWithClusterIdResponse, error)
 	// 查找单个节点的域名解析信息
 	FindEnabledNodeDNS(ctx context.Context, in *FindEnabledNodeDNSRequest, opts ...grpc.CallOption) (*FindEnabledNodeDNSResponse, error)
@@ -4282,7 +4282,7 @@ type NodeServiceServer interface {
 	UpdateNodeLogin(context.Context, *UpdateNodeLoginRequest) (*RPCSuccess, error)
 	// 计算某个节点分组内的节点数量
 	CountAllEnabledNodesWithGroupId(context.Context, *CountAllEnabledNodesWithGroupIdRequest) (*RPCCountResponse, error)
-	// 取得某个集群下的所有节点
+	// 取得某个集群下的所有节点DNS信息
 	FindAllEnabledNodesDNSWithClusterId(context.Context, *FindAllEnabledNodesDNSWithClusterIdRequest) (*FindAllEnabledNodesDNSWithClusterIdResponse, error)
 	// 查找单个节点的域名解析信息
 	FindEnabledNodeDNS(context.Context, *FindEnabledNodeDNSRequest) (*FindEnabledNodeDNSResponse, error)

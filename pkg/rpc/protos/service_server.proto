@@ -87,6 +87,9 @@ service ServerService {
 
 	// 通知更新
 	rpc notifyServersChange (NotifyServersChangeRequest) returns (NotifyServersChangeResponse);
+
+	// 取得某个集群下的所有服务相关的DNS
+	rpc findAllEnabledServersDNSWithClusterId (FindAllEnabledServersDNSWithClusterIdRequest) returns (FindAllEnabledServersDNSWithClusterIdResponse);
 }
 
 // 创建服务
@@ -297,4 +300,19 @@ message NotifyServersChangeRequest {
 
 message NotifyServersChangeResponse {
 
+}
+
+// 取得某个集群下的所有服务相关的DNS
+message FindAllEnabledServersDNSWithClusterIdRequest {
+	int64 clusterId = 1;
+}
+
+message FindAllEnabledServersDNSWithClusterIdResponse {
+	repeated ServerDNSInfo servers = 1;
+}
+
+message ServerDNSInfo {
+	int64 id = 1;
+	string name = 2;
+	string dnsName = 3;
 }

@@ -90,7 +90,7 @@ service NodeService {
 	// 计算某个节点分组内的节点数量
 	rpc countAllEnabledNodesWithGroupId (CountAllEnabledNodesWithGroupIdRequest) returns (RPCCountResponse);
 
-	// 取得某个集群下的所有节点
+	// 取得某个集群下的所有节点DNS信息
 	rpc findAllEnabledNodesDNSWithClusterId (FindAllEnabledNodesDNSWithClusterIdRequest) returns (FindAllEnabledNodesDNSWithClusterIdResponse);
 
 	// 查找单个节点的域名解析信息
