@@ -89,6 +89,15 @@ service NodeService {
 
 	// 计算某个节点分组内的节点数量
 	rpc countAllEnabledNodesWithGroupId (CountAllEnabledNodesWithGroupIdRequest) returns (RPCCountResponse);
+
+	// 取得某个集群下的所有节点
+	rpc findAllEnabledNodesDNSWithClusterId (FindAllEnabledNodesDNSWithClusterIdRequest) returns (FindAllEnabledNodesDNSWithClusterIdResponse);
+
+	// 查找单个节点的域名解析信息
+	rpc findEnabledNodeDNS (FindEnabledNodeDNSRequest) returns (FindEnabledNodeDNSResponse);
+
+	// 修改节点的DNS解析信息
+	rpc updateNodeDNS (UpdateNodeDNSRequest) returns (RPCSuccess);
 }
 
 // 创建节点
@@ -321,4 +330,39 @@ message UpdateNodeLoginRequest {
 // 计算某个节点分组内的节点数量
 message CountAllEnabledNodesWithGroupIdRequest {
 	int64 groupId = 1;
+}
+
+// 取得某个集群下的所有节点
+message FindAllEnabledNodesDNSWithClusterIdRequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindAllEnabledNodesDNSWithClusterIdResponse {
+	repeated NodeDNSInfo nodes = 1;
+}
+
+message NodeDNSInfo {
+	int64 id = 1;
+	string name = 2;
+	string ipAddr = 3;
+	string route = 4;
+	int64 clusterId = 5;
+	int64 dnsDomainId = 6;
+}
+
+// 查找单个节点的域名解析信息
+message FindEnabledNodeDNSRequest {
+	int64 nodeId = 1;
+}
+
+message FindEnabledNodeDNSResponse {
+	NodeDNSInfo node = 1;
+}
+
+// 修改节点的DNS信息
+message UpdateNodeDNSRequest {
+	int64 nodeId = 1;
+	string ipAddr = 2;
+	int64 dnsDomainId = 3;
+	string route = 4;
 }
