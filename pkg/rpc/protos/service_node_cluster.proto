@@ -95,6 +95,8 @@ message CreateNodeClusterRequest {
 	string name = 1;
 	int64 grantId = 2;
 	string installDir = 3;
+	int64 dnsDomainId = 4;
+	string dnsName = 5;
 }
 
 message CreateNodeClusterResponse {

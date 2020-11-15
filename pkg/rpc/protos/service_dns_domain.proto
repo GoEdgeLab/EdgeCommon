@@ -38,6 +38,9 @@ service DNSDomainService {
 
 	// 查看支持的线路
 	rpc findAllDNSDomainRoutes (FindAllDNSDomainRoutesRequest) returns (FindAllDNSDomainRoutesResponse);
+
+	// 判断是否有域名可选
+	rpc existAvailableDomains (ExistAvailableDomainsRequest) returns (ExistAvailableDomainsResponse);
 }
 
 // 创建域名
@@ -122,4 +125,13 @@ message FindAllDNSDomainRoutesRequest {
 
 message FindAllDNSDomainRoutesResponse {
 	repeated DNSRoute routes = 1;
+}
+
+// 判断是否有域名可选
+message ExistAvailableDomainsRequest {
+
+}
+
+message ExistAvailableDomainsResponse {
+	bool exist = 1;
 }
