@@ -3,6 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
+import "model_dns_route.proto";
+
 message DNSDomain {
 	int64 id = 1;
 	string name = 2;
@@ -13,14 +15,6 @@ message DNSDomain {
 	bool serversChanged = 7;
 	int64 countNodeRecords = 8;
 	bool nodesChanged = 9;
-	repeated string routes = 10;
+	repeated DNSRoute routes = 10;
 	int64 providerId = 11;
-}
-
-message DNSRecord {
-	string id = 1;
-	string name = 2;
-	string value = 3;
-	string type = 4;
-	string route = 5;
 }

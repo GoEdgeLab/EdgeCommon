@@ -5,6 +5,7 @@ package pb;
 
 import "rpc_messages.proto";
 import "model_dns_domain.proto";
+import "model_dns_route.proto";
 
 // DNS域名相关
 service DNSDomainService {
@@ -120,5 +121,5 @@ message FindAllDNSDomainRoutesRequest {
 }
 
 message FindAllDNSDomainRoutesResponse {
-	repeated string routes = 1;
+	repeated DNSRoute routes = 1;
 }

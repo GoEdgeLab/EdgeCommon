@@ -1,0 +1,12 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message DNSRecord {
+	string id = 1;
+	string name = 2;
+	string value = 3;
+	string type = 4;
+	string route = 5;
+}

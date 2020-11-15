@@ -1,0 +1,9 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message DNSRoute {
+	string name = 1;
+	string code = 2;
+}

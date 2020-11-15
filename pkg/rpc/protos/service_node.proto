@@ -6,6 +6,7 @@ package pb;
 import "model_node.proto";
 import "model_node_login.proto";
 import "model_node_install_status.proto";
+import "model_dns_route.proto";
 import "rpc_messages.proto";
 
 service NodeService {
@@ -345,7 +346,7 @@ message NodeDNSInfo {
 	int64 id = 1;
 	string name = 2;
 	string ipAddr = 3;
-	string route = 4;
+	DNSRoute route = 4;
 	int64 clusterId = 5;
 	int64 dnsDomainId = 6;
 	string dnsDomainName = 7;
