@@ -23,6 +23,7 @@ message Node {
 	repeated int64 connectedAPINodeIds = 11;
 	int32 maxCPU = 12;
 	bool isOn = 13;
+	bool isUp = 14;
 
 	NodeCluster cluster = 32;
 	NodeLogin login = 33;

@@ -28,8 +28,8 @@ service NodeService {
 	// 根据集群查找所有节点
 	rpc findAllEnabledNodesWithClusterId (FindAllEnabledNodesWithClusterIdRequest) returns (FindAllEnabledNodesWithClusterIdResponse);
 
-	// 禁用节点
-	rpc disableNode (DisableNodeRequest) returns (DisableNodeResponse);
+	// 删除节点
+	rpc deleteNode (DeleteNodeRequest) returns (RPCSuccess);
 
 	// 修改节点
 	rpc updateNode (UpdateNodeRequest) returns (RPCSuccess);
@@ -107,6 +107,8 @@ message CreateNodeRequest {
 	int64 clusterId = 2;
 	NodeLogin Login = 3;
 	int64 groupId = 4;
+	int64 dnsDomainId = 5;
+	string dnsRoute = 6;
 }
 
 message CreateNodeResponse {
@@ -153,13 +155,9 @@ message FindAllEnabledNodesWithClusterIdResponse {
 	repeated Node nodes = 1;
 }
 
-// 禁用节点
-message DisableNodeRequest {
+// 删除节点
+message DeleteNodeRequest {
 	int64 nodeId = 1;
-}
-
-message DisableNodeResponse {
-
 }
 
 // 修改节点
