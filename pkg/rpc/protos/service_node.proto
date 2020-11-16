@@ -108,7 +108,7 @@ message CreateNodeRequest {
 	NodeLogin Login = 3;
 	int64 groupId = 4;
 	int64 dnsDomainId = 5;
-	string dnsRoute = 6;
+	repeated string dnsRoutes = 6;
 }
 
 message CreateNodeResponse {
@@ -169,6 +169,8 @@ message UpdateNodeRequest {
 	int32 maxCPU = 5;
 	bool isOn = 6;
 	int64 groupId = 7;
+	int64 dnsDomainId = 8;
+	repeated string dnsRoutes = 9;
 }
 
 // 查找节点
@@ -344,7 +346,7 @@ message NodeDNSInfo {
 	int64 id = 1;
 	string name = 2;
 	string ipAddr = 3;
-	DNSRoute route = 4;
+	repeated DNSRoute routes = 4;
 	int64 clusterId = 5;
 	int64 dnsDomainId = 6;
 	string dnsDomainName = 7;
@@ -364,5 +366,5 @@ message UpdateNodeDNSRequest {
 	int64 nodeId = 1;
 	string ipAddr = 2;
 	int64 dnsDomainId = 3;
-	string route = 4;
+	repeated string routes = 4;
 }
