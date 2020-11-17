@@ -3,16 +3,18 @@ package serverconfigs
 import (
 	"encoding/json"
 	"errors"
+	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
 )
 
 type ServerConfig struct {
-	Id          int64               `yaml:"id" json:"id"`                   // ID
-	Type        string              `yaml:"type" json:"type"`               // 类型
-	IsOn        bool                `yaml:"isOn" json:"isOn"`               // 是否开启
-	Name        string              `yaml:"name" json:"name"`               // 名称
-	Description string              `yaml:"description" json:"description"` // 描述
-	ServerNames []*ServerNameConfig `yaml:"serverNames" json:"serverNames"` // 域名
+	Id               int64               `yaml:"id" json:"id"`                             // ID
+	Type             string              `yaml:"type" json:"type"`                         // 类型
+	IsOn             bool                `yaml:"isOn" json:"isOn"`                         // 是否开启
+	Name             string              `yaml:"name" json:"name"`                         // 名称
+	Description      string              `yaml:"description" json:"description"`           // 描述
+	AliasServerNames []string            `yaml:"aliasServerNames" json:"aliasServerNames"` // 关联的域名，比如CNAME之类的
+	ServerNames      []*ServerNameConfig `yaml:"serverNames" json:"serverNames"`           // 域名
 
 	// 前端协议
 	HTTP  *HTTPProtocolConfig  `yaml:"http" json:"http"`   // HTTP配置
@@ -177,6 +179,12 @@ func (this *ServerConfig) IsUDP() bool {
 
 // 判断是否和域名匹配
 func (this *ServerConfig) MatchName(name string) bool {
+	if len(name) == 0 {
+		return false
+	}
+	if len(this.AliasServerNames) > 0 && configutils.MatchDomains(this.AliasServerNames, name) {
+		return true
+	}
 	for _, serverName := range this.ServerNames {
 		if serverName.Match(name) {
 			return true
