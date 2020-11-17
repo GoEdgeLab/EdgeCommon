@@ -26,6 +26,7 @@ message CreateOriginRequest {
 	string name = 1;
 	NetworkAddress addr = 2;
 	string description = 3;
+	int32 weight = 4;
 }
 
 message CreateOriginResponse {
@@ -38,6 +39,7 @@ message UpdateOriginRequest {
 	string name = 2;
 	NetworkAddress addr = 3;
 	string description = 4;
+	int32 weight = 5;
 }
 
 // 查找单个源站信息
