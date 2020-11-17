@@ -4,6 +4,7 @@ option go_package = "./pb";
 package pb;
 
 import "model_server.proto";
+import "model_dns_domain.proto";
 import "rpc_messages.proto";
 
 service ServerService {
@@ -90,6 +91,9 @@ service ServerService {
 
 	// 取得某个集群下的所有服务相关的DNS
 	rpc findAllEnabledServersDNSWithClusterId (FindAllEnabledServersDNSWithClusterIdRequest) returns (FindAllEnabledServersDNSWithClusterIdResponse);
+
+	// 查找单个服务的DNS信息
+	rpc findEnabledServerDNS (FindEnabledServerDNSRequest) returns (FindEnabledServerDNSResponse);
 }
 
 // 创建服务
@@ -315,4 +319,14 @@ message ServerDNSInfo {
 	int64 id = 1;
 	string name = 2;
 	string dnsName = 3;
+}
+
+// 查找单个服务的DNS信息
+message FindEnabledServerDNSRequest {
+	int64 serverId = 1;
+}
+
+message FindEnabledServerDNSResponse {
+	string dnsName = 1;
+	DNSDomain domain = 2;
 }
