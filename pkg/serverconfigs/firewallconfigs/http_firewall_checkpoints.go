@@ -8,6 +8,20 @@ import (
 // all check points list
 var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
+		Name:        "通用请求Header长度限制",
+		Prefix:      "requestGeneralHeaderLength",
+		Description: "通用Header比如Cache-Control、Accept之类的长度限制，防止缓冲区溢出攻击",
+		IsRequest:   true,
+		IsComposed:  true,
+	},
+	{
+		Name:        "通用响应Header长度限制",
+		Prefix:      "responseGeneralHeaderLength",
+		Description: "通用Header比如Cache-Control、Date之类的长度限制，防止缓冲区溢出攻击",
+		IsRequest:   false,
+		IsComposed:  true,
+	},
+	{
 		Name:        "客户端地址（IP）",
 		Prefix:      "remoteAddr",
 		Description: "试图通过分析X-Forwarded-For等Header获取的客户端地址，比如192.168.1.100",
@@ -268,12 +282,22 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	},
 }
 
-// find a check point definition
+// 查找Checkpoint定义
 func FindCheckpointDefinition(prefix string) *HTTPFirewallCheckpointDefinition {
-	for _, def := range AllCheckpoints {
-		if def.Prefix == prefix {
-			return def
+	for _, checkpoint := range AllCheckpoints {
+		if checkpoint.Prefix == prefix {
+			return checkpoint
 		}
 	}
 	return nil
+}
+
+// 判断Checkpoint是否为组合的
+func CheckCheckpointIsComposed(prefix string) bool {
+	for _, checkpoint := range AllCheckpoints {
+		if checkpoint.Prefix == prefix {
+			return checkpoint.IsComposed
+		}
+	}
+	return false
 }

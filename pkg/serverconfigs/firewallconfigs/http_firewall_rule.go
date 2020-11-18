@@ -1,5 +1,12 @@
 package firewallconfigs
 
+import (
+	"regexp"
+	"strings"
+)
+
+var namedParamReg = regexp.MustCompile(`^\${\s*(.+)\s*}$`)
+
 type HTTPFirewallRule struct {
 	Id                int64                  `yaml:"id" json:"id"`
 	IsOn              bool                   `yaml:"isOn" json:"isOn"`
@@ -14,4 +21,14 @@ type HTTPFirewallRule struct {
 func (this *HTTPFirewallRule) Init() error {
 	// TODO 执行更严谨的校验
 	return nil
+}
+
+func (this *HTTPFirewallRule) Prefix() string {
+	result := namedParamReg.FindStringSubmatch(this.Param)
+	if len(result) > 0 {
+		param := result[1]
+		pieces := strings.Split(param, ".")
+		return pieces[0]
+	}
+	return this.Param
 }
