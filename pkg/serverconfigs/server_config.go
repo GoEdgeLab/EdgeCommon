@@ -195,6 +195,11 @@ func (this *ServerConfig) MatchName(name string) bool {
 
 // 判断是否严格匹配
 func (this *ServerConfig) MatchNameStrictly(name string) bool {
+	for _, serverName := range this.AliasServerNames {
+		if serverName == name {
+			return true
+		}
+	}
 	for _, serverName := range this.ServerNames {
 		if serverName.Name == name {
 			return true
