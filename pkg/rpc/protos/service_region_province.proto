@@ -9,6 +9,9 @@ import "model_region_province.proto";
 service RegionProvinceService {
 	// 查找所有省份
 	rpc findAllEnabledRegionProvincesWithCountryId (FindAllEnabledRegionProvincesWithCountryIdRequest) returns (FindAllEnabledRegionProvincesWithCountryIdResponse);
+
+	// 查找单个省份信息
+	rpc findEnabledRegionProvince (FindEnabledRegionProvinceRequest) returns (FindEnabledRegionProvinceResponse);
 }
 
 // 查找所有省份
@@ -18,4 +21,13 @@ message FindAllEnabledRegionProvincesWithCountryIdRequest {
 
 message FindAllEnabledRegionProvincesWithCountryIdResponse {
 	repeated RegionProvince provinces = 1;
+}
+
+// 查找单个省份信息
+message FindEnabledRegionProvinceRequest {
+	int64 provinceId = 1;
+}
+
+message FindEnabledRegionProvinceResponse {
+	RegionProvince province = 1;
 }

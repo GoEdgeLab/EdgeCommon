@@ -9,6 +9,9 @@ import "model_region_country.proto";
 service RegionCountryService {
 	// 查找所有的国家列表
 	rpc findAllEnabledRegionCountries (FindAllEnabledRegionCountriesRequest) returns (FindAllEnabledRegionCountriesResponse);
+
+	// 查找单个国家信息
+	rpc findEnabledRegionCountry (FindEnabledRegionCountryRequest) returns (FindEnabledRegionCountryResponse);
 }
 
 // 查找所有的国家列表
@@ -18,4 +21,13 @@ message FindAllEnabledRegionCountriesRequest {
 
 message FindAllEnabledRegionCountriesResponse {
 	repeated RegionCountry countries = 1;
+}
+
+// 查找单个国家信息
+message FindEnabledRegionCountryRequest {
+	int64 countryId = 1;
+}
+
+message FindEnabledRegionCountryResponse {
+	RegionCountry country = 1;
 }

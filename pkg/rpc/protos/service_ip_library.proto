@@ -85,4 +85,6 @@ message IPRegion {
 	string province = 3;
 	string city = 4;
 	string isp = 5;
+	int64 countryId = 6;
+	int64 provinceId = 7;
 }

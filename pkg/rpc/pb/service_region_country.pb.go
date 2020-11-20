@@ -115,6 +115,101 @@ func (x *FindAllEnabledRegionCountriesResponse) GetCountries() []*RegionCountry 
 	return nil
 }
 
+// 查找单个国家信息
+type FindEnabledRegionCountryRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CountryId int64 `protobuf:"varint,1,opt,name=countryId,proto3" json:"countryId,omitempty"`
+}
+
+func (x *FindEnabledRegionCountryRequest) Reset() {
+	*x = FindEnabledRegionCountryRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_region_country_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledRegionCountryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledRegionCountryRequest) ProtoMessage() {}
+
+func (x *FindEnabledRegionCountryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_region_country_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledRegionCountryRequest.ProtoReflect.Descriptor instead.
+func (*FindEnabledRegionCountryRequest) Descriptor() ([]byte, []int) {
+	return file_service_region_country_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *FindEnabledRegionCountryRequest) GetCountryId() int64 {
+	if x != nil {
+		return x.CountryId
+	}
+	return 0
+}
+
+type FindEnabledRegionCountryResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Country *RegionCountry `protobuf:"bytes,1,opt,name=country,proto3" json:"country,omitempty"`
+}
+
+func (x *FindEnabledRegionCountryResponse) Reset() {
+	*x = FindEnabledRegionCountryResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_region_country_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledRegionCountryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledRegionCountryResponse) ProtoMessage() {}
+
+func (x *FindEnabledRegionCountryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_region_country_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledRegionCountryResponse.ProtoReflect.Descriptor instead.
+func (*FindEnabledRegionCountryResponse) Descriptor() ([]byte, []int) {
+	return file_service_region_country_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *FindEnabledRegionCountryResponse) GetCountry() *RegionCountry {
+	if x != nil {
+		return x.Country
+	}
+	return nil
+}
+
 var File_service_region_country_proto protoreflect.FileDescriptor
 
 var file_service_region_country_proto_rawDesc = []byte{
@@ -130,16 +225,32 @@ var file_service_region_country_proto_rawDesc = []byte{
 	0x2f, 0x0a, 0x09, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03,
 	0x28, 0x0b, 0x32, 0x11, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f,
 	0x75, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x09, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73,
-	0x32, 0x8c, 0x01, 0x0a, 0x14, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74,
-	0x72, 0x79, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x74, 0x0a, 0x1d, 0x66, 0x69, 0x6e,
-	0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x52, 0x65, 0x67, 0x69, 0x6f,
-	0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x12, 0x28, 0x2e, 0x70, 0x62, 0x2e,
-	0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x52, 0x65,
-	0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c,
-	0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f,
-	0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42,
-	0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x22, 0x3f, 0x0a, 0x1f, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x52,
+	0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x49, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x49,
+	0x64, 0x22, 0x4f, 0x0a, 0x20, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2b, 0x0a, 0x07, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x65, 0x67, 0x69,
+	0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x07, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x72, 0x79, 0x32, 0xf3, 0x01, 0x0a, 0x14, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75,
+	0x6e, 0x74, 0x72, 0x79, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x74, 0x0a, 0x1d, 0x66,
+	0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x52, 0x65, 0x67,
+	0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x12, 0x28, 0x2e, 0x70,
+	0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
+	0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e,
+	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x65, 0x0a, 0x18, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x23, 0x2e,
+	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x52, 0x65,
+	0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x79,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -154,21 +265,26 @@ func file_service_region_country_proto_rawDescGZIP() []byte {
 	return file_service_region_country_proto_rawDescData
 }
 
-var file_service_region_country_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_service_region_country_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_service_region_country_proto_goTypes = []interface{}{
 	(*FindAllEnabledRegionCountriesRequest)(nil),  // 0: pb.FindAllEnabledRegionCountriesRequest
 	(*FindAllEnabledRegionCountriesResponse)(nil), // 1: pb.FindAllEnabledRegionCountriesResponse
-	(*RegionCountry)(nil),                         // 2: pb.RegionCountry
+	(*FindEnabledRegionCountryRequest)(nil),       // 2: pb.FindEnabledRegionCountryRequest
+	(*FindEnabledRegionCountryResponse)(nil),      // 3: pb.FindEnabledRegionCountryResponse
+	(*RegionCountry)(nil),                         // 4: pb.RegionCountry
 }
 var file_service_region_country_proto_depIdxs = []int32{
-	2, // 0: pb.FindAllEnabledRegionCountriesResponse.countries:type_name -> pb.RegionCountry
-	0, // 1: pb.RegionCountryService.findAllEnabledRegionCountries:input_type -> pb.FindAllEnabledRegionCountriesRequest
-	1, // 2: pb.RegionCountryService.findAllEnabledRegionCountries:output_type -> pb.FindAllEnabledRegionCountriesResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	4, // 0: pb.FindAllEnabledRegionCountriesResponse.countries:type_name -> pb.RegionCountry
+	4, // 1: pb.FindEnabledRegionCountryResponse.country:type_name -> pb.RegionCountry
+	0, // 2: pb.RegionCountryService.findAllEnabledRegionCountries:input_type -> pb.FindAllEnabledRegionCountriesRequest
+	2, // 3: pb.RegionCountryService.findEnabledRegionCountry:input_type -> pb.FindEnabledRegionCountryRequest
+	1, // 4: pb.RegionCountryService.findAllEnabledRegionCountries:output_type -> pb.FindAllEnabledRegionCountriesResponse
+	3, // 5: pb.RegionCountryService.findEnabledRegionCountry:output_type -> pb.FindEnabledRegionCountryResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_service_region_country_proto_init() }
@@ -202,6 +318,30 @@ func file_service_region_country_proto_init() {
 				return nil
 			}
 		}
+		file_service_region_country_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledRegionCountryRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_region_country_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledRegionCountryResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -209,7 +349,7 @@ func file_service_region_country_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_region_country_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -237,6 +377,8 @@ const _ = grpc.SupportPackageIsVersion6
 type RegionCountryServiceClient interface {
 	// 查找所有的国家列表
 	FindAllEnabledRegionCountries(ctx context.Context, in *FindAllEnabledRegionCountriesRequest, opts ...grpc.CallOption) (*FindAllEnabledRegionCountriesResponse, error)
+	// 查找单个国家信息
+	FindEnabledRegionCountry(ctx context.Context, in *FindEnabledRegionCountryRequest, opts ...grpc.CallOption) (*FindEnabledRegionCountryResponse, error)
 }
 
 type regionCountryServiceClient struct {
@@ -256,10 +398,21 @@ func (c *regionCountryServiceClient) FindAllEnabledRegionCountries(ctx context.C
 	return out, nil
 }
 
+func (c *regionCountryServiceClient) FindEnabledRegionCountry(ctx context.Context, in *FindEnabledRegionCountryRequest, opts ...grpc.CallOption) (*FindEnabledRegionCountryResponse, error) {
+	out := new(FindEnabledRegionCountryResponse)
+	err := c.cc.Invoke(ctx, "/pb.RegionCountryService/findEnabledRegionCountry", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RegionCountryServiceServer is the server API for RegionCountryService service.
 type RegionCountryServiceServer interface {
 	// 查找所有的国家列表
 	FindAllEnabledRegionCountries(context.Context, *FindAllEnabledRegionCountriesRequest) (*FindAllEnabledRegionCountriesResponse, error)
+	// 查找单个国家信息
+	FindEnabledRegionCountry(context.Context, *FindEnabledRegionCountryRequest) (*FindEnabledRegionCountryResponse, error)
 }
 
 // UnimplementedRegionCountryServiceServer can be embedded to have forward compatible implementations.
@@ -268,6 +421,9 @@ type UnimplementedRegionCountryServiceServer struct {
 
 func (*UnimplementedRegionCountryServiceServer) FindAllEnabledRegionCountries(context.Context, *FindAllEnabledRegionCountriesRequest) (*FindAllEnabledRegionCountriesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllEnabledRegionCountries not implemented")
+}
+func (*UnimplementedRegionCountryServiceServer) FindEnabledRegionCountry(context.Context, *FindEnabledRegionCountryRequest) (*FindEnabledRegionCountryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledRegionCountry not implemented")
 }
 
 func RegisterRegionCountryServiceServer(s *grpc.Server, srv RegionCountryServiceServer) {
@@ -292,6 +448,24 @@ func _RegionCountryService_FindAllEnabledRegionCountries_Handler(srv interface{}
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RegionCountryService_FindEnabledRegionCountry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledRegionCountryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RegionCountryServiceServer).FindEnabledRegionCountry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.RegionCountryService/FindEnabledRegionCountry",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RegionCountryServiceServer).FindEnabledRegionCountry(ctx, req.(*FindEnabledRegionCountryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _RegionCountryService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.RegionCountryService",
 	HandlerType: (*RegionCountryServiceServer)(nil),
@@ -299,6 +473,10 @@ var _RegionCountryService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findAllEnabledRegionCountries",
 			Handler:    _RegionCountryService_FindAllEnabledRegionCountries_Handler,
+		},
+		{
+			MethodName: "findEnabledRegionCountry",
+			Handler:    _RegionCountryService_FindEnabledRegionCountry_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
