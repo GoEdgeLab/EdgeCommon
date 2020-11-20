@@ -31,13 +31,18 @@ message CreateLogResponse {
 
 // 计算日志数量
 message CountLogRequest {
-
+	string dayFrom = 1;
+	string dayTo = 2;
+	string keyword = 3;
 }
 
 // 列出单页日志
 message ListLogsRequest {
 	int64 offset = 1;
 	int64 size = 2;
+	string dayFrom = 3;
+	string dayTo = 4;
+	string keyword = 5;
 }
 
 message ListLogsResponse {
