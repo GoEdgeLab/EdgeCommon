@@ -11,6 +11,7 @@ type HTTPFirewallRule struct {
 	Id                int64                  `yaml:"id" json:"id"`
 	IsOn              bool                   `yaml:"isOn" json:"isOn"`
 	Param             string                 `yaml:"param" json:"param"`
+	ParamFilters      []*ParamFilter         `yaml:"paramFilters" json:"paramFilters"`
 	Operator          string                 `yaml:"operator" json:"operator"`
 	Value             string                 `yaml:"value" json:"value"`
 	IsCaseInsensitive bool                   `yaml:"isCaseInsensitive" json:"isCaseInsensitive"`

@@ -80,6 +80,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		Prefix:      "requestForm",
 		Description: "获取POST或者其他方法发送的表单参数，最大请求体限制32M",
 		IsRequest:   true,
+		HasParams:   true,
 	},
 	{
 		Name:        "上传文件",
@@ -93,12 +94,14 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 			NewKeyValue("表单字段名", "field"),
 		},
 		IsRequest: true,
+		HasParams: true,
 	},
 	{
 		Name:        "请求JSON参数",
 		Prefix:      "requestJSON",
 		Description: "获取POST或者其他方法发送的JSON，最大请求体限制32M，使用点（.）符号表示多级数据",
 		IsRequest:   true,
+		HasParams:   true,
 	},
 	{
 		Name:        "请求方法",
@@ -153,6 +156,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		Prefix:      "cookie",
 		Description: "单个cookie值",
 		IsRequest:   true,
+		HasParams:   true,
 	},
 	{
 		Name:        "所有URL参数组合",
@@ -165,6 +169,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		Prefix:      "arg",
 		Description: "单个URL参数值",
 		IsRequest:   true,
+		HasParams:   true,
 	},
 	{
 		Name:        "所有Header信息",
@@ -177,11 +182,13 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		Prefix:      "header",
 		Description: "单个Header值",
 		IsRequest:   true,
+		HasParams:   true,
 	},
 	{
 		Name:        "CC统计",
 		Prefix:      "cc",
 		Description: "统计某段时间段内的请求信息",
+		HasParams:   true,
 		Params: []*KeyValue{
 			NewKeyValue("请求数", "requests"),
 		},
@@ -267,6 +274,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		Prefix:      "responseHeader",
 		Description: "响应Header值",
 		IsRequest:   false,
+		HasParams:   true,
 	},
 	{
 		Name:        "响应内容",

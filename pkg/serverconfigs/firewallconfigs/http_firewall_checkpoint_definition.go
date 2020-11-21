@@ -18,6 +18,7 @@ type HTTPFirewallCheckpointDefinition struct {
 	Description string            `json:"description"` // 描述
 	Prefix      string            `json:"prefix"`      // 前缀
 	IsRequest   bool              `json:"isRequest"`   // 是否为请求
+	HasParams    bool              `json:"hasParams"`    // 是否有子参数
 	Params      []*KeyValue       `json:"params"`      // 参数
 	Options     []OptionInterface `json:"options"`     // 选项
 	IsComposed  bool              `json:"isComposed"`  // 是否为组合的checkpoint

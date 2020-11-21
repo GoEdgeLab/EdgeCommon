@@ -23,6 +23,9 @@ const (
 	HTTPFirewallRuleOperatorVersionLt    HTTPFirewallRuleOperator = "version lt"
 	HTTPFirewallRuleOperatorVersionRange HTTPFirewallRuleOperator = "version range"
 
+	HTTPFirewallRuleOperatorContainsBinary    HTTPFirewallRuleOperator = "contains binary"     // contains binary
+	HTTPFirewallRuleOperatorNotContainsBinary HTTPFirewallRuleOperator = "not contains binary" // not contains binary
+
 	// ip
 	HTTPFirewallRuleOperatorEqIP       HTTPFirewallRuleOperator = "eq ip"
 	HTTPFirewallRuleOperatorGtIP       HTTPFirewallRuleOperator = "gt ip"
@@ -130,6 +133,18 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 		Name:            "包含后缀",
 		Code:            HTTPFirewallRuleOperatorSuffix,
 		Description:     "包含某个后缀",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+	},
+	{
+		Name:            "包含二进制数据",
+		Code:            HTTPFirewallRuleOperatorContainsBinary,
+		Description:     "包含一组二进制数据",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+	},
+	{
+		Name:            "不包含二进制数据",
+		Code:            HTTPFirewallRuleOperatorNotContainsBinary,
+		Description:     "不包含一组二进制数据",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 	},
 	{
