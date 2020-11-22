@@ -66,6 +66,7 @@ message UpdateHTTPFirewallPolicyRequest {
 	string name = 3;
 	string description = 4;
 	repeated string firewallGroupCodes = 5;
+	bytes blockOptionsJSON = 6;
 }
 
 // 修改分组信息
