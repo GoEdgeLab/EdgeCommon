@@ -19,6 +19,10 @@ var allFilters = map[string]FilterInterface{
 	"base64Encode": new(Base64EncodeFilter),
 	"base64Decode": new(Base64DecodeFilter),
 	"length":       new(LengthFilter),
+	"hex2dec":      new(Hex2DecFilter),
+	"dec2hex":      new(Dec2HexFilter),
+	"sha1":         new(Sha1Filter),
+	"sha256":       new(Sha256Filter),
 }
 
 // 查找Filter
