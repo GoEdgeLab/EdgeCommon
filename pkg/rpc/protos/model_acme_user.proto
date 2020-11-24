@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message ACMEUser {
+	int64 id = 1;
+	string email = 2;
+	string description = 3;
+	int64 createdAt = 4;
+}
