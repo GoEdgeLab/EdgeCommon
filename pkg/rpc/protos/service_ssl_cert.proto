@@ -23,15 +23,6 @@ service SSLCertService {
 
 	// 列出单页匹配的Cert
 	rpc listSSLCerts (ListSSLCertsRequest) returns (ListSSLCertsResponse);
-
-	// 计算某个ACME用户生成的证书数量
-	rpc countSSLCertsWithACMEUserId (CountSSLCertsWithACMEUserIdRequest) returns (RPCCountResponse);
-
-	// 计算所有某个管理员/用户下所有的ACME用户生成的证书
-	rpc countAllSSLCertsWithACME (CountAllSSLCertsWithACMERequest) returns (RPCCountResponse);
-
-	// 列出单个管理员/用户下所有的ACME用户生成的证书
-	rpc listSSLCertsWithACME (ListSSLCertsWithACMERequest) returns (ListSSLCertsWithACMEResponse);
 }
 
 // 创建Cert
@@ -104,28 +95,5 @@ message ListSSLCertsRequest {
 }
 
 message ListSSLCertsResponse {
-	bytes certsJSON = 1;
-}
-
-// 计算某个ACME用户生成的证书数量
-message CountSSLCertsWithACMEUserIdRequest {
-	int64 acmeUserId = 1;
-}
-
-// 计算所有某个管理员/用户下所有的ACME用户生成的证书
-message CountAllSSLCertsWithACMERequest {
-	int64 adminId = 1;
-	int64 userId = 2;
-}
-
-// 列出单个管理员/用户下所有的ACME用户生成的证书
-message ListSSLCertsWithACMERequest {
-	int64 adminId = 1;
-	int64 userId = 2;
-	int64 offset = 3;
-	int64 size = 4;
-}
-
-message ListSSLCertsWithACMEResponse {
 	bytes certsJSON = 1;
 }

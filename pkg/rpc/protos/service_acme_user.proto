@@ -25,6 +25,9 @@ service ACMEUserService {
 
 	// 查找单个用户
 	rpc findEnabledACMEUser (FindEnabledACMEUserRequest) returns (FindEnabledACMEUserResponse);
+
+	// 查找所有用户
+	rpc findAllACMEUsers (FindAllACMEUsersRequest) returns (FindAllACMEUsersResponse);
 }
 
 // 创建用户
@@ -73,4 +76,14 @@ message FindEnabledACMEUserRequest {
 
 message FindEnabledACMEUserResponse {
 	ACMEUser acmeUser = 1;
+}
+
+// 查找所有用户
+message FindAllACMEUsersRequest {
+	int64 adminId = 1;
+	int64 userId = 2;
+}
+
+message FindAllACMEUsersResponse {
+	repeated ACMEUser acmeUsers = 1;
 }

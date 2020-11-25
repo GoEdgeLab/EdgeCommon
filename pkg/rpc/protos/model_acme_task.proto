@@ -1,0 +1,22 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_acme_user.proto";
+import "model_dns_provider.proto";
+import "model_ssl_cert.proto";
+
+message ACMETask {
+	int64 id = 1;
+	bool isOn = 2;
+	string dnsDomain = 3;
+	repeated string domains = 4;
+	int64 createdAt = 5;
+	bool isOk = 6;
+	bool autoRenew = 7;
+
+	ACMEUser acmeUser = 30;
+	DNSProvider dnsProvider = 31;
+	SSLCert sslCert = 32;
+}

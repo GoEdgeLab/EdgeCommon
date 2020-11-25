@@ -1,0 +1,113 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+import "model_acme_task.proto";
+
+// ACME任务相关服务
+service ACMETaskService {
+	// 计算某个ACME用户相关的任务数量
+	rpc countAllEnabledACMETasksWithACMEUserId (CountAllEnabledACMETasksWithACMEUserIdRequest) returns (RPCCountResponse);
+
+	// 计算跟某个DNS服务商相关的任务数量
+	rpc countEnabledACMETasksWithDNSProviderId (CountEnabledACMETasksWithDNSProviderIdRequest) returns (RPCCountResponse);
+
+	// 计算所有任务数量
+	rpc countAllEnabledACMETasks (CountAllEnabledACMETasksRequest) returns (RPCCountResponse);
+
+	// 列出单页任务
+	rpc listEnabledACMETasks (ListEnabledACMETasksRequest) returns (ListEnabledACMETasksResponse);
+
+	// 创建任务
+	rpc createACMETask (CreateACMETaskRequest) returns (CreateACMETaskResponse);
+
+	// 修改任务
+	rpc updateACMETask (UpdateACMETaskRequest) returns (RPCSuccess);
+
+	// 删除任务
+	rpc deleteACMETask (DeleteACMETaskRequest) returns (RPCSuccess);
+
+	// 运行某个任务
+	rpc runACMETask (RunACMETaskRequest) returns (RunACMETaskResponse);
+
+	// 查找单个任务信息
+	rpc findEnabledACMETask (FindEnabledACMETaskRequest) returns (FindEnabledACMETaskResponse);
+}
+
+// 计算某个ACME用户相关的任务数量
+message CountAllEnabledACMETasksWithACMEUserIdRequest {
+	int64 acmeUserId = 1;
+}
+
+// 计算跟某个DNS服务商相关的任务数量
+message CountEnabledACMETasksWithDNSProviderIdRequest {
+	int64 dnsProviderId = 1;
+}
+
+// 计算所有任务数量
+message CountAllEnabledACMETasksRequest {
+	int64 adminId = 1;
+	int64 userId = 2;
+}
+
+// 列出单页任务
+message ListEnabledACMETasksRequest {
+	int64 adminId = 1;
+	int64 userId = 2;
+	int64 offset = 3;
+	int64 size = 4;
+}
+
+message ListEnabledACMETasksResponse {
+	repeated ACMETask acmeTasks = 1;
+}
+
+// 创建任务
+message CreateACMETaskRequest {
+	int64 acmeUserId = 1;
+	int64 dnsProviderId = 2;
+	string dnsDomain = 3;
+	repeated string domains = 4;
+	bool autoRenew = 5;
+}
+
+message CreateACMETaskResponse {
+	int64 acmeTaskId = 1;
+}
+
+// 修改任务
+message UpdateACMETaskRequest {
+	int64 acmeTaskId = 1;
+	int64 acmeUserId = 2;
+	int64 dnsProviderId = 3;
+	string dnsDomain = 4;
+	repeated string domains = 5;
+	bool autoRenew = 6;
+}
+
+// 删除任务
+message DeleteACMETaskRequest {
+	int64 acmeTaskId = 1;
+}
+
+// 运行某个任务
+message RunACMETaskRequest {
+	int64 acmeTaskId = 1;
+}
+
+message RunACMETaskResponse {
+	bool isOk = 1;
+	string error = 2;
+	int64 sslCertId = 3;
+}
+
+// 查找单个任务信息
+message FindEnabledACMETaskRequest {
+	int64 acmeTaskId = 1;
+}
+
+message FindEnabledACMETaskResponse {
+	ACMETask acmeTask = 1;
+}

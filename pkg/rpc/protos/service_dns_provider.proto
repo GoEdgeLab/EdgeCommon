@@ -20,6 +20,9 @@ service DNSProviderService {
 	// 列出单页服务商信息
 	rpc listEnabledDNSProviders (ListEnabledDNSProvidersRequest) returns (ListEnabledDNSProvidersResponse);
 
+	// 查找所有的DNS服务商
+	rpc findAllEnabledDNSProviders (FindAllEnabledDNSProvidersRequest) returns (FindAllEnabledDNSProvidersResponse);
+
 	// 删除服务商
 	rpc deleteDNSProvider (DeleteDNSProviderRequest) returns (RPCSuccess);
 
@@ -53,16 +56,29 @@ message UpdateDNSProviderRequest {
 
 // 计算服务商数量
 message CountAllEnabledDNSProvidersRequest {
-
+	int64 adminId = 1;
+	int64 userId = 2;
 }
 
 // 列出单页的服务商信息
 message ListEnabledDNSProvidersRequest {
-	int64 offset = 1;
-	int64 size = 2;
+	int64 adminId = 1;
+	int64 userId = 2;
+	int64 offset = 3;
+	int64 size = 4;
 }
 
 message ListEnabledDNSProvidersResponse {
+	repeated DNSProvider dnsProviders = 1;
+}
+
+// 查找所有的DNS服务商
+message FindAllEnabledDNSProvidersRequest {
+	int64 adminId = 1;
+	int64 userId = 2;
+}
+
+message FindAllEnabledDNSProvidersResponse {
 	repeated DNSProvider dnsProviders = 1;
 }
 
