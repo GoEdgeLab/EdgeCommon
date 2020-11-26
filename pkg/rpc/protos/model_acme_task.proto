@@ -13,8 +13,7 @@ message ACMETask {
 	string dnsDomain = 3;
 	repeated string domains = 4;
 	int64 createdAt = 5;
-	bool isOk = 6;
-	bool autoRenew = 7;
+	bool autoRenew = 6;
 
 	ACMEUser acmeUser = 30;
 	DNSProvider dnsProvider = 31;

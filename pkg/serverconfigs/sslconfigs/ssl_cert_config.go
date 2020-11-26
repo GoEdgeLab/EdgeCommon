@@ -21,6 +21,7 @@ type SSLCertConfig struct {
 	KeyData     []byte `yaml:"keyData" json:"keyData"`         // 密钥数据
 	ServerName  string `yaml:"serverName" json:"serverName"`   // 证书使用的主机名，在请求TLS服务器时需要
 	IsCA        bool   `yaml:"isCA" json:"isCA"`               // 是否为CA证书
+	IsACME      bool   `yaml:"isACME" json:"isACME"`           // 是否通过ACME协议免费申请
 
 	// 以下是从证书中分析所得
 	TimeBeginAt int64    `yaml:"timeBeginAt" json:"timeBeginAt"`
