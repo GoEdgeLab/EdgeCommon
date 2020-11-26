@@ -6,6 +6,7 @@ package pb;
 import "model_acme_user.proto";
 import "model_dns_provider.proto";
 import "model_ssl_cert.proto";
+import "model_acme_task_log.proto";
 
 message ACMETask {
 	int64 id = 1;
@@ -18,4 +19,6 @@ message ACMETask {
 	ACMEUser acmeUser = 30;
 	DNSProvider dnsProvider = 31;
 	SSLCert sslCert = 32;
+	ACMETaskLog latestACMETaskLog = 33;
+
 }

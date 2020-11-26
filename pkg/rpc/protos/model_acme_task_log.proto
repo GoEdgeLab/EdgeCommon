@@ -1,0 +1,12 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// ACME任务日志
+message ACMETaskLog {
+	int64 id = 1;
+	bool isOk = 2;
+	string error = 3;
+	int64 createdAt = 4;
+}
