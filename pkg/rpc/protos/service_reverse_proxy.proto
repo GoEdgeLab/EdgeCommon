@@ -79,6 +79,7 @@ message UpdateReverseProxyBackupOriginsRequest {
 // 修改是否启用
 message UpdateReverseProxyRequest {
 	int64 reverseProxyId = 1;
+	int32 requestHostType = 6;
 	string requestHost = 2;
 	string requestURI = 3;
 	string stripPrefix = 4;

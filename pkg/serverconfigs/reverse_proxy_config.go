@@ -7,6 +7,14 @@ import (
 	"sync"
 )
 
+type RequestHostType = int8
+
+const (
+	RequestHostTypeProxyServer RequestHostType = 0
+	RequestHostTypeOrigin      RequestHostType = 1
+	RequestHostTypeCustomized  RequestHostType = 2
+)
+
 // 反向代理设置
 type ReverseProxyConfig struct {
 	Id                int64             `yaml:"id" json:"id"`                               // ID
@@ -17,9 +25,10 @@ type ReverseProxyConfig struct {
 	BackupOriginRefs  []*OriginRef      `yaml:"backupOriginRefs" json:"backupOriginRefs"`   // 备用源站引用
 	Scheduling        *SchedulingConfig `yaml:"scheduling" json:"scheduling"`               // 调度算法选项
 
-	StripPrefix string `yaml:"stripPrefix" json:"stripPrefix"` // 去除URL前缀
-	RequestHost string `yaml:"requestHost" json:"requestHost"` // 请求Host，支持变量
-	RequestURI  string `yaml:"requestURI" json:"requestURI"`   // 请求URI，支持变量，如果同时定义了StripPrefix，则先执行StripPrefix
+	StripPrefix     string          `yaml:"stripPrefix" json:"stripPrefix"`         // 去除URL前缀
+	RequestHostType RequestHostType `yaml:"requestHostType" json:"requestHostType"` // 请求Host类型
+	RequestHost     string          `yaml:"requestHost" json:"requestHost"`         // 请求Host，支持变量
+	RequestURI      string          `yaml:"requestURI" json:"requestURI"`           // 请求URI，支持变量，如果同时定义了StripPrefix，则先执行StripPrefix
 
 	AutoFlush bool `yaml:"autoFlush" json:"autoFlush"` // 是否自动刷新缓冲区，在比如SSE（server-sent events）场景下很有用
 
