@@ -3,7 +3,7 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_origin_server.proto";
+import "model_origin.proto";
 import "model_network_address.proto";
 import "rpc_messages.proto";
 
@@ -27,6 +27,7 @@ message CreateOriginRequest {
 	NetworkAddress addr = 2;
 	string description = 3;
 	int32 weight = 4;
+	bool isOn = 5;
 }
 
 message CreateOriginResponse {
@@ -40,6 +41,7 @@ message UpdateOriginRequest {
 	NetworkAddress addr = 3;
 	string description = 4;
 	int32 weight = 5;
+	bool isOn = 6;
 }
 
 // 查找单个源站信息
