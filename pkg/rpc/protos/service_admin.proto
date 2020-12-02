@@ -4,6 +4,7 @@ option go_package = "./pb";
 package pb;
 
 import "model_admin.proto";
+import "model_admin_list.proto";
 import "rpc_messages.proto";
 
 service AdminService {
@@ -26,10 +27,28 @@ service AdminService {
 	rpc createOrUpdateAdmin (CreateOrUpdateAdminRequest) returns (CreateOrUpdateAdminResponse);
 
 	// 修改管理员信息
-	rpc updateAdmin (UpdateAdminRequest) returns (RPCSuccess);
+	rpc updateAdminInfo (UpdateAdminInfoRequest) returns (RPCSuccess);
 
 	// 修改管理员登录信息
 	rpc updateAdminLogin (UpdateAdminLoginRequest) returns (RPCSuccess);
+
+	// 获取所有管理员的权限列表
+	rpc findAllAdminModules (FindAllAdminModulesRequest) returns (FindAllAdminModulesResponse);
+
+	// 创建管理员
+	rpc createAdmin (CreateAdminRequest) returns (CreateAdminResponse);
+
+	// 修改管理员
+	rpc updateAdmin (UpdateAdminRequest) returns (RPCSuccess);
+
+	// 计算管理员数量
+	rpc countAllEnabledAdmins (CountAllEnabledAdminsRequest) returns (RPCCountResponse);
+
+	// 列出单页的管理员
+	rpc listEnabledAdmins (ListEnabledAdminsRequest) returns (ListEnabledAdminsResponse);
+
+	// 删除管理员
+	rpc deleteAdmin (DeleteAdminRequest) returns (RPCSuccess);
 }
 
 // 登录
@@ -93,7 +112,7 @@ message CreateOrUpdateAdminResponse {
 }
 
 // 修改管理员信息
-message UpdateAdminRequest {
+message UpdateAdminInfoRequest {
 	int64 adminId = 1;
 	string fullname = 2;
 }
@@ -103,4 +122,56 @@ message UpdateAdminLoginRequest {
 	int64 adminId = 1;
 	string username = 2;
 	string password = 3;
+}
+
+// 获取管理所有权限列表
+message FindAllAdminModulesRequest {
+
+}
+
+message FindAllAdminModulesResponse {
+	repeated AdminModuleList adminModules = 1;
+}
+
+// 创建管理员
+message CreateAdminRequest {
+	string username = 1;
+	string password = 2;
+	string fullname = 3;
+	bytes modulesJSON = 4;
+	bool isSuper = 5;
+}
+
+message CreateAdminResponse {
+	int64 adminId = 1;
+}
+
+// 修改管理员
+message UpdateAdminRequest {
+	int64 adminId = 1;
+	string username = 2;
+	string password = 3;
+	string fullname = 4;
+	bytes modulesJSON = 5;
+	bool isSuper = 6;
+}
+
+// 计算管理员数量
+message CountAllEnabledAdminsRequest {
+
+}
+
+// 列出单页的管理员
+message ListEnabledAdminsRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListEnabledAdminsResponse {
+	repeated Admin admins = 1;
+}
+
+// 删除管理员
+message DeleteAdminRequest {
+	int64 adminId = 1;
 }

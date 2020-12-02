@@ -1,0 +1,10 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message AdminModule {
+	bool allowAll = 1;
+	string code = 2;
+	repeated string actions = 3;
+}

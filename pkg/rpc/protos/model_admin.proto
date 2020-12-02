@@ -3,9 +3,14 @@ option go_package = "./pb";
 
 package pb;
 
+import "model_admin_module.proto";
+
 message Admin {
 	int64 id = 1;
 	string fullname = 2;
 	string username = 3;
 	bool isOn = 4;
+	bool isSuper = 5;
+	int64 createdAt = 6;
+	repeated AdminModule Modules = 7;
 }
