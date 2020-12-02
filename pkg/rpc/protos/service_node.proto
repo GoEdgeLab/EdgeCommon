@@ -188,10 +188,12 @@ message FindEnabledNodeResponse {
 // 组合单个节点配置
 message FindCurrentNodeConfigRequest {
 	// 由于登录信息中已经包含了节点信息，所以这里不需要nodeId
+	int64 version = 1;
 }
 
 message FindCurrentNodeConfigResponse {
 	bytes nodeJSON = 1;
+	bool isChanged = 2;
 }
 
 // 节点stream

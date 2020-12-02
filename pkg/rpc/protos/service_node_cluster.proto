@@ -70,6 +70,12 @@ service NodeClusterService {
 
 	// 检查集群的DNS是否有变化
 	rpc checkNodeClusterDNSChanges (CheckNodeClusterDNSChangesRequest) returns (CheckNodeClusterDNSChangesResponse);
+
+	// 查找集群的TOA配置
+	rpc findEnabledNodeClusterTOA (FindEnabledNodeClusterTOARequest) returns (FindEnabledNodeClusterTOAResponse);
+
+	// 修改集群的TOA设置
+	rpc updateNodeClusterTOA (UpdateNodeClusterTOARequest) returns (RPCSuccess);
 }
 
 // 获取所有集群的信息
@@ -156,7 +162,7 @@ message FindNodeClusterHealthCheckConfigRequest {
 }
 
 message FindNodeClusterHealthCheckConfigResponse {
-	bytes healthCheckConfig = 1;
+	bytes healthCheckJSON = 1;
 }
 
 // 修改集群健康检查设置
@@ -245,4 +251,19 @@ message CheckNodeClusterDNSChangesRequest {
 
 message CheckNodeClusterDNSChangesResponse {
 	bool isChanged = 1;
+}
+
+// 查找集群的TOA配置
+message FindEnabledNodeClusterTOARequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindEnabledNodeClusterTOAResponse {
+	bytes toaJSON = 1;
+}
+
+// 修改集群的TOA设置
+message UpdateNodeClusterTOARequest {
+	int64 nodeClusterId = 1;
+	bytes toaJSON = 2;
 }

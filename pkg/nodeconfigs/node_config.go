@@ -24,6 +24,9 @@ type NodeConfig struct {
 	// 全局配置
 	GlobalConfig *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置
 
+	// TOA配置
+	TOA *TOAConfig `yaml:"toa" json:"toa"`
+
 	paddedId         string
 	cachePolicies    []*serverconfigs.HTTPCachePolicy
 	firewallPolicies []*firewallconfigs.HTTPFirewallPolicy
@@ -93,6 +96,14 @@ func (this *NodeConfig) Init() error {
 	for _, server := range this.Servers {
 		if server.Web != nil {
 			this.lookupWeb(server.Web)
+		}
+	}
+
+	// TOA
+	if this.TOA != nil {
+		err := this.TOA.Init()
+		if err != nil {
+			return err
 		}
 	}
 
