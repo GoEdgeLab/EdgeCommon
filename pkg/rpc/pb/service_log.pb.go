@@ -330,6 +330,244 @@ func (x *ListLogsResponse) GetLogs() []*Log {
 	return nil
 }
 
+// 删除单条
+type DeleteLogPermanentlyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	LogId int64 `protobuf:"varint,1,opt,name=logId,proto3" json:"logId,omitempty"`
+}
+
+func (x *DeleteLogPermanentlyRequest) Reset() {
+	*x = DeleteLogPermanentlyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_log_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteLogPermanentlyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteLogPermanentlyRequest) ProtoMessage() {}
+
+func (x *DeleteLogPermanentlyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_log_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteLogPermanentlyRequest.ProtoReflect.Descriptor instead.
+func (*DeleteLogPermanentlyRequest) Descriptor() ([]byte, []int) {
+	return file_service_log_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *DeleteLogPermanentlyRequest) GetLogId() int64 {
+	if x != nil {
+		return x.LogId
+	}
+	return 0
+}
+
+// 批量删除
+type DeleteLogsPermanentlyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	LogIds []int64 `protobuf:"varint,1,rep,packed,name=logIds,proto3" json:"logIds,omitempty"`
+}
+
+func (x *DeleteLogsPermanentlyRequest) Reset() {
+	*x = DeleteLogsPermanentlyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_log_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteLogsPermanentlyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteLogsPermanentlyRequest) ProtoMessage() {}
+
+func (x *DeleteLogsPermanentlyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_log_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteLogsPermanentlyRequest.ProtoReflect.Descriptor instead.
+func (*DeleteLogsPermanentlyRequest) Descriptor() ([]byte, []int) {
+	return file_service_log_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *DeleteLogsPermanentlyRequest) GetLogIds() []int64 {
+	if x != nil {
+		return x.LogIds
+	}
+	return nil
+}
+
+// 清理
+type CleanLogsPermanentlyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Days     int32 `protobuf:"varint,1,opt,name=days,proto3" json:"days,omitempty"`
+	ClearAll bool  `protobuf:"varint,2,opt,name=clearAll,proto3" json:"clearAll,omitempty"`
+}
+
+func (x *CleanLogsPermanentlyRequest) Reset() {
+	*x = CleanLogsPermanentlyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_log_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CleanLogsPermanentlyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CleanLogsPermanentlyRequest) ProtoMessage() {}
+
+func (x *CleanLogsPermanentlyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_log_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CleanLogsPermanentlyRequest.ProtoReflect.Descriptor instead.
+func (*CleanLogsPermanentlyRequest) Descriptor() ([]byte, []int) {
+	return file_service_log_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *CleanLogsPermanentlyRequest) GetDays() int32 {
+	if x != nil {
+		return x.Days
+	}
+	return 0
+}
+
+func (x *CleanLogsPermanentlyRequest) GetClearAll() bool {
+	if x != nil {
+		return x.ClearAll
+	}
+	return false
+}
+
+// 计算日志容量大小
+type SumLogsSizeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *SumLogsSizeRequest) Reset() {
+	*x = SumLogsSizeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_log_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SumLogsSizeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SumLogsSizeRequest) ProtoMessage() {}
+
+func (x *SumLogsSizeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_log_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SumLogsSizeRequest.ProtoReflect.Descriptor instead.
+func (*SumLogsSizeRequest) Descriptor() ([]byte, []int) {
+	return file_service_log_proto_rawDescGZIP(), []int{8}
+}
+
+type SumLogsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SizeBytes int64 `protobuf:"varint,1,opt,name=sizeBytes,proto3" json:"sizeBytes,omitempty"`
+}
+
+func (x *SumLogsResponse) Reset() {
+	*x = SumLogsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_log_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SumLogsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SumLogsResponse) ProtoMessage() {}
+
+func (x *SumLogsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_log_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SumLogsResponse.ProtoReflect.Descriptor instead.
+func (*SumLogsResponse) Descriptor() ([]byte, []int) {
+	return file_service_log_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *SumLogsResponse) GetSizeBytes() int64 {
+	if x != nil {
+		return x.SizeBytes
+	}
+	return 0
+}
+
 var File_service_log_proto protoreflect.FileDescriptor
 
 var file_service_log_proto_rawDesc = []byte{
@@ -362,20 +600,54 @@ var file_service_log_proto_rawDesc = []byte{
 	0x01, 0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x2f, 0x0a, 0x10,
 	0x4c, 0x69, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
 	0x12, 0x1b, 0x0a, 0x04, 0x6c, 0x6f, 0x67, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x07,
-	0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x6f, 0x67, 0x52, 0x04, 0x6c, 0x6f, 0x67, 0x73, 0x32, 0xb5, 0x01,
-	0x0a, 0x0a, 0x4c, 0x6f, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x38, 0x0a, 0x09,
-	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x12, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x15, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x09, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x4c,
-	0x6f, 0x67, 0x73, 0x12, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x4c, 0x6f,
-	0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50,
-	0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x35,
-	0x0a, 0x08, 0x6c, 0x69, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x73, 0x12, 0x13, 0x2e, 0x70, 0x62, 0x2e,
-	0x4c, 0x69, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x14, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x6f, 0x67, 0x52, 0x04, 0x6c, 0x6f, 0x67, 0x73, 0x22, 0x33, 0x0a,
+	0x1b, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x50, 0x65, 0x72, 0x6d, 0x61, 0x6e,
+	0x65, 0x6e, 0x74, 0x6c, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
+	0x6c, 0x6f, 0x67, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x6c, 0x6f, 0x67,
+	0x49, 0x64, 0x22, 0x36, 0x0a, 0x1c, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x73,
+	0x50, 0x65, 0x72, 0x6d, 0x61, 0x6e, 0x65, 0x6e, 0x74, 0x6c, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6c, 0x6f, 0x67, 0x49, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x03, 0x52, 0x06, 0x6c, 0x6f, 0x67, 0x49, 0x64, 0x73, 0x22, 0x4d, 0x0a, 0x1b, 0x43, 0x6c,
+	0x65, 0x61, 0x6e, 0x4c, 0x6f, 0x67, 0x73, 0x50, 0x65, 0x72, 0x6d, 0x61, 0x6e, 0x65, 0x6e, 0x74,
+	0x6c, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x79,
+	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x64, 0x61, 0x79, 0x73, 0x12, 0x1a, 0x0a,
+	0x08, 0x63, 0x6c, 0x65, 0x61, 0x72, 0x41, 0x6c, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52,
+	0x08, 0x63, 0x6c, 0x65, 0x61, 0x72, 0x41, 0x6c, 0x6c, 0x22, 0x14, 0x0a, 0x12, 0x53, 0x75, 0x6d,
+	0x4c, 0x6f, 0x67, 0x73, 0x53, 0x69, 0x7a, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22,
+	0x2f, 0x0a, 0x0f, 0x53, 0x75, 0x6d, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x73, 0x69, 0x7a, 0x65, 0x42, 0x79, 0x74, 0x65, 0x73, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x73, 0x69, 0x7a, 0x65, 0x42, 0x79, 0x74, 0x65, 0x73,
+	0x32, 0xce, 0x03, 0x0a, 0x0a, 0x4c, 0x6f, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
+	0x38, 0x0a, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x12, 0x14, 0x2e, 0x70,
+	0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x15, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f,
+	0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x09, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x4c, 0x6f, 0x67, 0x73, 0x12, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e,
+	0x74, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62,
+	0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x35, 0x0a, 0x08, 0x6c, 0x69, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x73, 0x12, 0x13, 0x2e,
+	0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4c, 0x6f, 0x67, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x47, 0x0a, 0x14, 0x64, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x4c, 0x6f, 0x67, 0x50, 0x65, 0x72, 0x6d, 0x61, 0x6e, 0x65, 0x6e, 0x74, 0x6c, 0x79,
+	0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x50,
+	0x65, 0x72, 0x6d, 0x61, 0x6e, 0x65, 0x6e, 0x74, 0x6c, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73,
+	0x73, 0x12, 0x49, 0x0a, 0x15, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x73, 0x50,
+	0x65, 0x72, 0x6d, 0x61, 0x6e, 0x65, 0x6e, 0x74, 0x6c, 0x79, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4c, 0x6f, 0x67, 0x73, 0x50, 0x65, 0x72, 0x6d, 0x61, 0x6e,
+	0x65, 0x6e, 0x74, 0x6c, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70,
+	0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x47, 0x0a, 0x14,
+	0x63, 0x6c, 0x65, 0x61, 0x6e, 0x4c, 0x6f, 0x67, 0x73, 0x50, 0x65, 0x72, 0x6d, 0x61, 0x6e, 0x65,
+	0x6e, 0x74, 0x6c, 0x79, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6c, 0x65, 0x61, 0x6e, 0x4c,
+	0x6f, 0x67, 0x73, 0x50, 0x65, 0x72, 0x6d, 0x61, 0x6e, 0x65, 0x6e, 0x74, 0x6c, 0x79, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x3a, 0x0a, 0x0b, 0x73, 0x75, 0x6d, 0x4c, 0x6f, 0x67, 0x73,
+	0x53, 0x69, 0x7a, 0x65, 0x12, 0x16, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x75, 0x6d, 0x4c, 0x6f, 0x67,
+	0x73, 0x53, 0x69, 0x7a, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x13, 0x2e, 0x70,
+	0x62, 0x2e, 0x53, 0x75, 0x6d, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -390,29 +662,43 @@ func file_service_log_proto_rawDescGZIP() []byte {
 	return file_service_log_proto_rawDescData
 }
 
-var file_service_log_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_service_log_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_service_log_proto_goTypes = []interface{}{
-	(*CreateLogRequest)(nil),  // 0: pb.CreateLogRequest
-	(*CreateLogResponse)(nil), // 1: pb.CreateLogResponse
-	(*CountLogRequest)(nil),   // 2: pb.CountLogRequest
-	(*ListLogsRequest)(nil),   // 3: pb.ListLogsRequest
-	(*ListLogsResponse)(nil),  // 4: pb.ListLogsResponse
-	(*Log)(nil),               // 5: pb.Log
-	(*RPCCountResponse)(nil),  // 6: pb.RPCCountResponse
+	(*CreateLogRequest)(nil),             // 0: pb.CreateLogRequest
+	(*CreateLogResponse)(nil),            // 1: pb.CreateLogResponse
+	(*CountLogRequest)(nil),              // 2: pb.CountLogRequest
+	(*ListLogsRequest)(nil),              // 3: pb.ListLogsRequest
+	(*ListLogsResponse)(nil),             // 4: pb.ListLogsResponse
+	(*DeleteLogPermanentlyRequest)(nil),  // 5: pb.DeleteLogPermanentlyRequest
+	(*DeleteLogsPermanentlyRequest)(nil), // 6: pb.DeleteLogsPermanentlyRequest
+	(*CleanLogsPermanentlyRequest)(nil),  // 7: pb.CleanLogsPermanentlyRequest
+	(*SumLogsSizeRequest)(nil),           // 8: pb.SumLogsSizeRequest
+	(*SumLogsResponse)(nil),              // 9: pb.SumLogsResponse
+	(*Log)(nil),                          // 10: pb.Log
+	(*RPCCountResponse)(nil),             // 11: pb.RPCCountResponse
+	(*RPCSuccess)(nil),                   // 12: pb.RPCSuccess
 }
 var file_service_log_proto_depIdxs = []int32{
-	5, // 0: pb.ListLogsResponse.logs:type_name -> pb.Log
-	0, // 1: pb.LogService.createLog:input_type -> pb.CreateLogRequest
-	2, // 2: pb.LogService.countLogs:input_type -> pb.CountLogRequest
-	3, // 3: pb.LogService.listLogs:input_type -> pb.ListLogsRequest
-	1, // 4: pb.LogService.createLog:output_type -> pb.CreateLogResponse
-	6, // 5: pb.LogService.countLogs:output_type -> pb.RPCCountResponse
-	4, // 6: pb.LogService.listLogs:output_type -> pb.ListLogsResponse
-	4, // [4:7] is the sub-list for method output_type
-	1, // [1:4] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	10, // 0: pb.ListLogsResponse.logs:type_name -> pb.Log
+	0,  // 1: pb.LogService.createLog:input_type -> pb.CreateLogRequest
+	2,  // 2: pb.LogService.countLogs:input_type -> pb.CountLogRequest
+	3,  // 3: pb.LogService.listLogs:input_type -> pb.ListLogsRequest
+	5,  // 4: pb.LogService.deleteLogPermanently:input_type -> pb.DeleteLogPermanentlyRequest
+	6,  // 5: pb.LogService.deleteLogsPermanently:input_type -> pb.DeleteLogsPermanentlyRequest
+	7,  // 6: pb.LogService.cleanLogsPermanently:input_type -> pb.CleanLogsPermanentlyRequest
+	8,  // 7: pb.LogService.sumLogsSize:input_type -> pb.SumLogsSizeRequest
+	1,  // 8: pb.LogService.createLog:output_type -> pb.CreateLogResponse
+	11, // 9: pb.LogService.countLogs:output_type -> pb.RPCCountResponse
+	4,  // 10: pb.LogService.listLogs:output_type -> pb.ListLogsResponse
+	12, // 11: pb.LogService.deleteLogPermanently:output_type -> pb.RPCSuccess
+	12, // 12: pb.LogService.deleteLogsPermanently:output_type -> pb.RPCSuccess
+	12, // 13: pb.LogService.cleanLogsPermanently:output_type -> pb.RPCSuccess
+	9,  // 14: pb.LogService.sumLogsSize:output_type -> pb.SumLogsResponse
+	8,  // [8:15] is the sub-list for method output_type
+	1,  // [1:8] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_service_log_proto_init() }
@@ -483,6 +769,66 @@ func file_service_log_proto_init() {
 				return nil
 			}
 		}
+		file_service_log_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteLogPermanentlyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_log_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteLogsPermanentlyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_log_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CleanLogsPermanentlyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_log_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SumLogsSizeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_log_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SumLogsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -490,7 +836,7 @@ func file_service_log_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_log_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -522,6 +868,14 @@ type LogServiceClient interface {
 	CountLogs(ctx context.Context, in *CountLogRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 列出单页日志
 	ListLogs(ctx context.Context, in *ListLogsRequest, opts ...grpc.CallOption) (*ListLogsResponse, error)
+	// 删除单条
+	DeleteLogPermanently(ctx context.Context, in *DeleteLogPermanentlyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 批量删除
+	DeleteLogsPermanently(ctx context.Context, in *DeleteLogsPermanentlyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 清理
+	CleanLogsPermanently(ctx context.Context, in *CleanLogsPermanentlyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 计算日志容量大小
+	SumLogsSize(ctx context.Context, in *SumLogsSizeRequest, opts ...grpc.CallOption) (*SumLogsResponse, error)
 }
 
 type logServiceClient struct {
@@ -559,6 +913,42 @@ func (c *logServiceClient) ListLogs(ctx context.Context, in *ListLogsRequest, op
 	return out, nil
 }
 
+func (c *logServiceClient) DeleteLogPermanently(ctx context.Context, in *DeleteLogPermanentlyRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.LogService/deleteLogPermanently", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *logServiceClient) DeleteLogsPermanently(ctx context.Context, in *DeleteLogsPermanentlyRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.LogService/deleteLogsPermanently", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *logServiceClient) CleanLogsPermanently(ctx context.Context, in *CleanLogsPermanentlyRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.LogService/cleanLogsPermanently", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *logServiceClient) SumLogsSize(ctx context.Context, in *SumLogsSizeRequest, opts ...grpc.CallOption) (*SumLogsResponse, error) {
+	out := new(SumLogsResponse)
+	err := c.cc.Invoke(ctx, "/pb.LogService/sumLogsSize", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LogServiceServer is the server API for LogService service.
 type LogServiceServer interface {
 	// 创建日志
@@ -567,6 +957,14 @@ type LogServiceServer interface {
 	CountLogs(context.Context, *CountLogRequest) (*RPCCountResponse, error)
 	// 列出单页日志
 	ListLogs(context.Context, *ListLogsRequest) (*ListLogsResponse, error)
+	// 删除单条
+	DeleteLogPermanently(context.Context, *DeleteLogPermanentlyRequest) (*RPCSuccess, error)
+	// 批量删除
+	DeleteLogsPermanently(context.Context, *DeleteLogsPermanentlyRequest) (*RPCSuccess, error)
+	// 清理
+	CleanLogsPermanently(context.Context, *CleanLogsPermanentlyRequest) (*RPCSuccess, error)
+	// 计算日志容量大小
+	SumLogsSize(context.Context, *SumLogsSizeRequest) (*SumLogsResponse, error)
 }
 
 // UnimplementedLogServiceServer can be embedded to have forward compatible implementations.
@@ -581,6 +979,18 @@ func (*UnimplementedLogServiceServer) CountLogs(context.Context, *CountLogReques
 }
 func (*UnimplementedLogServiceServer) ListLogs(context.Context, *ListLogsRequest) (*ListLogsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLogs not implemented")
+}
+func (*UnimplementedLogServiceServer) DeleteLogPermanently(context.Context, *DeleteLogPermanentlyRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteLogPermanently not implemented")
+}
+func (*UnimplementedLogServiceServer) DeleteLogsPermanently(context.Context, *DeleteLogsPermanentlyRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteLogsPermanently not implemented")
+}
+func (*UnimplementedLogServiceServer) CleanLogsPermanently(context.Context, *CleanLogsPermanentlyRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CleanLogsPermanently not implemented")
+}
+func (*UnimplementedLogServiceServer) SumLogsSize(context.Context, *SumLogsSizeRequest) (*SumLogsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SumLogsSize not implemented")
 }
 
 func RegisterLogServiceServer(s *grpc.Server, srv LogServiceServer) {
@@ -641,6 +1051,78 @@ func _LogService_ListLogs_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LogService_DeleteLogPermanently_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteLogPermanentlyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LogServiceServer).DeleteLogPermanently(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.LogService/DeleteLogPermanently",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LogServiceServer).DeleteLogPermanently(ctx, req.(*DeleteLogPermanentlyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LogService_DeleteLogsPermanently_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteLogsPermanentlyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LogServiceServer).DeleteLogsPermanently(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.LogService/DeleteLogsPermanently",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LogServiceServer).DeleteLogsPermanently(ctx, req.(*DeleteLogsPermanentlyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LogService_CleanLogsPermanently_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CleanLogsPermanentlyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LogServiceServer).CleanLogsPermanently(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.LogService/CleanLogsPermanently",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LogServiceServer).CleanLogsPermanently(ctx, req.(*CleanLogsPermanentlyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LogService_SumLogsSize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SumLogsSizeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LogServiceServer).SumLogsSize(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.LogService/SumLogsSize",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LogServiceServer).SumLogsSize(ctx, req.(*SumLogsSizeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _LogService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.LogService",
 	HandlerType: (*LogServiceServer)(nil),
@@ -656,6 +1138,22 @@ var _LogService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "listLogs",
 			Handler:    _LogService_ListLogs_Handler,
+		},
+		{
+			MethodName: "deleteLogPermanently",
+			Handler:    _LogService_DeleteLogPermanently_Handler,
+		},
+		{
+			MethodName: "deleteLogsPermanently",
+			Handler:    _LogService_DeleteLogsPermanently_Handler,
+		},
+		{
+			MethodName: "cleanLogsPermanently",
+			Handler:    _LogService_CleanLogsPermanently_Handler,
+		},
+		{
+			MethodName: "sumLogsSize",
+			Handler:    _LogService_SumLogsSize_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

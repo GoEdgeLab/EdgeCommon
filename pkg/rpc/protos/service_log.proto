@@ -15,6 +15,18 @@ service LogService {
 
 	// 列出单页日志
 	rpc listLogs (ListLogsRequest) returns (ListLogsResponse);
+
+	// 删除单条
+	rpc deleteLogPermanently (DeleteLogPermanentlyRequest) returns (RPCSuccess);
+
+	// 批量删除
+	rpc deleteLogsPermanently (DeleteLogsPermanentlyRequest) returns (RPCSuccess);
+
+	// 清理
+	rpc cleanLogsPermanently (CleanLogsPermanentlyRequest) returns (RPCSuccess);
+
+	// 计算日志容量大小
+	rpc sumLogsSize (SumLogsSizeRequest) returns (SumLogsResponse);
 }
 
 // 创建日志
@@ -47,4 +59,29 @@ message ListLogsRequest {
 
 message ListLogsResponse {
 	repeated Log logs = 1;
+}
+
+// 删除单条
+message DeleteLogPermanentlyRequest {
+	int64 logId = 1;
+}
+
+// 批量删除
+message DeleteLogsPermanentlyRequest {
+	repeated int64 logIds = 1;
+}
+
+// 清理
+message CleanLogsPermanentlyRequest {
+	int32 days = 1;
+	bool clearAll = 2;
+}
+
+// 计算日志容量大小
+message SumLogsSizeRequest {
+
+}
+
+message SumLogsResponse {
+	int64 sizeBytes = 1;
 }
