@@ -36,6 +36,9 @@ service HTTPFirewallPolicyService {
 
 	// 获取防火墙的基本信息
 	rpc findEnabledFirewallPolicy (FindEnabledFirewallPolicyRequest) returns (FindEnabledFirewallPolicyResponse);
+
+	// 导入策略数据
+	rpc importHTTPFirewallPolicy (ImportHTTPFirewallPolicyRequest) returns (RPCSuccess);
 }
 
 // 获取所有可用策略
@@ -117,4 +120,10 @@ message FindEnabledFirewallPolicyRequest {
 
 message FindEnabledFirewallPolicyResponse {
 	HTTPFirewallPolicy firewallPolicy = 1;
+}
+
+// 导入策略数据
+message ImportHTTPFirewallPolicyRequest {
+	int64 firewallPolicyId = 1;
+	bytes firewallPolicyJSON = 2;
 }
