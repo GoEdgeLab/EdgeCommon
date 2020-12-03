@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// ACME认证相关信息
+service ACMEAuthenticationService {
+	// 获取Key
+	rpc findACMEAuthenticationKeyWithToken (FindACMEAuthenticationKeyWithTokenRequest) returns (FindACMEAuthenticationKeyWithTokenResponse);
+}
+
+// 获取Key
+message FindACMEAuthenticationKeyWithTokenRequest {
+	string token = 1;
+}
+
+message FindACMEAuthenticationKeyWithTokenResponse {
+	string key = 1;
+}

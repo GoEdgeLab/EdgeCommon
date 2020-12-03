@@ -71,6 +71,7 @@ message CreateACMETaskRequest {
 	string dnsDomain = 3;
 	repeated string domains = 4;
 	bool autoRenew = 5;
+	string authType = 6;
 }
 
 message CreateACMETaskResponse {
