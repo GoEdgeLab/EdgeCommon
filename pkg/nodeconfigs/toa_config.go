@@ -1,6 +1,9 @@
 package nodeconfigs
 
-import "github.com/iwind/TeaGo/rands"
+import (
+	"fmt"
+	"github.com/iwind/TeaGo/rands"
+)
 
 // 默认的TOA配置
 func DefaultTOAConfig() *TOAConfig {
@@ -47,6 +50,11 @@ func (this *TOAConfig) Init() error {
 	this.minLocalPort = int(minPort)
 	this.maxLocalPort = int(maxPort)
 
+	// QueueId
+	if this.MinQueueId > this.MaxQueueId {
+		this.MinQueueId, this.MaxQueueId = this.MaxQueueId, this.MinQueueId
+	}
+
 	return nil
 }
 
@@ -61,4 +69,19 @@ func (this *TOAConfig) SockFile() string {
 // 获取随机端口
 func (this *TOAConfig) RandLocalPort() uint16 {
 	return uint16(rands.Int(this.minLocalPort, this.maxLocalPort))
+}
+
+// 转换为参数的形式
+func (this *TOAConfig) AsArgs() (args []string) {
+	args = append(args, "run")
+	args = append(args, "-option-type="+fmt.Sprintf("%d", this.OptionType))
+	args = append(args, "-min-queue-id="+fmt.Sprintf("%d", this.MinQueueId))
+	args = append(args, "-max-queue-id="+fmt.Sprintf("%d", this.MaxQueueId))
+	if this.AutoSetup {
+		args = append(args, "-auto-setup")
+	}
+	if this.Debug {
+		args = append(args, "-debug")
+	}
+	return
 }
