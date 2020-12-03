@@ -154,6 +154,7 @@ message UpdateAdminRequest {
 	string fullname = 4;
 	bytes modulesJSON = 5;
 	bool isSuper = 6;
+	bool isOn = 7;
 }
 
 // 计算管理员数量
