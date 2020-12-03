@@ -38,6 +38,9 @@ service ServerService {
 	// 修改服务的反向代理设置
 	rpc updateServerReverseProxy (UpdateServerReverseProxyRequest) returns (RPCSuccess);
 
+	// 查找服务的域名设置
+	rpc findServerNames (FindServerNamesRequest) returns (FindServerNamesResponse);
+
 	// 修改服务的域名设置
 	rpc updateServerNames (UpdateServerNamesRequest) returns (RPCSuccess);
 
@@ -176,6 +179,16 @@ message UpdateServerReverseProxyRequest {
 	bytes reverseProxyJSON = 2;
 }
 
+// 查找服务的域名设置
+message FindServerNamesRequest {
+	int64 serverId = 1;
+}
+
+message FindServerNamesResponse {
+	bytes serverNamesJSON = 1;
+}
+
+// 修改服务的域名设置
 message UpdateServerNamesRequest {
 	int64 serverId = 1;
 	bytes config = 2;

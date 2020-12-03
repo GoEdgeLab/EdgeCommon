@@ -19,7 +19,7 @@ message Server {
 
 	// 配置相关
 	bytes config = 17;
-	bytes serverNamesJON = 8;
+	bytes serverNamesJSON = 8;
 	bytes httpJSON = 9;
 	bytes httpsJSON = 10;
 	bytes tcpJSON = 11;
