@@ -3,6 +3,7 @@ package nodeconfigs
 import (
 	"fmt"
 	"github.com/iwind/TeaGo/rands"
+	"net"
 )
 
 // 默认的TOA配置
@@ -68,7 +69,12 @@ func (this *TOAConfig) SockFile() string {
 
 // 获取随机端口
 func (this *TOAConfig) RandLocalPort() uint16 {
-	return uint16(rands.Int(this.minLocalPort, this.maxLocalPort))
+	listener, err := net.Listen("tcp", ":0")
+	if err != nil {
+		return uint16(rands.Int(this.minLocalPort, this.maxLocalPort))
+	}
+	_ = listener.Close()
+	return uint16(listener.Addr().(*net.TCPAddr).Port)
 }
 
 // 转换为参数的形式

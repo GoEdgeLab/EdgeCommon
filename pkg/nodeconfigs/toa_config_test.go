@@ -1,8 +1,10 @@
 package nodeconfigs
 
 import (
+	"net"
 	"runtime"
 	"testing"
+	"time"
 )
 
 func TestTOAConfig_RandLocalPort(t *testing.T) {
@@ -26,6 +28,19 @@ func TestTOAConfig_RandLocalPort(t *testing.T) {
 		t.Log(toa.RandLocalPort())
 	}
 }
+
+func TestTOAConfig_FreePort(t *testing.T) {
+	before := time.Now()
+	listener, err := net.Listen("tcp", ":0")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(listener.Addr())
+	_ = listener.Close()
+	t.Log(time.Since(before).Seconds()*1000, "ms")
+	time.Sleep(30 * time.Second)
+}
+
 
 func TestTOAConfig_AsArgs(t *testing.T) {
 	toa := &TOAConfig{
