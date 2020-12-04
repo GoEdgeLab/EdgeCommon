@@ -3,3 +3,96 @@ option go_package = "./pb";
 
 package pb;
 
+import "rpc_messages.proto";
+import "model_user.proto";
+
+// 用户相关服务
+service UserService {
+	// 创建用户
+	rpc createUser (CreateUserRequest) returns (CreateUserResponse);
+
+	// 修改用户
+	rpc updateUser (UpdateUserRequest) returns (RPCSuccess);
+
+	// 删除用户
+	rpc deleteUser (DeleteUserRequest) returns (RPCSuccess);
+
+	// 计算用户数量
+	rpc countAllEnabledUsers (CountAllEnabledUsersRequest) returns (RPCCountResponse);
+
+	// 列出单页用户
+	rpc listEnabledUsers (ListEnabledUsersRequest) returns (ListEnabledUsersResponse);
+
+	// 查询单个用户信息
+	rpc findEnabledUser (FindEnabledUserRequest) returns (FindEnabledUserResponse);
+
+	// 检查用户名是否存在
+	rpc checkUsername (CheckUsernameRequest) returns (CheckUsernameResponse);
+}
+
+// 创建用户
+message CreateUserRequest {
+	string username = 1;
+	string password = 2;
+	string fullname = 3;
+	string mobile = 4;
+	string tel = 5;
+	string email = 6;
+	string remark = 7;
+	string source = 8;
+}
+
+message CreateUserResponse {
+	int64 userId = 1;
+}
+
+// 修改用户
+message UpdateUserRequest {
+	int64 userId = 1;
+	string username = 2;
+	string password = 3;
+	string fullname = 4;
+	string mobile = 5;
+	string tel = 6;
+	string email = 7;
+	string remark = 8;
+	bool isOn = 9;
+}
+
+// 删除用户
+message DeleteUserRequest {
+	int64 userId = 1;
+}
+
+// 计算用户数量
+message CountAllEnabledUsersRequest {
+	string keyword = 1;
+}
+
+// 列出单页用户
+message ListEnabledUsersRequest {
+	string keyword = 1;
+}
+
+message ListEnabledUsersResponse {
+	repeated User users = 1;
+}
+
+// 查询单个用户信息
+message FindEnabledUserRequest {
+	int64 userId = 1;
+}
+
+message FindEnabledUserResponse {
+	User user = 1;
+}
+
+// 检查用户名是否存在
+message CheckUsernameRequest {
+	int64 userId = 1;
+	string username = 2;
+}
+
+message CheckUsernameResponse {
+	bool exists = 1;
+}
