@@ -9,4 +9,5 @@ message AdminModuleList {
 	int64 adminId = 1;
 	bool isSuper = 2;
 	repeated AdminModule Modules = 3;
+	string fullname = 4;
 }
