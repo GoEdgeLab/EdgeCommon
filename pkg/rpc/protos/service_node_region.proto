@@ -28,6 +28,9 @@ service NodeRegionService {
 
 	// 查找单个区域信息
 	rpc findEnabledNodeRegion (FindEnabledNodeRegionRequest) returns (FindEnabledNodeRegionResponse);
+
+	// 修改价格项价格
+	rpc updateNodeRegionPrice (UpdateNodeRegionPriceRequest) returns (RPCSuccess);
 }
 
 // 创建区域
@@ -81,4 +84,11 @@ message FindEnabledNodeRegionRequest {
 
 message FindEnabledNodeRegionResponse {
 	NodeRegion nodeRegion = 1;
+}
+
+// 修改价格项价格
+message UpdateNodeRegionPriceRequest {
+	int64 nodeRegionId = 1;
+	int64 nodeItemId = 2;
+	float price = 3;
 }

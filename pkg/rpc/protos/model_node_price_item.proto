@@ -3,9 +3,11 @@ option go_package = "./pb";
 
 package pb;
 
-message NodeRegion {
+message NodePriceItem {
 	int64 id = 1;
 	bool isOn = 2;
 	string name = 3;
-	bytes pricesJSON = 4;
+	string type = 4;
+	int64 bitsFrom = 5;
+	int64 bitsTo = 6;
 }

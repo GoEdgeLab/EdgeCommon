@@ -1,0 +1,81 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+import "model_node_price_item.proto";
+
+// 节点区域定价相关服务
+service NodePriceItemService {
+	// 创建区域价格
+	rpc createNodePriceItem (CreateNodePriceItemRequest) returns (CreateNodePriceItemResponse);
+
+	// 修改区域价格
+	rpc updateNodePriceItem (UpdateNodePriceItemRequest) returns (RPCSuccess);
+
+	// 删除区域价格
+	rpc deleteNodePriceItem (DeleteNodePriceItemRequest) returns (RPCSuccess);
+
+	// 查找所有区域价格
+	rpc findAllEnabledNodePriceItems (FindAllEnabledNodePriceItemsRequest) returns (FindAllEnabledNodePriceItemsResponse);
+
+	// 查找所有启用的区域价格
+	rpc findAllEnabledAndOnNodePriceItems (FindAllEnabledAndOnNodePriceItemsRequest) returns (FindAllEnabledAndOnNodePriceItemsResponse);
+
+	// 查找单个区域信息
+	rpc findEnabledNodePriceItem (FindEnabledNodePriceItemRequest) returns (FindEnabledNodePriceItemResponse);
+}
+
+// 创建区域价格
+message CreateNodePriceItemRequest {
+	string name = 1;
+	string type = 2;
+	int64 bitsFrom = 3;
+	int64 bitsTo = 4;
+}
+
+message CreateNodePriceItemResponse {
+	int64 NodePriceItemId = 1;
+}
+
+// 修改区域价格
+message UpdateNodePriceItemRequest {
+	int64 NodePriceItemId = 1;
+	string name = 2;
+	bool isOn = 3;
+	int64 bitsFrom = 4;
+	int64 bitsTo = 5;
+}
+
+// 删除区域价格
+message DeleteNodePriceItemRequest {
+	int64 NodePriceItemId = 1;
+}
+
+// 查找所有区域价格
+message FindAllEnabledNodePriceItemsRequest {
+	string type = 1;
+}
+
+message FindAllEnabledNodePriceItemsResponse {
+	repeated NodePriceItem NodePriceItems = 1;
+}
+
+// 查找所有启用的区域价格
+message FindAllEnabledAndOnNodePriceItemsRequest {
+	string type = 1;
+}
+
+message FindAllEnabledAndOnNodePriceItemsResponse {
+	repeated NodePriceItem NodePriceItems = 1;
+}
+
+// 查找单个区域价格信息
+message FindEnabledNodePriceItemRequest {
+	int64 NodePriceItemId = 1;
+}
+
+message FindEnabledNodePriceItemResponse {
+	NodePriceItem NodePriceItem = 1;
+}
