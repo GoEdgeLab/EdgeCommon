@@ -147,6 +147,7 @@ message ListEnabledNodesMatchRequest {
 	int32 activeState = 5;
 	string keyword = 6;
 	int64 groupId = 7;
+	int64 regionId = 8;
 }
 
 message ListEnabledNodesMatchResponse {
@@ -233,6 +234,7 @@ message CountAllEnabledNodesMatchRequest {
 	int32 activeState = 3;
 	string keyword = 4;
 	int64 groupId = 5;
+	int64 regionId = 6;
 }
 
 // 修改节点安装状态

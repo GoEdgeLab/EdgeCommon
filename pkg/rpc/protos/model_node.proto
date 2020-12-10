@@ -8,6 +8,7 @@ import "model_node_login.proto";
 import "model_node_install_status.proto";
 import "model_node_ip_address.proto";
 import "model_node_group.proto";
+import "model_node_region.proto";
 import "model_dns_route.proto";
 
 message Node {
@@ -32,4 +33,5 @@ message Node {
 	NodeInstallStatus installStatus = 34;
 	repeated NodeIPAddress ipAddresses = 35;
 	NodeGroup group = 36;
+	NodeRegion region = 37;
 }
