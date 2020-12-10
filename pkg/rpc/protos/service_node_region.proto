@@ -3,3 +3,82 @@ option go_package = "./pb";
 
 package pb;
 
+import "rpc_messages.proto";
+import "model_node_region.proto";
+
+// 节点区域相关服务
+service NodeRegionService {
+	// 创建区域
+	rpc createNodeRegion (CreateNodeRegionRequest) returns (CreateNodeRegionResponse);
+
+	// 修改区域
+	rpc updateNodeRegion (UpdateNodeRegionRequest) returns (RPCSuccess);
+
+	// 删除区域
+	rpc deleteNodeRegion (DeleteNodeRegionRequest) returns (RPCSuccess);
+
+	// 查找所有区域
+	rpc findAllEnabledNodeRegions (FindAllEnabledNodeRegionsRequest) returns (FindAllEnabledNodeRegionsResponse);
+
+	// 查找所有启用的区域
+	rpc findAllEnabledAndOnNodeRegions (FindAllEnabledAndOnNodeRegionsRequest) returns (FindAllEnabledAndOnNodeRegionsResponse);
+
+	// 排序
+	rpc updateNodeRegionOrders (UpdateNodeRegionOrdersRequest) returns (RPCSuccess);
+
+	// 查找单个区域信息
+	rpc findEnabledNodeRegion (FindEnabledNodeRegionRequest) returns (FindEnabledNodeRegionResponse);
+}
+
+// 创建区域
+message CreateNodeRegionRequest {
+	string name = 1;
+}
+
+message CreateNodeRegionResponse {
+	int64 nodeRegionId = 1;
+}
+
+// 修改区域
+message UpdateNodeRegionRequest {
+	int64 nodeRegionId = 1;
+	string name = 2;
+	bool isOn = 3;
+}
+
+// 删除区域
+message DeleteNodeRegionRequest {
+	int64 nodeRegionId = 1;
+}
+
+// 查找所有区域
+message FindAllEnabledNodeRegionsRequest {
+
+}
+
+message FindAllEnabledNodeRegionsResponse {
+	repeated NodeRegion nodeRegions = 1;
+}
+
+// 查找所有启用的区域
+message FindAllEnabledAndOnNodeRegionsRequest {
+
+}
+
+message FindAllEnabledAndOnNodeRegionsResponse {
+	repeated NodeRegion nodeRegions = 1;
+}
+
+// 排序
+message UpdateNodeRegionOrdersRequest {
+	repeated int64 nodeRegionIds = 1;
+}
+
+// 查找单个区域信息
+message FindEnabledNodeRegionRequest {
+	int64 nodeRegionId = 1;
+}
+
+message FindEnabledNodeRegionResponse {
+	NodeRegion nodeRegion = 1;
+}

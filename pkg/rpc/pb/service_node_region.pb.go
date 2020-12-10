@@ -7,10 +7,15 @@
 package pb
 
 import (
+	context "context"
 	proto "github.com/golang/protobuf/proto"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 )
 
 const (
@@ -24,21 +29,677 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+// 创建区域
+type CreateNodeRegionRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *CreateNodeRegionRequest) Reset() {
+	*x = CreateNodeRegionRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_region_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateNodeRegionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateNodeRegionRequest) ProtoMessage() {}
+
+func (x *CreateNodeRegionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_region_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateNodeRegionRequest.ProtoReflect.Descriptor instead.
+func (*CreateNodeRegionRequest) Descriptor() ([]byte, []int) {
+	return file_service_node_region_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *CreateNodeRegionRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type CreateNodeRegionResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NodeRegionId int64 `protobuf:"varint,1,opt,name=nodeRegionId,proto3" json:"nodeRegionId,omitempty"`
+}
+
+func (x *CreateNodeRegionResponse) Reset() {
+	*x = CreateNodeRegionResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_region_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateNodeRegionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateNodeRegionResponse) ProtoMessage() {}
+
+func (x *CreateNodeRegionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_region_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateNodeRegionResponse.ProtoReflect.Descriptor instead.
+func (*CreateNodeRegionResponse) Descriptor() ([]byte, []int) {
+	return file_service_node_region_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *CreateNodeRegionResponse) GetNodeRegionId() int64 {
+	if x != nil {
+		return x.NodeRegionId
+	}
+	return 0
+}
+
+// 修改区域
+type UpdateNodeRegionRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NodeRegionId int64  `protobuf:"varint,1,opt,name=nodeRegionId,proto3" json:"nodeRegionId,omitempty"`
+	Name         string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	IsOn         bool   `protobuf:"varint,3,opt,name=isOn,proto3" json:"isOn,omitempty"`
+}
+
+func (x *UpdateNodeRegionRequest) Reset() {
+	*x = UpdateNodeRegionRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_region_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateNodeRegionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateNodeRegionRequest) ProtoMessage() {}
+
+func (x *UpdateNodeRegionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_region_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateNodeRegionRequest.ProtoReflect.Descriptor instead.
+func (*UpdateNodeRegionRequest) Descriptor() ([]byte, []int) {
+	return file_service_node_region_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *UpdateNodeRegionRequest) GetNodeRegionId() int64 {
+	if x != nil {
+		return x.NodeRegionId
+	}
+	return 0
+}
+
+func (x *UpdateNodeRegionRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateNodeRegionRequest) GetIsOn() bool {
+	if x != nil {
+		return x.IsOn
+	}
+	return false
+}
+
+// 删除区域
+type DeleteNodeRegionRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NodeRegionId int64 `protobuf:"varint,1,opt,name=nodeRegionId,proto3" json:"nodeRegionId,omitempty"`
+}
+
+func (x *DeleteNodeRegionRequest) Reset() {
+	*x = DeleteNodeRegionRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_region_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteNodeRegionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteNodeRegionRequest) ProtoMessage() {}
+
+func (x *DeleteNodeRegionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_region_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteNodeRegionRequest.ProtoReflect.Descriptor instead.
+func (*DeleteNodeRegionRequest) Descriptor() ([]byte, []int) {
+	return file_service_node_region_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *DeleteNodeRegionRequest) GetNodeRegionId() int64 {
+	if x != nil {
+		return x.NodeRegionId
+	}
+	return 0
+}
+
+// 查找所有区域
+type FindAllEnabledNodeRegionsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *FindAllEnabledNodeRegionsRequest) Reset() {
+	*x = FindAllEnabledNodeRegionsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_region_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllEnabledNodeRegionsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllEnabledNodeRegionsRequest) ProtoMessage() {}
+
+func (x *FindAllEnabledNodeRegionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_region_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllEnabledNodeRegionsRequest.ProtoReflect.Descriptor instead.
+func (*FindAllEnabledNodeRegionsRequest) Descriptor() ([]byte, []int) {
+	return file_service_node_region_proto_rawDescGZIP(), []int{4}
+}
+
+type FindAllEnabledNodeRegionsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NodeRegions []*NodeRegion `protobuf:"bytes,1,rep,name=nodeRegions,proto3" json:"nodeRegions,omitempty"`
+}
+
+func (x *FindAllEnabledNodeRegionsResponse) Reset() {
+	*x = FindAllEnabledNodeRegionsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_region_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllEnabledNodeRegionsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllEnabledNodeRegionsResponse) ProtoMessage() {}
+
+func (x *FindAllEnabledNodeRegionsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_region_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllEnabledNodeRegionsResponse.ProtoReflect.Descriptor instead.
+func (*FindAllEnabledNodeRegionsResponse) Descriptor() ([]byte, []int) {
+	return file_service_node_region_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *FindAllEnabledNodeRegionsResponse) GetNodeRegions() []*NodeRegion {
+	if x != nil {
+		return x.NodeRegions
+	}
+	return nil
+}
+
+// 查找所有启用的区域
+type FindAllEnabledAndOnNodeRegionsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *FindAllEnabledAndOnNodeRegionsRequest) Reset() {
+	*x = FindAllEnabledAndOnNodeRegionsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_region_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllEnabledAndOnNodeRegionsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllEnabledAndOnNodeRegionsRequest) ProtoMessage() {}
+
+func (x *FindAllEnabledAndOnNodeRegionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_region_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllEnabledAndOnNodeRegionsRequest.ProtoReflect.Descriptor instead.
+func (*FindAllEnabledAndOnNodeRegionsRequest) Descriptor() ([]byte, []int) {
+	return file_service_node_region_proto_rawDescGZIP(), []int{6}
+}
+
+type FindAllEnabledAndOnNodeRegionsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NodeRegions []*NodeRegion `protobuf:"bytes,1,rep,name=nodeRegions,proto3" json:"nodeRegions,omitempty"`
+}
+
+func (x *FindAllEnabledAndOnNodeRegionsResponse) Reset() {
+	*x = FindAllEnabledAndOnNodeRegionsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_region_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllEnabledAndOnNodeRegionsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllEnabledAndOnNodeRegionsResponse) ProtoMessage() {}
+
+func (x *FindAllEnabledAndOnNodeRegionsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_region_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllEnabledAndOnNodeRegionsResponse.ProtoReflect.Descriptor instead.
+func (*FindAllEnabledAndOnNodeRegionsResponse) Descriptor() ([]byte, []int) {
+	return file_service_node_region_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *FindAllEnabledAndOnNodeRegionsResponse) GetNodeRegions() []*NodeRegion {
+	if x != nil {
+		return x.NodeRegions
+	}
+	return nil
+}
+
+// 排序
+type UpdateNodeRegionOrdersRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NodeRegionIds []int64 `protobuf:"varint,1,rep,packed,name=nodeRegionIds,proto3" json:"nodeRegionIds,omitempty"`
+}
+
+func (x *UpdateNodeRegionOrdersRequest) Reset() {
+	*x = UpdateNodeRegionOrdersRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_region_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateNodeRegionOrdersRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateNodeRegionOrdersRequest) ProtoMessage() {}
+
+func (x *UpdateNodeRegionOrdersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_region_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateNodeRegionOrdersRequest.ProtoReflect.Descriptor instead.
+func (*UpdateNodeRegionOrdersRequest) Descriptor() ([]byte, []int) {
+	return file_service_node_region_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *UpdateNodeRegionOrdersRequest) GetNodeRegionIds() []int64 {
+	if x != nil {
+		return x.NodeRegionIds
+	}
+	return nil
+}
+
+// 查找单个区域信息
+type FindEnabledNodeRegionRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NodeRegionId int64 `protobuf:"varint,1,opt,name=nodeRegionId,proto3" json:"nodeRegionId,omitempty"`
+}
+
+func (x *FindEnabledNodeRegionRequest) Reset() {
+	*x = FindEnabledNodeRegionRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_region_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledNodeRegionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledNodeRegionRequest) ProtoMessage() {}
+
+func (x *FindEnabledNodeRegionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_region_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledNodeRegionRequest.ProtoReflect.Descriptor instead.
+func (*FindEnabledNodeRegionRequest) Descriptor() ([]byte, []int) {
+	return file_service_node_region_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *FindEnabledNodeRegionRequest) GetNodeRegionId() int64 {
+	if x != nil {
+		return x.NodeRegionId
+	}
+	return 0
+}
+
+type FindEnabledNodeRegionResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NodeRegion *NodeRegion `protobuf:"bytes,1,opt,name=nodeRegion,proto3" json:"nodeRegion,omitempty"`
+}
+
+func (x *FindEnabledNodeRegionResponse) Reset() {
+	*x = FindEnabledNodeRegionResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_region_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledNodeRegionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledNodeRegionResponse) ProtoMessage() {}
+
+func (x *FindEnabledNodeRegionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_region_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledNodeRegionResponse.ProtoReflect.Descriptor instead.
+func (*FindEnabledNodeRegionResponse) Descriptor() ([]byte, []int) {
+	return file_service_node_region_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *FindEnabledNodeRegionResponse) GetNodeRegion() *NodeRegion {
+	if x != nil {
+		return x.NodeRegion
+	}
+	return nil
+}
+
 var File_service_node_region_proto protoreflect.FileDescriptor
 
 var file_service_node_region_proto_rawDesc = []byte{
 	0x0a, 0x19, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x6e, 0x6f, 0x64, 0x65, 0x5f, 0x72,
-	0x65, 0x67, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x42,
-	0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x67, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x1a,
+	0x12, 0x72, 0x70, 0x63, 0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x1a, 0x17, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x6e, 0x6f, 0x64, 0x65, 0x5f,
+	0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2d, 0x0a, 0x17,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x3e, 0x0a, 0x18, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x22, 0x0a, 0x0c, 0x6e, 0x6f, 0x64, 0x65, 0x52,
+	0x65, 0x67, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0c, 0x6e,
+	0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x22, 0x65, 0x0a, 0x17, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x22, 0x0a, 0x0c, 0x6e, 0x6f, 0x64, 0x65, 0x52, 0x65,
+	0x67, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0c, 0x6e, 0x6f,
+	0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x12,
+	0x0a, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73,
+	0x4f, 0x6e, 0x22, 0x3d, 0x0a, 0x17, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65,
+	0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x22, 0x0a,
+	0x0c, 0x6e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x0c, 0x6e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x49,
+	0x64, 0x22, 0x22, 0x0a, 0x20, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x55, 0x0a, 0x21, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f,
+	0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30, 0x0a, 0x0b, 0x6e, 0x6f,
+	0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52,
+	0x0b, 0x6e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0x27, 0x0a, 0x25,
+	0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x41, 0x6e,
+	0x64, 0x4f, 0x6e, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x5a, 0x0a, 0x26, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x41, 0x6e, 0x64, 0x4f, 0x6e, 0x4e, 0x6f, 0x64, 0x65,
+	0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x30, 0x0a, 0x0b, 0x6e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65,
+	0x67, 0x69, 0x6f, 0x6e, 0x52, 0x0b, 0x6e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e,
+	0x73, 0x22, 0x45, 0x0a, 0x1d, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x52,
+	0x65, 0x67, 0x69, 0x6f, 0x6e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x6e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e,
+	0x49, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x03, 0x52, 0x0d, 0x6e, 0x6f, 0x64, 0x65, 0x52,
+	0x65, 0x67, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x73, 0x22, 0x42, 0x0a, 0x1c, 0x46, 0x69, 0x6e, 0x64,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x22, 0x0a, 0x0c, 0x6e, 0x6f, 0x64, 0x65,
+	0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0c,
+	0x6e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x22, 0x4f, 0x0a, 0x1d,
+	0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x52,
+	0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a,
+	0x0a, 0x6e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f,
+	0x6e, 0x52, 0x0a, 0x6e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x32, 0xf2, 0x04,
+	0x0a, 0x11, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x12, 0x4d, 0x0a, 0x10, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64,
+	0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x12, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x3f, 0x0a, 0x10, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65,
+	0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x12, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x12, 0x3f, 0x0a, 0x10, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x6f, 0x64,
+	0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x12, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c,
+	0x65, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x12, 0x68, 0x0a, 0x19, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45,
+	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e,
+	0x73, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e,
+	0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e,
+	0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x52,
+	0x65, 0x67, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x77,
+	0x0a, 0x1e, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x41, 0x6e, 0x64, 0x4f, 0x6e, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x73,
+	0x12, 0x29, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61,
+	0x62, 0x6c, 0x65, 0x64, 0x41, 0x6e, 0x64, 0x4f, 0x6e, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67,
+	0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x70, 0x62,
+	0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x41,
+	0x6e, 0x64, 0x4f, 0x6e, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4b, 0x0a, 0x16, 0x75, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x4f, 0x72, 0x64, 0x65, 0x72,
+	0x73, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64,
+	0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x12, 0x5c, 0x0a, 0x15, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x12, 0x20, 0x2e,
+	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f,
+	0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x21, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
-var file_service_node_region_proto_goTypes = []interface{}{}
+var (
+	file_service_node_region_proto_rawDescOnce sync.Once
+	file_service_node_region_proto_rawDescData = file_service_node_region_proto_rawDesc
+)
+
+func file_service_node_region_proto_rawDescGZIP() []byte {
+	file_service_node_region_proto_rawDescOnce.Do(func() {
+		file_service_node_region_proto_rawDescData = protoimpl.X.CompressGZIP(file_service_node_region_proto_rawDescData)
+	})
+	return file_service_node_region_proto_rawDescData
+}
+
+var file_service_node_region_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_service_node_region_proto_goTypes = []interface{}{
+	(*CreateNodeRegionRequest)(nil),                // 0: pb.CreateNodeRegionRequest
+	(*CreateNodeRegionResponse)(nil),               // 1: pb.CreateNodeRegionResponse
+	(*UpdateNodeRegionRequest)(nil),                // 2: pb.UpdateNodeRegionRequest
+	(*DeleteNodeRegionRequest)(nil),                // 3: pb.DeleteNodeRegionRequest
+	(*FindAllEnabledNodeRegionsRequest)(nil),       // 4: pb.FindAllEnabledNodeRegionsRequest
+	(*FindAllEnabledNodeRegionsResponse)(nil),      // 5: pb.FindAllEnabledNodeRegionsResponse
+	(*FindAllEnabledAndOnNodeRegionsRequest)(nil),  // 6: pb.FindAllEnabledAndOnNodeRegionsRequest
+	(*FindAllEnabledAndOnNodeRegionsResponse)(nil), // 7: pb.FindAllEnabledAndOnNodeRegionsResponse
+	(*UpdateNodeRegionOrdersRequest)(nil),          // 8: pb.UpdateNodeRegionOrdersRequest
+	(*FindEnabledNodeRegionRequest)(nil),           // 9: pb.FindEnabledNodeRegionRequest
+	(*FindEnabledNodeRegionResponse)(nil),          // 10: pb.FindEnabledNodeRegionResponse
+	(*NodeRegion)(nil),                             // 11: pb.NodeRegion
+	(*RPCSuccess)(nil),                             // 12: pb.RPCSuccess
+}
 var file_service_node_region_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	11, // 0: pb.FindAllEnabledNodeRegionsResponse.nodeRegions:type_name -> pb.NodeRegion
+	11, // 1: pb.FindAllEnabledAndOnNodeRegionsResponse.nodeRegions:type_name -> pb.NodeRegion
+	11, // 2: pb.FindEnabledNodeRegionResponse.nodeRegion:type_name -> pb.NodeRegion
+	0,  // 3: pb.NodeRegionService.createNodeRegion:input_type -> pb.CreateNodeRegionRequest
+	2,  // 4: pb.NodeRegionService.updateNodeRegion:input_type -> pb.UpdateNodeRegionRequest
+	3,  // 5: pb.NodeRegionService.deleteNodeRegion:input_type -> pb.DeleteNodeRegionRequest
+	4,  // 6: pb.NodeRegionService.findAllEnabledNodeRegions:input_type -> pb.FindAllEnabledNodeRegionsRequest
+	6,  // 7: pb.NodeRegionService.findAllEnabledAndOnNodeRegions:input_type -> pb.FindAllEnabledAndOnNodeRegionsRequest
+	8,  // 8: pb.NodeRegionService.updateNodeRegionOrders:input_type -> pb.UpdateNodeRegionOrdersRequest
+	9,  // 9: pb.NodeRegionService.findEnabledNodeRegion:input_type -> pb.FindEnabledNodeRegionRequest
+	1,  // 10: pb.NodeRegionService.createNodeRegion:output_type -> pb.CreateNodeRegionResponse
+	12, // 11: pb.NodeRegionService.updateNodeRegion:output_type -> pb.RPCSuccess
+	12, // 12: pb.NodeRegionService.deleteNodeRegion:output_type -> pb.RPCSuccess
+	5,  // 13: pb.NodeRegionService.findAllEnabledNodeRegions:output_type -> pb.FindAllEnabledNodeRegionsResponse
+	7,  // 14: pb.NodeRegionService.findAllEnabledAndOnNodeRegions:output_type -> pb.FindAllEnabledAndOnNodeRegionsResponse
+	12, // 15: pb.NodeRegionService.updateNodeRegionOrders:output_type -> pb.RPCSuccess
+	10, // 16: pb.NodeRegionService.findEnabledNodeRegion:output_type -> pb.FindEnabledNodeRegionResponse
+	10, // [10:17] is the sub-list for method output_type
+	3,  // [3:10] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_service_node_region_proto_init() }
@@ -46,21 +707,468 @@ func file_service_node_region_proto_init() {
 	if File_service_node_region_proto != nil {
 		return
 	}
+	file_rpc_messages_proto_init()
+	file_model_node_region_proto_init()
+	if !protoimpl.UnsafeEnabled {
+		file_service_node_region_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateNodeRegionRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_region_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateNodeRegionResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_region_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateNodeRegionRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_region_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteNodeRegionRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_region_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllEnabledNodeRegionsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_region_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllEnabledNodeRegionsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_region_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllEnabledAndOnNodeRegionsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_region_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllEnabledAndOnNodeRegionsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_region_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateNodeRegionOrdersRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_region_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledNodeRegionRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_region_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledNodeRegionResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_node_region_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   11,
 			NumExtensions: 0,
-			NumServices:   0,
+			NumServices:   1,
 		},
 		GoTypes:           file_service_node_region_proto_goTypes,
 		DependencyIndexes: file_service_node_region_proto_depIdxs,
+		MessageInfos:      file_service_node_region_proto_msgTypes,
 	}.Build()
 	File_service_node_region_proto = out.File
 	file_service_node_region_proto_rawDesc = nil
 	file_service_node_region_proto_goTypes = nil
 	file_service_node_region_proto_depIdxs = nil
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConnInterface
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion6
+
+// NodeRegionServiceClient is the client API for NodeRegionService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type NodeRegionServiceClient interface {
+	// 创建区域
+	CreateNodeRegion(ctx context.Context, in *CreateNodeRegionRequest, opts ...grpc.CallOption) (*CreateNodeRegionResponse, error)
+	// 修改区域
+	UpdateNodeRegion(ctx context.Context, in *UpdateNodeRegionRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 删除区域
+	DeleteNodeRegion(ctx context.Context, in *DeleteNodeRegionRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 查找所有区域
+	FindAllEnabledNodeRegions(ctx context.Context, in *FindAllEnabledNodeRegionsRequest, opts ...grpc.CallOption) (*FindAllEnabledNodeRegionsResponse, error)
+	// 查找所有启用的区域
+	FindAllEnabledAndOnNodeRegions(ctx context.Context, in *FindAllEnabledAndOnNodeRegionsRequest, opts ...grpc.CallOption) (*FindAllEnabledAndOnNodeRegionsResponse, error)
+	// 排序
+	UpdateNodeRegionOrders(ctx context.Context, in *UpdateNodeRegionOrdersRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 查找单个区域信息
+	FindEnabledNodeRegion(ctx context.Context, in *FindEnabledNodeRegionRequest, opts ...grpc.CallOption) (*FindEnabledNodeRegionResponse, error)
+}
+
+type nodeRegionServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewNodeRegionServiceClient(cc grpc.ClientConnInterface) NodeRegionServiceClient {
+	return &nodeRegionServiceClient{cc}
+}
+
+func (c *nodeRegionServiceClient) CreateNodeRegion(ctx context.Context, in *CreateNodeRegionRequest, opts ...grpc.CallOption) (*CreateNodeRegionResponse, error) {
+	out := new(CreateNodeRegionResponse)
+	err := c.cc.Invoke(ctx, "/pb.NodeRegionService/createNodeRegion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeRegionServiceClient) UpdateNodeRegion(ctx context.Context, in *UpdateNodeRegionRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.NodeRegionService/updateNodeRegion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeRegionServiceClient) DeleteNodeRegion(ctx context.Context, in *DeleteNodeRegionRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.NodeRegionService/deleteNodeRegion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeRegionServiceClient) FindAllEnabledNodeRegions(ctx context.Context, in *FindAllEnabledNodeRegionsRequest, opts ...grpc.CallOption) (*FindAllEnabledNodeRegionsResponse, error) {
+	out := new(FindAllEnabledNodeRegionsResponse)
+	err := c.cc.Invoke(ctx, "/pb.NodeRegionService/findAllEnabledNodeRegions", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeRegionServiceClient) FindAllEnabledAndOnNodeRegions(ctx context.Context, in *FindAllEnabledAndOnNodeRegionsRequest, opts ...grpc.CallOption) (*FindAllEnabledAndOnNodeRegionsResponse, error) {
+	out := new(FindAllEnabledAndOnNodeRegionsResponse)
+	err := c.cc.Invoke(ctx, "/pb.NodeRegionService/findAllEnabledAndOnNodeRegions", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeRegionServiceClient) UpdateNodeRegionOrders(ctx context.Context, in *UpdateNodeRegionOrdersRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.NodeRegionService/updateNodeRegionOrders", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeRegionServiceClient) FindEnabledNodeRegion(ctx context.Context, in *FindEnabledNodeRegionRequest, opts ...grpc.CallOption) (*FindEnabledNodeRegionResponse, error) {
+	out := new(FindEnabledNodeRegionResponse)
+	err := c.cc.Invoke(ctx, "/pb.NodeRegionService/findEnabledNodeRegion", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// NodeRegionServiceServer is the server API for NodeRegionService service.
+type NodeRegionServiceServer interface {
+	// 创建区域
+	CreateNodeRegion(context.Context, *CreateNodeRegionRequest) (*CreateNodeRegionResponse, error)
+	// 修改区域
+	UpdateNodeRegion(context.Context, *UpdateNodeRegionRequest) (*RPCSuccess, error)
+	// 删除区域
+	DeleteNodeRegion(context.Context, *DeleteNodeRegionRequest) (*RPCSuccess, error)
+	// 查找所有区域
+	FindAllEnabledNodeRegions(context.Context, *FindAllEnabledNodeRegionsRequest) (*FindAllEnabledNodeRegionsResponse, error)
+	// 查找所有启用的区域
+	FindAllEnabledAndOnNodeRegions(context.Context, *FindAllEnabledAndOnNodeRegionsRequest) (*FindAllEnabledAndOnNodeRegionsResponse, error)
+	// 排序
+	UpdateNodeRegionOrders(context.Context, *UpdateNodeRegionOrdersRequest) (*RPCSuccess, error)
+	// 查找单个区域信息
+	FindEnabledNodeRegion(context.Context, *FindEnabledNodeRegionRequest) (*FindEnabledNodeRegionResponse, error)
+}
+
+// UnimplementedNodeRegionServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedNodeRegionServiceServer struct {
+}
+
+func (*UnimplementedNodeRegionServiceServer) CreateNodeRegion(context.Context, *CreateNodeRegionRequest) (*CreateNodeRegionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateNodeRegion not implemented")
+}
+func (*UnimplementedNodeRegionServiceServer) UpdateNodeRegion(context.Context, *UpdateNodeRegionRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateNodeRegion not implemented")
+}
+func (*UnimplementedNodeRegionServiceServer) DeleteNodeRegion(context.Context, *DeleteNodeRegionRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteNodeRegion not implemented")
+}
+func (*UnimplementedNodeRegionServiceServer) FindAllEnabledNodeRegions(context.Context, *FindAllEnabledNodeRegionsRequest) (*FindAllEnabledNodeRegionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllEnabledNodeRegions not implemented")
+}
+func (*UnimplementedNodeRegionServiceServer) FindAllEnabledAndOnNodeRegions(context.Context, *FindAllEnabledAndOnNodeRegionsRequest) (*FindAllEnabledAndOnNodeRegionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllEnabledAndOnNodeRegions not implemented")
+}
+func (*UnimplementedNodeRegionServiceServer) UpdateNodeRegionOrders(context.Context, *UpdateNodeRegionOrdersRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateNodeRegionOrders not implemented")
+}
+func (*UnimplementedNodeRegionServiceServer) FindEnabledNodeRegion(context.Context, *FindEnabledNodeRegionRequest) (*FindEnabledNodeRegionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledNodeRegion not implemented")
+}
+
+func RegisterNodeRegionServiceServer(s *grpc.Server, srv NodeRegionServiceServer) {
+	s.RegisterService(&_NodeRegionService_serviceDesc, srv)
+}
+
+func _NodeRegionService_CreateNodeRegion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateNodeRegionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeRegionServiceServer).CreateNodeRegion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NodeRegionService/CreateNodeRegion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeRegionServiceServer).CreateNodeRegion(ctx, req.(*CreateNodeRegionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeRegionService_UpdateNodeRegion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateNodeRegionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeRegionServiceServer).UpdateNodeRegion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NodeRegionService/UpdateNodeRegion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeRegionServiceServer).UpdateNodeRegion(ctx, req.(*UpdateNodeRegionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeRegionService_DeleteNodeRegion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteNodeRegionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeRegionServiceServer).DeleteNodeRegion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NodeRegionService/DeleteNodeRegion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeRegionServiceServer).DeleteNodeRegion(ctx, req.(*DeleteNodeRegionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeRegionService_FindAllEnabledNodeRegions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllEnabledNodeRegionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeRegionServiceServer).FindAllEnabledNodeRegions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NodeRegionService/FindAllEnabledNodeRegions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeRegionServiceServer).FindAllEnabledNodeRegions(ctx, req.(*FindAllEnabledNodeRegionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeRegionService_FindAllEnabledAndOnNodeRegions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllEnabledAndOnNodeRegionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeRegionServiceServer).FindAllEnabledAndOnNodeRegions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NodeRegionService/FindAllEnabledAndOnNodeRegions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeRegionServiceServer).FindAllEnabledAndOnNodeRegions(ctx, req.(*FindAllEnabledAndOnNodeRegionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeRegionService_UpdateNodeRegionOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateNodeRegionOrdersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeRegionServiceServer).UpdateNodeRegionOrders(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NodeRegionService/UpdateNodeRegionOrders",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeRegionServiceServer).UpdateNodeRegionOrders(ctx, req.(*UpdateNodeRegionOrdersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeRegionService_FindEnabledNodeRegion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledNodeRegionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeRegionServiceServer).FindEnabledNodeRegion(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NodeRegionService/FindEnabledNodeRegion",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeRegionServiceServer).FindEnabledNodeRegion(ctx, req.(*FindEnabledNodeRegionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _NodeRegionService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "pb.NodeRegionService",
+	HandlerType: (*NodeRegionServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "createNodeRegion",
+			Handler:    _NodeRegionService_CreateNodeRegion_Handler,
+		},
+		{
+			MethodName: "updateNodeRegion",
+			Handler:    _NodeRegionService_UpdateNodeRegion_Handler,
+		},
+		{
+			MethodName: "deleteNodeRegion",
+			Handler:    _NodeRegionService_DeleteNodeRegion_Handler,
+		},
+		{
+			MethodName: "findAllEnabledNodeRegions",
+			Handler:    _NodeRegionService_FindAllEnabledNodeRegions_Handler,
+		},
+		{
+			MethodName: "findAllEnabledAndOnNodeRegions",
+			Handler:    _NodeRegionService_FindAllEnabledAndOnNodeRegions_Handler,
+		},
+		{
+			MethodName: "updateNodeRegionOrders",
+			Handler:    _NodeRegionService_UpdateNodeRegionOrders_Handler,
+		},
+		{
+			MethodName: "findEnabledNodeRegion",
+			Handler:    _NodeRegionService_FindEnabledNodeRegion_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "service_node_region.proto",
 }

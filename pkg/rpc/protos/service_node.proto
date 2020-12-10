@@ -92,7 +92,7 @@ service NodeService {
 	rpc updateNodeLogin (UpdateNodeLoginRequest) returns (RPCSuccess);
 
 	// 计算某个节点分组内的节点数量
-	rpc countAllEnabledNodesWithGroupId (CountAllEnabledNodesWithGroupIdRequest) returns (RPCCountResponse);
+	rpc countAllEnabledNodesWithNodeGroupId (CountAllEnabledNodesWithNodeGroupIdRequest) returns (RPCCountResponse);
 
 	// 取得某个集群下的所有节点DNS信息
 	rpc findAllEnabledNodesDNSWithClusterId (FindAllEnabledNodesDNSWithClusterIdRequest) returns (FindAllEnabledNodesDNSWithClusterIdResponse);
@@ -102,6 +102,9 @@ service NodeService {
 
 	// 修改节点的DNS解析信息
 	rpc updateNodeDNS (UpdateNodeDNSRequest) returns (RPCSuccess);
+
+	// 计算某个区域下的节点数量
+	rpc countAllEnabledNodesWithNodeRegionId (CountAllEnabledNodesWithNodeRegionIdRequest) returns (RPCCountResponse);
 }
 
 // 创建节点
@@ -112,6 +115,7 @@ message CreateNodeRequest {
 	int64 groupId = 4;
 	int64 dnsDomainId = 5;
 	repeated string dnsRoutes = 6;
+	int64 regionId = 7;
 }
 
 message CreateNodeResponse {
@@ -174,6 +178,7 @@ message UpdateNodeRequest {
 	int64 groupId = 7;
 	int64 dnsDomainId = 8;
 	repeated string dnsRoutes = 9;
+	int64 regionId = 10;
 }
 
 // 查找节点
@@ -339,8 +344,8 @@ message UpdateNodeLoginRequest {
 }
 
 // 计算某个节点分组内的节点数量
-message CountAllEnabledNodesWithGroupIdRequest {
-	int64 groupId = 1;
+message CountAllEnabledNodesWithNodeGroupIdRequest {
+	int64 nodeGroupId = 1;
 }
 
 // 取得某个集群下的所有节点
@@ -377,4 +382,9 @@ message UpdateNodeDNSRequest {
 	string ipAddr = 2;
 	int64 dnsDomainId = 3;
 	repeated string routes = 4;
+}
+
+// 计算某个区域下的节点数量
+message CountAllEnabledNodesWithNodeRegionIdRequest {
+	int64 nodeRegionId = 1;
 }
