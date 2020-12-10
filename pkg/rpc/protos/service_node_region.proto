@@ -36,6 +36,7 @@ service NodeRegionService {
 // 创建区域
 message CreateNodeRegionRequest {
 	string name = 1;
+	string description = 2;
 }
 
 message CreateNodeRegionResponse {
@@ -46,7 +47,8 @@ message CreateNodeRegionResponse {
 message UpdateNodeRegionRequest {
 	int64 nodeRegionId = 1;
 	string name = 2;
-	bool isOn = 3;
+	string description = 3;
+	bool isOn = 4;
 }
 
 // 删除区域
