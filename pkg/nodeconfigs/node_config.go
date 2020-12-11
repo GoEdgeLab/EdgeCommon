@@ -13,13 +13,14 @@ import (
 var sharedNodeConfig *NodeConfig = nil
 
 type NodeConfig struct {
-	Id      int64                         `yaml:"id" json:"id"`
-	NodeId  string                        `yaml:"nodeId" json:"nodeId"`
-	IsOn    bool                          `yaml:"isOn" json:"isOn"`
-	Servers []*serverconfigs.ServerConfig `yaml:"servers" json:"servers"`
-	Version int64                         `yaml:"version" json:"version"`
-	Name    string                        `yaml:"name" json:"name"`
-	MaxCPU  int32                         `yaml:"maxCPU" json:"maxCPU"`
+	Id       int64                         `yaml:"id" json:"id"`
+	NodeId   string                        `yaml:"nodeId" json:"nodeId"`
+	IsOn     bool                          `yaml:"isOn" json:"isOn"`
+	Servers  []*serverconfigs.ServerConfig `yaml:"servers" json:"servers"`
+	Version  int64                         `yaml:"version" json:"version"`
+	Name     string                        `yaml:"name" json:"name"`
+	MaxCPU   int32                         `yaml:"maxCPU" json:"maxCPU"`
+	RegionId int64                         `yaml:"regionId" json:"regionId"`
 
 	// 全局配置
 	GlobalConfig *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置

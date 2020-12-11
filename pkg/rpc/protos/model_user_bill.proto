@@ -1,0 +1,18 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_user.proto";
+
+message UserBill {
+	int64 id = 1;
+	User user = 2;
+	string type = 3;
+	string typeName = 4;
+	string description = 5;
+	float amount = 6;
+	string month = 7;
+	bool isPaid = 8;
+	int64 paidAt = 9;
+}

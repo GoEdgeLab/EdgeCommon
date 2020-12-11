@@ -1,0 +1,12 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 服务每日统计
+message ServerDailyStat {
+	int64 serverId = 1;
+	int64 regionId = 2;
+	int64 bytes = 3;
+	int64 createdAt = 4;
+}
