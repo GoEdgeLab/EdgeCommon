@@ -1,0 +1,104 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+import "model_user_node.proto";
+import "rpc_messages.proto";
+
+service UserNodeService {
+	// 创建用户节点
+	rpc createUserNode (CreateUserNodeRequest) returns (CreateUserNodeResponse);
+
+	// 修改用户节点
+	rpc updateUserNode (UpdateUserNodeRequest) returns (RPCSuccess);
+
+	// 删除用户节点
+	rpc deleteUserNode (DeleteUserNodeRequest) returns (RPCSuccess);
+
+	// 列出所有可用用户节点
+	rpc findAllEnabledUserNodes (FindAllEnabledUserNodesRequest) returns (FindAllEnabledUserNodesResponse);
+
+	// 计算用户节点数量
+	rpc countAllEnabledUserNodes (CountAllEnabledUserNodesRequest) returns (RPCCountResponse);
+
+	// 列出单页的用户节点
+	rpc listEnabledUserNodes (ListEnabledUserNodesRequest) returns (ListEnabledUserNodesResponse);
+
+	// 根据ID查找节点
+	rpc findEnabledUserNode (FindEnabledUserNodeRequest) returns (FindEnabledUserNodeResponse);
+
+	// 获取当前用户节点
+	rpc findCurrentUserNode (FindCurrentUserNodeRequest) returns (FindCurrentUserNodeResponse);
+}
+
+// 创建用户节点
+message CreateUserNodeRequest {
+	string name = 1;
+	string description = 2;
+	bytes httpJSON = 3;
+	bytes httpsJSON = 4;
+	bytes accessAddrsJSON = 5;
+	bool isOn = 6;
+}
+
+message CreateUserNodeResponse {
+	int64 nodeId = 1;
+}
+
+// 修改用户节点
+message UpdateUserNodeRequest {
+	int64 nodeId = 1;
+	string name = 2;
+	string description = 3;
+	bytes httpJSON = 4;
+	bytes httpsJSON = 5;
+	bytes accessAddrsJSON = 6;
+	bool isOn = 7;
+}
+
+// 删除用户节点
+message DeleteUserNodeRequest {
+	int64 nodeId = 1;
+}
+
+// 列出所有可用用户节点
+message FindAllEnabledUserNodesRequest {
+
+}
+
+message FindAllEnabledUserNodesResponse {
+	repeated UserNode nodes = 1;
+}
+
+// 计算用户节点数量
+message CountAllEnabledUserNodesRequest {
+
+}
+
+// 列出单页的用户节点
+message ListEnabledUserNodesRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListEnabledUserNodesResponse {
+	repeated UserNode nodes = 1;
+}
+
+// 根据ID查找节点
+message FindEnabledUserNodeRequest {
+	int64 nodeId = 1;
+}
+
+message FindEnabledUserNodeResponse {
+	UserNode node = 1;
+}
+
+// 获取当前用户节点
+message FindCurrentUserNodeRequest {
+
+}
+
+message FindCurrentUserNodeResponse {
+	UserNode node = 1;
+}

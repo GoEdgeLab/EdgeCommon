@@ -28,6 +28,9 @@ service UserService {
 
 	// 检查用户名是否存在
 	rpc checkUsername (CheckUsernameRequest) returns (CheckUsernameResponse);
+
+	// 登录
+	rpc loginUser (LoginUserRequest) returns (LoginUserResponse);
 }
 
 // 创建用户
@@ -95,4 +98,16 @@ message CheckUsernameRequest {
 
 message CheckUsernameResponse {
 	bool exists = 1;
+}
+
+// 登录
+message LoginUserRequest {
+	string username = 1;
+	string password = 2;
+}
+
+message LoginUserResponse {
+	int64 userId = 1;
+	bool isOk = 2;
+	string message = 3;
 }

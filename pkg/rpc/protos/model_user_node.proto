@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message UserNode {
+	int64 id = 1;
+	bool isOn = 2;
+	string uniqueId = 3;
+	string secret = 4;
+	string name = 5;
+	string description = 6;
+	bytes httpJSON = 7;
+	bytes httpsJSON = 8;
+	bytes accessAddrsJSON = 9;
+	repeated string accessAddrs = 10;
+}
