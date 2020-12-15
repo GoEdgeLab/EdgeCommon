@@ -37,6 +37,9 @@ service UserService {
 
 	// 修改用户登录信息
 	rpc updateUserLogin (UpdateUserLoginRequest) returns (RPCSuccess);
+
+	// 取得用户Dashboard数据
+	rpc composeUserDashboard (ComposeUserDashboardRequest) returns (ComposeUserDashboardResponse);
 }
 
 // 创建用户
@@ -129,4 +132,24 @@ message UpdateUserLoginRequest {
 	int64 userId = 1;
 	string username = 2;
 	string password = 3;
+}
+
+// 取得用户Dashboard数据
+message ComposeUserDashboardRequest {
+	int64 userId = 1;
+}
+
+message ComposeUserDashboardResponse {
+	int64 countServers = 1;
+	int64 monthlyTrafficBytes = 2;
+	int64 monthlyPeekTrafficBytes = 3;
+	int64 dailyTrafficBytes = 4;
+	int64 dailyPeekTrafficBytes = 5;
+	repeated DailyStat dailyTrafficStats = 6;
+	repeated DailyStat dailyPeekTrafficStats = 7;
+
+	message DailyStat {
+		string day = 1;
+		int64 count = 2;
+	}
 }
