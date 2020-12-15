@@ -27,10 +27,16 @@ service UserService {
 	rpc findEnabledUser (FindEnabledUserRequest) returns (FindEnabledUserResponse);
 
 	// 检查用户名是否存在
-	rpc checkUsername (CheckUsernameRequest) returns (CheckUsernameResponse);
+	rpc checkUserUsername (CheckUserUsernameRequest) returns (CheckUserUsernameResponse);
 
 	// 登录
 	rpc loginUser (LoginUserRequest) returns (LoginUserResponse);
+
+	// 修改用户基本信息
+	rpc updateUserInfo (UpdateUserInfoRequest) returns (RPCSuccess);
+
+	// 修改用户登录信息
+	rpc updateUserLogin (UpdateUserLoginRequest) returns (RPCSuccess);
 }
 
 // 创建用户
@@ -91,12 +97,12 @@ message FindEnabledUserResponse {
 }
 
 // 检查用户名是否存在
-message CheckUsernameRequest {
+message CheckUserUsernameRequest {
 	int64 userId = 1;
 	string username = 2;
 }
 
-message CheckUsernameResponse {
+message CheckUserUsernameResponse {
 	bool exists = 1;
 }
 
@@ -110,4 +116,17 @@ message LoginUserResponse {
 	int64 userId = 1;
 	bool isOk = 2;
 	string message = 3;
+}
+
+// 修改用户基本信息
+message UpdateUserInfoRequest {
+	int64 userId = 1;
+	string fullname = 2;
+}
+
+// 修改用户登录信息
+message UpdateUserLoginRequest {
+	int64 userId = 1;
+	string username = 2;
+	string password = 3;
 }
