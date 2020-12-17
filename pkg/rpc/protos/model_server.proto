@@ -30,7 +30,7 @@ message Server {
 	int64 webId = 15;
 	bytes reverseProxyJSON = 16;
 
-	NodeCluster cluster = 30;
+	NodeCluster nodeCluster = 30;
 	repeated ServerGroup groups = 31;
 	User user = 32;
 

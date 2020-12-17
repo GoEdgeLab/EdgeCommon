@@ -28,7 +28,7 @@ message Node {
 	bool isUp = 14;
 	repeated DNSRoute dnsRoutes = 15;
 
-	NodeCluster cluster = 32;
+	NodeCluster nodeCluster = 32;
 	NodeLogin login = 33;
 	NodeInstallStatus installStatus = 34;
 	repeated NodeIPAddress ipAddresses = 35;

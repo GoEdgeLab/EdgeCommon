@@ -6,27 +6,26 @@ import (
 )
 
 type HTTPWebConfig struct {
-	Id                 int64                               `yaml:"id" json:"id"`                                 // ID
-	IsOn               bool                                `yaml:"isOn" json:"isOn"`                             // 是否启用
-	Locations          []*HTTPLocationConfig               `yaml:"locations" json:"locations"`                   // 路径规则 TODO
-	LocationRefs       []*HTTPLocationRef                  `yaml:"locationRefs" json:"locationRefs"`             // 路径规则应用
-	GzipRef            *HTTPGzipRef                        `yaml:"gzipRef" json:"gzipRef"`                       // Gzip引用
-	Gzip               *HTTPGzipConfig                     `yaml:"gzip" json:"gzip"`                             // Gzip配置
-	Charset            *HTTPCharsetConfig                  `yaml:"charset" json:"charset"`                       // 字符编码
-	Shutdown           *HTTPShutdownConfig                 `yaml:"shutdown" json:"shutdown"`                     // 临时关闭配置
-	Pages              []*HTTPPageConfig                   `yaml:"pages" json:"pages"`                           // 特殊页面配置
-	RedirectToHttps    *HTTPRedirectToHTTPSConfig          `yaml:"redirectToHTTPS" json:"redirectToHTTPS"`       // 是否自动跳转到Https
-	Root               *HTTPRootConfig                     `yaml:"root" json:"root"`                             // 资源根目录 TODO
-	MaxRequestBodySize string                              `yaml:"maxRequestBodySize" json:"maxRequestBodySize"` // 请求body最大尺寸 TODO 需要实现
-	AccessLogRef       *HTTPAccessLogRef                   `yaml:"accessLog" json:"accessLog"`                   // 访问日志配置
-	StatRef            *HTTPStatRef                        `yaml:"statRef" json:"statRef"`                       // 统计配置
-	Cache              *HTTPCacheConfig                    `yaml:"cache" json:"cache"`                           // 缓存配置
-	FirewallRef        *firewallconfigs.HTTPFirewallRef    `yaml:"firewallRef" json:"firewallRef"`               // 防火墙设置
-	FirewallPolicy     *firewallconfigs.HTTPFirewallPolicy `yaml:"firewallPolicy" json:"firewallPolicy"`         // 防火墙策略
-	WebsocketRef       *HTTPWebsocketRef                   `yaml:"websocketRef" json:"websocketRef"`             // Websocket应用配置
-	Websocket          *HTTPWebsocketConfig                `yaml:"websocket" json:"websocket"`                   // Websocket配置
-	RewriteRefs        []*HTTPRewriteRef                   `yaml:"rewriteRefs" json:"rewriteRefs"`               // 重写规则配置
-	RewriteRules       []*HTTPRewriteRule                  `yaml:"rewriteRules" json:"rewriteRules"`             // 重写规则
+	Id                 int64                            `yaml:"id" json:"id"`                                 // ID
+	IsOn               bool                             `yaml:"isOn" json:"isOn"`                             // 是否启用
+	Locations          []*HTTPLocationConfig            `yaml:"locations" json:"locations"`                   // 路径规则 TODO
+	LocationRefs       []*HTTPLocationRef               `yaml:"locationRefs" json:"locationRefs"`             // 路径规则应用
+	GzipRef            *HTTPGzipRef                     `yaml:"gzipRef" json:"gzipRef"`                       // Gzip引用
+	Gzip               *HTTPGzipConfig                  `yaml:"gzip" json:"gzip"`                             // Gzip配置
+	Charset            *HTTPCharsetConfig               `yaml:"charset" json:"charset"`                       // 字符编码
+	Shutdown           *HTTPShutdownConfig              `yaml:"shutdown" json:"shutdown"`                     // 临时关闭配置
+	Pages              []*HTTPPageConfig                `yaml:"pages" json:"pages"`                           // 特殊页面配置
+	RedirectToHttps    *HTTPRedirectToHTTPSConfig       `yaml:"redirectToHTTPS" json:"redirectToHTTPS"`       // 是否自动跳转到Https
+	Root               *HTTPRootConfig                  `yaml:"root" json:"root"`                             // 资源根目录 TODO
+	MaxRequestBodySize string                           `yaml:"maxRequestBodySize" json:"maxRequestBodySize"` // 请求body最大尺寸 TODO 需要实现
+	AccessLogRef       *HTTPAccessLogRef                `yaml:"accessLog" json:"accessLog"`                   // 访问日志配置
+	StatRef            *HTTPStatRef                     `yaml:"statRef" json:"statRef"`                       // 统计配置
+	Cache              *HTTPCacheConfig                 `yaml:"cache" json:"cache"`                           // 缓存配置
+	FirewallRef        *firewallconfigs.HTTPFirewallRef `yaml:"firewallRef" json:"firewallRef"`               // 防火墙设置
+	WebsocketRef       *HTTPWebsocketRef                `yaml:"websocketRef" json:"websocketRef"`             // Websocket应用配置
+	Websocket          *HTTPWebsocketConfig             `yaml:"websocket" json:"websocket"`                   // Websocket配置
+	RewriteRefs        []*HTTPRewriteRef                `yaml:"rewriteRefs" json:"rewriteRefs"`               // 重写规则配置
+	RewriteRules       []*HTTPRewriteRule               `yaml:"rewriteRules" json:"rewriteRules"`             // 重写规则
 
 	RequestHeaderPolicyRef  *shared.HTTPHeaderPolicyRef `yaml:"requestHeaderPolicyRef" json:"requestHeaderPolicyRef"`   // 请求Header
 	RequestHeaderPolicy     *shared.HTTPHeaderPolicy    `yaml:"requestHeaderPolicy" json:"requestHeaderPolicy"`         // 请求Header策略
@@ -129,13 +128,6 @@ func (this *HTTPWebConfig) Init() error {
 			return err
 		}
 	}
-	if this.FirewallPolicy != nil {
-		err := this.FirewallPolicy.Init()
-		if err != nil {
-			return err
-		}
-	}
-
 	// websocket
 	if this.WebsocketRef != nil {
 		err := this.WebsocketRef.Init()

@@ -102,7 +102,7 @@ message FindAllEnabledNodeClustersRequest {
 }
 
 message FindAllEnabledNodeClustersResponse {
-	repeated NodeCluster clusters = 1;
+	repeated NodeCluster nodeClusters = 1;
 }
 
 // 获取变更的集群
@@ -111,7 +111,7 @@ message FindAllChangedNodeClustersRequest {
 }
 
 message FindAllChangedNodeClustersResponse {
-	repeated NodeCluster clusters = 1;
+	repeated NodeCluster nodeClusters = 1;
 }
 
 // 创建集群
@@ -150,7 +150,7 @@ message FindEnabledNodeClusterRequest {
 }
 
 message FindEnabledNodeClusterResponse {
-	NodeCluster cluster = 1;
+	NodeCluster nodeCluster = 1;
 }
 
 // 查找集群的API节点信息
@@ -175,7 +175,7 @@ message ListEnabledNodeClustersRequest {
 }
 
 message ListEnabledNodeClustersResponse {
-	repeated NodeCluster clusters = 1;
+	repeated NodeCluster nodeClusters = 1;
 }
 
 // 查找集群的健康检查配置
@@ -221,7 +221,7 @@ message FindAllEnabledNodeClustersWithGrantIdRequest {
 }
 
 message FindAllEnabledNodeClustersWithGrantIdResponse {
-	repeated NodeCluster clusters = 1;
+	repeated NodeCluster nodeClusters = 1;
 }
 
 // 查找集群的DNS配置

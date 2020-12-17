@@ -15,5 +15,5 @@ message User {
 	string remark = 7;
 	bool isOn = 8;
 	int64 createdAt = 9;
-	NodeCluster cluster = 10;
+	NodeCluster nodeCluster = 10;
 }

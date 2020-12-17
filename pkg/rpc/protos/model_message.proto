@@ -15,6 +15,6 @@ message Message {
 	bool isRead = 6;
 	int64 createdAt = 7;
 
-	NodeCluster cluster = 30;
+	NodeCluster nodeCluster = 30;
 	Node node = 31;
 }

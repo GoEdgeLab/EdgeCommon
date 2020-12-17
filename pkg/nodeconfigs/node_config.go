@@ -25,12 +25,12 @@ type NodeConfig struct {
 	// 全局配置
 	GlobalConfig *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置
 
-	// TOA配置
-	TOA *TOAConfig `yaml:"toa" json:"toa"`
+	// 集群统一配置
+	HTTPFirewallPolicy *firewallconfigs.HTTPFirewallPolicy `yaml:"httpFirewallPolicy" json:"httpFirewallPolicy"`
+	HTTPCachePolicy    *serverconfigs.HTTPCachePolicy      `yaml:"httpCachePolicy" json:"httpCachePolicy"`
+	TOA                *TOAConfig                          `yaml:"toa" json:"toa"`
 
-	paddedId         string
-	cachePolicies    []*serverconfigs.HTTPCachePolicy
-	firewallPolicies []*firewallconfigs.HTTPFirewallPolicy
+	paddedId string
 }
 
 // 取得当前节点配置单例
@@ -84,19 +84,19 @@ func (this *NodeConfig) Init() error {
 		}
 	}
 
-	// cache policies
-	this.cachePolicies = []*serverconfigs.HTTPCachePolicy{}
-	for _, server := range this.Servers {
-		if server.Web != nil {
-			this.lookupWeb(server.Web)
+	// cache policy
+	if this.HTTPCachePolicy != nil {
+		err := this.HTTPCachePolicy.Init()
+		if err != nil {
+			return err
 		}
 	}
 
-	// firewall policies
-	this.firewallPolicies = []*firewallconfigs.HTTPFirewallPolicy{}
-	for _, server := range this.Servers {
-		if server.Web != nil {
-			this.lookupWeb(server.Web)
+	// firewall policy
+	if this.HTTPFirewallPolicy != nil {
+		err := this.HTTPFirewallPolicy.Init()
+		if err != nil {
+			return err
 		}
 	}
 
@@ -136,16 +136,6 @@ func (this *NodeConfig) AvailableGroups() []*serverconfigs.ServerGroup {
 	return result
 }
 
-// 获取使用的所有的缓存策略
-func (this *NodeConfig) AllCachePolicies() []*serverconfigs.HTTPCachePolicy {
-	return this.cachePolicies
-}
-
-// 获取使用的所有的WAF策略
-func (this *NodeConfig) AllHTTPFirewallPolicies() []*firewallconfigs.HTTPFirewallPolicy {
-	return this.firewallPolicies
-}
-
 // 写入到文件
 func (this *NodeConfig) Save() error {
 	shared.Locker.Lock()
@@ -162,49 +152,4 @@ func (this *NodeConfig) Save() error {
 // 获取填充后的ID
 func (this *NodeConfig) PaddedId() string {
 	return this.paddedId
-}
-
-// 查找Web中的缓存策略、防火墙策略等
-func (this *NodeConfig) lookupWeb(web *serverconfigs.HTTPWebConfig) {
-	if web == nil {
-		return
-	}
-
-	// cache
-	if web.Cache != nil && len(web.Cache.CacheRefs) > 0 {
-		for _, cacheRef := range web.Cache.CacheRefs {
-			if cacheRef.CachePolicy != nil && !this.hasCachePolicy(cacheRef.CachePolicyId) {
-				this.cachePolicies = append(this.cachePolicies, cacheRef.CachePolicy)
-			}
-		}
-	}
-
-	// firewall
-	if web.FirewallPolicy != nil && !this.hasHTTPFirewallPolicy(web.FirewallPolicy.Id) {
-		this.firewallPolicies = append(this.firewallPolicies, web.FirewallPolicy)
-	}
-
-	for _, location := range web.Locations {
-		this.lookupWeb(location.Web)
-	}
-}
-
-// 检查缓存策略是否已收集
-func (this *NodeConfig) hasCachePolicy(cachePolicyId int64) bool {
-	for _, cachePolicy := range this.cachePolicies {
-		if cachePolicy.Id == cachePolicyId {
-			return true
-		}
-	}
-	return false
-}
-
-// 检查防火墙策略是否已收集
-func (this *NodeConfig) hasHTTPFirewallPolicy(firewallPolicyId int64) bool {
-	for _, p := range this.firewallPolicies {
-		if p.Id == firewallPolicyId {
-			return true
-		}
-	}
-	return false
 }
