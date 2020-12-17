@@ -110,7 +110,7 @@ service NodeService {
 // 创建节点
 message CreateNodeRequest {
 	string name = 1;
-	int64 clusterId = 2;
+	int64 nodeClusterId = 2;
 	NodeLogin Login = 3;
 	int64 groupId = 4;
 	int64 dnsDomainId = 5;
@@ -142,7 +142,7 @@ message CountAllEnabledNodesRequest {
 message ListEnabledNodesMatchRequest {
 	int64 offset = 1;
 	int64 size = 2;
-	int64 clusterId = 3;
+	int64 nodeClusterId = 3;
 	int32 installState = 4;
 	int32 activeState = 5;
 	string keyword = 6;
@@ -156,7 +156,7 @@ message ListEnabledNodesMatchResponse {
 
 // 根据集群查找所有节点
 message FindAllEnabledNodesWithClusterIdRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 message FindAllEnabledNodesWithClusterIdResponse {
@@ -172,7 +172,7 @@ message DeleteNodeRequest {
 message UpdateNodeRequest {
 	int64 nodeId = 1;
 	string name = 2;
-	int64 clusterId = 3;
+	int64 nodeClusterId = 3;
 	NodeLogin Login = 4;
 	int32 maxCPU = 5;
 	bool isOn = 6;
@@ -221,7 +221,7 @@ message UpdateNodeStatusRequest {
 
 // 同步集群中的节点版本
 message SyncNodesVersionWithClusterRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 message SyncNodesVersionWithClusterResponse {
@@ -229,7 +229,7 @@ message SyncNodesVersionWithClusterResponse {
 
 // 计算匹配的节点数量
 message CountAllEnabledNodesMatchRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 	int32 installState = 2;
 	int32 activeState = 3;
 	string keyword = 4;
@@ -301,7 +301,7 @@ message FindAllEnabledNodesWithGrantIdResponse {
 
 // 列出所有未安装的节点
 message FindAllNotInstalledNodesWithClusterIdRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 message FindAllNotInstalledNodesWithClusterIdResponse {
@@ -310,12 +310,12 @@ message FindAllNotInstalledNodesWithClusterIdResponse {
 
 // 计算需要升级的节点数量
 message CountAllUpgradeNodesWithClusterIdRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 // 列出所有需要升级的节点
 message FindAllUpgradeNodesWithClusterIdRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 message FindAllUpgradeNodesWithClusterIdResponse {
@@ -364,7 +364,7 @@ message NodeDNSInfo {
 	string name = 2;
 	string ipAddr = 3;
 	repeated DNSRoute routes = 4;
-	int64 clusterId = 5;
+	int64 nodeClusterId = 5;
 	int64 dnsDomainId = 6;
 	string dnsDomainName = 7;
 }

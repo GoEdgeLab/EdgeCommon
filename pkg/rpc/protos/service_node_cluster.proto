@@ -76,6 +76,24 @@ service NodeClusterService {
 
 	// 修改集群的TOA设置
 	rpc updateNodeClusterTOA (UpdateNodeClusterTOARequest) returns (RPCSuccess);
+
+	// 计算使用某个缓存策略的集群数量
+	rpc countAllEnabledNodeClustersWithHTTPCachePolicyId (CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) returns (RPCCountResponse);
+
+	// 查找使用缓存策略的所有集群
+	rpc findAllEnabledNodeClustersWithHTTPCachePolicyId (FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) returns (FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse);
+
+	// 计算使用某个WAF策略的集群数量
+	rpc countAllEnabledNodeClustersWithHTTPFirewallPolicyId (CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) returns (RPCCountResponse);
+
+	// 查找使用某个WAF策略的所有集群
+	rpc findAllEnabledNodeClustersWithHTTPFirewallPolicyId (FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) returns (FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse);
+
+	// 修改集群的缓存策略
+	rpc updateNodeClusterHTTPCachePolicyId (UpdateNodeClusterHTTPCachePolicyIdRequest) returns (RPCSuccess);
+
+	// 修改集群的WAF策略
+	rpc updateNodeClusterHTTPFirewallPolicyId (UpdateNodeClusterHTTPFirewallPolicyIdRequest) returns (RPCSuccess);
 }
 
 // 获取所有集群的信息
@@ -103,28 +121,32 @@ message CreateNodeClusterRequest {
 	string installDir = 3;
 	int64 dnsDomainId = 4;
 	string dnsName = 5;
+	int64 httpCachePolicyId = 6;
+	int64 httpFirewallPolicyId = 7;
 }
 
 message CreateNodeClusterResponse {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 // 修改集群
 message UpdateNodeClusterRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 	string name = 2;
 	int64 grantId = 3;
 	string installDir = 4;
+	int64 httpCachePolicyId = 5;
+	int64 httpFirewallPolicyId = 6;
 }
 
 // 删除集群
 message DeleteNodeClusterRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 // 查找单个集群信息
 message FindEnabledNodeClusterRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 message FindEnabledNodeClusterResponse {
@@ -133,7 +155,7 @@ message FindEnabledNodeClusterResponse {
 
 // 查找集群的API节点信息
 message FindAPINodesWithNodeClusterRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 message FindAPINodesWithNodeClusterResponse {
@@ -158,7 +180,7 @@ message ListEnabledNodeClustersResponse {
 
 // 查找集群的健康检查配置
 message FindNodeClusterHealthCheckConfigRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 message FindNodeClusterHealthCheckConfigResponse {
@@ -167,13 +189,13 @@ message FindNodeClusterHealthCheckConfigResponse {
 
 // 修改集群健康检查设置
 message UpdateNodeClusterHealthCheckRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 	bytes healthCheckJSON = 2;
 }
 
 // 执行健康检查
 message ExecuteNodeClusterHealthCheckRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 message ExecuteNodeClusterHealthCheckResponse {
@@ -266,4 +288,44 @@ message FindEnabledNodeClusterTOAResponse {
 message UpdateNodeClusterTOARequest {
 	int64 nodeClusterId = 1;
 	bytes toaJSON = 2;
+}
+
+// 计算使用某个缓存策略的集群数量
+message CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest {
+	int64 httpCachePolicyId = 1;
+}
+
+// 查找使用缓存策略的所有集群
+message FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest {
+	int64 httpCachePolicyId = 1;
+}
+
+message FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse {
+	repeated NodeCluster nodeClusters = 1;
+}
+
+// 计算使用某个WAF策略的集群数量
+message CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest {
+	int64 httpFirewallPolicyId = 1;
+}
+
+// 查找使用某个WAF策略的所有集群
+message FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest {
+	int64 httpFirewallPolicyId = 1;
+}
+
+message FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse {
+	repeated NodeCluster nodeClusters = 1;
+}
+
+// 修改集群的缓存策略
+message UpdateNodeClusterHTTPCachePolicyIdRequest {
+	int64 nodeClusterId = 1;
+	int64 httpCachePolicyId = 2;
+}
+
+// 修改集群的WAF策略
+message UpdateNodeClusterHTTPFirewallPolicyIdRequest {
+	int64 nodeClusterId = 1;
+	int64 httpFirewallPolicyId = 2;
 }

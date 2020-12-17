@@ -71,18 +71,6 @@ service ServerService {
 	// 查找使用某个SSL证书的所有服务
 	rpc findAllEnabledServersWithSSLCertId (FindAllEnabledServersWithSSLCertIdRequest) returns (FindAllEnabledServersWithSSLCertIdResponse);
 
-	// 计算使用某个缓存策略的服务数量
-	rpc countAllEnabledServersWithCachePolicyId (CountAllEnabledServersWithCachePolicyIdRequest) returns (RPCCountResponse);
-
-	// 查找使用某个缓存策略的所有服务
-	rpc findAllEnabledServersWithCachePolicyId (FindAllEnabledServersWithCachePolicyIdRequest) returns (FindAllEnabledServersWithCachePolicyIdResponse);
-
-	// 计算使用某个WAF策略的服务数量
-	rpc countAllEnabledServersWithHTTPFirewallPolicyId (CountAllEnabledServersWithHTTPFirewallPolicyIdRequest) returns (RPCCountResponse);
-
-	// 查找使用WAF策略的所有服务
-	rpc findAllEnabledServersWithHTTPFirewallPolicyId (FindAllEnabledServersWithHTTPFirewallPolicyIdRequest) returns (FindAllEnabledServersWithHTTPFirewallPolicyIdResponse);
-
 	// 计算运行在某个集群上的所有服务数量
 	rpc countAllEnabledServersWithNodeClusterId (CountAllEnabledServersWithNodeClusterIdRequest) returns (RPCCountResponse);
 
@@ -119,7 +107,7 @@ message CreateServerRequest {
 	bytes reverseProxyJSON = 16;
 	repeated int64 groupIds = 17;
 
-	int64 clusterId = 30;
+	int64 nodeClusterId = 30;
 	bytes includeNodesJSON = 31;
 	bytes excludeNodesJSON = 32;
 }
@@ -133,7 +121,7 @@ message UpdateServerBasicRequest {
 	int64 serverId = 1;
 	string name = 2;
 	string description = 3;
-	int64 clusterId = 4;
+	int64 nodeClusterId = 4;
 	bool isOn = 5;
 	repeated int64 groupIds = 6;
 }
@@ -272,34 +260,6 @@ message FindAllEnabledServersWithSSLCertIdResponse {
 	repeated Server servers = 1;
 }
 
-// 计算使用某个缓存策略的服务数量
-message CountAllEnabledServersWithCachePolicyIdRequest {
-	int64 cachePolicyId = 1;
-}
-
-// 查找使用某个缓存策略的所有服务
-message FindAllEnabledServersWithCachePolicyIdRequest {
-	int64 cachePolicyId = 1;
-}
-
-message FindAllEnabledServersWithCachePolicyIdResponse {
-	repeated Server servers = 1;
-}
-
-// 计算使用某个WAF策略的服务数量
-message CountAllEnabledServersWithHTTPFirewallPolicyIdRequest {
-	int64 firewallPolicyId = 1;
-}
-
-// 查找使用某个WAF策略的所有服务
-message FindAllEnabledServersWithHTTPFirewallPolicyIdRequest {
-	int64 firewallPolicyId = 1;
-}
-
-message FindAllEnabledServersWithHTTPFirewallPolicyIdResponse {
-	repeated Server servers = 1;
-}
-
 // 计算运行在某个集群上的所有服务数量
 message CountAllEnabledServersWithNodeClusterIdRequest {
 	int64 nodeClusterId = 1;
@@ -321,7 +281,7 @@ message NotifyServersChangeResponse {
 
 // 取得某个集群下的所有服务相关的DNS
 message FindAllEnabledServersDNSWithClusterIdRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 message FindAllEnabledServersDNSWithClusterIdResponse {

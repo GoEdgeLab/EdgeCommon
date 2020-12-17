@@ -29,7 +29,7 @@ service NodeGroupService {
 
 // 创建分组
 message CreateNodeGroupRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 	string name = 2;
 }
 
@@ -50,7 +50,7 @@ message DeleteNodeGroupRequest {
 
 // 查询所有分组
 message FindAllEnabledNodeGroupsWithClusterIdRequest {
-	int64 clusterId = 1;
+	int64 nodeClusterId = 1;
 }
 
 message FindAllEnabledNodeGroupsWithClusterIdResponse {

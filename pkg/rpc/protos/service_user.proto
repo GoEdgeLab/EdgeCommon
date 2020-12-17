@@ -52,6 +52,7 @@ message CreateUserRequest {
 	string email = 6;
 	string remark = 7;
 	string source = 8;
+	int64 nodeClusterId = 9;
 }
 
 message CreateUserResponse {
@@ -69,6 +70,7 @@ message UpdateUserRequest {
 	string email = 7;
 	string remark = 8;
 	bool isOn = 9;
+	int64 nodeClusterId = 10;
 }
 
 // 删除用户

@@ -23,19 +23,19 @@ service HTTPFirewallPolicyService {
 	rpc updateHTTPFirewallInboundConfig (UpdateHTTPFirewallInboundConfigRequest) returns (RPCSuccess);
 
 	// 计算可用的防火墙策略数量
-	rpc countAllEnabledFirewallPolicies (CountAllEnabledFirewallPoliciesRequest) returns (RPCCountResponse);
+	rpc countAllEnabledHTTPFirewallPolicies (CountAllEnabledHTTPFirewallPoliciesRequest) returns (RPCCountResponse);
 
 	// 列出单页的防火墙策略
-	rpc listEnabledFirewallPolicies (ListEnabledFirewallPoliciesRequest) returns (ListEnabledFirewallPoliciesResponse);
+	rpc listEnabledHTTPFirewallPolicies (ListEnabledHTTPFirewallPoliciesRequest) returns (ListEnabledHTTPFirewallPoliciesResponse);
 
 	// 删除某个防火墙策略
-	rpc deleteFirewallPolicy (DeleteFirewallPolicyRequest) returns (RPCSuccess);
+	rpc deleteHTTPFirewallPolicy (DeleteHTTPFirewallPolicyRequest) returns (RPCSuccess);
 
 	// 查找单个防火墙配置
-	rpc findEnabledFirewallPolicyConfig (FindEnabledFirewallPolicyConfigRequest) returns (FindEnabledFirewallPolicyConfigResponse);
+	rpc findEnabledHTTPFirewallPolicyConfig (FindEnabledHTTPFirewallPolicyConfigRequest) returns (FindEnabledHTTPFirewallPolicyConfigResponse);
 
 	// 获取防火墙的基本信息
-	rpc findEnabledFirewallPolicy (FindEnabledFirewallPolicyRequest) returns (FindEnabledFirewallPolicyResponse);
+	rpc findEnabledHTTPFirewallPolicy (FindEnabledHTTPFirewallPolicyRequest) returns (FindEnabledHTTPFirewallPolicyResponse);
 
 	// 导入策略数据
 	rpc importHTTPFirewallPolicy (ImportHTTPFirewallPolicyRequest) returns (RPCSuccess);
@@ -55,16 +55,16 @@ message CreateHTTPFirewallPolicyRequest {
 	bool isOn = 1;
 	string name = 2;
 	string description = 3;
-	repeated string firewallGroupCodes = 4;
+	repeated string httpFirewallGroupCodes = 4;
 }
 
 message CreateHTTPFirewallPolicyResponse {
-	int64 firewallPolicyId = 1;
+	int64 httpFirewallPolicyId = 1;
 }
 
 // 修改防火墙策略
 message UpdateHTTPFirewallPolicyRequest {
-	int64 firewallPolicyId = 1;
+	int64 httpFirewallPolicyId = 1;
 	bool isOn = 2;
 	string name = 3;
 	string description = 4;
@@ -74,56 +74,56 @@ message UpdateHTTPFirewallPolicyRequest {
 
 // 修改分组信息
 message UpdateHTTPFirewallPolicyGroupsRequest {
-	int64 firewallPolicyId = 1;
+	int64 httpFirewallPolicyId = 1;
 	bytes inboundJSON = 2;
 	bytes outboundJSON = 3;
 }
 
 // 修改inbound信息
 message UpdateHTTPFirewallInboundConfigRequest {
-	int64 firewallPolicyId = 1;
+	int64 httpFirewallPolicyId = 1;
 	bytes inboundJSON = 2;
 }
 
 // 计算可用的防火墙策略数量
-message CountAllEnabledFirewallPoliciesRequest {
+message CountAllEnabledHTTPFirewallPoliciesRequest {
 }
 
 // 列出单页的防火墙策略
-message ListEnabledFirewallPoliciesRequest {
+message ListEnabledHTTPFirewallPoliciesRequest {
 	int64 offset = 1;
 	int64 size = 2;
 }
 
-message ListEnabledFirewallPoliciesResponse {
-	repeated HTTPFirewallPolicy firewallPolicies = 1;
+message ListEnabledHTTPFirewallPoliciesResponse {
+	repeated HTTPFirewallPolicy httpFirewallPolicies = 1;
 }
 
 // 删除某个防火墙策略
-message DeleteFirewallPolicyRequest {
-	int64 firewallPolicyId = 1;
+message DeleteHTTPFirewallPolicyRequest {
+	int64 httpFirewallPolicyId = 1;
 }
 
 // 查找单个防火墙配置
-message FindEnabledFirewallPolicyConfigRequest {
-	int64 firewallPolicyId = 1;
+message FindEnabledHTTPFirewallPolicyConfigRequest {
+	int64 httpFirewallPolicyId = 1;
 }
 
-message FindEnabledFirewallPolicyConfigResponse {
-	bytes firewallPolicyJSON = 1;
+message FindEnabledHTTPFirewallPolicyConfigResponse {
+	bytes httpFirewallPolicyJSON = 1;
 }
 
 // 获取防火墙的基本信息
-message FindEnabledFirewallPolicyRequest {
-	int64 firewallPolicyId = 1;
+message FindEnabledHTTPFirewallPolicyRequest {
+	int64 httpFirewallPolicyId = 1;
 }
 
-message FindEnabledFirewallPolicyResponse {
-	HTTPFirewallPolicy firewallPolicy = 1;
+message FindEnabledHTTPFirewallPolicyResponse {
+	HTTPFirewallPolicy httpFirewallPolicy = 1;
 }
 
 // 导入策略数据
 message ImportHTTPFirewallPolicyRequest {
-	int64 firewallPolicyId = 1;
-	bytes firewallPolicyJSON = 2;
+	int64 httpFirewallPolicyId = 1;
+	bytes httpFirewallPolicyJSON = 2;
 }

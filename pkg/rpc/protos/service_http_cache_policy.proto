@@ -27,6 +27,9 @@ service HTTPCachePolicyService {
 
 	// 查找单个缓存策略配置
 	rpc findEnabledHTTPCachePolicyConfig (FindEnabledHTTPCachePolicyConfigRequest) returns (FindEnabledHTTPCachePolicyConfigResponse);
+
+	// 查找单个缓存策略信息
+	rpc findEnabledHTTPCachePolicy (FindEnabledHTTPCachePolicyRequest) returns (FindEnabledHTTPCachePolicyResponse);
 }
 
 // 获取所有可用策略
@@ -51,12 +54,12 @@ message CreateHTTPCachePolicyRequest {
 }
 
 message CreateHTTPCachePolicyResponse {
-	int64 cachePolicyId = 1;
+	int64 httpCachePolicyId = 1;
 }
 
 // 修改缓存策略
 message UpdateHTTPCachePolicyRequest {
-	int64 cachePolicyId = 1;
+	int64 httpCachePolicyId = 1;
 	bool isOn = 2;
 	string name = 3;
 	string description = 4;
@@ -69,7 +72,7 @@ message UpdateHTTPCachePolicyRequest {
 
 // 删除缓存策略
 message DeleteHTTPCachePolicyRequest {
-	int64 cachePolicyId = 1;
+	int64 httpCachePolicyId = 1;
 }
 
 // 计算缓存策略数量
@@ -83,14 +86,23 @@ message ListEnabledHTTPCachePoliciesRequest {
 }
 
 message ListEnabledHTTPCachePoliciesResponse {
-	bytes cachePoliciesJSON = 1;
+	bytes httpCachePoliciesJSON = 1;
 }
 
 // 查找单个缓存策略配置
 message FindEnabledHTTPCachePolicyConfigRequest {
-	int64 cachePolicyId = 1;
+	int64 httpCachePolicyId = 1;
 }
 
 message FindEnabledHTTPCachePolicyConfigResponse {
-	bytes cachePolicyJSON = 1;
+	bytes httpCachePolicyJSON = 1;
+}
+
+// 查找单个缓存策略信息
+message FindEnabledHTTPCachePolicyRequest {
+	int64 httpCachePolicyId = 1;
+}
+
+message FindEnabledHTTPCachePolicyResponse {
+	HTTPCachePolicy httpCachePolicy = 1;
 }
