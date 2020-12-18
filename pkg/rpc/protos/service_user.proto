@@ -40,6 +40,9 @@ service UserService {
 
 	// 取得用户Dashboard数据
 	rpc composeUserDashboard (ComposeUserDashboardRequest) returns (ComposeUserDashboardResponse);
+
+	// 获取用户所在的集群ID
+	rpc findUserNodeClusterId (FindUserNodeClusterIdRequest) returns (FindUserNodeClusterIdResponse);
 }
 
 // 创建用户
@@ -154,4 +157,13 @@ message ComposeUserDashboardResponse {
 		string day = 1;
 		int64 count = 2;
 	}
+}
+
+// 获取用户所在的集群ID
+message FindUserNodeClusterIdRequest {
+	int64 userId = 1;
+}
+
+message FindUserNodeClusterIdResponse {
+	int64 nodeClusterId = 1;
 }

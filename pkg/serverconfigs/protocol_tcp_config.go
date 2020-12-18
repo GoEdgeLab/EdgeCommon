@@ -1,5 +1,7 @@
 package serverconfigs
 
+import "encoding/json"
+
 type TCPProtocolConfig struct {
 	BaseProtocol `yaml:",inline"`
 }
@@ -11,4 +13,9 @@ func (this *TCPProtocolConfig) Init() error {
 	}
 
 	return nil
+}
+
+// 转换为JSON
+func (this *TCPProtocolConfig) AsJSON() ([]byte, error) {
+	return json.Marshal(this)
 }

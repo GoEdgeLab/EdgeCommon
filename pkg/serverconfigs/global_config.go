@@ -8,6 +8,8 @@ type GlobalConfig struct {
 		AllowMismatchDomains []string              `yaml:"allowMismatchDomains" json:"allowMismatchDomains"` // 允许的不匹配的域名
 		DefaultDomain        string                `yaml:"defaultDomain" json:"defaultDomain"`               // 默认的域名
 		DomainMismatchAction *DomainMismatchAction `yaml:"domainMismatchAction" json:"domainMismatchAction"` // 不匹配时采取的动作
+		DomainAuditingIsOn   bool                  `yaml:"domainAuditingIsOn" json:"domainAuditingIsOn"`     // 域名是否需要审核
+		DomainAuditingPrompt string                `yaml:"domainAuditingPrompt" json:"domainAuditingPrompt"` // 域名审核的提示
 	} `yaml:"httpAll" json:"httpAll"`
 
 	HTTP   struct{} `yaml:"http" json:"http"`

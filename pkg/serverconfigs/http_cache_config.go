@@ -1,5 +1,7 @@
 package serverconfigs
 
+import "encoding/json"
+
 type HTTPCacheConfig struct {
 	IsPrior bool `yaml:"isPrior" json:"isPrior"`
 	IsOn    bool `yaml:"isOn" json:"isOn"`
@@ -15,4 +17,8 @@ func (this *HTTPCacheConfig) Init() error {
 		}
 	}
 	return nil
+}
+
+func (this *HTTPCacheConfig) AsJSON() ([]byte, error) {
+	return json.Marshal(this)
 }

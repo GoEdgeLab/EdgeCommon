@@ -1,6 +1,9 @@
 package shared
 
-import "time"
+import (
+	"encoding/json"
+	"time"
+)
 
 type TimeDurationUnit = string
 
@@ -33,4 +36,8 @@ func (this *TimeDuration) Duration() time.Duration {
 	default:
 		return time.Duration(this.Count) * time.Second
 	}
+}
+
+func (this *TimeDuration) AsJSON() ([]byte, error) {
+	return json.Marshal(this)
 }

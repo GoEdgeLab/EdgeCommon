@@ -20,7 +20,7 @@ service SSLPolicyService {
 message CreateSSLPolicyRequest {
 	bool http2Enabled = 1;
 	string minVersion = 2;
-	bytes certsJSON = 3;
+	bytes sslCertsJSON = 3;
 	bytes hstsJSON = 4;
 	int32 clientAuthType = 5;
 	bytes clientCACertsJSON = 6;
@@ -37,7 +37,7 @@ message UpdateSSLPolicyRequest {
 	int64 sslPolicyId = 1;
 	bool http2Enabled = 2;
 	string minVersion = 3;
-	bytes certsJSON = 4;
+	bytes sslCertsJSON = 4;
 	bytes hstsJSON = 5;
 	int32 clientAuthType = 6;
 	bytes clientCACertsJSON = 7;

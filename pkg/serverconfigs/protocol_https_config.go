@@ -1,6 +1,9 @@
 package serverconfigs
 
-import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
+import (
+	"encoding/json"
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
+)
 
 // HTTPS协议配置
 type HTTPSProtocolConfig struct {
@@ -25,4 +28,9 @@ func (this *HTTPSProtocolConfig) Init() error {
 	}
 
 	return nil
+}
+
+// 转换为JSON
+func (this *HTTPSProtocolConfig) AsJSON() ([]byte, error) {
+	return json.Marshal(this)
 }

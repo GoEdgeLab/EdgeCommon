@@ -186,6 +186,7 @@ message UpdateServerNamesRequest {
 message CountAllEnabledServersMatchRequest {
 	int64 groupId = 1;
 	string keyword = 2;
+	int64 userId = 3;
 }
 
 // 列出单页服务
@@ -194,6 +195,7 @@ message ListEnabledServersMatchRequest {
 	int64 size = 2;
 	int64 groupId = 3;
 	string keyword = 4;
+	int64 userId = 5;
 }
 
 message ListEnabledServersMatchResponse {
@@ -248,12 +250,12 @@ message FindAndInitServerWebConfigResponse {
 
 // 计算使用某个SSL证书的服务数量
 message CountAllEnabledServersWithSSLCertIdRequest {
-	int64 certId = 1;
+	int64 sslCertId = 1;
 }
 
 // 查找使用某个SSL证书的所有服务
 message FindAllEnabledServersWithSSLCertIdRequest {
-	int64 certId = 1;
+	int64 sslCertId = 1;
 }
 
 message FindAllEnabledServersWithSSLCertIdResponse {

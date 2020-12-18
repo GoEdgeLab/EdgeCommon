@@ -41,12 +41,12 @@ message CreateSSLCertRequest {
 }
 
 message CreateSSLCertResponse {
-	int64 certId = 1;
+	int64 sslCertId = 1;
 }
 
 // 修改Cert
 message UpdateSSLCertRequest {
-	int64 certId = 1;
+	int64 sslCertId = 1;
 	bool isOn = 2;
 	string name = 3;
 	string description = 4;
@@ -62,16 +62,16 @@ message UpdateSSLCertRequest {
 
 // 查找证书配置
 message FindEnabledSSLCertConfigRequest {
-	int64 certId = 1;
+	int64 sslCertId = 1;
 }
 
 message FindEnabledSSLCertConfigResponse {
-	bytes certJSON = 1;
+	bytes sslCertJSON = 1;
 }
 
 // 删除证书
 message DeleteSSLCertRequest {
-	int64 certId = 1;
+	int64 sslCertId = 1;
 }
 
 // 计算匹配的Cert数量
@@ -81,6 +81,7 @@ message CountSSLCertRequest {
 	bool isExpired = 3;
 	int32 expiringDays = 4;
 	string keyword = 5;
+	int64 userId = 6;
 }
 
 // 列出单页匹配的Cert
@@ -92,8 +93,9 @@ message ListSSLCertsRequest {
 	string keyword = 5;
 	int64 offset = 6;
 	int64 size = 7;
+	int64 userId = 8;
 }
 
 message ListSSLCertsResponse {
-	bytes certsJSON = 1;
+	bytes sslCertsJSON = 1;
 }
