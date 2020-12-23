@@ -5,6 +5,7 @@ package pb;
 
 import "model_server.proto";
 import "model_dns_domain.proto";
+import "model_server_name_auditing_result.proto";
 import "rpc_messages.proto";
 
 service ServerService {
@@ -13,6 +14,9 @@ service ServerService {
 
 	// 修改服务基本信息
 	rpc updateServerBasic (UpdateServerBasicRequest) returns (RPCSuccess);
+
+	// 修改服务是否启用
+	rpc updateServerIsOn (UpdateServerIsOnRequest) returns (RPCSuccess);
 
 	// 修改服务的HTTP设置
 	rpc updateServerHTTP (UpdateServerHTTPRequest) returns (RPCSuccess);
@@ -44,6 +48,9 @@ service ServerService {
 	// 修改服务的域名设置
 	rpc updateServerNames (UpdateServerNamesRequest) returns (RPCSuccess);
 
+	// 审核服务的域名设置
+	rpc updateServerNamesAuditing (UpdateServerNamesAuditingRequest) returns (RPCSuccess);
+
 	// 计算匹配的服务数量
 	rpc countAllEnabledServersMatch (CountAllEnabledServersMatchRequest) returns (RPCCountResponse);
 
@@ -51,10 +58,13 @@ service ServerService {
 	rpc listEnabledServersMatch (ListEnabledServersMatchRequest) returns (ListEnabledServersMatchResponse);
 
 	// 禁用某服务
-	rpc disableServer (DisableServerRequest) returns (DisableServerResponse);
+	rpc deleteServer (DeleteServerRequest) returns (RPCSuccess);
 
 	// 查找单个服务
 	rpc findEnabledServer (FindEnabledServerRequest) returns (FindEnabledServerResponse);
+
+	// 查找服务配置
+	rpc findEnabledServerConfig (FindEnabledServerConfigRequest) returns (FindEnabledServerConfigResponse);
 
 	// 查找服务的服务类型
 	rpc findEnabledServerType (FindEnabledServerTypeRequest) returns (FindEnabledServerTypeResponse);
@@ -85,6 +95,9 @@ service ServerService {
 
 	// 查找单个服务的DNS信息
 	rpc findEnabledServerDNS (FindEnabledServerDNSRequest) returns (FindEnabledServerDNSResponse);
+
+	// 检查服务是否属于某个用户
+	rpc checkUserServer (CheckUserServerRequest) returns (RPCSuccess);
 }
 
 // 创建服务
@@ -126,35 +139,41 @@ message UpdateServerBasicRequest {
 	repeated int64 groupIds = 6;
 }
 
+// 修改服务启是否启用
+message UpdateServerIsOnRequest {
+	int64 serverId = 1;
+	bool isOn = 2;
+}
+
 // 修改服务的HTTP等设置
 message UpdateServerHTTPRequest {
 	int64 serverId = 1;
-	bytes config = 2;
+	bytes httpJSON = 2;
 }
 
 message UpdateServerHTTPSRequest {
 	int64 serverId = 1;
-	bytes config = 2;
+	bytes httpsJSON = 2;
 }
 
 message UpdateServerTCPRequest {
 	int64 serverId = 1;
-	bytes config = 2;
+	bytes tcpJSON = 2;
 }
 
 message UpdateServerTLSRequest {
 	int64 serverId = 1;
-	bytes config = 2;
+	bytes tlsJSON = 2;
 }
 
 message UpdateServerUnixRequest {
 	int64 serverId = 1;
-	bytes config = 2;
+	bytes unixJSON = 2;
 }
 
 message UpdateServerUDPRequest {
 	int64 serverId = 1;
-	bytes config = 2;
+	bytes udpJSON = 2;
 }
 
 message UpdateServerWebRequest {
@@ -174,12 +193,21 @@ message FindServerNamesRequest {
 
 message FindServerNamesResponse {
 	bytes serverNamesJSON = 1;
+	bool isAuditing = 2;
+	bytes auditingServerNamesJSON = 3;
+	ServerNameAuditingResult auditingResult = 4;
 }
 
 // 修改服务的域名设置
 message UpdateServerNamesRequest {
 	int64 serverId = 1;
-	bytes config = 2;
+	bytes serverNamesJSON = 2;
+}
+
+// 审核服务的域名设置
+message UpdateServerNamesAuditingRequest {
+	int64 serverId = 1;
+	ServerNameAuditingResult auditingResult = 2;
 }
 
 // 计算服务数量
@@ -187,6 +215,8 @@ message CountAllEnabledServersMatchRequest {
 	int64 groupId = 1;
 	string keyword = 2;
 	int64 userId = 3;
+	int64 clusterId = 4;
+	int32 auditingFlag = 5;
 }
 
 // 列出单页服务
@@ -196,6 +226,8 @@ message ListEnabledServersMatchRequest {
 	int64 groupId = 3;
 	string keyword = 4;
 	int64 userId = 5;
+	int64 clusterId = 6;
+	int32 auditingFlag = 7;
 }
 
 message ListEnabledServersMatchResponse {
@@ -203,12 +235,8 @@ message ListEnabledServersMatchResponse {
 }
 
 // 禁用服务
-message DisableServerRequest {
+message DeleteServerRequest {
 	int64 serverId = 1;
-}
-
-message DisableServerResponse {
-
 }
 
 // 查找单个服务
@@ -218,6 +246,15 @@ message FindEnabledServerRequest {
 
 message FindEnabledServerResponse {
 	Server server = 1;
+}
+
+// 查找服务配置
+message FindEnabledServerConfigRequest {
+	int64 serverId = 1;
+}
+
+message FindEnabledServerConfigResponse {
+	bytes serverJSON = 1;
 }
 
 // 查找服务的服务类型
@@ -304,4 +341,9 @@ message FindEnabledServerDNSRequest {
 message FindEnabledServerDNSResponse {
 	string dnsName = 1;
 	DNSDomain domain = 2;
+}
+
+// 检查服务是否属于某个用户
+message CheckUserServerRequest {
+	int64 serverId = 1;
 }

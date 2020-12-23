@@ -5,6 +5,17 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
 )
 
+func NewHTTPSProtocolConfigFromJSON(configJSON []byte) (*HTTPSProtocolConfig, error) {
+	config := &HTTPSProtocolConfig{}
+	if len(configJSON) > 0 {
+		err := json.Unmarshal(configJSON, config)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return config, nil
+}
+
 // HTTPS协议配置
 type HTTPSProtocolConfig struct {
 	BaseProtocol `yaml:",inline"`

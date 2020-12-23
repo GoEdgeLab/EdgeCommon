@@ -6,6 +6,7 @@ package pb;
 import "model_node_cluster.proto";
 import "model_server_group.proto";
 import "model_user.proto";
+import "model_server_name_auditing_result.proto";
 
 message Server {
 	int64 id = 1;
@@ -21,6 +22,10 @@ message Server {
 	// 配置相关
 	bytes config = 17;
 	bytes serverNamesJSON = 8;
+	bool isAuditing = 20;
+	bytes auditingServerNamesJSON = 21;
+	ServerNameAuditingResult auditingResult = 22;
+
 	bytes httpJSON = 9;
 	bytes httpsJSON = 10;
 	bytes tcpJSON = 11;

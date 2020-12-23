@@ -2,6 +2,17 @@ package serverconfigs
 
 import "encoding/json"
 
+func NewHTTPProtocolConfigFromJSON(configJSON []byte) (*HTTPProtocolConfig, error) {
+	config := &HTTPProtocolConfig{}
+	if len(configJSON) > 0 {
+		err := json.Unmarshal(configJSON, config)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return config, nil
+}
+
 type HTTPProtocolConfig struct {
 	BaseProtocol `yaml:",inline"`
 }
