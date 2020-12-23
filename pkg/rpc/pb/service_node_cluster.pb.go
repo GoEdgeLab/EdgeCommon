@@ -1432,6 +1432,101 @@ func (x *CountAllEnabledNodeClustersWithDNSDomainIdRequest) GetDnsDomainId() int
 	return 0
 }
 
+// 查找使用某个域名的所有集群
+type FindAllEnabledNodeClustersWithDNSDomainIdRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DnsDomainId int64 `protobuf:"varint,1,opt,name=dnsDomainId,proto3" json:"dnsDomainId,omitempty"`
+}
+
+func (x *FindAllEnabledNodeClustersWithDNSDomainIdRequest) Reset() {
+	*x = FindAllEnabledNodeClustersWithDNSDomainIdRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_cluster_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllEnabledNodeClustersWithDNSDomainIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllEnabledNodeClustersWithDNSDomainIdRequest) ProtoMessage() {}
+
+func (x *FindAllEnabledNodeClustersWithDNSDomainIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_cluster_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllEnabledNodeClustersWithDNSDomainIdRequest.ProtoReflect.Descriptor instead.
+func (*FindAllEnabledNodeClustersWithDNSDomainIdRequest) Descriptor() ([]byte, []int) {
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *FindAllEnabledNodeClustersWithDNSDomainIdRequest) GetDnsDomainId() int64 {
+	if x != nil {
+		return x.DnsDomainId
+	}
+	return 0
+}
+
+type FindAllEnabledNodeClustersWithDNSDomainIdResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NodeClusters []*NodeCluster `protobuf:"bytes,1,rep,name=nodeClusters,proto3" json:"nodeClusters,omitempty"`
+}
+
+func (x *FindAllEnabledNodeClustersWithDNSDomainIdResponse) Reset() {
+	*x = FindAllEnabledNodeClustersWithDNSDomainIdResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_cluster_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllEnabledNodeClustersWithDNSDomainIdResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllEnabledNodeClustersWithDNSDomainIdResponse) ProtoMessage() {}
+
+func (x *FindAllEnabledNodeClustersWithDNSDomainIdResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_cluster_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllEnabledNodeClustersWithDNSDomainIdResponse.ProtoReflect.Descriptor instead.
+func (*FindAllEnabledNodeClustersWithDNSDomainIdResponse) Descriptor() ([]byte, []int) {
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *FindAllEnabledNodeClustersWithDNSDomainIdResponse) GetNodeClusters() []*NodeCluster {
+	if x != nil {
+		return x.NodeClusters
+	}
+	return nil
+}
+
 // 检查集群域名是否已经被使用
 type CheckNodeClusterDNSNameRequest struct {
 	state         protoimpl.MessageState
@@ -1445,7 +1540,7 @@ type CheckNodeClusterDNSNameRequest struct {
 func (x *CheckNodeClusterDNSNameRequest) Reset() {
 	*x = CheckNodeClusterDNSNameRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[27]
+		mi := &file_service_node_cluster_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1458,7 +1553,7 @@ func (x *CheckNodeClusterDNSNameRequest) String() string {
 func (*CheckNodeClusterDNSNameRequest) ProtoMessage() {}
 
 func (x *CheckNodeClusterDNSNameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[27]
+	mi := &file_service_node_cluster_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1471,7 +1566,7 @@ func (x *CheckNodeClusterDNSNameRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckNodeClusterDNSNameRequest.ProtoReflect.Descriptor instead.
 func (*CheckNodeClusterDNSNameRequest) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{27}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *CheckNodeClusterDNSNameRequest) GetNodeClusterId() int64 {
@@ -1499,7 +1594,7 @@ type CheckNodeClusterDNSNameResponse struct {
 func (x *CheckNodeClusterDNSNameResponse) Reset() {
 	*x = CheckNodeClusterDNSNameResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[28]
+		mi := &file_service_node_cluster_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1512,7 +1607,7 @@ func (x *CheckNodeClusterDNSNameResponse) String() string {
 func (*CheckNodeClusterDNSNameResponse) ProtoMessage() {}
 
 func (x *CheckNodeClusterDNSNameResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[28]
+	mi := &file_service_node_cluster_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1525,7 +1620,7 @@ func (x *CheckNodeClusterDNSNameResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckNodeClusterDNSNameResponse.ProtoReflect.Descriptor instead.
 func (*CheckNodeClusterDNSNameResponse) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{28}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *CheckNodeClusterDNSNameResponse) GetIsUsed() bool {
@@ -1551,7 +1646,7 @@ type UpdateNodeClusterDNSRequest struct {
 func (x *UpdateNodeClusterDNSRequest) Reset() {
 	*x = UpdateNodeClusterDNSRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[29]
+		mi := &file_service_node_cluster_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1564,7 +1659,7 @@ func (x *UpdateNodeClusterDNSRequest) String() string {
 func (*UpdateNodeClusterDNSRequest) ProtoMessage() {}
 
 func (x *UpdateNodeClusterDNSRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[29]
+	mi := &file_service_node_cluster_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1577,7 +1672,7 @@ func (x *UpdateNodeClusterDNSRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateNodeClusterDNSRequest.ProtoReflect.Descriptor instead.
 func (*UpdateNodeClusterDNSRequest) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{29}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *UpdateNodeClusterDNSRequest) GetNodeClusterId() int64 {
@@ -1627,7 +1722,7 @@ type CheckNodeClusterDNSChangesRequest struct {
 func (x *CheckNodeClusterDNSChangesRequest) Reset() {
 	*x = CheckNodeClusterDNSChangesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[30]
+		mi := &file_service_node_cluster_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1640,7 +1735,7 @@ func (x *CheckNodeClusterDNSChangesRequest) String() string {
 func (*CheckNodeClusterDNSChangesRequest) ProtoMessage() {}
 
 func (x *CheckNodeClusterDNSChangesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[30]
+	mi := &file_service_node_cluster_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1653,7 +1748,7 @@ func (x *CheckNodeClusterDNSChangesRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CheckNodeClusterDNSChangesRequest.ProtoReflect.Descriptor instead.
 func (*CheckNodeClusterDNSChangesRequest) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{30}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *CheckNodeClusterDNSChangesRequest) GetNodeClusterId() int64 {
@@ -1674,7 +1769,7 @@ type CheckNodeClusterDNSChangesResponse struct {
 func (x *CheckNodeClusterDNSChangesResponse) Reset() {
 	*x = CheckNodeClusterDNSChangesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[31]
+		mi := &file_service_node_cluster_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1687,7 +1782,7 @@ func (x *CheckNodeClusterDNSChangesResponse) String() string {
 func (*CheckNodeClusterDNSChangesResponse) ProtoMessage() {}
 
 func (x *CheckNodeClusterDNSChangesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[31]
+	mi := &file_service_node_cluster_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1700,7 +1795,7 @@ func (x *CheckNodeClusterDNSChangesResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use CheckNodeClusterDNSChangesResponse.ProtoReflect.Descriptor instead.
 func (*CheckNodeClusterDNSChangesResponse) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{31}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *CheckNodeClusterDNSChangesResponse) GetIsChanged() bool {
@@ -1722,7 +1817,7 @@ type FindEnabledNodeClusterTOARequest struct {
 func (x *FindEnabledNodeClusterTOARequest) Reset() {
 	*x = FindEnabledNodeClusterTOARequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[32]
+		mi := &file_service_node_cluster_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1735,7 +1830,7 @@ func (x *FindEnabledNodeClusterTOARequest) String() string {
 func (*FindEnabledNodeClusterTOARequest) ProtoMessage() {}
 
 func (x *FindEnabledNodeClusterTOARequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[32]
+	mi := &file_service_node_cluster_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1748,7 +1843,7 @@ func (x *FindEnabledNodeClusterTOARequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindEnabledNodeClusterTOARequest.ProtoReflect.Descriptor instead.
 func (*FindEnabledNodeClusterTOARequest) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{32}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *FindEnabledNodeClusterTOARequest) GetNodeClusterId() int64 {
@@ -1769,7 +1864,7 @@ type FindEnabledNodeClusterTOAResponse struct {
 func (x *FindEnabledNodeClusterTOAResponse) Reset() {
 	*x = FindEnabledNodeClusterTOAResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[33]
+		mi := &file_service_node_cluster_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1782,7 +1877,7 @@ func (x *FindEnabledNodeClusterTOAResponse) String() string {
 func (*FindEnabledNodeClusterTOAResponse) ProtoMessage() {}
 
 func (x *FindEnabledNodeClusterTOAResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[33]
+	mi := &file_service_node_cluster_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1795,7 +1890,7 @@ func (x *FindEnabledNodeClusterTOAResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use FindEnabledNodeClusterTOAResponse.ProtoReflect.Descriptor instead.
 func (*FindEnabledNodeClusterTOAResponse) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{33}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *FindEnabledNodeClusterTOAResponse) GetToaJSON() []byte {
@@ -1818,7 +1913,7 @@ type UpdateNodeClusterTOARequest struct {
 func (x *UpdateNodeClusterTOARequest) Reset() {
 	*x = UpdateNodeClusterTOARequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[34]
+		mi := &file_service_node_cluster_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1831,7 +1926,7 @@ func (x *UpdateNodeClusterTOARequest) String() string {
 func (*UpdateNodeClusterTOARequest) ProtoMessage() {}
 
 func (x *UpdateNodeClusterTOARequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[34]
+	mi := &file_service_node_cluster_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1844,7 +1939,7 @@ func (x *UpdateNodeClusterTOARequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateNodeClusterTOARequest.ProtoReflect.Descriptor instead.
 func (*UpdateNodeClusterTOARequest) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{34}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *UpdateNodeClusterTOARequest) GetNodeClusterId() int64 {
@@ -1873,7 +1968,7 @@ type CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest struct {
 func (x *CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) Reset() {
 	*x = CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[35]
+		mi := &file_service_node_cluster_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1886,7 +1981,7 @@ func (x *CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) String() strin
 func (*CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) ProtoMessage() {}
 
 func (x *CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[35]
+	mi := &file_service_node_cluster_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1899,7 +1994,7 @@ func (x *CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) ProtoReflect()
 
 // Deprecated: Use CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest.ProtoReflect.Descriptor instead.
 func (*CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{35}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) GetHttpCachePolicyId() int64 {
@@ -1921,7 +2016,7 @@ type FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest struct {
 func (x *FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) Reset() {
 	*x = FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[36]
+		mi := &file_service_node_cluster_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1934,7 +2029,7 @@ func (x *FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) String() string
 func (*FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) ProtoMessage() {}
 
 func (x *FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[36]
+	mi := &file_service_node_cluster_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1947,7 +2042,7 @@ func (x *FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) ProtoReflect() 
 
 // Deprecated: Use FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest.ProtoReflect.Descriptor instead.
 func (*FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{36}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest) GetHttpCachePolicyId() int64 {
@@ -1968,7 +2063,7 @@ type FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse struct {
 func (x *FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse) Reset() {
 	*x = FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[37]
+		mi := &file_service_node_cluster_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1981,7 +2076,7 @@ func (x *FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse) String() strin
 func (*FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse) ProtoMessage() {}
 
 func (x *FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[37]
+	mi := &file_service_node_cluster_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1994,7 +2089,7 @@ func (x *FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse) ProtoReflect()
 
 // Deprecated: Use FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse.ProtoReflect.Descriptor instead.
 func (*FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{37}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse) GetNodeClusters() []*NodeCluster {
@@ -2016,7 +2111,7 @@ type CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest struct {
 func (x *CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) Reset() {
 	*x = CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[38]
+		mi := &file_service_node_cluster_proto_msgTypes[40]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2029,7 +2124,7 @@ func (x *CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) String() st
 func (*CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) ProtoMessage() {}
 
 func (x *CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[38]
+	mi := &file_service_node_cluster_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2042,7 +2137,7 @@ func (x *CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) ProtoReflec
 
 // Deprecated: Use CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest.ProtoReflect.Descriptor instead.
 func (*CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{38}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) GetHttpFirewallPolicyId() int64 {
@@ -2064,7 +2159,7 @@ type FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest struct {
 func (x *FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) Reset() {
 	*x = FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[39]
+		mi := &file_service_node_cluster_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2077,7 +2172,7 @@ func (x *FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) String() str
 func (*FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) ProtoMessage() {}
 
 func (x *FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[39]
+	mi := &file_service_node_cluster_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2090,7 +2185,7 @@ func (x *FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) ProtoReflect
 
 // Deprecated: Use FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest.ProtoReflect.Descriptor instead.
 func (*FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{39}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest) GetHttpFirewallPolicyId() int64 {
@@ -2111,7 +2206,7 @@ type FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse struct {
 func (x *FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse) Reset() {
 	*x = FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[40]
+		mi := &file_service_node_cluster_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2124,7 +2219,7 @@ func (x *FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse) String() st
 func (*FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse) ProtoMessage() {}
 
 func (x *FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[40]
+	mi := &file_service_node_cluster_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2137,7 +2232,7 @@ func (x *FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse) ProtoReflec
 
 // Deprecated: Use FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse.ProtoReflect.Descriptor instead.
 func (*FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{40}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse) GetNodeClusters() []*NodeCluster {
@@ -2160,7 +2255,7 @@ type UpdateNodeClusterHTTPCachePolicyIdRequest struct {
 func (x *UpdateNodeClusterHTTPCachePolicyIdRequest) Reset() {
 	*x = UpdateNodeClusterHTTPCachePolicyIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[41]
+		mi := &file_service_node_cluster_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2173,7 +2268,7 @@ func (x *UpdateNodeClusterHTTPCachePolicyIdRequest) String() string {
 func (*UpdateNodeClusterHTTPCachePolicyIdRequest) ProtoMessage() {}
 
 func (x *UpdateNodeClusterHTTPCachePolicyIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[41]
+	mi := &file_service_node_cluster_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2186,7 +2281,7 @@ func (x *UpdateNodeClusterHTTPCachePolicyIdRequest) ProtoReflect() protoreflect.
 
 // Deprecated: Use UpdateNodeClusterHTTPCachePolicyIdRequest.ProtoReflect.Descriptor instead.
 func (*UpdateNodeClusterHTTPCachePolicyIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{41}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *UpdateNodeClusterHTTPCachePolicyIdRequest) GetNodeClusterId() int64 {
@@ -2216,7 +2311,7 @@ type UpdateNodeClusterHTTPFirewallPolicyIdRequest struct {
 func (x *UpdateNodeClusterHTTPFirewallPolicyIdRequest) Reset() {
 	*x = UpdateNodeClusterHTTPFirewallPolicyIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[42]
+		mi := &file_service_node_cluster_proto_msgTypes[44]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2229,7 +2324,7 @@ func (x *UpdateNodeClusterHTTPFirewallPolicyIdRequest) String() string {
 func (*UpdateNodeClusterHTTPFirewallPolicyIdRequest) ProtoMessage() {}
 
 func (x *UpdateNodeClusterHTTPFirewallPolicyIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[42]
+	mi := &file_service_node_cluster_proto_msgTypes[44]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2242,7 +2337,7 @@ func (x *UpdateNodeClusterHTTPFirewallPolicyIdRequest) ProtoReflect() protorefle
 
 // Deprecated: Use UpdateNodeClusterHTTPFirewallPolicyIdRequest.ProtoReflect.Descriptor instead.
 func (*UpdateNodeClusterHTTPFirewallPolicyIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_node_cluster_proto_rawDescGZIP(), []int{42}
+	return file_service_node_cluster_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *UpdateNodeClusterHTTPFirewallPolicyIdRequest) GetNodeClusterId() int64 {
@@ -2274,7 +2369,7 @@ type ExecuteNodeClusterHealthCheckResponse_Result struct {
 func (x *ExecuteNodeClusterHealthCheckResponse_Result) Reset() {
 	*x = ExecuteNodeClusterHealthCheckResponse_Result{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_cluster_proto_msgTypes[43]
+		mi := &file_service_node_cluster_proto_msgTypes[45]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2287,7 +2382,7 @@ func (x *ExecuteNodeClusterHealthCheckResponse_Result) String() string {
 func (*ExecuteNodeClusterHealthCheckResponse_Result) ProtoMessage() {}
 
 func (x *ExecuteNodeClusterHealthCheckResponse_Result) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_cluster_proto_msgTypes[43]
+	mi := &file_service_node_cluster_proto_msgTypes[45]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2526,7 +2621,19 @@ var file_service_node_cluster_proto_rawDesc = []byte{
 	0x68, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75,
 	0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
 	0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d,
-	0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x60, 0x0a, 0x1e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x4e, 0x6f,
+	0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x54, 0x0a, 0x30, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x6e, 0x73,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b,
+	0x64, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x68, 0x0a, 0x31, 0x46,
+	0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64,
+	0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e, 0x53,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x33, 0x0a, 0x0c, 0x6e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x6f, 0x64, 0x65,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x0c, 0x6e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x73, 0x22, 0x60, 0x0a, 0x1e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x4e, 0x6f,
 	0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x44, 0x4e, 0x53, 0x4e, 0x61, 0x6d, 0x65,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x6e, 0x6f, 0x64, 0x65, 0x43,
 	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d,
@@ -2630,8 +2737,8 @@ var file_service_node_cluster_proto_rawDesc = []byte{
 	0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x32, 0x0a, 0x14, 0x68, 0x74,
 	0x74, 0x70, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79,
 	0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x14, 0x68, 0x74, 0x74, 0x70, 0x46, 0x69,
-	0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x32, 0xa2,
-	0x18, 0x0a, 0x12, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x53, 0x65,
+	0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x32, 0xbd,
+	0x19, 0x0a, 0x12, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x53, 0x65,
 	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x50, 0x0a, 0x11, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e,
 	0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e,
 	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
@@ -2743,90 +2850,99 @@ var file_service_node_cluster_proto_rawDesc = []byte{
 	0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
 	0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43,
-	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x62, 0x0a,
-	0x17, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
-	0x72, 0x44, 0x4e, 0x53, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68,
-	0x65, 0x63, 0x6b, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x44, 0x4e,
-	0x53, 0x4e, 0x61, 0x6d, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x70,
-	0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74,
-	0x65, 0x72, 0x44, 0x4e, 0x53, 0x4e, 0x61, 0x6d, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x47, 0x0a, 0x14, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x43,
-	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x44, 0x4e, 0x53, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
-	0x44, 0x4e, 0x53, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e,
-	0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x6b, 0x0a, 0x1a, 0x63, 0x68,
-	0x65, 0x63, 0x6b, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x44, 0x4e,
-	0x53, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x73, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68,
-	0x65, 0x63, 0x6b, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x44, 0x4e,
-	0x53, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x26, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c,
-	0x75, 0x73, 0x74, 0x65, 0x72, 0x44, 0x4e, 0x53, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x73, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x68, 0x0a, 0x19, 0x66, 0x69, 0x6e, 0x64, 0x45,
-	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
-	0x72, 0x54, 0x4f, 0x41, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e,
+	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x98, 0x01,
+	0x0a, 0x29, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68,
+	0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x12, 0x34, 0x2e, 0x70, 0x62,
+	0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e,
+	0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44,
+	0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x35, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e,
 	0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
-	0x54, 0x4f, 0x41, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x70, 0x62, 0x2e,
-	0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43,
-	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x54, 0x4f, 0x41, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x47, 0x0a, 0x14, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x43,
-	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x54, 0x4f, 0x41, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
-	0x54, 0x4f, 0x41, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e,
-	0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x85, 0x01, 0x0a, 0x30, 0x63,
-	0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f,
-	0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x48, 0x54,
-	0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x12,
-	0x3b, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61,
-	0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73,
-	0x57, 0x69, 0x74, 0x68, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c,
-	0x69, 0x63, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70,
-	0x62, 0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0xaa, 0x01, 0x0a, 0x2f, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e,
+	0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x62, 0x0a, 0x17, 0x63, 0x68, 0x65, 0x63,
+	0x6b, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x44, 0x4e, 0x53, 0x4e,
+	0x61, 0x6d, 0x65, 0x12, 0x22, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x4e, 0x6f,
+	0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x44, 0x4e, 0x53, 0x4e, 0x61, 0x6d, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65,
+	0x63, 0x6b, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x44, 0x4e, 0x53,
+	0x4e, 0x61, 0x6d, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x47, 0x0a, 0x14,
+	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x44, 0x4e, 0x53, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x44, 0x4e, 0x53, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x6b, 0x0a, 0x1a, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x4e, 0x6f,
+	0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x44, 0x4e, 0x53, 0x43, 0x68, 0x61, 0x6e,
+	0x67, 0x65, 0x73, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x4e, 0x6f,
+	0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x44, 0x4e, 0x53, 0x43, 0x68, 0x61, 0x6e,
+	0x67, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x70, 0x62, 0x2e,
+	0x43, 0x68, 0x65, 0x63, 0x6b, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x44, 0x4e, 0x53, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x68, 0x0a, 0x19, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x54, 0x4f, 0x41, 0x12,
+	0x24, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x54, 0x4f, 0x41, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45,
+	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x54, 0x4f, 0x41, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x47, 0x0a, 0x14,
+	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x54, 0x4f, 0x41, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x54, 0x4f, 0x41, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x85, 0x01, 0x0a, 0x30, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41,
+	0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63,
+	0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x12, 0x3b, 0x2e, 0x70, 0x62, 0x2e,
+	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e,
+	0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x48,
+	0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43,
+	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0xaa, 0x01,
+	0x0a, 0x2f, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68,
+	0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49,
+	0x64, 0x12, 0x3a, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e,
 	0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
 	0x73, 0x57, 0x69, 0x74, 0x68, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f,
-	0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x12, 0x3a, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
-	0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c,
-	0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61,
-	0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x3b, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45,
-	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
-	0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50,
-	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x8b, 0x01, 0x0a, 0x33, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62,
-	0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57,
-	0x69, 0x74, 0x68, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50,
-	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x12, 0x3e, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75,
-	0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65,
-	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x48, 0x54, 0x54, 0x50,
-	0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43,
-	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0xb3, 0x01,
-	0x0a, 0x32, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
-	0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68,
-	0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69,
-	0x63, 0x79, 0x49, 0x64, 0x12, 0x3d, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c,
-	0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73,
-	0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65,
-	0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x3e, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c,
+	0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3b, 0x2e,
+	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74,
+	0x68, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79,
+	0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x8b, 0x01, 0x0a, 0x33, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f,
+	0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x48, 0x54,
+	0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79,
+	0x49, 0x64, 0x12, 0x3e, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c,
 	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74,
 	0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77,
-	0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x63, 0x0a, 0x22, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64,
-	0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68,
-	0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x12, 0x2d, 0x2e, 0x70, 0x62, 0x2e, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
-	0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49,
-	0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50,
-	0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x69, 0x0a, 0x25, 0x75, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x48, 0x54, 0x54,
-	0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49,
-	0x64, 0x12, 0x30, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64,
-	0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65,
-	0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75,
+	0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0xb3, 0x01, 0x0a, 0x32, 0x66, 0x69, 0x6e,
+	0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x48, 0x54, 0x54, 0x50, 0x46,
+	0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x12,
+	0x3d, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57,
+	0x69, 0x74, 0x68, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x3e,
+	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c,
+	0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x57, 0x69,
+	0x74, 0x68, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x63,
+	0x0a, 0x22, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x49, 0x64, 0x12, 0x2d, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x48, 0x54, 0x54, 0x50, 0x43,
+	0x61, 0x63, 0x68, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75,
 	0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63,
-	0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x65, 0x73, 0x73, 0x12, 0x69, 0x0a, 0x25, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64,
+	0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65,
+	0x77, 0x61, 0x6c, 0x6c, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x12, 0x30, 0x2e, 0x70,
+	0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e,
+	0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x42, 0x06,
+	0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2841,7 +2957,7 @@ func file_service_node_cluster_proto_rawDescGZIP() []byte {
 	return file_service_node_cluster_proto_rawDescData
 }
 
-var file_service_node_cluster_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
+var file_service_node_cluster_proto_msgTypes = make([]protoimpl.MessageInfo, 46)
 var file_service_node_cluster_proto_goTypes = []interface{}{
 	(*FindAllEnabledNodeClustersRequest)(nil),                          // 0: pb.FindAllEnabledNodeClustersRequest
 	(*FindAllEnabledNodeClustersResponse)(nil),                         // 1: pb.FindAllEnabledNodeClustersResponse
@@ -2870,105 +2986,110 @@ var file_service_node_cluster_proto_goTypes = []interface{}{
 	(*FindEnabledNodeClusterDNSResponse)(nil),                          // 24: pb.FindEnabledNodeClusterDNSResponse
 	(*CountAllEnabledNodeClustersWithDNSProviderIdRequest)(nil),        // 25: pb.CountAllEnabledNodeClustersWithDNSProviderIdRequest
 	(*CountAllEnabledNodeClustersWithDNSDomainIdRequest)(nil),          // 26: pb.CountAllEnabledNodeClustersWithDNSDomainIdRequest
-	(*CheckNodeClusterDNSNameRequest)(nil),                             // 27: pb.CheckNodeClusterDNSNameRequest
-	(*CheckNodeClusterDNSNameResponse)(nil),                            // 28: pb.CheckNodeClusterDNSNameResponse
-	(*UpdateNodeClusterDNSRequest)(nil),                                // 29: pb.UpdateNodeClusterDNSRequest
-	(*CheckNodeClusterDNSChangesRequest)(nil),                          // 30: pb.CheckNodeClusterDNSChangesRequest
-	(*CheckNodeClusterDNSChangesResponse)(nil),                         // 31: pb.CheckNodeClusterDNSChangesResponse
-	(*FindEnabledNodeClusterTOARequest)(nil),                           // 32: pb.FindEnabledNodeClusterTOARequest
-	(*FindEnabledNodeClusterTOAResponse)(nil),                          // 33: pb.FindEnabledNodeClusterTOAResponse
-	(*UpdateNodeClusterTOARequest)(nil),                                // 34: pb.UpdateNodeClusterTOARequest
-	(*CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest)(nil),    // 35: pb.CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest
-	(*FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest)(nil),     // 36: pb.FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest
-	(*FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse)(nil),    // 37: pb.FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse
-	(*CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest)(nil), // 38: pb.CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest
-	(*FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest)(nil),  // 39: pb.FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest
-	(*FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse)(nil), // 40: pb.FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse
-	(*UpdateNodeClusterHTTPCachePolicyIdRequest)(nil),                  // 41: pb.UpdateNodeClusterHTTPCachePolicyIdRequest
-	(*UpdateNodeClusterHTTPFirewallPolicyIdRequest)(nil),               // 42: pb.UpdateNodeClusterHTTPFirewallPolicyIdRequest
-	(*ExecuteNodeClusterHealthCheckResponse_Result)(nil),               // 43: pb.ExecuteNodeClusterHealthCheckResponse.Result
-	(*NodeCluster)(nil),                                                // 44: pb.NodeCluster
-	(*APINode)(nil),                                                    // 45: pb.APINode
-	(*DNSDomain)(nil),                                                  // 46: pb.DNSDomain
-	(*DNSProvider)(nil),                                                // 47: pb.DNSProvider
-	(*Node)(nil),                                                       // 48: pb.Node
-	(*RPCSuccess)(nil),                                                 // 49: pb.RPCSuccess
-	(*RPCCountResponse)(nil),                                           // 50: pb.RPCCountResponse
+	(*FindAllEnabledNodeClustersWithDNSDomainIdRequest)(nil),           // 27: pb.FindAllEnabledNodeClustersWithDNSDomainIdRequest
+	(*FindAllEnabledNodeClustersWithDNSDomainIdResponse)(nil),          // 28: pb.FindAllEnabledNodeClustersWithDNSDomainIdResponse
+	(*CheckNodeClusterDNSNameRequest)(nil),                             // 29: pb.CheckNodeClusterDNSNameRequest
+	(*CheckNodeClusterDNSNameResponse)(nil),                            // 30: pb.CheckNodeClusterDNSNameResponse
+	(*UpdateNodeClusterDNSRequest)(nil),                                // 31: pb.UpdateNodeClusterDNSRequest
+	(*CheckNodeClusterDNSChangesRequest)(nil),                          // 32: pb.CheckNodeClusterDNSChangesRequest
+	(*CheckNodeClusterDNSChangesResponse)(nil),                         // 33: pb.CheckNodeClusterDNSChangesResponse
+	(*FindEnabledNodeClusterTOARequest)(nil),                           // 34: pb.FindEnabledNodeClusterTOARequest
+	(*FindEnabledNodeClusterTOAResponse)(nil),                          // 35: pb.FindEnabledNodeClusterTOAResponse
+	(*UpdateNodeClusterTOARequest)(nil),                                // 36: pb.UpdateNodeClusterTOARequest
+	(*CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest)(nil),    // 37: pb.CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest
+	(*FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest)(nil),     // 38: pb.FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest
+	(*FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse)(nil),    // 39: pb.FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse
+	(*CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest)(nil), // 40: pb.CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest
+	(*FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest)(nil),  // 41: pb.FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest
+	(*FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse)(nil), // 42: pb.FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse
+	(*UpdateNodeClusterHTTPCachePolicyIdRequest)(nil),                  // 43: pb.UpdateNodeClusterHTTPCachePolicyIdRequest
+	(*UpdateNodeClusterHTTPFirewallPolicyIdRequest)(nil),               // 44: pb.UpdateNodeClusterHTTPFirewallPolicyIdRequest
+	(*ExecuteNodeClusterHealthCheckResponse_Result)(nil),               // 45: pb.ExecuteNodeClusterHealthCheckResponse.Result
+	(*NodeCluster)(nil),                                                // 46: pb.NodeCluster
+	(*APINode)(nil),                                                    // 47: pb.APINode
+	(*DNSDomain)(nil),                                                  // 48: pb.DNSDomain
+	(*DNSProvider)(nil),                                                // 49: pb.DNSProvider
+	(*Node)(nil),                                                       // 50: pb.Node
+	(*RPCSuccess)(nil),                                                 // 51: pb.RPCSuccess
+	(*RPCCountResponse)(nil),                                           // 52: pb.RPCCountResponse
 }
 var file_service_node_cluster_proto_depIdxs = []int32{
-	44, // 0: pb.FindAllEnabledNodeClustersResponse.nodeClusters:type_name -> pb.NodeCluster
-	44, // 1: pb.FindAllChangedNodeClustersResponse.nodeClusters:type_name -> pb.NodeCluster
-	44, // 2: pb.FindEnabledNodeClusterResponse.nodeCluster:type_name -> pb.NodeCluster
-	45, // 3: pb.FindAPINodesWithNodeClusterResponse.apiNodes:type_name -> pb.APINode
-	44, // 4: pb.ListEnabledNodeClustersResponse.nodeClusters:type_name -> pb.NodeCluster
-	43, // 5: pb.ExecuteNodeClusterHealthCheckResponse.results:type_name -> pb.ExecuteNodeClusterHealthCheckResponse.Result
-	44, // 6: pb.FindAllEnabledNodeClustersWithGrantIdResponse.nodeClusters:type_name -> pb.NodeCluster
-	46, // 7: pb.FindEnabledNodeClusterDNSResponse.domain:type_name -> pb.DNSDomain
-	47, // 8: pb.FindEnabledNodeClusterDNSResponse.provider:type_name -> pb.DNSProvider
-	44, // 9: pb.FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse.nodeClusters:type_name -> pb.NodeCluster
-	44, // 10: pb.FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse.nodeClusters:type_name -> pb.NodeCluster
-	48, // 11: pb.ExecuteNodeClusterHealthCheckResponse.Result.node:type_name -> pb.Node
-	4,  // 12: pb.NodeClusterService.createNodeCluster:input_type -> pb.CreateNodeClusterRequest
-	6,  // 13: pb.NodeClusterService.updateNodeCluster:input_type -> pb.UpdateNodeClusterRequest
-	7,  // 14: pb.NodeClusterService.deleteNodeCluster:input_type -> pb.DeleteNodeClusterRequest
-	8,  // 15: pb.NodeClusterService.findEnabledNodeCluster:input_type -> pb.FindEnabledNodeClusterRequest
-	10, // 16: pb.NodeClusterService.findAPINodesWithNodeCluster:input_type -> pb.FindAPINodesWithNodeClusterRequest
-	0,  // 17: pb.NodeClusterService.findAllEnabledNodeClusters:input_type -> pb.FindAllEnabledNodeClustersRequest
-	2,  // 18: pb.NodeClusterService.findAllChangedNodeClusters:input_type -> pb.FindAllChangedNodeClustersRequest
-	12, // 19: pb.NodeClusterService.countAllEnabledNodeClusters:input_type -> pb.CountAllEnabledNodeClustersRequest
-	13, // 20: pb.NodeClusterService.listEnabledNodeClusters:input_type -> pb.ListEnabledNodeClustersRequest
-	15, // 21: pb.NodeClusterService.findNodeClusterHealthCheckConfig:input_type -> pb.FindNodeClusterHealthCheckConfigRequest
-	17, // 22: pb.NodeClusterService.updateNodeClusterHealthCheck:input_type -> pb.UpdateNodeClusterHealthCheckRequest
-	18, // 23: pb.NodeClusterService.executeNodeClusterHealthCheck:input_type -> pb.ExecuteNodeClusterHealthCheckRequest
-	20, // 24: pb.NodeClusterService.countAllEnabledNodeClustersWithGrantId:input_type -> pb.CountAllEnabledNodeClustersWithGrantIdRequest
-	21, // 25: pb.NodeClusterService.findAllEnabledNodeClustersWithGrantId:input_type -> pb.FindAllEnabledNodeClustersWithGrantIdRequest
-	23, // 26: pb.NodeClusterService.findEnabledNodeClusterDNS:input_type -> pb.FindEnabledNodeClusterDNSRequest
-	25, // 27: pb.NodeClusterService.countAllEnabledNodeClustersWithDNSProviderId:input_type -> pb.CountAllEnabledNodeClustersWithDNSProviderIdRequest
-	26, // 28: pb.NodeClusterService.countAllEnabledNodeClustersWithDNSDomainId:input_type -> pb.CountAllEnabledNodeClustersWithDNSDomainIdRequest
-	27, // 29: pb.NodeClusterService.checkNodeClusterDNSName:input_type -> pb.CheckNodeClusterDNSNameRequest
-	29, // 30: pb.NodeClusterService.updateNodeClusterDNS:input_type -> pb.UpdateNodeClusterDNSRequest
-	30, // 31: pb.NodeClusterService.checkNodeClusterDNSChanges:input_type -> pb.CheckNodeClusterDNSChangesRequest
-	32, // 32: pb.NodeClusterService.findEnabledNodeClusterTOA:input_type -> pb.FindEnabledNodeClusterTOARequest
-	34, // 33: pb.NodeClusterService.updateNodeClusterTOA:input_type -> pb.UpdateNodeClusterTOARequest
-	35, // 34: pb.NodeClusterService.countAllEnabledNodeClustersWithHTTPCachePolicyId:input_type -> pb.CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest
-	36, // 35: pb.NodeClusterService.findAllEnabledNodeClustersWithHTTPCachePolicyId:input_type -> pb.FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest
-	38, // 36: pb.NodeClusterService.countAllEnabledNodeClustersWithHTTPFirewallPolicyId:input_type -> pb.CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest
-	39, // 37: pb.NodeClusterService.findAllEnabledNodeClustersWithHTTPFirewallPolicyId:input_type -> pb.FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest
-	41, // 38: pb.NodeClusterService.updateNodeClusterHTTPCachePolicyId:input_type -> pb.UpdateNodeClusterHTTPCachePolicyIdRequest
-	42, // 39: pb.NodeClusterService.updateNodeClusterHTTPFirewallPolicyId:input_type -> pb.UpdateNodeClusterHTTPFirewallPolicyIdRequest
-	5,  // 40: pb.NodeClusterService.createNodeCluster:output_type -> pb.CreateNodeClusterResponse
-	49, // 41: pb.NodeClusterService.updateNodeCluster:output_type -> pb.RPCSuccess
-	49, // 42: pb.NodeClusterService.deleteNodeCluster:output_type -> pb.RPCSuccess
-	9,  // 43: pb.NodeClusterService.findEnabledNodeCluster:output_type -> pb.FindEnabledNodeClusterResponse
-	11, // 44: pb.NodeClusterService.findAPINodesWithNodeCluster:output_type -> pb.FindAPINodesWithNodeClusterResponse
-	1,  // 45: pb.NodeClusterService.findAllEnabledNodeClusters:output_type -> pb.FindAllEnabledNodeClustersResponse
-	3,  // 46: pb.NodeClusterService.findAllChangedNodeClusters:output_type -> pb.FindAllChangedNodeClustersResponse
-	50, // 47: pb.NodeClusterService.countAllEnabledNodeClusters:output_type -> pb.RPCCountResponse
-	14, // 48: pb.NodeClusterService.listEnabledNodeClusters:output_type -> pb.ListEnabledNodeClustersResponse
-	16, // 49: pb.NodeClusterService.findNodeClusterHealthCheckConfig:output_type -> pb.FindNodeClusterHealthCheckConfigResponse
-	49, // 50: pb.NodeClusterService.updateNodeClusterHealthCheck:output_type -> pb.RPCSuccess
-	19, // 51: pb.NodeClusterService.executeNodeClusterHealthCheck:output_type -> pb.ExecuteNodeClusterHealthCheckResponse
-	50, // 52: pb.NodeClusterService.countAllEnabledNodeClustersWithGrantId:output_type -> pb.RPCCountResponse
-	22, // 53: pb.NodeClusterService.findAllEnabledNodeClustersWithGrantId:output_type -> pb.FindAllEnabledNodeClustersWithGrantIdResponse
-	24, // 54: pb.NodeClusterService.findEnabledNodeClusterDNS:output_type -> pb.FindEnabledNodeClusterDNSResponse
-	50, // 55: pb.NodeClusterService.countAllEnabledNodeClustersWithDNSProviderId:output_type -> pb.RPCCountResponse
-	50, // 56: pb.NodeClusterService.countAllEnabledNodeClustersWithDNSDomainId:output_type -> pb.RPCCountResponse
-	28, // 57: pb.NodeClusterService.checkNodeClusterDNSName:output_type -> pb.CheckNodeClusterDNSNameResponse
-	49, // 58: pb.NodeClusterService.updateNodeClusterDNS:output_type -> pb.RPCSuccess
-	31, // 59: pb.NodeClusterService.checkNodeClusterDNSChanges:output_type -> pb.CheckNodeClusterDNSChangesResponse
-	33, // 60: pb.NodeClusterService.findEnabledNodeClusterTOA:output_type -> pb.FindEnabledNodeClusterTOAResponse
-	49, // 61: pb.NodeClusterService.updateNodeClusterTOA:output_type -> pb.RPCSuccess
-	50, // 62: pb.NodeClusterService.countAllEnabledNodeClustersWithHTTPCachePolicyId:output_type -> pb.RPCCountResponse
-	37, // 63: pb.NodeClusterService.findAllEnabledNodeClustersWithHTTPCachePolicyId:output_type -> pb.FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse
-	50, // 64: pb.NodeClusterService.countAllEnabledNodeClustersWithHTTPFirewallPolicyId:output_type -> pb.RPCCountResponse
-	40, // 65: pb.NodeClusterService.findAllEnabledNodeClustersWithHTTPFirewallPolicyId:output_type -> pb.FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse
-	49, // 66: pb.NodeClusterService.updateNodeClusterHTTPCachePolicyId:output_type -> pb.RPCSuccess
-	49, // 67: pb.NodeClusterService.updateNodeClusterHTTPFirewallPolicyId:output_type -> pb.RPCSuccess
-	40, // [40:68] is the sub-list for method output_type
-	12, // [12:40] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	46, // 0: pb.FindAllEnabledNodeClustersResponse.nodeClusters:type_name -> pb.NodeCluster
+	46, // 1: pb.FindAllChangedNodeClustersResponse.nodeClusters:type_name -> pb.NodeCluster
+	46, // 2: pb.FindEnabledNodeClusterResponse.nodeCluster:type_name -> pb.NodeCluster
+	47, // 3: pb.FindAPINodesWithNodeClusterResponse.apiNodes:type_name -> pb.APINode
+	46, // 4: pb.ListEnabledNodeClustersResponse.nodeClusters:type_name -> pb.NodeCluster
+	45, // 5: pb.ExecuteNodeClusterHealthCheckResponse.results:type_name -> pb.ExecuteNodeClusterHealthCheckResponse.Result
+	46, // 6: pb.FindAllEnabledNodeClustersWithGrantIdResponse.nodeClusters:type_name -> pb.NodeCluster
+	48, // 7: pb.FindEnabledNodeClusterDNSResponse.domain:type_name -> pb.DNSDomain
+	49, // 8: pb.FindEnabledNodeClusterDNSResponse.provider:type_name -> pb.DNSProvider
+	46, // 9: pb.FindAllEnabledNodeClustersWithDNSDomainIdResponse.nodeClusters:type_name -> pb.NodeCluster
+	46, // 10: pb.FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse.nodeClusters:type_name -> pb.NodeCluster
+	46, // 11: pb.FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse.nodeClusters:type_name -> pb.NodeCluster
+	50, // 12: pb.ExecuteNodeClusterHealthCheckResponse.Result.node:type_name -> pb.Node
+	4,  // 13: pb.NodeClusterService.createNodeCluster:input_type -> pb.CreateNodeClusterRequest
+	6,  // 14: pb.NodeClusterService.updateNodeCluster:input_type -> pb.UpdateNodeClusterRequest
+	7,  // 15: pb.NodeClusterService.deleteNodeCluster:input_type -> pb.DeleteNodeClusterRequest
+	8,  // 16: pb.NodeClusterService.findEnabledNodeCluster:input_type -> pb.FindEnabledNodeClusterRequest
+	10, // 17: pb.NodeClusterService.findAPINodesWithNodeCluster:input_type -> pb.FindAPINodesWithNodeClusterRequest
+	0,  // 18: pb.NodeClusterService.findAllEnabledNodeClusters:input_type -> pb.FindAllEnabledNodeClustersRequest
+	2,  // 19: pb.NodeClusterService.findAllChangedNodeClusters:input_type -> pb.FindAllChangedNodeClustersRequest
+	12, // 20: pb.NodeClusterService.countAllEnabledNodeClusters:input_type -> pb.CountAllEnabledNodeClustersRequest
+	13, // 21: pb.NodeClusterService.listEnabledNodeClusters:input_type -> pb.ListEnabledNodeClustersRequest
+	15, // 22: pb.NodeClusterService.findNodeClusterHealthCheckConfig:input_type -> pb.FindNodeClusterHealthCheckConfigRequest
+	17, // 23: pb.NodeClusterService.updateNodeClusterHealthCheck:input_type -> pb.UpdateNodeClusterHealthCheckRequest
+	18, // 24: pb.NodeClusterService.executeNodeClusterHealthCheck:input_type -> pb.ExecuteNodeClusterHealthCheckRequest
+	20, // 25: pb.NodeClusterService.countAllEnabledNodeClustersWithGrantId:input_type -> pb.CountAllEnabledNodeClustersWithGrantIdRequest
+	21, // 26: pb.NodeClusterService.findAllEnabledNodeClustersWithGrantId:input_type -> pb.FindAllEnabledNodeClustersWithGrantIdRequest
+	23, // 27: pb.NodeClusterService.findEnabledNodeClusterDNS:input_type -> pb.FindEnabledNodeClusterDNSRequest
+	25, // 28: pb.NodeClusterService.countAllEnabledNodeClustersWithDNSProviderId:input_type -> pb.CountAllEnabledNodeClustersWithDNSProviderIdRequest
+	26, // 29: pb.NodeClusterService.countAllEnabledNodeClustersWithDNSDomainId:input_type -> pb.CountAllEnabledNodeClustersWithDNSDomainIdRequest
+	27, // 30: pb.NodeClusterService.findAllEnabledNodeClustersWithDNSDomainId:input_type -> pb.FindAllEnabledNodeClustersWithDNSDomainIdRequest
+	29, // 31: pb.NodeClusterService.checkNodeClusterDNSName:input_type -> pb.CheckNodeClusterDNSNameRequest
+	31, // 32: pb.NodeClusterService.updateNodeClusterDNS:input_type -> pb.UpdateNodeClusterDNSRequest
+	32, // 33: pb.NodeClusterService.checkNodeClusterDNSChanges:input_type -> pb.CheckNodeClusterDNSChangesRequest
+	34, // 34: pb.NodeClusterService.findEnabledNodeClusterTOA:input_type -> pb.FindEnabledNodeClusterTOARequest
+	36, // 35: pb.NodeClusterService.updateNodeClusterTOA:input_type -> pb.UpdateNodeClusterTOARequest
+	37, // 36: pb.NodeClusterService.countAllEnabledNodeClustersWithHTTPCachePolicyId:input_type -> pb.CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest
+	38, // 37: pb.NodeClusterService.findAllEnabledNodeClustersWithHTTPCachePolicyId:input_type -> pb.FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest
+	40, // 38: pb.NodeClusterService.countAllEnabledNodeClustersWithHTTPFirewallPolicyId:input_type -> pb.CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest
+	41, // 39: pb.NodeClusterService.findAllEnabledNodeClustersWithHTTPFirewallPolicyId:input_type -> pb.FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest
+	43, // 40: pb.NodeClusterService.updateNodeClusterHTTPCachePolicyId:input_type -> pb.UpdateNodeClusterHTTPCachePolicyIdRequest
+	44, // 41: pb.NodeClusterService.updateNodeClusterHTTPFirewallPolicyId:input_type -> pb.UpdateNodeClusterHTTPFirewallPolicyIdRequest
+	5,  // 42: pb.NodeClusterService.createNodeCluster:output_type -> pb.CreateNodeClusterResponse
+	51, // 43: pb.NodeClusterService.updateNodeCluster:output_type -> pb.RPCSuccess
+	51, // 44: pb.NodeClusterService.deleteNodeCluster:output_type -> pb.RPCSuccess
+	9,  // 45: pb.NodeClusterService.findEnabledNodeCluster:output_type -> pb.FindEnabledNodeClusterResponse
+	11, // 46: pb.NodeClusterService.findAPINodesWithNodeCluster:output_type -> pb.FindAPINodesWithNodeClusterResponse
+	1,  // 47: pb.NodeClusterService.findAllEnabledNodeClusters:output_type -> pb.FindAllEnabledNodeClustersResponse
+	3,  // 48: pb.NodeClusterService.findAllChangedNodeClusters:output_type -> pb.FindAllChangedNodeClustersResponse
+	52, // 49: pb.NodeClusterService.countAllEnabledNodeClusters:output_type -> pb.RPCCountResponse
+	14, // 50: pb.NodeClusterService.listEnabledNodeClusters:output_type -> pb.ListEnabledNodeClustersResponse
+	16, // 51: pb.NodeClusterService.findNodeClusterHealthCheckConfig:output_type -> pb.FindNodeClusterHealthCheckConfigResponse
+	51, // 52: pb.NodeClusterService.updateNodeClusterHealthCheck:output_type -> pb.RPCSuccess
+	19, // 53: pb.NodeClusterService.executeNodeClusterHealthCheck:output_type -> pb.ExecuteNodeClusterHealthCheckResponse
+	52, // 54: pb.NodeClusterService.countAllEnabledNodeClustersWithGrantId:output_type -> pb.RPCCountResponse
+	22, // 55: pb.NodeClusterService.findAllEnabledNodeClustersWithGrantId:output_type -> pb.FindAllEnabledNodeClustersWithGrantIdResponse
+	24, // 56: pb.NodeClusterService.findEnabledNodeClusterDNS:output_type -> pb.FindEnabledNodeClusterDNSResponse
+	52, // 57: pb.NodeClusterService.countAllEnabledNodeClustersWithDNSProviderId:output_type -> pb.RPCCountResponse
+	52, // 58: pb.NodeClusterService.countAllEnabledNodeClustersWithDNSDomainId:output_type -> pb.RPCCountResponse
+	28, // 59: pb.NodeClusterService.findAllEnabledNodeClustersWithDNSDomainId:output_type -> pb.FindAllEnabledNodeClustersWithDNSDomainIdResponse
+	30, // 60: pb.NodeClusterService.checkNodeClusterDNSName:output_type -> pb.CheckNodeClusterDNSNameResponse
+	51, // 61: pb.NodeClusterService.updateNodeClusterDNS:output_type -> pb.RPCSuccess
+	33, // 62: pb.NodeClusterService.checkNodeClusterDNSChanges:output_type -> pb.CheckNodeClusterDNSChangesResponse
+	35, // 63: pb.NodeClusterService.findEnabledNodeClusterTOA:output_type -> pb.FindEnabledNodeClusterTOAResponse
+	51, // 64: pb.NodeClusterService.updateNodeClusterTOA:output_type -> pb.RPCSuccess
+	52, // 65: pb.NodeClusterService.countAllEnabledNodeClustersWithHTTPCachePolicyId:output_type -> pb.RPCCountResponse
+	39, // 66: pb.NodeClusterService.findAllEnabledNodeClustersWithHTTPCachePolicyId:output_type -> pb.FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse
+	52, // 67: pb.NodeClusterService.countAllEnabledNodeClustersWithHTTPFirewallPolicyId:output_type -> pb.RPCCountResponse
+	42, // 68: pb.NodeClusterService.findAllEnabledNodeClustersWithHTTPFirewallPolicyId:output_type -> pb.FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse
+	51, // 69: pb.NodeClusterService.updateNodeClusterHTTPCachePolicyId:output_type -> pb.RPCSuccess
+	51, // 70: pb.NodeClusterService.updateNodeClusterHTTPFirewallPolicyId:output_type -> pb.RPCSuccess
+	42, // [42:71] is the sub-list for method output_type
+	13, // [13:42] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_service_node_cluster_proto_init() }
@@ -3308,7 +3429,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckNodeClusterDNSNameRequest); i {
+			switch v := v.(*FindAllEnabledNodeClustersWithDNSDomainIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3320,7 +3441,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckNodeClusterDNSNameResponse); i {
+			switch v := v.(*FindAllEnabledNodeClustersWithDNSDomainIdResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3332,7 +3453,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateNodeClusterDNSRequest); i {
+			switch v := v.(*CheckNodeClusterDNSNameRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3344,7 +3465,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckNodeClusterDNSChangesRequest); i {
+			switch v := v.(*CheckNodeClusterDNSNameResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3356,7 +3477,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckNodeClusterDNSChangesResponse); i {
+			switch v := v.(*UpdateNodeClusterDNSRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3368,7 +3489,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindEnabledNodeClusterTOARequest); i {
+			switch v := v.(*CheckNodeClusterDNSChangesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3380,7 +3501,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindEnabledNodeClusterTOAResponse); i {
+			switch v := v.(*CheckNodeClusterDNSChangesResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3392,7 +3513,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateNodeClusterTOARequest); i {
+			switch v := v.(*FindEnabledNodeClusterTOARequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3404,7 +3525,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest); i {
+			switch v := v.(*FindEnabledNodeClusterTOAResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3416,7 +3537,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest); i {
+			switch v := v.(*UpdateNodeClusterTOARequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3428,7 +3549,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse); i {
+			switch v := v.(*CountAllEnabledNodeClustersWithHTTPCachePolicyIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3440,7 +3561,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest); i {
+			switch v := v.(*FindAllEnabledNodeClustersWithHTTPCachePolicyIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3452,7 +3573,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest); i {
+			switch v := v.(*FindAllEnabledNodeClustersWithHTTPCachePolicyIdResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3464,7 +3585,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse); i {
+			switch v := v.(*CountAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3476,7 +3597,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateNodeClusterHTTPCachePolicyIdRequest); i {
+			switch v := v.(*FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3488,7 +3609,7 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateNodeClusterHTTPFirewallPolicyIdRequest); i {
+			switch v := v.(*FindAllEnabledNodeClustersWithHTTPFirewallPolicyIdResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3500,6 +3621,30 @@ func file_service_node_cluster_proto_init() {
 			}
 		}
 		file_service_node_cluster_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateNodeClusterHTTPCachePolicyIdRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_cluster_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateNodeClusterHTTPFirewallPolicyIdRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_cluster_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ExecuteNodeClusterHealthCheckResponse_Result); i {
 			case 0:
 				return &v.state
@@ -3518,7 +3663,7 @@ func file_service_node_cluster_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_node_cluster_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   44,
+			NumMessages:   46,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -3578,6 +3723,8 @@ type NodeClusterServiceClient interface {
 	CountAllEnabledNodeClustersWithDNSProviderId(ctx context.Context, in *CountAllEnabledNodeClustersWithDNSProviderIdRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 计算使用某个DNS域名的集群数量
 	CountAllEnabledNodeClustersWithDNSDomainId(ctx context.Context, in *CountAllEnabledNodeClustersWithDNSDomainIdRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
+	// 查找使用某个域名的所有集群
+	FindAllEnabledNodeClustersWithDNSDomainId(ctx context.Context, in *FindAllEnabledNodeClustersWithDNSDomainIdRequest, opts ...grpc.CallOption) (*FindAllEnabledNodeClustersWithDNSDomainIdResponse, error)
 	// 检查集群域名是否已经被使用
 	CheckNodeClusterDNSName(ctx context.Context, in *CheckNodeClusterDNSNameRequest, opts ...grpc.CallOption) (*CheckNodeClusterDNSNameResponse, error)
 	// 修改集群的域名设置
@@ -3763,6 +3910,15 @@ func (c *nodeClusterServiceClient) CountAllEnabledNodeClustersWithDNSDomainId(ct
 	return out, nil
 }
 
+func (c *nodeClusterServiceClient) FindAllEnabledNodeClustersWithDNSDomainId(ctx context.Context, in *FindAllEnabledNodeClustersWithDNSDomainIdRequest, opts ...grpc.CallOption) (*FindAllEnabledNodeClustersWithDNSDomainIdResponse, error) {
+	out := new(FindAllEnabledNodeClustersWithDNSDomainIdResponse)
+	err := c.cc.Invoke(ctx, "/pb.NodeClusterService/findAllEnabledNodeClustersWithDNSDomainId", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *nodeClusterServiceClient) CheckNodeClusterDNSName(ctx context.Context, in *CheckNodeClusterDNSNameRequest, opts ...grpc.CallOption) (*CheckNodeClusterDNSNameResponse, error) {
 	out := new(CheckNodeClusterDNSNameResponse)
 	err := c.cc.Invoke(ctx, "/pb.NodeClusterService/checkNodeClusterDNSName", in, out, opts...)
@@ -3898,6 +4054,8 @@ type NodeClusterServiceServer interface {
 	CountAllEnabledNodeClustersWithDNSProviderId(context.Context, *CountAllEnabledNodeClustersWithDNSProviderIdRequest) (*RPCCountResponse, error)
 	// 计算使用某个DNS域名的集群数量
 	CountAllEnabledNodeClustersWithDNSDomainId(context.Context, *CountAllEnabledNodeClustersWithDNSDomainIdRequest) (*RPCCountResponse, error)
+	// 查找使用某个域名的所有集群
+	FindAllEnabledNodeClustersWithDNSDomainId(context.Context, *FindAllEnabledNodeClustersWithDNSDomainIdRequest) (*FindAllEnabledNodeClustersWithDNSDomainIdResponse, error)
 	// 检查集群域名是否已经被使用
 	CheckNodeClusterDNSName(context.Context, *CheckNodeClusterDNSNameRequest) (*CheckNodeClusterDNSNameResponse, error)
 	// 修改集群的域名设置
@@ -3976,6 +4134,9 @@ func (*UnimplementedNodeClusterServiceServer) CountAllEnabledNodeClustersWithDNS
 }
 func (*UnimplementedNodeClusterServiceServer) CountAllEnabledNodeClustersWithDNSDomainId(context.Context, *CountAllEnabledNodeClustersWithDNSDomainIdRequest) (*RPCCountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CountAllEnabledNodeClustersWithDNSDomainId not implemented")
+}
+func (*UnimplementedNodeClusterServiceServer) FindAllEnabledNodeClustersWithDNSDomainId(context.Context, *FindAllEnabledNodeClustersWithDNSDomainIdRequest) (*FindAllEnabledNodeClustersWithDNSDomainIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllEnabledNodeClustersWithDNSDomainId not implemented")
 }
 func (*UnimplementedNodeClusterServiceServer) CheckNodeClusterDNSName(context.Context, *CheckNodeClusterDNSNameRequest) (*CheckNodeClusterDNSNameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckNodeClusterDNSName not implemented")
@@ -4321,6 +4482,24 @@ func _NodeClusterService_CountAllEnabledNodeClustersWithDNSDomainId_Handler(srv 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NodeClusterService_FindAllEnabledNodeClustersWithDNSDomainId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllEnabledNodeClustersWithDNSDomainIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeClusterServiceServer).FindAllEnabledNodeClustersWithDNSDomainId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NodeClusterService/FindAllEnabledNodeClustersWithDNSDomainId",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeClusterServiceServer).FindAllEnabledNodeClustersWithDNSDomainId(ctx, req.(*FindAllEnabledNodeClustersWithDNSDomainIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _NodeClusterService_CheckNodeClusterDNSName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CheckNodeClusterDNSNameRequest)
 	if err := dec(in); err != nil {
@@ -4590,6 +4769,10 @@ var _NodeClusterService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "countAllEnabledNodeClustersWithDNSDomainId",
 			Handler:    _NodeClusterService_CountAllEnabledNodeClustersWithDNSDomainId_Handler,
+		},
+		{
+			MethodName: "findAllEnabledNodeClustersWithDNSDomainId",
+			Handler:    _NodeClusterService_FindAllEnabledNodeClustersWithDNSDomainId_Handler,
 		},
 		{
 			MethodName: "checkNodeClusterDNSName",

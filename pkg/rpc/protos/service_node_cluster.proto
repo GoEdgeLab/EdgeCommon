@@ -62,6 +62,9 @@ service NodeClusterService {
 	// 计算使用某个DNS域名的集群数量
 	rpc countAllEnabledNodeClustersWithDNSDomainId (CountAllEnabledNodeClustersWithDNSDomainIdRequest) returns (RPCCountResponse);
 
+	// 查找使用某个域名的所有集群
+	rpc findAllEnabledNodeClustersWithDNSDomainId (FindAllEnabledNodeClustersWithDNSDomainIdRequest) returns (FindAllEnabledNodeClustersWithDNSDomainIdResponse);
+
 	// 检查集群域名是否已经被使用
 	rpc checkNodeClusterDNSName (CheckNodeClusterDNSNameRequest) returns (CheckNodeClusterDNSNameResponse);
 
@@ -245,6 +248,15 @@ message CountAllEnabledNodeClustersWithDNSProviderIdRequest {
 // 计算使用某个DNS域名的集群数量
 message CountAllEnabledNodeClustersWithDNSDomainIdRequest {
 	int64 dnsDomainId = 1;
+}
+
+// 查找使用某个域名的所有集群
+message FindAllEnabledNodeClustersWithDNSDomainIdRequest {
+	int64 dnsDomainId = 1;
+}
+
+message FindAllEnabledNodeClustersWithDNSDomainIdResponse {
+	repeated NodeCluster nodeClusters = 1;
 }
 
 // 检查集群域名是否已经被使用

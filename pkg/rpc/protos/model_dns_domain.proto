@@ -12,9 +12,12 @@ message DNSDomain {
 	int64 dataUpdatedAt = 4;
 	string dataError = 5;
 	int64 countServerRecords = 6;
+	int64 countAllServers = 13;
 	bool serversChanged = 7;
 	int64 countNodeRecords = 8;
+	int64 countAllNodes = 14;
 	bool nodesChanged = 9;
 	repeated DNSRoute routes = 10;
 	int64 providerId = 11;
+	int64 countNodeClusters = 12;
 }

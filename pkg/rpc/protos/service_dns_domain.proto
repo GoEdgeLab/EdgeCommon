@@ -41,6 +41,9 @@ service DNSDomainService {
 
 	// 判断是否有域名可选
 	rpc existAvailableDomains (ExistAvailableDomainsRequest) returns (ExistAvailableDomainsResponse);
+
+	// 检查域名是否在记录中
+	rpc existDNSDomainRecord (ExistDNSDomainRecordRequest) returns (ExistDNSDomainRecordResponse);
 }
 
 // 创建域名
@@ -134,4 +137,17 @@ message ExistAvailableDomainsRequest {
 
 message ExistAvailableDomainsResponse {
 	bool exist = 1;
+}
+
+// 检查域名是否在记录中
+message ExistDNSDomainRecordRequest {
+	int64 dnsDomainId = 1;
+	string name = 2;
+	string type = 3; // 解析类型，比如A, CNAME等
+	string route = 4; // 线路
+	string value = 5; // 值
+}
+
+message ExistDNSDomainRecordResponse {
+	bool isOk = 1;
 }
