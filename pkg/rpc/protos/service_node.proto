@@ -367,6 +367,7 @@ message NodeDNSInfo {
 	int64 nodeClusterId = 5;
 	int64 dnsDomainId = 6;
 	string dnsDomainName = 7;
+	string nodeClusterDNSName = 8;
 }
 
 // 查找单个节点的域名解析信息
