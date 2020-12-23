@@ -39,14 +39,23 @@ type StatCacheMessage struct {
 }
 
 // 清除缓存
+
 type CleanCacheMessage struct {
 	CachePolicyJSON []byte `json:"cachePolicyJSON"`
 }
 
 // 删除缓存
+type PurgeCacheMessageType = string
+
+const (
+	PurgeCacheMessageTypeFile PurgeCacheMessageType = "file"
+	PurgeCacheMessageTypeDir  PurgeCacheMessageType = "dir"
+)
+
 type PurgeCacheMessage struct {
-	CachePolicyJSON []byte   `json:"cachePolicyJSON"`
-	Keys            []string `json:"keys"`
+	CachePolicyJSON []byte                `json:"cachePolicyJSON"`
+	Keys            []string              `json:"keys"`
+	Type            PurgeCacheMessageType `json:"type"` // 清理类型
 }
 
 // 预热缓存

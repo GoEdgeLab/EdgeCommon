@@ -98,6 +98,9 @@ service ServerService {
 
 	// 检查服务是否属于某个用户
 	rpc checkUserServer (CheckUserServerRequest) returns (RPCSuccess);
+
+	// 查找一个用户下的所有域名列表
+	rpc findAllEnabledServerNamesWithUserId (FindAllEnabledServerNamesWithUserIdRequest) returns (FindAllEnabledServerNamesWithUserIdResponse);
 }
 
 // 创建服务
@@ -346,4 +349,13 @@ message FindEnabledServerDNSResponse {
 // 检查服务是否属于某个用户
 message CheckUserServerRequest {
 	int64 serverId = 1;
+}
+
+// 查找一个用户下的所有域名列表
+message FindAllEnabledServerNamesWithUserIdRequest {
+	int64 userId = 1;
+}
+
+message FindAllEnabledServerNamesWithUserIdResponse {
+	repeated string serverNames = 1;
 }
