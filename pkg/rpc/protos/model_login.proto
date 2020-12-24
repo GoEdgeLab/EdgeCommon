@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message Login {
+	int64 id = 1;
+	string type = 2;
+	bytes paramsJSON = 3;
+	bool isOn = 4;
+	int64 adminId = 5;
+	int64 userId = 6;
+}

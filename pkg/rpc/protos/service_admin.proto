@@ -49,6 +49,9 @@ service AdminService {
 
 	// 删除管理员
 	rpc deleteAdmin (DeleteAdminRequest) returns (RPCSuccess);
+
+	// 根据用户名检查是否需要输入OTP
+	rpc checkAdminOTPWithUsername (CheckAdminOTPWithUsernameRequest) returns (CheckAdminOTPWithUsernameResponse);
 }
 
 // 登录
@@ -175,4 +178,13 @@ message ListEnabledAdminsResponse {
 // 删除管理员
 message DeleteAdminRequest {
 	int64 adminId = 1;
+}
+
+// 根据用户名检查是否需要输入OTP
+message CheckAdminOTPWithUsernameRequest {
+	string username = 1;
+}
+
+message CheckAdminOTPWithUsernameResponse {
+	bool requireOTP = 1;
 }

@@ -1,0 +1,31 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_login.proto";
+import "rpc_messages.proto";
+
+// 认证相关服务
+service LoginService {
+	// 查找认证
+	rpc findEnabledLogin (FindEnabledLoginRequest) returns (FindEnabledLoginResponse);
+
+	// 修改认证
+	rpc updateLogin (UpdateLoginRequest) returns (RPCSuccess);
+}
+
+// 查找认证
+message FindEnabledLoginRequest {
+	int64 adminId = 1;
+	string type = 2;
+}
+
+message FindEnabledLoginResponse {
+	Login login = 1;
+}
+
+// 修改认证
+message UpdateLoginRequest {
+	Login login = 1;
+}
