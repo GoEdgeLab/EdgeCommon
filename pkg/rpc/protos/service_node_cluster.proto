@@ -168,13 +168,14 @@ message FindAPINodesWithNodeClusterResponse {
 
 // 计算所有集群数量
 message CountAllEnabledNodeClustersRequest {
-
+	string keyword = 1;
 }
 
 // 列出单页集群
 message ListEnabledNodeClustersRequest {
 	int64 offset = 1;
 	int64 size = 2;
+	string keyword = 3;
 }
 
 message ListEnabledNodeClustersResponse {
