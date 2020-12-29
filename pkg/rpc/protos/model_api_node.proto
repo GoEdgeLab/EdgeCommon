@@ -15,4 +15,5 @@ message APINode {
 	bytes httpsJSON = 9;
 	bytes accessAddrsJSON = 10;
 	repeated string accessAddrs = 11;
+	bytes statusJSON = 12;
 }
