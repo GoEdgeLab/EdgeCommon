@@ -1,0 +1,52 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+import "model_user_access_key.proto";
+
+// 用户AccessKey相关服务
+service UserAccessKeyService {
+	// 创建AccessKey
+	rpc createUserAccessKey (CreateUserAccessKeyRequest) returns (CreateUserAccessKeyResponse);
+
+	// 查找所有的AccessKey
+	rpc findAllEnabledUserAccessKeys (FindAllEnabledUserAccessKeysRequest) returns (FindAllEnabledUserAccessKeysResponse);
+
+	// 删除AccessKey
+	rpc deleteUserAccessKey (DeleteUserAccessKeyRequest) returns (RPCSuccess);
+
+	// 设置是否启用AccessKey
+	rpc updateUserAccessKeyIsOn (UpdateUserAccessKeyIsOnRequest) returns (RPCSuccess);
+}
+
+// 创建AccessKey
+message CreateUserAccessKeyRequest {
+	int64 userId = 1;
+	string description = 2;
+}
+
+message CreateUserAccessKeyResponse {
+	int64 userAccessKeyId = 1;
+}
+
+// 查找所有的AccessKey
+message FindAllEnabledUserAccessKeysRequest {
+	int64 userId = 1;
+}
+
+message FindAllEnabledUserAccessKeysResponse {
+	repeated UserAccessKey userAccessKeys = 1;
+}
+
+// 删除AccessKey
+message DeleteUserAccessKeyRequest {
+	int64 userAccessKeyId = 1;
+}
+
+// 设置是否启用AccessKey
+message UpdateUserAccessKeyIsOnRequest {
+	int64 userAccessKeyId = 1;
+	bool isOn = 2;
+}

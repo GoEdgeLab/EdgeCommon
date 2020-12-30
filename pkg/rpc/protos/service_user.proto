@@ -5,6 +5,7 @@ package pb;
 
 import "rpc_messages.proto";
 import "model_user.proto";
+import "model_user_feature.proto";
 
 // 用户相关服务
 service UserService {
@@ -43,6 +44,15 @@ service UserService {
 
 	// 获取用户所在的集群ID
 	rpc findUserNodeClusterId (FindUserNodeClusterIdRequest) returns (FindUserNodeClusterIdResponse);
+
+	// 设置用户能使用的功能
+	rpc updateUserFeatures (UpdateUserFeaturesRequest) returns (RPCSuccess);
+
+	// 获取用户所有的功能列表
+	rpc findUserFeatures (FindUserFeaturesRequest) returns (FindUserFeaturesResponse);
+
+	// 获取所有的功能定义
+	rpc findAllUserFeatureDefinitions (FindAllUserFeatureDefinitionsRequest) returns (FindAllUserFeatureDefinitionsResponse);
 }
 
 // 创建用户
@@ -166,4 +176,28 @@ message FindUserNodeClusterIdRequest {
 
 message FindUserNodeClusterIdResponse {
 	int64 nodeClusterId = 1;
+}
+
+// 设置用户能使用的功能
+message UpdateUserFeaturesRequest {
+	int64 userId = 1;
+	repeated string featureCodes = 2;
+}
+
+// 获取用户所有的功能列表
+message FindUserFeaturesRequest {
+	int64 userId = 1;
+}
+
+message FindUserFeaturesResponse {
+	repeated UserFeature features = 1;
+}
+
+// 获取所有的功能定义
+message FindAllUserFeatureDefinitionsRequest {
+
+}
+
+message FindAllUserFeatureDefinitionsResponse {
+	repeated UserFeature features = 1;
 }

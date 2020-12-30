@@ -76,3 +76,15 @@ var HTTPAccessLogFields = []maps.Map{
 		"name": "响应Body",
 	},
 }
+
+// 精简版的日志字段，用来用
+var HTTPAccessLogShortFields = []maps.Map{
+	{
+		"code": HTTPAccessLogFieldHeader,
+		"name": "请求Header列表",
+	},
+	{
+		"code": HTTPAccessLogFieldSentHeader,
+		"name": "响应Header列表",
+	},
+}

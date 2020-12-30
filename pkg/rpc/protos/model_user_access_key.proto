@@ -1,0 +1,15 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 用户AccessKey
+message UserAccessKey {
+	int64 id = 1;
+	int64 userId = 2;
+	int64 subUserId = 3;
+	bool isOn = 4;
+	string uniqueId = 5;
+	string secret = 6;
+	string description = 7;
+}
