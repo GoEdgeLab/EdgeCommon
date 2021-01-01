@@ -1,0 +1,22 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// AccessToken相关服务
+service APIAccessTokenService {
+	// 获取AccessToken
+	rpc GetAPIAccessToken (GetAPIAccessTokenRequest) returns (GetAPIAccessTokenResponse);
+}
+
+// 获取AccessToken
+message GetAPIAccessTokenRequest {
+	string type = 1;
+	string accessKeyId = 2;
+	string accessKey = 3;
+}
+
+message GetAPIAccessTokenResponse {
+	string token = 1;
+	int64 expiresAt = 2;
+}

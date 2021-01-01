@@ -13,6 +13,9 @@ message APINode {
 	string description = 7;
 	bytes httpJSON = 8;
 	bytes httpsJSON = 9;
+	bool RestIsOn = 13;
+	bytes restHTTPJSON = 14;
+	bytes restHTTPSJSON = 15;
 	bytes accessAddrsJSON = 10;
 	repeated string accessAddrs = 11;
 	bytes statusJSON = 12;

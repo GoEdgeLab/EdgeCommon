@@ -39,6 +39,9 @@ message CreateAPINodeRequest {
 	bytes httpsJSON = 4;
 	bytes accessAddrsJSON = 5;
 	bool isOn = 6;
+	bool restIsOn = 7;
+	bytes restHTTPJSON = 8;
+	bytes restHTTPSJSON = 9;
 }
 
 message CreateAPINodeResponse {
@@ -54,6 +57,9 @@ message UpdateAPINodeRequest {
 	bytes httpsJSON = 5;
 	bytes accessAddrsJSON = 6;
 	bool isOn = 7;
+	bool restIsOn = 8;
+	bytes restHTTPJSON = 9;
+	bytes restHTTPSJSON = 10;
 }
 
 // 删除API节点
