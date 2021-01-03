@@ -78,7 +78,7 @@ func (this *HTTPFirewallPolicyDAO) FindEnabledPolicyWhiteIPListId(ctx context.Co
 	if config.Inbound == nil {
 		config.Inbound = &firewallconfigs.HTTPFirewallInboundConfig{IsOn: true}
 	}
-	if config.Inbound.WhiteListRef == nil || config.Inbound.WhiteListRef.ListId == 0 {
+	if config.Inbound.AllowListRef == nil || config.Inbound.AllowListRef.ListId == 0 {
 		createResp, err := this.RPC().IPListRPC().CreateIPList(ctx, &pb.CreateIPListRequest{
 			Type:        "white",
 			Name:        "白名单",
@@ -89,7 +89,7 @@ func (this *HTTPFirewallPolicyDAO) FindEnabledPolicyWhiteIPListId(ctx context.Co
 			return 0, err
 		}
 		listId := createResp.IpListId
-		config.Inbound.WhiteListRef = &ipconfigs.IPListRef{
+		config.Inbound.AllowListRef = &ipconfigs.IPListRef{
 			IsOn:   true,
 			ListId: listId,
 		}
@@ -107,7 +107,7 @@ func (this *HTTPFirewallPolicyDAO) FindEnabledPolicyWhiteIPListId(ctx context.Co
 		return listId, nil
 	}
 
-	return config.Inbound.WhiteListRef.ListId, nil
+	return config.Inbound.AllowListRef.ListId, nil
 }
 
 // 查找WAF的黑名单
@@ -122,7 +122,7 @@ func (this *HTTPFirewallPolicyDAO) FindEnabledPolicyBlackIPListId(ctx context.Co
 	if config.Inbound == nil {
 		config.Inbound = &firewallconfigs.HTTPFirewallInboundConfig{IsOn: true}
 	}
-	if config.Inbound.BlackListRef == nil || config.Inbound.BlackListRef.ListId == 0 {
+	if config.Inbound.DenyListRef == nil || config.Inbound.DenyListRef.ListId == 0 {
 		createResp, err := this.RPC().IPListRPC().CreateIPList(ctx, &pb.CreateIPListRequest{
 			Type:        "black",
 			Name:        "黑名单",
@@ -133,7 +133,7 @@ func (this *HTTPFirewallPolicyDAO) FindEnabledPolicyBlackIPListId(ctx context.Co
 			return 0, err
 		}
 		listId := createResp.IpListId
-		config.Inbound.BlackListRef = &ipconfigs.IPListRef{
+		config.Inbound.DenyListRef = &ipconfigs.IPListRef{
 			IsOn:   true,
 			ListId: listId,
 		}
@@ -151,7 +151,7 @@ func (this *HTTPFirewallPolicyDAO) FindEnabledPolicyBlackIPListId(ctx context.Co
 		return listId, nil
 	}
 
-	return config.Inbound.BlackListRef.ListId, nil
+	return config.Inbound.DenyListRef.ListId, nil
 }
 
 // 根据服务Id查找WAF策略

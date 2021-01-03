@@ -11,8 +11,8 @@ type HTTPFirewallInboundConfig struct {
 	Region *HTTPFirewallRegionConfig `yaml:"region" json:"region"`
 
 	// IP名单
-	WhiteListRef *ipconfigs.IPListRef `yaml:"whiteListRef" json:"whiteListRef"`
-	BlackListRef *ipconfigs.IPListRef `yaml:"blackListRef" json:"blackListRef"`
+	AllowListRef *ipconfigs.IPListRef `yaml:"whiteListRef" json:"whiteListRef"`
+	DenyListRef  *ipconfigs.IPListRef `yaml:"blackListRef" json:"blackListRef"`
 	GreyListRef  *ipconfigs.IPListRef `yaml:"greyListRef" json:"greyListRef"`
 }
 
