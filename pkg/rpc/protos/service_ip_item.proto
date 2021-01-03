@@ -32,11 +32,11 @@ service IPItemService {
 
 // 创建IP
 message CreateIPItemRequest {
-	int64 ipListId = 1;
-	string ipFrom = 2;
-	string ipTo = 3;
-	int64 expiredAt = 4;
-	string reason = 5;
+	int64 ipListId = 1; // IP列表ID
+	string ipFrom = 2; // 开始IP
+	string ipTo = 3; // 结束IP（可选）
+	int64 expiredAt = 4; // 过期时间戳（可选）
+	string reason = 5; // 加入理由（可选）
 }
 
 message CreateIPItemResponse {
