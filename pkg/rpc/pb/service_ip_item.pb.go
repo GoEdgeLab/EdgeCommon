@@ -35,11 +35,11 @@ type CreateIPItemRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	IpListId  int64  `protobuf:"varint,1,opt,name=ipListId,proto3" json:"ipListId,omitempty"`
-	IpFrom    string `protobuf:"bytes,2,opt,name=ipFrom,proto3" json:"ipFrom,omitempty"`
-	IpTo      string `protobuf:"bytes,3,opt,name=ipTo,proto3" json:"ipTo,omitempty"`
-	ExpiredAt int64  `protobuf:"varint,4,opt,name=expiredAt,proto3" json:"expiredAt,omitempty"`
-	Reason    string `protobuf:"bytes,5,opt,name=reason,proto3" json:"reason,omitempty"`
+	IpListId  int64  `protobuf:"varint,1,opt,name=ipListId,proto3" json:"ipListId,omitempty"`   // IP列表ID
+	IpFrom    string `protobuf:"bytes,2,opt,name=ipFrom,proto3" json:"ipFrom,omitempty"`        // 开始IP
+	IpTo      string `protobuf:"bytes,3,opt,name=ipTo,proto3" json:"ipTo,omitempty"`            // 结束IP（可选）
+	ExpiredAt int64  `protobuf:"varint,4,opt,name=expiredAt,proto3" json:"expiredAt,omitempty"` // 过期时间戳（可选）
+	Reason    string `protobuf:"bytes,5,opt,name=reason,proto3" json:"reason,omitempty"`        // 加入理由（可选）
 }
 
 func (x *CreateIPItemRequest) Reset() {

@@ -121,15 +121,15 @@ type ListHTTPAccessLogsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	RequestId           string `protobuf:"bytes,1,opt,name=requestId,proto3" json:"requestId,omitempty"`
-	ServerId            int64  `protobuf:"varint,2,opt,name=serverId,proto3" json:"serverId,omitempty"`
-	Size                int64  `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
-	Day                 string `protobuf:"bytes,4,opt,name=day,proto3" json:"day,omitempty"`
-	Reverse             bool   `protobuf:"varint,5,opt,name=reverse,proto3" json:"reverse,omitempty"` // 是否反向查找
-	HasError            bool   `protobuf:"varint,6,opt,name=hasError,proto3" json:"hasError,omitempty"`
-	FirewallPolicyId    int64  `protobuf:"varint,7,opt,name=firewallPolicyId,proto3" json:"firewallPolicyId,omitempty"`       // WAF策略ID
-	FirewallRuleGroupId int64  `protobuf:"varint,8,opt,name=firewallRuleGroupId,proto3" json:"firewallRuleGroupId,omitempty"` // WAF分组ID
-	FirewallRuleSetId   int64  `protobuf:"varint,9,opt,name=firewallRuleSetId,proto3" json:"firewallRuleSetId,omitempty"`     // WAF规则集ID
+	RequestId           string `protobuf:"bytes,1,opt,name=requestId,proto3" json:"requestId,omitempty"`                      // 上一页请求ID，可选
+	ServerId            int64  `protobuf:"varint,2,opt,name=serverId,proto3" json:"serverId,omitempty"`                       // 服务ID
+	Size                int64  `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`                               // 单页条数
+	Day                 string `protobuf:"bytes,4,opt,name=day,proto3" json:"day,omitempty"`                                  // 日期，格式YYYYMMDD
+	Reverse             bool   `protobuf:"varint,5,opt,name=reverse,proto3" json:"reverse,omitempty"`                         // 是否反向查找，可选
+	HasError            bool   `protobuf:"varint,6,opt,name=hasError,proto3" json:"hasError,omitempty"`                       // 是否有错误，可选
+	FirewallPolicyId    int64  `protobuf:"varint,7,opt,name=firewallPolicyId,proto3" json:"firewallPolicyId,omitempty"`       // WAF策略ID，可选
+	FirewallRuleGroupId int64  `protobuf:"varint,8,opt,name=firewallRuleGroupId,proto3" json:"firewallRuleGroupId,omitempty"` // WAF分组ID，可选
+	FirewallRuleSetId   int64  `protobuf:"varint,9,opt,name=firewallRuleSetId,proto3" json:"firewallRuleSetId,omitempty"`     // WAF规则集ID，可选
 }
 
 func (x *ListHTTPAccessLogsRequest) Reset() {

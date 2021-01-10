@@ -60,6 +60,12 @@ service HTTPWebService {
 
 	// 更改重写规则设置
 	rpc updateHTTPWebRewriteRules (UpdateHTTPWebRewriteRulesRequest) returns (RPCSuccess);
+
+	// 更改主机跳转设置
+	rpc updateHTTPWebHostRedirects (UpdateHTTPWebHostRedirectsRequest) returns (RPCSuccess);
+
+	// 查找主机跳转设置
+	rpc findHTTPWebHostRedirects (FindHTTPWebHostRedirectsRequest) returns (FindHTTPWebHostRedirectsResponse);
 }
 
 // 创建Web配置
@@ -177,4 +183,19 @@ message UpdateHTTPWebWebsocketRequest {
 message UpdateHTTPWebRewriteRulesRequest {
 	int64 webId = 1;
 	bytes rewriteRulesJSON = 2;
+}
+
+// 更改主机跳转设置
+message UpdateHTTPWebHostRedirectsRequest {
+	int64 webId = 1;
+	bytes hostRedirectsJSON = 2;
+}
+
+// 查找主机跳转设置
+message FindHTTPWebHostRedirectsRequest {
+	int64 webId = 1;
+}
+
+message FindHTTPWebHostRedirectsResponse {
+	bytes hostRedirectsJSON = 1;
 }

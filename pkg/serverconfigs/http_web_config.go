@@ -35,6 +35,8 @@ type HTTPWebConfig struct {
 
 	FilterRefs     []*HTTPFilterRef    `yaml:"filterRefs" json:"filterRefs"`         // 筛选配置 TODO
 	FilterPolicies []*HTTPFilterPolicy `yaml:"filterPolicies" json:"filterPolicies"` // 筛选策略
+
+	HostRedirects []*HTTPHostRedirectConfig `yaml:"hostRedirects" json:"hostRedirects"` // 主机跳转
 }
 
 func (this *HTTPWebConfig) Init() error {
@@ -199,6 +201,14 @@ func (this *HTTPWebConfig) Init() error {
 	// rewrite rules
 	for _, rewriteRule := range this.RewriteRules {
 		err := rewriteRule.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// 主机跳转
+	for _, redirect := range this.HostRedirects {
+		err := redirect.Init()
 		if err != nil {
 			return err
 		}
