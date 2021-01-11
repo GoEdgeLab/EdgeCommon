@@ -7,6 +7,7 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/firewallconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/Tea"
+	"github.com/iwind/TeaGo/maps"
 	"io/ioutil"
 )
 
@@ -29,6 +30,7 @@ type NodeConfig struct {
 	HTTPFirewallPolicy *firewallconfigs.HTTPFirewallPolicy `yaml:"httpFirewallPolicy" json:"httpFirewallPolicy"`
 	HTTPCachePolicy    *serverconfigs.HTTPCachePolicy      `yaml:"httpCachePolicy" json:"httpCachePolicy"`
 	TOA                *TOAConfig                          `yaml:"toa" json:"toa"`
+	SystemServices     map[string]maps.Map                 `yaml:"systemServices" json:"systemServices"` // 系统服务配置 type => params
 
 	paddedId string
 }

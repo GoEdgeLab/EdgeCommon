@@ -3,15 +3,16 @@ package messageconfigs
 type MessageCode = string
 
 const (
-	MessageCodeConnectedAPINode MessageCode = "connectedAPINode" // 边缘节点连接API节点成功
-	MessageCodeWriteCache       MessageCode = "writeCache"       // 写入缓存
-	MessageCodeReadCache        MessageCode = "readCache"        // 读取缓存
-	MessageCodeStatCache        MessageCode = "statCache"        // 统计缓存
-	MessageCodePurgeCache       MessageCode = "purgeCache"       // 删除缓存
-	MessageCodeCleanCache       MessageCode = "cleanCache"       // 清理缓存
-	MessageCodePreheatCache     MessageCode = "preheatCache"     // 预热缓存
-	MessageCodeConfigChanged    MessageCode = "configChanged"    // 配置已改变
-	MessageCodeIPListChanged    MessageCode = "ipListChanged"    // IP列表变化
+	MessageCodeConnectedAPINode    MessageCode = "connectedAPINode"    // 边缘节点连接API节点成功
+	MessageCodeWriteCache          MessageCode = "writeCache"          // 写入缓存
+	MessageCodeReadCache           MessageCode = "readCache"           // 读取缓存
+	MessageCodeStatCache           MessageCode = "statCache"           // 统计缓存
+	MessageCodePurgeCache          MessageCode = "purgeCache"          // 删除缓存
+	MessageCodeCleanCache          MessageCode = "cleanCache"          // 清理缓存
+	MessageCodePreheatCache        MessageCode = "preheatCache"        // 预热缓存
+	MessageCodeConfigChanged       MessageCode = "configChanged"       // 配置已改变
+	MessageCodeIPListChanged       MessageCode = "ipListChanged"       // IP列表变化
+	MessageCodeCheckSystemdService MessageCode = "checkSystemdService" // 检查Systemd服务
 )
 
 // 连接API节点成功
@@ -70,4 +71,8 @@ type ConfigChangedMessage struct {
 
 // IPList变化
 type IPListChangedMessage struct {
+}
+
+// Systemd服务
+type CheckSystemdServiceMessage struct {
 }

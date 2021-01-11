@@ -97,6 +97,12 @@ service NodeClusterService {
 
 	// 修改集群的WAF策略
 	rpc updateNodeClusterHTTPFirewallPolicyId (UpdateNodeClusterHTTPFirewallPolicyIdRequest) returns (RPCSuccess);
+
+	// 修改集群的系统服务设置
+	rpc updateNodeClusterSystemService (UpdateNodeClusterSystemServiceRequest) returns (RPCSuccess);
+
+	// 查找集群的系统服务设置
+	rpc findNodeClusterSystemService (FindNodeClusterSystemServiceRequest) returns (FindNodeClusterSystemServiceResponse);
 }
 
 // 获取所有集群的信息
@@ -126,6 +132,7 @@ message CreateNodeClusterRequest {
 	string dnsName = 5;
 	int64 httpCachePolicyId = 6;
 	int64 httpFirewallPolicyId = 7;
+	bytes systemServicesJSON = 8; // 系统服务设置
 }
 
 message CreateNodeClusterResponse {
@@ -341,4 +348,21 @@ message UpdateNodeClusterHTTPCachePolicyIdRequest {
 message UpdateNodeClusterHTTPFirewallPolicyIdRequest {
 	int64 nodeClusterId = 1;
 	int64 httpFirewallPolicyId = 2;
+}
+
+// 修改集群的系统服务设置
+message UpdateNodeClusterSystemServiceRequest {
+	int64 nodeClusterId = 1;
+	string type = 2;
+	bytes paramsJSON = 3;
+}
+
+// 查找集群的系统服务设置
+message FindNodeClusterSystemServiceRequest {
+	int64 nodeClusterId = 1;
+	string type = 2;
+}
+
+message FindNodeClusterSystemServiceResponse {
+	bytes paramsJSON = 1;
 }
