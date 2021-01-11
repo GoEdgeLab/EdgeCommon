@@ -33,7 +33,7 @@ func (this *HTTPCachePolicy) Init() error {
 		this.capacity = this.Capacity.Bytes()
 	}
 
-	if this.maxSize > 0 {
+	if this.MaxSize != nil {
 		this.maxSize = this.MaxSize.Bytes()
 	}
 
