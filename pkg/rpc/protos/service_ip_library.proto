@@ -25,6 +25,9 @@ service IPLibraryService {
 
 	// 查询某个IP信息
 	rpc lookupIPRegion (LookupIPRegionRequest) returns (LookupIPRegionResponse);
+
+	// 查询一组IP信息
+	rpc lookupIPRegions (LookupIPRegionsRequest) returns (LookupIPRegionsResponse);
 }
 
 // 创建IP库
@@ -75,7 +78,16 @@ message LookupIPRegionRequest {
 }
 
 message LookupIPRegionResponse {
-	IPRegion region = 1;
+	IPRegion ipRegion = 1;
+}
+
+// 查询一组IP信息
+message LookupIPRegionsRequest {
+	repeated string ipList = 1;
+}
+
+message LookupIPRegionsResponse {
+	map<string, IPRegion> ipRegionMap = 1;
 }
 
 // IP信息
@@ -87,4 +99,5 @@ message IPRegion {
 	string isp = 5;
 	int64 countryId = 6;
 	int64 provinceId = 7;
+	string summary = 8; // 完整的地区组合
 }
