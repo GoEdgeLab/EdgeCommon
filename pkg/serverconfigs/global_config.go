@@ -1,5 +1,10 @@
 package serverconfigs
 
+const (
+	DefaultTCPPortRangeMin = 10000
+	DefaultTCPPortRangeMax = 40000
+)
+
 // 服务相关的全局设置
 type GlobalConfig struct {
 	// HTTP & HTTPS相关配置
@@ -14,11 +19,15 @@ type GlobalConfig struct {
 
 	HTTP   struct{} `yaml:"http" json:"http"`
 	HTTPS  struct{} `yaml:"https" json:"https"`
-	TCPAll struct{} `yaml:"tcpAll" json:"tcpAll"`
-	TCP    struct{} `yaml:"tcp" json:"tcp"`
-	TLS    struct{} `yaml:"tls" json:"tls"`
-	Unix   struct{} `yaml:"unix" json:"unix"`
-	UDP    struct{} `yaml:"udp" json:"udp"`
+	TCPAll struct {
+		PortRangeMin int   `yaml:"portRangeMin" json:"portRangeMin"` // 最小端口
+		PortRangeMax int   `yaml:"portRangeMax" json:"portRangeMax"` // 最大端口
+		DenyPorts    []int `yaml:"denyPorts" json:"denyPorts"`       // 禁止使用的端口
+	} `yaml:"tcpAll" json:"tcpAll"`
+	TCP  struct{} `yaml:"tcp" json:"tcp"`
+	TLS  struct{} `yaml:"tls" json:"tls"`
+	Unix struct{} `yaml:"unix" json:"unix"`
+	UDP  struct{} `yaml:"udp" json:"udp"`
 
 	// IP库相关配置
 	IPLibrary struct {

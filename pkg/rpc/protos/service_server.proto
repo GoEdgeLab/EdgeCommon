@@ -101,6 +101,12 @@ service ServerService {
 
 	// 查找一个用户下的所有域名列表
 	rpc findAllEnabledServerNamesWithUserId (FindAllEnabledServerNamesWithUserIdRequest) returns (FindAllEnabledServerNamesWithUserIdResponse);
+
+	// 查找用户服务基本信息
+	rpc findEnabledUserServerBasic (FindEnabledUserServerBasicRequest) returns (FindEnabledUserServerBasicResponse);
+
+	// 修改用户服务基本信息
+	rpc updateEnabledUserServerBasic (UpdateEnabledUserServerBasicRequest) returns (RPCSuccess);
 }
 
 // 创建服务
@@ -220,6 +226,7 @@ message CountAllEnabledServersMatchRequest {
 	int64 userId = 3;
 	int64 clusterId = 4;
 	int32 auditingFlag = 5;
+	string protocolFamily = 6;
 }
 
 // 列出单页服务
@@ -231,6 +238,7 @@ message ListEnabledServersMatchRequest {
 	int64 userId = 5;
 	int64 clusterId = 6;
 	int32 auditingFlag = 7;
+	string protocolFamily = 8;
 }
 
 message ListEnabledServersMatchResponse {
@@ -358,4 +366,19 @@ message FindAllEnabledServerNamesWithUserIdRequest {
 
 message FindAllEnabledServerNamesWithUserIdResponse {
 	repeated string serverNames = 1;
+}
+
+// 查找用户服务基本信息
+message FindEnabledUserServerBasicRequest {
+	int64 serverId = 1;
+}
+
+message FindEnabledUserServerBasicResponse {
+	Server server = 1;
+}
+
+// 修改用户服务基本信息
+message UpdateEnabledUserServerBasicRequest {
+	int64 serverId = 1;
+	string name = 2;
 }

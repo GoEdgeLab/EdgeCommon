@@ -1,0 +1,30 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+
+// 互斥锁管理
+service SysLockerService {
+	// 获得锁
+	rpc SysLockerLock (SysLockerLockRequest) returns (SysLockerLockResponse);
+
+	// 释放锁
+	rpc SysLockerUnlock (SysLockerUnlockRequest) returns (RPCSuccess);
+}
+
+// 获得锁
+message SysLockerLockRequest {
+	string key = 1;
+	int64 timeoutSeconds = 2;
+}
+
+message SysLockerLockResponse {
+	bool ok = 1;
+}
+
+// 释放锁
+message SysLockerUnlockRequest {
+	string key = 1;
+}

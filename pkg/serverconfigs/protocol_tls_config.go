@@ -1,6 +1,20 @@
 package serverconfigs
 
-import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
+import (
+	"encoding/json"
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
+)
+
+func NewTLSProtocolConfigFromJSON(configJSON []byte) (*TLSProtocolConfig, error) {
+	config := &TLSProtocolConfig{}
+	if len(configJSON) > 0 {
+		err := json.Unmarshal(configJSON, config)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return config, nil
+}
 
 // TLS协议配置
 type TLSProtocolConfig struct {
@@ -25,4 +39,9 @@ func (this *TLSProtocolConfig) Init() error {
 	}
 
 	return nil
+}
+
+// 转换为JSON
+func (this *TLSProtocolConfig) AsJSON() ([]byte, error) {
+	return json.Marshal(this)
 }

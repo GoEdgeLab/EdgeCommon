@@ -1,5 +1,7 @@
 package serverconfigs
 
+import "encoding/json"
+
 type UDPProtocolConfig struct {
 	BaseProtocol `yaml:",inline"`
 }
@@ -11,4 +13,9 @@ func (this *UDPProtocolConfig) Init() error {
 	}
 
 	return nil
+}
+
+// 转换为JSON
+func (this *UDPProtocolConfig) AsJSON() ([]byte, error) {
+	return json.Marshal(this)
 }

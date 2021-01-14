@@ -103,6 +103,9 @@ service NodeClusterService {
 
 	// 查找集群的系统服务设置
 	rpc findNodeClusterSystemService (FindNodeClusterSystemServiceRequest) returns (FindNodeClusterSystemServiceResponse);
+
+	// 获取集群中可以使用的端口
+	rpc findFreePortInNodeCluster (FindFreePortInNodeClusterRequest) returns (FindFreePortInNodeClusterResponse);
 }
 
 // 获取所有集群的信息
@@ -365,4 +368,13 @@ message FindNodeClusterSystemServiceRequest {
 
 message FindNodeClusterSystemServiceResponse {
 	bytes paramsJSON = 1;
+}
+
+// 获取集群中可以使用的端口
+message FindFreePortInNodeClusterRequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindFreePortInNodeClusterResponse {
+	int32 port = 1;
 }

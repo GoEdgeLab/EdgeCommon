@@ -2,6 +2,17 @@ package serverconfigs
 
 import "encoding/json"
 
+func NewTCPProtocolConfigFromJSON(configJSON []byte) (*TCPProtocolConfig, error) {
+	config := &TCPProtocolConfig{}
+	if len(configJSON) > 0 {
+		err := json.Unmarshal(configJSON, config)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return config, nil
+}
+
 type TCPProtocolConfig struct {
 	BaseProtocol `yaml:",inline"`
 }
