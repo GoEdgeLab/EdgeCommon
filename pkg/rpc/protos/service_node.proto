@@ -49,9 +49,6 @@ service NodeService {
 	// 更新节点状态
 	rpc updateNodeStatus (UpdateNodeStatusRequest) returns (RPCSuccess);
 
-	// 同步集群中的节点版本
-	rpc syncNodesVersionWithCluster (SyncNodesVersionWithClusterRequest) returns (SyncNodesVersionWithClusterResponse);
-
 	// 修改节点安装状态
 	rpc updateNodeIsInstalled (UpdateNodeIsInstalledRequest) returns (RPCSuccess);
 
@@ -105,6 +102,9 @@ service NodeService {
 
 	// 计算某个区域下的节点数量
 	rpc countAllEnabledNodesWithNodeRegionId (CountAllEnabledNodesWithNodeRegionIdRequest) returns (RPCCountResponse);
+
+	// 根据一组ID获取节点信息
+	rpc findEnabledNodesWithIds (FindEnabledNodesWithIdsRequest) returns (FindEnabledNodesWithIdsResponse);
 }
 
 // 创建节点
@@ -217,14 +217,6 @@ message NodeStreamMessage {
 message UpdateNodeStatusRequest {
 	int64 nodeId = 1;
 	bytes statusJSON = 2;
-}
-
-// 同步集群中的节点版本
-message SyncNodesVersionWithClusterRequest {
-	int64 nodeClusterId = 1;
-}
-
-message SyncNodesVersionWithClusterResponse {
 }
 
 // 计算匹配的节点数量
@@ -390,4 +382,13 @@ message UpdateNodeDNSRequest {
 // 计算某个区域下的节点数量
 message CountAllEnabledNodesWithNodeRegionIdRequest {
 	int64 nodeRegionId = 1;
+}
+
+// 根据一组ID获取节点信息
+message FindEnabledNodesWithIdsRequest {
+	repeated int64 nodeIds = 1;
+}
+
+message FindEnabledNodesWithIdsResponse {
+	repeated Node nodes = 1;
 }

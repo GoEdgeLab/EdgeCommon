@@ -1,0 +1,99 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+import "model_node_task.proto";
+
+// 节点同步任务相关服务
+service NodeTaskService {
+	// 获取单节点同步任务
+	rpc findNodeTasks (FindNodeTasksRequest) returns (FindNodeTasksResponse);
+
+	// 报告同步任务结果
+	rpc reportNodeTaskDone (ReportNodeTaskDoneRequest) returns (RPCSuccess);
+
+	// 获取所有正在同步的集群信息
+	rpc findNodeClusterTasks (FindNodeClusterTasksRequest) returns (FindNodeClusterTasksResponse);
+
+	// 检查是否有正在执行的任务
+	rpc existsNodeTasks (ExistsNodeTasksRequest) returns (ExistsNodeTasksResponse);
+
+	// 删除任务
+	rpc deleteNodeTask (DeleteNodeTaskRequest) returns (RPCSuccess);
+
+	// 计算正在执行的任务数量
+	rpc countDoingNodeTasks (CountDoingNodeTasksRequest) returns (RPCCountResponse);
+
+	// 查找需要通知的任务
+	rpc findNotifyingNodeTasks (FindNotifyingNodeTasksRequest) returns (FindNotifyingNodeTasksResponse);
+
+	// 设置任务已通知
+	rpc updateNodeTasksNotified (UpdateNodeTasksNotifiedRequest) returns (RPCSuccess);
+}
+
+// 获取单节点同步任务
+message FindNodeTasksRequest {
+
+}
+
+message FindNodeTasksResponse {
+	repeated NodeTask nodeTasks = 1;
+}
+
+// 报告同步任务结果
+message ReportNodeTaskDoneRequest {
+	int64 nodeTaskId = 1;
+	bool isOk = 2;
+	string error = 3;
+}
+
+// 获取所有正在同步的集群信息
+message FindNodeClusterTasksRequest {
+
+}
+
+message FindNodeClusterTasksResponse {
+	repeated ClusterTask clusterTasks = 1;
+}
+
+message ClusterTask {
+	int64 clusterId = 1;
+	string clusterName = 2;
+	repeated NodeTask nodeTasks = 3;
+}
+
+// 检查是否有正在执行的任务
+message ExistsNodeTasksRequest {
+
+}
+
+message ExistsNodeTasksResponse {
+	bool existTasks = 1;
+	bool existError = 2;
+}
+
+// 删除任务
+message DeleteNodeTaskRequest {
+	int64 nodeTaskId = 1;
+}
+
+// 计算正在执行的任务数量
+message CountDoingNodeTasksRequest {
+
+}
+
+// 查找需要通知的任务
+message FindNotifyingNodeTasksRequest {
+	int64 size = 1;
+}
+
+message FindNotifyingNodeTasksResponse {
+	repeated NodeTask nodeTasks = 1;
+}
+
+// 设置任务已通知
+message UpdateNodeTasksNotifiedRequest {
+	repeated int64 nodeTaskIds = 1;
+}

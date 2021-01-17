@@ -27,6 +27,7 @@ message Node {
 	bool isOn = 13;
 	bool isUp = 14;
 	repeated DNSRoute dnsRoutes = 15;
+	bool isActive = 16;
 
 	NodeCluster nodeCluster = 32;
 	NodeLogin login = 33;

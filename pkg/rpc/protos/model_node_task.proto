@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "model_node.proto";
+import "model_node_cluster.proto";
+
+// 节点相关同步任务
+message NodeTask {
+	int64 id = 1;
+	string type = 2;
+	bool isDone = 3;
+	bool isOk = 4;
+	string error = 5;
+	int64 updatedAt = 6;
+
+	Node node = 30;
+	NodeCluster nodeCluster = 31;
+}

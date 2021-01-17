@@ -10,9 +10,8 @@ const (
 	MessageCodePurgeCache          MessageCode = "purgeCache"          // 删除缓存
 	MessageCodeCleanCache          MessageCode = "cleanCache"          // 清理缓存
 	MessageCodePreheatCache        MessageCode = "preheatCache"        // 预热缓存
-	MessageCodeConfigChanged       MessageCode = "configChanged"       // 配置已改变
-	MessageCodeIPListChanged       MessageCode = "ipListChanged"       // IP列表变化
 	MessageCodeCheckSystemdService MessageCode = "checkSystemdService" // 检查Systemd服务
+	MessageCodeNewNodeTask         MessageCode = "NewNodeTask"         // 有新的节点任务产生
 )
 
 // 连接API节点成功
@@ -65,14 +64,10 @@ type PreheatCacheMessage struct {
 	Keys            []string `json:"keys"`
 }
 
-// 配置已改变
-type ConfigChangedMessage struct {
-}
-
-// IPList变化
-type IPListChangedMessage struct {
-}
-
 // Systemd服务
 type CheckSystemdServiceMessage struct {
+}
+
+// 有新的节点任务
+type NewNodeTaskMessage struct {
 }

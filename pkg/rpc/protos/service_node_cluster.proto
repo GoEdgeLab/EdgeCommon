@@ -29,9 +29,6 @@ service NodeClusterService {
 	// 获取所有可用集群
 	rpc findAllEnabledNodeClusters (FindAllEnabledNodeClustersRequest) returns (FindAllEnabledNodeClustersResponse);
 
-	// 获取变更的集群
-	rpc findAllChangedNodeClusters (FindAllChangedNodeClustersRequest) returns (FindAllChangedNodeClustersResponse);
-
 	// 计算所有集群数量
 	rpc countAllEnabledNodeClusters (CountAllEnabledNodeClustersRequest) returns (RPCCountResponse);
 
@@ -114,15 +111,6 @@ message FindAllEnabledNodeClustersRequest {
 }
 
 message FindAllEnabledNodeClustersResponse {
-	repeated NodeCluster nodeClusters = 1;
-}
-
-// 获取变更的集群
-message FindAllChangedNodeClustersRequest {
-
-}
-
-message FindAllChangedNodeClustersResponse {
 	repeated NodeCluster nodeClusters = 1;
 }
 
