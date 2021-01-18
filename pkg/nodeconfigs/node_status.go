@@ -2,8 +2,9 @@ package nodeconfigs
 
 // 节点状态
 type NodeStatus struct {
-	BuildVersion  string `json:"buildVersion"`  // 编译版本
-	ConfigVersion int64  `json:"configVersion"` // 节点配置版本
+	BuildVersion     string `json:"buildVersion"`     // 编译版本
+	BuildVersionCode uint32 `json:"buildVersionCode"` // 版本数字
+	ConfigVersion    int64  `json:"configVersion"`    // 节点配置版本
 
 	OS                    string  `json:"os"`
 	Arch                  string  `json:"arch"`

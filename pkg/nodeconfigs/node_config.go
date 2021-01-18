@@ -33,6 +33,8 @@ type NodeConfig struct {
 	SystemServices     map[string]maps.Map                 `yaml:"systemServices" json:"systemServices"` // 系统服务配置 type => params
 
 	paddedId string
+
+	firewallPolicies []*firewallconfigs.HTTPFirewallPolicy
 }
 
 // 取得当前节点配置单例
@@ -110,6 +112,17 @@ func (this *NodeConfig) Init() error {
 		}
 	}
 
+	// 查找FirewallPolicy
+	this.firewallPolicies = []*firewallconfigs.HTTPFirewallPolicy{}
+	if this.HTTPFirewallPolicy != nil && this.HTTPFirewallPolicy.IsOn {
+		this.firewallPolicies = append(this.firewallPolicies, this.HTTPFirewallPolicy)
+	}
+	for _, server := range this.Servers {
+		if server.Web != nil {
+			this.lookupWeb(server.Web)
+		}
+	}
+
 	return nil
 }
 
@@ -138,6 +151,11 @@ func (this *NodeConfig) AvailableGroups() []*serverconfigs.ServerGroup {
 	return result
 }
 
+// 获取所有的防火墙策略
+func (this *NodeConfig) FindAllFirewallPolicies() []*firewallconfigs.HTTPFirewallPolicy {
+	return this.firewallPolicies
+}
+
 // 写入到文件
 func (this *NodeConfig) Save() error {
 	shared.Locker.Lock()
@@ -154,4 +172,21 @@ func (this *NodeConfig) Save() error {
 // 获取填充后的ID
 func (this *NodeConfig) PaddedId() string {
 	return this.paddedId
+}
+
+// 搜索WAF策略
+func (this *NodeConfig) lookupWeb(web *serverconfigs.HTTPWebConfig) {
+	if web == nil || !web.IsOn {
+		return
+	}
+	if web.FirewallPolicy != nil && web.FirewallPolicy.IsOn {
+		this.firewallPolicies = append(this.firewallPolicies, web.FirewallPolicy)
+	}
+	if len(web.Locations) > 0 {
+		for _, location := range web.Locations {
+			if location.Web != nil && location.Web.IsOn {
+				this.lookupWeb(location.Web)
+			}
+		}
+	}
 }

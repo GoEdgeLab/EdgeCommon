@@ -58,13 +58,12 @@ func (this *HTTPWebDAO) FindWebConfigWithId(ctx context.Context, webId int64) (*
 }
 
 // 初始化防火墙设置
-func (this *HTTPWebDAO) InitHTTPFirewallPolicy(ctx context.Context, webId int64) (int64, error) {
+func (this *HTTPWebDAO) InitEmptyHTTPFirewallPolicy(ctx context.Context, webId int64, isOn bool) (int64, error) {
 	// 创建FirewallPolicy
-	firewallPolicyIdResp, err := this.RPC().HTTPFirewallPolicyRPC().CreateHTTPFirewallPolicy(ctx, &pb.CreateHTTPFirewallPolicyRequest{
-		IsOn:                   true,
-		Name:                   "用户自定义",
-		Description:            "",
-		HttpFirewallGroupCodes: nil,
+	firewallPolicyIdResp, err := this.RPC().HTTPFirewallPolicyRPC().CreateEmptyHTTPFirewallPolicy(ctx, &pb.CreateEmptyHTTPFirewallPolicyRequest{
+		IsOn:        true,
+		Name:        "用户自定义",
+		Description: "",
 	})
 	if err != nil {
 		return 0, errors.Wrap(err)
@@ -74,7 +73,7 @@ func (this *HTTPWebDAO) InitHTTPFirewallPolicy(ctx context.Context, webId int64)
 
 	firewallRef := &firewallconfigs.HTTPFirewallRef{
 		IsPrior:          false,
-		IsOn:             true,
+		IsOn:             isOn,
 		FirewallPolicyId: policyId,
 	}
 	firewallRefJSON, err := json.Marshal(firewallRef)

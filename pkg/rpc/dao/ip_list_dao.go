@@ -55,7 +55,8 @@ func (this *IPListDAO) CreateIPListForServerId(ctx context.Context, serverId int
 		return 0, nil
 	}
 	if webConfig.FirewallPolicy == nil || webConfig.FirewallPolicy.Id == 0 {
-		_, err = SharedHTTPWebDAO.InitHTTPFirewallPolicy(ctx, webConfig.Id)
+		isOn := webConfig.FirewallRef != nil && webConfig.FirewallRef.IsOn
+		_, err = SharedHTTPWebDAO.InitEmptyHTTPFirewallPolicy(ctx, webConfig.Id, isOn)
 		if err != nil {
 			return 0, errors.Wrap(err)
 		}

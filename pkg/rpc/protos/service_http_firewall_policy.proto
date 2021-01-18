@@ -13,6 +13,9 @@ service HTTPFirewallPolicyService {
 	// 创建防火墙策略
 	rpc createHTTPFirewallPolicy (CreateHTTPFirewallPolicyRequest) returns (CreateHTTPFirewallPolicyResponse);
 
+	// 创建空防火墙策略
+	rpc createEmptyHTTPFirewallPolicy (CreateEmptyHTTPFirewallPolicyRequest) returns (CreateEmptyHTTPFirewallPolicyResponse);
+
 	// 修改防火墙策略
 	rpc updateHTTPFirewallPolicy (UpdateHTTPFirewallPolicyRequest) returns (RPCSuccess);
 
@@ -59,6 +62,17 @@ message CreateHTTPFirewallPolicyRequest {
 }
 
 message CreateHTTPFirewallPolicyResponse {
+	int64 httpFirewallPolicyId = 1;
+}
+
+// 创建空防火墙策略
+message CreateEmptyHTTPFirewallPolicyRequest {
+	bool isOn = 1;
+	string name = 2;
+	string description = 3;
+}
+
+message CreateEmptyHTTPFirewallPolicyResponse {
 	int64 httpFirewallPolicyId = 1;
 }
 
