@@ -30,16 +30,17 @@ type DBNode struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id          int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name        string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	IsOn        bool   `protobuf:"varint,4,opt,name=isOn,proto3" json:"isOn,omitempty"`
-	Host        string `protobuf:"bytes,5,opt,name=host,proto3" json:"host,omitempty"`
-	Port        int32  `protobuf:"varint,6,opt,name=port,proto3" json:"port,omitempty"`
-	Database    string `protobuf:"bytes,7,opt,name=database,proto3" json:"database,omitempty"`
-	Username    string `protobuf:"bytes,8,opt,name=username,proto3" json:"username,omitempty"`
-	Password    string `protobuf:"bytes,9,opt,name=password,proto3" json:"password,omitempty"`
-	Charset     string `protobuf:"bytes,10,opt,name=charset,proto3" json:"charset,omitempty"`
+	Id          int64         `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name        string        `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Description string        `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	IsOn        bool          `protobuf:"varint,4,opt,name=isOn,proto3" json:"isOn,omitempty"`
+	Host        string        `protobuf:"bytes,5,opt,name=host,proto3" json:"host,omitempty"`
+	Port        int32         `protobuf:"varint,6,opt,name=port,proto3" json:"port,omitempty"`
+	Database    string        `protobuf:"bytes,7,opt,name=database,proto3" json:"database,omitempty"`
+	Username    string        `protobuf:"bytes,8,opt,name=username,proto3" json:"username,omitempty"`
+	Password    string        `protobuf:"bytes,9,opt,name=password,proto3" json:"password,omitempty"`
+	Charset     string        `protobuf:"bytes,10,opt,name=charset,proto3" json:"charset,omitempty"`
+	Status      *DBNodeStatus `protobuf:"bytes,30,opt,name=status,proto3" json:"status,omitempty"`
 }
 
 func (x *DBNode) Reset() {
@@ -144,11 +145,81 @@ func (x *DBNode) GetCharset() string {
 	return ""
 }
 
+func (x *DBNode) GetStatus() *DBNodeStatus {
+	if x != nil {
+		return x.Status
+	}
+	return nil
+}
+
+type DBNodeStatus struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IsOk  bool   `protobuf:"varint,1,opt,name=isOk,proto3" json:"isOk,omitempty"`
+	Size  int64  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	Error string `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty"`
+}
+
+func (x *DBNodeStatus) Reset() {
+	*x = DBNodeStatus{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_model_db_node_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DBNodeStatus) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DBNodeStatus) ProtoMessage() {}
+
+func (x *DBNodeStatus) ProtoReflect() protoreflect.Message {
+	mi := &file_model_db_node_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DBNodeStatus.ProtoReflect.Descriptor instead.
+func (*DBNodeStatus) Descriptor() ([]byte, []int) {
+	return file_model_db_node_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *DBNodeStatus) GetIsOk() bool {
+	if x != nil {
+		return x.IsOk
+	}
+	return false
+}
+
+func (x *DBNodeStatus) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *DBNodeStatus) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
 var File_model_db_node_proto protoreflect.FileDescriptor
 
 var file_model_db_node_proto_rawDesc = []byte{
 	0x0a, 0x13, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x64, 0x62, 0x5f, 0x6e, 0x6f, 0x64, 0x65, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x22, 0xf8, 0x01, 0x0a, 0x06, 0x44, 0x42,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x22, 0xa2, 0x02, 0x0a, 0x06, 0x44, 0x42,
 	0x4e, 0x6f, 0x64, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
 	0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63,
@@ -164,8 +235,15 @@ var file_model_db_node_proto_rawDesc = []byte{
 	0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x68,
 	0x61, 0x72, 0x73, 0x65, 0x74, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x68, 0x61,
-	0x72, 0x73, 0x65, 0x74, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x72, 0x73, 0x65, 0x74, 0x12, 0x28, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x1e,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x42, 0x4e, 0x6f, 0x64, 0x65,
+	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x4c,
+	0x0a, 0x0c, 0x44, 0x42, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x12,
+	0x0a, 0x04, 0x69, 0x73, 0x4f, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73,
+	0x4f, 0x6b, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x42, 0x06, 0x5a, 0x04,
+	0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -180,16 +258,18 @@ func file_model_db_node_proto_rawDescGZIP() []byte {
 	return file_model_db_node_proto_rawDescData
 }
 
-var file_model_db_node_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_model_db_node_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_model_db_node_proto_goTypes = []interface{}{
-	(*DBNode)(nil), // 0: pb.DBNode
+	(*DBNode)(nil),       // 0: pb.DBNode
+	(*DBNodeStatus)(nil), // 1: pb.DBNodeStatus
 }
 var file_model_db_node_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: pb.DBNode.status:type_name -> pb.DBNodeStatus
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_model_db_node_proto_init() }
@@ -210,6 +290,18 @@ func file_model_db_node_proto_init() {
 				return nil
 			}
 		}
+		file_model_db_node_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DBNodeStatus); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -217,7 +309,7 @@ func file_model_db_node_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_model_db_node_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

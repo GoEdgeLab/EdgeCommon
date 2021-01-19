@@ -5,6 +5,7 @@ package pb;
 
 import "model_db_node.proto";
 import "rpc_messages.proto";
+import "model_db_table.proto";
 
 service DBNodeService {
 	// 创建数据库节点
@@ -24,6 +25,15 @@ service DBNodeService {
 
 	// 根据ID查找可用的数据库节点
 	rpc findEnabledDBNode (FindEnabledDBNodeRequest) returns (FindEnabledDBNodeResponse);
+
+	// 获取所有表信息
+	rpc findAllDBNodeTables (FindAllDBNodeTablesRequest) returns (FindAllDBNodeTablesResponse);
+
+	// 删除表
+	rpc deleteDBNodeTable (DeleteDBNodeTableRequest) returns (RPCSuccess);
+
+	// 清空表
+	rpc truncateDBNodeTable (TruncateDBNodeTableRequest) returns (RPCSuccess);
 }
 
 // 创建数据库节点
@@ -40,12 +50,12 @@ message CreateDBNodeRequest {
 }
 
 message CreateDBNodeResponse {
-	int64 nodeId = 1;
+	int64 dbNodeId = 1;
 }
 
 // 修改数据库节点
 message UpdateDBNodeRequest {
-	int64 nodeId = 1;
+	int64 dbNodeId = 1;
 	string name = 2;
 	string description = 3;
 	bool isOn = 4;
@@ -59,7 +69,7 @@ message UpdateDBNodeRequest {
 
 // 删除节点
 message DeleteDBNodeRequest {
-	int64 nodeId = 1;
+	int64 dbNodeId = 1;
 }
 
 // 计算可用的数据库节点数量
@@ -74,14 +84,35 @@ message ListEnabledDBNodesRequest {
 }
 
 message ListEnabledDBNodesResponse {
-	repeated DBNode nodes = 1;
+	repeated DBNode dbNodes = 1;
 }
 
 // 根据ID查找可用的数据库节点
 message FindEnabledDBNodeRequest {
-	int64 nodeId = 1;
+	int64 dbNodeId = 1;
 }
 
 message FindEnabledDBNodeResponse {
-	DBNode node = 1;
+	DBNode dbNode = 1;
+}
+
+// 获取所有表信息
+message FindAllDBNodeTablesRequest {
+	int64 dbNodeId = 1;
+}
+
+message FindAllDBNodeTablesResponse {
+	repeated DBTable dbNodeTables = 1;
+}
+
+// 删除表
+message DeleteDBNodeTableRequest {
+	int64 dbNodeId = 1;
+	string dbNodeTable = 2;
+}
+
+// 清空表
+message TruncateDBNodeTableRequest {
+	int64 dbNodeId = 1;
+	string dbNodeTable = 2;
 }

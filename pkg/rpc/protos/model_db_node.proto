@@ -14,4 +14,11 @@ message DBNode {
 	string username = 8;
 	string password = 9;
 	string charset = 10;
+	DBNodeStatus status = 30;
+}
+
+message DBNodeStatus {
+	bool isOk = 1;
+	int64 size = 2;
+	string error = 3;
 }
