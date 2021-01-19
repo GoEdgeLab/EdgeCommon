@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 数据表信息
+message DBTable {
+	string name = 1;
+	string schema = 2;
+	string type = 3;
+	string engine = 4;
+	int64 rows = 5;
+	int64 dataLength = 6;
+	int64 indexLength = 7;
+	string comment = 8;
+	string collation = 9;
+	bool isBaseTable = 10;
+	bool canClean = 11;
+	bool canDelete = 12;
+}

@@ -1,0 +1,38 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "rpc_messages.proto";
+import "model_db_table.proto";
+
+// 数据库相关服务
+service DBService {
+	// 获取所有表信息
+	rpc findAllDBTables (FindAllDBTablesRequest) returns (FindAllDBTablesResponse);
+
+	// 删除表
+	rpc deleteDBTable (DeleteDBTableRequest) returns (RPCSuccess);
+
+	// 清空表
+	rpc truncateDBTable (TruncateDBTableRequest) returns (RPCSuccess);
+}
+
+// 获取所有表信息
+message FindAllDBTablesRequest {
+
+}
+
+message FindAllDBTablesResponse {
+	repeated DBTable dbTables = 1;
+}
+
+// 删除表
+message DeleteDBTableRequest {
+	string dbTable = 1;
+}
+
+// 清空表
+message TruncateDBTableRequest {
+	string dbTable = 1;
+}
