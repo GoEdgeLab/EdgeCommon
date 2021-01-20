@@ -29,6 +29,9 @@ service UserNodeService {
 
 	// 获取当前用户节点
 	rpc findCurrentUserNode (FindCurrentUserNodeRequest) returns (FindCurrentUserNodeResponse);
+
+	// 更新节点状态
+	rpc updateUserNodeStatus (UpdateUserNodeStatusRequest) returns (RPCSuccess);
 }
 
 // 创建用户节点
@@ -101,4 +104,10 @@ message FindCurrentUserNodeRequest {
 
 message FindCurrentUserNodeResponse {
 	UserNode node = 1;
+}
+
+// 更新节点状态
+message UpdateUserNodeStatusRequest {
+	int64 nodeId = 1;
+	bytes statusJSON = 2;
 }

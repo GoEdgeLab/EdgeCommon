@@ -59,6 +59,7 @@ message CreateHTTPFirewallPolicyRequest {
 	string name = 2;
 	string description = 3;
 	repeated string httpFirewallGroupCodes = 4;
+	int64 serverId = 5;
 }
 
 message CreateHTTPFirewallPolicyResponse {
@@ -70,6 +71,7 @@ message CreateEmptyHTTPFirewallPolicyRequest {
 	bool isOn = 1;
 	string name = 2;
 	string description = 3;
+	int64 serverId = 4;
 }
 
 message CreateEmptyHTTPFirewallPolicyResponse {
