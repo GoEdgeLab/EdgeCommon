@@ -52,6 +52,9 @@ service AdminService {
 
 	// 根据用户名检查是否需要输入OTP
 	rpc checkAdminOTPWithUsername (CheckAdminOTPWithUsernameRequest) returns (CheckAdminOTPWithUsernameResponse);
+
+	// 取得管理员Dashboard数据
+	rpc composeAdminDashboard (ComposeAdminDashboardRequest) returns (ComposeAdminDashboardResponse);
 }
 
 // 登录
@@ -187,4 +190,31 @@ message CheckAdminOTPWithUsernameRequest {
 
 message CheckAdminOTPWithUsernameResponse {
 	bool requireOTP = 1;
+}
+
+// 取得管理员Dashboard数据
+message ComposeAdminDashboardRequest {
+}
+
+message ComposeAdminDashboardResponse {
+	int64 countNodeClusters = 1;
+	int64 countNodes = 2;
+	int64 countServers = 3;
+	int64 countUsers = 4;
+	int64 countAPINodes = 5;
+	int64 countDBNodes = 6;
+	int64 countUserNodes = 7;
+
+	repeated DailyTrafficStat dailyTrafficStats = 30;
+	repeated HourlyTrafficStat hourlyTrafficStats = 31;
+
+	message DailyTrafficStat {
+		string day = 1;
+		int64 bytes = 2;
+	}
+
+	message HourlyTrafficStat {
+		string hour = 1;
+		int64 bytes = 2;
+	}
 }
