@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_server_group.proto";
-import "rpc_messages.proto";
+import "models/model_server_group.proto";
+import "models/rpc_messages.proto";
 
 // 服务分组服务
 service ServerGroupService {

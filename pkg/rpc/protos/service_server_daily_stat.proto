@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_server_daily_stat.proto";
-import "rpc_messages.proto";
+import "models/model_server_daily_stat.proto";
+import "models/rpc_messages.proto";
 
 // 服务统计相关服务
 service ServerDailyStatService {

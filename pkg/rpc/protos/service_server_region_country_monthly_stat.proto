@@ -1,0 +1,29 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_region_country.proto";
+
+// 地区月份统计
+service ServerRegionCountryMonthlyStatService {
+	// 查找前N个地区
+	rpc findTopServerRegionCountryMonthlyStats (FindTopServerRegionCountryMonthlyStatsRequest) returns (FindTopServerRegionCountryMonthlyStatsResponse);
+}
+
+// 查找前N个城市
+message FindTopServerRegionCountryMonthlyStatsRequest {
+	string month = 1; // YYYYMM
+	int64 serverId = 2;
+	int64 offset = 3;
+	int64 size = 4;
+}
+
+message FindTopServerRegionCountryMonthlyStatsResponse {
+	repeated Stat stats = 1;
+
+	message Stat {
+		RegionCountry regionCountry = 1;
+		int64 count = 2;
+	}
+}

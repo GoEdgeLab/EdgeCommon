@@ -95,3 +95,7 @@ func AllServerProtocolsForType(serverType ServerType) []maps.Map {
 	}
 	return result
 }
+
+func IsHTTPServerType(serverType ServerType) bool {
+	return serverType == ServerTypeHTTPProxy || serverType == ServerTypeHTTPWeb
+}

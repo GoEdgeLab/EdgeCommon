@@ -3,9 +3,9 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_admin.proto";
-import "model_admin_list.proto";
-import "rpc_messages.proto";
+import "models/model_admin.proto";
+import "models/model_admin_list.proto";
+import "models/rpc_messages.proto";
 
 service AdminService {
 	// 登录

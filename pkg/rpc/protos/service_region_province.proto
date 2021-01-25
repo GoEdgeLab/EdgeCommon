@@ -3,7 +3,7 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_region_province.proto";
+import "models/model_region_province.proto";
 
 // 省份相关服务
 service RegionProvinceService {

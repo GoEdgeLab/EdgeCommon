@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "rpc_messages.proto";
-import "model_log.proto";
+import "models/rpc_messages.proto";
+import "models/model_log.proto";
 
 service LogService {
 	// 创建日志

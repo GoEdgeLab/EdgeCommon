@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "rpc_messages.proto";
-import "model_acme_user.proto";
+import "models/rpc_messages.proto";
+import "models/model_acme_user.proto";
 
 // ACME用户相关服务
 service ACMEUserService {

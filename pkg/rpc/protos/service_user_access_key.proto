@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "rpc_messages.proto";
-import "model_user_access_key.proto";
+import "models/rpc_messages.proto";
+import "models/model_user_access_key.proto";
 
 // 用户AccessKey相关服务
 service UserAccessKeyService {

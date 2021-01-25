@@ -1,0 +1,30 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_client_system.proto";
+
+// 操作系统统计
+service ServerClientSystemMonthlyStatService {
+	// 查找前N个操作系统
+	rpc findTopServerClientSystemMonthlyStats (FindTopServerClientSystemMonthlyStatsRequest) returns (FindTopServerClientSystemMonthlyStatsResponse);
+}
+
+// 查找前N个操作系统
+message FindTopServerClientSystemMonthlyStatsRequest {
+	int64 serverId = 1;
+	string month = 2;
+	int64 offset = 3;
+	int64 size = 4;
+}
+
+message FindTopServerClientSystemMonthlyStatsResponse {
+	repeated Stat stats = 1;
+
+	message Stat {
+		ClientSystem clientSystem = 1;
+		string version = 2;
+		int64 count = 3;
+	}
+}

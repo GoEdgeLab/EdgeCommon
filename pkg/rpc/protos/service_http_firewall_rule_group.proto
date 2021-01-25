@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "rpc_messages.proto";
-import "model_http_firewall_rule_group.proto";
+import "models/rpc_messages.proto";
+import "models/model_http_firewall_rule_group.proto";
 
 service HTTPFirewallRuleGroupService {
 	// 设置是否启用分组

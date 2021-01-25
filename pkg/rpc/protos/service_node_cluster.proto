@@ -3,12 +3,12 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_node_cluster.proto";
-import "model_api_node.proto";
-import "model_node.proto";
-import "rpc_messages.proto";
-import "model_dns_domain.proto";
-import "model_dns_provider.proto";
+import "models/model_node_cluster.proto";
+import "models/model_api_node.proto";
+import "models/model_node.proto";
+import "models/rpc_messages.proto";
+import "models/model_dns_domain.proto";
+import "models/model_dns_provider.proto";
 
 service NodeClusterService {
 	// 创建集群

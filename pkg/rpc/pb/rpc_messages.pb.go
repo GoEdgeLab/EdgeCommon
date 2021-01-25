@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.25.0
 // 	protoc        v3.12.3
-// source: rpc_messages.proto
+// source: models/rpc_messages.proto
 
 package pb
 
@@ -35,7 +35,7 @@ type RPCSuccess struct {
 func (x *RPCSuccess) Reset() {
 	*x = RPCSuccess{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_rpc_messages_proto_msgTypes[0]
+		mi := &file_models_rpc_messages_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -48,7 +48,7 @@ func (x *RPCSuccess) String() string {
 func (*RPCSuccess) ProtoMessage() {}
 
 func (x *RPCSuccess) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_messages_proto_msgTypes[0]
+	mi := &file_models_rpc_messages_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +61,7 @@ func (x *RPCSuccess) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RPCSuccess.ProtoReflect.Descriptor instead.
 func (*RPCSuccess) Descriptor() ([]byte, []int) {
-	return file_rpc_messages_proto_rawDescGZIP(), []int{0}
+	return file_models_rpc_messages_proto_rawDescGZIP(), []int{0}
 }
 
 // 返回数量
@@ -76,7 +76,7 @@ type RPCCountResponse struct {
 func (x *RPCCountResponse) Reset() {
 	*x = RPCCountResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_rpc_messages_proto_msgTypes[1]
+		mi := &file_models_rpc_messages_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -89,7 +89,7 @@ func (x *RPCCountResponse) String() string {
 func (*RPCCountResponse) ProtoMessage() {}
 
 func (x *RPCCountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_rpc_messages_proto_msgTypes[1]
+	mi := &file_models_rpc_messages_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -102,7 +102,7 @@ func (x *RPCCountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RPCCountResponse.ProtoReflect.Descriptor instead.
 func (*RPCCountResponse) Descriptor() ([]byte, []int) {
-	return file_rpc_messages_proto_rawDescGZIP(), []int{1}
+	return file_models_rpc_messages_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *RPCCountResponse) GetCount() int64 {
@@ -112,35 +112,36 @@ func (x *RPCCountResponse) GetCount() int64 {
 	return 0
 }
 
-var File_rpc_messages_proto protoreflect.FileDescriptor
+var File_models_rpc_messages_proto protoreflect.FileDescriptor
 
-var file_rpc_messages_proto_rawDesc = []byte{
-	0x0a, 0x12, 0x72, 0x70, 0x63, 0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x22, 0x0c, 0x0a, 0x0a, 0x52, 0x50, 0x43, 0x53,
-	0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x22, 0x28, 0x0a, 0x10, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75,
-	0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f,
-	0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74,
-	0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+var file_models_rpc_messages_proto_rawDesc = []byte{
+	0x0a, 0x19, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2f, 0x72, 0x70, 0x63, 0x5f, 0x6d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x22,
+	0x0c, 0x0a, 0x0a, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x22, 0x28, 0x0a,
+	0x10, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_rpc_messages_proto_rawDescOnce sync.Once
-	file_rpc_messages_proto_rawDescData = file_rpc_messages_proto_rawDesc
+	file_models_rpc_messages_proto_rawDescOnce sync.Once
+	file_models_rpc_messages_proto_rawDescData = file_models_rpc_messages_proto_rawDesc
 )
 
-func file_rpc_messages_proto_rawDescGZIP() []byte {
-	file_rpc_messages_proto_rawDescOnce.Do(func() {
-		file_rpc_messages_proto_rawDescData = protoimpl.X.CompressGZIP(file_rpc_messages_proto_rawDescData)
+func file_models_rpc_messages_proto_rawDescGZIP() []byte {
+	file_models_rpc_messages_proto_rawDescOnce.Do(func() {
+		file_models_rpc_messages_proto_rawDescData = protoimpl.X.CompressGZIP(file_models_rpc_messages_proto_rawDescData)
 	})
-	return file_rpc_messages_proto_rawDescData
+	return file_models_rpc_messages_proto_rawDescData
 }
 
-var file_rpc_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_rpc_messages_proto_goTypes = []interface{}{
+var file_models_rpc_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_models_rpc_messages_proto_goTypes = []interface{}{
 	(*RPCSuccess)(nil),       // 0: pb.RPCSuccess
 	(*RPCCountResponse)(nil), // 1: pb.RPCCountResponse
 }
-var file_rpc_messages_proto_depIdxs = []int32{
+var file_models_rpc_messages_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -148,13 +149,13 @@ var file_rpc_messages_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_rpc_messages_proto_init() }
-func file_rpc_messages_proto_init() {
-	if File_rpc_messages_proto != nil {
+func init() { file_models_rpc_messages_proto_init() }
+func file_models_rpc_messages_proto_init() {
+	if File_models_rpc_messages_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_rpc_messages_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_models_rpc_messages_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RPCSuccess); i {
 			case 0:
 				return &v.state
@@ -166,7 +167,7 @@ func file_rpc_messages_proto_init() {
 				return nil
 			}
 		}
-		file_rpc_messages_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_models_rpc_messages_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RPCCountResponse); i {
 			case 0:
 				return &v.state
@@ -183,18 +184,18 @@ func file_rpc_messages_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_rpc_messages_proto_rawDesc,
+			RawDescriptor: file_models_rpc_messages_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_rpc_messages_proto_goTypes,
-		DependencyIndexes: file_rpc_messages_proto_depIdxs,
-		MessageInfos:      file_rpc_messages_proto_msgTypes,
+		GoTypes:           file_models_rpc_messages_proto_goTypes,
+		DependencyIndexes: file_models_rpc_messages_proto_depIdxs,
+		MessageInfos:      file_models_rpc_messages_proto_msgTypes,
 	}.Build()
-	File_rpc_messages_proto = out.File
-	file_rpc_messages_proto_rawDesc = nil
-	file_rpc_messages_proto_goTypes = nil
-	file_rpc_messages_proto_depIdxs = nil
+	File_models_rpc_messages_proto = out.File
+	file_models_rpc_messages_proto_rawDesc = nil
+	file_models_rpc_messages_proto_goTypes = nil
+	file_models_rpc_messages_proto_depIdxs = nil
 }

@@ -3,11 +3,11 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_node.proto";
-import "model_node_login.proto";
-import "model_node_install_status.proto";
-import "model_dns_route.proto";
-import "rpc_messages.proto";
+import "models/model_node.proto";
+import "models/model_node_login.proto";
+import "models/model_node_install_status.proto";
+import "models/model_dns_route.proto";
+import "models/rpc_messages.proto";
 
 service NodeService {
 	// 创建节点

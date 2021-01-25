@@ -3,13 +3,13 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_node_cluster.proto";
-import "model_node_login.proto";
-import "model_node_install_status.proto";
-import "model_node_ip_address.proto";
-import "model_node_group.proto";
-import "model_node_region.proto";
-import "model_dns_route.proto";
+import "models/model_node_cluster.proto";
+import "models/model_node_login.proto";
+import "models/model_node_install_status.proto";
+import "models/model_node_ip_address.proto";
+import "models/model_node_group.proto";
+import "models/model_node_region.proto";
+import "models/model_dns_route.proto";
 
 message Node {
 	int64 id = 1;

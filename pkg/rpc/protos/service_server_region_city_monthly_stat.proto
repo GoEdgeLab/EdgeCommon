@@ -1,0 +1,35 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_region_country.proto";
+import "models/model_region_province.proto";
+import "models/model_region_city.proto";
+
+// 城市月份统计
+service ServerRegionCityMonthlyStatService {
+	// 查找前N个城市
+	rpc findTopServerRegionCityMonthlyStats (FindTopServerRegionCityMonthlyStatsRequest) returns (FindTopServerRegionCityMonthlyStatsResponse);
+}
+
+// 查找前N个城市
+message FindTopServerRegionCityMonthlyStatsRequest {
+	string month = 1; // YYYYMM
+	int64 serverId = 2;
+	int64 countryId = 3;
+	int64 provinceId = 4;
+	int64 offset = 5;
+	int64 size = 6;
+}
+
+message FindTopServerRegionCityMonthlyStatsResponse {
+	repeated Stat stats = 1;
+
+	message Stat {
+		RegionCountry regionCountry = 1;
+		RegionProvince regionProvince = 2;
+		RegionCity regionCity = 3;
+		int64 count = 4;
+	}
+}

@@ -3,7 +3,7 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_file_chunk.proto";
+import "models/model_file_chunk.proto";
 
 // 文件片段相关服务
 service FileChunkService {

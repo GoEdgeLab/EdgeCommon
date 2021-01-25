@@ -3,7 +3,7 @@ option go_package = "./pb";
 
 package pb;
 
-import "rpc_messages.proto";
+import "models/rpc_messages.proto";
 
 service HTTPHeaderPolicyService {
 	// 查找策略配置

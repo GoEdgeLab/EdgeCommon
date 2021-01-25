@@ -3,9 +3,9 @@ option go_package = "./pb";
 
 package pb;
 
-import "rpc_messages.proto";
-import "model_dns_domain.proto";
-import "model_dns_route.proto";
+import "models/rpc_messages.proto";
+import "models/model_dns_domain.proto";
+import "models/model_dns_route.proto";
 
 // DNS域名相关
 service DNSDomainService {

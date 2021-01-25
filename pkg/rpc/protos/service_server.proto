@@ -3,10 +3,10 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_server.proto";
-import "model_dns_domain.proto";
-import "model_server_name_auditing_result.proto";
-import "rpc_messages.proto";
+import "models/model_server.proto";
+import "models/model_dns_domain.proto";
+import "models/model_server_name_auditing_result.proto";
+import "models/rpc_messages.proto";
 
 service ServerService {
 	// 创建服务
@@ -107,6 +107,9 @@ service ServerService {
 
 	// 修改用户服务基本信息
 	rpc updateEnabledUserServerBasic (UpdateEnabledUserServerBasicRequest) returns (RPCSuccess);
+
+	// 上传HTTP请求待统计数据
+	rpc uploadServerHTTPRequestStat (UploadServerHTTPRequestStatRequest) returns (RPCSuccess);
 }
 
 // 创建服务
@@ -381,4 +384,41 @@ message FindEnabledUserServerBasicResponse {
 message UpdateEnabledUserServerBasicRequest {
 	int64 serverId = 1;
 	string name = 2;
+}
+
+// 上传HTTP请求待统计数据
+message UploadServerHTTPRequestStatRequest {
+	string month = 1; // 这里使用了全局的月份，为了性能起见，不需要一定精确
+	repeated RegionCity regionCities = 2;
+	repeated RegionProvider regionProviders = 3;
+	repeated System systems = 4;
+	repeated Browser browsers = 5;
+
+	message RegionCity {
+		int64 serverId = 1;
+		string countryName = 2;
+		string provinceName = 3;
+		string cityName = 4;
+		int64 count = 5;
+	}
+
+	message RegionProvider {
+		int64 serverId = 1;
+		string name = 2;
+		int64 count = 3;
+	}
+
+	message System {
+		int64 serverId = 1;
+		string name = 2;
+		string version = 3;
+		int64 count = 4;
+	}
+
+	message Browser {
+		int64 serverId = 1;
+		string name = 2;
+		string version = 3;
+		int64 count = 4;
+	}
 }

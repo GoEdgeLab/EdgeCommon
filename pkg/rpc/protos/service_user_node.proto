@@ -2,8 +2,8 @@ syntax = "proto3";
 option go_package = "./pb";
 
 package pb;
-import "model_user_node.proto";
-import "rpc_messages.proto";
+import "models/model_user_node.proto";
+import "models/rpc_messages.proto";
 
 service UserNodeService {
 	// 创建用户节点

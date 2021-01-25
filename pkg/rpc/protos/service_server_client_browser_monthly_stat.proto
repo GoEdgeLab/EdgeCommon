@@ -1,0 +1,30 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_client_browser.proto";
+
+// 浏览器统计
+service ServerClientBrowserMonthlyStatService {
+	// 查找前N个浏览器
+	rpc findTopServerClientBrowserMonthlyStats (FindTopServerClientBrowserMonthlyStatsRequest) returns (FindTopServerClientBrowserMonthlyStatsResponse);
+}
+
+// 查找前N个浏览器
+message FindTopServerClientBrowserMonthlyStatsRequest {
+	int64 serverId = 1;
+	string month = 2;
+	int64 offset = 3;
+	int64 size = 4;
+}
+
+message FindTopServerClientBrowserMonthlyStatsResponse {
+	repeated Stat stats = 1;
+
+	message Stat {
+		ClientBrowser clientBrowser = 1;
+		string version = 2;
+		int64 count = 3;
+	}
+}

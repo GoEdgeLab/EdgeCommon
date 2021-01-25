@@ -3,10 +3,10 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_acme_user.proto";
-import "model_dns_provider.proto";
-import "model_ssl_cert.proto";
-import "model_acme_task_log.proto";
+import "models/model_acme_user.proto";
+import "models/model_dns_provider.proto";
+import "models/model_ssl_cert.proto";
+import "models/model_acme_task_log.proto";
 
 message ACMETask {
 	int64 id = 1;

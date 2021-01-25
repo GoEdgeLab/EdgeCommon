@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "rpc_messages.proto";
-import "model_db_table.proto";
+import "models/rpc_messages.proto";
+import "models/model_db_table.proto";
 
 // 数据库相关服务
 service DBService {

@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "rpc_messages.proto";
-import "model_node_price_item.proto";
+import "models/rpc_messages.proto";
+import "models/model_node_price_item.proto";
 
 // 节点区域定价相关服务
 service NodePriceItemService {

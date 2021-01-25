@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_login.proto";
-import "rpc_messages.proto";
+import "models/model_login.proto";
+import "models/rpc_messages.proto";
 
 // 认证相关服务
 service LoginService {

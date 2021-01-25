@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_node_cluster.proto";
-import "model_node.proto";
+import "models/model_node_cluster.proto";
+import "models/model_node.proto";
 
 message Message {
 	int64 id = 1;

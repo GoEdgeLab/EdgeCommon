@@ -161,19 +161,19 @@ func (this *ServerConfig) AsJSON() ([]byte, error) {
 	return json.Marshal(this)
 }
 
-func (this *ServerConfig) IsHTTP() bool {
+func (this *ServerConfig) IsHTTPFamily() bool {
 	return this.HTTP != nil || this.HTTPS != nil
 }
 
-func (this *ServerConfig) IsTCP() bool {
+func (this *ServerConfig) IsTCPFamily() bool {
 	return this.TCP != nil || this.TLS != nil
 }
 
-func (this *ServerConfig) IsUnix() bool {
+func (this *ServerConfig) IsUnixFamily() bool {
 	return this.Unix != nil
 }
 
-func (this *ServerConfig) IsUDP() bool {
+func (this *ServerConfig) IsUDPFamily() bool {
 	return this.UDP != nil
 }
 

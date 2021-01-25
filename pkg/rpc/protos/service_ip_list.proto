@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "rpc_messages.proto";
-import "model_ip_list.proto";
+import "models/rpc_messages.proto";
+import "models/model_ip_list.proto";
 
 // IP列表
 service IPListService {

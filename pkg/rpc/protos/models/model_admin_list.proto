@@ -3,7 +3,7 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_admin_module.proto";
+import "models/model_admin_module.proto";
 
 message AdminModuleList {
 	int64 adminId = 1;

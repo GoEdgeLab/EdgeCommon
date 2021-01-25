@@ -3,7 +3,7 @@ option go_package = "./pb";
 
 package pb;
 
-import "model_network_address.proto";
+import "models/model_network_address.proto";
 
 message Origin {
 	int64 id = 1;
