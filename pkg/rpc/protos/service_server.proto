@@ -388,11 +388,13 @@ message UpdateEnabledUserServerBasicRequest {
 
 // 上传HTTP请求待统计数据
 message UploadServerHTTPRequestStatRequest {
-	string month = 1; // 这里使用了全局的月份，为了性能起见，不需要一定精确
-	repeated RegionCity regionCities = 2;
-	repeated RegionProvider regionProviders = 3;
-	repeated System systems = 4;
-	repeated Browser browsers = 5;
+	string month = 1;
+	string day = 2;
+	repeated RegionCity regionCities = 3;
+	repeated RegionProvider regionProviders = 4;
+	repeated System systems = 5;
+	repeated Browser browsers = 6;
+	repeated HTTPFirewallRuleGroup httpFirewallRuleGroups = 7;
 
 	message RegionCity {
 		int64 serverId = 1;
@@ -419,6 +421,13 @@ message UploadServerHTTPRequestStatRequest {
 		int64 serverId = 1;
 		string name = 2;
 		string version = 3;
+		int64 count = 4;
+	}
+
+	message HTTPFirewallRuleGroup {
+		int64 serverId = 1;
+		int64 httpFirewallRuleGroupId = 2;
+		string action = 3;
 		int64 count = 4;
 	}
 }

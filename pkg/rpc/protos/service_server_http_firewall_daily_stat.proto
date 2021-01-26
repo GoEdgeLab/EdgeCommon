@@ -1,0 +1,43 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_http_firewall_rule_group.proto";
+
+// WAF统计
+service ServerHTTPFirewallDailyStatService {
+	// 组合Dashboard
+	rpc composeServerHTTPFirewallDashboard (ComposeServerHTTPFirewallDashboardRequest) returns (ComposeServerHTTPFirewallDashboardResponse);
+}
+
+// 组合Dashboard
+message ComposeServerHTTPFirewallDashboardRequest {
+	string day = 1;
+	int64 userId = 2;
+	int64 serverId = 3;
+}
+
+message ComposeServerHTTPFirewallDashboardResponse {
+	int64 countDailyLog = 1;
+	int64 countDailyBlock = 2;
+	int64 countDailyCaptcha = 3;
+	int64 countWeeklyBlock = 4;
+	int64 countMonthlyBlock = 5;
+
+	repeated HTTPFirewallRuleGroupStat httpFirewallRuleGroups = 30;
+	repeated DailyStat logDailyStats = 31;
+	repeated DailyStat blockDailyStats = 32;
+	repeated DailyStat captchaDailyStats = 33;
+
+	message HTTPFirewallRuleGroupStat {
+		HTTPFirewallRuleGroup httpFirewallRuleGroup = 1;
+		int64 count = 2;
+	}
+
+	message DailyStat {
+		string day = 1;
+		int64 count = 2;
+	}
+}
+
