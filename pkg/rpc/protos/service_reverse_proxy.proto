@@ -25,7 +25,7 @@ service ReverseProxyService {
 	// 修改备用源站信息
 	rpc updateReverseProxyBackupOrigins (UpdateReverseProxyBackupOriginsRequest) returns (RPCSuccess);
 
-	// 修改是否启用
+	// 修改反向代理设置
 	rpc updateReverseProxy (UpdateReverseProxyRequest) returns (RPCSuccess);
 }
 
@@ -76,7 +76,7 @@ message UpdateReverseProxyBackupOriginsRequest {
 	bytes originsJSON = 2;
 }
 
-// 修改是否启用
+// 修改反向代理设置
 message UpdateReverseProxyRequest {
 	int64 reverseProxyId = 1;
 	int32 requestHostType = 6;
@@ -84,4 +84,5 @@ message UpdateReverseProxyRequest {
 	string requestURI = 3;
 	string stripPrefix = 4;
 	bool autoFlush = 5;
+	repeated string addHeaders = 7;
 }
