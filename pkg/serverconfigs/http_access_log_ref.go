@@ -18,6 +18,8 @@ type HTTPAccessLogRef struct {
 
 	StorageOnly     bool    `yaml:"storageOnly" json:"storageOnly"`         // 是否只输出到存储策略
 	StoragePolicies []int64 `yaml:"storagePolicies" json:"storagePolicies"` // 存储策略Ids
+
+	FirewallOnly bool `yaml:"firewallOnly" json:"firewallOnly"` // 是否只记录防火墙相关日志
 }
 
 // 获取新对象
