@@ -180,6 +180,10 @@ func (this *NodeConfig) lookupWeb(web *serverconfigs.HTTPWebConfig) {
 		return
 	}
 	if web.FirewallPolicy != nil && web.FirewallPolicy.IsOn {
+		// 复用节点的拦截选项设置
+		if web.FirewallPolicy.BlockOptions == nil && this.HTTPFirewallPolicy != nil && this.HTTPFirewallPolicy.BlockOptions != nil {
+			web.FirewallPolicy.BlockOptions = this.HTTPFirewallPolicy.BlockOptions
+		}
 		this.firewallPolicies = append(this.firewallPolicies, web.FirewallPolicy)
 	}
 	if len(web.Locations) > 0 {
