@@ -7,8 +7,10 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/firewallconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/Tea"
+	"github.com/iwind/TeaGo/logs"
 	"github.com/iwind/TeaGo/maps"
 	"io/ioutil"
+	"strconv"
 )
 
 var sharedNodeConfig *NodeConfig = nil
@@ -76,7 +78,8 @@ func (this *NodeConfig) Init() error {
 	for _, server := range this.Servers {
 		err := server.Init()
 		if err != nil {
-			return err
+			// 这里不返回错误，而是继续往下，防止单个服务错误而影响其他服务
+			logs.Println("[INIT]server '" + strconv.FormatInt(server.Id, 10) + "' init failed: " + err.Error())
 		}
 	}
 
@@ -118,6 +121,9 @@ func (this *NodeConfig) Init() error {
 		this.firewallPolicies = append(this.firewallPolicies, this.HTTPFirewallPolicy)
 	}
 	for _, server := range this.Servers {
+		if !server.IsOk() || !server.IsOn {
+			continue
+		}
 		if server.Web != nil {
 			this.lookupWeb(server.Web)
 		}
@@ -130,7 +136,7 @@ func (this *NodeConfig) Init() error {
 func (this *NodeConfig) AvailableGroups() []*serverconfigs.ServerGroup {
 	groupMapping := map[string]*serverconfigs.ServerGroup{} // protocol://addr => Server Group
 	for _, server := range this.Servers {
-		if !server.IsOn {
+		if !server.IsOk() || !server.IsOn {
 			continue
 		}
 		for _, addr := range server.FullAddresses() {

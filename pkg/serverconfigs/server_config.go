@@ -30,6 +30,8 @@ type ServerConfig struct {
 	// 反向代理配置
 	ReverseProxyRef *ReverseProxyRef    `yaml:"reverseProxyRef" json:"reverseProxyRef"`
 	ReverseProxy    *ReverseProxyConfig `yaml:"reverseProxy" json:"reverseProxy"`
+
+	isOk bool
 }
 
 // 从JSON中解析Server配置
@@ -107,7 +109,14 @@ func (this *ServerConfig) Init() error {
 		}
 	}
 
+	this.isOk = true
+
 	return nil
+}
+
+// 配置是否正确
+func (this *ServerConfig) IsOk() bool {
+	return this.isOk
 }
 
 func (this *ServerConfig) FullAddresses() []string {
