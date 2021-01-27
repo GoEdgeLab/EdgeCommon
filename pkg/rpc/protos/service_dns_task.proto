@@ -1,0 +1,42 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_dns_task.proto";
+
+// DNS同步相关任务
+service DNSTaskService {
+	// 检查是否有正在执行的任务
+	rpc existsDNSTasks (ExistsDNSTasksRequest) returns (ExistsDNSTasksResponse);
+
+	// 查找正在执行的所有任务
+	rpc findAllDoingDNSTasks (FindAllDoingDNSTasksRequest) returns (FindAllDoingDNSTasksResponse);
+
+	// 删除任务
+	rpc deleteDNSTask (DeleteDNSTaskRequest) returns (RPCSuccess);
+}
+
+// 检查是否有正在执行的任务
+message ExistsDNSTasksRequest {
+
+}
+
+message ExistsDNSTasksResponse {
+	bool existTasks = 1;
+	bool existError = 2;
+}
+
+// 查找需要通知的任务
+message FindAllDoingDNSTasksRequest {
+}
+
+message FindAllDoingDNSTasksResponse {
+	repeated DNSTask dnsTasks = 1;
+}
+
+// 删除任务
+message DeleteDNSTaskRequest {
+	int64 dnsTaskId = 1;
+}
