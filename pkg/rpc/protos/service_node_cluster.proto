@@ -103,6 +103,9 @@ service NodeClusterService {
 
 	// 获取集群中可以使用的端口
 	rpc findFreePortInNodeCluster (FindFreePortInNodeClusterRequest) returns (FindFreePortInNodeClusterResponse);
+
+	// 检查端口是否已经被使用
+	rpc checkPortIsUsingInNodeCluster (CheckPortIsUsingInNodeClusterRequest) returns (CheckPortIsUsingInNodeClusterResponse);
 }
 
 // 获取所有集群的信息
@@ -365,4 +368,16 @@ message FindFreePortInNodeClusterRequest {
 
 message FindFreePortInNodeClusterResponse {
 	int32 port = 1;
+}
+
+// 检查端口是否已经被使用
+message CheckPortIsUsingInNodeClusterRequest {
+	int32 port = 1;
+	int64 nodeClusterId = 2;
+	int64 excludeServerId = 3;
+	string excludeProtocol = 4;
+}
+
+message CheckPortIsUsingInNodeClusterResponse {
+	bool isUsing = 1;
 }

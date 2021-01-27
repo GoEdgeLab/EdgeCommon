@@ -14,7 +14,7 @@ type ServerDAO struct {
 }
 
 // 查找服务配置
-func (this *ServerDAO) FindServerConfig(ctx context.Context, serverId int64) (*serverconfigs.ServerConfig, error) {
+func (this *ServerDAO) FindEnabledServerConfig(ctx context.Context, serverId int64) (*serverconfigs.ServerConfig, error) {
 	resp, err := this.RPC().ServerRPC().FindEnabledServerConfig(ctx, &pb.FindEnabledServerConfigRequest{ServerId: serverId})
 	if err != nil {
 		return nil, err
@@ -28,4 +28,13 @@ func (this *ServerDAO) FindServerConfig(ctx context.Context, serverId int64) (*s
 		return nil, err
 	}
 	return config, nil
+}
+
+// 查找服务
+func (this *ServerDAO) FindEnabledServer(ctx context.Context, serverId int64) (*pb.Server, error) {
+	resp, err := this.RPC().ServerRPC().FindEnabledServer(ctx, &pb.FindEnabledServerRequest{ServerId: serverId})
+	if err != nil {
+		return nil, err
+	}
+	return resp.Server, nil
 }
