@@ -73,6 +73,9 @@ service NodeService {
 	// 查找使用某个认证的所有节点
 	rpc findAllEnabledNodesWithGrantId (FindAllEnabledNodesWithGrantIdRequest) returns (FindAllEnabledNodesWithGrantIdResponse);
 
+	// 计算没有安装的节点数量
+	rpc countAllNotInstalledNodesWithClusterId (CountAllNotInstalledNodesWithClusterIdRequest) returns (RPCCountResponse);
+
 	// 列出所有未安装的节点
 	rpc findAllNotInstalledNodesWithClusterId (FindAllNotInstalledNodesWithClusterIdRequest) returns (FindAllNotInstalledNodesWithClusterIdResponse);
 
@@ -301,6 +304,11 @@ message FindAllNotInstalledNodesWithClusterIdRequest {
 
 message FindAllNotInstalledNodesWithClusterIdResponse {
 	repeated Node nodes = 1;
+}
+
+// 计算未安装的节点数量
+message CountAllNotInstalledNodesWithClusterIdRequest {
+	int64 nodeClusterId = 1;
 }
 
 // 计算需要升级的节点数量
