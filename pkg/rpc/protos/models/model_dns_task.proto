@@ -6,6 +6,7 @@ package pb;
 import "models/model_node.proto";
 import "models/model_node_cluster.proto";
 import "models/model_server.proto";
+import "models/model_dns_domain.proto";
 
 // DNS相关同步任务
 message DNSTask {
@@ -19,4 +20,5 @@ message DNSTask {
 	Node node = 30;
 	NodeCluster nodeCluster = 31;
 	Server server = 32;
+	DNSDomain dnsDomain = 33;
 }

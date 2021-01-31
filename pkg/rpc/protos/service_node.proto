@@ -105,6 +105,9 @@ service NodeService {
 
 	// 根据一组ID获取节点信息
 	rpc findEnabledNodesWithIds (FindEnabledNodesWithIdsRequest) returns (FindEnabledNodesWithIdsResponse);
+
+	// 检查新版本
+	rpc checkNodeLatestVersion (CheckNodeLatestVersionRequest) returns (CheckNodeLatestVersionResponse);
 }
 
 // 创建节点
@@ -391,4 +394,16 @@ message FindEnabledNodesWithIdsRequest {
 
 message FindEnabledNodesWithIdsResponse {
 	repeated Node nodes = 1;
+}
+
+// 检查新版本
+message CheckNodeLatestVersionRequest {
+	string os = 1;
+	string arch = 2;
+	string currentVersion = 3;
+}
+
+message CheckNodeLatestVersionResponse {
+	bool hasNewVersion = 1;
+	string newVersion = 2;
 }
