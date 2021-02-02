@@ -13,64 +13,6 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 	policy.Inbound = &HTTPFirewallInboundConfig{}
 	policy.Outbound = &HTTPFirewallOutboundConfig{}
 
-	// black list
-	{
-		group := &HTTPFirewallRuleGroup{}
-		group.IsOn = false
-		group.Name = "白名单"
-		group.Code = "whiteList"
-		group.Description = "在此名单中的IP地址可以直接跳过防火墙设置"
-
-		{
-
-			set := &HTTPFirewallRuleSet{}
-			set.IsOn = true
-			set.Name = "IP白名单"
-			set.Code = "9001"
-			set.Connector = HTTPFirewallRuleConnectorOr
-			set.Action = HTTPFirewallActionAllow
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${remoteAddr}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `127\.0\.0\.1|0\.0\.0\.0`,
-				IsCaseInsensitive: false,
-			})
-			group.AddRuleSet(set)
-		}
-
-		policy.Inbound.Groups = append(policy.Inbound.Groups, group)
-	}
-
-	// black list
-	{
-		group := &HTTPFirewallRuleGroup{}
-		group.IsOn = false
-		group.Name = "黑名单"
-		group.Code = "blackList"
-		group.Description = "在此名单中的IP地址直接阻止"
-
-		{
-
-			set := &HTTPFirewallRuleSet{}
-			set.IsOn = true
-			set.Name = "IP黑名单"
-			set.Code = "10001"
-			set.Connector = HTTPFirewallRuleConnectorOr
-			set.Action = HTTPFirewallActionBlock
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${remoteAddr}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `1\.1\.1\.1|2\.2\.2\.2`,
-				IsCaseInsensitive: false,
-			})
-			group.AddRuleSet(set)
-		}
-
-		policy.Inbound.Groups = append(policy.Inbound.Groups, group)
-	}
-
 	// xss
 	{
 		group := &HTTPFirewallRuleGroup{}
