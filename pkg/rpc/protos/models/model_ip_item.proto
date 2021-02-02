@@ -12,4 +12,5 @@ message IPItem {
 	string reason = 6;
 	int64 listId = 7;
 	bool isDeleted = 8;
+	string type = 9;
 }

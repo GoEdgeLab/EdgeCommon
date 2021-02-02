@@ -1895,7 +1895,7 @@ func (x *FindAllNotInstalledNodesWithClusterIdResponse) GetNodes() []*Node {
 	return nil
 }
 
-// 计算所有未安装的节点数量
+// 计算未安装的节点数量
 type CountAllNotInstalledNodesWithClusterIdRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

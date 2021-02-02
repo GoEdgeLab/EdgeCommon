@@ -37,6 +37,7 @@ message CreateIPItemRequest {
 	string ipTo = 3; // 结束IP（可选）
 	int64 expiredAt = 4; // 过期时间戳（可选）
 	string reason = 5; // 加入理由（可选）
+	string type = 6; // 类型
 }
 
 message CreateIPItemResponse {
@@ -50,6 +51,7 @@ message UpdateIPItemRequest {
 	string ipTo = 3;
 	int64 expiredAt = 4;
 	string reason = 5;
+	string type = 6; // 类型
 }
 
 // 删除IP
