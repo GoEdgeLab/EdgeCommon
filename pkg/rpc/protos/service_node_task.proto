@@ -23,6 +23,9 @@ service NodeTaskService {
 	// 删除任务
 	rpc deleteNodeTask (DeleteNodeTaskRequest) returns (RPCSuccess);
 
+	// 批量删除任务
+	rpc deleteNodeTasks (DeleteNodeTasksRequest) returns (RPCSuccess);
+
 	// 计算正在执行的任务数量
 	rpc countDoingNodeTasks (CountDoingNodeTasksRequest) returns (RPCCountResponse);
 
@@ -77,6 +80,11 @@ message ExistsNodeTasksResponse {
 // 删除任务
 message DeleteNodeTaskRequest {
 	int64 nodeTaskId = 1;
+}
+
+// 批量删除任务
+message DeleteNodeTasksRequest {
+	repeated int64 nodeTaskIds = 1;
 }
 
 // 计算正在执行的任务数量
