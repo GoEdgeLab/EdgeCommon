@@ -110,6 +110,9 @@ service ServerService {
 
 	// 上传HTTP请求待统计数据
 	rpc uploadServerHTTPRequestStat (UploadServerHTTPRequestStatRequest) returns (RPCSuccess);
+
+	// 检查域名是否已经存在
+	rpc checkServerNameDuplicationInNodeCluster (CheckServerNameDuplicationInNodeClusterRequest) returns (CheckServerNameDuplicationInNodeClusterResponse);
 }
 
 // 创建服务
@@ -430,4 +433,15 @@ message UploadServerHTTPRequestStatRequest {
 		string action = 3;
 		int64 count = 4;
 	}
+}
+
+// 检查域名是否已经存在
+message CheckServerNameDuplicationInNodeClusterRequest {
+	int64 nodeClusterId = 1;
+	repeated string serverNames = 2; // 可以同时检查一批域名
+	int64 excludeServerId = 3; // 要排除的服务ID
+}
+
+message CheckServerNameDuplicationInNodeClusterResponse {
+	repeated string duplicatedServerNames = 1;
 }
