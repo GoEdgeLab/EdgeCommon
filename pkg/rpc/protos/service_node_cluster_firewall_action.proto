@@ -1,0 +1,70 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_node_cluster_firewall_action.proto";
+import "models/rpc_messages.proto";
+
+// 防火墙动作服务
+service NodeClusterFirewallActionService {
+	// 创建动作
+	rpc createNodeClusterFirewallAction (CreateNodeClusterFirewallActionRequest) returns (NodeClusterFirewallActionResponse);
+
+	// 修改动作
+	rpc updateNodeClusterFirewallAction (UpdateNodeClusterFirewallActionRequest) returns (RPCSuccess);
+
+	// 删除动作
+	rpc deleteNodeClusterFirewallAction (DeleteNodeClusterFirewallActionRequest) returns (RPCSuccess);
+
+	// 查询集群的所有动作
+	rpc findAllEnabledNodeClusterFirewallActions (FindAllEnabledNodeClusterFirewallActionsRequest) returns (FindAllEnabledNodeClusterFirewallActionsResponse);
+
+	// 查询单个动作
+	rpc findEnabledNodeClusterFirewallAction (FindEnabledNodeClusterFirewallActionRequest) returns (FindEnabledNodeClusterFirewallActionResponse);
+}
+
+// 创建动作
+message CreateNodeClusterFirewallActionRequest {
+	int64 nodeClusterId = 1;
+	string name = 2;
+	string eventLevel = 3;
+	string type = 4;
+	bytes paramsJSON = 5;
+}
+
+message NodeClusterFirewallActionResponse {
+	int64 nodeClusterFirewallActionId = 1;
+}
+
+// 修改动作
+message UpdateNodeClusterFirewallActionRequest {
+	int64 nodeClusterFirewallActionId = 1;
+	string name = 2;
+	string eventLevel = 3;
+	string type = 4;
+	bytes paramsJSON = 5;
+}
+
+// 删除动作
+message DeleteNodeClusterFirewallActionRequest {
+	int64 nodeClusterFirewallActionId = 1;
+}
+
+// 查询集群的所有动作
+message FindAllEnabledNodeClusterFirewallActionsRequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindAllEnabledNodeClusterFirewallActionsResponse {
+	repeated NodeClusterFirewallAction nodeClusterFirewallActions = 1;
+}
+
+// 查询单个动作
+message FindEnabledNodeClusterFirewallActionRequest {
+	int64 nodeClusterFirewallActionId = 1;
+}
+
+message FindEnabledNodeClusterFirewallActionResponse {
+	NodeClusterFirewallAction nodeClusterFirewallAction = 1;
+}

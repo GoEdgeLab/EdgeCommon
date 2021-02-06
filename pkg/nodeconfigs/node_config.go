@@ -29,10 +29,11 @@ type NodeConfig struct {
 	GlobalConfig *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置
 
 	// 集群统一配置
-	HTTPFirewallPolicy *firewallconfigs.HTTPFirewallPolicy `yaml:"httpFirewallPolicy" json:"httpFirewallPolicy"`
-	HTTPCachePolicy    *serverconfigs.HTTPCachePolicy      `yaml:"httpCachePolicy" json:"httpCachePolicy"`
-	TOA                *TOAConfig                          `yaml:"toa" json:"toa"`
-	SystemServices     map[string]maps.Map                 `yaml:"systemServices" json:"systemServices"` // 系统服务配置 type => params
+	HTTPFirewallPolicy *firewallconfigs.HTTPFirewallPolicy     `yaml:"httpFirewallPolicy" json:"httpFirewallPolicy"`
+	HTTPCachePolicy    *serverconfigs.HTTPCachePolicy          `yaml:"httpCachePolicy" json:"httpCachePolicy"`
+	TOA                *TOAConfig                              `yaml:"toa" json:"toa"`
+	SystemServices     map[string]maps.Map                     `yaml:"systemServices" json:"systemServices"` // 系统服务配置 type => params
+	FirewallActions    []*firewallconfigs.FirewallActionConfig `yaml:"firewallActions" json:"firewallActions"`
 
 	paddedId string
 
@@ -126,6 +127,14 @@ func (this *NodeConfig) Init() error {
 		}
 		if server.Web != nil {
 			this.lookupWeb(server.Web)
+		}
+	}
+
+	// firewall actions
+	for _, action := range this.FirewallActions {
+		err := action.Init()
+		if err != nil {
+			return err
 		}
 	}
 

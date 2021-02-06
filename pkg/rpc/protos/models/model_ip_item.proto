@@ -13,4 +13,6 @@ message IPItem {
 	int64 listId = 7;
 	bool isDeleted = 8;
 	string type = 9;
+	string eventLevel = 10; // 级别
+	string listType = 11; // 所在名单类型，加此字段是为了快速定位IP的性质
 }

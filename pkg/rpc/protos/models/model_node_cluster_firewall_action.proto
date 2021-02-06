@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message NodeClusterFirewallAction {
+	int64 id = 1;
+	int64 nodeClusterId = 2;
+	string name = 3;
+	string eventLevel = 4;
+	bytes paramsJSON = 5;
+	string type = 6;
+}
