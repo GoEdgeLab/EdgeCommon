@@ -78,11 +78,20 @@ func (this *ReverseProxyConfig) Init() error {
 	this.SetupScheduling(false)
 
 	// Header
-	this.addXRealIPHeader = lists.ContainsString(this.AddHeaders, "X-Real-IP")
-	this.addXForwardedForHeader = lists.ContainsString(this.AddHeaders, "X-Forwarded-For")
-	this.addXForwardedByHeader = lists.ContainsString(this.AddHeaders, "X-Forwarded-By")
-	this.addXForwardedHostHeader = lists.ContainsString(this.AddHeaders, "X-Forwarded-Host")
-	this.addXForwardedProtoHeader = lists.ContainsString(this.AddHeaders, "X-Forwarded-Proto")
+	if len(this.AddHeaders) == 0 {
+		// 默认加入两项
+		this.addXRealIPHeader = true
+		this.addXForwardedForHeader = true
+		this.addXForwardedByHeader = true
+		this.addXForwardedHostHeader = true
+		this.addXForwardedProtoHeader = true
+	} else {
+		this.addXRealIPHeader = lists.ContainsString(this.AddHeaders, "X-Real-IP")
+		this.addXForwardedForHeader = lists.ContainsString(this.AddHeaders, "X-Forwarded-For")
+		this.addXForwardedByHeader = lists.ContainsString(this.AddHeaders, "X-Forwarded-By")
+		this.addXForwardedHostHeader = lists.ContainsString(this.AddHeaders, "X-Forwarded-Host")
+		this.addXForwardedProtoHeader = lists.ContainsString(this.AddHeaders, "X-Forwarded-Proto")
+	}
 
 	return nil
 }
