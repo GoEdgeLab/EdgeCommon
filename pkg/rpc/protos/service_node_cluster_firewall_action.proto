@@ -22,6 +22,9 @@ service NodeClusterFirewallActionService {
 
 	// 查询单个动作
 	rpc findEnabledNodeClusterFirewallAction (FindEnabledNodeClusterFirewallActionRequest) returns (FindEnabledNodeClusterFirewallActionResponse);
+
+	// 计算动作数量
+	rpc countAllEnabledNodeClusterFirewallActions (CountAllEnabledNodeClusterFirewallActionsRequest) returns (RPCCountResponse);
 }
 
 // 创建动作
@@ -67,4 +70,9 @@ message FindEnabledNodeClusterFirewallActionRequest {
 
 message FindEnabledNodeClusterFirewallActionResponse {
 	NodeClusterFirewallAction nodeClusterFirewallAction = 1;
+}
+
+// 计算动作数量
+message CountAllEnabledNodeClusterFirewallActionsRequest {
+	int64 nodeClusterId = 1;
 }
