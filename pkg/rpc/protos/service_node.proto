@@ -111,6 +111,9 @@ service NodeService {
 
 	// 检查新版本
 	rpc checkNodeLatestVersion (CheckNodeLatestVersionRequest) returns (CheckNodeLatestVersionResponse);
+
+	// 设置节点上线状态
+	rpc updateNodeUp (UpdateNodeUpRequest) returns (RPCSuccess);
 }
 
 // 创建节点
@@ -414,4 +417,10 @@ message CheckNodeLatestVersionRequest {
 message CheckNodeLatestVersionResponse {
 	bool hasNewVersion = 1;
 	string newVersion = 2;
+}
+
+// 设置节点上线状态
+message UpdateNodeUpRequest {
+	int64 nodeId = 1;
+	bool isUp = 2;
 }
