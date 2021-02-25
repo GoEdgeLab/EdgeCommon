@@ -8,4 +8,6 @@ type UserUIConfig struct {
 	ShowVersion        bool   `json:"showVersion"`        // 是否显示版本号
 	Version            string `json:"version"`            // 显示的版本号
 	ShowFinance        bool   `json:"showFinance"`        // 是否显示财务相关信息
+	FaviconFileId      int64  `json:"faviconFileId"`      // Favicon文件ID
+	LogoFileId         int64  `json:"logoFileId"`         // Logo文件ID
 }

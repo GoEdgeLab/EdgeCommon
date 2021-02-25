@@ -7,4 +7,6 @@ message File {
 	int64 id = 1;
 	string filename = 2;
 	int64 size = 3;
+	int64 createdAt = 4;
+	bool isPublic = 5;
 }
