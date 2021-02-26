@@ -8,6 +8,7 @@ const (
 	FirewallActionTypeIPTables  FirewallActionType = "iptables"
 	FirewallActionTypeScript    FirewallActionType = "script"
 	FirewallActionTypeHTTPAPI   FirewallActionType = "httpAPI"
+	FirewallActionTypeHTML      FirewallActionType = "html"
 )
 
 type FirewallActionTypeDefinition struct {
@@ -42,6 +43,11 @@ func FindAllFirewallActionTypes() []*FirewallActionTypeDefinition {
 			Name:        "自定义HTTP API",
 			Code:        FirewallActionTypeHTTPAPI,
 			Description: "使用自定义的HTTP API执行IP操作。",
+		},
+		{
+			Name:        "显示HTML内容",
+			Code:        FirewallActionTypeHTML,
+			Description: "显示一段自定义的HTML网页内容",
 		},
 	}
 }
@@ -86,10 +92,16 @@ type FirewallActionScriptConfig struct {
 	// TODO 添加需要阻止的端口列表
 }
 
+// HTTP API配置
 type FirewallActionHTTPAPIConfig struct {
 	URL            string `json:"url"`            // URL路径
 	TimeoutSeconds int    `json:"timeoutSeconds"` // 超时时间 TODO 暂时不实现
 	Secret         string `json:"secret"`         // 认证密钥 TODO 暂时不实现
 
 	// TODO 添加需要阻止的端口列表
+}
+
+// HTML配置
+type FirewallActionHTMLConfig struct {
+	Content string `json:"content"` // 完整的HTML内容
 }
