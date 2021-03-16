@@ -50,6 +50,10 @@ message CountEnabledACMETasksWithDNSProviderIdRequest {
 message CountAllEnabledACMETasksRequest {
 	int64 adminId = 1;
 	int64 userId = 2;
+	bool isAvailable = 3;
+	bool isExpired = 4;
+	int32 expiringDays = 5;
+	string keyword = 6;
 }
 
 // 列出单页任务
@@ -58,6 +62,10 @@ message ListEnabledACMETasksRequest {
 	int64 userId = 2;
 	int64 offset = 3;
 	int64 size = 4;
+	bool isAvailable = 5;
+	bool isExpired = 6;
+	int32 expiringDays = 7;
+	string keyword = 8;
 }
 
 message ListEnabledACMETasksResponse {
