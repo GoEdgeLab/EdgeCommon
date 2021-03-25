@@ -28,6 +28,11 @@ message CreateOriginRequest {
 	string description = 3;
 	int32 weight = 4;
 	bool isOn = 5;
+	bytes connTimeoutJSON = 6;
+	bytes readTimeoutJSON = 7;
+	bytes idleTimeoutJSON = 8;
+	int32 maxConns = 9;
+	int32 maxIdleConns = 10;
 }
 
 message CreateOriginResponse {
@@ -42,6 +47,11 @@ message UpdateOriginRequest {
 	string description = 4;
 	int32 weight = 5;
 	bool isOn = 6;
+	bytes connTimeoutJSON = 7;
+	bytes readTimeoutJSON = 8;
+	bytes idleTimeoutJSON = 9;
+	int32 maxConns = 10;
+	int32 maxIdleConns = 11;
 }
 
 // 查找单个源站信息
