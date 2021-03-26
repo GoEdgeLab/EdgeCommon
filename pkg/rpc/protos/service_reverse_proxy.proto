@@ -85,4 +85,9 @@ message UpdateReverseProxyRequest {
 	string stripPrefix = 4;
 	bool autoFlush = 5;
 	repeated string addHeaders = 7;
+	bytes connTimeoutJSON = 8;
+	bytes readTimeoutJSON = 9;
+	bytes idleTimeoutJSON = 10;
+	int32 maxConns = 11;
+	int32 maxIdleConns = 12;
 }

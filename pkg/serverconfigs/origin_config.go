@@ -13,20 +13,20 @@ import (
 // 源站服务配置
 type OriginConfig struct {
 	Id          int64                 `yaml:"id" json:"id"`                   // ID
-	IsOn        bool                  `yaml:"isOn" json:"isOn"`               // 是否启用 TODO
+	IsOn        bool                  `yaml:"isOn" json:"isOn"`               // 是否启用
 	Version     int                   `yaml:"version" json:"version"`         // 版本
-	Name        string                `yaml:"name" json:"name"`               // 名称 TODO
+	Name        string                `yaml:"name" json:"name"`               // 名称
 	Addr        *NetworkAddressConfig `yaml:"addr" json:"addr"`               // 地址
 	Description string                `yaml:"description" json:"description"` // 描述 TODO
 	Code        string                `yaml:"code" json:"code"`               // 代号 TODO
 
-	Weight       uint                 `yaml:"weight" json:"weight"`           // 权重 TODO
-	ConnTimeout  *shared.TimeDuration `yaml:"failTimeout" json:"failTimeout"` // 连接失败超时 TODO
-	ReadTimeout  *shared.TimeDuration `yaml:"readTimeout" json:"readTimeout"` // 读取超时时间 TODO
-	IdleTimeout  *shared.TimeDuration `yaml:"idleTimeout" json:"idleTimeout"` // 空闲连接超时时间 TODO
+	Weight       uint                 `yaml:"weight" json:"weight"`           // 权重
+	ConnTimeout  *shared.TimeDuration `yaml:"connTimeout" json:"connTimeout"` // 连接失败超时
+	ReadTimeout  *shared.TimeDuration `yaml:"readTimeout" json:"readTimeout"` // 读取超时时间
+	IdleTimeout  *shared.TimeDuration `yaml:"idleTimeout" json:"idleTimeout"` // 空闲连接超时时间
 	MaxFails     int                  `yaml:"maxFails" json:"maxFails"`       // 最多失败次数 TODO
-	MaxConns     int                  `yaml:"maxConns" json:"maxConns"`       // 最大并发连接数 TODO
-	MaxIdleConns int                  `yaml:"idleConns" json:"idleConns"`     // 最大空闲连接数 TODO
+	MaxConns     int                  `yaml:"maxConns" json:"maxConns"`       // 最大并发连接数
+	MaxIdleConns int                  `yaml:"idleConns" json:"idleConns"`     // 最大空闲连接数
 
 	StripPrefix string `yaml:"stripPrefix" json:"stripPrefix"` // 去除URL前缀
 	RequestURI  string `yaml:"requestURI" json:"requestURI"`   // 转发后的请求URI TODO
@@ -39,14 +39,14 @@ type OriginConfig struct {
 
 	// 健康检查URL，目前支持：
 	// - http|https 返回2xx-3xx认为成功
-	HealthCheck *HealthCheckConfig `yaml:"healthCheck" json:"healthCheck"`
+	HealthCheck *HealthCheckConfig `yaml:"healthCheck" json:"healthCheck"` // TODO
 
-	CertRef *sslconfigs.SSLCertRef    `yaml:"certRef" json:"certRef"` // 证书的引用
-	Cert    *sslconfigs.SSLCertConfig `yaml:"cert" json:"cert"`       // 请求源服务器用的证书
+	CertRef *sslconfigs.SSLCertRef    `yaml:"certRef" json:"certRef"` // 证书的引用 TODO
+	Cert    *sslconfigs.SSLCertConfig `yaml:"cert" json:"cert"`       // 请求源服务器用的证书 TODO
 
 	// ftp
-	FTPServerRef *FTPServerRef    `yaml:"ftpServerRef" json:"ftpServerRef"`
-	FTPServer    *FTPServerConfig `yaml:"ftpServer" json:"ftpServer"`
+	FTPServerRef *FTPServerRef    `yaml:"ftpServerRef" json:"ftpServerRef"` // TODO
+	FTPServer    *FTPServerConfig `yaml:"ftpServer" json:"ftpServer"`       // TODO
 
 	connTimeoutDuration time.Duration
 	readTimeoutDuration time.Duration
@@ -90,7 +90,7 @@ func (this *OriginConfig) Init() error {
 		}
 	}
 
-	// failTimeout
+	// connTimeout
 	if this.ConnTimeout != nil {
 		this.connTimeoutDuration = this.ConnTimeout.Duration()
 	}

@@ -26,6 +26,13 @@ type ReverseProxyConfig struct {
 	BackupOriginRefs  []*OriginRef      `yaml:"backupOriginRefs" json:"backupOriginRefs"`   // 备用源站引用
 	Scheduling        *SchedulingConfig `yaml:"scheduling" json:"scheduling"`               // 调度算法选项
 
+	ConnTimeout  *shared.TimeDuration `yaml:"connTimeout" json:"connTimeout"`   // 连接失败超时 TODO
+	ReadTimeout  *shared.TimeDuration `yaml:"readTimeout" json:"readTimeout"`   // 读取超时时间 TODO
+	IdleTimeout  *shared.TimeDuration `yaml:"idleTimeout" json:"idleTimeout"`   // 空闲连接超时时间 TODO
+	MaxFails     int                  `yaml:"maxFails" json:"maxFails"`         // 最多失败次数 TODO
+	MaxConns     int                  `yaml:"maxConns" json:"maxConns"`         // 最大并发连接数 TODO
+	MaxIdleConns int                  `yaml:"maxIdleConns" json:"maxIdleConns"` // 最大空闲连接数 TODO
+
 	StripPrefix     string          `yaml:"stripPrefix" json:"stripPrefix"`         // 去除URL前缀
 	RequestHostType RequestHostType `yaml:"requestHostType" json:"requestHostType"` // 请求Host类型
 	RequestHost     string          `yaml:"requestHost" json:"requestHost"`         // 请求Host，支持变量
@@ -60,17 +67,33 @@ func (this *ReverseProxyConfig) Init() error {
 	this.hasPrimaryOrigins = len(this.PrimaryOrigins) > 0
 	this.hasBackupOrigins = len(this.BackupOrigins) > 0
 
-	for _, origin := range this.PrimaryOrigins {
-		err := origin.Init()
-		if err != nil {
-			return err
-		}
-	}
+	for _, origins := range [][]*OriginConfig{this.PrimaryOrigins, this.BackupOrigins} {
+		for _, origin := range origins {
+			// 覆盖参数设置
+			if origin.MaxFails <= 0 && this.MaxFails > 0 {
+				origin.MaxFails = this.MaxFails
+			}
+			if origin.MaxConns <= 0 && this.MaxConns > 0 {
+				origin.MaxConns = this.MaxConns
+			}
+			if origin.MaxIdleConns <= 0 && this.MaxIdleConns > 0 {
+				origin.MaxIdleConns = this.MaxIdleConns
+			}
+			if (origin.ConnTimeout == nil || origin.ConnTimeout.Count <= 0) && this.ConnTimeout != nil && this.ConnTimeout.Count > 0 {
+				origin.ConnTimeout = this.ConnTimeout
+			}
+			if (origin.ReadTimeout == nil || origin.ReadTimeout.Count <= 0) && this.ReadTimeout != nil && this.ReadTimeout.Count > 0 {
+				origin.ReadTimeout = this.ReadTimeout
+			}
+			if (origin.IdleTimeout == nil || origin.IdleTimeout.Count <= 0) && this.IdleTimeout != nil && this.IdleTimeout.Count > 0 {
+				origin.IdleTimeout = this.IdleTimeout
+			}
 
-	for _, origin := range this.BackupOrigins {
-		err := origin.Init()
-		if err != nil {
-			return err
+			// 初始化
+			err := origin.Init()
+			if err != nil {
+				return err
+			}
 		}
 	}
 
