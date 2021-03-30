@@ -15,4 +15,5 @@ message Admin {
 	int64 createdAt = 6;
 	repeated AdminModule Modules = 7;
 	Login otpLogin = 8; // OTP认证
+	bool canLogin = 9; // 是否可以登录
 }

@@ -146,6 +146,7 @@ message CreateAdminRequest {
 	string fullname = 3;
 	bytes modulesJSON = 4;
 	bool isSuper = 5;
+	bool canLogin = 6;
 }
 
 message CreateAdminResponse {
@@ -161,6 +162,7 @@ message UpdateAdminRequest {
 	bytes modulesJSON = 5;
 	bool isSuper = 6;
 	bool isOn = 7;
+	bool canLogin = 8;
 }
 
 // 计算管理员数量
