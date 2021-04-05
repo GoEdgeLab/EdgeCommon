@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message MessageMedia {
+	int64 id = 1;
+	string type = 2;
+	string name = 3;
+	string description = 4;
+	string userDescription = 5;
+	bool isOn = 6;
+}

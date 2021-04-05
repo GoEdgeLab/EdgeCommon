@@ -1,0 +1,18 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_admin.proto";
+import "models/message_recipient_group.proto";
+import "models/message_media_instance.proto";
+
+message MessageRecipient {
+	int64 id = 1;
+	Admin admin = 2;
+	MessageMediaInstance messageMediaInstance = 3;
+	bool isOn = 4;
+	repeated MessageRecipientGroup messageRecipientGroups = 5;
+	string description = 6;
+	string user = 7;
+}

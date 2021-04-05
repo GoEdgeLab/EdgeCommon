@@ -1,0 +1,31 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/message_task_log.proto";
+import "models/rpc_messages.proto";
+
+// 消息发送任务日志
+service MessageTaskLogService {
+	// 计算日志数量
+	rpc countMessageTaskLogs (CountMessageTaskLogsRequest) returns (RPCCountResponse);
+
+	// 列出当页日志
+	rpc listMessageTaskLogs (ListMessageTaskLogsRequest) returns (ListMessageTaskLogsResponse);
+}
+
+// 计算日志数量
+message CountMessageTaskLogsRequest {
+
+}
+
+// 列出当页日志
+message ListMessageTaskLogsRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListMessageTaskLogsResponse {
+	repeated MessageTaskLog messageTaskLogs = 1;
+}

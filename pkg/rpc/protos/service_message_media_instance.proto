@@ -1,0 +1,83 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/message_media_instance.proto";
+import "models/rpc_messages.proto";
+
+// 消息媒介实例
+service MessageMediaInstanceService {
+	// 创建消息媒介实例
+	rpc createMessageMediaInstance (CreateMessageMediaInstanceRequest) returns (CreateMessageMediaInstanceResponse);
+
+	// 修改消息媒介实例
+	rpc updateMessageMediaInstance (UpdateMessageMediaInstanceRequest) returns (RPCSuccess);
+
+	// 删除消息媒介实例
+	rpc deleteMessageMediaInstance (DeleteMessageMediaInstanceRequest) returns (RPCSuccess);
+
+	// 计算消息媒介实例数量
+	rpc countAllEnabledMessageMediaInstances (CountAllEnabledMessageMediaInstancesRequest) returns (RPCCountResponse);
+
+	// 列出单页消息媒介实例
+	rpc listEnabledMessageMediaInstances (ListEnabledMessageMediaInstancesRequest) returns (ListEnabledMessageMediaInstancesResponse);
+
+	// 查找单个消息媒介实例信息
+	rpc findEnabledMessageMediaInstance (FindEnabledMessageMediaInstanceRequest) returns (FindEnabledMessageMediaInstanceResponse);
+}
+
+// 创建接收人
+message CreateMessageMediaInstanceRequest {
+	string name = 1;
+	string mediaType = 2;
+	bytes paramsJSON = 3;
+	repeated int64 groupIds = 4;
+	string description = 5;
+}
+
+message CreateMessageMediaInstanceResponse {
+	int64 messageMediaInstanceId = 1;
+}
+
+// 修改接收人
+message UpdateMessageMediaInstanceRequest {
+	int64 messageMediaInstanceId = 1;
+	string name = 2;
+	string mediaType = 3;
+	bytes paramsJSON = 4;
+	string description = 5;
+	bool isOn = 6;
+}
+
+// 删除接收人
+message DeleteMessageMediaInstanceRequest {
+	int64 messageMediaInstanceId = 1;
+}
+
+// 计算接收人数量
+message CountAllEnabledMessageMediaInstancesRequest {
+	string mediaType = 1;
+	string keyword = 2;
+}
+
+// 列出单页接收人
+message ListEnabledMessageMediaInstancesRequest {
+	string mediaType = 1;
+	string keyword = 2;
+	int64 offset = 3;
+	int64 size = 4;
+}
+
+message ListEnabledMessageMediaInstancesResponse {
+	repeated MessageMediaInstance messageMediaInstances = 1;
+}
+
+// 查找单个接收人信息
+message FindEnabledMessageMediaInstanceRequest {
+	int64 messageMediaInstanceId = 1;
+}
+
+message FindEnabledMessageMediaInstanceResponse {
+	MessageMediaInstance messageMediaInstance = 1;
+}

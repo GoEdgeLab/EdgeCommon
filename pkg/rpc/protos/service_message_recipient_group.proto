@@ -1,0 +1,64 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/message_recipient_group.proto";
+import "models/rpc_messages.proto";
+
+// 消息接收人分组
+service MessageRecipientGroupService {
+	// 创建分组
+	rpc createMessageRecipientGroup (CreateMessageRecipientGroupRequest) returns (CreateMessageRecipientGroupResponse);
+
+	// 修改分组
+	rpc updateMessageRecipientGroup (UpdateMessageRecipientGroupRequest) returns (RPCSuccess);
+
+	// 查找所有可用的分组
+	rpc findAllEnabledMessageRecipientGroups (FindAllEnabledMessageRecipientGroupsRequest) returns (FindAllEnabledMessageRecipientGroupsResponse);
+
+	// 删除分组
+	rpc deleteMessageRecipientGroup (DeleteMessageRecipientGroupRequest) returns (RPCSuccess);
+
+	// 查找单个分组信息
+	rpc findEnabledMessageRecipientGroup (FindEnabledMessageRecipientGroupRequest) returns (FindEnabledMessageRecipientGroupResponse);
+}
+
+// 创建分组
+message CreateMessageRecipientGroupRequest {
+	string name = 1;
+}
+
+message CreateMessageRecipientGroupResponse {
+	int64 messageRecipientGroupId = 1;
+}
+
+// 修改分组
+message UpdateMessageRecipientGroupRequest {
+	int64 messageRecipientGroupId = 1;
+	string name = 2;
+	bool isOn = 3;
+}
+
+// 查找所有可用的分组
+message FindAllEnabledMessageRecipientGroupsRequest {
+
+}
+
+message FindAllEnabledMessageRecipientGroupsResponse {
+	repeated MessageRecipientGroup messageRecipientGroups = 1;
+}
+
+// 删除分组
+message DeleteMessageRecipientGroupRequest {
+	int64 messageRecipientGroupId = 1;
+}
+
+// 查找单个分组信息
+message FindEnabledMessageRecipientGroupRequest {
+	int64 messageRecipientGroupId = 1;
+}
+
+message FindEnabledMessageRecipientGroupResponse {
+	MessageRecipientGroup messageRecipientGroup = 1;
+}

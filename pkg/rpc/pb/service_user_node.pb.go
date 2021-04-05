@@ -1185,7 +1185,7 @@ type UserNodeServiceClient interface {
 	ListEnabledUserNodes(ctx context.Context, in *ListEnabledUserNodesRequest, opts ...grpc.CallOption) (*ListEnabledUserNodesResponse, error)
 	// 根据ID查找节点
 	FindEnabledUserNode(ctx context.Context, in *FindEnabledUserNodeRequest, opts ...grpc.CallOption) (*FindEnabledUserNodeResponse, error)
-	// 获取当前用户节点
+	// 获取当前用户节点信息
 	FindCurrentUserNode(ctx context.Context, in *FindCurrentUserNodeRequest, opts ...grpc.CallOption) (*FindCurrentUserNodeResponse, error)
 	// 更新节点状态
 	UpdateUserNodeStatus(ctx context.Context, in *UpdateUserNodeStatusRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
@@ -1296,7 +1296,7 @@ type UserNodeServiceServer interface {
 	ListEnabledUserNodes(context.Context, *ListEnabledUserNodesRequest) (*ListEnabledUserNodesResponse, error)
 	// 根据ID查找节点
 	FindEnabledUserNode(context.Context, *FindEnabledUserNodeRequest) (*FindEnabledUserNodeResponse, error)
-	// 获取当前用户节点
+	// 获取当前用户节点信息
 	FindCurrentUserNode(context.Context, *FindCurrentUserNodeRequest) (*FindCurrentUserNodeResponse, error)
 	// 更新节点状态
 	UpdateUserNodeStatus(context.Context, *UpdateUserNodeStatusRequest) (*RPCSuccess, error)

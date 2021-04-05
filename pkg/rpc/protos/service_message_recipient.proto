@@ -1,0 +1,88 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/message_recipient.proto";
+import "models/rpc_messages.proto";
+
+// 消息接收人
+service MessageRecipientService {
+	// 创建接收人
+	rpc createMessageRecipient (CreateMessageRecipientRequest) returns (CreateMessageRecipientResponse);
+
+	// 修改接收人
+	rpc updateMessageRecipient (UpdateMessageRecipientRequest) returns (RPCSuccess);
+
+	// 删除接收人
+	rpc deleteMessageRecipient (DeleteMessageRecipientRequest) returns (RPCSuccess);
+
+	// 计算接收人数量
+	rpc countAllEnabledMessageRecipients (CountAllEnabledMessageRecipientsRequest) returns (RPCCountResponse);
+
+	// 列出单页接收人
+	rpc listEnabledMessageRecipients (ListEnabledMessageRecipientsRequest) returns (ListEnabledMessageRecipientsResponse);
+
+	// 查找单个接收人信息
+	rpc findEnabledMessageRecipient (FindEnabledMessageRecipientRequest) returns (FindEnabledMessageRecipientResponse);
+}
+
+// 创建接收人
+message CreateMessageRecipientRequest {
+	int64 adminId = 1;
+	int64 instanceId = 2;
+	repeated int64 groupIds = 3;
+	string description = 4;
+	string user = 5;
+}
+
+message CreateMessageRecipientResponse {
+	int64 messageRecipientId = 1;
+}
+
+// 修改接收人
+message UpdateMessageRecipientRequest {
+	int64 messageRecipientId = 1;
+	int64 adminId = 2;
+	int64 instanceId = 3;
+	repeated int64 groupIds = 4;
+	string description = 5;
+	bool isOn = 6;
+	string user = 7;
+}
+
+// 删除接收人
+message DeleteMessageRecipientRequest {
+	int64 messageRecipientId = 1;
+}
+
+// 计算接收人数量
+message CountAllEnabledMessageRecipientsRequest {
+	int64 adminId = 1;
+	string mediaType = 2;
+	int64 groupId = 3;
+	string keyword = 4;
+}
+
+// 列出单页接收人
+message ListEnabledMessageRecipientsRequest {
+	int64 adminId = 1;
+	string mediaType = 2;
+	int64 groupId = 3;
+	string keyword = 4;
+	int64 offset = 5;
+	int64 size = 6;
+}
+
+message ListEnabledMessageRecipientsResponse {
+	repeated MessageRecipient messageRecipients = 1;
+}
+
+// 查找单个接收人信息
+message FindEnabledMessageRecipientRequest {
+	int64 messageRecipientId = 1;
+}
+
+message FindEnabledMessageRecipientResponse {
+	MessageRecipient messageRecipient = 1;
+}

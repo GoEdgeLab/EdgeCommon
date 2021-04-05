@@ -1,0 +1,26 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/message_recipient.proto";
+import "models/message_media_instance.proto";
+
+message MessageTask {
+	int64 id = 1;
+	MessageRecipient messageRecipient = 2;
+	string user = 3;
+	string subject = 4;
+	string body = 5;
+	int64 createdAt = 6;
+	int32 status = 7;
+	int64 sentAt = 8;
+	MessageTaskResult result = 9;
+	MessageMediaInstance messageMediaInstance = 10;
+}
+
+message MessageTaskResult {
+	bool isOk = 1;
+	string error = 2;
+	string response = 3;
+}

@@ -27,7 +27,7 @@ service UserNodeService {
 	// 根据ID查找节点
 	rpc findEnabledUserNode (FindEnabledUserNodeRequest) returns (FindEnabledUserNodeResponse);
 
-	// 获取当前用户节点
+	// 获取当前用户节点信息
 	rpc findCurrentUserNode (FindCurrentUserNodeRequest) returns (FindCurrentUserNodeResponse);
 
 	// 更新节点状态

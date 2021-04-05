@@ -1,0 +1,16 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/message_task.proto";
+
+// 消息任务日志
+message MessageTaskLog {
+	int64 id = 1;
+	int64 createdAt = 2;
+	bool isOk = 3;
+	string error = 4;
+	string response = 5;
+	MessageTask messageTask = 6;
+}

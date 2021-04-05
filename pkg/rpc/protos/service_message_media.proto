@@ -1,0 +1,30 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/message_media.proto";
+import "models/rpc_messages.proto";
+
+// 消息媒介管理
+service MessageMediaService {
+	// 获取所有支持的媒介
+	rpc findAllMessageMedias (FindAllMessageMediasRequest) returns (FindAllMessageMediasResponse);
+
+	// 设置所有支持的媒介
+	rpc updateMessageMedias (UpdateMessageMediasRequest) returns (RPCSuccess);
+}
+
+// 获取所有支持的媒介
+message FindAllMessageMediasRequest {
+
+}
+
+message FindAllMessageMediasResponse {
+	repeated MessageMedia messageMedias = 1;
+}
+
+// 设置所有支持的媒介
+message UpdateMessageMediasRequest {
+	repeated MessageMedia messageMedias = 2;
+}
