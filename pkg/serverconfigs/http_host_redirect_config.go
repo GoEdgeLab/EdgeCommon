@@ -10,6 +10,9 @@ type HTTPHostRedirectConfig struct {
 	BeforeURL string `yaml:"beforeURL" json:"beforeURL"` // 跳转前的地址
 	AfterURL  string `yaml:"afterURL" json:"afterURL"`   // 跳转后的地址
 
+	MatchPrefix    bool `yaml:"matchPrefix" json:"matchPrefix"`       // 只匹配前缀部分
+	KeepRequestURI bool `yaml:"keepRequestURI" json:"keepRequestURI"` // 保留请求URI
+
 	realBeforeURL string
 }
 
