@@ -1,0 +1,53 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/message_receiver.proto";
+import "models/rpc_messages.proto";
+
+// 消息对象接收者设置
+service MessageReceiverService {
+	// 修改接收者
+	rpc updateMessageReceivers (UpdateMessageReceiversRequest) returns (RPCSuccess);
+
+	// 查找接收者
+	rpc findAllMessageReceivers (FindAllMessageReceiversRequest) returns (FindAllMessageReceiversResponse);
+
+	// 删除接收者
+	rpc deleteMessageReceiver (DeleteMessageReceiverRequest) returns (RPCSuccess);
+}
+
+// 修改接收者
+message UpdateMessageReceiversRequest {
+	int64 nodeClusterId = 1;
+	int64 nodeId = 2;
+	int64 serverId = 3;
+	bytes paramsJSON = 5;
+	map<string, RecipientOptions> recipientOptions = 6; // type => options
+
+	message RecipientOption {
+		int64 messageRecipientId = 1;
+		int64 messageRecipientGroupId = 2;
+	}
+
+	message RecipientOptions {
+		repeated RecipientOption recipientOptions = 1;
+	}
+}
+
+// 查找接收者
+message FindAllMessageReceiversRequest {
+	int64 nodeClusterId = 1;
+	int64 nodeId = 2;
+	int64 serverId = 3;
+}
+
+message FindAllMessageReceiversResponse {
+	repeated MessageReceiver messageReceivers = 1;
+}
+
+// 删除接收者
+message DeleteMessageReceiverRequest {
+	int64 messageReceiverId = 1;
+}

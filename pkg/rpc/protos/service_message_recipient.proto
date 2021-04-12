@@ -30,8 +30,8 @@ service MessageRecipientService {
 // 创建接收人
 message CreateMessageRecipientRequest {
 	int64 adminId = 1;
-	int64 instanceId = 2;
-	repeated int64 groupIds = 3;
+	int64 messageMediaInstanceId = 2;
+	repeated int64 messageRecipientGroupIds = 3;
 	string description = 4;
 	string user = 5;
 }
@@ -44,8 +44,8 @@ message CreateMessageRecipientResponse {
 message UpdateMessageRecipientRequest {
 	int64 messageRecipientId = 1;
 	int64 adminId = 2;
-	int64 instanceId = 3;
-	repeated int64 groupIds = 4;
+	int64 messageMediaInstanceId = 3;
+	repeated int64 messageRecipientGroupIds = 4;
 	string description = 5;
 	bool isOn = 6;
 	string user = 7;
@@ -60,7 +60,7 @@ message DeleteMessageRecipientRequest {
 message CountAllEnabledMessageRecipientsRequest {
 	int64 adminId = 1;
 	string mediaType = 2;
-	int64 groupId = 3;
+	int64 messageRecipientGroupId = 3;
 	string keyword = 4;
 }
 
@@ -68,7 +68,7 @@ message CountAllEnabledMessageRecipientsRequest {
 message ListEnabledMessageRecipientsRequest {
 	int64 adminId = 1;
 	string mediaType = 2;
-	int64 groupId = 3;
+	int64 messageRecipientGroupId = 3;
 	string keyword = 4;
 	int64 offset = 5;
 	int64 size = 6;
