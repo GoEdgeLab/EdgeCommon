@@ -1,0 +1,42 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_authority_key.proto";
+
+// 版本认证
+service AuthorityKeyService {
+	// 设置Key
+	rpc updateAuthorityKey (UpdateAuthorityKeyRequest) returns (RPCSuccess);
+
+	// 读取Key
+	rpc readAuthorityKey (ReadAuthorityKeyRequest) returns (ReadAuthorityKeyResponse);
+
+	// 重置Key
+	rpc resetAuthorityKey (ResetAuthorityKeyRequest) returns (RPCSuccess);
+}
+
+// 设置Key
+message UpdateAuthorityKeyRequest {
+	string value = 1;
+	string dayFrom = 2;
+	string dayTo = 3;
+	string hostname = 4;
+	repeated string macAddresses = 5;
+}
+
+// 读取Key
+message ReadAuthorityKeyRequest {
+
+}
+
+message ReadAuthorityKeyResponse {
+	AuthorityKey authorityKey = 1;
+}
+
+// 重置Key
+message ResetAuthorityKeyRequest {
+
+}
