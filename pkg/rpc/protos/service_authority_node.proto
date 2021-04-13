@@ -1,0 +1,108 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+import "models/model_authority_node.proto";
+import "models/rpc_messages.proto";
+
+// 认证节点管理
+service AuthorityNodeService {
+	// 创建认证节点
+	rpc createAuthorityNode (CreateAuthorityNodeRequest) returns (CreateAuthorityNodeResponse);
+
+	// 修改认证节点
+	rpc updateAuthorityNode (UpdateAuthorityNodeRequest) returns (RPCSuccess);
+
+	// 删除认证节点
+	rpc deleteAuthorityNode (DeleteAuthorityNodeRequest) returns (RPCSuccess);
+
+	// 列出所有可用认证节点
+	rpc findAllEnabledAuthorityNodes (FindAllEnabledAuthorityNodesRequest) returns (FindAllEnabledAuthorityNodesResponse);
+
+	// 计算认证节点数量
+	rpc countAllEnabledAuthorityNodes (CountAllEnabledAuthorityNodesRequest) returns (RPCCountResponse);
+
+	// 列出单页的认证节点
+	rpc listEnabledAuthorityNodes (ListEnabledAuthorityNodesRequest) returns (ListEnabledAuthorityNodesResponse);
+
+	// 根据ID查找节点
+	rpc findEnabledAuthorityNode (FindEnabledAuthorityNodeRequest) returns (FindEnabledAuthorityNodeResponse);
+
+	// 获取当前认证节点信息
+	rpc findCurrentAuthorityNode (FindCurrentAuthorityNodeRequest) returns (FindCurrentAuthorityNodeResponse);
+
+	// 更新节点状态
+	rpc updateAuthorityNodeStatus (UpdateAuthorityNodeStatusRequest) returns (RPCSuccess);
+}
+
+// 创建认证节点
+message CreateAuthorityNodeRequest {
+	string name = 1;
+	string description = 2;
+	bool isOn = 3;
+}
+
+message CreateAuthorityNodeResponse {
+	int64 nodeId = 1;
+}
+
+// 修改认证节点
+message UpdateAuthorityNodeRequest {
+	int64 nodeId = 1;
+	string name = 2;
+	string description = 3;
+	bool isOn = 4;
+}
+
+// 删除认证节点
+message DeleteAuthorityNodeRequest {
+	int64 nodeId = 1;
+}
+
+// 列出所有可用认证节点
+message FindAllEnabledAuthorityNodesRequest {
+
+}
+
+message FindAllEnabledAuthorityNodesResponse {
+	repeated AuthorityNode nodes = 1;
+}
+
+// 计算认证节点数量
+message CountAllEnabledAuthorityNodesRequest {
+
+}
+
+// 列出单页的认证节点
+message ListEnabledAuthorityNodesRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListEnabledAuthorityNodesResponse {
+	repeated AuthorityNode nodes = 1;
+}
+
+// 根据ID查找节点
+message FindEnabledAuthorityNodeRequest {
+	int64 nodeId = 1;
+}
+
+message FindEnabledAuthorityNodeResponse {
+	AuthorityNode node = 1;
+}
+
+// 获取当前认证节点
+message FindCurrentAuthorityNodeRequest {
+
+}
+
+message FindCurrentAuthorityNodeResponse {
+	AuthorityNode node = 1;
+}
+
+// 更新认证状态
+message UpdateAuthorityNodeStatusRequest {
+	int64 nodeId = 1;
+	bytes statusJSON = 2;
+}
