@@ -11,4 +11,5 @@ message AuthorityKey {
 	string hostname = 4;
 	repeated string macAddresses = 5;
 	int64 updatedAt = 6;
+	string company = 7;
 }

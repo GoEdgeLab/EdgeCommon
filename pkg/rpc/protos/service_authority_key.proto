@@ -25,6 +25,7 @@ message UpdateAuthorityKeyRequest {
 	string dayTo = 3;
 	string hostname = 4;
 	repeated string macAddresses = 5;
+	string company = 6;
 }
 
 // 读取Key
