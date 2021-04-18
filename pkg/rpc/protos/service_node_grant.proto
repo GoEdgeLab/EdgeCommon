@@ -19,13 +19,16 @@ service NodeGrantService {
 	rpc countAllEnabledNodeGrants (CountAllEnabledNodeGrantsRequest) returns (RPCCountResponse);
 
 	// 列出单页认证
-	rpc ListEnabledNodeGrants (ListEnabledNodeGrantsRequest) returns (ListEnabledNodeGrantsResponse);
+	rpc listEnabledNodeGrants (ListEnabledNodeGrantsRequest) returns (ListEnabledNodeGrantsResponse);
 
 	// 列出所有认证
-	rpc FindAllEnabledNodeGrants (FindAllEnabledNodeGrantsRequest) returns (FindAllEnabledNodeGrantsResponse);
+	rpc findAllEnabledNodeGrants (FindAllEnabledNodeGrantsRequest) returns (FindAllEnabledNodeGrantsResponse);
 
 	// 获取单个认证信息
-	rpc FindEnabledGrant (FindEnabledGrantRequest) returns (FindEnabledGrantResponse);
+	rpc findEnabledNodeGrant (FindEnabledNodeGrantRequest) returns (FindEnabledNodeGrantResponse);
+
+	// 测试连接
+	rpc testNodeGrant (TestNodeGrantRequest) returns (TestNodeGrantResponse);
 }
 
 // 创建节点认证
@@ -40,12 +43,12 @@ message CreateNodeGrantRequest {
 }
 
 message CreateNodeGrantResponse {
-	int64 grantId = 1;
+	int64 nodeGrantId = 1;
 }
 
 // 修改节点认证
 message UpdateNodeGrantRequest {
-	int64 grantId = 8;
+	int64 nodeGrantId = 8;
 	string name = 1;
 	string method = 2;
 	string username = 3;
@@ -57,7 +60,7 @@ message UpdateNodeGrantRequest {
 
 // 禁用节点认证
 message DisableNodeGrantRequest {
-	int64 grantId = 1;
+	int64 nodeGrantId = 1;
 }
 
 message DisableNodeGrantResponse {
@@ -76,7 +79,7 @@ message ListEnabledNodeGrantsRequest {
 }
 
 message ListEnabledNodeGrantsResponse {
-	repeated NodeGrant grants = 1;
+	repeated NodeGrant nodeGrants = 1;
 }
 
 // 获取所有认证信息
@@ -85,14 +88,26 @@ message FindAllEnabledNodeGrantsRequest {
 }
 
 message FindAllEnabledNodeGrantsResponse {
-	repeated NodeGrant grants = 1;
+	repeated NodeGrant nodeGrants = 1;
 }
 
 // 获取认证信息
-message FindEnabledGrantRequest {
-	int64 grantId = 1;
+message FindEnabledNodeGrantRequest {
+	int64 nodeGrantId = 1;
 }
 
-message FindEnabledGrantResponse {
-	NodeGrant grant = 1;
+message FindEnabledNodeGrantResponse {
+	NodeGrant nodeGrant = 1;
+}
+
+// 测试连接
+message TestNodeGrantRequest {
+	int64 nodeGrantId = 1;
+	string host = 2;
+	int32 port = 3;
+}
+
+message TestNodeGrantResponse {
+	bool isOk = 1;
+	string error = 2;
 }
