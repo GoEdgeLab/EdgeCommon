@@ -15,20 +15,23 @@ const (
 	ServerTypeUDPProxy  ServerType = "udp"
 )
 
-// 获取所有的服务类型
+// AllServerTypes 获取所有的服务类型
 func AllServerTypes() []maps.Map {
 	return []maps.Map{
 		{
-			"name": "HTTP反向代理",
-			"code": ServerTypeHTTPProxy,
+			"name":        "HTTP反向代理",
+			"code":        ServerTypeHTTPProxy,
+			"description": "可以通过反向代理访问真实源站。",
 		},
 		{
-			"name": "HTTP Web服务",
-			"code": ServerTypeHTTPWeb,
+			"name":        "HTTP Web服务",
+			"code":        ServerTypeHTTPWeb,
+			"description": "普通的HTTP Web服务，可以用来访问静态文件内容。",
 		},
 		{
-			"name": "TCP反向代理",
-			"code": ServerTypeTCPProxy,
+			"name":        "TCP反向代理",
+			"code":        ServerTypeTCPProxy,
+			"description": "通过反向代理访问真实的TCP服务",
 		},
 		/**{
 			"name": "UNIX协议反向代理",
@@ -41,7 +44,7 @@ func AllServerTypes() []maps.Map {
 	}
 }
 
-// 查找服务类型
+// FindServerType 查找服务类型
 func FindServerType(code string) maps.Map {
 	for _, m := range AllServerTypes() {
 		if m.GetString("code") == code {
@@ -51,7 +54,7 @@ func FindServerType(code string) maps.Map {
 	return nil
 }
 
-// 获取所有协议
+// AllServerProtocolsForType 获取所有协议
 func AllServerProtocolsForType(serverType ServerType) []maps.Map {
 	protocols := []maps.Map{
 		{
@@ -96,6 +99,7 @@ func AllServerProtocolsForType(serverType ServerType) []maps.Map {
 	return result
 }
 
+// IsHTTPServerType 判断某个服务类型是否属于HTTP簇
 func IsHTTPServerType(serverType ServerType) bool {
 	return serverType == ServerTypeHTTPProxy || serverType == ServerTypeHTTPWeb
 }
