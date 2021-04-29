@@ -1,0 +1,10 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 节点监控值
+message NodeValue {
+	bytes valueJSON = 1;
+	int64 createdAt = 2;
+}
