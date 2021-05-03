@@ -106,6 +106,9 @@ service NodeClusterService {
 
 	// 检查端口是否已经被使用
 	rpc checkPortIsUsingInNodeCluster (CheckPortIsUsingInNodeClusterRequest) returns (CheckPortIsUsingInNodeClusterResponse);
+
+	// 查找最近访问的集群
+	rpc findLatestNodeClusters (FindLatestNodeClustersRequest) returns (FindLatestNodeClustersResponse);
 }
 
 // 获取所有集群的信息
@@ -380,4 +383,13 @@ message CheckPortIsUsingInNodeClusterRequest {
 
 message CheckPortIsUsingInNodeClusterResponse {
 	bool isUsing = 1;
+}
+
+// 查找最近的集群
+message FindLatestNodeClustersRequest {
+	int64 size = 1;
+}
+
+message FindLatestNodeClustersResponse {
+	repeated NodeCluster nodeClusters = 1;
 }

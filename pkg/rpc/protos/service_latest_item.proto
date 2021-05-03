@@ -1,0 +1,18 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+
+// 最近使用的条目服务
+service LatestItemService {
+	// 记录最近使用的条目
+	rpc increaseLatestItem (IncreaseLatestItemRequest) returns (RPCSuccess);
+}
+
+// 记录最近使用的条目
+message IncreaseLatestItemRequest {
+	string itemType = 1;
+	int64 itemId = 2;
+}
