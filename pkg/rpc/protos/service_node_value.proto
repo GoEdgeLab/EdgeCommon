@@ -4,7 +4,7 @@ option go_package = "./pb";
 package pb;
 
 import "models/rpc_messages.proto";
-import "models/message_node_value.proto";
+import "models/model_message_node_value.proto";
 
 // 节点指标数据服务
 service NodeValueService {

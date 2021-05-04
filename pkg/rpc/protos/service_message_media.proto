@@ -3,7 +3,7 @@ option go_package = "./pb";
 
 package pb;
 
-import "models/message_media.proto";
+import "models/model_message_media.proto";
 import "models/rpc_messages.proto";
 
 // 消息媒介管理

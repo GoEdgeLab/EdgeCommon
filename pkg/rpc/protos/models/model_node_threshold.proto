@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message NodeThreshold {
+	int64 id = 1;
+	int64 clusterId = 2;
+	int64 nodeId = 3;
+	string item = 4;
+	string param = 5;
+	string operator = 6;
+	bytes valueJSON = 7;
+	string message = 8;
+	int32 duration = 9;
+	string durationUnit = 10;
+	string sumMethod = 11;
+	bool isOn = 12;
+}

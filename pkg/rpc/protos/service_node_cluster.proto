@@ -385,7 +385,7 @@ message CheckPortIsUsingInNodeClusterResponse {
 	bool isUsing = 1;
 }
 
-// 查找最近的集群
+// 查找最近访问的集群
 message FindLatestNodeClustersRequest {
 	int64 size = 1;
 }

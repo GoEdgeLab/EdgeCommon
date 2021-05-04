@@ -2674,7 +2674,7 @@ func (x *CheckPortIsUsingInNodeClusterResponse) GetIsUsing() bool {
 	return false
 }
 
-// 查找最近的集群
+// 查找最近访问的集群
 type FindLatestNodeClustersRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

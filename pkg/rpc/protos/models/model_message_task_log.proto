@@ -3,7 +3,7 @@ option go_package = "./pb";
 
 package pb;
 
-import "models/message_task.proto";
+import "models/model_message_task.proto";
 
 // 消息任务日志
 message MessageTaskLog {

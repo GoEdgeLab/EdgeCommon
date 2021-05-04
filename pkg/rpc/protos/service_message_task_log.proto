@@ -3,7 +3,7 @@ option go_package = "./pb";
 
 package pb;
 
-import "models/message_task_log.proto";
+import "models/model_message_task_log.proto";
 import "models/rpc_messages.proto";
 
 // 消息发送任务日志

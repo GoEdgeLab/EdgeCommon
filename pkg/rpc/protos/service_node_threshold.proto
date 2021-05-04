@@ -1,0 +1,90 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_node_threshold.proto";
+
+// 节点阈值服务
+service NodeThresholdService {
+	// 创建阈值
+	rpc createNodeThreshold (CreateNodeThresholdRequest) returns (CreateNodeThresholdResponse);
+
+	// 修改阈值
+	rpc updateNodeThreshold (UpdateNodeThresholdRequest) returns (RPCSuccess);
+
+	// 删除阈值
+	rpc deleteNodeThreshold (DeleteNodeThresholdRequest) returns (RPCSuccess);
+
+	// 查询阈值
+	rpc findAllEnabledNodeThresholds (FindAllEnabledNodeThresholdsRequest) returns (FindAllEnabledNodeThresholdsResponse);
+
+	// 计算阈值数量
+	rpc countAllEnabledNodeThresholds (CountAllEnabledNodeThresholdsRequest) returns (RPCCountResponse);
+
+	// 查询单个阈值详情
+	rpc findEnabledNodeThreshold (FindEnabledNodeThresholdRequest) returns (FindEnabledNodeThresholdResponse);
+}
+
+// 创建阈值
+message CreateNodeThresholdRequest {
+	int64 nodeClusterId = 1;
+	int64 nodeId = 2;
+	string item = 3;
+	string param = 4;
+	string operator = 5;
+	bytes valueJSON = 6;
+	string message = 7;
+	int32 duration = 8;
+	string durationUnit = 9;
+	string sumMethod = 10;
+}
+
+message CreateNodeThresholdResponse {
+	int64 nodeThresholdId = 1;
+}
+
+// 修改阈值
+message UpdateNodeThresholdRequest {
+	int64 nodeThresholdId = 1;
+	string item = 2;
+	string param = 3;
+	string operator = 4;
+	bytes valueJSON = 5;
+	string message = 6;
+	int32 duration = 7;
+	string durationUnit = 8;
+	string sumMethod = 9;
+	bool isOn = 10;
+}
+
+// 删除阈值
+message DeleteNodeThresholdRequest {
+	int64 nodeThresholdId = 1;
+}
+
+// 查询阈值
+message FindAllEnabledNodeThresholdsRequest {
+	int64 nodeClusterId = 1;
+	int64 nodeId = 2;
+}
+
+message FindAllEnabledNodeThresholdsResponse {
+	repeated NodeThreshold nodeThresholds = 1;
+}
+
+// 计算阈值数量
+message CountAllEnabledNodeThresholdsRequest {
+	int64 nodeClusterId = 1;
+	int64 nodeId = 2;
+}
+
+// 查询单个阈值详情
+message FindEnabledNodeThresholdRequest {
+	int64 nodeThresholdId = 1;
+}
+
+message FindEnabledNodeThresholdResponse {
+	NodeThreshold nodeThreshold = 1;
+}

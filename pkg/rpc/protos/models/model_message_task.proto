@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "models/message_recipient.proto";
-import "models/message_media_instance.proto";
+import "models/model_message_recipient.proto";
+import "models/model_message_media_instance.proto";
 
 message MessageTask {
 	int64 id = 1;

@@ -3,8 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
-import "models/message_recipient.proto";
-import "models/message_recipient_group.proto";
+import "models/model_message_recipient.proto";
+import "models/model_message_recipient_group.proto";
 
 message MessageReceiver {
 	int64 id = 1;

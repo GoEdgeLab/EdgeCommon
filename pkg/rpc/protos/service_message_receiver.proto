@@ -3,7 +3,7 @@ option go_package = "./pb";
 
 package pb;
 
-import "models/message_receiver.proto";
+import "models/model_message_receiver.proto";
 import "models/rpc_messages.proto";
 
 // 消息对象接收者设置
@@ -12,10 +12,13 @@ service MessageReceiverService {
 	rpc updateMessageReceivers (UpdateMessageReceiversRequest) returns (RPCSuccess);
 
 	// 查找接收者
-	rpc findAllMessageReceivers (FindAllMessageReceiversRequest) returns (FindAllMessageReceiversResponse);
+	rpc findAllEnabledMessageReceivers (FindAllEnabledMessageReceiversRequest) returns (FindAllEnabledMessageReceiversResponse);
 
 	// 删除接收者
 	rpc deleteMessageReceiver (DeleteMessageReceiverRequest) returns (RPCSuccess);
+
+	// 计算接收者数量
+	rpc countAllEnabledMessageReceivers (CountAllEnabledMessageReceiversRequest) returns (RPCCountResponse);
 }
 
 // 修改接收者
@@ -37,17 +40,24 @@ message UpdateMessageReceiversRequest {
 }
 
 // 查找接收者
-message FindAllMessageReceiversRequest {
+message FindAllEnabledMessageReceiversRequest {
 	int64 nodeClusterId = 1;
 	int64 nodeId = 2;
 	int64 serverId = 3;
 }
 
-message FindAllMessageReceiversResponse {
+message FindAllEnabledMessageReceiversResponse {
 	repeated MessageReceiver messageReceivers = 1;
 }
 
 // 删除接收者
 message DeleteMessageReceiverRequest {
 	int64 messageReceiverId = 1;
+}
+
+// 计算接收者数量
+message CountAllEnabledMessageReceiversRequest {
+	int64 nodeClusterId = 1;
+	int64 nodeId = 2;
+	int64 serverId = 3;
 }

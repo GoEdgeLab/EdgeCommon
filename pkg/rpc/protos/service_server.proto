@@ -113,6 +113,9 @@ service ServerService {
 
 	// 检查域名是否已经存在
 	rpc checkServerNameDuplicationInNodeCluster (CheckServerNameDuplicationInNodeClusterRequest) returns (CheckServerNameDuplicationInNodeClusterResponse);
+
+	// 查找最近访问的服务
+	rpc findLatestServers (FindLatestServersRequest) returns (FindLatestServersResponse);
 }
 
 // 创建服务
@@ -444,4 +447,13 @@ message CheckServerNameDuplicationInNodeClusterRequest {
 
 message CheckServerNameDuplicationInNodeClusterResponse {
 	repeated string duplicatedServerNames = 1;
+}
+
+// 查找最近访问的服务
+message FindLatestServersRequest {
+	int64 size = 1;
+}
+
+message FindLatestServersResponse {
+	repeated Server servers = 1;
 }
