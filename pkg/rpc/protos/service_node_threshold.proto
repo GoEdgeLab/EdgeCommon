@@ -29,16 +29,18 @@ service NodeThresholdService {
 
 // 创建阈值
 message CreateNodeThresholdRequest {
-	int64 nodeClusterId = 1;
-	int64 nodeId = 2;
-	string item = 3;
-	string param = 4;
-	string operator = 5;
-	bytes valueJSON = 6;
-	string message = 7;
-	int32 duration = 8;
-	string durationUnit = 9;
-	string sumMethod = 10;
+	string role = 1;
+	int64 nodeClusterId = 2;
+	int64 nodeId = 3;
+	string item = 4;
+	string param = 5;
+	string operator = 6;
+	bytes valueJSON = 7;
+	string message = 8;
+	int32 duration = 9;
+	string durationUnit = 10;
+	string sumMethod = 11;
+	int32 notifyDuration = 12;
 }
 
 message CreateNodeThresholdResponse {
@@ -57,6 +59,7 @@ message UpdateNodeThresholdRequest {
 	string durationUnit = 8;
 	string sumMethod = 9;
 	bool isOn = 10;
+	int32 notifyDuration = 11;
 }
 
 // 删除阈值
@@ -66,8 +69,9 @@ message DeleteNodeThresholdRequest {
 
 // 查询阈值
 message FindAllEnabledNodeThresholdsRequest {
-	int64 nodeClusterId = 1;
-	int64 nodeId = 2;
+	string role = 1;
+	int64 nodeClusterId = 2;
+	int64 nodeId = 3;
 }
 
 message FindAllEnabledNodeThresholdsResponse {
@@ -76,8 +80,9 @@ message FindAllEnabledNodeThresholdsResponse {
 
 // 计算阈值数量
 message CountAllEnabledNodeThresholdsRequest {
-	int64 nodeClusterId = 1;
-	int64 nodeId = 2;
+	string role = 1;
+	int64 nodeClusterId = 2;
+	int64 nodeId = 3;
 }
 
 // 查询单个阈值详情

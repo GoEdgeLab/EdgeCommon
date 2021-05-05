@@ -218,6 +218,25 @@ func FindAllNodeValueOperatorDefinitions() []*nodeValueOperatorDefinition {
 	return nodeValueOperatorDefinitions
 }
 
+// CompareNodeValue 对比值
+func CompareNodeValue(operator NodeValueOperator, value1 float64, value2 float64) bool {
+	switch operator {
+	case NodeValueOperatorGt:
+		return value1 > value2
+	case NodeValueOperatorGte:
+		return value1 >= value2
+	case NodeValueOperatorLt:
+		return value1 < value2
+	case NodeValueOperatorLte:
+		return value1 <= value2
+	case NodeValueOperatorEq:
+		return value1 == value2
+	case NodeValueOperatorNeq:
+		return value1 != value2
+	}
+	return false
+}
+
 // NodeValueSumMethod 聚合方法
 type NodeValueSumMethod = string
 

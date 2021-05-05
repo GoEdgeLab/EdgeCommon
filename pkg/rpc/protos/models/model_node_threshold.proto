@@ -3,10 +3,12 @@ option go_package = "./pb";
 
 package pb;
 
+import "models/model_node.proto";
+
 message NodeThreshold {
 	int64 id = 1;
 	int64 clusterId = 2;
-	int64 nodeId = 3;
+	Node node = 3;
 	string item = 4;
 	string param = 5;
 	string operator = 6;
@@ -16,4 +18,5 @@ message NodeThreshold {
 	string durationUnit = 10;
 	string sumMethod = 11;
 	bool isOn = 12;
+	int32 notifyDuration = 13;
 }
