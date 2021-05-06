@@ -1,9 +1,9 @@
 package serverconfigs
 
-// 默认的访问日志配置
+// DefaultHTTPAccessLogRef 默认的访问日志配置
 var DefaultHTTPAccessLogRef = NewHTTPAccessLogRef()
 
-// 代理访问日志配置
+// HTTPAccessLogRef 代理访问日志配置
 type HTTPAccessLogRef struct {
 	IsPrior bool `yaml:"isPrior" json:"isPrior"` // 是否覆盖
 	IsOn    bool `yaml:"isOn" json:"isOn"`       // 是否启用
@@ -22,10 +22,10 @@ type HTTPAccessLogRef struct {
 	FirewallOnly bool `yaml:"firewallOnly" json:"firewallOnly"` // 是否只记录防火墙相关日志
 }
 
-// 获取新对象
+// NewHTTPAccessLogRef 获取新对象
 func NewHTTPAccessLogRef() *HTTPAccessLogRef {
 	return &HTTPAccessLogRef{
-		IsOn:    true,
+		IsOn:    false,
 		Fields:  []int{},
 		Status1: true,
 		Status2: true,
@@ -35,12 +35,12 @@ func NewHTTPAccessLogRef() *HTTPAccessLogRef {
 	}
 }
 
-// 校验
+// Init 校验
 func (this *HTTPAccessLogRef) Init() error {
 	return nil
 }
 
-// 判断是否应该记录
+// Match 判断是否应该记录
 func (this *HTTPAccessLogRef) Match(status int) bool {
 	s := status / 100
 	switch s {
@@ -69,7 +69,7 @@ func (this *HTTPAccessLogRef) Match(status int) bool {
 	return true
 }
 
-// 是否包含某个存储策略
+// ContainsStoragePolicy 是否包含某个存储策略
 func (this *HTTPAccessLogRef) ContainsStoragePolicy(storagePolicyId int64) bool {
 	for _, s := range this.StoragePolicies {
 		if s == storagePolicyId {
@@ -79,7 +79,7 @@ func (this *HTTPAccessLogRef) ContainsStoragePolicy(storagePolicyId int64) bool 
 	return false
 }
 
-// 检查是否包含某个Field
+// ContainsField 检查是否包含某个Field
 func (this *HTTPAccessLogRef) ContainsField(field int) bool {
 	for _, f := range this.Fields {
 		if f == field {
