@@ -23,6 +23,7 @@ type HTTPLocationConfig struct {
 
 	patternType HTTPLocationPatternType // 规则类型：LocationPattern*
 	prefix      string                  // 前缀
+	suffix      string                  // 后缀
 	path        string                  // 精确的路径
 
 	reg             *regexp.Regexp // 匹配规则
@@ -31,7 +32,7 @@ type HTTPLocationConfig struct {
 }
 
 func (this *HTTPLocationConfig) Init() error {
-	err := this.parsePattern()
+	err := this.ExtractPattern()
 	if err != nil {
 		return err
 	}
@@ -76,7 +77,7 @@ func (this *HTTPLocationConfig) Init() error {
 	return nil
 }
 
-// 组合参数为一个字符串
+// SetPattern 组合参数为一个字符串
 func (this *HTTPLocationConfig) SetPattern(pattern string, patternType int, caseInsensitive bool, reverse bool) {
 	op := ""
 	if patternType == HTTPLocationPatternTypePrefix {
@@ -89,6 +90,14 @@ func (this *HTTPLocationConfig) SetPattern(pattern string, patternType int, case
 			if reverse {
 				op = "!"
 			}
+		}
+	} else if patternType == HTTPLocationPatternTypeSuffix {
+		op = "suffix"
+		if caseInsensitive {
+			op += "*"
+		}
+		if reverse {
+			op = "!" + op
 		}
 	} else if patternType == HTTPLocationPatternTypeExact {
 		op = "="
@@ -113,32 +122,35 @@ func (this *HTTPLocationConfig) SetPattern(pattern string, patternType int, case
 	this.Pattern = pattern
 }
 
-// 模式类型
+// PatternType 模式类型
 func (this *HTTPLocationConfig) PatternType() int {
 	return this.patternType
 }
 
-// 模式字符串
+// PatternString 模式字符串
 // 去掉了模式字符
 func (this *HTTPLocationConfig) PatternString() string {
 	if this.patternType == HTTPLocationPatternTypePrefix {
 		return this.prefix
 	}
+	if this.patternType == HTTPLocationPatternTypeSuffix {
+		return this.suffix
+	}
 	return this.path
 }
 
-// 是否翻转
+// IsReverse 是否翻转
 func (this *HTTPLocationConfig) IsReverse() bool {
 	return this.reverse
 }
 
-// 是否大小写非敏感
+// IsCaseInsensitive 是否大小写非敏感
 func (this *HTTPLocationConfig) IsCaseInsensitive() bool {
 	return this.caseInsensitive
 }
 
-// 分析匹配条件
-func (this *HTTPLocationConfig) parsePattern() error {
+// ExtractPattern 分析匹配条件
+func (this *HTTPLocationConfig) ExtractPattern() error {
 	// 分析pattern
 	this.reverse = false
 	this.caseInsensitive = false
@@ -215,6 +227,22 @@ func (this *HTTPLocationConfig) parsePattern() error {
 				this.reverse = true
 				this.caseInsensitive = true
 				this.path = pattern
+			} else if cmd == "suffix" {
+				this.patternType = HTTPLocationPatternTypeSuffix
+				this.suffix = pattern
+			} else if cmd == "suffix*" {
+				this.patternType = HTTPLocationPatternTypeSuffix
+				this.caseInsensitive = true
+				this.suffix = pattern
+			} else if cmd == "!suffix" {
+				this.patternType = HTTPLocationPatternTypeSuffix
+				this.reverse = true
+				this.suffix = pattern
+			} else if cmd == "!suffix*" {
+				this.patternType = HTTPLocationPatternTypeSuffix
+				this.caseInsensitive = true
+				this.reverse = true
+				this.suffix = pattern
 			} else {
 				this.patternType = HTTPLocationPatternTypePrefix
 				this.prefix = pattern
@@ -228,7 +256,7 @@ func (this *HTTPLocationConfig) parsePattern() error {
 	return nil
 }
 
-// 判断是否匹配路径
+// Match 判断是否匹配路径
 // TODO 支持子Location
 func (this *HTTPLocationConfig) Match(path string, formatter func(source string) string) (vars map[string]string, isMatched bool) {
 	// 判断条件
@@ -248,6 +276,22 @@ func (this *HTTPLocationConfig) Match(path string, formatter func(source string)
 				return nil, strings.HasPrefix(strings.ToLower(path), strings.ToLower(this.prefix))
 			} else {
 				return nil, strings.HasPrefix(path, this.prefix)
+			}
+		}
+	}
+
+	if this.patternType == HTTPLocationPatternTypeSuffix {
+		if this.reverse {
+			if this.caseInsensitive {
+				return nil, !strings.HasSuffix(strings.ToLower(path), strings.ToLower(this.suffix))
+			} else {
+				return nil, !strings.HasSuffix(path, this.suffix)
+			}
+		} else {
+			if this.caseInsensitive {
+				return nil, strings.HasSuffix(strings.ToLower(path), strings.ToLower(this.suffix))
+			} else {
+				return nil, strings.HasSuffix(path, this.suffix)
 			}
 		}
 	}

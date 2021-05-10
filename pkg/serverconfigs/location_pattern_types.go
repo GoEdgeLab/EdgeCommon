@@ -2,23 +2,29 @@ package serverconfigs
 
 import "github.com/iwind/TeaGo/maps"
 
-// 匹配类型
+// HTTPLocationPatternType 匹配类型
 type HTTPLocationPatternType = int
 
 // 内置的匹配类型定义
 const (
 	HTTPLocationPatternTypePrefix HTTPLocationPatternType = 1
+	HTTPLocationPatternTypeSuffix HTTPLocationPatternType = 4
 	HTTPLocationPatternTypeExact  HTTPLocationPatternType = 2
 	HTTPLocationPatternTypeRegexp HTTPLocationPatternType = 3
 )
 
-// 取得所有的匹配类型信息
+// AllLocationPatternTypes 取得所有的匹配类型信息
 func AllLocationPatternTypes() []maps.Map {
 	return []maps.Map{
 		{
 			"name":        "匹配前缀",
 			"type":        HTTPLocationPatternTypePrefix,
 			"description": "带有此前缀的路径才会被匹配",
+		},
+		{
+			"name":        "匹配后缀",
+			"type":        HTTPLocationPatternTypeSuffix,
+			"description": "带有此后缀的路径才会被匹配",
 		},
 		{
 			"name":        "精准匹配",
@@ -33,7 +39,7 @@ func AllLocationPatternTypes() []maps.Map {
 	}
 }
 
-// 查找单个匹配类型信息
+// FindLocationPatternType 查找单个匹配类型信息
 func FindLocationPatternType(patternType int) maps.Map {
 	for _, t := range AllLocationPatternTypes() {
 		if t["type"] == patternType {
@@ -43,7 +49,7 @@ func FindLocationPatternType(patternType int) maps.Map {
 	return nil
 }
 
-// 查找单个匹配类型名称
+// FindLocationPatternTypeName 查找单个匹配类型名称
 func FindLocationPatternTypeName(patternType int) string {
 	t := FindLocationPatternType(patternType)
 	if t == nil {

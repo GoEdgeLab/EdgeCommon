@@ -1,0 +1,67 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_http_fastcgi.proto";
+
+// Fastcgi服务
+service HTTPFastcgiService {
+	// 创建Fastcgi
+	rpc createHTTPFastcgi (CreateHTTPFastcgiRequest) returns (CreateHTTPFastcgiResponse);
+
+	// 修改Fastcgi
+	rpc updateHTTPFastcgi (UpdateHTTPFastcgiRequest) returns (RPCSuccess);
+
+	// 获取Fastcgi详情
+	rpc findEnabledHTTPFastcgi (FindEnabledHTTPFastcgiRequest) returns (FindEnabledHTTPFastcgiResponse);
+
+	// 获取Fastcgi配置
+	rpc findEnabledHTTPFastcgiConfig (FindEnabledHTTPFastcgiConfigRequest) returns (FindEnabledHTTPFastcgiConfigResponse);
+}
+
+// 创建Fastcgi服务
+message CreateHTTPFastcgiRequest {
+	bool isOn = 1;
+	string address = 2;
+	bytes paramsJSON = 3;
+	bytes readTimeoutJSON = 4;
+	bytes connTimeoutJSON = 5;
+	int32 poolSize = 6;
+	string pathInfoPattern = 7;
+}
+
+message CreateHTTPFastcgiResponse {
+	int64 httpFastcgiId = 1;
+}
+
+// 修改Fastcgi服务
+message UpdateHTTPFastcgiRequest {
+	int64 httpFastcgiId = 1;
+	bool isOn = 2;
+	string address = 3;
+	bytes paramsJSON = 4;
+	bytes readTimeoutJSON = 5;
+	bytes connTimeoutJSON = 6;
+	int32 poolSize = 7;
+	string pathInfoPattern = 8;
+}
+
+// 获取Fastcgi详情
+message FindEnabledHTTPFastcgiRequest {
+	int64 httpFastcgiId = 1;
+}
+
+message FindEnabledHTTPFastcgiResponse {
+	HTTPFastcgi httpFastcgi = 1;
+}
+
+// 获取Fastcgi配置
+message FindEnabledHTTPFastcgiConfigRequest {
+	int64 httpFastcgiId = 1;
+}
+
+message FindEnabledHTTPFastcgiConfigResponse {
+	bytes httpFastcgiJSON = 1;
+}

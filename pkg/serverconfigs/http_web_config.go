@@ -27,6 +27,8 @@ type HTTPWebConfig struct {
 	Websocket          *HTTPWebsocketConfig                `yaml:"websocket" json:"websocket"`                   // Websocket配置
 	RewriteRefs        []*HTTPRewriteRef                   `yaml:"rewriteRefs" json:"rewriteRefs"`               // 重写规则配置
 	RewriteRules       []*HTTPRewriteRule                  `yaml:"rewriteRules" json:"rewriteRules"`             // 重写规则
+	FastcgiRef         *HTTPFastcgiRef                     `yaml:"fastcgiRef" json:"fastcgiRef"`                 // Fastcgi引用
+	FastcgiList        []*HTTPFastcgiConfig                `yaml:"fastcgiList" json:"fastcgiList"`               // Fastcgi配置
 
 	RequestHeaderPolicyRef  *shared.HTTPHeaderPolicyRef `yaml:"requestHeaderPolicyRef" json:"requestHeaderPolicyRef"`   // 请求Header
 	RequestHeaderPolicy     *shared.HTTPHeaderPolicy    `yaml:"requestHeaderPolicy" json:"requestHeaderPolicy"`         // 请求Header策略
@@ -209,6 +211,14 @@ func (this *HTTPWebConfig) Init() error {
 	// 主机跳转
 	for _, redirect := range this.HostRedirects {
 		err := redirect.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// fastcgi
+	for _, fastcgi := range this.FastcgiList {
+		err := fastcgi.Init()
 		if err != nil {
 			return err
 		}

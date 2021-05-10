@@ -58,6 +58,9 @@ service HTTPWebService {
 	// 更改Websocket设置
 	rpc updateHTTPWebWebsocket (UpdateHTTPWebWebsocketRequest) returns (RPCSuccess);
 
+	// 更改Fastcgi设置
+	rpc updateHTTPWebFastcgi (UpdateHTTPWebFastcgiRequest) returns (RPCSuccess);
+
 	// 更改重写规则设置
 	rpc updateHTTPWebRewriteRules (UpdateHTTPWebRewriteRulesRequest) returns (RPCSuccess);
 
@@ -177,6 +180,12 @@ message UpdateHTTPWebRedirectToHTTPSRequest {
 message UpdateHTTPWebWebsocketRequest {
 	int64 webId = 1;
 	bytes websocketJSON = 2;
+}
+
+// 更改Fastcgi设置
+message UpdateHTTPWebFastcgiRequest {
+	int64 webId = 1;
+	bytes fastcgiJSON = 2;
 }
 
 // 更改重写规则设置

@@ -26,21 +26,21 @@ message CreateHTTPGzipRequest {
 }
 
 message CreateHTTPGzipResponse {
-	int64 gzipId = 1;
+	int64 httpGzipId = 1;
 }
 
 // 查找Gzip配置
 message FindEnabledGzipConfigRequest {
-	int64 gzipId = 1;
+	int64 httpGzipId = 1;
 }
 
 message FindEnabledGzipConfigResponse {
-	bytes gzipJSON = 1;
+	bytes httpGzipJSON = 1;
 }
 
 // 修改Gzip配置
 message UpdateHTTPGzipRequest {
-	int64 gzipId = 1;
+	int64 httpGzipId = 1;
 	int32 level = 2;
 	SizeCapacity minLength = 3;
 	SizeCapacity maxLength = 4;
