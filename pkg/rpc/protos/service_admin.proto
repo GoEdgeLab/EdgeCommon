@@ -209,6 +209,11 @@ message ComposeAdminDashboardResponse {
 
 	repeated DailyTrafficStat dailyTrafficStats = 30;
 	repeated HourlyTrafficStat hourlyTrafficStats = 31;
+	UpgradeInfo nodeUpgradeInfo = 32;
+	UpgradeInfo apiNodeUpgradeInfo = 33;
+	UpgradeInfo monitorNodeUpgradeInfo = 34;
+	UpgradeInfo userNodeUpgradeInfo = 35;
+	UpgradeInfo authorityNodeUpgradeInfo = 36;
 
 	message DailyTrafficStat {
 		string day = 1;
@@ -218,5 +223,11 @@ message ComposeAdminDashboardResponse {
 	message HourlyTrafficStat {
 		string hour = 1;
 		int64 bytes = 2;
+	}
+
+	// 节点升级信息
+	message UpgradeInfo {
+		int64 countNodes = 1;
+		string newVersion = 2;
 	}
 }
