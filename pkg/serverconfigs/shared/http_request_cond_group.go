@@ -1,6 +1,6 @@
 package shared
 
-// 请求条件分组
+// HTTPRequestCondGroup 请求条件分组
 type HTTPRequestCondGroup struct {
 	IsOn        bool               `yaml:"isOn" json:"isOn"`               // 是否启用
 	Connector   string             `yaml:"connector" json:"connector"`     // 条件之间的关系
@@ -12,12 +12,14 @@ type HTTPRequestCondGroup struct {
 	responseConds []*HTTPRequestCond
 }
 
-// 初始化
+// Init 初始化
 func (this *HTTPRequestCondGroup) Init() error {
 	if len(this.Connector) == 0 {
 		this.Connector = "or"
 	}
 
+	this.requestConds = []*HTTPRequestCond{}
+	this.responseConds = []*HTTPRequestCond{}
 	if len(this.Conds) > 0 {
 		for _, cond := range this.Conds {
 			err := cond.Init()

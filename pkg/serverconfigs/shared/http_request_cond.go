@@ -16,7 +16,7 @@ import (
 	"strings"
 )
 
-// 重写条件定义
+// HTTPRequestCond HTTP请求匹配条件定义
 type HTTPRequestCond struct {
 	Type      string `yaml:"type" json:"type"`           // 类型，在特殊条件时使用
 	IsRequest bool   `yaml:"isRequest" json:"isRequest"` // 是否为请求的条件，用来区分在什么阶段执行
@@ -39,7 +39,7 @@ type HTTPRequestCond struct {
 	arrayValue []string
 }
 
-// 校验配置
+// Init 校验配置
 func (this *HTTPRequestCond) Init() error {
 	this.isInt = RegexpDigitNumber.MatchString(this.Value)
 	this.isFloat = RegexpFloatNumber.MatchString(this.Value)
@@ -134,7 +134,7 @@ func (this *HTTPRequestCond) Init() error {
 	return nil
 }
 
-// 将此条件应用于请求，检查是否匹配
+// Match 将此条件应用于请求，检查是否匹配
 func (this *HTTPRequestCond) Match(formatter func(source string) string) bool {
 	paramValue := formatter(this.Param)
 	switch this.Operator {
