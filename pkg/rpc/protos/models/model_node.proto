@@ -10,6 +10,7 @@ import "models/model_node_ip_address.proto";
 import "models/model_node_group.proto";
 import "models/model_node_region.proto";
 import "models/model_dns_route.proto";
+import "models/model_size_capacity.proto";
 
 message Node {
 	int64 id = 1;
@@ -28,6 +29,8 @@ message Node {
 	bool isUp = 14;
 	repeated DNSRoute dnsRoutes = 15;
 	bool isActive = 16;
+	SizeCapacity maxCacheDiskCapacity = 17;
+	SizeCapacity maxCacheMemoryCapacity = 18;
 
 	NodeCluster nodeCluster = 32;
 	NodeLogin login = 33;

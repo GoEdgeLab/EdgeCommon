@@ -7,6 +7,7 @@ import "models/model_node.proto";
 import "models/model_node_login.proto";
 import "models/model_node_install_status.proto";
 import "models/model_dns_route.proto";
+import "models/model_size_capacity.proto";
 import "models/rpc_messages.proto";
 
 service NodeService {
@@ -189,6 +190,8 @@ message UpdateNodeRequest {
 	int64 dnsDomainId = 8;
 	repeated string dnsRoutes = 9;
 	int64 regionId = 10;
+	SizeCapacity maxCacheDiskCapacity = 11;
+	SizeCapacity maxCacheMemoryCapacity = 12;
 }
 
 // 查找节点

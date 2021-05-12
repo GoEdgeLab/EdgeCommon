@@ -15,15 +15,18 @@ import (
 
 var sharedNodeConfig *NodeConfig = nil
 
+// NodeConfig 边缘节点配置
 type NodeConfig struct {
-	Id       int64                         `yaml:"id" json:"id"`
-	NodeId   string                        `yaml:"nodeId" json:"nodeId"`
-	IsOn     bool                          `yaml:"isOn" json:"isOn"`
-	Servers  []*serverconfigs.ServerConfig `yaml:"servers" json:"servers"`
-	Version  int64                         `yaml:"version" json:"version"`
-	Name     string                        `yaml:"name" json:"name"`
-	MaxCPU   int32                         `yaml:"maxCPU" json:"maxCPU"`
-	RegionId int64                         `yaml:"regionId" json:"regionId"`
+	Id                     int64                         `yaml:"id" json:"id"`
+	NodeId                 string                        `yaml:"nodeId" json:"nodeId"`
+	IsOn                   bool                          `yaml:"isOn" json:"isOn"`
+	Servers                []*serverconfigs.ServerConfig `yaml:"servers" json:"servers"`
+	Version                int64                         `yaml:"version" json:"version"`
+	Name                   string                        `yaml:"name" json:"name"`
+	MaxCPU                 int32                         `yaml:"maxCPU" json:"maxCPU"`
+	RegionId               int64                         `yaml:"regionId" json:"regionId"`
+	MaxCacheDiskCapacity   *shared.SizeCapacity          `yaml:"maxCacheDiskCapacity" json:"maxCacheDiskCapacity"`
+	MaxCacheMemoryCapacity *shared.SizeCapacity          `yaml:"maxCacheMemoryCapacity" json:"maxCacheMemoryCapacity"`
 
 	// 全局配置
 	GlobalConfig *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置
@@ -40,7 +43,7 @@ type NodeConfig struct {
 	firewallPolicies []*firewallconfigs.HTTPFirewallPolicy
 }
 
-// 取得当前节点配置单例
+// SharedNodeConfig 取得当前节点配置单例
 func SharedNodeConfig() (*NodeConfig, error) {
 	shared.Locker.Lock()
 	defer shared.Locker.Unlock()
@@ -64,14 +67,14 @@ func SharedNodeConfig() (*NodeConfig, error) {
 	return config, nil
 }
 
-// 重置节点配置
+// ResetNodeConfig 重置节点配置
 func ResetNodeConfig(nodeConfig *NodeConfig) {
 	shared.Locker.Lock()
 	sharedNodeConfig = nodeConfig
 	shared.Locker.Unlock()
 }
 
-// 初始化
+// Init 初始化
 func (this *NodeConfig) Init() error {
 	this.paddedId = fmt.Sprintf("%08d", this.Id)
 
@@ -141,7 +144,7 @@ func (this *NodeConfig) Init() error {
 	return nil
 }
 
-// 根据网络地址和协议分组
+// AvailableGroups 根据网络地址和协议分组
 func (this *NodeConfig) AvailableGroups() []*serverconfigs.ServerGroup {
 	groupMapping := map[string]*serverconfigs.ServerGroup{} // protocol://addr => Server Group
 	for _, server := range this.Servers {
@@ -166,12 +169,12 @@ func (this *NodeConfig) AvailableGroups() []*serverconfigs.ServerGroup {
 	return result
 }
 
-// 获取所有的防火墙策略
+// FindAllFirewallPolicies 获取所有的防火墙策略
 func (this *NodeConfig) FindAllFirewallPolicies() []*firewallconfigs.HTTPFirewallPolicy {
 	return this.firewallPolicies
 }
 
-// 写入到文件
+// Save 写入到文件
 func (this *NodeConfig) Save() error {
 	shared.Locker.Lock()
 	defer shared.Locker.Unlock()
@@ -184,7 +187,7 @@ func (this *NodeConfig) Save() error {
 	return ioutil.WriteFile(Tea.ConfigFile("node.json"), data, 0777)
 }
 
-// 获取填充后的ID
+// PaddedId 获取填充后的ID
 func (this *NodeConfig) PaddedId() string {
 	return this.paddedId
 }
