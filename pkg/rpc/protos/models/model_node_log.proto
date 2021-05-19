@@ -10,4 +10,5 @@ message NodeLog {
 	string level = 4;
 	int64 nodeId = 5;
 	int64 createdAt = 6;
+	int32 count = 7;
 }

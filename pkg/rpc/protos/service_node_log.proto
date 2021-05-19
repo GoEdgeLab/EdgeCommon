@@ -31,6 +31,10 @@ message CreateNodeLogsResponse {
 message CountNodeLogsRequest {
 	int64 nodeId = 1;
 	string role = 2;
+	string dayFrom = 3;
+	string dayTo = 4;
+	string keyword = 5;
+	string level = 6;
 }
 
 // 列出单页日志
@@ -39,6 +43,11 @@ message ListNodeLogsRequest {
 	string role = 2;
 	int64 offset = 3;
 	int64 size = 4;
+
+	string dayFrom = 5;
+	string dayTo = 6;
+	string keyword = 7;
+	string level = 8;
 }
 
 message ListNodeLogsResponse {

@@ -1,6 +1,6 @@
 package nodeconfigs
 
-// 节点状态
+// NodeStatus 节点状态
 type NodeStatus struct {
 	BuildVersion     string `json:"buildVersion"`     // 编译版本
 	BuildVersionCode uint32 `json:"buildVersionCode"` // 版本数字
@@ -24,6 +24,9 @@ type NodeStatus struct {
 	Load5m                float64 `json:"load5m"`
 	Load15m               float64 `json:"load15m"`
 	ConnectionCount       int     `json:"connectionCount"` // 连接数
+
+	CacheTotalDiskSize   int64 `json:"cacheTotalDiskSize"`
+	CacheTotalMemorySize int64 `json:"cacheTotalMemorySize"`
 
 	IsActive bool   `json:"isActive"`
 	Error    string `json:"error"`
