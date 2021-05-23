@@ -69,11 +69,12 @@ message DisableNodeGrantResponse {
 
 // 计算节点认证数量
 message CountAllEnabledNodeGrantsRequest {
-
+	string keyword = 1;
 }
 
 // 列出单页认证
 message ListEnabledNodeGrantsRequest {
+	string keyword = 3;
 	int64 offset = 1;
 	int64 size = 2;
 }
