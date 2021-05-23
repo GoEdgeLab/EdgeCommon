@@ -1,8 +1,11 @@
 package serverconfigs
 
-import "net/url"
+import (
+	"net/url"
+	"regexp"
+)
 
-// 主机名跳转设置
+// HTTPHostRedirectConfig 主机名跳转设置
 type HTTPHostRedirectConfig struct {
 	IsOn   bool `yaml:"isOn" json:"isOn"`     // 是否开启
 	Status int  `yaml:"status" json:"status"` // 跳转用的状态码
@@ -11,13 +14,16 @@ type HTTPHostRedirectConfig struct {
 	AfterURL  string `yaml:"afterURL" json:"afterURL"`   // 跳转后的地址
 
 	MatchPrefix    bool `yaml:"matchPrefix" json:"matchPrefix"`       // 只匹配前缀部分
+	MatchRegexp    bool `yaml:"matchRegexp" json:"matchRegexp"`       // 匹配正则表达式
 	KeepRequestURI bool `yaml:"keepRequestURI" json:"keepRequestURI"` // 保留请求URI
 
-	realBeforeURL string
+	realBeforeURL   string
+	beforeURLRegexp *regexp.Regexp
 }
 
+// Init 初始化
 func (this *HTTPHostRedirectConfig) Init() error {
-	{
+	if !this.MatchRegexp {
 		u, err := url.Parse(this.BeforeURL)
 		if err != nil {
 			return err
@@ -27,11 +33,23 @@ func (this *HTTPHostRedirectConfig) Init() error {
 		} else {
 			this.realBeforeURL = this.BeforeURL
 		}
+	} else if this.MatchRegexp {
+		reg, err := regexp.Compile(this.BeforeURL)
+		if err != nil {
+			return err
+		}
+		this.beforeURLRegexp = reg
 	}
 
 	return nil
 }
 
+// RealBeforeURL 跳转前URL
 func (this *HTTPHostRedirectConfig) RealBeforeURL() string {
 	return this.realBeforeURL
+}
+
+// BeforeURLRegexp 跳转前URL正则表达式
+func (this *HTTPHostRedirectConfig) BeforeURLRegexp() *regexp.Regexp {
+	return this.beforeURLRegexp
 }
