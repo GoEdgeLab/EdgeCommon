@@ -16,6 +16,9 @@ service NodeLogService {
 
 	// 列出单页日志
 	rpc listNodeLogs (ListNodeLogsRequest) returns (ListNodeLogsResponse);
+
+	// 设置日志为已修复
+	rpc fixNodeLog (FixNodeLogRequest) returns (RPCSuccess);
 }
 
 // 创建日志
@@ -35,6 +38,7 @@ message CountNodeLogsRequest {
 	string dayTo = 4;
 	string keyword = 5;
 	string level = 6;
+	int64 serverId = 7;
 }
 
 // 列出单页日志
@@ -48,8 +52,16 @@ message ListNodeLogsRequest {
 	string dayTo = 6;
 	string keyword = 7;
 	string level = 8;
+	int64 serverId = 9;
+	int32 fixedState = 10;
+	bool allServers = 11; // 是否获取所有服务相关的日志
 }
 
 message ListNodeLogsResponse {
 	repeated NodeLog nodeLogs = 1;
+}
+
+// 设置日志为已修复
+message FixNodeLogRequest {
+	int64 nodeLogId = 1;
 }

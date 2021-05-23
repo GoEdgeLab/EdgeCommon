@@ -4,11 +4,14 @@ option go_package = "./pb";
 package pb;
 
 message NodeLog {
-	string role = 1;
-	string tag = 2;
-	string description = 3;
-	string level = 4;
-	int64 nodeId = 5;
-	int64 createdAt = 6;
-	int32 count = 7;
+	int64 id = 1;
+	string role = 2;
+	string tag = 3;
+	string description = 4;
+	string level = 5;
+	int64 nodeId = 6;
+	int64 createdAt = 7;
+	int32 count = 8;
+	int64 serverId = 9;
+	bool isFixed = 10;
 }
