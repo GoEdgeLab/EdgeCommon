@@ -6,7 +6,7 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 )
 
-// 缓存策略配置
+// HTTPCachePolicy 缓存策略配置
 type HTTPCachePolicy struct {
 	Id          int64                  `yaml:"id" json:"id"`
 	IsOn        bool                   `yaml:"isOn" json:"isOn"`               // 是否开启
@@ -21,14 +21,14 @@ type HTTPCachePolicy struct {
 	MinLife     *shared.TimeDuration   `yaml:"minLife" json:"minLife"`         // 最小有效期 TODO 需要实现
 	MaxLife     *shared.TimeDuration   `yaml:"maxLife" json:"maxLife"`         // 最大有效期 TODO 需要实现
 
+	CacheRefs []*HTTPCacheRef `yaml:"cacheRefs" json:"cacheRefs"` // 缓存配置
+
 	capacity int64
 	maxSize  int64
 }
 
-// 校验
+// Init 校验
 func (this *HTTPCachePolicy) Init() error {
-	var err error
-
 	if this.Capacity != nil {
 		this.capacity = this.Capacity.Bytes()
 	}
@@ -37,20 +37,27 @@ func (this *HTTPCachePolicy) Init() error {
 		this.maxSize = this.MaxSize.Bytes()
 	}
 
-	return err
+	for _, cacheRef := range this.CacheRefs {
+		err := cacheRef.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
-// 容量
+// CapacityBytes 容量
 func (this *HTTPCachePolicy) CapacityBytes() int64 {
 	return this.capacity
 }
 
-// 单个缓存最大尺寸
+// MaxSizeBytes 单个缓存最大尺寸
 func (this *HTTPCachePolicy) MaxSizeBytes() int64 {
 	return this.maxSize
 }
 
-// 对比Policy是否有变化
+// IsSame 对比Policy是否有变化
 func (this *HTTPCachePolicy) IsSame(anotherPolicy *HTTPCachePolicy) bool {
 	policyJSON1, err := json.Marshal(this)
 	if err != nil {

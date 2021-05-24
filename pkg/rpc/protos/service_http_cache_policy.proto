@@ -30,6 +30,9 @@ service HTTPCachePolicyService {
 
 	// 查找单个缓存策略信息
 	rpc findEnabledHTTPCachePolicy (FindEnabledHTTPCachePolicyRequest) returns (FindEnabledHTTPCachePolicyResponse);
+
+	// 设置缓存策略的默认条件
+	rpc updateHTTPCachePolicyRefs (UpdateHTTPCachePolicyRefsRequest) returns (RPCSuccess);
 }
 
 // 获取所有可用策略
@@ -105,4 +108,10 @@ message FindEnabledHTTPCachePolicyRequest {
 
 message FindEnabledHTTPCachePolicyResponse {
 	HTTPCachePolicy httpCachePolicy = 1;
+}
+
+// 设置缓存策略的默认条件
+message UpdateHTTPCachePolicyRefsRequest {
+	int64 httpCachePolicyId = 1;
+	bytes refsJSON = 2;
 }
