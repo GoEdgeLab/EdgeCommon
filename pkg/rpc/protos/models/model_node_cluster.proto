@@ -7,7 +7,7 @@ message NodeCluster {
 	int64 id = 1;
 	string name = 2;
 	int64 createdAt = 3;
-	int64 grantId = 4;
+	int64 nodeGrantId = 4;
 	string installDir = 5;
 	string uniqueId = 6;
 	string secret = 7;

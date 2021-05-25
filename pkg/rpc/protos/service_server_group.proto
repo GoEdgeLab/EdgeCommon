@@ -33,18 +33,18 @@ message CreateServerGroupRequest {
 }
 
 message CreateServerGroupResponse {
-	int64 groupId = 1;
+	int64 serverGroupId = 1;
 }
 
 // 修改分组
 message UpdateServerGroupRequest {
-	int64 groupId = 1;
+	int64 serverGroupId = 1;
 	string name = 2;
 }
 
 // 删除分组
 message DeleteServerGroupRequest {
-	int64 groupId = 1;
+	int64 serverGroupId = 1;
 }
 
 // 查询所有分组
@@ -52,19 +52,19 @@ message FindAllEnabledServerGroupsRequest {
 }
 
 message FindAllEnabledServerGroupsResponse {
-	repeated ServerGroup groups = 1;
+	repeated ServerGroup serverGroups = 1;
 }
 
 // 修改分组排序
 message UpdateServerGroupOrdersRequest {
-	repeated int64 groupIds = 1;
+	repeated int64 serverGroupIds = 1;
 }
 
 // 查找单个分组信息
 message FindEnabledServerGroupRequest {
-	int64 groupId = 1;
+	int64 serverGroupId = 1;
 }
 
 message FindEnabledServerGroupResponse {
-	ServerGroup group = 1;
+	ServerGroup serverGroup = 1;
 }

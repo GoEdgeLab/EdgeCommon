@@ -291,12 +291,12 @@ message UpdateNodeConnectedAPINodesRequest {
 
 // 计算使用某个认证的节点数量
 message CountAllEnabledNodesWithNodeGrantIdRequest {
-	int64 grantId = 1;
+	int64 nodeGrantId = 1;
 }
 
 // 查找使用某个认证的所有节点
 message FindAllEnabledNodesWithNodeGrantIdRequest {
-	int64 grantId = 1;
+	int64 nodeGrantId = 1;
 }
 
 message FindAllEnabledNodesWithNodeGrantIdResponse {

@@ -36,7 +36,7 @@ message Server {
 	bytes reverseProxyJSON = 16;
 
 	NodeCluster nodeCluster = 30;
-	repeated ServerGroup groups = 31;
+	repeated ServerGroup serverGroups = 31;
 	User user = 32;
 
 }

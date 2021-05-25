@@ -17,6 +17,6 @@ message NSNode {
 	//NodeLogin login = 33;
 	//NodeInstallStatus installStatus = 34;
 	//repeated NodeIPAddress ipAddresses = 35;
-	//NodeGroup group = 36;
+	//NodeGroup nodeGroup = 36;
 	//NodeRegion region = 37;
 }

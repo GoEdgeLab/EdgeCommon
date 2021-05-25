@@ -34,18 +34,18 @@ message CreateNodeGroupRequest {
 }
 
 message CreateNodeGroupResponse {
-	int64 groupId = 1;
+	int64 nodeGroupId = 1;
 }
 
 // 修改分组
 message UpdateNodeGroupRequest {
-	int64 groupId = 1;
+	int64 nodeGroupId = 1;
 	string name = 2;
 }
 
 // 删除分组
 message DeleteNodeGroupRequest {
-	int64 groupId = 1;
+	int64 nodeGroupId = 1;
 }
 
 // 查询所有分组
@@ -54,19 +54,19 @@ message FindAllEnabledNodeGroupsWithNodeClusterIdRequest {
 }
 
 message FindAllEnabledNodeGroupsWithNodeClusterIdResponse {
-	repeated NodeGroup groups = 1;
+	repeated NodeGroup nodeGroups = 1;
 }
 
 // 修改分组排序
 message UpdateNodeGroupOrdersRequest {
-	repeated int64 groupIds = 1;
+	repeated int64 nodeGroupIds = 1;
 }
 
 // 查找单个分组信息
 message FindEnabledNodeGroupRequest {
-	int64 groupId = 1;
+	int64 nodeGroupId = 1;
 }
 
 message FindEnabledNodeGroupResponse {
-	NodeGroup group = 1;
+	NodeGroup nodeGroup = 1;
 }
