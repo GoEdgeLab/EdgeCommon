@@ -1,0 +1,22 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_cluster.proto";
+
+// 域名服务节点
+message NSNode {
+	int64 id = 1;
+	string name = 2;
+	bool isOn = 3;
+	string uniqueId = 4;
+	string secret = 5;
+
+	NSCluster nsCluster = 32;
+	//NodeLogin login = 33;
+	//NodeInstallStatus installStatus = 34;
+	//repeated NodeIPAddress ipAddresses = 35;
+	//NodeGroup group = 36;
+	//NodeRegion region = 37;
+}

@@ -18,7 +18,7 @@ service NodeGroupService {
 	rpc deleteNodeGroup (DeleteNodeGroupRequest) returns (RPCSuccess);
 
 	// 查询所有分组
-	rpc findAllEnabledNodeGroupsWithClusterId (FindAllEnabledNodeGroupsWithClusterIdRequest) returns (FindAllEnabledNodeGroupsWithClusterIdResponse);
+	rpc findAllEnabledNodeGroupsWithNodeClusterId (FindAllEnabledNodeGroupsWithNodeClusterIdRequest) returns (FindAllEnabledNodeGroupsWithNodeClusterIdResponse);
 
 	// 修改分组排序
 	rpc updateNodeGroupOrders (UpdateNodeGroupOrdersRequest) returns (RPCSuccess);
@@ -49,11 +49,11 @@ message DeleteNodeGroupRequest {
 }
 
 // 查询所有分组
-message FindAllEnabledNodeGroupsWithClusterIdRequest {
+message FindAllEnabledNodeGroupsWithNodeClusterIdRequest {
 	int64 nodeClusterId = 1;
 }
 
-message FindAllEnabledNodeGroupsWithClusterIdResponse {
+message FindAllEnabledNodeGroupsWithNodeClusterIdResponse {
 	repeated NodeGroup groups = 1;
 }
 

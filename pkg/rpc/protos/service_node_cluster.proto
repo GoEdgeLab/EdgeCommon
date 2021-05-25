@@ -45,10 +45,10 @@ service NodeClusterService {
 	rpc executeNodeClusterHealthCheck (ExecuteNodeClusterHealthCheckRequest) returns (ExecuteNodeClusterHealthCheckResponse);
 
 	// 计算使用某个认证的集群数量
-	rpc countAllEnabledNodeClustersWithGrantId (CountAllEnabledNodeClustersWithGrantIdRequest) returns (RPCCountResponse);
+	rpc countAllEnabledNodeClustersWithNodeGrantId (CountAllEnabledNodeClustersWithNodeGrantIdRequest) returns (RPCCountResponse);
 
 	// 查找使用某个认证的所有集群
-	rpc findAllEnabledNodeClustersWithGrantId (FindAllEnabledNodeClustersWithGrantIdRequest) returns (FindAllEnabledNodeClustersWithGrantIdResponse);
+	rpc findAllEnabledNodeClustersWithNodeGrantId (FindAllEnabledNodeClustersWithNodeGrantIdRequest) returns (FindAllEnabledNodeClustersWithNodeGrantIdResponse);
 
 	// 查找集群的DNS配置
 	rpc findEnabledNodeClusterDNS (FindEnabledNodeClusterDNSRequest) returns (FindEnabledNodeClusterDNSResponse);
@@ -219,16 +219,16 @@ message ExecuteNodeClusterHealthCheckResponse {
 }
 
 // 计算使用某个认证的集群数量
-message CountAllEnabledNodeClustersWithGrantIdRequest {
+message CountAllEnabledNodeClustersWithNodeGrantIdRequest {
 	int64 grantId = 1;
 }
 
 // 查找使用某个认证的所有集群
-message FindAllEnabledNodeClustersWithGrantIdRequest {
+message FindAllEnabledNodeClustersWithNodeGrantIdRequest {
 	int64 grantId = 1;
 }
 
-message FindAllEnabledNodeClustersWithGrantIdResponse {
+message FindAllEnabledNodeClustersWithNodeGrantIdResponse {
 	repeated NodeCluster nodeClusters = 1;
 }
 

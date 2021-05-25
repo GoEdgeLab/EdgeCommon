@@ -27,7 +27,7 @@ service NodeService {
 	rpc listEnabledNodesMatch (ListEnabledNodesMatchRequest) returns (ListEnabledNodesMatchResponse);
 
 	// 根据集群查找所有节点
-	rpc findAllEnabledNodesWithClusterId (FindAllEnabledNodesWithClusterIdRequest) returns (FindAllEnabledNodesWithClusterIdResponse);
+	rpc findAllEnabledNodesWithNodeClusterId (FindAllEnabledNodesWithNodeClusterIdRequest) returns (FindAllEnabledNodesWithNodeClusterIdResponse);
 
 	// 删除节点
 	rpc deleteNode (DeleteNodeRequest) returns (RPCSuccess);
@@ -69,22 +69,22 @@ service NodeService {
 	rpc updateNodeConnectedAPINodes (UpdateNodeConnectedAPINodesRequest) returns (RPCSuccess);
 
 	// 计算使用某个认证的节点数量
-	rpc countAllEnabledNodesWithGrantId (CountAllEnabledNodesWithGrantIdRequest) returns (RPCCountResponse);
+	rpc countAllEnabledNodesWithNodeGrantId (CountAllEnabledNodesWithNodeGrantIdRequest) returns (RPCCountResponse);
 
 	// 查找使用某个认证的所有节点
-	rpc findAllEnabledNodesWithGrantId (FindAllEnabledNodesWithGrantIdRequest) returns (FindAllEnabledNodesWithGrantIdResponse);
+	rpc findAllEnabledNodesWithNodeGrantId (FindAllEnabledNodesWithNodeGrantIdRequest) returns (FindAllEnabledNodesWithNodeGrantIdResponse);
 
 	// 计算没有安装的节点数量
-	rpc countAllNotInstalledNodesWithClusterId (CountAllNotInstalledNodesWithClusterIdRequest) returns (RPCCountResponse);
+	rpc countAllNotInstalledNodesWithNodeClusterId (CountAllNotInstalledNodesWithNodeClusterIdRequest) returns (RPCCountResponse);
 
 	// 列出所有未安装的节点
-	rpc findAllNotInstalledNodesWithClusterId (FindAllNotInstalledNodesWithClusterIdRequest) returns (FindAllNotInstalledNodesWithClusterIdResponse);
+	rpc findAllNotInstalledNodesWithNodeClusterId (FindAllNotInstalledNodesWithNodeClusterIdRequest) returns (FindAllNotInstalledNodesWithNodeClusterIdResponse);
 
 	// 计算需要升级的节点数量
-	rpc countAllUpgradeNodesWithClusterId (CountAllUpgradeNodesWithClusterIdRequest) returns (RPCCountResponse);
+	rpc countAllUpgradeNodesWithNodeClusterId (CountAllUpgradeNodesWithNodeClusterIdRequest) returns (RPCCountResponse);
 
 	// 列出所有需要升级的节点
-	rpc findAllUpgradeNodesWithClusterId (FindAllUpgradeNodesWithClusterIdRequest) returns (FindAllUpgradeNodesWithClusterIdResponse);
+	rpc findAllUpgradeNodesWithNodeClusterId (FindAllUpgradeNodesWithNodeClusterIdRequest) returns (FindAllUpgradeNodesWithNodeClusterIdResponse);
 
 	// 读取节点安装状态
 	rpc findNodeInstallStatus (FindNodeInstallStatusRequest) returns (FindNodeInstallStatusResponse);
@@ -96,7 +96,7 @@ service NodeService {
 	rpc countAllEnabledNodesWithNodeGroupId (CountAllEnabledNodesWithNodeGroupIdRequest) returns (RPCCountResponse);
 
 	// 取得某个集群下的所有节点DNS信息
-	rpc findAllEnabledNodesDNSWithClusterId (FindAllEnabledNodesDNSWithClusterIdRequest) returns (FindAllEnabledNodesDNSWithClusterIdResponse);
+	rpc findAllEnabledNodesDNSWithNodeClusterId (FindAllEnabledNodesDNSWithNodeClusterIdRequest) returns (FindAllEnabledNodesDNSWithNodeClusterIdResponse);
 
 	// 查找单个节点的域名解析信息
 	rpc findEnabledNodeDNS (FindEnabledNodeDNSRequest) returns (FindEnabledNodeDNSResponse);
@@ -121,11 +121,11 @@ service NodeService {
 message CreateNodeRequest {
 	string name = 1;
 	int64 nodeClusterId = 2;
-	NodeLogin Login = 3;
-	int64 groupId = 4;
+	NodeLogin nodeLogin = 3;
+	int64 nodeGroupId = 4;
 	int64 dnsDomainId = 5;
 	repeated string dnsRoutes = 6;
-	int64 regionId = 7;
+	int64 nodeRegionId = 7;
 }
 
 message CreateNodeResponse {
@@ -156,8 +156,8 @@ message ListEnabledNodesMatchRequest {
 	int32 installState = 4;
 	int32 activeState = 5;
 	string keyword = 6;
-	int64 groupId = 7;
-	int64 regionId = 8;
+	int64 nodeGroupId = 7;
+	int64 nodeRegionId = 8;
 }
 
 message ListEnabledNodesMatchResponse {
@@ -165,11 +165,11 @@ message ListEnabledNodesMatchResponse {
 }
 
 // 根据集群查找所有节点
-message FindAllEnabledNodesWithClusterIdRequest {
+message FindAllEnabledNodesWithNodeClusterIdRequest {
 	int64 nodeClusterId = 1;
 }
 
-message FindAllEnabledNodesWithClusterIdResponse {
+message FindAllEnabledNodesWithNodeClusterIdResponse {
 	repeated Node nodes = 1;
 }
 
@@ -183,13 +183,13 @@ message UpdateNodeRequest {
 	int64 nodeId = 1;
 	string name = 2;
 	int64 nodeClusterId = 3;
-	NodeLogin Login = 4;
+	NodeLogin nodeLogin = 4;
 	int32 maxCPU = 5;
 	bool isOn = 6;
-	int64 groupId = 7;
+	int64 nodeGroupId = 7;
 	int64 dnsDomainId = 8;
 	repeated string dnsRoutes = 9;
-	int64 regionId = 10;
+	int64 nodeRegionId = 10;
 	SizeCapacity maxCacheDiskCapacity = 11;
 	SizeCapacity maxCacheMemoryCapacity = 12;
 }
@@ -237,8 +237,8 @@ message CountAllEnabledNodesMatchRequest {
 	int32 installState = 2;
 	int32 activeState = 3;
 	string keyword = 4;
-	int64 groupId = 5;
-	int64 regionId = 6;
+	int64 nodeGroupId = 5;
+	int64 nodeRegionId = 6;
 }
 
 // 修改节点安装状态
@@ -290,44 +290,44 @@ message UpdateNodeConnectedAPINodesRequest {
 }
 
 // 计算使用某个认证的节点数量
-message CountAllEnabledNodesWithGrantIdRequest {
+message CountAllEnabledNodesWithNodeGrantIdRequest {
 	int64 grantId = 1;
 }
 
 // 查找使用某个认证的所有节点
-message FindAllEnabledNodesWithGrantIdRequest {
+message FindAllEnabledNodesWithNodeGrantIdRequest {
 	int64 grantId = 1;
 }
 
-message FindAllEnabledNodesWithGrantIdResponse {
+message FindAllEnabledNodesWithNodeGrantIdResponse {
 	repeated Node nodes = 1;
 }
 
 // 列出所有未安装的节点
-message FindAllNotInstalledNodesWithClusterIdRequest {
+message FindAllNotInstalledNodesWithNodeClusterIdRequest {
 	int64 nodeClusterId = 1;
 }
 
-message FindAllNotInstalledNodesWithClusterIdResponse {
+message FindAllNotInstalledNodesWithNodeClusterIdResponse {
 	repeated Node nodes = 1;
 }
 
 // 计算未安装的节点数量
-message CountAllNotInstalledNodesWithClusterIdRequest {
+message CountAllNotInstalledNodesWithNodeClusterIdRequest {
 	int64 nodeClusterId = 1;
 }
 
 // 计算需要升级的节点数量
-message CountAllUpgradeNodesWithClusterIdRequest {
+message CountAllUpgradeNodesWithNodeClusterIdRequest {
 	int64 nodeClusterId = 1;
 }
 
 // 列出所有需要升级的节点
-message FindAllUpgradeNodesWithClusterIdRequest {
+message FindAllUpgradeNodesWithNodeClusterIdRequest {
 	int64 nodeClusterId = 1;
 }
 
-message FindAllUpgradeNodesWithClusterIdResponse {
+message FindAllUpgradeNodesWithNodeClusterIdResponse {
 	repeated NodeUpgrade nodes = 1;
 
 	message NodeUpgrade {
@@ -351,7 +351,7 @@ message FindNodeInstallStatusResponse {
 // 修改节点登录信息
 message UpdateNodeLoginRequest {
 	int64 nodeId = 1;
-	NodeLogin Login = 2;
+	NodeLogin nodeLogin = 2;
 }
 
 // 计算某个节点分组内的节点数量
@@ -360,11 +360,11 @@ message CountAllEnabledNodesWithNodeGroupIdRequest {
 }
 
 // 取得某个集群下的所有节点
-message FindAllEnabledNodesDNSWithClusterIdRequest {
+message FindAllEnabledNodesDNSWithNodeClusterIdRequest {
 	int64 nodeClusterId = 1;
 }
 
-message FindAllEnabledNodesDNSWithClusterIdResponse {
+message FindAllEnabledNodesDNSWithNodeClusterIdResponse {
 	repeated NodeDNSInfo nodes = 1;
 }
 

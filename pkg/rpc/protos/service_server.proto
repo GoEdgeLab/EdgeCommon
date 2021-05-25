@@ -85,13 +85,13 @@ service ServerService {
 	rpc countAllEnabledServersWithNodeClusterId (CountAllEnabledServersWithNodeClusterIdRequest) returns (RPCCountResponse);
 
 	// 计算使用某个分组的服务数量
-	rpc countAllEnabledServersWithGroupId (CountAllEnabledServersWithGroupIdRequest) returns (RPCCountResponse);
+	rpc countAllEnabledServersWithServerGroupId (CountAllEnabledServersWithServerGroupIdRequest) returns (RPCCountResponse);
 
 	// 通知更新
 	rpc notifyServersChange (NotifyServersChangeRequest) returns (NotifyServersChangeResponse);
 
 	// 取得某个集群下的所有服务相关的DNS
-	rpc findAllEnabledServersDNSWithClusterId (FindAllEnabledServersDNSWithClusterIdRequest) returns (FindAllEnabledServersDNSWithClusterIdResponse);
+	rpc findAllEnabledServersDNSWithNodeClusterId (FindAllEnabledServersDNSWithNodeClusterIdRequest) returns (FindAllEnabledServersDNSWithNodeClusterIdResponse);
 
 	// 查找单个服务的DNS信息
 	rpc findEnabledServerDNS (FindEnabledServerDNSRequest) returns (FindEnabledServerDNSResponse);
@@ -136,7 +136,7 @@ message CreateServerRequest {
 	bytes udpJSON = 14;
 	int64 webId = 15;
 	bytes reverseProxyJSON = 16;
-	repeated int64 groupIds = 17;
+	repeated int64 serverGroupIds = 17;
 
 	int64 nodeClusterId = 30;
 	bytes includeNodesJSON = 31;
@@ -154,7 +154,7 @@ message UpdateServerBasicRequest {
 	string description = 3;
 	int64 nodeClusterId = 4;
 	bool isOn = 5;
-	repeated int64 groupIds = 6;
+	repeated int64 serverGroupIds = 6;
 }
 
 // 修改服务启是否启用
@@ -230,10 +230,10 @@ message UpdateServerNamesAuditingRequest {
 
 // 计算服务数量
 message CountAllEnabledServersMatchRequest {
-	int64 groupId = 1;
+	int64 serverGroupId = 1;
 	string keyword = 2;
 	int64 userId = 3;
-	int64 clusterId = 4;
+	int64 nodeClusterId = 4;
 	int32 auditingFlag = 5;
 	string protocolFamily = 6;
 }
@@ -242,10 +242,10 @@ message CountAllEnabledServersMatchRequest {
 message ListEnabledServersMatchRequest {
 	int64 offset = 1;
 	int64 size = 2;
-	int64 groupId = 3;
+	int64 serverGroupId = 3;
 	string keyword = 4;
 	int64 userId = 5;
-	int64 clusterId = 6;
+	int64 nodeClusterId = 6;
 	int32 auditingFlag = 7;
 	string protocolFamily = 8;
 }
@@ -325,8 +325,8 @@ message CountAllEnabledServersWithNodeClusterIdRequest {
 }
 
 // 计算使用某个分组的服务数量
-message CountAllEnabledServersWithGroupIdRequest {
-	int64 groupId = 1;
+message CountAllEnabledServersWithServerGroupIdRequest {
+	int64 serverGroupId = 1;
 }
 
 // 通知更新
@@ -339,11 +339,11 @@ message NotifyServersChangeResponse {
 }
 
 // 取得某个集群下的所有服务相关的DNS
-message FindAllEnabledServersDNSWithClusterIdRequest {
+message FindAllEnabledServersDNSWithNodeClusterIdRequest {
 	int64 nodeClusterId = 1;
 }
 
-message FindAllEnabledServersDNSWithClusterIdResponse {
+message FindAllEnabledServersDNSWithNodeClusterIdResponse {
 	repeated ServerDNSInfo servers = 1;
 }
 

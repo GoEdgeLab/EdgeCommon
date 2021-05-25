@@ -1,0 +1,60 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_node.proto";
+import "models/rpc_messages.proto";
+
+// 域名服务器节点服务
+service NSNodeService {
+	// 根据集群查找所有节点
+	rpc findAllEnabledNSNodesWithNSClusterId (FindAllEnabledNSNodesWithNSClusterIdRequest) returns (FindAllEnabledNSNodesWithNSClusterIdResponse);
+
+	// 节点数量
+	rpc countAllEnabledNSNodes (CountAllEnabledNSNodesRequest) returns (RPCCountResponse);
+
+	// 计算匹配的节点数量
+	rpc countAllEnabledNSNodesMatch (CountAllEnabledNSNodesMatchRequest) returns (RPCCountResponse);
+
+	// 列出单页节点
+	rpc listEnabledNSNodesMatch (ListEnabledNSNodesMatchRequest) returns (ListEnabledNSNodesMatchResponse);
+}
+
+// 根据集群查找所有节点
+message FindAllEnabledNSNodesWithNSClusterIdRequest {
+	int64 nsClusterId = 1;
+}
+
+message FindAllEnabledNSNodesWithNSClusterIdResponse {
+	repeated NSNode nsNodes = 1;
+}
+
+// 节点数量
+message CountAllEnabledNSNodesRequest {
+
+}
+
+// 计算匹配的节点数量
+message CountAllEnabledNSNodesMatchRequest {
+	int64 nsClusterId = 1;
+	//int32 installState = 2;
+	//int32 activeState = 3;
+	string keyword = 4;
+	//int64 nodeGroupId = 5;
+	//int64 nodeRegionId = 6;
+}
+
+// 列出单页节点
+message ListEnabledNSNodesMatchRequest {
+	int64 offset = 1;
+	int64 size = 2;
+	int64 nsClusterId = 3;
+	string keyword = 6;
+	//int64 nodeGroupId = 7;
+	//int64 nodeRegionId = 8;
+}
+
+message ListEnabledNSNodesMatchResponse {
+	repeated NSNode nsNodes = 1;
+}
