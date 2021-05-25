@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 域名服务集群
+message NSCluster {
+	int64 id = 1;
+	bool isOn = 2;
+	string name = 3;
+}

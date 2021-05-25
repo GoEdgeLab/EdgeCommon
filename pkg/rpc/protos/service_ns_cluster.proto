@@ -1,0 +1,84 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_cluster.proto";
+import "models/rpc_messages.proto";
+
+// 域名服务集群相关服务
+service NSClusterService {
+	// 创建集群
+	rpc createNSCluster (CreateNSClusterRequest) returns (CreateNSClusterResponse);
+
+	// 修改集群
+	rpc updateNSCluster (UpdateNSClusterRequest) returns (RPCSuccess);
+
+	// 删除集群
+	rpc deleteNSCluster (DeleteNSCluster) returns (RPCSuccess);
+
+	// 查找单个可用集群信息
+	rpc findEnabledNSCluster (FindEnabledNSClusterRequest) returns (FindEnabledNSClusterResponse);
+
+	// 计算所有可用集群的数量
+	rpc countAllEnabledNSClusters (CountAllEnabledNSClustersRequest) returns (RPCCountResponse);
+
+	// 列出单页可用集群
+	rpc listEnabledNSClusters (ListEnabledNSClustersRequest) returns (ListEnabledNSClustersResponse);
+
+	// 查找所有可用集群
+	rpc findAllEnabledNSClusters (FindAllEnabledNSClustersRequest) returns (FindAllEnabledNSClustersResponse);
+}
+
+// 创建集群
+message CreateNSClusterRequest {
+	string name = 1;
+}
+
+message CreateNSClusterResponse {
+	int64 nsClusterId = 1;
+}
+
+// 修改集群
+message UpdateNSClusterRequest {
+	int64 nsClusterId = 1;
+	string name = 2;
+	bool isOn = 3;
+}
+
+// 删除集群
+message DeleteNSCluster {
+	int64 nsClusterId = 1;
+}
+
+// 查找单个可用集群信息
+message FindEnabledNSClusterRequest {
+	int64 nsClusterId = 1;
+}
+
+message FindEnabledNSClusterResponse {
+	NSCluster nsCluster = 1;
+}
+
+// 计算所有可用集群的数量
+message CountAllEnabledNSClustersRequest {
+}
+
+// 列出单页可用集群
+message ListEnabledNSClustersRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListEnabledNSClustersResponse {
+	repeated NSCluster nsClusters = 1;
+}
+
+// 查找所有可用集群
+message FindAllEnabledNSClustersRequest {
+
+}
+
+message FindAllEnabledNSClustersResponse {
+	repeated NSCluster nsClusters = 1;
+}
