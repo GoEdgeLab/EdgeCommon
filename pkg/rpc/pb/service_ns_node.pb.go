@@ -124,7 +124,7 @@ func (x *FindAllEnabledNSNodesWithNSClusterIdResponse) GetNsNodes() []*NSNode {
 	return nil
 }
 
-// 节点数量
+// 所有可用的节点数量
 type CountAllEnabledNSNodesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -169,10 +169,10 @@ type CountAllEnabledNSNodesMatchRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NsClusterId int64 `protobuf:"varint,1,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
-	//int32 installState = 2;
-	//int32 activeState = 3;
-	Keyword string `protobuf:"bytes,4,opt,name=keyword,proto3" json:"keyword,omitempty"`
+	NsClusterId  int64  `protobuf:"varint,1,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
+	InstallState int32  `protobuf:"varint,2,opt,name=installState,proto3" json:"installState,omitempty"`
+	ActiveState  int32  `protobuf:"varint,3,opt,name=activeState,proto3" json:"activeState,omitempty"`
+	Keyword      string `protobuf:"bytes,4,opt,name=keyword,proto3" json:"keyword,omitempty"`
 }
 
 func (x *CountAllEnabledNSNodesMatchRequest) Reset() {
@@ -214,6 +214,20 @@ func (x *CountAllEnabledNSNodesMatchRequest) GetNsClusterId() int64 {
 	return 0
 }
 
+func (x *CountAllEnabledNSNodesMatchRequest) GetInstallState() int32 {
+	if x != nil {
+		return x.InstallState
+	}
+	return 0
+}
+
+func (x *CountAllEnabledNSNodesMatchRequest) GetActiveState() int32 {
+	if x != nil {
+		return x.ActiveState
+	}
+	return 0
+}
+
 func (x *CountAllEnabledNSNodesMatchRequest) GetKeyword() string {
 	if x != nil {
 		return x.Keyword
@@ -227,10 +241,12 @@ type ListEnabledNSNodesMatchRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Offset      int64  `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
-	Size        int64  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
-	NsClusterId int64  `protobuf:"varint,3,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
-	Keyword     string `protobuf:"bytes,6,opt,name=keyword,proto3" json:"keyword,omitempty"`
+	Offset       int64  `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Size         int64  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	NsClusterId  int64  `protobuf:"varint,3,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
+	InstallState int32  `protobuf:"varint,4,opt,name=installState,proto3" json:"installState,omitempty"`
+	ActiveState  int32  `protobuf:"varint,5,opt,name=activeState,proto3" json:"activeState,omitempty"`
+	Keyword      string `protobuf:"bytes,6,opt,name=keyword,proto3" json:"keyword,omitempty"`
 }
 
 func (x *ListEnabledNSNodesMatchRequest) Reset() {
@@ -282,6 +298,20 @@ func (x *ListEnabledNSNodesMatchRequest) GetSize() int64 {
 func (x *ListEnabledNSNodesMatchRequest) GetNsClusterId() int64 {
 	if x != nil {
 		return x.NsClusterId
+	}
+	return 0
+}
+
+func (x *ListEnabledNSNodesMatchRequest) GetInstallState() int32 {
+	if x != nil {
+		return x.InstallState
+	}
+	return 0
+}
+
+func (x *ListEnabledNSNodesMatchRequest) GetActiveState() int32 {
+	if x != nil {
+		return x.ActiveState
 	}
 	return 0
 }
@@ -340,47 +370,714 @@ func (x *ListEnabledNSNodesMatchResponse) GetNsNodes() []*NSNode {
 	return nil
 }
 
+// 计算需要升级的节点数量
+type CountAllUpgradeNSNodesWithNSClusterIdRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsClusterId int64 `protobuf:"varint,1,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
+}
+
+func (x *CountAllUpgradeNSNodesWithNSClusterIdRequest) Reset() {
+	*x = CountAllUpgradeNSNodesWithNSClusterIdRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CountAllUpgradeNSNodesWithNSClusterIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountAllUpgradeNSNodesWithNSClusterIdRequest) ProtoMessage() {}
+
+func (x *CountAllUpgradeNSNodesWithNSClusterIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountAllUpgradeNSNodesWithNSClusterIdRequest.ProtoReflect.Descriptor instead.
+func (*CountAllUpgradeNSNodesWithNSClusterIdRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *CountAllUpgradeNSNodesWithNSClusterIdRequest) GetNsClusterId() int64 {
+	if x != nil {
+		return x.NsClusterId
+	}
+	return 0
+}
+
+// 创建节点
+type CreateNSNodeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name          string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	NodeClusterId int64  `protobuf:"varint,2,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"`
+}
+
+func (x *CreateNSNodeRequest) Reset() {
+	*x = CreateNSNodeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateNSNodeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateNSNodeRequest) ProtoMessage() {}
+
+func (x *CreateNSNodeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateNSNodeRequest.ProtoReflect.Descriptor instead.
+func (*CreateNSNodeRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *CreateNSNodeRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateNSNodeRequest) GetNodeClusterId() int64 {
+	if x != nil {
+		return x.NodeClusterId
+	}
+	return 0
+}
+
+type CreateNSNodeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsNodeId int64 `protobuf:"varint,1,opt,name=nsNodeId,proto3" json:"nsNodeId,omitempty"`
+}
+
+func (x *CreateNSNodeResponse) Reset() {
+	*x = CreateNSNodeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateNSNodeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateNSNodeResponse) ProtoMessage() {}
+
+func (x *CreateNSNodeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateNSNodeResponse.ProtoReflect.Descriptor instead.
+func (*CreateNSNodeResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *CreateNSNodeResponse) GetNsNodeId() int64 {
+	if x != nil {
+		return x.NsNodeId
+	}
+	return 0
+}
+
+// 删除节点
+type DeleteNSNodeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsNodeId int64 `protobuf:"varint,1,opt,name=nsNodeId,proto3" json:"nsNodeId,omitempty"`
+}
+
+func (x *DeleteNSNodeRequest) Reset() {
+	*x = DeleteNSNodeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteNSNodeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteNSNodeRequest) ProtoMessage() {}
+
+func (x *DeleteNSNodeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteNSNodeRequest.ProtoReflect.Descriptor instead.
+func (*DeleteNSNodeRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *DeleteNSNodeRequest) GetNsNodeId() int64 {
+	if x != nil {
+		return x.NsNodeId
+	}
+	return 0
+}
+
+// 获取单个节点信息
+type FindEnabledNSNodeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsNodeId int64 `protobuf:"varint,1,opt,name=nsNodeId,proto3" json:"nsNodeId,omitempty"`
+}
+
+func (x *FindEnabledNSNodeRequest) Reset() {
+	*x = FindEnabledNSNodeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledNSNodeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledNSNodeRequest) ProtoMessage() {}
+
+func (x *FindEnabledNSNodeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledNSNodeRequest.ProtoReflect.Descriptor instead.
+func (*FindEnabledNSNodeRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *FindEnabledNSNodeRequest) GetNsNodeId() int64 {
+	if x != nil {
+		return x.NsNodeId
+	}
+	return 0
+}
+
+type FindEnabledNSNodeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsNode *NSNode `protobuf:"bytes,1,opt,name=nsNode,proto3" json:"nsNode,omitempty"`
+}
+
+func (x *FindEnabledNSNodeResponse) Reset() {
+	*x = FindEnabledNSNodeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledNSNodeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledNSNodeResponse) ProtoMessage() {}
+
+func (x *FindEnabledNSNodeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledNSNodeResponse.ProtoReflect.Descriptor instead.
+func (*FindEnabledNSNodeResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *FindEnabledNSNodeResponse) GetNsNode() *NSNode {
+	if x != nil {
+		return x.NsNode
+	}
+	return nil
+}
+
+// 修改节点
+type UpdateNSNodeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsNodeId    int64  `protobuf:"varint,1,opt,name=nsNodeId,proto3" json:"nsNodeId,omitempty"`
+	Name        string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	NsClusterId int64  `protobuf:"varint,3,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
+	IsOn        bool   `protobuf:"varint,6,opt,name=isOn,proto3" json:"isOn,omitempty"`
+}
+
+func (x *UpdateNSNodeRequest) Reset() {
+	*x = UpdateNSNodeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateNSNodeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateNSNodeRequest) ProtoMessage() {}
+
+func (x *UpdateNSNodeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateNSNodeRequest.ProtoReflect.Descriptor instead.
+func (*UpdateNSNodeRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *UpdateNSNodeRequest) GetNsNodeId() int64 {
+	if x != nil {
+		return x.NsNodeId
+	}
+	return 0
+}
+
+func (x *UpdateNSNodeRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateNSNodeRequest) GetNsClusterId() int64 {
+	if x != nil {
+		return x.NsClusterId
+	}
+	return 0
+}
+
+func (x *UpdateNSNodeRequest) GetIsOn() bool {
+	if x != nil {
+		return x.IsOn
+	}
+	return false
+}
+
+// 安装节点
+type InstallNSNodeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsNodeId int64 `protobuf:"varint,1,opt,name=nsNodeId,proto3" json:"nsNodeId,omitempty"`
+}
+
+func (x *InstallNSNodeRequest) Reset() {
+	*x = InstallNSNodeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InstallNSNodeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InstallNSNodeRequest) ProtoMessage() {}
+
+func (x *InstallNSNodeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InstallNSNodeRequest.ProtoReflect.Descriptor instead.
+func (*InstallNSNodeRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *InstallNSNodeRequest) GetNsNodeId() int64 {
+	if x != nil {
+		return x.NsNodeId
+	}
+	return 0
+}
+
+type InstallNSNodeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *InstallNSNodeResponse) Reset() {
+	*x = InstallNSNodeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InstallNSNodeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InstallNSNodeResponse) ProtoMessage() {}
+
+func (x *InstallNSNodeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InstallNSNodeResponse.ProtoReflect.Descriptor instead.
+func (*InstallNSNodeResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{14}
+}
+
+// 读取节点安装状态
+type FindNSNodeInstallStatusRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsNodeId int64 `protobuf:"varint,1,opt,name=nsNodeId,proto3" json:"nsNodeId,omitempty"`
+}
+
+func (x *FindNSNodeInstallStatusRequest) Reset() {
+	*x = FindNSNodeInstallStatusRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindNSNodeInstallStatusRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindNSNodeInstallStatusRequest) ProtoMessage() {}
+
+func (x *FindNSNodeInstallStatusRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindNSNodeInstallStatusRequest.ProtoReflect.Descriptor instead.
+func (*FindNSNodeInstallStatusRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *FindNSNodeInstallStatusRequest) GetNsNodeId() int64 {
+	if x != nil {
+		return x.NsNodeId
+	}
+	return 0
+}
+
+type FindNSNodeInstallStatusResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	InstallStatus *NodeInstallStatus `protobuf:"bytes,1,opt,name=installStatus,proto3" json:"installStatus,omitempty"`
+}
+
+func (x *FindNSNodeInstallStatusResponse) Reset() {
+	*x = FindNSNodeInstallStatusResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindNSNodeInstallStatusResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindNSNodeInstallStatusResponse) ProtoMessage() {}
+
+func (x *FindNSNodeInstallStatusResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindNSNodeInstallStatusResponse.ProtoReflect.Descriptor instead.
+func (*FindNSNodeInstallStatusResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *FindNSNodeInstallStatusResponse) GetInstallStatus() *NodeInstallStatus {
+	if x != nil {
+		return x.InstallStatus
+	}
+	return nil
+}
+
+// 修改节点安装状态
+type UpdateNSNodeIsInstalledRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsNodeId    int64 `protobuf:"varint,1,opt,name=nsNodeId,proto3" json:"nsNodeId,omitempty"`
+	IsInstalled bool  `protobuf:"varint,2,opt,name=isInstalled,proto3" json:"isInstalled,omitempty"`
+}
+
+func (x *UpdateNSNodeIsInstalledRequest) Reset() {
+	*x = UpdateNSNodeIsInstalledRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateNSNodeIsInstalledRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateNSNodeIsInstalledRequest) ProtoMessage() {}
+
+func (x *UpdateNSNodeIsInstalledRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateNSNodeIsInstalledRequest.ProtoReflect.Descriptor instead.
+func (*UpdateNSNodeIsInstalledRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *UpdateNSNodeIsInstalledRequest) GetNsNodeId() int64 {
+	if x != nil {
+		return x.NsNodeId
+	}
+	return 0
+}
+
+func (x *UpdateNSNodeIsInstalledRequest) GetIsInstalled() bool {
+	if x != nil {
+		return x.IsInstalled
+	}
+	return false
+}
+
 var File_service_ns_node_proto protoreflect.FileDescriptor
 
 var file_service_ns_node_proto_rawDesc = []byte{
 	0x0a, 0x15, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x6e, 0x73, 0x5f, 0x6e, 0x6f, 0x64,
 	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x1a, 0x1a, 0x6d, 0x6f, 0x64,
 	0x65, 0x6c, 0x73, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x6e, 0x73, 0x5f, 0x6e, 0x6f, 0x64,
-	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2f,
-	0x72, 0x70, 0x63, 0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x22, 0x4f, 0x0a, 0x2b, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61,
-	0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x4e,
-	0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
-	0x72, 0x49, 0x64, 0x22, 0x54, 0x0a, 0x2c, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e,
-	0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68,
-	0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x24, 0x0a, 0x07, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x18, 0x01,
-	0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65,
-	0x52, 0x07, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x22, 0x1f, 0x0a, 0x1d, 0x43, 0x6f, 0x75,
-	0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f,
-	0x64, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x60, 0x0a, 0x22, 0x43, 0x6f,
-	0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e,
-	0x6f, 0x64, 0x65, 0x73, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
-	0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x04, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x88, 0x01, 0x0a,
-	0x1e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f,
-	0x64, 0x65, 0x73, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
-	0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
-	0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x6e,
-	0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03,
-	0x52, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x18, 0x0a,
-	0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
-	0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x47, 0x0a, 0x1f, 0x4c, 0x69, 0x73, 0x74, 0x45,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x26, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2f,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x6e, 0x6f, 0x64, 0x65, 0x5f, 0x69, 0x6e, 0x73, 0x74, 0x61,
+	0x6c, 0x6c, 0x5f, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a,
+	0x19, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2f, 0x72, 0x70, 0x63, 0x5f, 0x6d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x4f, 0x0a, 0x2b, 0x46, 0x69,
+	0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f,
+	0x64, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b,
+	0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x22, 0x54, 0x0a, 0x2c, 0x46,
+	0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e,
+	0x6f, 0x64, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x24, 0x0a, 0x07, 0x6e,
+	0x73, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x70,
+	0x62, 0x2e, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x07, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65,
+	0x73, 0x22, 0x1f, 0x0a, 0x1d, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61,
+	0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x22, 0xa6, 0x01, 0x0a, 0x22, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45,
 	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x4d, 0x61, 0x74,
-	0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x24, 0x0a, 0x07, 0x6e, 0x73,
-	0x4e, 0x6f, 0x64, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x70, 0x62,
-	0x2e, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x07, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x73,
-	0x32, 0xaf, 0x03, 0x0a, 0x0d, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b,
+	0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x22, 0x0a, 0x0c, 0x69,
+	0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x0c, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12,
+	0x20, 0x0a, 0x0b, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x53, 0x74, 0x61, 0x74, 0x65, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x05, 0x52, 0x0b, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x53, 0x74, 0x61, 0x74,
+	0x65, 0x12, 0x18, 0x0a, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x04, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x22, 0xce, 0x01, 0x0a, 0x1e,
+	0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64,
+	0x65, 0x73, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16,
+	0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06,
+	0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73,
+	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x22, 0x0a, 0x0c,
+	0x69, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x65, 0x18, 0x04, 0x20, 0x01,
+	0x28, 0x05, 0x52, 0x0c, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x65,
+	0x12, 0x20, 0x0a, 0x0b, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x53, 0x74, 0x61, 0x74, 0x65, 0x18,
+	0x05, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0b, 0x61, 0x63, 0x74, 0x69, 0x76, 0x65, 0x53, 0x74, 0x61,
+	0x74, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x06, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x47, 0x0a, 0x1f,
+	0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64,
+	0x65, 0x73, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x24, 0x0a, 0x07, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x0a, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x07, 0x6e, 0x73,
+	0x4e, 0x6f, 0x64, 0x65, 0x73, 0x22, 0x50, 0x0a, 0x2c, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c,
+	0x6c, 0x55, 0x70, 0x67, 0x72, 0x61, 0x64, 0x65, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x57,
+	0x69, 0x74, 0x68, 0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x6e, 0x73, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x22, 0x4f, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12,
+	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x12, 0x24, 0x0a, 0x0d, 0x6e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d, 0x6e, 0x6f, 0x64, 0x65, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x22, 0x32, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x22, 0x31, 0x0a, 0x13,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x22,
+	0x36, 0x0a, 0x18, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53,
+	0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x6e,
+	0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x6e,
+	0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x22, 0x3f, 0x0a, 0x19, 0x46, 0x69, 0x6e, 0x64, 0x45,
+	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65,
+	0x52, 0x06, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x22, 0x7b, 0x0a, 0x13, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x1a, 0x0a, 0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12,
+	0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
+	0x64, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x08, 0x52,
+	0x04, 0x69, 0x73, 0x4f, 0x6e, 0x22, 0x32, 0x0a, 0x14, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c,
+	0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a,
+	0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x22, 0x17, 0x0a, 0x15, 0x49, 0x6e, 0x73,
+	0x74, 0x61, 0x6c, 0x6c, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x3c, 0x0a, 0x1e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65,
+	0x49, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64,
+	0x22, 0x5e, 0x0a, 0x1f, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x0d, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x53, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x70, 0x62, 0x2e,
+	0x4e, 0x6f, 0x64, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x52, 0x0d, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x22, 0x5e, 0x0a, 0x1e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65,
+	0x49, 0x73, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x12, 0x20,
+	0x0a, 0x0b, 0x69, 0x73, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x65, 0x64, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x08, 0x52, 0x0b, 0x69, 0x73, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x65, 0x64,
+	0x32, 0xa0, 0x08, 0x0a, 0x0d, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69,
 	0x63, 0x65, 0x12, 0x89, 0x01, 0x0a, 0x24, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e,
 	0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68,
 	0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x2f, 0x2e, 0x70, 0x62,
@@ -407,8 +1104,47 @@ var file_service_ns_node_proto_rawDesc = []byte{
 	0x73, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e,
 	0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53,
 	0x4e, 0x6f, 0x64, 0x65, 0x73, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x73, 0x65, 0x12, 0x6f, 0x0a, 0x25, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x55, 0x70,
+	0x67, 0x72, 0x61, 0x64, 0x65, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68,
+	0x4e, 0x53, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x30, 0x2e, 0x70, 0x62,
+	0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x55, 0x70, 0x67, 0x72, 0x61, 0x64, 0x65,
+	0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x4e, 0x53, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e,
+	0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x41, 0x0a, 0x0c, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x4e,
+	0x6f, 0x64, 0x65, 0x12, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e,
+	0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x70,
+	0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x37, 0x0a, 0x0c, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x12, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12,
+	0x50, 0x0a, 0x11, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53,
+	0x4e, 0x6f, 0x64, 0x65, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e,
+	0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x37, 0x0a, 0x0c, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x4e, 0x6f, 0x64,
+	0x65, 0x12, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x4e,
+	0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e,
+	0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x44, 0x0a, 0x0d, 0x69, 0x6e,
+	0x73, 0x74, 0x61, 0x6c, 0x6c, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x12, 0x18, 0x2e, 0x70, 0x62,
+	0x2e, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6c, 0x6c, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x62, 0x0a, 0x17, 0x66, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x22, 0x2e, 0x70, 0x62,
+	0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61,
+	0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x23, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x49,
+	0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4d, 0x0a, 0x17, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53,
+	0x4e, 0x6f, 0x64, 0x65, 0x49, 0x73, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x65, 0x64, 0x12,
+	0x22, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x4e, 0x6f, 0x64,
+	0x65, 0x49, 0x73, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -423,7 +1159,7 @@ func file_service_ns_node_proto_rawDescGZIP() []byte {
 	return file_service_ns_node_proto_rawDescData
 }
 
-var file_service_ns_node_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_service_ns_node_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_service_ns_node_proto_goTypes = []interface{}{
 	(*FindAllEnabledNSNodesWithNSClusterIdRequest)(nil),  // 0: pb.FindAllEnabledNSNodesWithNSClusterIdRequest
 	(*FindAllEnabledNSNodesWithNSClusterIdResponse)(nil), // 1: pb.FindAllEnabledNSNodesWithNSClusterIdResponse
@@ -431,25 +1167,57 @@ var file_service_ns_node_proto_goTypes = []interface{}{
 	(*CountAllEnabledNSNodesMatchRequest)(nil),           // 3: pb.CountAllEnabledNSNodesMatchRequest
 	(*ListEnabledNSNodesMatchRequest)(nil),               // 4: pb.ListEnabledNSNodesMatchRequest
 	(*ListEnabledNSNodesMatchResponse)(nil),              // 5: pb.ListEnabledNSNodesMatchResponse
-	(*NSNode)(nil),                                       // 6: pb.NSNode
-	(*RPCCountResponse)(nil),                             // 7: pb.RPCCountResponse
+	(*CountAllUpgradeNSNodesWithNSClusterIdRequest)(nil), // 6: pb.CountAllUpgradeNSNodesWithNSClusterIdRequest
+	(*CreateNSNodeRequest)(nil),                          // 7: pb.CreateNSNodeRequest
+	(*CreateNSNodeResponse)(nil),                         // 8: pb.CreateNSNodeResponse
+	(*DeleteNSNodeRequest)(nil),                          // 9: pb.DeleteNSNodeRequest
+	(*FindEnabledNSNodeRequest)(nil),                     // 10: pb.FindEnabledNSNodeRequest
+	(*FindEnabledNSNodeResponse)(nil),                    // 11: pb.FindEnabledNSNodeResponse
+	(*UpdateNSNodeRequest)(nil),                          // 12: pb.UpdateNSNodeRequest
+	(*InstallNSNodeRequest)(nil),                         // 13: pb.InstallNSNodeRequest
+	(*InstallNSNodeResponse)(nil),                        // 14: pb.InstallNSNodeResponse
+	(*FindNSNodeInstallStatusRequest)(nil),               // 15: pb.FindNSNodeInstallStatusRequest
+	(*FindNSNodeInstallStatusResponse)(nil),              // 16: pb.FindNSNodeInstallStatusResponse
+	(*UpdateNSNodeIsInstalledRequest)(nil),               // 17: pb.UpdateNSNodeIsInstalledRequest
+	(*NSNode)(nil),                                       // 18: pb.NSNode
+	(*NodeInstallStatus)(nil),                            // 19: pb.NodeInstallStatus
+	(*RPCCountResponse)(nil),                             // 20: pb.RPCCountResponse
+	(*RPCSuccess)(nil),                                   // 21: pb.RPCSuccess
 }
 var file_service_ns_node_proto_depIdxs = []int32{
-	6, // 0: pb.FindAllEnabledNSNodesWithNSClusterIdResponse.nsNodes:type_name -> pb.NSNode
-	6, // 1: pb.ListEnabledNSNodesMatchResponse.nsNodes:type_name -> pb.NSNode
-	0, // 2: pb.NSNodeService.findAllEnabledNSNodesWithNSClusterId:input_type -> pb.FindAllEnabledNSNodesWithNSClusterIdRequest
-	2, // 3: pb.NSNodeService.countAllEnabledNSNodes:input_type -> pb.CountAllEnabledNSNodesRequest
-	3, // 4: pb.NSNodeService.countAllEnabledNSNodesMatch:input_type -> pb.CountAllEnabledNSNodesMatchRequest
-	4, // 5: pb.NSNodeService.listEnabledNSNodesMatch:input_type -> pb.ListEnabledNSNodesMatchRequest
-	1, // 6: pb.NSNodeService.findAllEnabledNSNodesWithNSClusterId:output_type -> pb.FindAllEnabledNSNodesWithNSClusterIdResponse
-	7, // 7: pb.NSNodeService.countAllEnabledNSNodes:output_type -> pb.RPCCountResponse
-	7, // 8: pb.NSNodeService.countAllEnabledNSNodesMatch:output_type -> pb.RPCCountResponse
-	5, // 9: pb.NSNodeService.listEnabledNSNodesMatch:output_type -> pb.ListEnabledNSNodesMatchResponse
-	6, // [6:10] is the sub-list for method output_type
-	2, // [2:6] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	18, // 0: pb.FindAllEnabledNSNodesWithNSClusterIdResponse.nsNodes:type_name -> pb.NSNode
+	18, // 1: pb.ListEnabledNSNodesMatchResponse.nsNodes:type_name -> pb.NSNode
+	18, // 2: pb.FindEnabledNSNodeResponse.nsNode:type_name -> pb.NSNode
+	19, // 3: pb.FindNSNodeInstallStatusResponse.installStatus:type_name -> pb.NodeInstallStatus
+	0,  // 4: pb.NSNodeService.findAllEnabledNSNodesWithNSClusterId:input_type -> pb.FindAllEnabledNSNodesWithNSClusterIdRequest
+	2,  // 5: pb.NSNodeService.countAllEnabledNSNodes:input_type -> pb.CountAllEnabledNSNodesRequest
+	3,  // 6: pb.NSNodeService.countAllEnabledNSNodesMatch:input_type -> pb.CountAllEnabledNSNodesMatchRequest
+	4,  // 7: pb.NSNodeService.listEnabledNSNodesMatch:input_type -> pb.ListEnabledNSNodesMatchRequest
+	6,  // 8: pb.NSNodeService.countAllUpgradeNSNodesWithNSClusterId:input_type -> pb.CountAllUpgradeNSNodesWithNSClusterIdRequest
+	7,  // 9: pb.NSNodeService.createNSNode:input_type -> pb.CreateNSNodeRequest
+	9,  // 10: pb.NSNodeService.deleteNSNode:input_type -> pb.DeleteNSNodeRequest
+	10, // 11: pb.NSNodeService.findEnabledNSNode:input_type -> pb.FindEnabledNSNodeRequest
+	12, // 12: pb.NSNodeService.updateNSNode:input_type -> pb.UpdateNSNodeRequest
+	13, // 13: pb.NSNodeService.installNSNode:input_type -> pb.InstallNSNodeRequest
+	15, // 14: pb.NSNodeService.findNSNodeInstallStatus:input_type -> pb.FindNSNodeInstallStatusRequest
+	17, // 15: pb.NSNodeService.updateNSNodeIsInstalled:input_type -> pb.UpdateNSNodeIsInstalledRequest
+	1,  // 16: pb.NSNodeService.findAllEnabledNSNodesWithNSClusterId:output_type -> pb.FindAllEnabledNSNodesWithNSClusterIdResponse
+	20, // 17: pb.NSNodeService.countAllEnabledNSNodes:output_type -> pb.RPCCountResponse
+	20, // 18: pb.NSNodeService.countAllEnabledNSNodesMatch:output_type -> pb.RPCCountResponse
+	5,  // 19: pb.NSNodeService.listEnabledNSNodesMatch:output_type -> pb.ListEnabledNSNodesMatchResponse
+	20, // 20: pb.NSNodeService.countAllUpgradeNSNodesWithNSClusterId:output_type -> pb.RPCCountResponse
+	8,  // 21: pb.NSNodeService.createNSNode:output_type -> pb.CreateNSNodeResponse
+	21, // 22: pb.NSNodeService.deleteNSNode:output_type -> pb.RPCSuccess
+	11, // 23: pb.NSNodeService.findEnabledNSNode:output_type -> pb.FindEnabledNSNodeResponse
+	21, // 24: pb.NSNodeService.updateNSNode:output_type -> pb.RPCSuccess
+	14, // 25: pb.NSNodeService.installNSNode:output_type -> pb.InstallNSNodeResponse
+	16, // 26: pb.NSNodeService.findNSNodeInstallStatus:output_type -> pb.FindNSNodeInstallStatusResponse
+	21, // 27: pb.NSNodeService.updateNSNodeIsInstalled:output_type -> pb.RPCSuccess
+	16, // [16:28] is the sub-list for method output_type
+	4,  // [4:16] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_service_ns_node_proto_init() }
@@ -458,6 +1226,7 @@ func file_service_ns_node_proto_init() {
 		return
 	}
 	file_models_model_ns_node_proto_init()
+	file_models_model_node_install_status_proto_init()
 	file_models_rpc_messages_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_service_ns_node_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
@@ -532,6 +1301,150 @@ func file_service_ns_node_proto_init() {
 				return nil
 			}
 		}
+		file_service_ns_node_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CountAllUpgradeNSNodesWithNSClusterIdRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_node_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateNSNodeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_node_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateNSNodeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_node_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteNSNodeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_node_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledNSNodeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_node_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledNSNodeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_node_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateNSNodeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_node_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InstallNSNodeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_node_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InstallNSNodeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_node_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindNSNodeInstallStatusRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_node_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindNSNodeInstallStatusResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_node_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateNSNodeIsInstalledRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -539,7 +1452,7 @@ func file_service_ns_node_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_ns_node_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -567,12 +1480,28 @@ const _ = grpc.SupportPackageIsVersion6
 type NSNodeServiceClient interface {
 	// 根据集群查找所有节点
 	FindAllEnabledNSNodesWithNSClusterId(ctx context.Context, in *FindAllEnabledNSNodesWithNSClusterIdRequest, opts ...grpc.CallOption) (*FindAllEnabledNSNodesWithNSClusterIdResponse, error)
-	// 节点数量
+	// 所有可用的节点数量
 	CountAllEnabledNSNodes(ctx context.Context, in *CountAllEnabledNSNodesRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 计算匹配的节点数量
 	CountAllEnabledNSNodesMatch(ctx context.Context, in *CountAllEnabledNSNodesMatchRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 列出单页节点
 	ListEnabledNSNodesMatch(ctx context.Context, in *ListEnabledNSNodesMatchRequest, opts ...grpc.CallOption) (*ListEnabledNSNodesMatchResponse, error)
+	// 计算需要升级的节点数量
+	CountAllUpgradeNSNodesWithNSClusterId(ctx context.Context, in *CountAllUpgradeNSNodesWithNSClusterIdRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
+	// 创建节点
+	CreateNSNode(ctx context.Context, in *CreateNSNodeRequest, opts ...grpc.CallOption) (*CreateNSNodeResponse, error)
+	// 删除节点
+	DeleteNSNode(ctx context.Context, in *DeleteNSNodeRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 获取单个节点信息
+	FindEnabledNSNode(ctx context.Context, in *FindEnabledNSNodeRequest, opts ...grpc.CallOption) (*FindEnabledNSNodeResponse, error)
+	// 修改节点
+	UpdateNSNode(ctx context.Context, in *UpdateNSNodeRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 安装节点
+	InstallNSNode(ctx context.Context, in *InstallNSNodeRequest, opts ...grpc.CallOption) (*InstallNSNodeResponse, error)
+	// 读取节点安装状态
+	FindNSNodeInstallStatus(ctx context.Context, in *FindNSNodeInstallStatusRequest, opts ...grpc.CallOption) (*FindNSNodeInstallStatusResponse, error)
+	// 修改节点安装状态
+	UpdateNSNodeIsInstalled(ctx context.Context, in *UpdateNSNodeIsInstalledRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
 
 type nSNodeServiceClient struct {
@@ -619,16 +1548,104 @@ func (c *nSNodeServiceClient) ListEnabledNSNodesMatch(ctx context.Context, in *L
 	return out, nil
 }
 
+func (c *nSNodeServiceClient) CountAllUpgradeNSNodesWithNSClusterId(ctx context.Context, in *CountAllUpgradeNSNodesWithNSClusterIdRequest, opts ...grpc.CallOption) (*RPCCountResponse, error) {
+	out := new(RPCCountResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSNodeService/countAllUpgradeNSNodesWithNSClusterId", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSNodeServiceClient) CreateNSNode(ctx context.Context, in *CreateNSNodeRequest, opts ...grpc.CallOption) (*CreateNSNodeResponse, error) {
+	out := new(CreateNSNodeResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSNodeService/createNSNode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSNodeServiceClient) DeleteNSNode(ctx context.Context, in *DeleteNSNodeRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.NSNodeService/deleteNSNode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSNodeServiceClient) FindEnabledNSNode(ctx context.Context, in *FindEnabledNSNodeRequest, opts ...grpc.CallOption) (*FindEnabledNSNodeResponse, error) {
+	out := new(FindEnabledNSNodeResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSNodeService/findEnabledNSNode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSNodeServiceClient) UpdateNSNode(ctx context.Context, in *UpdateNSNodeRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.NSNodeService/updateNSNode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSNodeServiceClient) InstallNSNode(ctx context.Context, in *InstallNSNodeRequest, opts ...grpc.CallOption) (*InstallNSNodeResponse, error) {
+	out := new(InstallNSNodeResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSNodeService/installNSNode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSNodeServiceClient) FindNSNodeInstallStatus(ctx context.Context, in *FindNSNodeInstallStatusRequest, opts ...grpc.CallOption) (*FindNSNodeInstallStatusResponse, error) {
+	out := new(FindNSNodeInstallStatusResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSNodeService/findNSNodeInstallStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSNodeServiceClient) UpdateNSNodeIsInstalled(ctx context.Context, in *UpdateNSNodeIsInstalledRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.NSNodeService/updateNSNodeIsInstalled", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NSNodeServiceServer is the server API for NSNodeService service.
 type NSNodeServiceServer interface {
 	// 根据集群查找所有节点
 	FindAllEnabledNSNodesWithNSClusterId(context.Context, *FindAllEnabledNSNodesWithNSClusterIdRequest) (*FindAllEnabledNSNodesWithNSClusterIdResponse, error)
-	// 节点数量
+	// 所有可用的节点数量
 	CountAllEnabledNSNodes(context.Context, *CountAllEnabledNSNodesRequest) (*RPCCountResponse, error)
 	// 计算匹配的节点数量
 	CountAllEnabledNSNodesMatch(context.Context, *CountAllEnabledNSNodesMatchRequest) (*RPCCountResponse, error)
 	// 列出单页节点
 	ListEnabledNSNodesMatch(context.Context, *ListEnabledNSNodesMatchRequest) (*ListEnabledNSNodesMatchResponse, error)
+	// 计算需要升级的节点数量
+	CountAllUpgradeNSNodesWithNSClusterId(context.Context, *CountAllUpgradeNSNodesWithNSClusterIdRequest) (*RPCCountResponse, error)
+	// 创建节点
+	CreateNSNode(context.Context, *CreateNSNodeRequest) (*CreateNSNodeResponse, error)
+	// 删除节点
+	DeleteNSNode(context.Context, *DeleteNSNodeRequest) (*RPCSuccess, error)
+	// 获取单个节点信息
+	FindEnabledNSNode(context.Context, *FindEnabledNSNodeRequest) (*FindEnabledNSNodeResponse, error)
+	// 修改节点
+	UpdateNSNode(context.Context, *UpdateNSNodeRequest) (*RPCSuccess, error)
+	// 安装节点
+	InstallNSNode(context.Context, *InstallNSNodeRequest) (*InstallNSNodeResponse, error)
+	// 读取节点安装状态
+	FindNSNodeInstallStatus(context.Context, *FindNSNodeInstallStatusRequest) (*FindNSNodeInstallStatusResponse, error)
+	// 修改节点安装状态
+	UpdateNSNodeIsInstalled(context.Context, *UpdateNSNodeIsInstalledRequest) (*RPCSuccess, error)
 }
 
 // UnimplementedNSNodeServiceServer can be embedded to have forward compatible implementations.
@@ -646,6 +1663,30 @@ func (*UnimplementedNSNodeServiceServer) CountAllEnabledNSNodesMatch(context.Con
 }
 func (*UnimplementedNSNodeServiceServer) ListEnabledNSNodesMatch(context.Context, *ListEnabledNSNodesMatchRequest) (*ListEnabledNSNodesMatchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListEnabledNSNodesMatch not implemented")
+}
+func (*UnimplementedNSNodeServiceServer) CountAllUpgradeNSNodesWithNSClusterId(context.Context, *CountAllUpgradeNSNodesWithNSClusterIdRequest) (*RPCCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountAllUpgradeNSNodesWithNSClusterId not implemented")
+}
+func (*UnimplementedNSNodeServiceServer) CreateNSNode(context.Context, *CreateNSNodeRequest) (*CreateNSNodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateNSNode not implemented")
+}
+func (*UnimplementedNSNodeServiceServer) DeleteNSNode(context.Context, *DeleteNSNodeRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteNSNode not implemented")
+}
+func (*UnimplementedNSNodeServiceServer) FindEnabledNSNode(context.Context, *FindEnabledNSNodeRequest) (*FindEnabledNSNodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledNSNode not implemented")
+}
+func (*UnimplementedNSNodeServiceServer) UpdateNSNode(context.Context, *UpdateNSNodeRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateNSNode not implemented")
+}
+func (*UnimplementedNSNodeServiceServer) InstallNSNode(context.Context, *InstallNSNodeRequest) (*InstallNSNodeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InstallNSNode not implemented")
+}
+func (*UnimplementedNSNodeServiceServer) FindNSNodeInstallStatus(context.Context, *FindNSNodeInstallStatusRequest) (*FindNSNodeInstallStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindNSNodeInstallStatus not implemented")
+}
+func (*UnimplementedNSNodeServiceServer) UpdateNSNodeIsInstalled(context.Context, *UpdateNSNodeIsInstalledRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateNSNodeIsInstalled not implemented")
 }
 
 func RegisterNSNodeServiceServer(s *grpc.Server, srv NSNodeServiceServer) {
@@ -724,6 +1765,150 @@ func _NSNodeService_ListEnabledNSNodesMatch_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NSNodeService_CountAllUpgradeNSNodesWithNSClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountAllUpgradeNSNodesWithNSClusterIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSNodeServiceServer).CountAllUpgradeNSNodesWithNSClusterId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSNodeService/CountAllUpgradeNSNodesWithNSClusterId",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSNodeServiceServer).CountAllUpgradeNSNodesWithNSClusterId(ctx, req.(*CountAllUpgradeNSNodesWithNSClusterIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSNodeService_CreateNSNode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateNSNodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSNodeServiceServer).CreateNSNode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSNodeService/CreateNSNode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSNodeServiceServer).CreateNSNode(ctx, req.(*CreateNSNodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSNodeService_DeleteNSNode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteNSNodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSNodeServiceServer).DeleteNSNode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSNodeService/DeleteNSNode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSNodeServiceServer).DeleteNSNode(ctx, req.(*DeleteNSNodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSNodeService_FindEnabledNSNode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledNSNodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSNodeServiceServer).FindEnabledNSNode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSNodeService/FindEnabledNSNode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSNodeServiceServer).FindEnabledNSNode(ctx, req.(*FindEnabledNSNodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSNodeService_UpdateNSNode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateNSNodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSNodeServiceServer).UpdateNSNode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSNodeService/UpdateNSNode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSNodeServiceServer).UpdateNSNode(ctx, req.(*UpdateNSNodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSNodeService_InstallNSNode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InstallNSNodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSNodeServiceServer).InstallNSNode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSNodeService/InstallNSNode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSNodeServiceServer).InstallNSNode(ctx, req.(*InstallNSNodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSNodeService_FindNSNodeInstallStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindNSNodeInstallStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSNodeServiceServer).FindNSNodeInstallStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSNodeService/FindNSNodeInstallStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSNodeServiceServer).FindNSNodeInstallStatus(ctx, req.(*FindNSNodeInstallStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSNodeService_UpdateNSNodeIsInstalled_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateNSNodeIsInstalledRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSNodeServiceServer).UpdateNSNodeIsInstalled(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSNodeService/UpdateNSNodeIsInstalled",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSNodeServiceServer).UpdateNSNodeIsInstalled(ctx, req.(*UpdateNSNodeIsInstalledRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _NSNodeService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.NSNodeService",
 	HandlerType: (*NSNodeServiceServer)(nil),
@@ -743,6 +1928,38 @@ var _NSNodeService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "listEnabledNSNodesMatch",
 			Handler:    _NSNodeService_ListEnabledNSNodesMatch_Handler,
+		},
+		{
+			MethodName: "countAllUpgradeNSNodesWithNSClusterId",
+			Handler:    _NSNodeService_CountAllUpgradeNSNodesWithNSClusterId_Handler,
+		},
+		{
+			MethodName: "createNSNode",
+			Handler:    _NSNodeService_CreateNSNode_Handler,
+		},
+		{
+			MethodName: "deleteNSNode",
+			Handler:    _NSNodeService_DeleteNSNode_Handler,
+		},
+		{
+			MethodName: "findEnabledNSNode",
+			Handler:    _NSNodeService_FindEnabledNSNode_Handler,
+		},
+		{
+			MethodName: "updateNSNode",
+			Handler:    _NSNodeService_UpdateNSNode_Handler,
+		},
+		{
+			MethodName: "installNSNode",
+			Handler:    _NSNodeService_InstallNSNode_Handler,
+		},
+		{
+			MethodName: "findNSNodeInstallStatus",
+			Handler:    _NSNodeService_FindNSNodeInstallStatus_Handler,
+		},
+		{
+			MethodName: "updateNSNodeIsInstalled",
+			Handler:    _NSNodeService_UpdateNSNodeIsInstalled_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

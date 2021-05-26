@@ -32,9 +32,10 @@ service NodeIPAddressService {
 // 创建IP地址
 message CreateNodeIPAddressRequest {
 	int64 nodeId = 1;
-	string name = 2;
-	string ip = 3;
-	bool canAccess = 4;
+	string role = 2;
+	string name = 3;
+	string ip = 4;
+	bool canAccess = 5;
 }
 
 message CreateNodeIPAddressResponse {
@@ -67,6 +68,7 @@ message DisableNodeIPAddressResponse {
 // 禁用节点的所有IP地址
 message DisableAllIPAddressesWithNodeIdRequest {
 	int64 nodeId = 1;
+	string role = 2;
 }
 
 message DisableAllIPAddressesWithNodeIdResponse {
@@ -85,6 +87,7 @@ message FindEnabledNodeIPAddressResponse {
 // 查找节点的所有地址
 message FindAllEnabledIPAddressesWithNodeIdRequest {
 	int64 nodeId = 1;
+	string role = 2;
 }
 
 message FindAllEnabledIPAddressesWithNodeIdResponse {

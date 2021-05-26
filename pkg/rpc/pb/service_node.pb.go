@@ -283,7 +283,7 @@ func (x *RegisterClusterNodeResponse) GetEndpoints() []string {
 	return nil
 }
 
-// 节点数量
+// 所有可用的节点数量
 type CountAllEnabledNodesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -752,7 +752,7 @@ func (x *UpdateNodeRequest) GetMaxCacheMemoryCapacity() *SizeCapacity {
 	return nil
 }
 
-// 查找节点
+// 获取单个节点信息
 type FindEnabledNodeRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -4478,7 +4478,7 @@ type NodeServiceClient interface {
 	CreateNode(ctx context.Context, in *CreateNodeRequest, opts ...grpc.CallOption) (*CreateNodeResponse, error)
 	// 注册集群节点
 	RegisterClusterNode(ctx context.Context, in *RegisterClusterNodeRequest, opts ...grpc.CallOption) (*RegisterClusterNodeResponse, error)
-	// 节点数量
+	// 所有可用的节点数量
 	CountAllEnabledNodes(ctx context.Context, in *CountAllEnabledNodesRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 计算匹配的节点数量
 	CountAllEnabledNodesMatch(ctx context.Context, in *CountAllEnabledNodesMatchRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
@@ -4490,7 +4490,7 @@ type NodeServiceClient interface {
 	DeleteNode(ctx context.Context, in *DeleteNodeRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 修改节点
 	UpdateNode(ctx context.Context, in *UpdateNodeRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
-	// 查看单个节点
+	// 获取单个节点信息
 	FindEnabledNode(ctx context.Context, in *FindEnabledNodeRequest, opts ...grpc.CallOption) (*FindEnabledNodeResponse, error)
 	// 获取当前节点配置
 	FindCurrentNodeConfig(ctx context.Context, in *FindCurrentNodeConfigRequest, opts ...grpc.CallOption) (*FindCurrentNodeConfigResponse, error)
@@ -4897,7 +4897,7 @@ type NodeServiceServer interface {
 	CreateNode(context.Context, *CreateNodeRequest) (*CreateNodeResponse, error)
 	// 注册集群节点
 	RegisterClusterNode(context.Context, *RegisterClusterNodeRequest) (*RegisterClusterNodeResponse, error)
-	// 节点数量
+	// 所有可用的节点数量
 	CountAllEnabledNodes(context.Context, *CountAllEnabledNodesRequest) (*RPCCountResponse, error)
 	// 计算匹配的节点数量
 	CountAllEnabledNodesMatch(context.Context, *CountAllEnabledNodesMatchRequest) (*RPCCountResponse, error)
@@ -4909,7 +4909,7 @@ type NodeServiceServer interface {
 	DeleteNode(context.Context, *DeleteNodeRequest) (*RPCSuccess, error)
 	// 修改节点
 	UpdateNode(context.Context, *UpdateNodeRequest) (*RPCSuccess, error)
-	// 查看单个节点
+	// 获取单个节点信息
 	FindEnabledNode(context.Context, *FindEnabledNodeRequest) (*FindEnabledNodeResponse, error)
 	// 获取当前节点配置
 	FindCurrentNodeConfig(context.Context, *FindCurrentNodeConfigRequest) (*FindCurrentNodeConfigResponse, error)

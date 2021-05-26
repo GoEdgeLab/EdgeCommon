@@ -17,7 +17,7 @@ service NodeService {
 	// 注册集群节点
 	rpc registerClusterNode (RegisterClusterNodeRequest) returns (RegisterClusterNodeResponse);
 
-	// 节点数量
+	// 所有可用的节点数量
 	rpc countAllEnabledNodes (CountAllEnabledNodesRequest) returns (RPCCountResponse);
 
 	// 计算匹配的节点数量
@@ -35,7 +35,7 @@ service NodeService {
 	// 修改节点
 	rpc updateNode (UpdateNodeRequest) returns (RPCSuccess);
 
-	// 查看单个节点
+	// 获取单个节点信息
 	rpc findEnabledNode (FindEnabledNodeRequest) returns (FindEnabledNodeResponse);
 
 	// 获取当前节点配置
@@ -143,7 +143,7 @@ message RegisterClusterNodeResponse {
 	repeated string endpoints = 3;
 }
 
-// 节点数量
+// 所有可用的节点数量
 message CountAllEnabledNodesRequest {
 
 }
@@ -194,7 +194,7 @@ message UpdateNodeRequest {
 	SizeCapacity maxCacheMemoryCapacity = 12;
 }
 
-// 查找节点
+// 获取单个节点信息
 message FindEnabledNodeRequest {
 	int64 nodeId = 1;
 }

@@ -4,6 +4,7 @@ option go_package = "./pb";
 package pb;
 
 import "models/model_ns_cluster.proto";
+import "models/model_node_install_status.proto";
 
 // 域名服务节点
 message NSNode {
@@ -12,10 +13,14 @@ message NSNode {
 	bool isOn = 3;
 	string uniqueId = 4;
 	string secret = 5;
+	bytes statusJSON = 6;
+	bool isInstalled = 7;
+	string installDir = 9;
+	bool isUp = 8;
 
 	NSCluster nsCluster = 32;
 	//NodeLogin login = 33;
-	//NodeInstallStatus installStatus = 34;
+	NodeInstallStatus installStatus = 34;
 	//repeated NodeIPAddress ipAddresses = 35;
 	//NodeGroup nodeGroup = 36;
 	//NodeRegion region = 37;
