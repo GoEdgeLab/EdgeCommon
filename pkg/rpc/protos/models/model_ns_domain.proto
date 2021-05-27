@@ -1,0 +1,18 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_cluster.proto";
+import "models/model_user.proto";
+
+// DNS域名
+message NSDomain {
+	int64 id = 1;
+	string name = 2;
+	bool isOn = 3;
+	int64 createdAt = 4;
+
+	NSCluster nsCluster = 30;
+	User user = 31;
+}

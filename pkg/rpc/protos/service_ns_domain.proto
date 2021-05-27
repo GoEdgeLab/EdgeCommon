@@ -1,0 +1,82 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_domain.proto";
+import "models/rpc_messages.proto";
+
+// 域名相关服务
+service NSDomainService {
+	// 创建域名
+	rpc createNSDomain (CreateNSDomainRequest) returns (CreateNSDomainResponse);
+
+	// 修改域名
+	rpc updateNSDomain (UpdateNSDomainRequest) returns (RPCSuccess);
+
+	// 删除域名
+	rpc deleteNSDomain (DeleteNSDomainRequest) returns (RPCSuccess);
+
+	// 查找单个域名
+	rpc findEnabledNSDomain (FindEnabledNSDomainRequest) returns (FindEnabledNSDomainResponse);
+
+	// 计算域名数量
+	rpc countAllEnabledNSDomains (CountAllEnabledNSDomainsRequest) returns (RPCCountResponse);
+
+	// 列出单页域名
+	rpc listEnabledNSDomains (ListEnabledNSDomainsRequest) returns (ListEnabledNSDomainsResponse);
+}
+
+// 创建域名
+message CreateNSDomainRequest {
+	int64 nsClusterId = 1;
+	int64 userId = 2;
+	string name = 3;
+}
+
+message CreateNSDomainResponse {
+	int64 nsDomainId = 1;
+}
+
+// 修改域名
+message UpdateNSDomainRequest {
+	int64 nsDomainId = 1;
+	int64 nsClusterId = 2;
+	int64 userId = 3;
+	string name = 4;
+	bool isOn = 5;
+}
+
+// 删除域名
+message DeleteNSDomainRequest {
+	int64 nsDomainId = 1;
+}
+
+// 查找单个域名
+message FindEnabledNSDomainRequest {
+	int64 nsDomainId = 1;
+}
+
+message FindEnabledNSDomainResponse {
+	NSDomain nsDomain = 1;
+}
+
+// 计算域名数量
+message CountAllEnabledNSDomainsRequest {
+	int64 userId = 1;
+	int64 nsClusterId = 2;
+	string keyword = 3;
+}
+
+// 列出单页域名
+message ListEnabledNSDomainsRequest {
+	int64 userId = 1;
+	int64 nsClusterId = 2;
+	string keyword = 3;
+	int64 offset = 4;
+	int64 size = 5;
+}
+
+message ListEnabledNSDomainsResponse {
+	repeated NSDomain nsDomains = 1;
+}

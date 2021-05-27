@@ -99,6 +99,8 @@ message CountAllEnabledUsersRequest {
 // 列出单页用户
 message ListEnabledUsersRequest {
 	string keyword = 1;
+	int64 offset = 2;
+	int64 size = 3;
 }
 
 message ListEnabledUsersResponse {
