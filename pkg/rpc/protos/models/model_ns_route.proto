@@ -3,9 +3,16 @@ option go_package = "./pb";
 
 package pb;
 
+import "models/model_ns_cluster.proto";
+import "models/model_ns_domain.proto";
+
 // 线路
 message NSRoute {
 	int64 id = 1;
 	bool isOn = 2;
 	string name = 3;
+	bytes rangesJSON = 4;
+
+	NSCluster nsCluster = 30;
+	NSDomain nsDomain = 31;
 }

@@ -1,0 +1,78 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_route.proto";
+import "models/rpc_messages.proto";
+
+// 线路相关服务
+service NSRouteService {
+	// 创建线路
+	rpc createNSRoute (CreateNSRouteRequest) returns (CreateNSRouteResponse);
+
+	// 修改线路
+	rpc updateNSRoute (UpdateNSRouteRequest) returns (RPCSuccess);
+
+	// 删除线路
+	rpc deleteNSRoute (DeleteNSRouteRequest) returns (RPCSuccess);
+
+	// 获取单个路线信息
+	rpc findEnabledNSRoute (FindEnabledNSRouteRequest) returns (FindEnabledNSRouteResponse);
+
+	// 读取所有线路
+	rpc findAllEnabledNSRoutes (FindAllEnabledNSRoutesRequest) returns (FindAllEnabledNSRoutesResponse);
+
+	// 设置线路排序
+	rpc updateNSRouteOrders (UpdateNSRouteOrdersRequest) returns (RPCSuccess);
+}
+
+// 创建线路
+message CreateNSRouteRequest {
+	int64 nsClusterId = 1;
+	int64 nsDomainId = 2;
+	int64 userId = 3;
+	string name = 4;
+	bytes rangesJSON = 5;
+}
+
+message CreateNSRouteResponse {
+	int64 nsRouteId = 1;
+}
+
+// 修改线路
+message UpdateNSRouteRequest {
+	int64 nsRouteId = 1;
+	string name = 2;
+	bytes rangesJSON = 3;
+}
+
+// 删除线路
+message DeleteNSRouteRequest {
+	int64 nsRouteId = 1;
+}
+
+// 获取单个路线信息
+message FindEnabledNSRouteRequest {
+	int64 nsRouteId = 1;
+}
+
+message FindEnabledNSRouteResponse {
+	NSRoute nsRoute = 1;
+}
+
+// 读取所有线路
+message FindAllEnabledNSRoutesRequest {
+	int64 nsClusterId = 1;
+	int64 nsDomainId = 2;
+	int64 userId = 3;
+}
+
+message FindAllEnabledNSRoutesResponse {
+	repeated NSRoute nsRoutes = 1;
+}
+
+// 设置线路排序
+message UpdateNSRouteOrdersRequest {
+	repeated int64 nsRouteIds = 1;
+}
