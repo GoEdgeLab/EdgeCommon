@@ -25,6 +25,9 @@ service NSRouteService {
 
 	// 设置线路排序
 	rpc updateNSRouteOrders (UpdateNSRouteOrdersRequest) returns (RPCSuccess);
+
+	// 根据版本列出一组线路
+	rpc listNSRoutesAfterVersion (ListNSRoutesAfterVersionRequest) returns (ListNSRoutesAfterVersionResponse);
 }
 
 // 创建线路
@@ -75,4 +78,14 @@ message FindAllEnabledNSRoutesResponse {
 // 设置线路排序
 message UpdateNSRouteOrdersRequest {
 	repeated int64 nsRouteIds = 1;
+}
+
+// 根据版本列出一组线路
+message ListNSRoutesAfterVersionRequest {
+	int64 version = 1;
+	int64 size = 2;
+}
+
+message ListNSRoutesAfterVersionResponse {
+	repeated NSRoute nsRoutes = 1;
 }

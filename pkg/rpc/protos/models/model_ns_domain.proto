@@ -12,6 +12,8 @@ message NSDomain {
 	string name = 2;
 	bool isOn = 3;
 	int64 createdAt = 4;
+	bool isDeleted = 5;
+	int64 version = 6;
 
 	NSCluster nsCluster = 30;
 	User user = 31;

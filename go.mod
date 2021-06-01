@@ -3,6 +3,7 @@ module github.com/TeaOSLab/EdgeCommon
 go 1.15
 
 require (
+	github.com/cespare/xxhash/v2 v2.1.1
 	github.com/go-yaml/yaml v2.1.0+incompatible
 	github.com/golang/protobuf v1.4.2
 	github.com/iwind/TeaGo v0.0.0-20210411134150-ddf57e240c2f

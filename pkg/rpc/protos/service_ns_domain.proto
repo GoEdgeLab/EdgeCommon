@@ -25,6 +25,9 @@ service NSDomainService {
 
 	// 列出单页域名
 	rpc listEnabledNSDomains (ListEnabledNSDomainsRequest) returns (ListEnabledNSDomainsResponse);
+
+	// 根据版本列出一组域名
+	rpc listNSDomainsAfterVersion (ListNSDomainsAfterVersionRequest) returns (ListNSDomainsAfterVersionResponse);
 }
 
 // 创建域名
@@ -39,12 +42,12 @@ message CreateNSDomainResponse {
 }
 
 // 修改域名
+// 注意：名称不能修改
 message UpdateNSDomainRequest {
 	int64 nsDomainId = 1;
 	int64 nsClusterId = 2;
 	int64 userId = 3;
-	string name = 4;
-	bool isOn = 5;
+	bool isOn = 4;
 }
 
 // 删除域名
@@ -78,5 +81,15 @@ message ListEnabledNSDomainsRequest {
 }
 
 message ListEnabledNSDomainsResponse {
+	repeated NSDomain nsDomains = 1;
+}
+
+// 根据版本列出一组域名
+message ListNSDomainsAfterVersionRequest {
+	int64 version = 1;
+	int64 size = 2;
+}
+
+message ListNSDomainsAfterVersionResponse {
 	repeated NSDomain nsDomains = 1;
 }

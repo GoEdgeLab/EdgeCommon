@@ -25,6 +25,9 @@ service NSRecordService {
 
 	// 查询单个记录信息
 	rpc findEnabledNSRecord (FindEnabledNSRecordRequest) returns (FindEnabledNSRecordResponse);
+
+	// 根据版本列出一组记录
+	rpc listNSRecordsAfterVersion (ListNSRecordsAfterVersionRequest) returns (ListNSRecordsAfterVersionResponse);
 }
 
 // 创建记录
@@ -87,4 +90,14 @@ message FindEnabledNSRecordRequest {
 
 message FindEnabledNSRecordResponse {
 	NSRecord nsRecord = 1;
+}
+
+// 根据版本列出一组记录
+message ListNSRecordsAfterVersionRequest {
+	int64 version = 1;
+	int64 size = 2;
+}
+
+message ListNSRecordsAfterVersionResponse {
+	repeated NSRecord nsRecords = 1;
 }

@@ -44,6 +44,12 @@ service NSNodeService {
 
 	// 修改节点安装状态
 	rpc updateNSNodeIsInstalled (UpdateNSNodeIsInstalledRequest) returns (RPCSuccess);
+
+	// 更新节点状态
+	rpc updateNSNodeStatus (UpdateNSNodeStatusRequest) returns (RPCSuccess);
+
+	// 获取当前节点信息
+	rpc findCurrentNSNode (FindCurrentNSNodeRequest) returns (FindCurrentNSNodeResponse);
 }
 
 // 根据集群查找所有节点
@@ -145,4 +151,19 @@ message FindNSNodeInstallStatusResponse {
 message UpdateNSNodeIsInstalledRequest {
 	int64 nsNodeId = 1;
 	bool isInstalled = 2;
+}
+
+// 更新认证状态
+message UpdateNSNodeStatusRequest {
+	int64 nodeId = 1;
+	bytes statusJSON = 2;
+}
+
+// 获取当前节点信息
+message FindCurrentNSNodeRequest {
+
+}
+
+message FindCurrentNSNodeResponse {
+	NSNode nsNode = 1;
 }

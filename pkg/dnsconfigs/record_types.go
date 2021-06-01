@@ -48,7 +48,7 @@ func FindAllRecordTypeDefinitions() []*RecordTypeDefinition {
 		},
 		{
 			Type:        RecordTypeTXT,
-			Description: "文本长度限制512，通常做SPF记录（反垃圾邮件）",
+			Description: "文本长度限制512，通常做SPF记录或者校验域名所有者",
 		},
 		{
 			Type:        RecordTypeCAA,

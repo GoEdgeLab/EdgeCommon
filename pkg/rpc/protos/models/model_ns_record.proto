@@ -16,6 +16,9 @@ message NSRecord {
 	int32 ttl = 6;
 	int32 weight = 7;
 	int64 createdAt = 8;
+	bool isDeleted = 9;
+	int64 version = 10;
+	bool isOn = 11;
 
 	NSDomain nsDomain = 30;
 	repeated NSRoute nsRoutes = 31;
