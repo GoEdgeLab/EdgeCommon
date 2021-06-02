@@ -108,6 +108,7 @@ message FindAllDNSProviderTypesResponse {
 message DNSProviderType {
 	string name = 1;
 	string code = 2;
+	string description = 3;
 }
 
 // 取得某个类型的所有服务商
