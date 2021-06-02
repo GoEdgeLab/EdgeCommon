@@ -214,6 +214,7 @@ message ComposeAdminDashboardResponse {
 	UpgradeInfo monitorNodeUpgradeInfo = 34;
 	UpgradeInfo userNodeUpgradeInfo = 35;
 	UpgradeInfo authorityNodeUpgradeInfo = 36;
+	UpgradeInfo nsNodeUpgradeInfo = 37;
 
 	message DailyTrafficStat {
 		string day = 1;

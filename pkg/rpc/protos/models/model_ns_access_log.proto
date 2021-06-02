@@ -1,0 +1,23 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 域名服务访问记录
+message NSAccessLog {
+	int64 nsNodeId = 1;
+	int64 nsDomainId = 2;
+	int64 nsRecordId = 3;
+	repeated int64 nsRouteIds = 4;
+	string remoteAddr = 5;
+	string questionName = 6;
+	string questionType = 7;
+	string recordName = 8;
+	string recordType = 9;
+	string recordValue = 10;
+	string networking = 11;
+	string serverAddr = 12;
+	int64 timestamp = 13;
+	string requestId = 14;
+	string timeLocal = 15;
+}

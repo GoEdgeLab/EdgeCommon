@@ -1,0 +1,53 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_access_log.proto";
+
+// 访问日志相关服务
+service NSAccessLogService {
+	// 创建访问日志
+	rpc createNSAccessLogs (CreateNSAccessLogsRequest) returns (CreateNSAccessLogsResponse);
+
+	// 列出单页访问日志
+	rpc listNSAccessLogs (ListNSAccessLogsRequest) returns (ListNSAccessLogsResponse);
+
+	// 查找单个日志
+	rpc findNSAccessLog (FindNSAccessLogRequest) returns (FindNSAccessLogResponse);
+}
+
+// 创建访问日志
+message CreateNSAccessLogsRequest {
+	repeated NSAccessLog nsAccessLogs = 1;
+}
+
+message CreateNSAccessLogsResponse {
+
+}
+
+// 列出往前的单页访问日志
+message ListNSAccessLogsRequest {
+	string requestId = 1; // 上一页请求ID，可选
+	int64 nsNodeId = 2; // 节点ID
+	int64 nsDomainId = 3; // 域名ID
+	int64 nsRecordId = 4; // 记录ID
+	int64 size = 5; // 单页条数
+	string day = 6; // 日期，格式YYYYMMDD
+	bool reverse = 7; // 是否反向查找，可选
+}
+
+message ListNSAccessLogsResponse {
+	repeated NSAccessLog nsAccessLogs = 1;
+	string requestId = 2;
+	bool hasMore = 3;
+}
+
+// 查找单个日志
+message FindNSAccessLogRequest {
+	string requestId = 1;
+}
+
+message FindNSAccessLogResponse {
+	NSAccessLog nsAccessLog = 1;
+}

@@ -19,7 +19,7 @@ service HTTPAccessLogService {
 
 // 创建访问日志
 message CreateHTTPAccessLogsRequest {
-	repeated HTTPAccessLog accessLogs = 1;
+	repeated HTTPAccessLog httpAccessLogs = 1;
 }
 
 message CreateHTTPAccessLogsResponse {
@@ -42,7 +42,7 @@ message ListHTTPAccessLogsRequest {
 }
 
 message ListHTTPAccessLogsResponse {
-	repeated HTTPAccessLog accessLogs = 1;
+	repeated HTTPAccessLog httpAccessLogs = 1;
 	string requestId = 2;
 	bool hasMore = 3;
 }
@@ -53,5 +53,5 @@ message FindHTTPAccessLogRequest {
 }
 
 message FindHTTPAccessLogResponse {
-	HTTPAccessLog accessLog = 1;
+	HTTPAccessLog httpAccessLog = 1;
 }

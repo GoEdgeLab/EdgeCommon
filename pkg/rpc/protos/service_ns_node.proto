@@ -49,7 +49,7 @@ service NSNodeService {
 	rpc updateNSNodeStatus (UpdateNSNodeStatusRequest) returns (RPCSuccess);
 
 	// 获取当前节点信息
-	rpc findCurrentNSNode (FindCurrentNSNodeRequest) returns (FindCurrentNSNodeResponse);
+	rpc findCurrentNSNodeConfig (FindCurrentNSNodeConfigRequest) returns (FindCurrentNSNodeConfigResponse);
 }
 
 // 根据集群查找所有节点
@@ -160,10 +160,10 @@ message UpdateNSNodeStatusRequest {
 }
 
 // 获取当前节点信息
-message FindCurrentNSNodeRequest {
+message FindCurrentNSNodeConfigRequest {
 
 }
 
-message FindCurrentNSNodeResponse {
-	NSNode nsNode = 1;
+message FindCurrentNSNodeConfigResponse {
+	bytes nsNodeJSON = 1;
 }

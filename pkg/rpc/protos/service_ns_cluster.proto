@@ -14,6 +14,12 @@ service NSClusterService {
 	// 修改集群
 	rpc updateNSCluster (UpdateNSClusterRequest) returns (RPCSuccess);
 
+	// 查找集群访问日志配置
+	rpc findNSClusterAccessLog (FindNSClusterAccessLogRequest) returns (FindNSClusterAccessLogResponse);
+
+	// 修改集群访问日志配置
+	rpc updateNSClusterAccessLog (UpdateNSClusterAccessLogRequest) returns (RPCSuccess);
+
 	// 删除集群
 	rpc deleteNSCluster (DeleteNSCluster) returns (RPCSuccess);
 
@@ -44,6 +50,21 @@ message UpdateNSClusterRequest {
 	int64 nsClusterId = 1;
 	string name = 2;
 	bool isOn = 3;
+}
+
+// 查找集群访问日志配置
+message FindNSClusterAccessLogRequest {
+	int64 nsClusterId = 1;
+}
+
+message FindNSClusterAccessLogResponse {
+	bytes AccessLogJSON = 1;
+}
+
+// 修改集群访问日志配置
+message UpdateNSClusterAccessLogRequest {
+	int64 nsClusterId = 1;
+	bytes accessLogJSON = 2;
 }
 
 // 删除集群
