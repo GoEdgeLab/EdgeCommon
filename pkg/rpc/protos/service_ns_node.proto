@@ -50,6 +50,9 @@ service NSNodeService {
 
 	// 获取当前节点信息
 	rpc findCurrentNSNodeConfig (FindCurrentNSNodeConfigRequest) returns (FindCurrentNSNodeConfigResponse);
+
+	// 检查新版本
+	rpc checkNSNodeLatestVersion (CheckNSNodeLatestVersionRequest) returns (CheckNSNodeLatestVersionResponse);
 }
 
 // 根据集群查找所有节点
@@ -166,4 +169,16 @@ message FindCurrentNSNodeConfigRequest {
 
 message FindCurrentNSNodeConfigResponse {
 	bytes nsNodeJSON = 1;
+}
+
+// 检查新版本
+message CheckNSNodeLatestVersionRequest {
+	string os = 1;
+	string arch = 2;
+	string currentVersion = 3;
+}
+
+message CheckNSNodeLatestVersionResponse {
+	bool hasNewVersion = 1;
+	string newVersion = 2;
 }
