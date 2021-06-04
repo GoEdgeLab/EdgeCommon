@@ -39,6 +39,7 @@ message ListHTTPAccessLogsRequest {
 	int64 firewallRuleSetId = 9; // WAF规则集ID，可选
 	int64 userId = 10; // 用户ID
 	bool hasFirewallPolicy = 11; // 是否有WAF策略
+	string keyword = 12; // 关键词
 }
 
 message ListHTTPAccessLogsResponse {
