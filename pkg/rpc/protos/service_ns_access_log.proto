@@ -35,6 +35,7 @@ message ListNSAccessLogsRequest {
 	int64 size = 5; // 单页条数
 	string day = 6; // 日期，格式YYYYMMDD
 	bool reverse = 7; // 是否反向查找，可选
+	string keyword = 8;
 }
 
 message ListNSAccessLogsResponse {
