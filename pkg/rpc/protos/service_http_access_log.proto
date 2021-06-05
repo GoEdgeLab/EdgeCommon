@@ -43,7 +43,8 @@ message ListHTTPAccessLogsRequest {
 }
 
 message ListHTTPAccessLogsResponse {
-	repeated HTTPAccessLog httpAccessLogs = 1;
+	repeated HTTPAccessLog accessLogs = 1 [deprecated = true];
+	repeated HTTPAccessLog httpAccessLogs = 4;
 	string requestId = 2;
 	bool hasMore = 3;
 }
