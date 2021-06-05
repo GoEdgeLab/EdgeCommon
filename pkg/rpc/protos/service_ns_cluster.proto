@@ -39,6 +39,7 @@ service NSClusterService {
 // 创建集群
 message CreateNSClusterRequest {
 	string name = 1;
+	bytes accessLogJSON = 2;
 }
 
 message CreateNSClusterResponse {
