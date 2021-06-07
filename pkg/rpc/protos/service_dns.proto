@@ -10,6 +10,7 @@ service DNSService {
 
 // 查找问题
 message FindAllDNSIssuesRequest {
+	int64 nodeClusterId = 1;
 }
 
 message FindAllDNSIssuesResponse {
