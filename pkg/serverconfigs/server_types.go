@@ -12,7 +12,7 @@ const (
 	ServerTypeHTTPWeb   ServerType = "httpWeb"
 	ServerTypeTCPProxy  ServerType = "tcpProxy"
 	ServerTypeUnixProxy ServerType = "unixProxy"
-	ServerTypeUDPProxy  ServerType = "udp"
+	ServerTypeUDPProxy  ServerType = "udpProxy"
 )
 
 // AllServerTypes 获取所有的服务类型
@@ -36,11 +36,11 @@ func AllServerTypes() []maps.Map {
 		/**{
 			"name": "UNIX协议反向代理",
 			"code": ServerTypeUnixProxy,
-		},
+		},**/
 		{
 			"name": "UDP反向代理",
 			"code": ServerTypeUDPProxy,
-		},**/
+		},
 	}
 }
 
