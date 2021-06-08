@@ -12,7 +12,13 @@ service ServerDailyStatService {
 	rpc uploadServerDailyStats (UploadServerDailyStatsRequest) returns (RPCSuccess);
 
 	// 按小时读取统计数据
-	rpc findServerHourlyStats (FindServerHourlyStatsRequest) returns (FindServerHourlyStatsResponse);
+	rpc findLatestServerHourlyStats (FindLatestServerHourlyStatsRequest) returns (FindLatestServerHourlyStatsResponse);
+
+	// 按分钟读取统计数据
+	rpc findLatestServerMinutelyStats (FindLatestServerMinutelyStatsRequest) returns (FindLatestServerMinutelyStatsResponse);
+
+	// 按日读取统计数据
+	rpc findLatestServerDailyStats (FindLatestServerDailyStatsRequest) returns (FindLatestServerDailyStatsResponse);
 }
 
 // 上传统计
@@ -21,16 +27,52 @@ message UploadServerDailyStatsRequest {
 }
 
 // 按小时读取统计数据
-message FindServerHourlyStatsRequest {
+message FindLatestServerHourlyStatsRequest {
 	int64 serverId = 1;
 	int32 hours = 2;
 }
 
-message FindServerHourlyStatsResponse {
+message FindLatestServerHourlyStatsResponse {
 	repeated HourlyStat stats = 1;
 
 	message HourlyStat {
 		string hour = 1;
+		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+		int64 countCachedRequests = 5;
+	}
+}
+
+// 按分钟读取统计数据
+message FindLatestServerMinutelyStatsRequest {
+	int64 serverId = 1;
+	int32 minutes = 2;
+}
+
+message FindLatestServerMinutelyStatsResponse {
+	repeated MinutelyStat stats = 1;
+
+	message MinutelyStat {
+		string minute = 1;
+		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+		int64 countCachedRequests = 5;
+	}
+}
+
+// 按日读取统计数据
+message FindLatestServerDailyStatsRequest {
+	int64 serverId = 1;
+	int32 days = 2;
+}
+
+message FindLatestServerDailyStatsResponse {
+	repeated DailyStat stats = 1;
+
+	message DailyStat {
+		string day = 1;
 		int64 bytes = 2;
 		int64 cachedBytes = 3;
 		int64 countRequests = 4;
