@@ -77,6 +77,188 @@ func (x *UploadServerDailyStatsRequest) GetStats() []*ServerDailyStat {
 	return nil
 }
 
+// 按小时读取统计数据
+type FindServerHourlyStatsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Hours    int32 `protobuf:"varint,2,opt,name=hours,proto3" json:"hours,omitempty"`
+}
+
+func (x *FindServerHourlyStatsRequest) Reset() {
+	*x = FindServerHourlyStatsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_daily_stat_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindServerHourlyStatsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindServerHourlyStatsRequest) ProtoMessage() {}
+
+func (x *FindServerHourlyStatsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_daily_stat_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindServerHourlyStatsRequest.ProtoReflect.Descriptor instead.
+func (*FindServerHourlyStatsRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_daily_stat_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *FindServerHourlyStatsRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *FindServerHourlyStatsRequest) GetHours() int32 {
+	if x != nil {
+		return x.Hours
+	}
+	return 0
+}
+
+type FindServerHourlyStatsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Stats []*FindServerHourlyStatsResponse_HourlyStat `protobuf:"bytes,1,rep,name=stats,proto3" json:"stats,omitempty"`
+}
+
+func (x *FindServerHourlyStatsResponse) Reset() {
+	*x = FindServerHourlyStatsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_daily_stat_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindServerHourlyStatsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindServerHourlyStatsResponse) ProtoMessage() {}
+
+func (x *FindServerHourlyStatsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_daily_stat_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindServerHourlyStatsResponse.ProtoReflect.Descriptor instead.
+func (*FindServerHourlyStatsResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_daily_stat_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *FindServerHourlyStatsResponse) GetStats() []*FindServerHourlyStatsResponse_HourlyStat {
+	if x != nil {
+		return x.Stats
+	}
+	return nil
+}
+
+type FindServerHourlyStatsResponse_HourlyStat struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Hour                string `protobuf:"bytes,1,opt,name=hour,proto3" json:"hour,omitempty"`
+	Bytes               int64  `protobuf:"varint,2,opt,name=bytes,proto3" json:"bytes,omitempty"`
+	CachedBytes         int64  `protobuf:"varint,3,opt,name=cachedBytes,proto3" json:"cachedBytes,omitempty"`
+	CountRequests       int64  `protobuf:"varint,4,opt,name=countRequests,proto3" json:"countRequests,omitempty"`
+	CountCachedRequests int64  `protobuf:"varint,5,opt,name=countCachedRequests,proto3" json:"countCachedRequests,omitempty"`
+}
+
+func (x *FindServerHourlyStatsResponse_HourlyStat) Reset() {
+	*x = FindServerHourlyStatsResponse_HourlyStat{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_daily_stat_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindServerHourlyStatsResponse_HourlyStat) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindServerHourlyStatsResponse_HourlyStat) ProtoMessage() {}
+
+func (x *FindServerHourlyStatsResponse_HourlyStat) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_daily_stat_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindServerHourlyStatsResponse_HourlyStat.ProtoReflect.Descriptor instead.
+func (*FindServerHourlyStatsResponse_HourlyStat) Descriptor() ([]byte, []int) {
+	return file_service_server_daily_stat_proto_rawDescGZIP(), []int{2, 0}
+}
+
+func (x *FindServerHourlyStatsResponse_HourlyStat) GetHour() string {
+	if x != nil {
+		return x.Hour
+	}
+	return ""
+}
+
+func (x *FindServerHourlyStatsResponse_HourlyStat) GetBytes() int64 {
+	if x != nil {
+		return x.Bytes
+	}
+	return 0
+}
+
+func (x *FindServerHourlyStatsResponse_HourlyStat) GetCachedBytes() int64 {
+	if x != nil {
+		return x.CachedBytes
+	}
+	return 0
+}
+
+func (x *FindServerHourlyStatsResponse_HourlyStat) GetCountRequests() int64 {
+	if x != nil {
+		return x.CountRequests
+	}
+	return 0
+}
+
+func (x *FindServerHourlyStatsResponse_HourlyStat) GetCountCachedRequests() int64 {
+	if x != nil {
+		return x.CountCachedRequests
+	}
+	return 0
+}
+
 var File_service_server_daily_stat_proto protoreflect.FileDescriptor
 
 var file_service_server_daily_stat_proto_rawDesc = []byte{
@@ -91,14 +273,43 @@ var file_service_server_daily_stat_proto_rawDesc = []byte{
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x29, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x73,
 	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x72, 0x76,
 	0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x52, 0x05, 0x73, 0x74, 0x61,
-	0x74, 0x73, 0x32, 0x65, 0x0a, 0x16, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c,
-	0x79, 0x53, 0x74, 0x61, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x4b, 0x0a, 0x16,
-	0x75, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c,
-	0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x6c, 0x6f,
+	0x74, 0x73, 0x22, 0x50, 0x0a, 0x1c, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x14,
+	0x0a, 0x05, 0x68, 0x6f, 0x75, 0x72, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x68,
+	0x6f, 0x75, 0x72, 0x73, 0x22, 0x96, 0x02, 0x0a, 0x1d, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x42, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x73, 0x18,
+	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53,
+	0x74, 0x61, 0x74, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x73, 0x1a, 0xb0, 0x01, 0x0a, 0x0a, 0x48,
+	0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x68, 0x6f, 0x75,
+	0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x68, 0x6f, 0x75, 0x72, 0x12, 0x14, 0x0a,
+	0x05, 0x62, 0x79, 0x74, 0x65, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x62, 0x79,
+	0x74, 0x65, 0x73, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x61, 0x63, 0x68, 0x65, 0x64, 0x42, 0x79, 0x74,
+	0x65, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x63, 0x61, 0x63, 0x68, 0x65, 0x64,
+	0x42, 0x79, 0x74, 0x65, 0x73, 0x12, 0x24, 0x0a, 0x0d, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x73, 0x12, 0x30, 0x0a, 0x13, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x43, 0x61, 0x63, 0x68, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x52, 0x13, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x43,
+	0x61, 0x63, 0x68, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x73, 0x32, 0xc3, 0x01,
+	0x0a, 0x16, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61,
+	0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x4b, 0x0a, 0x16, 0x75, 0x70, 0x6c, 0x6f,
 	0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61,
-	0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52,
-	0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70,
-	0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x74, 0x73, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x5c, 0x0a, 0x15, 0x66, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x20,
+	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x48, 0x6f,
+	0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -113,21 +324,27 @@ func file_service_server_daily_stat_proto_rawDescGZIP() []byte {
 	return file_service_server_daily_stat_proto_rawDescData
 }
 
-var file_service_server_daily_stat_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_service_server_daily_stat_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_service_server_daily_stat_proto_goTypes = []interface{}{
-	(*UploadServerDailyStatsRequest)(nil), // 0: pb.UploadServerDailyStatsRequest
-	(*ServerDailyStat)(nil),               // 1: pb.ServerDailyStat
-	(*RPCSuccess)(nil),                    // 2: pb.RPCSuccess
+	(*UploadServerDailyStatsRequest)(nil),            // 0: pb.UploadServerDailyStatsRequest
+	(*FindServerHourlyStatsRequest)(nil),             // 1: pb.FindServerHourlyStatsRequest
+	(*FindServerHourlyStatsResponse)(nil),            // 2: pb.FindServerHourlyStatsResponse
+	(*FindServerHourlyStatsResponse_HourlyStat)(nil), // 3: pb.FindServerHourlyStatsResponse.HourlyStat
+	(*ServerDailyStat)(nil),                          // 4: pb.ServerDailyStat
+	(*RPCSuccess)(nil),                               // 5: pb.RPCSuccess
 }
 var file_service_server_daily_stat_proto_depIdxs = []int32{
-	1, // 0: pb.UploadServerDailyStatsRequest.stats:type_name -> pb.ServerDailyStat
-	0, // 1: pb.ServerDailyStatService.uploadServerDailyStats:input_type -> pb.UploadServerDailyStatsRequest
-	2, // 2: pb.ServerDailyStatService.uploadServerDailyStats:output_type -> pb.RPCSuccess
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	4, // 0: pb.UploadServerDailyStatsRequest.stats:type_name -> pb.ServerDailyStat
+	3, // 1: pb.FindServerHourlyStatsResponse.stats:type_name -> pb.FindServerHourlyStatsResponse.HourlyStat
+	0, // 2: pb.ServerDailyStatService.uploadServerDailyStats:input_type -> pb.UploadServerDailyStatsRequest
+	1, // 3: pb.ServerDailyStatService.findServerHourlyStats:input_type -> pb.FindServerHourlyStatsRequest
+	5, // 4: pb.ServerDailyStatService.uploadServerDailyStats:output_type -> pb.RPCSuccess
+	2, // 5: pb.ServerDailyStatService.findServerHourlyStats:output_type -> pb.FindServerHourlyStatsResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_service_server_daily_stat_proto_init() }
@@ -150,6 +367,42 @@ func file_service_server_daily_stat_proto_init() {
 				return nil
 			}
 		}
+		file_service_server_daily_stat_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindServerHourlyStatsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_daily_stat_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindServerHourlyStatsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_daily_stat_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindServerHourlyStatsResponse_HourlyStat); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -157,7 +410,7 @@ func file_service_server_daily_stat_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_server_daily_stat_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -185,6 +438,8 @@ const _ = grpc.SupportPackageIsVersion6
 type ServerDailyStatServiceClient interface {
 	// 上传统计
 	UploadServerDailyStats(ctx context.Context, in *UploadServerDailyStatsRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 按小时读取统计数据
+	FindServerHourlyStats(ctx context.Context, in *FindServerHourlyStatsRequest, opts ...grpc.CallOption) (*FindServerHourlyStatsResponse, error)
 }
 
 type serverDailyStatServiceClient struct {
@@ -204,10 +459,21 @@ func (c *serverDailyStatServiceClient) UploadServerDailyStats(ctx context.Contex
 	return out, nil
 }
 
+func (c *serverDailyStatServiceClient) FindServerHourlyStats(ctx context.Context, in *FindServerHourlyStatsRequest, opts ...grpc.CallOption) (*FindServerHourlyStatsResponse, error) {
+	out := new(FindServerHourlyStatsResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerDailyStatService/findServerHourlyStats", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServerDailyStatServiceServer is the server API for ServerDailyStatService service.
 type ServerDailyStatServiceServer interface {
 	// 上传统计
 	UploadServerDailyStats(context.Context, *UploadServerDailyStatsRequest) (*RPCSuccess, error)
+	// 按小时读取统计数据
+	FindServerHourlyStats(context.Context, *FindServerHourlyStatsRequest) (*FindServerHourlyStatsResponse, error)
 }
 
 // UnimplementedServerDailyStatServiceServer can be embedded to have forward compatible implementations.
@@ -216,6 +482,9 @@ type UnimplementedServerDailyStatServiceServer struct {
 
 func (*UnimplementedServerDailyStatServiceServer) UploadServerDailyStats(context.Context, *UploadServerDailyStatsRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadServerDailyStats not implemented")
+}
+func (*UnimplementedServerDailyStatServiceServer) FindServerHourlyStats(context.Context, *FindServerHourlyStatsRequest) (*FindServerHourlyStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindServerHourlyStats not implemented")
 }
 
 func RegisterServerDailyStatServiceServer(s *grpc.Server, srv ServerDailyStatServiceServer) {
@@ -240,6 +509,24 @@ func _ServerDailyStatService_UploadServerDailyStats_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServerDailyStatService_FindServerHourlyStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindServerHourlyStatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerDailyStatServiceServer).FindServerHourlyStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerDailyStatService/FindServerHourlyStats",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerDailyStatServiceServer).FindServerHourlyStats(ctx, req.(*FindServerHourlyStatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _ServerDailyStatService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.ServerDailyStatService",
 	HandlerType: (*ServerDailyStatServiceServer)(nil),
@@ -247,6 +534,10 @@ var _ServerDailyStatService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "uploadServerDailyStats",
 			Handler:    _ServerDailyStatService_UploadServerDailyStats_Handler,
+		},
+		{
+			MethodName: "findServerHourlyStats",
+			Handler:    _ServerDailyStatService_FindServerHourlyStats_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

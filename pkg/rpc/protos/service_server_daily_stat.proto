@@ -10,9 +10,30 @@ import "models/rpc_messages.proto";
 service ServerDailyStatService {
 	// 上传统计
 	rpc uploadServerDailyStats (UploadServerDailyStatsRequest) returns (RPCSuccess);
+
+	// 按小时读取统计数据
+	rpc findServerHourlyStats (FindServerHourlyStatsRequest) returns (FindServerHourlyStatsResponse);
 }
 
 // 上传统计
 message UploadServerDailyStatsRequest {
 	repeated ServerDailyStat stats = 1;
+}
+
+// 按小时读取统计数据
+message FindServerHourlyStatsRequest {
+	int64 serverId = 1;
+	int32 hours = 2;
+}
+
+message FindServerHourlyStatsResponse {
+	repeated HourlyStat stats = 1;
+
+	message HourlyStat {
+		string hour = 1;
+		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+		int64 countCachedRequests = 5;
+	}
 }
