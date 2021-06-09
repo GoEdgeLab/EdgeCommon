@@ -26,8 +26,9 @@ type HTTPRequestCond struct {
 	// ${arg.name}, ${requestPath}
 	Param string `yaml:"param" json:"param"`
 
-	Operator RequestCondOperator `yaml:"operator" json:"operator"` // 运算符
-	Value    string              `yaml:"value" json:"value"`       // 对比值
+	Operator  RequestCondOperator `yaml:"operator" json:"operator"`   // 运算符
+	Value     string              `yaml:"value" json:"value"`         // 对比值
+	IsReverse bool                `yaml:"isReverse" json:"isReverse"` // 是否反向匹配
 
 	isInt   bool
 	isFloat bool
@@ -136,6 +137,14 @@ func (this *HTTPRequestCond) Init() error {
 
 // Match 将此条件应用于请求，检查是否匹配
 func (this *HTTPRequestCond) Match(formatter func(source string) string) bool {
+	b := this.match(formatter)
+	if this.IsReverse {
+		return !b
+	}
+	return b
+}
+
+func (this *HTTPRequestCond) match(formatter func(source string) string) bool {
 	paramValue := formatter(this.Param)
 	switch this.Operator {
 	case RequestCondOperatorRegexp:

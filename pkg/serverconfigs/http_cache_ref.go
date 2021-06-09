@@ -26,6 +26,8 @@ type HTTPCacheRef struct {
 
 	CachePolicy *HTTPCachePolicy `yaml:"cachePolicy" json:"cachePolicy"`
 
+	IsReverse bool `yaml:"isReverse" json:"isReverse"` // 是否为反向条件，反向条件的不缓存
+
 	lifeSeconds                     int64
 	maxSize                         int64
 	uppercaseSkipCacheControlValues []string

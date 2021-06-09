@@ -1,6 +1,6 @@
 package shared
 
-// 条件配置
+// HTTPRequestCondsConfig 条件配置
 // 数据结构：conds -> []groups -> []cond
 type HTTPRequestCondsConfig struct {
 	IsOn      bool                    `yaml:"isOn" json:"isOn"`
@@ -11,7 +11,7 @@ type HTTPRequestCondsConfig struct {
 	hasResponseConds bool
 }
 
-// 初始化
+// Init 初始化
 func (this *HTTPRequestCondsConfig) Init() error {
 	if len(this.Connector) == 0 {
 		this.Connector = "or"
@@ -39,7 +39,7 @@ func (this *HTTPRequestCondsConfig) Init() error {
 	return nil
 }
 
-// 判断请求是否匹配
+// MatchRequest 判断请求是否匹配
 func (this *HTTPRequestCondsConfig) MatchRequest(formatter func(s string) string) bool {
 	if !this.IsOn && len(this.Groups) == 0 {
 		return true
@@ -61,7 +61,7 @@ func (this *HTTPRequestCondsConfig) MatchRequest(formatter func(s string) string
 	return ok
 }
 
-// 判断响应是否匹配
+// MatchResponse 判断响应是否匹配
 func (this *HTTPRequestCondsConfig) MatchResponse(formatter func(s string) string) bool {
 	if !this.IsOn && len(this.Groups) == 0 {
 		return true
@@ -83,12 +83,12 @@ func (this *HTTPRequestCondsConfig) MatchResponse(formatter func(s string) strin
 	return ok
 }
 
-// 判断是否有请求条件
+// HasRequestConds 判断是否有请求条件
 func (this *HTTPRequestCondsConfig) HasRequestConds() bool {
 	return this.hasRequestConds
 }
 
-// 判断是否有响应条件
+// HasResponseConds 判断是否有响应条件
 func (this *HTTPRequestCondsConfig) HasResponseConds() bool {
 	return this.hasResponseConds
 }
