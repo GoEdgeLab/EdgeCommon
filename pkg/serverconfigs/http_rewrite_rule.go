@@ -19,12 +19,7 @@ const (
 	HTTPRewriteModeProxy    HTTPRewriteMode = "proxy"    // 代理
 )
 
-// 重写规则定义
-//
-// 参考
-// - http://nginx.org/en/docs/http/ngx_http_rewrite_module.html
-// - https://httpd.apache.org/docs/current/mod/mod_rewrite.html
-// - https://httpd.apache.org/docs/2.4/rewrite/flags.html
+// HTTPRewriteRule 重写规则定义
 // TODO 实现对其他代理服务的引用
 type HTTPRewriteRule struct {
 	Id   int64 `yaml:"id" json:"id"`     // ID
@@ -35,7 +30,7 @@ type HTTPRewriteRule struct {
 	// - cond ${status} gte 200
 	// - cond ${arg.name} eq lily
 	// - cond ${requestPath} regexp .*\.png
-	Conds *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"` // 匹配条件 TODO
+	Conds *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"` // 匹配条件
 
 	// 规则
 	// 语法为：pattern regexp 比如：
@@ -61,7 +56,7 @@ type HTTPRewriteRule struct {
 	proxyHostHasVariables bool
 }
 
-// 校验
+// Init 校验
 func (this *HTTPRewriteRule) Init() error {
 	this.replaceHasVariables = configutils.HasVariables(this.Replace)
 	this.proxyHostHasVariables = configutils.HasVariables(this.ProxyHost)
@@ -83,7 +78,7 @@ func (this *HTTPRewriteRule) Init() error {
 	return nil
 }
 
-// 对某个请求执行规则
+// MatchRequest 对某个请求执行规则
 func (this *HTTPRewriteRule) MatchRequest(requestPath string, formatter func(source string) string) (replace string, varMapping map[string]string, matched bool) {
 	if this.reg == nil {
 		return "", nil, false
@@ -124,12 +119,12 @@ func (this *HTTPRewriteRule) MatchRequest(requestPath string, formatter func(sou
 	return replace, varMapping, true
 }
 
-// 判断是否是外部URL
+// IsExternalURL 判断是否是外部URL
 func (this *HTTPRewriteRule) IsExternalURL(url string) bool {
 	return shared.RegexpExternalURL.MatchString(url)
 }
 
-// 判断ProxyHost是否有变量
+// ProxyHostHasVariables 判断ProxyHost是否有变量
 func (this *HTTPRewriteRule) ProxyHostHasVariables() bool {
 	return this.proxyHostHasVariables
 }

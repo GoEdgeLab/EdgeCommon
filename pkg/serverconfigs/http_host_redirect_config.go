@@ -1,6 +1,7 @@
 package serverconfigs
 
 import (
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"net/url"
 	"regexp"
 )
@@ -13,9 +14,10 @@ type HTTPHostRedirectConfig struct {
 	BeforeURL string `yaml:"beforeURL" json:"beforeURL"` // 跳转前的地址
 	AfterURL  string `yaml:"afterURL" json:"afterURL"`   // 跳转后的地址
 
-	MatchPrefix    bool `yaml:"matchPrefix" json:"matchPrefix"`       // 只匹配前缀部分
-	MatchRegexp    bool `yaml:"matchRegexp" json:"matchRegexp"`       // 匹配正则表达式
-	KeepRequestURI bool `yaml:"keepRequestURI" json:"keepRequestURI"` // 保留请求URI
+	MatchPrefix    bool                           `yaml:"matchPrefix" json:"matchPrefix"`       // 只匹配前缀部分
+	MatchRegexp    bool                           `yaml:"matchRegexp" json:"matchRegexp"`       // 匹配正则表达式
+	KeepRequestURI bool                           `yaml:"keepRequestURI" json:"keepRequestURI"` // 保留请求URI
+	Conds          *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"`                   // 匹配条件
 
 	realBeforeURL   string
 	beforeURLRegexp *regexp.Regexp
@@ -41,6 +43,13 @@ func (this *HTTPHostRedirectConfig) Init() error {
 		this.beforeURLRegexp = reg
 	}
 
+	if this.Conds != nil {
+		err := this.Conds.Init()
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -52,4 +61,12 @@ func (this *HTTPHostRedirectConfig) RealBeforeURL() string {
 // BeforeURLRegexp 跳转前URL正则表达式
 func (this *HTTPHostRedirectConfig) BeforeURLRegexp() *regexp.Regexp {
 	return this.beforeURLRegexp
+}
+
+// MatchRequest 判断请求是否符合条件
+func (this *HTTPHostRedirectConfig) MatchRequest(formatter func(source string) string) bool {
+	if this.Conds == nil {
+		return true
+	}
+	return this.Conds.MatchRequest(formatter)
 }

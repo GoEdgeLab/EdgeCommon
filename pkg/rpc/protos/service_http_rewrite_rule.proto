@@ -23,6 +23,7 @@ message CreateHTTPRewriteRuleRequest {
 	string proxyHost = 6;
 	bool isOn = 7;
 	bool withQuery = 8;
+	bytes condsJSON = 9;
 }
 
 message CreateHTTPRewriteRuleResponse {
@@ -40,4 +41,5 @@ message UpdateHTTPRewriteRuleRequest {
 	string proxyHost = 7;
 	bool isOn = 8;
 	bool withQuery = 9;
+	bytes condsJSON = 10;
 }
