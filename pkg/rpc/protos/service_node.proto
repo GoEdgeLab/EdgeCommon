@@ -115,6 +115,9 @@ service NodeService {
 
 	// 设置节点上线状态
 	rpc updateNodeUp (UpdateNodeUpRequest) returns (RPCSuccess);
+
+	// 下载最新边缘节点安装文件
+	rpc downloadNodeInstallationFile (DownloadNodeInstallationFileRequest) returns (DownloadNodeInstallationFileResponse);
 }
 
 // 创建节点
@@ -426,4 +429,19 @@ message CheckNodeLatestVersionResponse {
 message UpdateNodeUpRequest {
 	int64 nodeId = 1;
 	bool isUp = 2;
+}
+
+// 下载最新边缘节点安装文件
+message DownloadNodeInstallationFileRequest {
+	string os = 1;
+	string arch = 2;
+	int64 chunkOffset = 3;
+}
+
+message DownloadNodeInstallationFileResponse {
+	bytes chunkData = 1;
+	string sum = 2; // 文件的md5sum
+	int64 offset = 3;
+	string version = 4;
+	string filename = 5;
 }
