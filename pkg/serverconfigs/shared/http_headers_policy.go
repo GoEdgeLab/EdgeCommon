@@ -2,7 +2,7 @@ package shared
 
 import "strings"
 
-// HeaderList定义
+// HTTPHeaderPolicy HeaderList定义
 type HTTPHeaderPolicy struct {
 	Id          int64  `yaml:"id" json:"id"`                   // ID
 	Name        string `yaml:"name" json:"name"`               // 名称 TODO
@@ -26,7 +26,7 @@ type HTTPHeaderPolicy struct {
 	deleteHeaderMap map[string]bool // header => bool
 }
 
-// 校验
+// Init 校验
 func (this *HTTPHeaderPolicy) Init() error {
 	this.addHeaderNames = []string{}
 	for _, h := range this.AddHeaders {
@@ -69,12 +69,12 @@ func (this *HTTPHeaderPolicy) Init() error {
 	return nil
 }
 
-// 判断是否为空
+// IsEmpty 判断是否为空
 func (this *HTTPHeaderPolicy) IsEmpty() bool {
-	return len(this.AddHeaders) == 0 && len(this.AddTrailers) == 0 && len(this.SetHeaders) == 0 && len(this.ReplaceHeaders) == 0 && this.Expires == nil
+	return len(this.AddHeaders) == 0 && len(this.AddTrailers) == 0 && len(this.SetHeaders) == 0 && len(this.ReplaceHeaders) == 0 && this.Expires == nil && len(this.DeleteHeaders) == 0
 }
 
-// 判断Add和Set中是否包含某个Header
+// ContainsHeader 判断Add和Set中是否包含某个Header
 func (this *HTTPHeaderPolicy) ContainsHeader(name string) bool {
 	name = strings.ToUpper(name)
 
@@ -91,7 +91,7 @@ func (this *HTTPHeaderPolicy) ContainsHeader(name string) bool {
 	return false
 }
 
-// 判断删除列表中是否包含某个Header
+// ContainsDeletedHeader 判断删除列表中是否包含某个Header
 func (this *HTTPHeaderPolicy) ContainsDeletedHeader(name string) bool {
 	_, ok := this.deleteHeaderMap[strings.ToUpper(name)]
 	return ok
