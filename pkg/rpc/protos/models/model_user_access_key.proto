@@ -12,4 +12,5 @@ message UserAccessKey {
 	string uniqueId = 5;
 	string secret = 6;
 	string description = 7;
+	int64 accessedAt = 8;
 }
