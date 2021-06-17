@@ -39,6 +39,7 @@ type HTTPWebConfig struct {
 	FilterPolicies []*HTTPFilterPolicy `yaml:"filterPolicies" json:"filterPolicies"` // 筛选策略
 
 	HostRedirects []*HTTPHostRedirectConfig `yaml:"hostRedirects" json:"hostRedirects"` // 主机跳转
+	Auth          *HTTPAuthConfig           `yaml:"auth" json:"auth"`                   // 认证配置
 }
 
 func (this *HTTPWebConfig) Init() error {
@@ -219,6 +220,14 @@ func (this *HTTPWebConfig) Init() error {
 	// fastcgi
 	for _, fastcgi := range this.FastcgiList {
 		err := fastcgi.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// auth
+	if this.Auth != nil {
+		err := this.Auth.Init()
 		if err != nil {
 			return err
 		}

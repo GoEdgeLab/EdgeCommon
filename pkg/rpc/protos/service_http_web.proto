@@ -69,6 +69,9 @@ service HTTPWebService {
 
 	// 查找主机跳转设置
 	rpc findHTTPWebHostRedirects (FindHTTPWebHostRedirectsRequest) returns (FindHTTPWebHostRedirectsResponse);
+
+	// 更改认证设置
+	rpc updateHTTPWebAuth (UpdateHTTPWebAuthRequest) returns (RPCSuccess);
 }
 
 // 创建Web配置
@@ -207,4 +210,10 @@ message FindHTTPWebHostRedirectsRequest {
 
 message FindHTTPWebHostRedirectsResponse {
 	bytes hostRedirectsJSON = 1;
+}
+
+// 更改认证设置
+message UpdateHTTPWebAuthRequest {
+	int64 webId = 1;
+	bytes authJSON = 2;
 }

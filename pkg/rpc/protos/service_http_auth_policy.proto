@@ -1,0 +1,47 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_http_auth_policy.proto";
+import "models/rpc_messages.proto";
+
+// 服务认证策略服务
+service HTTPAuthPolicyService {
+	// 创建策略
+	rpc createHTTPAuthPolicy (CreateHTTPAuthPolicyRequest) returns (CreateHTTPAuthPolicyResponse);
+
+	// 修改策略
+	rpc updateHTTPAuthPolicy (UpdateHTTPAuthPolicyRequest) returns (RPCSuccess);
+
+	// 查找策略信息
+	rpc findEnabledHTTPAuthPolicy (FindEnabledHTTPAuthPolicyRequest) returns (FindEnabledHTTPAuthPolicyResponse);
+}
+
+// 创建策略
+message CreateHTTPAuthPolicyRequest {
+	string name = 1;
+	string type = 2;
+	bytes paramsJSON = 3;
+}
+
+message CreateHTTPAuthPolicyResponse {
+	int64 httpAuthPolicyId = 1;
+}
+
+// 修改策略
+message UpdateHTTPAuthPolicyRequest {
+	int64 httpAuthPolicyId = 1;
+	string name = 2;
+	bytes paramsJSON = 3;
+	bool isOn = 4;
+}
+
+// 查找策略信息
+message FindEnabledHTTPAuthPolicyRequest {
+	int64 httpAuthPolicyId = 1;
+}
+
+message FindEnabledHTTPAuthPolicyResponse {
+	HTTPAuthPolicy httpAuthPolicy = 1;
+}

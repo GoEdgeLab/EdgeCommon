@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 服务认证策略
+message HTTPAuthPolicy {
+	int64 id = 1;
+	bool isOn = 2;
+	string name = 3;
+	string type = 4;
+	bytes paramsJSON = 5;
+}
