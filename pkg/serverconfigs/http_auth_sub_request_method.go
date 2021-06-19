@@ -70,7 +70,7 @@ func (this *HTTPAuthSubRequestMethod) Filter(req *http.Request, doSubReq func(su
 		scheme = "https"
 	}
 	var host = req.URL.Host
-	if len(host) > 0 {
+	if len(host) == 0 {
 		host = req.Host
 	}
 	if !this.isFullURL {
@@ -94,7 +94,8 @@ func (this *HTTPAuthSubRequestMethod) Filter(req *http.Request, doSubReq func(su
 		return status >= 200 && status < 300, nil
 	}
 
-	newReq.Header.Set("Referer", req.URL.String())
+	// TODO 需要将Header和StatusCode、ResponseBody输出到客户端
+	newReq.Header.Set("Referer", scheme+"://"+host+req.URL.RequestURI())
 	resp, err := httpAuthSubRequestHTTPClient.Do(newReq)
 	if err != nil {
 		return false, err
