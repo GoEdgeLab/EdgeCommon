@@ -7,13 +7,6 @@ import (
 	"net/http"
 )
 
-type HTTPAuthType = string
-
-const (
-	HTTPAuthTypeBasicAuth  HTTPAuthType = "basicAuth"  // BasicAuth
-	HTTPAuthTypeSubRequest HTTPAuthType = "subRequest" // 子请求
-)
-
 // HTTPAuthPolicy HTTP认证策略
 type HTTPAuthPolicy struct {
 	Id     int64                  `json:"id"`
@@ -52,4 +45,9 @@ func (this *HTTPAuthPolicy) Filter(req *http.Request, subReqFunc func(subReq *ht
 		return true, nil
 	}
 	return this.method.Filter(req, subReqFunc, formatter)
+}
+
+// Method 获取认证实例
+func (this *HTTPAuthPolicy) Method() HTTPAuthMethodInterface {
+	return this.method
 }

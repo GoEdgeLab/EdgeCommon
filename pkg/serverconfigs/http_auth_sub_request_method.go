@@ -65,15 +65,25 @@ func (this *HTTPAuthSubRequestMethod) Filter(req *http.Request, doSubReq func(su
 	}
 
 	var url = formatter(this.URL)
+	var scheme = "http"
+	if req.TLS != nil {
+		scheme = "https"
+	}
+	var host = req.URL.Host
+	if len(host) > 0 {
+		host = req.Host
+	}
 	if !this.isFullURL {
-		url = req.URL.Scheme + "://" + req.URL.Host + url
+		url = scheme + "://" + host + url
 	}
 	newReq, err := http.NewRequest(method, url, nil)
 	if err != nil {
 		return false, err
 	}
 	for k, v := range req.Header {
-		newReq.Header[k] = v
+		if k != "Connection" {
+			newReq.Header[k] = v
+		}
 	}
 
 	if !this.isFullURL {
@@ -84,6 +94,7 @@ func (this *HTTPAuthSubRequestMethod) Filter(req *http.Request, doSubReq func(su
 		return status >= 200 && status < 300, nil
 	}
 
+	newReq.Header.Set("Referer", req.URL.String())
 	resp, err := httpAuthSubRequestHTTPClient.Do(newReq)
 	if err != nil {
 		return false, err

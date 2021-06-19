@@ -6,7 +6,6 @@ import (
 	"encoding/base64"
 	"github.com/iwind/TeaGo/assert"
 	"github.com/iwind/TeaGo/maps"
-	stringutil "github.com/iwind/TeaGo/utils/string"
 	"net/http"
 	"testing"
 )
@@ -34,30 +33,6 @@ func TestHTTPAuthBasicMethodUser_Validate(t *testing.T) {
 			t.Fatal(err)
 		}
 		a.IsFalse(b)
-	}
-
-	{
-		user := &HTTPAuthBasicMethodUser{
-			Password: stringutil.Md5("123456"),
-			Encoder:  "md5",
-		}
-		b, err := user.Validate("123456")
-		if err != nil {
-			t.Fatal(err)
-		}
-		a.IsTrue(b)
-	}
-
-	{
-		user := &HTTPAuthBasicMethodUser{
-			Password: base64.StdEncoding.EncodeToString([]byte("123456")),
-			Encoder:  "base64",
-		}
-		b, err := user.Validate("123456")
-		if err != nil {
-			t.Fatal(err)
-		}
-		a.IsTrue(b)
 	}
 }
 
