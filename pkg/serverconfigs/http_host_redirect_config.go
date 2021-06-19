@@ -65,7 +65,7 @@ func (this *HTTPHostRedirectConfig) BeforeURLRegexp() *regexp.Regexp {
 
 // MatchRequest 判断请求是否符合条件
 func (this *HTTPHostRedirectConfig) MatchRequest(formatter func(source string) string) bool {
-	if this.Conds == nil {
+	if this.Conds == nil || !this.Conds.HasRequestConds() {
 		return true
 	}
 	return this.Conds.MatchRequest(formatter)

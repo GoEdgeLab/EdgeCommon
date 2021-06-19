@@ -90,7 +90,7 @@ func (this *HTTPRewriteRule) MatchRequest(requestPath string, formatter func(sou
 	}
 
 	// 判断条件
-	if this.Conds != nil && !this.Conds.MatchRequest(formatter) {
+	if this.Conds != nil && this.Conds.HasRequestConds() && !this.Conds.MatchRequest(formatter) {
 		return "", nil, false
 	}
 

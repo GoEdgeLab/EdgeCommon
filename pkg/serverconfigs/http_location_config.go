@@ -260,7 +260,7 @@ func (this *HTTPLocationConfig) ExtractPattern() error {
 // TODO 支持子Location
 func (this *HTTPLocationConfig) Match(path string, formatter func(source string) string) (vars map[string]string, isMatched bool) {
 	// 判断条件
-	if this.Conds != nil && !this.Conds.MatchRequest(formatter) {
+	if this.Conds != nil && this.Conds.HasRequestConds() && !this.Conds.MatchRequest(formatter) {
 		return
 	}
 
