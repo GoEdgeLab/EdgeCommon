@@ -19,11 +19,15 @@ service UserAccessKeyService {
 
 	// 设置是否启用AccessKey
 	rpc updateUserAccessKeyIsOn (UpdateUserAccessKeyIsOnRequest) returns (RPCSuccess);
+
+	// 计算AccessKey数量
+	rpc countAllEnabledUserAccessKeys (CountAllEnabledUserAccessKeysRequest) returns (RPCCountResponse);
 }
 
 // 创建AccessKey
 message CreateUserAccessKeyRequest {
 	int64 userId = 1;
+	int64 adminId = 3;
 	string description = 2;
 }
 
@@ -34,6 +38,7 @@ message CreateUserAccessKeyResponse {
 // 查找所有的AccessKey
 message FindAllEnabledUserAccessKeysRequest {
 	int64 userId = 1;
+	int64 adminId = 2;
 }
 
 message FindAllEnabledUserAccessKeysResponse {
@@ -49,4 +54,10 @@ message DeleteUserAccessKeyRequest {
 message UpdateUserAccessKeyIsOnRequest {
 	int64 userAccessKeyId = 1;
 	bool isOn = 2;
+}
+
+// 计算AccessKey数量
+message CountAllEnabledUserAccessKeysRequest {
+	int64 adminId = 1;
+	int64 userId = 2;
 }
