@@ -10,4 +10,6 @@ message IPList {
 	string name = 4;
 	string code = 5;
 	bytes timeoutJSON = 6;
+	bool isPublic = 7;
+	string description = 8;
 }

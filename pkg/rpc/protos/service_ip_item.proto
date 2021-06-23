@@ -28,6 +28,12 @@ service IPItemService {
 
 	// 根据版本列出一组IP
 	rpc listIPItemsAfterVersion (ListIPItemsAfterVersionRequest) returns (ListIPItemsAfterVersionResponse);
+
+	// 检查IP状态
+	rpc checkIPItemStatus (CheckIPItemStatusRequest) returns (CheckIPItemStatusResponse);
+
+	// 检查IP是否存在
+	rpc existsEnabledIPItem (ExistsEnabledIPItemRequest) returns (ExistsEnabledIPItemResponse);
 }
 
 // 创建IP
@@ -94,4 +100,27 @@ message ListIPItemsAfterVersionRequest {
 
 message ListIPItemsAfterVersionResponse {
 	repeated IPItem ipItems = 1;
+}
+
+// 检查IP状态
+message CheckIPItemStatusRequest {
+	int64 ipListId = 1;
+	string ip = 2;
+}
+
+message CheckIPItemStatusResponse {
+	bool isOk = 1; // 是否查询成功
+	string error = 2;
+	bool isFound = 3; // 是否找到
+	bool isAllowed = 4; // 是否允许
+	IPItem ipItem = 5; // 匹配的IPItem
+}
+
+// 检查IP是否存在
+message ExistsEnabledIPItemRequest {
+	int64 ipItemId = 1;
+}
+
+message ExistsEnabledIPItemResponse {
+	bool exists = 1;
 }

@@ -14,8 +14,20 @@ service IPListService {
 	// 修改IP列表
 	rpc updateIPList (UpdateIPListRequest) returns (RPCSuccess);
 
-	// 查找IP列表
+	// 查找IP列表信息
 	rpc findEnabledIPList (FindEnabledIPListRequest) returns (FindEnabledIPListResponse);
+
+	// 计算名单数量
+	rpc countAllEnabledIPLists (CountAllEnabledIPListsRequest) returns (RPCCountResponse);
+
+	// 列出单页名单
+	rpc listEnabledIPLists (ListEnabledIPListsRequest) returns (ListEnabledIPListsResponse);
+
+	// 删除IP名单
+	rpc deleteIPList (DeleteIPListRequest) returns (RPCSuccess);
+
+	// 检查IPList是否存在
+	rpc existsEnabledIPList (ExistsEnabledIPListRequest) returns (ExistsEnabledIPListResponse);
 }
 
 // 创建IP列表
@@ -24,6 +36,8 @@ message CreateIPListRequest {
 	string name = 2;
 	string code = 3;
 	bytes timeoutJSON = 4;
+	bool isPublic = 5;
+	string description = 6;
 }
 
 message CreateIPListResponse {
@@ -36,13 +50,48 @@ message UpdateIPListRequest {
 	string name = 2;
 	string code = 3;
 	bytes timeoutJSON = 4;
+	string description = 5;
 }
 
-// 查找IP列表
+// 查找IP列表信息
 message FindEnabledIPListRequest {
 	int64 ipListId = 1;
 }
 
 message FindEnabledIPListResponse {
 	IPList ipList = 1;
+}
+
+// 计算名单数量
+message CountAllEnabledIPListsRequest {
+	string type = 1;
+	bool isPublic = 2;
+	string keyword = 3;
+}
+
+// 列出单页名单
+message ListEnabledIPListsRequest {
+	string type = 1;
+	bool isPublic = 2;
+	string keyword = 3;
+	int64 offset = 4;
+	int64 size = 5;
+}
+
+message ListEnabledIPListsResponse {
+	repeated IPList ipLists = 1;
+}
+
+// 删除IP名单
+message DeleteIPListRequest {
+	int64 ipListId = 1;
+}
+
+// 检查IPList是否存在
+message ExistsEnabledIPListRequest {
+	int64 ipListId = 1;
+}
+
+message ExistsEnabledIPListResponse {
+	bool exists = 1;
 }
