@@ -109,6 +109,9 @@ service NodeClusterService {
 
 	// 查找最近访问的集群
 	rpc findLatestNodeClusters (FindLatestNodeClustersRequest) returns (FindLatestNodeClustersResponse);
+
+	// 取得集群的配置概要信息
+	rpc findEnabledNodeClusterConfigInfo (FindEnabledNodeClusterConfigInfoRequest) returns (FindEnabledNodeClusterConfigInfoResponse);
 }
 
 // 获取所有集群的信息
@@ -392,4 +395,18 @@ message FindLatestNodeClustersRequest {
 
 message FindLatestNodeClustersResponse {
 	repeated NodeCluster nodeClusters = 1;
+}
+
+// 取得集群的配置概要信息
+message FindEnabledNodeClusterConfigInfoRequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindEnabledNodeClusterConfigInfoResponse {
+	bool healthCheckIsOn = 1;
+	bool hasFirewallActions = 2;
+	bool hasThresholds = 3;
+	bool hasMessageReceivers = 4;
+	bool isTOAEnabled = 5;
+	bool hasMetricItems = 6;
 }

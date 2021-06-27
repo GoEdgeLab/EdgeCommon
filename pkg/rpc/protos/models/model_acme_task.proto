@@ -16,10 +16,10 @@ message ACMETask {
 	int64 createdAt = 5;
 	bool autoRenew = 6;
 	string authType = 7;
+	string authURL = 8;
 
 	ACMEUser acmeUser = 30;
 	DNSProvider dnsProvider = 31;
 	SSLCert sslCert = 32;
 	ACMETaskLog latestACMETaskLog = 33;
-
 }

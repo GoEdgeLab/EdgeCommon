@@ -38,6 +38,8 @@ type NodeConfig struct {
 	SystemServices     map[string]maps.Map                     `yaml:"systemServices" json:"systemServices"` // 系统服务配置 type => params
 	FirewallActions    []*firewallconfigs.FirewallActionConfig `yaml:"firewallActions" json:"firewallActions"`
 
+	MetricItems []*serverconfigs.MetricItemConfig `yaml:"metricItems" json:"metricItems"`
+
 	paddedId string
 
 	firewallPolicies []*firewallconfigs.HTTPFirewallPolicy
@@ -136,6 +138,14 @@ func (this *NodeConfig) Init() error {
 	// firewall actions
 	for _, action := range this.FirewallActions {
 		err := action.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// metric items
+	for _, item := range this.MetricItems {
+		err := item.Init()
 		if err != nil {
 			return err
 		}

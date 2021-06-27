@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 指标定义
+message MetricItem {
+	int64 id = 1;
+	bool isOn = 2;
+	string code = 3;
+	string category = 4;
+	string name = 5;
+	repeated string keys = 6;
+	int32 period = 7;
+	string periodUnit = 8;
+	string value = 10;
+}

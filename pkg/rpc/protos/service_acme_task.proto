@@ -80,6 +80,7 @@ message CreateACMETaskRequest {
 	repeated string domains = 4;
 	bool autoRenew = 5;
 	string authType = 6;
+	string authURL = 7;
 }
 
 message CreateACMETaskResponse {
@@ -94,6 +95,7 @@ message UpdateACMETaskRequest {
 	string dnsDomain = 4;
 	repeated string domains = 5;
 	bool autoRenew = 6;
+	string authURL = 7;
 }
 
 // 删除任务

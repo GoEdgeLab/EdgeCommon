@@ -2,6 +2,7 @@ package configutils
 
 import (
 	"fmt"
+	"github.com/iwind/TeaGo/types"
 	"strconv"
 	"testing"
 )
@@ -22,6 +23,17 @@ func TestParseNoVariables(t *testing.T) {
 	}
 }
 
+func TestParseHolders(t *testing.T) {
+	var holders = ParseHolders("hello, ${name}, world")
+	for _, h := range holders {
+		t.Log(types.String(h))
+	}
+
+	t.Log("parse result:", ParseVariablesFromHolders(holders, func(s string) string {
+		return "[" + s + "]"
+	}))
+}
+
 func BenchmarkParseVariables(b *testing.B) {
 	_ = ParseVariables("hello, ${name}, ${age}, ${gender}, ${home}, world", func(s string) string {
 		return "Lu"
@@ -29,6 +41,16 @@ func BenchmarkParseVariables(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		_ = ParseVariables("hello, ${name}, ${age}, ${gender}, ${home}, world", func(s string) string {
+			return "Lu"
+		})
+	}
+}
+
+func BenchmarkParseVariablesFromHolders(b *testing.B) {
+	var holders = ParseHolders("hello, ${name}, ${age}, ${gender}, ${home}, world")
+
+	for i := 0; i < b.N; i++ {
+		_ = ParseVariablesFromHolders(holders, func(s string) string {
 			return "Lu"
 		})
 	}
