@@ -16,6 +16,9 @@ service NodeClusterMetricItemService {
 
 	// 查找集群中所有指标
 	rpc findAllNodeClusterMetricItems (FindAllNodeClusterMetricItemsRequest) returns (FindAllNodeClusterMetricItemsResponse);
+
+	// 检查是否已添加某个指标
+	rpc existsNodeClusterMetricItem (ExistsNodeClusterMetricItemRequest) returns (RPCExists);
 }
 
 // 启用某个指标
@@ -33,8 +36,15 @@ message DisableNodeClusterMetricItemRequest {
 // 查找集群中所有指标
 message FindAllNodeClusterMetricItemsRequest {
 	int64 nodeClusterId = 1;
+	string category = 2;
 }
 
 message FindAllNodeClusterMetricItemsResponse {
 	repeated MetricItem metricItems = 1;
+}
+
+// 检查是否已添加某个指标
+message ExistsNodeClusterMetricItemRequest {
+	int64 nodeClusterId = 1;
+	int64 metricItemId = 2;
 }

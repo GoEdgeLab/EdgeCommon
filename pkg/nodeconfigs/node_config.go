@@ -42,7 +42,11 @@ type NodeConfig struct {
 
 	paddedId string
 
+	// firewall
 	firewallPolicies []*firewallconfigs.HTTPFirewallPolicy
+
+	// metrics
+	hasHTTPConnectionMetrics bool
 }
 
 // SharedNodeConfig 取得当前节点配置单例
@@ -144,10 +148,14 @@ func (this *NodeConfig) Init() error {
 	}
 
 	// metric items
+	this.hasHTTPConnectionMetrics = false
 	for _, item := range this.MetricItems {
 		err := item.Init()
 		if err != nil {
 			return err
+		}
+		if item.IsOn && item.HasHTTPConnectionValue() {
+			this.hasHTTPConnectionMetrics = true
 		}
 	}
 
@@ -200,6 +208,11 @@ func (this *NodeConfig) Save() error {
 // PaddedId 获取填充后的ID
 func (this *NodeConfig) PaddedId() string {
 	return this.paddedId
+}
+
+// HasHTTPConnectionMetrics 是否含有HTTP连接数的指标
+func (this *NodeConfig) HasHTTPConnectionMetrics() bool {
+	return this.hasHTTPConnectionMetrics
 }
 
 // 搜索WAF策略

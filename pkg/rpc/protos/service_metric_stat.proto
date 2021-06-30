@@ -1,0 +1,39 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+import "models/model_metric_stat.proto";
+import "models/rpc_messages.proto";
+
+// 指标统计数据相关服务
+service MetricStatService {
+	// 上传统计数据
+	rpc uploadMetricStats (UploadMetricStatsRequest) returns (RPCSuccess);
+
+	// 计算指标数据数量
+	rpc countMetricStats (CountMetricStatsRequest) returns (RPCCountResponse);
+
+	// 读取单页指标数据
+	rpc listMetricStats (ListMetricStatsRequest) returns (ListMetricStatsResponse);
+}
+
+// 上传统计数据
+message UploadMetricStatsRequest {
+	repeated MetricStat metricStats = 1;
+}
+
+// 计算指标数据数量
+message CountMetricStatsRequest {
+	int64 metricItemId = 1;
+}
+
+// 读取单页指标数据
+message ListMetricStatsRequest {
+	int64 metricItemId = 1;
+	int64 offset = 2;
+	int64 size = 3;
+}
+
+message ListMetricStatsResponse {
+	repeated MetricStat metricStats = 1;
+}

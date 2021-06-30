@@ -112,6 +112,54 @@ func (x *RPCCountResponse) GetCount() int64 {
 	return 0
 }
 
+// 是否存在
+type RPCExists struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Exists bool `protobuf:"varint,1,opt,name=exists,proto3" json:"exists,omitempty"`
+}
+
+func (x *RPCExists) Reset() {
+	*x = RPCExists{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_models_rpc_messages_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RPCExists) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RPCExists) ProtoMessage() {}
+
+func (x *RPCExists) ProtoReflect() protoreflect.Message {
+	mi := &file_models_rpc_messages_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RPCExists.ProtoReflect.Descriptor instead.
+func (*RPCExists) Descriptor() ([]byte, []int) {
+	return file_models_rpc_messages_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *RPCExists) GetExists() bool {
+	if x != nil {
+		return x.Exists
+	}
+	return false
+}
+
 var File_models_rpc_messages_proto protoreflect.FileDescriptor
 
 var file_models_rpc_messages_proto_rawDesc = []byte{
@@ -120,8 +168,10 @@ var file_models_rpc_messages_proto_rawDesc = []byte{
 	0x0c, 0x0a, 0x0a, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x22, 0x28, 0x0a,
 	0x10, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
 	0x65, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
-	0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x23, 0x0a, 0x09, 0x52, 0x50, 0x43, 0x45, 0x78,
+	0x69, 0x73, 0x74, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x65, 0x78, 0x69, 0x73, 0x74, 0x73, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x65, 0x78, 0x69, 0x73, 0x74, 0x73, 0x42, 0x06, 0x5a, 0x04,
+	0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -136,10 +186,11 @@ func file_models_rpc_messages_proto_rawDescGZIP() []byte {
 	return file_models_rpc_messages_proto_rawDescData
 }
 
-var file_models_rpc_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_models_rpc_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_models_rpc_messages_proto_goTypes = []interface{}{
 	(*RPCSuccess)(nil),       // 0: pb.RPCSuccess
 	(*RPCCountResponse)(nil), // 1: pb.RPCCountResponse
+	(*RPCExists)(nil),        // 2: pb.RPCExists
 }
 var file_models_rpc_messages_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -179,6 +230,18 @@ func file_models_rpc_messages_proto_init() {
 				return nil
 			}
 		}
+		file_models_rpc_messages_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RPCExists); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -186,7 +249,7 @@ func file_models_rpc_messages_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_models_rpc_messages_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

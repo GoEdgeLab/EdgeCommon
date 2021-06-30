@@ -1,0 +1,24 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_node_cluster.proto";
+import "models/model_node.proto";
+import "models/model_server.proto";
+
+// 统计数据
+message MetricStat {
+	int64 id = 1;
+	string hash = 2;
+	int64 serverId = 3;
+	int64 itemId = 4;
+	repeated string keys = 5;
+	float value = 6;
+	string time = 7;
+	int32 version = 8;
+
+	NodeCluster nodeCluster = 30;
+	Node node = 31;
+	Server server = 32;
+}
