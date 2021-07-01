@@ -19,7 +19,13 @@ service MetricStatService {
 
 // 上传统计数据
 message UploadMetricStatsRequest {
-	repeated MetricStat metricStats = 1;
+	int64 serverId = 1;
+	string time = 2;
+	int64 count = 3;
+	float total = 4;
+	int32 version = 5;
+	int64 itemId = 6;
+	repeated UploadingMetricStat metricStats = 7;
 }
 
 // 计算指标数据数量

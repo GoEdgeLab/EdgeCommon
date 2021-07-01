@@ -3,6 +3,7 @@
 package serverconfigs
 
 import (
+	"github.com/iwind/TeaGo/Tea"
 	timeutil "github.com/iwind/TeaGo/utils/time"
 	"time"
 )
@@ -16,7 +17,7 @@ type MetricItemConfig struct {
 	PeriodUnit MetricItemPeriodUnit `yaml:"periodUnit" json:"periodUnit"`
 	Keys       []string             `yaml:"keys" json:"keys"`
 	Value      string               `yaml:"value" json:"value"`
-	Version    int                  `yaml:"version" json:"version"`
+	Version    int32                `yaml:"version" json:"version"`
 
 	sumType                string    // 统计类型
 	baseTime               time.Time // 基准时间
@@ -117,8 +118,8 @@ func (this *MetricItemConfig) CurrentTime() string {
 	return t
 }
 
-// ExpiresTime 根据周期计算过期时间
-func (this *MetricItemConfig) ExpiresTime() string {
+// ServerExpiresTime 根据周期计算服务器端数据过期时间
+func (this *MetricItemConfig) ServerExpiresTime() string {
 	switch this.PeriodUnit {
 	case MetricItemPeriodUnitMonth:
 		return timeutil.Format("Ym", time.Now().AddDate(0, -(this.Period*4), 0))
@@ -135,8 +136,29 @@ func (this *MetricItemConfig) ExpiresTime() string {
 	}
 }
 
+// LocalExpiresTime 根据周期计算本地端过期时间
+func (this *MetricItemConfig) LocalExpiresTime() string {
+	switch this.PeriodUnit {
+	case MetricItemPeriodUnitMonth:
+		return timeutil.Format("Ym", time.Now().AddDate(0, -(this.Period+1), 0))
+	case MetricItemPeriodUnitWeek:
+		return timeutil.FormatTime("YW", time.Now().Unix()-86400*7*int64(this.Period+1))
+	case MetricItemPeriodUnitDay:
+		return timeutil.FormatTime("Ymd", time.Now().Unix()-86400*int64(this.Period+1))
+	case MetricItemPeriodUnitHour:
+		return timeutil.FormatTime("YmdH", time.Now().Unix()-3600*int64(this.Period+1))
+	case MetricItemPeriodUnitMinute:
+		return timeutil.FormatTime("YmdHi", time.Now().Unix()-60*int64(this.Period+60))
+	default:
+		return ""
+	}
+}
+
 // UploadDuration 上传数据的周期
 func (this *MetricItemConfig) UploadDuration() time.Duration {
+	if Tea.IsTesting() {
+		return 5 * time.Second
+	}
 	switch this.PeriodUnit {
 	case MetricItemPeriodUnitMonth:
 		return 10 * time.Minute
