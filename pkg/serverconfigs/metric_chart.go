@@ -49,7 +49,7 @@ func FindAllMetricChartTypes() []*shared.Definition {
 	}
 }
 
-func FindAllMetricChartTypeName(chartType MetricChartType) string {
+func FindMetricChartTypeName(chartType MetricChartType) string {
 	for _, def := range FindAllMetricChartTypes() {
 		if def.Code == chartType {
 			return def.Name
