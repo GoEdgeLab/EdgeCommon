@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_metric_item.proto";
+
+// 指标图表
+message MetricChart {
+	int64 id = 1;
+	string name = 2;
+	string type = 3;
+	int32 widthDiv = 4;
+	bytes paramsJSON = 5;
+	bool isOn = 6;
+	int32 maxItems = 7;
+
+	MetricItem metricItem = 30;
+}

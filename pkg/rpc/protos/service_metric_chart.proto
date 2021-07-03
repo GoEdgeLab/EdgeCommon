@@ -1,0 +1,83 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_metric_chart.proto";
+import "models/rpc_messages.proto";
+
+// 指标图表相关服务
+service MetricChartService {
+	// 创建图表
+	rpc createMetricChart (CreateMetricChartRequest) returns (CreateMetricChartResponse);
+
+	// 修改图表
+	rpc updateMetricChart (UpdateMetricChartRequest) returns (RPCSuccess);
+
+	// 查找单个图表
+	rpc findEnabledMetricChart (FindEnabledMetricChartRequest) returns (FindEnabledMetricChartResponse);
+
+	// 计算图表数量
+	rpc countEnabledMetricCharts (CountEnabledMetricChartsRequest) returns (RPCCountResponse);
+
+	// 列出单页图表
+	rpc listEnabledMetricCharts (ListEnabledMetricChartsRequest) returns (ListEnabledMetricChartsResponse);
+
+	// 删除图表
+	rpc deleteMetricChart (DeleteMetricChartRequest) returns (RPCSuccess);
+}
+
+// 创建图表
+message CreateMetricChartRequest {
+	int64 metricItemId = 1;
+	string name = 2;
+	string type = 3;
+	int32 widthDiv = 4;
+	bytes paramsJSON = 5;
+	int32 maxItems = 6;
+}
+
+message CreateMetricChartResponse {
+	int64 metricChartId = 1;
+}
+
+// 修改图表
+message UpdateMetricChartRequest {
+	int64 metricChartId = 1;
+	string name = 2;
+	string type = 3;
+	int32 widthDiv = 4;
+	bytes paramsJSON = 5;
+	bool isOn = 6;
+	int32 maxItems = 7;
+}
+
+// 查找单个图表
+message FindEnabledMetricChartRequest {
+	int64 metricChartId = 1;
+}
+
+message FindEnabledMetricChartResponse {
+	MetricChart metricChart = 1;
+}
+
+// 计算图表数量
+message CountEnabledMetricChartsRequest {
+	int64 metricItemId = 1;
+}
+
+// 列出单页图表
+message ListEnabledMetricChartsRequest {
+	int64 metricItemId = 1;
+	int64 offset = 2;
+	int64 size = 3;
+}
+
+message ListEnabledMetricChartsResponse {
+	repeated MetricChart metricCharts = 1;
+}
+
+// 删除图表
+message DeleteMetricChartRequest {
+	int64 metricChartId = 1;
+}
