@@ -1,0 +1,77 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_server_stat_board.proto";
+import "models/model_message_node_value.proto";
+
+// 统计看板
+service ServerStatBoardService {
+	// 读取所有看板
+	rpc findAllEnabledServerStatBoards (FindAllEnabledServerStatBoardsRequest) returns (FindAllEnabledServerStatBoardsResponse);
+
+	// 组合集群看板数据
+	rpc composeServerStatNodeClusterBoard (ComposeServerStatNodeClusterBoardRequest) returns (ComposeServerStatNodeClusterBoardResponse);
+}
+
+// 读取所有看板
+message FindAllEnabledServerStatBoardsRequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindAllEnabledServerStatBoardsResponse {
+	repeated ServerStatBoard serverStatBoards = 1;
+}
+
+// 组合集群看板数据
+message ComposeServerStatNodeClusterBoardRequest {
+	int64 nodeClusterId = 1;
+}
+
+message ComposeServerStatNodeClusterBoardResponse {
+	int64 countActiveNodes = 1;
+	int64 countInactiveNodes = 2;
+	int64 countServers = 3;
+	int64 countUsers = 4;
+
+	repeated DailyTrafficStat dailyTrafficStats = 30;
+	repeated HourlyTrafficStat hourlyTrafficStats = 31;
+	repeated NodeStat topNodeStats = 32;
+	repeated DomainStat topDomainStats = 33;
+
+	repeated NodeValue cpuNodeValues = 34;
+	repeated NodeValue memoryNodeValues = 35;
+	repeated NodeValue loadNodeValues = 36;
+
+	message DailyTrafficStat {
+		string day = 1;
+		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+		int64 countCachedRequests = 5;
+	}
+
+	message HourlyTrafficStat {
+		string hour = 1;
+		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+		int64 countCachedRequests = 5;
+	}
+
+	message NodeStat {
+		int64 nodeId = 1;
+		string nodeName = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
+	}
+
+
+	message DomainStat {
+		int64 serverId = 1;
+		string domain = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
+	}
+}

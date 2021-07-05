@@ -24,6 +24,17 @@ service ServerDailyStatService {
 // 上传统计
 message UploadServerDailyStatsRequest {
 	repeated ServerDailyStat stats = 1;
+	repeated DomainStat domainStats = 2;
+
+	message DomainStat {
+		int64 serverId = 1;
+		string domain = 2;
+		int64 bytes = 3;
+		int64 cachedBytes = 4;
+		int64 countRequests = 5;
+		int64 countCachedRequests = 6;
+		int64 createdAt = 7;
+	}
 }
 
 // 按小时读取统计数据

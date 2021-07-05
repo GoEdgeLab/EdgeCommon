@@ -1,0 +1,40 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_server_stat_board_chart.proto";
+
+// 统计看板条目
+service ServerStatBoardChartService {
+	// 添加图表
+	rpc enableServerStatBoardChart (EnableServerStatBoardChartRequest) returns (RPCSuccess);
+
+	// 取消图表
+	rpc disableServerStatBoardChart (DisableServerStatBoardChartRequest) returns (RPCSuccess);
+
+	// 读取看板中的图表
+	rpc findAllEnabledServerStatBoardCharts (FindAllEnabledServerStatBoardChartsRequest) returns (FindAllEnabledServerStatBoardChartsResponse);
+}
+
+// 添加图表
+message EnableServerStatBoardChartRequest {
+	int64 serverStatBoardId = 1;
+	int64 metricChartId = 2;
+}
+
+// 取消图表
+message DisableServerStatBoardChartRequest {
+	int64 serverStatBoardId = 1;
+	int64 metricChartId = 2;
+}
+
+// 读取看板中的图表
+message FindAllEnabledServerStatBoardChartsRequest {
+	int64 serverStatBoardId = 1;
+}
+
+message FindAllEnabledServerStatBoardChartsResponse {
+	repeated ServerStatBoardChart serverStatBoardCharts = 1;
+}

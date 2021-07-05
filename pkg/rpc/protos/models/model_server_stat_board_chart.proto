@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_metric_chart.proto";
+
+// 统计看板条目
+message ServerStatBoardChart {
+	int64 id = 1;
+
+	MetricChart metricChart = 30;
+}
