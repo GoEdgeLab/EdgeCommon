@@ -8,13 +8,15 @@ import "encoding/json"
 type NodeValueItem = string
 
 const (
-	NodeValueItemCPU         NodeValueItem = "cpu"         // CPU
-	NodeValueItemMemory      NodeValueItem = "memory"      // 内存
-	NodeValueItemLoad        NodeValueItem = "load"        // 负载
-	NodeValueItemTrafficIn   NodeValueItem = "trafficIn"   // 上行流量
-	NodeValueItemTrafficOut  NodeValueItem = "trafficOut"  // 下行流量
-	NodeValueItemConnections NodeValueItem = "connections" // 连接数
-	NodeValueItemDisk        NodeValueItem = "disk"        // 磁盘
+	NodeValueItemCPU            NodeValueItem = "cpu"            // CPU
+	NodeValueItemMemory         NodeValueItem = "memory"         // 内存
+	NodeValueItemLoad           NodeValueItem = "load"           // 负载
+	NodeValueItemTrafficIn      NodeValueItem = "trafficIn"      // 上行流量
+	NodeValueItemTrafficOut     NodeValueItem = "trafficOut"     // 下行流量
+	NodeValueItemConnections    NodeValueItem = "connections"    // 连接数
+	NodeValueItemRequests       NodeValueItem = "requests"       // 请求访问量
+	NodeValueItemAttackRequests NodeValueItem = "attackRequests" // 攻击请求访问量
+	NodeValueItemDisk           NodeValueItem = "disk"           // 磁盘
 )
 
 type nodeValueItemDefinition struct {
@@ -106,6 +108,28 @@ var nodeValueItemDefinitions = []*nodeValueItemDefinition{
 				Code:        "total",
 				Name:        "总数",
 				Description: "连接总数",
+			},
+		},
+	},
+	{
+		Code: NodeValueItemRequests,
+		Name: "请求数",
+		Params: []*nodeValueItemParamDefinition{
+			{
+				Code:        "total",
+				Name:        "总数",
+				Description: "请求总数",
+			},
+		},
+	},
+	{
+		Code: NodeValueItemAttackRequests,
+		Name: "攻击请求数",
+		Params: []*nodeValueItemParamDefinition{
+			{
+				Code:        "total",
+				Name:        "总数",
+				Description: "攻击请求总数",
 			},
 		},
 	},

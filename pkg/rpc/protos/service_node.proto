@@ -161,6 +161,15 @@ message ListEnabledNodesMatchRequest {
 	string keyword = 6;
 	int64 nodeGroupId = 7;
 	int64 nodeRegionId = 8;
+
+	bool cpuAsc = 20;
+	bool cpuDesc = 21;
+	bool memoryAsc = 22;
+	bool memoryDesc = 23;
+	bool trafficInAsc = 24;
+	bool trafficInDesc = 25;
+	bool trafficOutAsc = 26;
+	bool trafficOutDesc = 27;
 }
 
 message ListEnabledNodesMatchResponse {

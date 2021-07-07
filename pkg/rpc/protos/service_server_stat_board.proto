@@ -5,6 +5,8 @@ package pb;
 
 import "models/model_server_stat_board.proto";
 import "models/model_message_node_value.proto";
+import "models/model_metric_chart.proto";
+import "models/model_metric_stat.proto";
 
 // 统计看板
 service ServerStatBoardService {
@@ -13,6 +15,12 @@ service ServerStatBoardService {
 
 	// 组合集群看板数据
 	rpc composeServerStatNodeClusterBoard (ComposeServerStatNodeClusterBoardRequest) returns (ComposeServerStatNodeClusterBoardResponse);
+
+	// 组合节点看板数据
+	rpc composeServerStatNodeBoard (ComposeServerStatNodeBoardRequest) returns (ComposeServerStatNodeBoardResponse);
+
+	// 组合服务看板数据
+	rpc composeServerStatBoard (ComposeServerStatBoardRequest) returns (ComposeServerStatBoardResponse);
 }
 
 // 读取所有看板
@@ -44,6 +52,8 @@ message ComposeServerStatNodeClusterBoardResponse {
 	repeated NodeValue memoryNodeValues = 35;
 	repeated NodeValue loadNodeValues = 36;
 
+	repeated MetricData metricCharts = 37;
+
 	message DailyTrafficStat {
 		string day = 1;
 		int64 bytes = 2;
@@ -67,11 +77,131 @@ message ComposeServerStatNodeClusterBoardResponse {
 		int64 bytes = 4;
 	}
 
+	message DomainStat {
+		int64 serverId = 1;
+		string domain = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
+	}
+
+	message MetricData {
+		MetricChart metricChart = 1;
+		repeated MetricStat metricStats = 2;
+	}
+}
+
+// 组合节点看板数据
+message ComposeServerStatNodeBoardRequest {
+	int64 nodeId = 1;
+}
+
+message ComposeServerStatNodeBoardResponse {
+	bool isActive = 1;
+	int64 trafficInBytes = 2;
+	int64 trafficOutBytes = 3;
+	int64 countRequests = 4;
+	int64 countAttackRequests = 5;
+	int64 countConnections = 6;
+	int64 cacheDiskSize = 7;
+	int64 cacheMemorySize = 8;
+	float cpuUsage = 9;
+	float memoryUsage = 10;
+	int64 memoryTotalSize = 11;
+	float load = 12;
+
+	repeated CacheDisk cacheDisks = 30;
+	repeated DailyTrafficStat dailyTrafficStats = 31;
+	repeated HourlyTrafficStat hourlyTrafficStats = 32;
+	repeated DomainStat topDomainStats = 33;
+
+	repeated NodeValue cpuNodeValues = 34;
+	repeated NodeValue memoryNodeValues = 35;
+	repeated NodeValue loadNodeValues = 36;
+
+	repeated MetricData metricCharts = 37;
+
+	message CacheDisk {
+		string path = 1;
+		string mount = 2;
+		int64 totalSize = 3;
+		int64 usedSize = 4;
+		float usage = 5;
+	}
+
+	message DailyTrafficStat {
+		string day = 1;
+		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+		int64 countCachedRequests = 5;
+	}
+
+	message HourlyTrafficStat {
+		string hour = 1;
+		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+		int64 countCachedRequests = 5;
+	}
 
 	message DomainStat {
 		int64 serverId = 1;
 		string domain = 2;
 		int64 countRequests = 3;
 		int64 bytes = 4;
+	}
+
+	message MetricData {
+		MetricChart metricChart = 1;
+		repeated MetricStat metricStats = 2;
+	}
+}
+
+// 组合服务看板数据
+message ComposeServerStatBoardRequest {
+	int64 serverId = 1;
+}
+
+message ComposeServerStatBoardResponse {
+	repeated DailyTrafficStat dailyTrafficStats = 30;
+	repeated HourlyTrafficStat hourlyTrafficStats = 31;
+	repeated NodeStat topNodeStats = 32;
+	repeated DomainStat topDomainStats = 33;
+
+	repeated MetricData metricCharts = 34;
+
+	message DailyTrafficStat {
+		string day = 1;
+		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+		int64 countCachedRequests = 5;
+	}
+
+	message HourlyTrafficStat {
+		string hour = 1;
+		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+		int64 countCachedRequests = 5;
+	}
+
+	message NodeStat {
+		int64 nodeId = 1;
+		string nodeName = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
+	}
+
+	message DomainStat {
+		int64 serverId = 1;
+		string domain = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
+	}
+
+	message MetricData {
+		MetricChart metricChart = 1;
+		repeated MetricStat metricStats = 2;
 	}
 }

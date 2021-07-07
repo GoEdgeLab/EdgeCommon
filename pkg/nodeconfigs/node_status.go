@@ -25,6 +25,9 @@ type NodeStatus struct {
 	Load15m               float64 `json:"load15m"`
 	ConnectionCount       int     `json:"connectionCount"` // 连接数
 
+	TrafficInBytes  uint64 `json:"trafficInBytes"`
+	TrafficOutBytes uint64 `json:"trafficOutBytes"`
+
 	CacheTotalDiskSize   int64 `json:"cacheTotalDiskSize"`
 	CacheTotalMemorySize int64 `json:"cacheTotalMemorySize"`
 

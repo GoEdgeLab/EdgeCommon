@@ -24,6 +24,14 @@ const (
 	MetricItemPeriodUnitMonth  MetricItemPeriodUnit = "month"
 )
 
+// MetricItemValueType 值类型
+type MetricItemValueType = string
+
+const (
+	MetricItemValueTypeCount MetricItemValueType = "count" // 数量
+	MetricItemValueTypeByte  MetricItemValueType = "byte"  //  字节
+)
+
 // FindAllMetricKeyDefinitions 指标对象定义
 func FindAllMetricKeyDefinitions(category MetricItemCategory) []*shared.Definition {
 	switch category {
@@ -93,6 +101,10 @@ func FindAllMetricKeyDefinitions(category MetricItemCategory) []*shared.Definiti
 
 			// =========  以下是响应  =========
 			{
+				Name: "状态码",
+				Code: "${status}",
+			},
+			{
 				Name: "响应的Content-Type值",
 				Code: "${response.contentType}",
 			},
@@ -107,60 +119,79 @@ func FindAllMetricKeyDefinitions(category MetricItemCategory) []*shared.Definiti
 	return []*shared.Definition{}
 }
 
+// MetricValueDefinition 指标数值定义
+type MetricValueDefinition struct {
+	Name        string `json:"name"`
+	Code        string `json:"code"`
+	Description string `json:"description"`
+	Icon        string `json:"icon"`
+	Type        string `json:"type"`
+}
+
 // FindAllMetricValueDefinitions 指标数值定义
-func FindAllMetricValueDefinitions(category MetricItemCategory) []*shared.Definition {
+func FindAllMetricValueDefinitions(category MetricItemCategory) []*MetricValueDefinition {
 	switch category {
 	case MetricItemCategoryHTTP:
-		return []*shared.Definition{
+		return []*MetricValueDefinition{
 			{
 				Name: "请求数",
 				Code: "${countRequest}",
+				Type: MetricItemValueTypeCount,
 			},
 			{
 				Name: "连接数",
 				Code: "${countConnection}",
+				Type: MetricItemValueTypeCount,
 			},
 			{
 				Name: "下行流量",
 				Code: "${countTrafficOut}",
+				Type: MetricItemValueTypeByte,
 			},
 			{
 				Name: "上行流量",
 				Code: "${countTrafficIn}",
+				Type: MetricItemValueTypeByte,
 			},
 		}
 	case MetricItemCategoryTCP:
-		return []*shared.Definition{
+		return []*MetricValueDefinition{
 			{
 				Name: "连接数",
 				Code: "${countConnection}",
+				Type: MetricItemValueTypeCount,
 			},
 			{
 				Name: "下行流量",
 				Code: "${countTrafficOut}",
+				Type: MetricItemValueTypeByte,
 			},
 			{
 				Name: "上行流量",
 				Code: "${countTrafficIn}",
+				Type: MetricItemValueTypeByte,
 			},
 		}
 	case MetricItemCategoryUDP:
-		return []*shared.Definition{
+		return []*MetricValueDefinition{
 			{
 				Name: "连接数",
 				Code: "${countConnection}",
+				Type: MetricItemValueTypeCount,
 			},
 			{
 				Name: "下行流量",
 				Code: "${countTrafficOut}",
+				Type: MetricItemValueTypeByte,
 			},
 			{
 				Name: "上行流量",
 				Code: "${countTrafficIn}",
+				Type: MetricItemValueTypeByte,
 			},
 		}
 	}
-	return []*shared.Definition{}
+	return []*MetricValueDefinition{}
 }
 
 func FindMetricValueName(category MetricItemCategory, code string) string {
@@ -170,6 +201,15 @@ func FindMetricValueName(category MetricItemCategory, code string) string {
 		}
 	}
 	return code
+}
+
+func FindMetricValueType(category MetricItemCategory, code string) string {
+	for _, def := range FindAllMetricValueDefinitions(category) {
+		if def.Code == code {
+			return def.Type
+		}
+	}
+	return MetricItemValueTypeCount
 }
 
 // HumanMetricTime 格式化时间，让时间更易读
