@@ -109,7 +109,6 @@ message ComposeServerStatNodeBoardResponse {
 	int64 memoryTotalSize = 11;
 	float load = 12;
 
-	repeated CacheDisk cacheDisks = 30;
 	repeated DailyTrafficStat dailyTrafficStats = 31;
 	repeated HourlyTrafficStat hourlyTrafficStats = 32;
 	repeated DomainStat topDomainStats = 33;
@@ -117,16 +116,9 @@ message ComposeServerStatNodeBoardResponse {
 	repeated NodeValue cpuNodeValues = 34;
 	repeated NodeValue memoryNodeValues = 35;
 	repeated NodeValue loadNodeValues = 36;
+	repeated NodeValue cacheDirsValues = 38;
 
 	repeated MetricData metricCharts = 37;
-
-	message CacheDisk {
-		string path = 1;
-		string mount = 2;
-		int64 totalSize = 3;
-		int64 usedSize = 4;
-		float usage = 5;
-	}
 
 	message DailyTrafficStat {
 		string day = 1;

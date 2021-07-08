@@ -17,6 +17,7 @@ const (
 	NodeValueItemRequests       NodeValueItem = "requests"       // 请求访问量
 	NodeValueItemAttackRequests NodeValueItem = "attackRequests" // 攻击请求访问量
 	NodeValueItemDisk           NodeValueItem = "disk"           // 磁盘
+	NodeValueItemCacheDir       NodeValueItem = "cacheDir"       // 缓存目录
 )
 
 type nodeValueItemDefinition struct {
