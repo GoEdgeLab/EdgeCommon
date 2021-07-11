@@ -1,0 +1,18 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_record_hourly_stat.proto";
+import "models/rpc_messages.proto";
+
+// NS记录小时统计
+service NSRecordHourlyStatService {
+	// 上传统计
+	rpc uploadNSRecordHourlyStats (UploadNSRecordHourlyStatsRequest) returns (RPCSuccess);
+}
+
+// 上传统计
+message UploadNSRecordHourlyStatsRequest {
+	repeated NSRecordHourlyStat stats = 1;
+}
