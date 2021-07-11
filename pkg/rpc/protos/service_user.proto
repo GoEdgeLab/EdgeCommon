@@ -6,6 +6,7 @@ package pb;
 import "models/rpc_messages.proto";
 import "models/model_user.proto";
 import "models/model_user_feature.proto";
+import "models/model_node_value.proto";
 
 // 用户相关服务
 service UserService {
@@ -53,6 +54,9 @@ service UserService {
 
 	// 获取所有的功能定义
 	rpc findAllUserFeatureDefinitions (FindAllUserFeatureDefinitionsRequest) returns (FindAllUserFeatureDefinitionsResponse);
+
+	// 组合全局的看板数据
+	rpc composeUserGlobalBoard (ComposeUserGlobalBoardRequest) returns (ComposeUserGlobalBoardResponse);
 }
 
 // 创建用户
@@ -202,4 +206,35 @@ message FindAllUserFeatureDefinitionsRequest {
 
 message FindAllUserFeatureDefinitionsResponse {
 	repeated UserFeature features = 1;
+}
+
+// 组合看板数据
+message ComposeUserGlobalBoardRequest {
+
+}
+
+message ComposeUserGlobalBoardResponse {
+	int64 totalUsers = 1;
+	int64 countTodayUsers = 2;
+	int64 countWeeklyUsers = 3;
+	int64 countUserNodes = 4;
+	int64 countOfflineUserNodes = 5;
+
+	repeated DailyStat dailyStats = 30;
+	repeated NodeValue cpuNodeValues = 31;
+	repeated NodeValue memoryNodeValues = 32;
+	repeated NodeValue loadNodeValues = 33;
+	repeated TrafficStat topTrafficStats = 34;
+
+	message DailyStat {
+		string day = 1;
+		int64 count = 2;
+	}
+
+	message TrafficStat {
+		int64 userId = 1;
+		string userName = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
+	}
 }

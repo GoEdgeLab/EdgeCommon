@@ -1,0 +1,60 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_node_value.proto";
+
+// 域名服务
+service NSService {
+	// 组合看板数据
+	rpc composeNSBoard (ComposeNSBoardRequest) returns (ComposeNSBoardResponse);
+}
+
+// 组合看板数据
+message ComposeNSBoardRequest {
+
+}
+
+message ComposeNSBoardResponse {
+	int64 countNSDomains = 1;
+	int64 countNSRecords = 2;
+	int64 countNSClusters = 3;
+	int64 countNSNodes = 4;
+
+	repeated DailyTrafficStat dailyTrafficStats = 30;
+	repeated HourlyTrafficStat hourlyTrafficStats = 31;
+	repeated NodeStat topNodeStats = 32;
+	repeated DomainStat topDomainStats = 33;
+	repeated NodeValue cpuNodeValues = 34;
+	repeated NodeValue memoryNodeValues = 35;
+	repeated NodeValue loadNodeValues = 36;
+
+	message DailyTrafficStat {
+		string day = 1;
+		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+	}
+
+	message HourlyTrafficStat {
+		string hour = 1;
+		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+	}
+
+	message NodeStat {
+		int64 nodeId = 1;
+		string nodeName = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
+	}
+
+	message DomainStat {
+		int64 serverId = 1;
+		string domain = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
+	}
+}

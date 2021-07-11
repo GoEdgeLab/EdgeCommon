@@ -4,7 +4,7 @@ option go_package = "./pb";
 package pb;
 
 import "models/model_server_stat_board.proto";
-import "models/model_message_node_value.proto";
+import "models/model_node_value.proto";
 import "models/model_metric_chart.proto";
 import "models/model_metric_stat.proto";
 
