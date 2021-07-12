@@ -55,6 +55,9 @@ service AdminService {
 
 	// 取得管理员Dashboard数据
 	rpc composeAdminDashboard (ComposeAdminDashboardRequest) returns (ComposeAdminDashboardResponse);
+
+	// 修改管理员使用的界面风格
+	rpc updateAdminTheme (UpdateAdminThemeRequest) returns (RPCSuccess);
 }
 
 // 登录
@@ -231,4 +234,10 @@ message ComposeAdminDashboardResponse {
 		int64 countNodes = 1;
 		string newVersion = 2;
 	}
+}
+
+// 修改管理员使用的界面风格
+message UpdateAdminThemeRequest {
+	int64 adminId = 1;
+	string theme = 2;
 }
