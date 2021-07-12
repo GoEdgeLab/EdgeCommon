@@ -1,0 +1,47 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_http_firewall_rule_group.proto";
+
+// 防火墙全局服务
+service FirewallService {
+	// 组合看板数据
+	rpc composeFirewallGlobalBoard (ComposeFirewallGlobalBoardRequest) returns (ComposeFirewallGlobalBoardResponse);
+}
+
+// 组合看板数据
+message ComposeFirewallGlobalBoardRequest {
+
+}
+
+message ComposeFirewallGlobalBoardResponse {
+	int64 countDailyLogs = 1;
+	int64 countDailyBlocks = 2;
+	int64 countDailyCaptcha = 3;
+	int64 countWeeklyBlocks = 4;
+
+	repeated HTTPFirewallRuleGroupStat httpFirewallRuleGroups = 30;
+	repeated DailyStat dailyStats = 31;
+	repeated HourlyStat hourlyStats = 32;
+
+	message HTTPFirewallRuleGroupStat {
+		HTTPFirewallRuleGroup httpFirewallRuleGroup = 1;
+		int64 count = 2;
+	}
+
+	message HourlyStat {
+		string hour = 1;
+		int64 countLogs = 2;
+		int64 countCaptcha = 3;
+		int64 countBlocks = 4;
+	}
+
+	message DailyStat {
+		string day = 1;
+		int64 countLogs = 2;
+		int64 countCaptcha = 3;
+		int64 countBlocks = 4;
+	}
+}

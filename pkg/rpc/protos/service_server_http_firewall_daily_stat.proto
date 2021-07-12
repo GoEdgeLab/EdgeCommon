@@ -7,11 +7,11 @@ import "models/model_http_firewall_rule_group.proto";
 
 // WAF统计
 service ServerHTTPFirewallDailyStatService {
-	// 组合Dashboard
+	// 组合服务的Dashboard
 	rpc composeServerHTTPFirewallDashboard (ComposeServerHTTPFirewallDashboardRequest) returns (ComposeServerHTTPFirewallDashboardResponse);
 }
 
-// 组合Dashboard
+// 组合服务的Dashboard
 message ComposeServerHTTPFirewallDashboardRequest {
 	string day = 1;
 	int64 userId = 2;

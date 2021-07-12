@@ -29,7 +29,7 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-// 组合Dashboard
+// 组合服务的Dashboard
 type ComposeServerHTTPFirewallDashboardRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -522,7 +522,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ServerHTTPFirewallDailyStatServiceClient interface {
-	// 组合Dashboard
+	// 组合服务的Dashboard
 	ComposeServerHTTPFirewallDashboard(ctx context.Context, in *ComposeServerHTTPFirewallDashboardRequest, opts ...grpc.CallOption) (*ComposeServerHTTPFirewallDashboardResponse, error)
 }
 
@@ -545,7 +545,7 @@ func (c *serverHTTPFirewallDailyStatServiceClient) ComposeServerHTTPFirewallDash
 
 // ServerHTTPFirewallDailyStatServiceServer is the server API for ServerHTTPFirewallDailyStatService service.
 type ServerHTTPFirewallDailyStatServiceServer interface {
-	// 组合Dashboard
+	// 组合服务的Dashboard
 	ComposeServerHTTPFirewallDashboard(context.Context, *ComposeServerHTTPFirewallDashboardRequest) (*ComposeServerHTTPFirewallDashboardResponse, error)
 }
 
