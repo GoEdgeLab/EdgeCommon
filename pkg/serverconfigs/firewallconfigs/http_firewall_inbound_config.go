@@ -1,6 +1,8 @@
 package firewallconfigs
 
-import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/ipconfigs"
+import (
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/ipconfigs"
+)
 
 // HTTPFirewallInboundConfig HTTP防火墙入口配置
 type HTTPFirewallInboundConfig struct {
@@ -52,7 +54,7 @@ func (this *HTTPFirewallInboundConfig) Init() error {
 	if this.DenyListRef != nil {
 		this.allDenyListRefs = append(this.allDenyListRefs, this.DenyListRef)
 	}
-	if len(this.PublicAllowListRefs) > 0 {
+	if len(this.PublicDenyListRefs) > 0 {
 		this.allDenyListRefs = append(this.allDenyListRefs, this.PublicDenyListRefs...)
 	}
 
