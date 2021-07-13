@@ -12,4 +12,6 @@ message ServerDailyStat {
 	int64 countRequests = 6;
 	int64 countCachedRequests = 7;
 	int64 createdAt = 4;
+	int64 countAttackRequests = 8;
+	int64 attackBytes = 9;
 }

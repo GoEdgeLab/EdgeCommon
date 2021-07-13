@@ -212,6 +212,7 @@ message ComposeAdminDashboardResponse {
 
 	repeated DailyTrafficStat dailyTrafficStats = 30;
 	repeated HourlyTrafficStat hourlyTrafficStats = 31;
+
 	UpgradeInfo nodeUpgradeInfo = 32;
 	UpgradeInfo apiNodeUpgradeInfo = 33;
 	UpgradeInfo monitorNodeUpgradeInfo = 34;
@@ -219,14 +220,41 @@ message ComposeAdminDashboardResponse {
 	UpgradeInfo authorityNodeUpgradeInfo = 36;
 	UpgradeInfo nsNodeUpgradeInfo = 37;
 
+	repeated NodeStat topNodeStats = 38;
+	repeated DomainStat topDomainStats = 39;
+
 	message DailyTrafficStat {
 		string day = 1;
 		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+		int64 countCachedRequests = 5;
+		int64 countAttackRequests = 6;
+		int64 attackBytes = 7;
 	}
 
 	message HourlyTrafficStat {
 		string hour = 1;
 		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 countRequests = 4;
+		int64 countCachedRequests = 5;
+		int64 countAttackRequests = 6;
+		int64 attackBytes = 7;
+	}
+
+	message NodeStat {
+		int64 nodeId = 1;
+		string nodeName = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
+	}
+
+	message DomainStat {
+		int64 serverId = 1;
+		string domain = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
 	}
 
 	// 节点升级信息

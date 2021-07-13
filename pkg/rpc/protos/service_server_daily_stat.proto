@@ -33,6 +33,8 @@ message UploadServerDailyStatsRequest {
 		int64 cachedBytes = 4;
 		int64 countRequests = 5;
 		int64 countCachedRequests = 6;
+		int64 countAttackRequests = 8;
+		int64 attackBytes = 9;
 		int64 createdAt = 7;
 	}
 }
