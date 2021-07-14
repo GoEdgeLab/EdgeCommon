@@ -8,8 +8,8 @@ import "github.com/iwind/TeaGo/maps"
 func DefaultRequestVariables() []maps.Map {
 	return []maps.Map{
 		{"code": "${edgeVersion}", "name": "边缘节点版本", "description": ""},
-		{"code": "${remoteAddr}", "name": "客户端地址（IP）", "description": "会依次根据X-Forwarded-For、X-Real-IP、RemoteAddr获取"},
-		{"code": "${rawRemoteAddr}", "name": "客户端地址（IP）", "description": "返回直接连接服务的客户端原始IP地址，从v0.1.3版本加入"},
+		{"code": "${remoteAddr}", "name": "客户端地址（IP）", "description": "会依次根据X-Forwarded-For、X-Real-IP、RemoteAddr获取，适合前端有别的反向代理服务时使用，存在伪造的风险"},
+		{"code": "${rawRemoteAddr}", "name": "客户端地址（IP）", "description": "返回直接连接服务的客户端原始IP地址"},
 		{"code": "${remotePort}", "name": "客户端端口", "description": ""},
 		{"code": "${remoteUser}", "name": "客户端用户名", "description": ""},
 		{"code": "${requestURI}", "name": "请求URI", "description": ""},

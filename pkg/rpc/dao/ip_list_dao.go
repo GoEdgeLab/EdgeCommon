@@ -15,7 +15,7 @@ type IPListDAO struct {
 	BaseDAO
 }
 
-// 查找服务的允许IP列表
+// FindAllowIPListIdWithServerId 查找服务的允许IP列表
 func (this *IPListDAO) FindAllowIPListIdWithServerId(ctx context.Context, serverId int64) (int64, error) {
 	webConfig, err := SharedHTTPWebDAO.FindWebConfigWithServerId(ctx, serverId)
 	if err != nil {
@@ -30,7 +30,7 @@ func (this *IPListDAO) FindAllowIPListIdWithServerId(ctx context.Context, server
 	return webConfig.FirewallPolicy.Inbound.AllowListRef.ListId, nil
 }
 
-// 查找服务的禁止IP列表
+// FindDenyIPListIdWithServerId 查找服务的禁止IP列表
 func (this *IPListDAO) FindDenyIPListIdWithServerId(ctx context.Context, serverId int64) (int64, error) {
 	webConfig, err := SharedHTTPWebDAO.FindWebConfigWithServerId(ctx, serverId)
 	if err != nil {
@@ -45,7 +45,7 @@ func (this *IPListDAO) FindDenyIPListIdWithServerId(ctx context.Context, serverI
 	return webConfig.FirewallPolicy.Inbound.DenyListRef.ListId, nil
 }
 
-// 为服务创建IP名单
+// CreateIPListForServerId 为服务创建IP名单
 func (this *IPListDAO) CreateIPListForServerId(ctx context.Context, serverId int64, listType string) (int64, error) {
 	webConfig, err := SharedHTTPWebDAO.FindWebConfigWithServerId(ctx, serverId)
 	if err != nil {

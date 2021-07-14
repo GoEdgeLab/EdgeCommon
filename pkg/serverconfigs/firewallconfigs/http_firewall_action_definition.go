@@ -2,10 +2,19 @@ package firewallconfigs
 
 import "reflect"
 
-// action definition
+type HTTPFirewallActionCategory = string
+
+const (
+	HTTPFirewallActionCategoryBlock  HTTPFirewallActionCategory = "block"
+	HTTPFirewallActionCategoryAllow  HTTPFirewallActionCategory = "allow"
+	HTTPFirewallActionCategoryVerify HTTPFirewallActionCategory = "verify"
+)
+
+// HTTPFirewallActionDefinition action definition
 type HTTPFirewallActionDefinition struct {
-	Name        string
-	Code        HTTPFirewallActionString
-	Description string
-	Type        reflect.Type
+	Name        string                     `json:"name"`
+	Code        HTTPFirewallActionString   `json:"code"`
+	Description string                     `json:"description"`
+	Type        reflect.Type               `json:"type"`
+	Category    HTTPFirewallActionCategory `json:"category"`
 }

@@ -2,7 +2,7 @@ package firewallconfigs
 
 import "encoding/json"
 
-// 防火墙策略
+// HTTPFirewallPolicy 防火墙策略
 type HTTPFirewallPolicy struct {
 	Id           int64                       `yaml:"id" json:"id"`
 	IsOn         bool                        `yaml:"isOn" json:"isOn"`
@@ -11,9 +11,10 @@ type HTTPFirewallPolicy struct {
 	Inbound      *HTTPFirewallInboundConfig  `yaml:"inbound" json:"inbound"`
 	Outbound     *HTTPFirewallOutboundConfig `yaml:"outbound" json:"outbound"`
 	BlockOptions *HTTPFirewallBlockAction    `yaml:"blockOptions" json:"blockOptions"`
+
 }
 
-// 初始化
+// Init 初始化
 func (this *HTTPFirewallPolicy) Init() error {
 	if this.Inbound != nil {
 		err := this.Inbound.Init()
@@ -31,7 +32,7 @@ func (this *HTTPFirewallPolicy) Init() error {
 	return nil
 }
 
-// 获取所有分组
+// AllRuleGroups 获取所有分组
 func (this *HTTPFirewallPolicy) AllRuleGroups() []*HTTPFirewallRuleGroup {
 	result := []*HTTPFirewallRuleGroup{}
 	if this.Inbound != nil {
@@ -43,7 +44,7 @@ func (this *HTTPFirewallPolicy) AllRuleGroups() []*HTTPFirewallRuleGroup {
 	return result
 }
 
-// 根据代号查找分组
+// FindRuleGroupWithCode 根据代号查找分组
 func (this *HTTPFirewallPolicy) FindRuleGroupWithCode(code string) *HTTPFirewallRuleGroup {
 	for _, g := range this.AllRuleGroups() {
 		if g.Code == code {
@@ -53,7 +54,7 @@ func (this *HTTPFirewallPolicy) FindRuleGroupWithCode(code string) *HTTPFirewall
 	return nil
 }
 
-// 根据ID查找分组
+// FindRuleGroup 根据ID查找分组
 func (this *HTTPFirewallPolicy) FindRuleGroup(groupId int64) *HTTPFirewallRuleGroup {
 	for _, g := range this.AllRuleGroups() {
 		if g.Id == groupId {
@@ -63,7 +64,7 @@ func (this *HTTPFirewallPolicy) FindRuleGroup(groupId int64) *HTTPFirewallRuleGr
 	return nil
 }
 
-// 删除某个分组
+// RemoveRuleGroup 删除某个分组
 func (this *HTTPFirewallPolicy) RemoveRuleGroup(groupId int64) {
 	if this.Inbound != nil {
 		this.Inbound.RemoveRuleGroup(groupId)
@@ -73,7 +74,7 @@ func (this *HTTPFirewallPolicy) RemoveRuleGroup(groupId int64) {
 	}
 }
 
-// Inbound JSON
+// InboundJSON Inbound JSON
 func (this *HTTPFirewallPolicy) InboundJSON() ([]byte, error) {
 	if this.Inbound == nil {
 		return []byte("null"), nil
@@ -86,7 +87,7 @@ func (this *HTTPFirewallPolicy) InboundJSON() ([]byte, error) {
 	return json.Marshal(this.Inbound)
 }
 
-// Outbound JSON
+// OutboundJSON Outbound JSON
 func (this *HTTPFirewallPolicy) OutboundJSON() ([]byte, error) {
 	if this.Inbound == nil {
 		return []byte("null"), nil
