@@ -6,5 +6,5 @@ type HTTPFirewallRecordIPAction struct {
 	Type     string `yaml:"type" json:"type"`
 	IPListId int64  `yaml:"ipListId" json:"ipListId"`
 	Level    string `yaml:"level" json:"level"`
-	Timeout  int64  `yaml:"timeout" json:"timeout"`
+	Timeout  int32  `yaml:"timeout" json:"timeout"`
 }

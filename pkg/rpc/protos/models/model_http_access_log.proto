@@ -63,6 +63,10 @@ message HTTPAccessLog {
 	int64 firewallRuleGroupId = 45;
 	int64 firewallRuleSetId = 46;
 	int64 firewallRuleId = 47;
+
+	repeated string firewallActions = 49;
+	repeated string tags = 50;
+
 }
 
 message Strings {

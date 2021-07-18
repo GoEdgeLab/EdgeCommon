@@ -24,7 +24,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "客户端地址（IP）",
 		Prefix:      "remoteAddr",
-		Description: "试图通过分析X-Forwarded-For等Header获取的客户端地址，比如192.168.1.100",
+		Description: "试图通过分析X-Forwarded-For等Header获取的客户端地址，比如192.168.1.100，存在伪造的可能",
 		IsRequest:   true,
 	},
 	{

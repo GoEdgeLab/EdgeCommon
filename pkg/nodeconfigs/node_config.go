@@ -19,6 +19,7 @@ var sharedNodeConfig *NodeConfig = nil
 type NodeConfig struct {
 	Id                     int64                         `yaml:"id" json:"id"`
 	NodeId                 string                        `yaml:"nodeId" json:"nodeId"`
+	Secret                 string                        `yaml:"secret" json:"secret"`
 	IsOn                   bool                          `yaml:"isOn" json:"isOn"`
 	Servers                []*serverconfigs.ServerConfig `yaml:"servers" json:"servers"`
 	Version                int64                         `yaml:"version" json:"version"`

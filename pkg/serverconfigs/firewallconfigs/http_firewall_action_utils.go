@@ -32,19 +32,19 @@ var AllActions = []*HTTPFirewallActionDefinition{
 	{
 		Name:        "告警",
 		Code:        HTTPFirewallActionNotify,
-		Description: "发送消息通知。",
+		Description: "向集群的消息接收人发送消息通知（企业版）。",
 		Category:    HTTPFirewallActionCategoryVerify,
 	},
 	{
 		Name:        "GET 302",
 		Code:        HTTPFirewallActionGet302,
-		Description: "通过302重定向GET请求验证客户端。",
+		Description: "通过302重定向GET请求验证客户端真实性。",
 		Category:    HTTPFirewallActionCategoryVerify,
 	},
 	{
 		Name:        "POST 307",
 		Code:        HTTPFirewallActionPost307,
-		Description: "通过307重定向POST请求验证客户端。",
+		Description: "通过307重定向POST请求验证客户端真实性。",
 		Category:    HTTPFirewallActionCategoryVerify,
 	},
 	{
