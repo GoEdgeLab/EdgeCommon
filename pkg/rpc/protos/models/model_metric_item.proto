@@ -14,4 +14,5 @@ message MetricItem {
 	int32 period = 7;
 	string periodUnit = 8;
 	string value = 10;
+	bool isPublic = 11;
 }

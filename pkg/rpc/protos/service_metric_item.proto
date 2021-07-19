@@ -36,6 +36,7 @@ message CreateMetricItemRequest {
 	int32 period = 5;
 	string periodUnit = 6;
 	string value = 7;
+	bool isPublic = 8;
 }
 
 message CreateMetricItemResponse {
@@ -51,6 +52,7 @@ message UpdateMetricItemRequest {
 	string periodUnit = 5;
 	string value = 6;
 	bool isOn = 7;
+	bool isPublic = 8;
 }
 
 // 查找单个指标信息
