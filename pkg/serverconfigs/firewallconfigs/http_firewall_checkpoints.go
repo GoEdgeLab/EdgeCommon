@@ -185,7 +185,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		HasParams:   true,
 	},
 	{
-		Name:        "CC统计（新）",
+		Name:        "CC统计",
 		Prefix:      "cc2",
 		Description: "对统计对象进行统计",
 		HasParams:   false,
