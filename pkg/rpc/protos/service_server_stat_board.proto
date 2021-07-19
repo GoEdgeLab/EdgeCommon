@@ -52,7 +52,7 @@ message ComposeServerStatNodeClusterBoardResponse {
 	repeated NodeValue memoryNodeValues = 35;
 	repeated NodeValue loadNodeValues = 36;
 
-	repeated MetricData metricCharts = 37;
+	repeated MetricDataChart metricDataCharts = 37;
 
 	message DailyTrafficStat {
 		string day = 1;
@@ -90,11 +90,6 @@ message ComposeServerStatNodeClusterBoardResponse {
 		int64 bytes = 4;
 		int64 countAttackRequests = 6;
 		int64 attackBytes = 7;
-	}
-
-	message MetricData {
-		MetricChart metricChart = 1;
-		repeated MetricStat metricStats = 2;
 	}
 }
 
@@ -126,7 +121,7 @@ message ComposeServerStatNodeBoardResponse {
 	repeated NodeValue loadNodeValues = 36;
 	repeated NodeValue cacheDirsValues = 38;
 
-	repeated MetricData metricCharts = 37;
+	repeated MetricDataChart metricDataCharts = 37;
 
 	message DailyTrafficStat {
 		string day = 1;
@@ -156,11 +151,6 @@ message ComposeServerStatNodeBoardResponse {
 		int64 countAttackRequests = 6;
 		int64 attackBytes = 7;
 	}
-
-	message MetricData {
-		MetricChart metricChart = 1;
-		repeated MetricStat metricStats = 2;
-	}
 }
 
 // 组合服务看板数据
@@ -174,7 +164,7 @@ message ComposeServerStatBoardResponse {
 	repeated NodeStat topNodeStats = 32;
 	repeated DomainStat topDomainStats = 33;
 
-	repeated MetricData metricCharts = 34;
+	repeated MetricDataChart metricDataCharts = 34;
 
 	message DailyTrafficStat {
 		string day = 1;
@@ -213,9 +203,10 @@ message ComposeServerStatBoardResponse {
 		int64 countAttackRequests = 6;
 		int64 attackBytes = 7;
 	}
+}
 
-	message MetricData {
-		MetricChart metricChart = 1;
-		repeated MetricStat metricStats = 2;
-	}
+// 矩阵数据
+message MetricDataChart {
+	MetricChart metricChart = 1;
+	repeated MetricStat metricStats = 2;
 }

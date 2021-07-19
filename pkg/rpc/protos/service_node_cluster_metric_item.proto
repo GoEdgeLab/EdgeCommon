@@ -5,6 +5,7 @@ package pb;
 
 import "models/rpc_messages.proto";
 import "models/model_metric_item.proto";
+import "models/model_node_cluster.proto";
 
 // 集群指标
 service NodeClusterMetricItemService {
@@ -19,6 +20,9 @@ service NodeClusterMetricItemService {
 
 	// 检查是否已添加某个指标
 	rpc existsNodeClusterMetricItem (ExistsNodeClusterMetricItemRequest) returns (RPCExists);
+
+	// 查找使用指标的集群
+	rpc findAllNodeClustersWithMetricItemId (FindAllNodeClustersWithMetricItemIdRequest) returns (FindAllNodeClustersWithMetricItemIdResponse);
 }
 
 // 启用某个指标
@@ -47,4 +51,13 @@ message FindAllNodeClusterMetricItemsResponse {
 message ExistsNodeClusterMetricItemRequest {
 	int64 nodeClusterId = 1;
 	int64 metricItemId = 2;
+}
+
+// 查找使用指标的集群
+message FindAllNodeClustersWithMetricItemIdRequest {
+	int64 metricItemId = 1;
+}
+
+message FindAllNodeClustersWithMetricItemIdResponse {
+	repeated NodeCluster nodeClusters = 1;
 }
