@@ -40,7 +40,7 @@ func FindAllMetricKeyDefinitions(category MetricItemCategory) []*shared.Definiti
 			{
 				Name:        "客户端地址（IP）",
 				Code:        "${remoteAddr}",
-				Description: "会依次根据X-Forwarded-For、X-Real-IP、RemoteAddr获取",
+				Description: "会依次根据X-Forwarded-For、X-Real-IP、RemoteAddr获取，适用于前端可能有别的反向代理的情形，存在被伪造的可能",
 			},
 			{
 				Name:        "直接客户端地址（IP）",
@@ -55,12 +55,27 @@ func FindAllMetricKeyDefinitions(category MetricItemCategory) []*shared.Definiti
 			{
 				Name:        "请求URI",
 				Code:        "${requestURI}",
-				Description: "包含参数",
+				Description: "包含参数，比如/hello?name=lily",
 			},
 			{
 				Name:        "请求路径",
 				Code:        "${requestPath}",
-				Description: "不包含参数",
+				Description: "不包含参数，比如/hello",
+			},
+			{
+				Name:        "完整URL",
+				Code:        "${requestURL}",
+				Description: "比如https://example.com/hello?name=lily",
+			},
+			{
+				Name:        "请求方法",
+				Code:        "${requestMethod}",
+				Description: "比如GET、POST等",
+			},
+			{
+				Name:        "请求协议",
+				Code:        "${scheme}",
+				Description: "http或https",
 			},
 			{
 				Name:        "文件扩展名",

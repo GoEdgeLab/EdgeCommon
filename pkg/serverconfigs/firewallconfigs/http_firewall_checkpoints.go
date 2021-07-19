@@ -5,7 +5,7 @@ import (
 	"regexp"
 )
 
-// all check points list
+// AllCheckpoints all check points list
 var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "通用请求Header长度限制",
@@ -185,9 +185,17 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		HasParams:   true,
 	},
 	{
-		Name:        "CC统计",
+		Name:        "CC统计（新）",
+		Prefix:      "cc2",
+		Description: "对统计对象进行统计",
+		HasParams:   false,
+		IsRequest:   true,
+		IsComposed:  true,
+	},
+	{
+		Name:        "CC统计（旧）",
 		Prefix:      "cc",
-		Description: "统计某段时间段内的请求信息",
+		Description: "统计某段时间段内的请求信息（请使用新的CC统计代替）",
 		HasParams:   true,
 		Params: []*KeyValue{
 			NewKeyValue("请求数", "requests"),

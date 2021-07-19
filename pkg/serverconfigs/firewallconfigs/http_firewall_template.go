@@ -434,13 +434,13 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		policy.Inbound.Groups = append(policy.Inbound.Groups, group)
 	}
 
-	// cc
+	// cc2
 	{
 		group := &HTTPFirewallRuleGroup{}
 		group.IsOn = true
 		group.Name = "CC攻击"
 		group.Description = "Challenge Collapsar，防止短时间大量请求涌入，请谨慎开启和设置"
-		group.Code = "cc"
+		group.Code = "cc2"
 
 		{
 			set := &HTTPFirewallRuleSet{}
@@ -456,11 +456,13 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			}
 			set.AddRule(&HTTPFirewallRule{
 				IsOn:     true,
-				Param:    "${cc.requests}",
+				Param:    "${cc2}",
 				Operator: HTTPFirewallRuleOperatorGt,
 				Value:    "1000",
 				CheckpointOptions: map[string]interface{}{
-					"period": "60",
+					"keys":      []string{"${remoteAddr}", "${requestPath}"},
+					"period":    "60",
+					"threshold": 1000,
 				},
 				IsCaseInsensitive: false,
 			})
