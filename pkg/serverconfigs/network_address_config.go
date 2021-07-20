@@ -11,7 +11,7 @@ import (
 
 var regexpSinglePort = regexp.MustCompile(`^\d+$`)
 
-// 网络地址配置
+// NetworkAddressConfig 网络地址配置
 type NetworkAddressConfig struct {
 	Protocol  Protocol `yaml:"protocol" json:"protocol"`   // 协议，http、tcp、tcp4、tcp6、unix、udp等
 	Host      string   `yaml:"host" json:"host"`           // 主机地址或主机名，支持变量
@@ -23,7 +23,7 @@ type NetworkAddressConfig struct {
 	hostHasVariables bool
 }
 
-// 初始化
+// Init 初始化
 func (this *NetworkAddressConfig) Init() error {
 	this.hostHasVariables = configutils.HasVariables(this.Host)
 
@@ -63,7 +63,7 @@ func (this *NetworkAddressConfig) Init() error {
 	return nil
 }
 
-// 所有的地址列表，不包括scheme
+// Addresses 所有的地址列表，不包括scheme
 func (this *NetworkAddressConfig) Addresses() []string {
 	if this.Protocol == ProtocolUnix {
 		return []string{this.Host}
@@ -72,12 +72,12 @@ func (this *NetworkAddressConfig) Addresses() []string {
 	result := []string{}
 	for i := this.minPort; i <= this.maxPort; i++ {
 		host := this.Host
-		result = append(result, host+":"+strconv.Itoa(i))
+		result = append(result, configutils.QuoteIP(host)+":"+strconv.Itoa(i))
 	}
 	return result
 }
 
-// 所有的地址列表，包含scheme
+// FullAddresses 所有的地址列表，包含scheme
 func (this *NetworkAddressConfig) FullAddresses() []string {
 	if this.Protocol == ProtocolUnix {
 		return []string{this.Protocol.String() + ":" + this.Host}
@@ -86,20 +86,20 @@ func (this *NetworkAddressConfig) FullAddresses() []string {
 	result := []string{}
 	for i := this.minPort; i <= this.maxPort; i++ {
 		host := this.Host
-		result = append(result, this.Protocol.String()+"://"+host+":"+strconv.Itoa(i))
+		result = append(result, this.Protocol.String()+"://"+configutils.QuoteIP(host)+":"+strconv.Itoa(i))
 	}
 	return result
 }
 
-// 选择其中一个地址
+// PickAddress 选择其中一个地址
 func (this *NetworkAddressConfig) PickAddress() string {
 	if this.maxPort > this.minPort {
-		return this.Host + ":" + strconv.Itoa(rands.Int(this.minPort, this.maxPort))
+		return configutils.QuoteIP(this.Host) + ":" + strconv.Itoa(rands.Int(this.minPort, this.maxPort))
 	}
-	return this.Host + ":" + strconv.Itoa(this.minPort)
+	return configutils.QuoteIP(this.Host) + ":" + strconv.Itoa(this.minPort)
 }
 
-// 判断Host是否包含变量
+// HostHasVariables 判断Host是否包含变量
 func (this *NetworkAddressConfig) HostHasVariables() bool {
 	return this.hostHasVariables
 }

@@ -34,7 +34,7 @@ type ServerConfig struct {
 	isOk bool
 }
 
-// 从JSON中解析Server配置
+// NewServerConfigFromJSON 从JSON中解析Server配置
 func NewServerConfigFromJSON(data []byte) (*ServerConfig, error) {
 	config := &ServerConfig{}
 	err := json.Unmarshal(data, config)
@@ -114,7 +114,7 @@ func (this *ServerConfig) Init() error {
 	return nil
 }
 
-// 配置是否正确
+// IsOk 配置是否正确
 func (this *ServerConfig) IsOk() bool {
 	return this.isOk
 }
@@ -186,7 +186,7 @@ func (this *ServerConfig) IsUDPFamily() bool {
 	return this.UDP != nil
 }
 
-// 判断是否和域名匹配
+// MatchName 判断是否和域名匹配
 func (this *ServerConfig) MatchName(name string) bool {
 	if len(name) == 0 {
 		return false
@@ -202,7 +202,7 @@ func (this *ServerConfig) MatchName(name string) bool {
 	return false
 }
 
-// 判断是否严格匹配
+// MatchNameStrictly 判断是否严格匹配
 func (this *ServerConfig) MatchNameStrictly(name string) bool {
 	for _, serverName := range this.AliasServerNames {
 		if serverName == name {
@@ -217,7 +217,7 @@ func (this *ServerConfig) MatchNameStrictly(name string) bool {
 	return false
 }
 
-// SSL信息
+// SSLPolicy SSL信息
 func (this *ServerConfig) SSLPolicy() *sslconfigs.SSLPolicy {
 	if this.HTTPS != nil {
 		return this.HTTPS.SSLPolicy
@@ -228,7 +228,7 @@ func (this *ServerConfig) SSLPolicy() *sslconfigs.SSLPolicy {
 	return nil
 }
 
-// 根据条件查找ReverseProxy
+// FindAndCheckReverseProxy 根据条件查找ReverseProxy
 func (this *ServerConfig) FindAndCheckReverseProxy(dataType string) (*ReverseProxyConfig, error) {
 	switch dataType {
 	case "server":

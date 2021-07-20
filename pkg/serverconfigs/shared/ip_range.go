@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-// IP Range类型
+// IPRangeType IP Range类型
 type IPRangeType = int
 
 const (
@@ -19,7 +19,7 @@ const (
 	IPRangeTypeWildcard IPRangeType = 4 // 通配符，可以使用*
 )
 
-// IP Range
+// IPRangeConfig IP Range
 type IPRangeConfig struct {
 	Id string `yaml:"id" json:"id"`
 
@@ -36,14 +36,14 @@ type IPRangeConfig struct {
 	reg    *regexp.Regexp
 }
 
-// 获取新对象
+// NewIPRangeConfig 获取新对象
 func NewIPRangeConfig() *IPRangeConfig {
 	return &IPRangeConfig{
 		Id: stringutil.Rand(16),
 	}
 }
 
-// 从字符串中分析
+// ParseIPRange 从字符串中分析
 func ParseIPRange(s string) (*IPRangeConfig, error) {
 	if len(s) == 0 {
 		return nil, errors.New("invalid ip range")
@@ -79,15 +79,15 @@ func ParseIPRange(s string) (*IPRangeConfig, error) {
 		ipRange.IPTo = s
 	}
 
-	err := ipRange.Validate()
+	err := ipRange.Init()
 	if err != nil {
 		return nil, err
 	}
 	return ipRange, nil
 }
 
-// 校验
-func (this *IPRangeConfig) Validate() error {
+// Init 初始化校验
+func (this *IPRangeConfig) Init() error {
 	if this.Type == IPRangeTypeCIDR {
 		if len(this.CIDR) == 0 {
 			return errors.New("cidr should not be empty")
@@ -116,10 +116,10 @@ func (this *IPRangeConfig) Validate() error {
 	return nil
 }
 
-// 是否包含某个IP
+// Contains 是否包含某个IP
 func (this *IPRangeConfig) Contains(ipString string) bool {
 	ip := net.ParseIP(ipString)
-	if ip.To4() == nil {
+	if ip == nil {
 		return false
 	}
 	if this.Type == IPRangeTypeCIDR {

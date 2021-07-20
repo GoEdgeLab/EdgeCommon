@@ -9,32 +9,52 @@ func TestGeoConfig_Contains(t *testing.T) {
 	a := assert.NewAssertion(t)
 
 	{
-		geo := NewIPRangeConfig()
-		geo.Type = IPRangeTypeRange
-		geo.IPFrom = "192.168.1.100"
-		geo.IPTo = "192.168.1.110"
-		a.IsNil(geo.Validate())
-		a.IsTrue(geo.Contains("192.168.1.100"))
-		a.IsTrue(geo.Contains("192.168.1.101"))
-		a.IsTrue(geo.Contains("192.168.1.110"))
-		a.IsFalse(geo.Contains("192.168.1.111"))
+		r := NewIPRangeConfig()
+		r.Type = IPRangeTypeRange
+		r.IPFrom = "192.168.1.100"
+		r.IPTo = "192.168.1.110"
+		a.IsNil(r.Init())
+		a.IsTrue(r.Contains("192.168.1.100"))
+		a.IsTrue(r.Contains("192.168.1.101"))
+		a.IsTrue(r.Contains("192.168.1.110"))
+		a.IsFalse(r.Contains("192.168.1.111"))
 	}
 
 	{
-		geo := NewIPRangeConfig()
-		geo.Type = IPRangeTypeCIDR
-		geo.CIDR = "192.168.1.1/24"
-		a.IsNil(geo.Validate())
-		a.IsTrue(geo.Contains("192.168.1.100"))
-		a.IsFalse(geo.Contains("192.168.2.100"))
+		r := NewIPRangeConfig()
+		r.Type = IPRangeTypeCIDR
+		r.CIDR = "192.168.1.1/24"
+		a.IsNil(r.Init())
+		a.IsTrue(r.Contains("192.168.1.100"))
+		a.IsFalse(r.Contains("192.168.2.100"))
 	}
 
 	{
-		geo := NewIPRangeConfig()
-		geo.Type = IPRangeTypeCIDR
-		geo.CIDR = "192.168.1.1/16"
-		a.IsNil(geo.Validate())
-		a.IsTrue(geo.Contains("192.168.2.100"))
+		r := NewIPRangeConfig()
+		r.Type = IPRangeTypeCIDR
+		r.CIDR = "192.168.1.1/16"
+		a.IsNil(r.Init())
+		a.IsTrue(r.Contains("192.168.2.100"))
+	}
+
+	{
+		r := NewIPRangeConfig()
+		r.Type = IPRangeTypeRange
+		r.IPFrom = "::1"
+		r.IPTo = "::1"
+		a.IsNil(r.Init())
+		a.IsTrue(r.Contains("::1"))
+	}
+
+	{
+		r := NewIPRangeConfig()
+		r.Type = IPRangeTypeRange
+		r.IPFrom = "::1"
+		r.IPTo = "::100"
+		a.IsNil(r.Init())
+		a.IsTrue(r.Contains("::1"))
+		a.IsTrue(r.Contains("::99"))
+		a.IsFalse(r.Contains("::101"))
 	}
 }
 

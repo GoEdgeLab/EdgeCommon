@@ -54,6 +54,20 @@ func TestNetworkAddressConfig_FullAddresses(t *testing.T) {
 		}
 		t.Log(addr.FullAddresses())
 	}
+
+
+	{
+		addr := &NetworkAddressConfig{
+			Protocol:  "http",
+			Host:      "::1",
+			PortRange: "8080-8070",
+		}
+		err := addr.Init()
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Log(addr.FullAddresses())
+	}
 }
 
 func TestNetworkAddressConfig_PickAddress(t *testing.T) {

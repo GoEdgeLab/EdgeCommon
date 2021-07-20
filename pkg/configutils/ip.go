@@ -24,3 +24,17 @@ func IP2Long(ip string) uint64 {
 	}
 	return uint64(binary.BigEndian.Uint32(s.To4()))
 }
+
+// QuoteIP 为IPv6加上括号
+func QuoteIP(ip string) string {
+	if len(ip) == 0 {
+		return ip
+	}
+	if !strings.Contains(ip, ":") {
+		return ip
+	}
+	if ip[0] != '[' {
+		return "[" + ip + "]"
+	}
+	return ip
+}
