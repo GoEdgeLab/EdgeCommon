@@ -54,6 +54,7 @@ message UpdateNSRecordRequest {
 	string value = 5;
 	int32 ttl = 6;
 	repeated int64 nsRouteIds = 7;
+	bool isOn = 8;
 }
 
 // 删除记录
