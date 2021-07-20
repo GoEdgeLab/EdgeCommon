@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_api_token.proto";
+
+// API令牌服务
+service APITokenService {
+	// 获取API令牌
+	rpc findAllEnabledAPITokens (FindAllEnabledAPITokensRequest) returns (FindAllEnabledAPITokensResponse);
+}
+
+// 获取API令牌
+message FindAllEnabledAPITokensRequest {
+	string role = 1;
+}
+
+message FindAllEnabledAPITokensResponse {
+	repeated APIToken apiTokens = 1;
+}
