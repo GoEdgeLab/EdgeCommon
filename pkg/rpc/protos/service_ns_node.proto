@@ -53,6 +53,9 @@ service NSNodeService {
 
 	// 检查新版本
 	rpc checkNSNodeLatestVersion (CheckNSNodeLatestVersionRequest) returns (CheckNSNodeLatestVersionResponse);
+
+	// 下载最新DNS节点安装文件
+	rpc downloadNSNodeInstallationFile (DownloadNSNodeInstallationFileRequest) returns (DownloadNSNodeInstallationFileResponse);
 }
 
 // 根据集群查找所有节点
@@ -181,4 +184,19 @@ message CheckNSNodeLatestVersionRequest {
 message CheckNSNodeLatestVersionResponse {
 	bool hasNewVersion = 1;
 	string newVersion = 2;
+}
+
+// 下载最新DNS节点安装文件
+message DownloadNSNodeInstallationFileRequest {
+	string os = 1;
+	string arch = 2;
+	int64 chunkOffset = 3;
+}
+
+message DownloadNSNodeInstallationFileResponse {
+	bytes chunkData = 1;
+	string sum = 2; // 文件的md5sum
+	int64 offset = 3;
+	string version = 4;
+	string filename = 5;
 }
