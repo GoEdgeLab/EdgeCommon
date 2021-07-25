@@ -25,6 +25,9 @@ service NSKeyService {
 
 	// 列出单页密钥
 	rpc listEnabledNSKeys (ListEnabledNSKeysRequest) returns (ListEnabledNSKeysResponse);
+
+	// 根据版本列出一组密钥
+	rpc listNSKeysAfterVersion (ListNSKeysAfterVersionRequest) returns (ListNSKeysAfterVersionResponse);
 }
 
 // 创建密钥
@@ -80,5 +83,15 @@ message ListEnabledNSKeysRequest {
 }
 
 message ListEnabledNSKeysResponse {
+	repeated NSKey nsKeys = 1;
+}
+
+// 根据版本列出一组密钥
+message ListNSKeysAfterVersionRequest {
+	int64 version = 1;
+	int64 size = 2;
+}
+
+message ListNSKeysAfterVersionResponse {
 	repeated NSKey nsKeys = 1;
 }

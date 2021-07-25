@@ -14,6 +14,7 @@ message NSDomain {
 	int64 createdAt = 4;
 	bool isDeleted = 5;
 	int64 version = 6;
+	bytes tsigJSON = 7;
 
 	NSCluster nsCluster = 30;
 	User user = 31;

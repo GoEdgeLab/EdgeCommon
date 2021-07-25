@@ -28,6 +28,12 @@ service NSDomainService {
 
 	// 根据版本列出一组域名
 	rpc listNSDomainsAfterVersion (ListNSDomainsAfterVersionRequest) returns (ListNSDomainsAfterVersionResponse);
+
+	// 查找TSIG配置
+	rpc findEnabledNSDomainTSIG (FindEnabledNSDomainTSIGRequest) returns (FindEnabledNSDomainTSIGResponse);
+
+	// 修改TSIG配置
+	rpc updateNSDomainTSIG (UpdateNSDomainTSIGRequest) returns (RPCSuccess);
 }
 
 // 创建域名
@@ -92,4 +98,19 @@ message ListNSDomainsAfterVersionRequest {
 
 message ListNSDomainsAfterVersionResponse {
 	repeated NSDomain nsDomains = 1;
+}
+
+// 查找TSIG配置
+message FindEnabledNSDomainTSIGRequest {
+	int64 nsDomainId = 1;
+}
+
+message FindEnabledNSDomainTSIGResponse {
+	bytes tsigJSON = 1;
+}
+
+// 修改TSIG配置
+message UpdateNSDomainTSIGRequest {
+	int64 nsDomainId = 1;
+	bytes tsigJSON = 2;
 }

@@ -20,4 +20,5 @@ message NSAccessLog {
 	int64 timestamp = 13;
 	string requestId = 14;
 	string timeLocal = 15;
+	string error = 16;
 }

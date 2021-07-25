@@ -3,12 +3,20 @@ option go_package = "./pb";
 
 package pb;
 
+import "models/model_ns_domain.proto";
+import "models/model_ns_zone.proto";
+
 // NS密钥
 message NSKey {
-	int64 id =1;
+	int64 id = 1;
 	bool isOn = 2;
 	string name = 3;
 	string algo = 4;
 	string secret = 5;
 	string secretType = 6;
+	bool isDeleted = 7;
+	int64 version = 8;
+
+	NSDomain nsDomain = 30;
+	NSZone nsZone = 31;
 }
