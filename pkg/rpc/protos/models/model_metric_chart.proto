@@ -14,6 +14,8 @@ message MetricChart {
 	bytes paramsJSON = 5;
 	bool isOn = 6;
 	int32 maxItems = 7;
+	bool ignoreEmptyKeys = 8;
+	repeated string ignoredKeys = 9;
 
 	MetricItem metricItem = 30;
 }

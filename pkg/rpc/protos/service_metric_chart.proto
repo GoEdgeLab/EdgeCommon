@@ -35,6 +35,8 @@ message CreateMetricChartRequest {
 	int32 widthDiv = 4;
 	bytes paramsJSON = 5;
 	int32 maxItems = 6;
+	bool ignoreEmptyKeys = 7;
+	repeated string ignoredKeys = 8;
 }
 
 message CreateMetricChartResponse {
@@ -50,6 +52,8 @@ message UpdateMetricChartRequest {
 	bytes paramsJSON = 5;
 	bool isOn = 6;
 	int32 maxItems = 7;
+	bool ignoreEmptyKeys = 8;
+	repeated string ignoredKeys = 9;
 }
 
 // 查找单个图表
