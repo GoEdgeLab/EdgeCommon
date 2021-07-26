@@ -104,6 +104,16 @@ func FindAllMetricKeyDefinitions(category MetricItemCategory) []*shared.Definiti
 				Description: "单个URL参数值",
 			},
 			{
+				Name:        "请求来源URL",
+				Code:        "${referer}",
+				Description: "请求来源Referer URL",
+			},
+			{
+				Name:        "请求来源URL域名",
+				Code:        "${referer.host}",
+				Description: "请求来源Referer URL域名",
+			},
+			{
 				Name:        "Header值",
 				Code:        "${header.NAME}",
 				Description: "单个Header值，比如${header.User-Agent}",

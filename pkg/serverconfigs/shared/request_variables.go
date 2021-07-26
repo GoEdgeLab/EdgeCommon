@@ -28,6 +28,7 @@ func DefaultRequestVariables() []maps.Map {
 		{"code": "${serverName}", "name": "接收请求的服务器名", "description": ""},
 		{"code": "${serverPort}", "name": "接收请求的服务器端口", "description": ""},
 		{"code": "${referer}", "name": "请求来源URL", "description": ""},
+		{"code": "${referer.host}", "name": "请求来源URL域名", "description": ""},
 		{"code": "${userAgent}", "name": "客户端信息", "description": ""},
 		{"code": "${contentType}", "name": "请求头部的Content-Type", "description": ""},
 		{"code": "${cookies}", "name": "所有cookie组合字符串", "description": ""},
