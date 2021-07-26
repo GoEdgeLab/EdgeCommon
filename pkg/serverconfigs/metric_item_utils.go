@@ -73,7 +73,7 @@ func FindAllMetricKeyDefinitions(category MetricItemCategory) []*shared.Definiti
 				Description: "比如GET、POST等",
 			},
 			{
-				Name:        "请求协议",
+				Name:        "请求协议Scheme",
 				Code:        "${scheme}",
 				Description: "http或https",
 			},
@@ -89,7 +89,7 @@ func FindAllMetricKeyDefinitions(category MetricItemCategory) []*shared.Definiti
 			},
 
 			{
-				Name:        "请求协议",
+				Name:        "请求协议Proto",
 				Code:        "${proto}",
 				Description: "包含版本的HTTP请求协议，类似于HTTP/1.0",
 			},
