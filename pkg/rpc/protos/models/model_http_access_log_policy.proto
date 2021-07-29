@@ -10,4 +10,5 @@ message HTTPAccessLogPolicy {
 	string type = 4;
 	bytes optionsJSON = 5;
 	bytes condsJSON = 6;
+	bool isPublic = 7;
 }

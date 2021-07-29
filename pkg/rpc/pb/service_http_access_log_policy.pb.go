@@ -29,15 +29,15 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-// 获取所有可用策略
-type FindAllEnabledHTTPAccessLogPoliciesRequest struct {
+// 计算访问日志策略数量
+type CountAllEnabledHTTPAccessLogPoliciesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *FindAllEnabledHTTPAccessLogPoliciesRequest) Reset() {
-	*x = FindAllEnabledHTTPAccessLogPoliciesRequest{}
+func (x *CountAllEnabledHTTPAccessLogPoliciesRequest) Reset() {
+	*x = CountAllEnabledHTTPAccessLogPoliciesRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_http_access_log_policy_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -45,13 +45,13 @@ func (x *FindAllEnabledHTTPAccessLogPoliciesRequest) Reset() {
 	}
 }
 
-func (x *FindAllEnabledHTTPAccessLogPoliciesRequest) String() string {
+func (x *CountAllEnabledHTTPAccessLogPoliciesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*FindAllEnabledHTTPAccessLogPoliciesRequest) ProtoMessage() {}
+func (*CountAllEnabledHTTPAccessLogPoliciesRequest) ProtoMessage() {}
 
-func (x *FindAllEnabledHTTPAccessLogPoliciesRequest) ProtoReflect() protoreflect.Message {
+func (x *CountAllEnabledHTTPAccessLogPoliciesRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_service_http_access_log_policy_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -63,21 +63,23 @@ func (x *FindAllEnabledHTTPAccessLogPoliciesRequest) ProtoReflect() protoreflect
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use FindAllEnabledHTTPAccessLogPoliciesRequest.ProtoReflect.Descriptor instead.
-func (*FindAllEnabledHTTPAccessLogPoliciesRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CountAllEnabledHTTPAccessLogPoliciesRequest.ProtoReflect.Descriptor instead.
+func (*CountAllEnabledHTTPAccessLogPoliciesRequest) Descriptor() ([]byte, []int) {
 	return file_service_http_access_log_policy_proto_rawDescGZIP(), []int{0}
 }
 
-type FindAllEnabledHTTPAccessLogPoliciesResponse struct {
+// 列出单页访问日志策略
+type ListEnabledHTTPAccessLogPoliciesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccessLogPolicies []*HTTPAccessLogPolicy `protobuf:"bytes,1,rep,name=accessLogPolicies,proto3" json:"accessLogPolicies,omitempty"`
+	Offset int64 `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Size   int64 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
 }
 
-func (x *FindAllEnabledHTTPAccessLogPoliciesResponse) Reset() {
-	*x = FindAllEnabledHTTPAccessLogPoliciesResponse{}
+func (x *ListEnabledHTTPAccessLogPoliciesRequest) Reset() {
+	*x = ListEnabledHTTPAccessLogPoliciesRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_http_access_log_policy_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -85,13 +87,13 @@ func (x *FindAllEnabledHTTPAccessLogPoliciesResponse) Reset() {
 	}
 }
 
-func (x *FindAllEnabledHTTPAccessLogPoliciesResponse) String() string {
+func (x *ListEnabledHTTPAccessLogPoliciesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*FindAllEnabledHTTPAccessLogPoliciesResponse) ProtoMessage() {}
+func (*ListEnabledHTTPAccessLogPoliciesRequest) ProtoMessage() {}
 
-func (x *FindAllEnabledHTTPAccessLogPoliciesResponse) ProtoReflect() protoreflect.Message {
+func (x *ListEnabledHTTPAccessLogPoliciesRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_service_http_access_log_policy_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -103,14 +105,482 @@ func (x *FindAllEnabledHTTPAccessLogPoliciesResponse) ProtoReflect() protoreflec
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use FindAllEnabledHTTPAccessLogPoliciesResponse.ProtoReflect.Descriptor instead.
-func (*FindAllEnabledHTTPAccessLogPoliciesResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListEnabledHTTPAccessLogPoliciesRequest.ProtoReflect.Descriptor instead.
+func (*ListEnabledHTTPAccessLogPoliciesRequest) Descriptor() ([]byte, []int) {
 	return file_service_http_access_log_policy_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *FindAllEnabledHTTPAccessLogPoliciesResponse) GetAccessLogPolicies() []*HTTPAccessLogPolicy {
+func (x *ListEnabledHTTPAccessLogPoliciesRequest) GetOffset() int64 {
 	if x != nil {
-		return x.AccessLogPolicies
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *ListEnabledHTTPAccessLogPoliciesRequest) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+type ListEnabledHTTPAccessLogPoliciesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	HttpAccessLogPolicies []*HTTPAccessLogPolicy `protobuf:"bytes,1,rep,name=httpAccessLogPolicies,proto3" json:"httpAccessLogPolicies,omitempty"`
+}
+
+func (x *ListEnabledHTTPAccessLogPoliciesResponse) Reset() {
+	*x = ListEnabledHTTPAccessLogPoliciesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_access_log_policy_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListEnabledHTTPAccessLogPoliciesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListEnabledHTTPAccessLogPoliciesResponse) ProtoMessage() {}
+
+func (x *ListEnabledHTTPAccessLogPoliciesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_access_log_policy_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListEnabledHTTPAccessLogPoliciesResponse.ProtoReflect.Descriptor instead.
+func (*ListEnabledHTTPAccessLogPoliciesResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_access_log_policy_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ListEnabledHTTPAccessLogPoliciesResponse) GetHttpAccessLogPolicies() []*HTTPAccessLogPolicy {
+	if x != nil {
+		return x.HttpAccessLogPolicies
+	}
+	return nil
+}
+
+// 创建访问日志策略
+type CreateHTTPAccessLogPolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name        string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Type        string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	OptionsJSON []byte `protobuf:"bytes,3,opt,name=optionsJSON,proto3" json:"optionsJSON,omitempty"`
+	CondsJSON   []byte `protobuf:"bytes,4,opt,name=condsJSON,proto3" json:"condsJSON,omitempty"`
+	IsPublic    bool   `protobuf:"varint,5,opt,name=isPublic,proto3" json:"isPublic,omitempty"`
+}
+
+func (x *CreateHTTPAccessLogPolicyRequest) Reset() {
+	*x = CreateHTTPAccessLogPolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_access_log_policy_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateHTTPAccessLogPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateHTTPAccessLogPolicyRequest) ProtoMessage() {}
+
+func (x *CreateHTTPAccessLogPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_access_log_policy_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateHTTPAccessLogPolicyRequest.ProtoReflect.Descriptor instead.
+func (*CreateHTTPAccessLogPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_access_log_policy_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CreateHTTPAccessLogPolicyRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateHTTPAccessLogPolicyRequest) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *CreateHTTPAccessLogPolicyRequest) GetOptionsJSON() []byte {
+	if x != nil {
+		return x.OptionsJSON
+	}
+	return nil
+}
+
+func (x *CreateHTTPAccessLogPolicyRequest) GetCondsJSON() []byte {
+	if x != nil {
+		return x.CondsJSON
+	}
+	return nil
+}
+
+func (x *CreateHTTPAccessLogPolicyRequest) GetIsPublic() bool {
+	if x != nil {
+		return x.IsPublic
+	}
+	return false
+}
+
+type CreateHTTPAccessLogPolicyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	HttpAccessLogPolicyId int64 `protobuf:"varint,1,opt,name=httpAccessLogPolicyId,proto3" json:"httpAccessLogPolicyId,omitempty"`
+}
+
+func (x *CreateHTTPAccessLogPolicyResponse) Reset() {
+	*x = CreateHTTPAccessLogPolicyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_access_log_policy_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateHTTPAccessLogPolicyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateHTTPAccessLogPolicyResponse) ProtoMessage() {}
+
+func (x *CreateHTTPAccessLogPolicyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_access_log_policy_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateHTTPAccessLogPolicyResponse.ProtoReflect.Descriptor instead.
+func (*CreateHTTPAccessLogPolicyResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_access_log_policy_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *CreateHTTPAccessLogPolicyResponse) GetHttpAccessLogPolicyId() int64 {
+	if x != nil {
+		return x.HttpAccessLogPolicyId
+	}
+	return 0
+}
+
+// 修改访问日志策略
+type UpdateHTTPAccessLogPolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	HttpAccessLogPolicyId int64  `protobuf:"varint,1,opt,name=httpAccessLogPolicyId,proto3" json:"httpAccessLogPolicyId,omitempty"`
+	Name                  string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	IsOn                  bool   `protobuf:"varint,3,opt,name=isOn,proto3" json:"isOn,omitempty"`
+	OptionsJSON           []byte `protobuf:"bytes,4,opt,name=optionsJSON,proto3" json:"optionsJSON,omitempty"`
+	CondsJSON             []byte `protobuf:"bytes,5,opt,name=condsJSON,proto3" json:"condsJSON,omitempty"`
+	IsPublic              bool   `protobuf:"varint,6,opt,name=isPublic,proto3" json:"isPublic,omitempty"`
+}
+
+func (x *UpdateHTTPAccessLogPolicyRequest) Reset() {
+	*x = UpdateHTTPAccessLogPolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_access_log_policy_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPAccessLogPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPAccessLogPolicyRequest) ProtoMessage() {}
+
+func (x *UpdateHTTPAccessLogPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_access_log_policy_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPAccessLogPolicyRequest.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPAccessLogPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_access_log_policy_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *UpdateHTTPAccessLogPolicyRequest) GetHttpAccessLogPolicyId() int64 {
+	if x != nil {
+		return x.HttpAccessLogPolicyId
+	}
+	return 0
+}
+
+func (x *UpdateHTTPAccessLogPolicyRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateHTTPAccessLogPolicyRequest) GetIsOn() bool {
+	if x != nil {
+		return x.IsOn
+	}
+	return false
+}
+
+func (x *UpdateHTTPAccessLogPolicyRequest) GetOptionsJSON() []byte {
+	if x != nil {
+		return x.OptionsJSON
+	}
+	return nil
+}
+
+func (x *UpdateHTTPAccessLogPolicyRequest) GetCondsJSON() []byte {
+	if x != nil {
+		return x.CondsJSON
+	}
+	return nil
+}
+
+func (x *UpdateHTTPAccessLogPolicyRequest) GetIsPublic() bool {
+	if x != nil {
+		return x.IsPublic
+	}
+	return false
+}
+
+// 查找单个访问日志策略
+type FindEnabledHTTPAccessLogPolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	HttpAccessLogPolicyId int64 `protobuf:"varint,1,opt,name=httpAccessLogPolicyId,proto3" json:"httpAccessLogPolicyId,omitempty"`
+}
+
+func (x *FindEnabledHTTPAccessLogPolicyRequest) Reset() {
+	*x = FindEnabledHTTPAccessLogPolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_access_log_policy_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledHTTPAccessLogPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledHTTPAccessLogPolicyRequest) ProtoMessage() {}
+
+func (x *FindEnabledHTTPAccessLogPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_access_log_policy_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledHTTPAccessLogPolicyRequest.ProtoReflect.Descriptor instead.
+func (*FindEnabledHTTPAccessLogPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_access_log_policy_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *FindEnabledHTTPAccessLogPolicyRequest) GetHttpAccessLogPolicyId() int64 {
+	if x != nil {
+		return x.HttpAccessLogPolicyId
+	}
+	return 0
+}
+
+type FindEnabledHTTPAccessLogPolicyResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	HttpAccessLogPolicy *HTTPAccessLogPolicy `protobuf:"bytes,1,opt,name=httpAccessLogPolicy,proto3" json:"httpAccessLogPolicy,omitempty"`
+}
+
+func (x *FindEnabledHTTPAccessLogPolicyResponse) Reset() {
+	*x = FindEnabledHTTPAccessLogPolicyResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_access_log_policy_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledHTTPAccessLogPolicyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledHTTPAccessLogPolicyResponse) ProtoMessage() {}
+
+func (x *FindEnabledHTTPAccessLogPolicyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_access_log_policy_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledHTTPAccessLogPolicyResponse.ProtoReflect.Descriptor instead.
+func (*FindEnabledHTTPAccessLogPolicyResponse) Descriptor() ([]byte, []int) {
+	return file_service_http_access_log_policy_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *FindEnabledHTTPAccessLogPolicyResponse) GetHttpAccessLogPolicy() *HTTPAccessLogPolicy {
+	if x != nil {
+		return x.HttpAccessLogPolicy
+	}
+	return nil
+}
+
+// 删除策略
+type DeleteHTTPAccessLogPolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	HttpAccessLogPolicyId int64 `protobuf:"varint,1,opt,name=httpAccessLogPolicyId,proto3" json:"httpAccessLogPolicyId,omitempty"`
+}
+
+func (x *DeleteHTTPAccessLogPolicyRequest) Reset() {
+	*x = DeleteHTTPAccessLogPolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_access_log_policy_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteHTTPAccessLogPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteHTTPAccessLogPolicyRequest) ProtoMessage() {}
+
+func (x *DeleteHTTPAccessLogPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_access_log_policy_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteHTTPAccessLogPolicyRequest.ProtoReflect.Descriptor instead.
+func (*DeleteHTTPAccessLogPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_access_log_policy_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *DeleteHTTPAccessLogPolicyRequest) GetHttpAccessLogPolicyId() int64 {
+	if x != nil {
+		return x.HttpAccessLogPolicyId
+	}
+	return 0
+}
+
+// 测试写入某个访问日志策略
+type WriteHTTPAccessLogPolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	HttpAccessLogPolicyId int64          `protobuf:"varint,1,opt,name=httpAccessLogPolicyId,proto3" json:"httpAccessLogPolicyId,omitempty"`
+	HttpAccessLog         *HTTPAccessLog `protobuf:"bytes,2,opt,name=httpAccessLog,proto3" json:"httpAccessLog,omitempty"`
+}
+
+func (x *WriteHTTPAccessLogPolicyRequest) Reset() {
+	*x = WriteHTTPAccessLogPolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_access_log_policy_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *WriteHTTPAccessLogPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WriteHTTPAccessLogPolicyRequest) ProtoMessage() {}
+
+func (x *WriteHTTPAccessLogPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_access_log_policy_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WriteHTTPAccessLogPolicyRequest.ProtoReflect.Descriptor instead.
+func (*WriteHTTPAccessLogPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_access_log_policy_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *WriteHTTPAccessLogPolicyRequest) GetHttpAccessLogPolicyId() int64 {
+	if x != nil {
+		return x.HttpAccessLogPolicyId
+	}
+	return 0
+}
+
+func (x *WriteHTTPAccessLogPolicyRequest) GetHttpAccessLog() *HTTPAccessLog {
+	if x != nil {
+		return x.HttpAccessLog
 	}
 	return nil
 }
@@ -123,29 +593,132 @@ var file_service_http_access_log_policy_proto_rawDesc = []byte{
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x1a, 0x29, 0x6d, 0x6f, 0x64, 0x65,
 	0x6c, 0x73, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x68, 0x74, 0x74, 0x70, 0x5f, 0x61, 0x63,
 	0x63, 0x65, 0x73, 0x73, 0x5f, 0x6c, 0x6f, 0x67, 0x5f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2c, 0x0a, 0x2a, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2f, 0x72, 0x70,
+	0x63, 0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x1a, 0x22, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x68,
+	0x74, 0x74, 0x70, 0x5f, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x6c, 0x6f, 0x67, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x22, 0x2d, 0x0a, 0x2b, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c,
 	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73,
 	0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x22, 0x74, 0x0a, 0x2b, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e,
-	0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c,
-	0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x45, 0x0a, 0x11, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50,
-	0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x17, 0x2e,
-	0x70, 0x62, 0x2e, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67,
-	0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x11, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f,
-	0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x32, 0xa5, 0x01, 0x0a, 0x1a, 0x48, 0x54,
+	0x65, 0x73, 0x74, 0x22, 0x55, 0x0a, 0x27, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c,
+	0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16,
+	0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06,
+	0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x22, 0x79, 0x0a, 0x28, 0x4c, 0x69,
+	0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4d, 0x0a, 0x15, 0x68, 0x74, 0x74, 0x70, 0x41, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x18,
+	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x48, 0x54, 0x54, 0x50, 0x41,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x15,
+	0x68, 0x74, 0x74, 0x70, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c,
+	0x69, 0x63, 0x69, 0x65, 0x73, 0x22, 0xa6, 0x01, 0x0a, 0x20, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c,
+	0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x12,
+	0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79,
+	0x70, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x4a, 0x53, 0x4f,
+	0x4e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0b, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x1c, 0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x73, 0x4a, 0x53, 0x4f,
+	0x4e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x73, 0x4a, 0x53,
+	0x4f, 0x4e, 0x12, 0x1a, 0x0a, 0x08, 0x69, 0x73, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x18, 0x05,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x08, 0x69, 0x73, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x22, 0x59,
+	0x0a, 0x21, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65,
+	0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x34, 0x0a, 0x15, 0x68, 0x74, 0x74, 0x70, 0x41, 0x63, 0x63, 0x65, 0x73,
+	0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x15, 0x68, 0x74, 0x74, 0x70, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f,
+	0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x22, 0xdc, 0x01, 0x0a, 0x20, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f,
+	0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x34,
+	0x0a, 0x15, 0x68, 0x74, 0x74, 0x70, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x15, 0x68,
+	0x74, 0x74, 0x70, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x73, 0x4f, 0x6e,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x12, 0x20, 0x0a, 0x0b,
+	0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x0c, 0x52, 0x0b, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x1c,
+	0x0a, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x05, 0x20, 0x01, 0x28,
+	0x0c, 0x52, 0x09, 0x63, 0x6f, 0x6e, 0x64, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x1a, 0x0a, 0x08,
+	0x69, 0x73, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x18, 0x06, 0x20, 0x01, 0x28, 0x08, 0x52, 0x08,
+	0x69, 0x73, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x22, 0x5d, 0x0a, 0x25, 0x46, 0x69, 0x6e, 0x64,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73,
+	0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x34, 0x0a, 0x15, 0x68, 0x74, 0x74, 0x70, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c,
+	0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x15, 0x68, 0x74, 0x74, 0x70, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x22, 0x73, 0x0a, 0x26, 0x46, 0x69, 0x6e, 0x64, 0x45,
+	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x49, 0x0a, 0x13, 0x68, 0x74, 0x74, 0x70, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c,
+	0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17,
+	0x2e, 0x70, 0x62, 0x2e, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f,
+	0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x13, 0x68, 0x74, 0x74, 0x70, 0x41, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x22, 0x58, 0x0a, 0x20,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x34, 0x0a, 0x15, 0x68, 0x74, 0x74, 0x70, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f,
+	0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x15, 0x68, 0x74, 0x74, 0x70, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x49, 0x64, 0x22, 0x90, 0x01, 0x0a, 0x1f, 0x57, 0x72, 0x69, 0x74, 0x65,
+	0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c,
+	0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x34, 0x0a, 0x15, 0x68, 0x74,
+	0x74, 0x70, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63,
+	0x79, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x15, 0x68, 0x74, 0x74, 0x70, 0x41,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x49, 0x64,
+	0x12, 0x37, 0x0a, 0x0d, 0x68, 0x74, 0x74, 0x70, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f,
+	0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x70, 0x62, 0x2e, 0x48, 0x54, 0x54,
+	0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x52, 0x0d, 0x68, 0x74, 0x74, 0x70,
+	0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x32, 0xe4, 0x05, 0x0a, 0x1a, 0x48, 0x54,
 	0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63,
-	0x79, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x86, 0x01, 0x0a, 0x23, 0x66, 0x69, 0x6e,
-	0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41,
+	0x79, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x6d, 0x0a, 0x24, 0x63, 0x6f, 0x75, 0x6e,
+	0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41,
 	0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73,
-	0x12, 0x2e, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61,
-	0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f,
-	0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x2f, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61,
-	0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f,
-	0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x12, 0x2f, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e,
+	0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c,
+	0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x7d, 0x0a, 0x20, 0x6c, 0x69, 0x73, 0x74, 0x45,
+	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x12, 0x2b, 0x2e, 0x70, 0x62,
+	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50,
+	0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69,
+	0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x69, 0x65, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x68, 0x0a, 0x19, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c,
+	0x69, 0x63, 0x79, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48,
+	0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c,
+	0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x51, 0x0a, 0x19, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x24, 0x2e,
+	0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x12, 0x77, 0x0a, 0x1e, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c,
+	0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50,
+	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x29, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45,
+	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x2a, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x64, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x51, 0x0a, 0x19,
+	0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c,
+	0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12,
+	0x4f, 0x0a, 0x18, 0x77, 0x72, 0x69, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65,
+	0x73, 0x73, 0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x23, 0x2e, 0x70, 0x62,
+	0x2e, 0x57, 0x72, 0x69, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x4c, 0x6f, 0x67, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -160,21 +733,46 @@ func file_service_http_access_log_policy_proto_rawDescGZIP() []byte {
 	return file_service_http_access_log_policy_proto_rawDescData
 }
 
-var file_service_http_access_log_policy_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_service_http_access_log_policy_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_service_http_access_log_policy_proto_goTypes = []interface{}{
-	(*FindAllEnabledHTTPAccessLogPoliciesRequest)(nil),  // 0: pb.FindAllEnabledHTTPAccessLogPoliciesRequest
-	(*FindAllEnabledHTTPAccessLogPoliciesResponse)(nil), // 1: pb.FindAllEnabledHTTPAccessLogPoliciesResponse
-	(*HTTPAccessLogPolicy)(nil),                         // 2: pb.HTTPAccessLogPolicy
+	(*CountAllEnabledHTTPAccessLogPoliciesRequest)(nil), // 0: pb.CountAllEnabledHTTPAccessLogPoliciesRequest
+	(*ListEnabledHTTPAccessLogPoliciesRequest)(nil),     // 1: pb.ListEnabledHTTPAccessLogPoliciesRequest
+	(*ListEnabledHTTPAccessLogPoliciesResponse)(nil),    // 2: pb.ListEnabledHTTPAccessLogPoliciesResponse
+	(*CreateHTTPAccessLogPolicyRequest)(nil),            // 3: pb.CreateHTTPAccessLogPolicyRequest
+	(*CreateHTTPAccessLogPolicyResponse)(nil),           // 4: pb.CreateHTTPAccessLogPolicyResponse
+	(*UpdateHTTPAccessLogPolicyRequest)(nil),            // 5: pb.UpdateHTTPAccessLogPolicyRequest
+	(*FindEnabledHTTPAccessLogPolicyRequest)(nil),       // 6: pb.FindEnabledHTTPAccessLogPolicyRequest
+	(*FindEnabledHTTPAccessLogPolicyResponse)(nil),      // 7: pb.FindEnabledHTTPAccessLogPolicyResponse
+	(*DeleteHTTPAccessLogPolicyRequest)(nil),            // 8: pb.DeleteHTTPAccessLogPolicyRequest
+	(*WriteHTTPAccessLogPolicyRequest)(nil),             // 9: pb.WriteHTTPAccessLogPolicyRequest
+	(*HTTPAccessLogPolicy)(nil),                         // 10: pb.HTTPAccessLogPolicy
+	(*HTTPAccessLog)(nil),                               // 11: pb.HTTPAccessLog
+	(*RPCCountResponse)(nil),                            // 12: pb.RPCCountResponse
+	(*RPCSuccess)(nil),                                  // 13: pb.RPCSuccess
 }
 var file_service_http_access_log_policy_proto_depIdxs = []int32{
-	2, // 0: pb.FindAllEnabledHTTPAccessLogPoliciesResponse.accessLogPolicies:type_name -> pb.HTTPAccessLogPolicy
-	0, // 1: pb.HTTPAccessLogPolicyService.findAllEnabledHTTPAccessLogPolicies:input_type -> pb.FindAllEnabledHTTPAccessLogPoliciesRequest
-	1, // 2: pb.HTTPAccessLogPolicyService.findAllEnabledHTTPAccessLogPolicies:output_type -> pb.FindAllEnabledHTTPAccessLogPoliciesResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	10, // 0: pb.ListEnabledHTTPAccessLogPoliciesResponse.httpAccessLogPolicies:type_name -> pb.HTTPAccessLogPolicy
+	10, // 1: pb.FindEnabledHTTPAccessLogPolicyResponse.httpAccessLogPolicy:type_name -> pb.HTTPAccessLogPolicy
+	11, // 2: pb.WriteHTTPAccessLogPolicyRequest.httpAccessLog:type_name -> pb.HTTPAccessLog
+	0,  // 3: pb.HTTPAccessLogPolicyService.countAllEnabledHTTPAccessLogPolicies:input_type -> pb.CountAllEnabledHTTPAccessLogPoliciesRequest
+	1,  // 4: pb.HTTPAccessLogPolicyService.listEnabledHTTPAccessLogPolicies:input_type -> pb.ListEnabledHTTPAccessLogPoliciesRequest
+	3,  // 5: pb.HTTPAccessLogPolicyService.createHTTPAccessLogPolicy:input_type -> pb.CreateHTTPAccessLogPolicyRequest
+	5,  // 6: pb.HTTPAccessLogPolicyService.updateHTTPAccessLogPolicy:input_type -> pb.UpdateHTTPAccessLogPolicyRequest
+	6,  // 7: pb.HTTPAccessLogPolicyService.findEnabledHTTPAccessLogPolicy:input_type -> pb.FindEnabledHTTPAccessLogPolicyRequest
+	8,  // 8: pb.HTTPAccessLogPolicyService.deleteHTTPAccessLogPolicy:input_type -> pb.DeleteHTTPAccessLogPolicyRequest
+	9,  // 9: pb.HTTPAccessLogPolicyService.writeHTTPAccessLogPolicy:input_type -> pb.WriteHTTPAccessLogPolicyRequest
+	12, // 10: pb.HTTPAccessLogPolicyService.countAllEnabledHTTPAccessLogPolicies:output_type -> pb.RPCCountResponse
+	2,  // 11: pb.HTTPAccessLogPolicyService.listEnabledHTTPAccessLogPolicies:output_type -> pb.ListEnabledHTTPAccessLogPoliciesResponse
+	4,  // 12: pb.HTTPAccessLogPolicyService.createHTTPAccessLogPolicy:output_type -> pb.CreateHTTPAccessLogPolicyResponse
+	13, // 13: pb.HTTPAccessLogPolicyService.updateHTTPAccessLogPolicy:output_type -> pb.RPCSuccess
+	7,  // 14: pb.HTTPAccessLogPolicyService.findEnabledHTTPAccessLogPolicy:output_type -> pb.FindEnabledHTTPAccessLogPolicyResponse
+	13, // 15: pb.HTTPAccessLogPolicyService.deleteHTTPAccessLogPolicy:output_type -> pb.RPCSuccess
+	13, // 16: pb.HTTPAccessLogPolicyService.writeHTTPAccessLogPolicy:output_type -> pb.RPCSuccess
+	10, // [10:17] is the sub-list for method output_type
+	3,  // [3:10] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_service_http_access_log_policy_proto_init() }
@@ -183,9 +781,11 @@ func file_service_http_access_log_policy_proto_init() {
 		return
 	}
 	file_models_model_http_access_log_policy_proto_init()
+	file_models_rpc_messages_proto_init()
+	file_models_model_http_access_log_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_service_http_access_log_policy_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindAllEnabledHTTPAccessLogPoliciesRequest); i {
+			switch v := v.(*CountAllEnabledHTTPAccessLogPoliciesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -197,7 +797,103 @@ func file_service_http_access_log_policy_proto_init() {
 			}
 		}
 		file_service_http_access_log_policy_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindAllEnabledHTTPAccessLogPoliciesResponse); i {
+			switch v := v.(*ListEnabledHTTPAccessLogPoliciesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_access_log_policy_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListEnabledHTTPAccessLogPoliciesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_access_log_policy_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateHTTPAccessLogPolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_access_log_policy_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateHTTPAccessLogPolicyResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_access_log_policy_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateHTTPAccessLogPolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_access_log_policy_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledHTTPAccessLogPolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_access_log_policy_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledHTTPAccessLogPolicyResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_access_log_policy_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteHTTPAccessLogPolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_access_log_policy_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*WriteHTTPAccessLogPolicyRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -215,7 +911,7 @@ func file_service_http_access_log_policy_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_http_access_log_policy_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -241,8 +937,20 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type HTTPAccessLogPolicyServiceClient interface {
-	// 获取所有可用策略
-	FindAllEnabledHTTPAccessLogPolicies(ctx context.Context, in *FindAllEnabledHTTPAccessLogPoliciesRequest, opts ...grpc.CallOption) (*FindAllEnabledHTTPAccessLogPoliciesResponse, error)
+	// 计算访问日志策略数量
+	CountAllEnabledHTTPAccessLogPolicies(ctx context.Context, in *CountAllEnabledHTTPAccessLogPoliciesRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
+	// 列出单页访问日志策略
+	ListEnabledHTTPAccessLogPolicies(ctx context.Context, in *ListEnabledHTTPAccessLogPoliciesRequest, opts ...grpc.CallOption) (*ListEnabledHTTPAccessLogPoliciesResponse, error)
+	// 创建访问日志策略
+	CreateHTTPAccessLogPolicy(ctx context.Context, in *CreateHTTPAccessLogPolicyRequest, opts ...grpc.CallOption) (*CreateHTTPAccessLogPolicyResponse, error)
+	// 修改访问日志策略
+	UpdateHTTPAccessLogPolicy(ctx context.Context, in *UpdateHTTPAccessLogPolicyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 查找单个访问日志策略
+	FindEnabledHTTPAccessLogPolicy(ctx context.Context, in *FindEnabledHTTPAccessLogPolicyRequest, opts ...grpc.CallOption) (*FindEnabledHTTPAccessLogPolicyResponse, error)
+	// 删除访问日志策略
+	DeleteHTTPAccessLogPolicy(ctx context.Context, in *DeleteHTTPAccessLogPolicyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 测试写入某个访问日志策略
+	WriteHTTPAccessLogPolicy(ctx context.Context, in *WriteHTTPAccessLogPolicyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
 
 type hTTPAccessLogPolicyServiceClient struct {
@@ -253,9 +961,63 @@ func NewHTTPAccessLogPolicyServiceClient(cc grpc.ClientConnInterface) HTTPAccess
 	return &hTTPAccessLogPolicyServiceClient{cc}
 }
 
-func (c *hTTPAccessLogPolicyServiceClient) FindAllEnabledHTTPAccessLogPolicies(ctx context.Context, in *FindAllEnabledHTTPAccessLogPoliciesRequest, opts ...grpc.CallOption) (*FindAllEnabledHTTPAccessLogPoliciesResponse, error) {
-	out := new(FindAllEnabledHTTPAccessLogPoliciesResponse)
-	err := c.cc.Invoke(ctx, "/pb.HTTPAccessLogPolicyService/findAllEnabledHTTPAccessLogPolicies", in, out, opts...)
+func (c *hTTPAccessLogPolicyServiceClient) CountAllEnabledHTTPAccessLogPolicies(ctx context.Context, in *CountAllEnabledHTTPAccessLogPoliciesRequest, opts ...grpc.CallOption) (*RPCCountResponse, error) {
+	out := new(RPCCountResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPAccessLogPolicyService/countAllEnabledHTTPAccessLogPolicies", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPAccessLogPolicyServiceClient) ListEnabledHTTPAccessLogPolicies(ctx context.Context, in *ListEnabledHTTPAccessLogPoliciesRequest, opts ...grpc.CallOption) (*ListEnabledHTTPAccessLogPoliciesResponse, error) {
+	out := new(ListEnabledHTTPAccessLogPoliciesResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPAccessLogPolicyService/listEnabledHTTPAccessLogPolicies", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPAccessLogPolicyServiceClient) CreateHTTPAccessLogPolicy(ctx context.Context, in *CreateHTTPAccessLogPolicyRequest, opts ...grpc.CallOption) (*CreateHTTPAccessLogPolicyResponse, error) {
+	out := new(CreateHTTPAccessLogPolicyResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPAccessLogPolicyService/createHTTPAccessLogPolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPAccessLogPolicyServiceClient) UpdateHTTPAccessLogPolicy(ctx context.Context, in *UpdateHTTPAccessLogPolicyRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.HTTPAccessLogPolicyService/updateHTTPAccessLogPolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPAccessLogPolicyServiceClient) FindEnabledHTTPAccessLogPolicy(ctx context.Context, in *FindEnabledHTTPAccessLogPolicyRequest, opts ...grpc.CallOption) (*FindEnabledHTTPAccessLogPolicyResponse, error) {
+	out := new(FindEnabledHTTPAccessLogPolicyResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPAccessLogPolicyService/findEnabledHTTPAccessLogPolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPAccessLogPolicyServiceClient) DeleteHTTPAccessLogPolicy(ctx context.Context, in *DeleteHTTPAccessLogPolicyRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.HTTPAccessLogPolicyService/deleteHTTPAccessLogPolicy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPAccessLogPolicyServiceClient) WriteHTTPAccessLogPolicy(ctx context.Context, in *WriteHTTPAccessLogPolicyRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.HTTPAccessLogPolicyService/writeHTTPAccessLogPolicy", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -264,36 +1026,174 @@ func (c *hTTPAccessLogPolicyServiceClient) FindAllEnabledHTTPAccessLogPolicies(c
 
 // HTTPAccessLogPolicyServiceServer is the server API for HTTPAccessLogPolicyService service.
 type HTTPAccessLogPolicyServiceServer interface {
-	// 获取所有可用策略
-	FindAllEnabledHTTPAccessLogPolicies(context.Context, *FindAllEnabledHTTPAccessLogPoliciesRequest) (*FindAllEnabledHTTPAccessLogPoliciesResponse, error)
+	// 计算访问日志策略数量
+	CountAllEnabledHTTPAccessLogPolicies(context.Context, *CountAllEnabledHTTPAccessLogPoliciesRequest) (*RPCCountResponse, error)
+	// 列出单页访问日志策略
+	ListEnabledHTTPAccessLogPolicies(context.Context, *ListEnabledHTTPAccessLogPoliciesRequest) (*ListEnabledHTTPAccessLogPoliciesResponse, error)
+	// 创建访问日志策略
+	CreateHTTPAccessLogPolicy(context.Context, *CreateHTTPAccessLogPolicyRequest) (*CreateHTTPAccessLogPolicyResponse, error)
+	// 修改访问日志策略
+	UpdateHTTPAccessLogPolicy(context.Context, *UpdateHTTPAccessLogPolicyRequest) (*RPCSuccess, error)
+	// 查找单个访问日志策略
+	FindEnabledHTTPAccessLogPolicy(context.Context, *FindEnabledHTTPAccessLogPolicyRequest) (*FindEnabledHTTPAccessLogPolicyResponse, error)
+	// 删除访问日志策略
+	DeleteHTTPAccessLogPolicy(context.Context, *DeleteHTTPAccessLogPolicyRequest) (*RPCSuccess, error)
+	// 测试写入某个访问日志策略
+	WriteHTTPAccessLogPolicy(context.Context, *WriteHTTPAccessLogPolicyRequest) (*RPCSuccess, error)
 }
 
 // UnimplementedHTTPAccessLogPolicyServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedHTTPAccessLogPolicyServiceServer struct {
 }
 
-func (*UnimplementedHTTPAccessLogPolicyServiceServer) FindAllEnabledHTTPAccessLogPolicies(context.Context, *FindAllEnabledHTTPAccessLogPoliciesRequest) (*FindAllEnabledHTTPAccessLogPoliciesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindAllEnabledHTTPAccessLogPolicies not implemented")
+func (*UnimplementedHTTPAccessLogPolicyServiceServer) CountAllEnabledHTTPAccessLogPolicies(context.Context, *CountAllEnabledHTTPAccessLogPoliciesRequest) (*RPCCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountAllEnabledHTTPAccessLogPolicies not implemented")
+}
+func (*UnimplementedHTTPAccessLogPolicyServiceServer) ListEnabledHTTPAccessLogPolicies(context.Context, *ListEnabledHTTPAccessLogPoliciesRequest) (*ListEnabledHTTPAccessLogPoliciesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListEnabledHTTPAccessLogPolicies not implemented")
+}
+func (*UnimplementedHTTPAccessLogPolicyServiceServer) CreateHTTPAccessLogPolicy(context.Context, *CreateHTTPAccessLogPolicyRequest) (*CreateHTTPAccessLogPolicyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateHTTPAccessLogPolicy not implemented")
+}
+func (*UnimplementedHTTPAccessLogPolicyServiceServer) UpdateHTTPAccessLogPolicy(context.Context, *UpdateHTTPAccessLogPolicyRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPAccessLogPolicy not implemented")
+}
+func (*UnimplementedHTTPAccessLogPolicyServiceServer) FindEnabledHTTPAccessLogPolicy(context.Context, *FindEnabledHTTPAccessLogPolicyRequest) (*FindEnabledHTTPAccessLogPolicyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledHTTPAccessLogPolicy not implemented")
+}
+func (*UnimplementedHTTPAccessLogPolicyServiceServer) DeleteHTTPAccessLogPolicy(context.Context, *DeleteHTTPAccessLogPolicyRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteHTTPAccessLogPolicy not implemented")
+}
+func (*UnimplementedHTTPAccessLogPolicyServiceServer) WriteHTTPAccessLogPolicy(context.Context, *WriteHTTPAccessLogPolicyRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WriteHTTPAccessLogPolicy not implemented")
 }
 
 func RegisterHTTPAccessLogPolicyServiceServer(s *grpc.Server, srv HTTPAccessLogPolicyServiceServer) {
 	s.RegisterService(&_HTTPAccessLogPolicyService_serviceDesc, srv)
 }
 
-func _HTTPAccessLogPolicyService_FindAllEnabledHTTPAccessLogPolicies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindAllEnabledHTTPAccessLogPoliciesRequest)
+func _HTTPAccessLogPolicyService_CountAllEnabledHTTPAccessLogPolicies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountAllEnabledHTTPAccessLogPoliciesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HTTPAccessLogPolicyServiceServer).FindAllEnabledHTTPAccessLogPolicies(ctx, in)
+		return srv.(HTTPAccessLogPolicyServiceServer).CountAllEnabledHTTPAccessLogPolicies(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.HTTPAccessLogPolicyService/FindAllEnabledHTTPAccessLogPolicies",
+		FullMethod: "/pb.HTTPAccessLogPolicyService/CountAllEnabledHTTPAccessLogPolicies",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HTTPAccessLogPolicyServiceServer).FindAllEnabledHTTPAccessLogPolicies(ctx, req.(*FindAllEnabledHTTPAccessLogPoliciesRequest))
+		return srv.(HTTPAccessLogPolicyServiceServer).CountAllEnabledHTTPAccessLogPolicies(ctx, req.(*CountAllEnabledHTTPAccessLogPoliciesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPAccessLogPolicyService_ListEnabledHTTPAccessLogPolicies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListEnabledHTTPAccessLogPoliciesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPAccessLogPolicyServiceServer).ListEnabledHTTPAccessLogPolicies(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPAccessLogPolicyService/ListEnabledHTTPAccessLogPolicies",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPAccessLogPolicyServiceServer).ListEnabledHTTPAccessLogPolicies(ctx, req.(*ListEnabledHTTPAccessLogPoliciesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPAccessLogPolicyService_CreateHTTPAccessLogPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateHTTPAccessLogPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPAccessLogPolicyServiceServer).CreateHTTPAccessLogPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPAccessLogPolicyService/CreateHTTPAccessLogPolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPAccessLogPolicyServiceServer).CreateHTTPAccessLogPolicy(ctx, req.(*CreateHTTPAccessLogPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPAccessLogPolicyService_UpdateHTTPAccessLogPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPAccessLogPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPAccessLogPolicyServiceServer).UpdateHTTPAccessLogPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPAccessLogPolicyService/UpdateHTTPAccessLogPolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPAccessLogPolicyServiceServer).UpdateHTTPAccessLogPolicy(ctx, req.(*UpdateHTTPAccessLogPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPAccessLogPolicyService_FindEnabledHTTPAccessLogPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledHTTPAccessLogPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPAccessLogPolicyServiceServer).FindEnabledHTTPAccessLogPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPAccessLogPolicyService/FindEnabledHTTPAccessLogPolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPAccessLogPolicyServiceServer).FindEnabledHTTPAccessLogPolicy(ctx, req.(*FindEnabledHTTPAccessLogPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPAccessLogPolicyService_DeleteHTTPAccessLogPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteHTTPAccessLogPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPAccessLogPolicyServiceServer).DeleteHTTPAccessLogPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPAccessLogPolicyService/DeleteHTTPAccessLogPolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPAccessLogPolicyServiceServer).DeleteHTTPAccessLogPolicy(ctx, req.(*DeleteHTTPAccessLogPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPAccessLogPolicyService_WriteHTTPAccessLogPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WriteHTTPAccessLogPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPAccessLogPolicyServiceServer).WriteHTTPAccessLogPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPAccessLogPolicyService/WriteHTTPAccessLogPolicy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPAccessLogPolicyServiceServer).WriteHTTPAccessLogPolicy(ctx, req.(*WriteHTTPAccessLogPolicyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -303,8 +1203,32 @@ var _HTTPAccessLogPolicyService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*HTTPAccessLogPolicyServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "findAllEnabledHTTPAccessLogPolicies",
-			Handler:    _HTTPAccessLogPolicyService_FindAllEnabledHTTPAccessLogPolicies_Handler,
+			MethodName: "countAllEnabledHTTPAccessLogPolicies",
+			Handler:    _HTTPAccessLogPolicyService_CountAllEnabledHTTPAccessLogPolicies_Handler,
+		},
+		{
+			MethodName: "listEnabledHTTPAccessLogPolicies",
+			Handler:    _HTTPAccessLogPolicyService_ListEnabledHTTPAccessLogPolicies_Handler,
+		},
+		{
+			MethodName: "createHTTPAccessLogPolicy",
+			Handler:    _HTTPAccessLogPolicyService_CreateHTTPAccessLogPolicy_Handler,
+		},
+		{
+			MethodName: "updateHTTPAccessLogPolicy",
+			Handler:    _HTTPAccessLogPolicyService_UpdateHTTPAccessLogPolicy_Handler,
+		},
+		{
+			MethodName: "findEnabledHTTPAccessLogPolicy",
+			Handler:    _HTTPAccessLogPolicyService_FindEnabledHTTPAccessLogPolicy_Handler,
+		},
+		{
+			MethodName: "deleteHTTPAccessLogPolicy",
+			Handler:    _HTTPAccessLogPolicyService_DeleteHTTPAccessLogPolicy_Handler,
+		},
+		{
+			MethodName: "writeHTTPAccessLogPolicy",
+			Handler:    _HTTPAccessLogPolicyService_WriteHTTPAccessLogPolicy_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

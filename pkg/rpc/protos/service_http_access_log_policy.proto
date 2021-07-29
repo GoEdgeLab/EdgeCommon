@@ -4,18 +4,86 @@ option go_package = "./pb";
 package pb;
 
 import "models/model_http_access_log_policy.proto";
+import "models/rpc_messages.proto";
+import "models/model_http_access_log.proto";
 
 service HTTPAccessLogPolicyService {
-	// 获取所有可用策略
-	rpc findAllEnabledHTTPAccessLogPolicies (FindAllEnabledHTTPAccessLogPoliciesRequest) returns (FindAllEnabledHTTPAccessLogPoliciesResponse);
+	// 计算访问日志策略数量
+	rpc countAllEnabledHTTPAccessLogPolicies (CountAllEnabledHTTPAccessLogPoliciesRequest) returns (RPCCountResponse);
+
+	// 列出单页访问日志策略
+	rpc listEnabledHTTPAccessLogPolicies (ListEnabledHTTPAccessLogPoliciesRequest) returns (ListEnabledHTTPAccessLogPoliciesResponse);
+
+	// 创建访问日志策略
+	rpc createHTTPAccessLogPolicy (CreateHTTPAccessLogPolicyRequest) returns (CreateHTTPAccessLogPolicyResponse);
+
+	// 修改访问日志策略
+	rpc updateHTTPAccessLogPolicy (UpdateHTTPAccessLogPolicyRequest) returns (RPCSuccess);
+
+	// 查找单个访问日志策略
+	rpc findEnabledHTTPAccessLogPolicy (FindEnabledHTTPAccessLogPolicyRequest) returns (FindEnabledHTTPAccessLogPolicyResponse);
+
+	// 删除访问日志策略
+	rpc deleteHTTPAccessLogPolicy (DeleteHTTPAccessLogPolicyRequest) returns (RPCSuccess);
+
+	// 测试写入某个访问日志策略
+	rpc writeHTTPAccessLogPolicy (WriteHTTPAccessLogPolicyRequest) returns (RPCSuccess);
 }
 
-// 获取所有可用策略
-message FindAllEnabledHTTPAccessLogPoliciesRequest {
+// 计算访问日志策略数量
+message CountAllEnabledHTTPAccessLogPoliciesRequest {
 
 }
 
-message FindAllEnabledHTTPAccessLogPoliciesResponse {
-	repeated HTTPAccessLogPolicy accessLogPolicies = 1;
+// 列出单页访问日志策略
+message ListEnabledHTTPAccessLogPoliciesRequest {
+	int64 offset = 1;
+	int64 size = 2;
 }
 
+message ListEnabledHTTPAccessLogPoliciesResponse {
+	repeated HTTPAccessLogPolicy httpAccessLogPolicies = 1;
+}
+
+// 创建访问日志策略
+message CreateHTTPAccessLogPolicyRequest {
+	string name = 1;
+	string type = 2;
+	bytes optionsJSON = 3;
+	bytes condsJSON = 4;
+	bool isPublic = 5;
+}
+
+message CreateHTTPAccessLogPolicyResponse {
+	int64 httpAccessLogPolicyId = 1;
+}
+
+// 修改访问日志策略
+message UpdateHTTPAccessLogPolicyRequest {
+	int64 httpAccessLogPolicyId = 1;
+	string name = 2;
+	bool isOn = 3;
+	bytes optionsJSON = 4;
+	bytes condsJSON = 5;
+	bool isPublic = 6;
+}
+
+// 查找单个访问日志策略
+message FindEnabledHTTPAccessLogPolicyRequest {
+	int64 httpAccessLogPolicyId = 1;
+}
+
+message FindEnabledHTTPAccessLogPolicyResponse {
+	HTTPAccessLogPolicy httpAccessLogPolicy = 1;
+}
+
+// 删除策略
+message DeleteHTTPAccessLogPolicyRequest {
+	int64 httpAccessLogPolicyId = 1;
+}
+
+// 测试写入某个访问日志策略
+message WriteHTTPAccessLogPolicyRequest {
+	int64 httpAccessLogPolicyId = 1;
+	HTTPAccessLog httpAccessLog = 2;
+}
