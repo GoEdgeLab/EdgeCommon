@@ -48,12 +48,13 @@ type Node struct {
 	IsActive               bool               `protobuf:"varint,16,opt,name=isActive,proto3" json:"isActive,omitempty"`
 	MaxCacheDiskCapacity   *SizeCapacity      `protobuf:"bytes,17,opt,name=maxCacheDiskCapacity,proto3" json:"maxCacheDiskCapacity,omitempty"`
 	MaxCacheMemoryCapacity *SizeCapacity      `protobuf:"bytes,18,opt,name=maxCacheMemoryCapacity,proto3" json:"maxCacheMemoryCapacity,omitempty"`
-	NodeCluster            *NodeCluster       `protobuf:"bytes,32,opt,name=nodeCluster,proto3" json:"nodeCluster,omitempty"`
+	NodeCluster            *NodeCluster       `protobuf:"bytes,32,opt,name=nodeCluster,proto3" json:"nodeCluster,omitempty"` // 主集群
 	Login                  *NodeLogin         `protobuf:"bytes,33,opt,name=login,proto3" json:"login,omitempty"`
 	InstallStatus          *NodeInstallStatus `protobuf:"bytes,34,opt,name=installStatus,proto3" json:"installStatus,omitempty"`
 	IpAddresses            []*NodeIPAddress   `protobuf:"bytes,35,rep,name=ipAddresses,proto3" json:"ipAddresses,omitempty"`
 	NodeGroup              *NodeGroup         `protobuf:"bytes,36,opt,name=nodeGroup,proto3" json:"nodeGroup,omitempty"`
 	NodeRegion             *NodeRegion        `protobuf:"bytes,37,opt,name=nodeRegion,proto3" json:"nodeRegion,omitempty"`
+	SecondaryNodeClusters  []*NodeCluster     `protobuf:"bytes,38,rep,name=secondaryNodeClusters,proto3" json:"secondaryNodeClusters,omitempty"` // 从集群
 }
 
 func (x *Node) Reset() {
@@ -256,6 +257,13 @@ func (x *Node) GetNodeRegion() *NodeRegion {
 	return nil
 }
 
+func (x *Node) GetSecondaryNodeClusters() []*NodeCluster {
+	if x != nil {
+		return x.SecondaryNodeClusters
+	}
+	return nil
+}
+
 var File_models_model_node_proto protoreflect.FileDescriptor
 
 var file_models_model_node_proto_rawDesc = []byte{
@@ -277,7 +285,7 @@ var file_models_model_node_proto_rawDesc = []byte{
 	0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x64, 0x6e, 0x73, 0x5f, 0x72, 0x6f, 0x75, 0x74, 0x65,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x20, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2f, 0x6d,
 	0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x5f, 0x63, 0x61, 0x70, 0x61, 0x63, 0x69,
-	0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x85, 0x07, 0x0a, 0x04, 0x4e, 0x6f, 0x64,
+	0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xcc, 0x07, 0x0a, 0x04, 0x4e, 0x6f, 0x64,
 	0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69,
 	0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
 	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x4a,
@@ -334,7 +342,12 @@ var file_models_model_node_proto_rawDesc = []byte{
 	0x12, 0x2e, 0x0a, 0x0a, 0x6e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x18, 0x25,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65,
 	0x67, 0x69, 0x6f, 0x6e, 0x52, 0x0a, 0x6e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e,
-	0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x45, 0x0a, 0x15, 0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x61, 0x72, 0x79, 0x4e, 0x6f, 0x64,
+	0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x18, 0x26, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x0f, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x52, 0x15, 0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x61, 0x72, 0x79, 0x4e, 0x6f, 0x64, 0x65, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -362,20 +375,21 @@ var file_models_model_node_proto_goTypes = []interface{}{
 	(*NodeRegion)(nil),        // 8: pb.NodeRegion
 }
 var file_models_model_node_proto_depIdxs = []int32{
-	1, // 0: pb.Node.dnsRoutes:type_name -> pb.DNSRoute
-	2, // 1: pb.Node.maxCacheDiskCapacity:type_name -> pb.SizeCapacity
-	2, // 2: pb.Node.maxCacheMemoryCapacity:type_name -> pb.SizeCapacity
-	3, // 3: pb.Node.nodeCluster:type_name -> pb.NodeCluster
-	4, // 4: pb.Node.login:type_name -> pb.NodeLogin
-	5, // 5: pb.Node.installStatus:type_name -> pb.NodeInstallStatus
-	6, // 6: pb.Node.ipAddresses:type_name -> pb.NodeIPAddress
-	7, // 7: pb.Node.nodeGroup:type_name -> pb.NodeGroup
-	8, // 8: pb.Node.nodeRegion:type_name -> pb.NodeRegion
-	9, // [9:9] is the sub-list for method output_type
-	9, // [9:9] is the sub-list for method input_type
-	9, // [9:9] is the sub-list for extension type_name
-	9, // [9:9] is the sub-list for extension extendee
-	0, // [0:9] is the sub-list for field type_name
+	1,  // 0: pb.Node.dnsRoutes:type_name -> pb.DNSRoute
+	2,  // 1: pb.Node.maxCacheDiskCapacity:type_name -> pb.SizeCapacity
+	2,  // 2: pb.Node.maxCacheMemoryCapacity:type_name -> pb.SizeCapacity
+	3,  // 3: pb.Node.nodeCluster:type_name -> pb.NodeCluster
+	4,  // 4: pb.Node.login:type_name -> pb.NodeLogin
+	5,  // 5: pb.Node.installStatus:type_name -> pb.NodeInstallStatus
+	6,  // 6: pb.Node.ipAddresses:type_name -> pb.NodeIPAddress
+	7,  // 7: pb.Node.nodeGroup:type_name -> pb.NodeGroup
+	8,  // 8: pb.Node.nodeRegion:type_name -> pb.NodeRegion
+	3,  // 9: pb.Node.secondaryNodeClusters:type_name -> pb.NodeCluster
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_models_model_node_proto_init() }

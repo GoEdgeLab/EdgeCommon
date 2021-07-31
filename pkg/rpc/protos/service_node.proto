@@ -32,6 +32,9 @@ service NodeService {
 	// 删除节点
 	rpc deleteNode (DeleteNodeRequest) returns (RPCSuccess);
 
+	// 从集群中删除节点
+	rpc deleteNodeFromNodeCluster (DeleteNodeFromNodeClusterRequest) returns (RPCSuccess);
+
 	// 修改节点
 	rpc updateNode (UpdateNodeRequest) returns (RPCSuccess);
 
@@ -126,7 +129,7 @@ message CreateNodeRequest {
 	int64 nodeClusterId = 2;
 	NodeLogin nodeLogin = 3;
 	int64 nodeGroupId = 4;
-	int64 dnsDomainId = 5;
+	int64 dnsDomainId = 5 [deprecated = true];
 	repeated string dnsRoutes = 6;
 	int64 nodeRegionId = 7;
 }
@@ -190,16 +193,23 @@ message DeleteNodeRequest {
 	int64 nodeId = 1;
 }
 
+// 从集群中删除节点
+message DeleteNodeFromNodeClusterRequest {
+	int64 nodeId = 1;
+	int64 nodeClusterId = 2;
+}
+
 // 修改节点
 message UpdateNodeRequest {
 	int64 nodeId = 1;
 	string name = 2;
 	int64 nodeClusterId = 3;
+	repeated int64 secondaryNodeClusterIds = 13;
 	NodeLogin nodeLogin = 4;
 	int32 maxCPU = 5;
 	bool isOn = 6;
 	int64 nodeGroupId = 7;
-	int64 dnsDomainId = 8;
+	int64 dnsDomainId = 8 [deprecated = true];
 	repeated string dnsRoutes = 9;
 	int64 nodeRegionId = 10;
 	SizeCapacity maxCacheDiskCapacity = 11;
@@ -394,6 +404,7 @@ message NodeDNSInfo {
 // 查找单个节点的域名解析信息
 message FindEnabledNodeDNSRequest {
 	int64 nodeId = 1;
+	int64 nodeClusterId = 2;
 }
 
 message FindEnabledNodeDNSResponse {

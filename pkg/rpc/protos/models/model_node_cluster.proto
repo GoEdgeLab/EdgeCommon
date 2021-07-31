@@ -15,4 +15,5 @@ message NodeCluster {
 	int64 dnsDomainId = 9;
 	int64 httpCachePolicyId = 10;
 	int64 httpFirewallPolicyId = 11;
+	bool isOn = 12;
 }
