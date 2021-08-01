@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-// 源站服务配置
+// OriginConfig 源站服务配置
 type OriginConfig struct {
 	Id          int64                 `yaml:"id" json:"id"`                   // ID
 	IsOn        bool                  `yaml:"isOn" json:"isOn"`               // 是否启用
@@ -48,6 +48,8 @@ type OriginConfig struct {
 	FTPServerRef *FTPServerRef    `yaml:"ftpServerRef" json:"ftpServerRef"` // TODO
 	FTPServer    *FTPServerConfig `yaml:"ftpServer" json:"ftpServer"`       // TODO
 
+	IsOk bool `yaml:"isOk" json:"isOk"` // 是否可以正常访问
+
 	connTimeoutDuration time.Duration
 	readTimeoutDuration time.Duration
 	idleTimeoutDuration time.Duration
@@ -65,8 +67,10 @@ type OriginConfig struct {
 	requestURIHasVariables  bool
 }
 
-// 校验
+// Init 校验
 func (this *OriginConfig) Init() error {
+	this.IsOk = true
+
 	// URL
 	this.requestHostHasVariables = configutils.HasVariables(this.RequestHost)
 	this.requestURIHasVariables = configutils.HasVariables(this.RequestURI)
@@ -157,7 +161,7 @@ func (this *OriginConfig) Init() error {
 	return nil
 }
 
-// 候选对象代号
+// CandidateCodes 候选对象代号
 func (this *OriginConfig) CandidateCodes() []string {
 	codes := []string{strconv.FormatInt(this.Id, 10)}
 	if len(this.Code) > 0 {
@@ -166,37 +170,37 @@ func (this *OriginConfig) CandidateCodes() []string {
 	return codes
 }
 
-// 候选对象权重
+// CandidateWeight 候选对象权重
 func (this *OriginConfig) CandidateWeight() uint {
 	return this.Weight
 }
 
-// 连接超时时间
+// ConnTimeoutDuration 连接超时时间
 func (this *OriginConfig) ConnTimeoutDuration() time.Duration {
 	return this.connTimeoutDuration
 }
 
-// 读取超时时间
+// ReadTimeoutDuration 读取超时时间
 func (this *OriginConfig) ReadTimeoutDuration() time.Duration {
 	return this.readTimeoutDuration
 }
 
-// 休眠超时时间
+// IdleTimeoutDuration 休眠超时时间
 func (this *OriginConfig) IdleTimeoutDuration() time.Duration {
 	return this.idleTimeoutDuration
 }
 
-// 判断RequestHost是否有变量
+// RequestHostHasVariables 判断RequestHost是否有变量
 func (this *OriginConfig) RequestHostHasVariables() bool {
 	return this.requestHostHasVariables
 }
 
-// 判断RequestURI是否有变量
+// RequestURIHasVariables 判断RequestURI是否有变量
 func (this *OriginConfig) RequestURIHasVariables() bool {
 	return this.requestURIHasVariables
 }
 
-// 唯一Key
+// UniqueKey 唯一Key
 func (this *OriginConfig) UniqueKey() string {
 	return this.uniqueKey
 }

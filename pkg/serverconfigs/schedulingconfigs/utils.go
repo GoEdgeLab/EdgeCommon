@@ -2,7 +2,7 @@ package schedulingconfigs
 
 import "github.com/iwind/TeaGo/maps"
 
-// 所有请求类型
+// AllSchedulingTypes 所有请求类型
 func AllSchedulingTypes() []maps.Map {
 	types := []maps.Map{}
 	for _, s := range []SchedulingInterface{

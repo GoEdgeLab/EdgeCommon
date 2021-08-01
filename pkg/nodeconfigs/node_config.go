@@ -48,6 +48,9 @@ type NodeConfig struct {
 
 	// metrics
 	hasHTTPConnectionMetrics bool
+
+	// 源站集合
+	originMap map[int64]*serverconfigs.OriginConfig
 }
 
 // SharedNodeConfig 取得当前节点配置单例
@@ -130,6 +133,9 @@ func (this *NodeConfig) Init() error {
 		}
 	}
 
+	// 源站
+	this.originMap = map[int64]*serverconfigs.OriginConfig{}
+
 	// 查找FirewallPolicy
 	this.firewallPolicies = []*firewallconfigs.HTTPFirewallPolicy{}
 	for _, policy := range this.HTTPFirewallPolicies {
@@ -157,6 +163,20 @@ func (this *NodeConfig) Init() error {
 			for _, policy := range this.HTTPCachePolicies {
 				if server.HTTPCachePolicyId == policy.Id {
 					server.HTTPCachePolicy = policy
+				}
+			}
+		}
+
+		// 源站
+		if server.ReverseProxyRef != nil && server.ReverseProxyRef.IsOn && server.ReverseProxy != nil && server.ReverseProxy.IsOn {
+			for _, origin := range server.ReverseProxy.PrimaryOrigins {
+				if origin.IsOn {
+					this.originMap[origin.Id] = origin
+				}
+			}
+			for _, origin := range server.ReverseProxy.BackupOrigins {
+				if origin.IsOn {
+					this.originMap[origin.Id] = origin
 				}
 			}
 		}
@@ -242,6 +262,18 @@ func (this *NodeConfig) HasHTTPConnectionMetrics() bool {
 	return this.hasHTTPConnectionMetrics
 }
 
+// FindOrigin 读取源站配置
+func (this *NodeConfig) FindOrigin(originId int64) *serverconfigs.OriginConfig {
+	if this.originMap == nil {
+		return nil
+	}
+	config, ok := this.originMap[originId]
+	if ok {
+		return config
+	}
+	return nil
+}
+
 // 搜索WAF策略
 func (this *NodeConfig) lookupWeb(server *serverconfigs.ServerConfig, web *serverconfigs.HTTPWebConfig) {
 	if web == nil || !web.IsOn {
@@ -256,6 +288,21 @@ func (this *NodeConfig) lookupWeb(server *serverconfigs.ServerConfig, web *serve
 	}
 	if len(web.Locations) > 0 {
 		for _, location := range web.Locations {
+			// 源站
+			if location.IsOn && location.ReverseProxyRef != nil && location.ReverseProxyRef.IsOn && location.ReverseProxy != nil && location.ReverseProxy.IsOn {
+				for _, origin := range location.ReverseProxy.PrimaryOrigins {
+					if origin.IsOn {
+						this.originMap[origin.Id] = origin
+					}
+				}
+				for _, origin := range location.ReverseProxy.BackupOrigins {
+					if origin.IsOn {
+						this.originMap[origin.Id] = origin
+					}
+				}
+			}
+
+			// Web
 			if location.Web != nil && location.Web.IsOn {
 				this.lookupWeb(server, location.Web)
 			}

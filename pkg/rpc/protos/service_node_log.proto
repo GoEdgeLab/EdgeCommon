@@ -39,6 +39,7 @@ message CountNodeLogsRequest {
 	string keyword = 5;
 	string level = 6;
 	int64 serverId = 7;
+	int64 originId = 8;
 }
 
 // 列出单页日志
@@ -55,6 +56,7 @@ message ListNodeLogsRequest {
 	int64 serverId = 9;
 	int32 fixedState = 10;
 	bool allServers = 11; // 是否获取所有服务相关的日志
+	int64 originId = 12;
 }
 
 message ListNodeLogsResponse {

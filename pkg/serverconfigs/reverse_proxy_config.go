@@ -16,7 +16,7 @@ const (
 	RequestHostTypeCustomized  RequestHostType = 2
 )
 
-// 反向代理设置
+// ReverseProxyConfig 反向代理设置
 type ReverseProxyConfig struct {
 	Id                int64             `yaml:"id" json:"id"`                               // ID
 	IsOn              bool              `yaml:"isOn" json:"isOn"`                           // 是否启用
@@ -59,7 +59,7 @@ type ReverseProxyConfig struct {
 	addXForwardedProtoHeader bool
 }
 
-// 初始化
+// Init 初始化
 func (this *ReverseProxyConfig) Init() error {
 	this.requestHostHasVariables = configutils.HasVariables(this.RequestHost)
 	this.requestURIHasVariables = configutils.HasVariables(this.RequestURI)
@@ -98,7 +98,7 @@ func (this *ReverseProxyConfig) Init() error {
 	}
 
 	// scheduling
-	this.SetupScheduling(false)
+	this.SetupScheduling(false, false, true)
 
 	// Header
 	if len(this.AddHeaders) == 0 {
@@ -119,17 +119,17 @@ func (this *ReverseProxyConfig) Init() error {
 	return nil
 }
 
-// 添加主源站配置
+// AddPrimaryOrigin 添加主源站配置
 func (this *ReverseProxyConfig) AddPrimaryOrigin(origin *OriginConfig) {
 	this.PrimaryOrigins = append(this.PrimaryOrigins, origin)
 }
 
-// 添加备用源站配置
+// AddBackupOrigin 添加备用源站配置
 func (this *ReverseProxyConfig) AddBackupOrigin(origin *OriginConfig) {
 	this.BackupOrigins = append(this.BackupOrigins, origin)
 }
 
-// 取得下一个可用的后端服务
+// NextOrigin 取得下一个可用的后端服务
 func (this *ReverseProxyConfig) NextOrigin(call *shared.RequestCall) *OriginConfig {
 	this.schedulingLocker.Lock()
 	defer this.schedulingLocker.Unlock()
@@ -145,14 +145,31 @@ func (this *ReverseProxyConfig) NextOrigin(call *shared.RequestCall) *OriginConf
 	}
 
 	candidate := this.schedulingObject.Next(call)
+
+	// 末了重置状态
+	defer func() {
+		if candidate == nil {
+			this.schedulingIsBackup = false
+		}
+	}()
+
 	if candidate == nil {
 		// 启用备用服务器
 		if !this.schedulingIsBackup {
-			this.SetupScheduling(true)
-
+			this.SetupScheduling(true, true, false)
 			candidate = this.schedulingObject.Next(call)
 			if candidate == nil {
-				return nil
+				// 不检查主要源站
+				this.SetupScheduling(false, false, false)
+				candidate = this.schedulingObject.Next(call)
+				if candidate == nil {
+					// 不检查备用源站
+					this.SetupScheduling(true, false, false)
+					candidate = this.schedulingObject.Next(call)
+					if candidate == nil {
+						return nil
+					}
+				}
 			}
 		}
 
@@ -164,12 +181,13 @@ func (this *ReverseProxyConfig) NextOrigin(call *shared.RequestCall) *OriginConf
 	return candidate.(*OriginConfig)
 }
 
-// 设置调度算法
-func (this *ReverseProxyConfig) SetupScheduling(isBackup bool) {
-	if !isBackup {
+// SetupScheduling 设置调度算法
+func (this *ReverseProxyConfig) SetupScheduling(isBackup bool, checkOk bool, lock bool) {
+	if lock {
 		this.schedulingLocker.Lock()
 		defer this.schedulingLocker.Unlock()
 	}
+
 	this.schedulingIsBackup = isBackup
 
 	if this.Scheduling == nil {
@@ -187,22 +205,26 @@ func (this *ReverseProxyConfig) SetupScheduling(isBackup bool) {
 
 	if !isBackup {
 		for _, origin := range this.PrimaryOrigins {
-			if origin.IsOn {
+			if origin.IsOn && (origin.IsOk || !checkOk) {
 				this.schedulingObject.Add(origin)
 			}
 		}
 	} else {
 		for _, origin := range this.BackupOrigins {
-			if origin.IsOn {
+			if origin.IsOn && (origin.IsOk || !checkOk) {
 				this.schedulingObject.Add(origin)
 			}
 		}
 	}
 
+	if !this.schedulingObject.HasCandidates() {
+		return
+	}
+
 	this.schedulingObject.Start()
 }
 
-// 获取调度配置对象
+// FindSchedulingConfig 获取调度配置对象
 func (this *ReverseProxyConfig) FindSchedulingConfig() *SchedulingConfig {
 	if this.Scheduling == nil {
 		this.Scheduling = &SchedulingConfig{Code: "random"}
@@ -210,37 +232,42 @@ func (this *ReverseProxyConfig) FindSchedulingConfig() *SchedulingConfig {
 	return this.Scheduling
 }
 
-// 判断RequestHost是否有变量
+// RequestHostHasVariables 判断RequestHost是否有变量
 func (this *ReverseProxyConfig) RequestHostHasVariables() bool {
 	return this.requestHostHasVariables
 }
 
-// 判断RequestURI是否有变量
+// RequestURIHasVariables 判断RequestURI是否有变量
 func (this *ReverseProxyConfig) RequestURIHasVariables() bool {
 	return this.requestURIHasVariables
 }
 
-// 是否添加X-Real-IP
+// ShouldAddXRealIPHeader 是否添加X-Real-IP
 func (this *ReverseProxyConfig) ShouldAddXRealIPHeader() bool {
 	return this.addXRealIPHeader
 }
 
-// 是否添加X-Forwarded-For
+// ShouldAddXForwardedForHeader 是否添加X-Forwarded-For
 func (this *ReverseProxyConfig) ShouldAddXForwardedForHeader() bool {
 	return this.addXForwardedForHeader
 }
 
-// 是否添加X-Forwarded-By
+// ShouldAddXForwardedByHeader 是否添加X-Forwarded-By
 func (this *ReverseProxyConfig) ShouldAddXForwardedByHeader() bool {
 	return this.addXForwardedByHeader
 }
 
-// 是否添加X-Forwarded-Host
+// ShouldAddXForwardedHostHeader 是否添加X-Forwarded-Host
 func (this *ReverseProxyConfig) ShouldAddXForwardedHostHeader() bool {
 	return this.addXForwardedHostHeader
 }
 
-// 是否添加X-Forwarded-Proto
+// ShouldAddXForwardedProtoHeader 是否添加X-Forwarded-Proto
 func (this *ReverseProxyConfig) ShouldAddXForwardedProtoHeader() bool {
 	return this.addXForwardedProtoHeader
+}
+
+// ResetScheduling 重置调度算法
+func (this *ReverseProxyConfig) ResetScheduling() {
+	this.SetupScheduling(false, true, true)
 }
