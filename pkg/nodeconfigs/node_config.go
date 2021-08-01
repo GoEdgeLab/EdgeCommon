@@ -33,11 +33,11 @@ type NodeConfig struct {
 	GlobalConfig *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置
 
 	// 集群统一配置
-	HTTPFirewallPolicy *firewallconfigs.HTTPFirewallPolicy     `yaml:"httpFirewallPolicy" json:"httpFirewallPolicy"`
-	HTTPCachePolicy    *serverconfigs.HTTPCachePolicy          `yaml:"httpCachePolicy" json:"httpCachePolicy"`
-	TOA                *TOAConfig                              `yaml:"toa" json:"toa"`
-	SystemServices     map[string]maps.Map                     `yaml:"systemServices" json:"systemServices"` // 系统服务配置 type => params
-	FirewallActions    []*firewallconfigs.FirewallActionConfig `yaml:"firewallActions" json:"firewallActions"`
+	HTTPFirewallPolicies []*firewallconfigs.HTTPFirewallPolicy   `yaml:"httpFirewallPolicies" json:"httpFirewallPolicies"`
+	HTTPCachePolicies    []*serverconfigs.HTTPCachePolicy        `yaml:"httpCachePolicies" json:"httpCachePolicies"`
+	TOA                  *TOAConfig                              `yaml:"toa" json:"toa"`
+	SystemServices       map[string]maps.Map                     `yaml:"systemServices" json:"systemServices"` // 系统服务配置 type => params
+	FirewallActions      []*firewallconfigs.FirewallActionConfig `yaml:"firewallActions" json:"firewallActions"`
 
 	MetricItems []*serverconfigs.MetricItemConfig `yaml:"metricItems" json:"metricItems"`
 
@@ -103,18 +103,22 @@ func (this *NodeConfig) Init() error {
 	}
 
 	// cache policy
-	if this.HTTPCachePolicy != nil {
-		err := this.HTTPCachePolicy.Init()
-		if err != nil {
-			return err
+	if len(this.HTTPCachePolicies) > 0 {
+		for _, policy := range this.HTTPCachePolicies {
+			err := policy.Init()
+			if err != nil {
+				return err
+			}
 		}
 	}
 
 	// firewall policy
-	if this.HTTPFirewallPolicy != nil {
-		err := this.HTTPFirewallPolicy.Init()
-		if err != nil {
-			return err
+	if len(this.HTTPFirewallPolicies) > 0 {
+		for _, policy := range this.HTTPFirewallPolicies {
+			err := policy.Init()
+			if err != nil {
+				return err
+			}
 		}
 	}
 
@@ -128,15 +132,37 @@ func (this *NodeConfig) Init() error {
 
 	// 查找FirewallPolicy
 	this.firewallPolicies = []*firewallconfigs.HTTPFirewallPolicy{}
-	if this.HTTPFirewallPolicy != nil && this.HTTPFirewallPolicy.IsOn {
-		this.firewallPolicies = append(this.firewallPolicies, this.HTTPFirewallPolicy)
+	for _, policy := range this.HTTPFirewallPolicies {
+		if policy.IsOn {
+			this.firewallPolicies = append(this.firewallPolicies, policy)
+		}
 	}
 	for _, server := range this.Servers {
 		if !server.IsOk() || !server.IsOn {
 			continue
 		}
+
+		// WAF策略
+		if server.HTTPFirewallPolicyId > 0 {
+			for _, policy := range this.HTTPFirewallPolicies {
+				if server.HTTPFirewallPolicyId == policy.Id {
+					server.HTTPFirewallPolicy = policy
+					break
+				}
+			}
+		}
+
+		// 缓存策略
+		if server.HTTPCachePolicyId > 0 {
+			for _, policy := range this.HTTPCachePolicies {
+				if server.HTTPCachePolicyId == policy.Id {
+					server.HTTPCachePolicy = policy
+				}
+			}
+		}
+
 		if server.Web != nil {
-			this.lookupWeb(server.Web)
+			this.lookupWeb(server, server.Web)
 		}
 	}
 
@@ -217,21 +243,21 @@ func (this *NodeConfig) HasHTTPConnectionMetrics() bool {
 }
 
 // 搜索WAF策略
-func (this *NodeConfig) lookupWeb(web *serverconfigs.HTTPWebConfig) {
+func (this *NodeConfig) lookupWeb(server *serverconfigs.ServerConfig, web *serverconfigs.HTTPWebConfig) {
 	if web == nil || !web.IsOn {
 		return
 	}
 	if web.FirewallPolicy != nil && web.FirewallPolicy.IsOn {
 		// 复用节点的拦截选项设置
-		if web.FirewallPolicy.BlockOptions == nil && this.HTTPFirewallPolicy != nil && this.HTTPFirewallPolicy.BlockOptions != nil {
-			web.FirewallPolicy.BlockOptions = this.HTTPFirewallPolicy.BlockOptions
+		if web.FirewallPolicy.BlockOptions == nil && server.HTTPFirewallPolicy != nil && server.HTTPFirewallPolicy.BlockOptions != nil {
+			web.FirewallPolicy.BlockOptions = server.HTTPFirewallPolicy.BlockOptions
 		}
 		this.firewallPolicies = append(this.firewallPolicies, web.FirewallPolicy)
 	}
 	if len(web.Locations) > 0 {
 		for _, location := range web.Locations {
 			if location.Web != nil && location.Web.IsOn {
-				this.lookupWeb(location.Web)
+				this.lookupWeb(server, location.Web)
 			}
 		}
 	}

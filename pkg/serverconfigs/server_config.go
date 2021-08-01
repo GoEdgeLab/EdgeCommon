@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/firewallconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
 )
 
@@ -31,6 +32,14 @@ type ServerConfig struct {
 	// 反向代理配置
 	ReverseProxyRef *ReverseProxyRef    `yaml:"reverseProxyRef" json:"reverseProxyRef"`
 	ReverseProxy    *ReverseProxyConfig `yaml:"reverseProxy" json:"reverseProxy"`
+
+	// WAF策略
+	HTTPFirewallPolicyId int64                               `yaml:"httpFirewallPolicyId" json:"httpFirewallPolicyId"`
+	HTTPFirewallPolicy   *firewallconfigs.HTTPFirewallPolicy `yaml:"httpFirewallPolicy" json:"httpFirewallPolicy"` // 通过 HTTPFirewallPolicyId 获取
+
+	// 缓存策略
+	HTTPCachePolicyId int64            `yaml:"httpCachePolicyId" json:"httpCachePolicyId"`
+	HTTPCachePolicy   *HTTPCachePolicy `yaml:"httpCachePolicy" json:"httpCachePolicy"` // 通过 HTTPCachePolicyId 获取
 
 	isOk bool
 }
