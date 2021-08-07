@@ -5,10 +5,10 @@ package dnsconfigs
 import "fmt"
 
 type NSNodeConfig struct {
-	Id           int64         `yaml:"id" json:"id"`
-	NodeId       string        `yaml:"nodeId" json:"nodeId"`
-	ClusterId    int64         `yaml:"clusterId" json:"clusterId"`
-	AccessLogRef *AccessLogRef `yaml:"accessLogRef" json:"accessLogRef"`
+	Id           int64           `yaml:"id" json:"id"`
+	NodeId       string          `yaml:"nodeId" json:"nodeId"`
+	ClusterId    int64           `yaml:"clusterId" json:"clusterId"`
+	AccessLogRef *NSAccessLogRef `yaml:"accessLogRef" json:"accessLogRef"`
 
 	paddedId string
 }

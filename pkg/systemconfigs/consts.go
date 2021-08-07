@@ -9,4 +9,5 @@ const (
 	SettingCodeIPListVersion         SettingCode = "ipListVersion"       // IP名单的版本号
 	SettingCodeAdminSecurityConfig   SettingCode = "adminSecurityConfig" // 管理员安全设置
 	SettingCodeDatabaseConfigSetting SettingCode = "databaseConfig"      // 数据库相关配置
+	SettingCodeNSAccessLogSetting    SettingCode = "nsAccessLogSetting"  // NS相关全局配置
 )
