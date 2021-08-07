@@ -40,6 +40,8 @@ message ListHTTPAccessLogsRequest {
 	int64 userId = 10; // 用户ID
 	bool hasFirewallPolicy = 11; // 是否有WAF策略
 	string keyword = 12; // 关键词
+	string ip = 13;
+	string domain = 14;
 }
 
 message ListHTTPAccessLogsResponse {
