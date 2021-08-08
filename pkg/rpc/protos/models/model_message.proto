@@ -14,6 +14,7 @@ message Message {
 	bytes paramsJSON = 5;
 	bool isRead = 6;
 	int64 createdAt = 7;
+	string role = 8;
 
 	NodeCluster nodeCluster = 30;
 	Node node = 31;

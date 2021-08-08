@@ -56,6 +56,15 @@ service NSNodeService {
 
 	// 下载最新DNS节点安装文件
 	rpc downloadNSNodeInstallationFile (DownloadNSNodeInstallationFileRequest) returns (DownloadNSNodeInstallationFileResponse);
+
+	// 节点stream
+	rpc nsNodeStream (stream NSNodeStreamMessage) returns (stream NSNodeStreamMessage);
+
+	// 向节点发送命令
+	rpc sendCommandToNSNode (NSNodeStreamMessage) returns (NSNodeStreamMessage);
+
+	// 更改节点连接的API节点信息
+	rpc updateNSNodeConnectedAPINodes (UpdateNSNodeConnectedAPINodesRequest) returns (RPCSuccess);
 }
 
 // 根据集群查找所有节点
@@ -199,4 +208,20 @@ message DownloadNSNodeInstallationFileResponse {
 	int64 offset = 3;
 	string version = 4;
 	string filename = 5;
+}
+
+// 节点stream
+message NSNodeStreamMessage {
+	int64 nsNodeId = 1;
+	int64 requestId = 2;
+	int32 timeoutSeconds = 3;
+	string code = 4;
+	bytes dataJSON = 5;
+	bool isOk = 6;
+	string message = 7;
+}
+
+// 更改节点连接的API节点信息
+message UpdateNSNodeConnectedAPINodesRequest {
+	repeated int64 apiNodeIds = 1;
 }

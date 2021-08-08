@@ -17,6 +17,7 @@ message NSNode {
 	bool isInstalled = 7;
 	string installDir = 9;
 	bool isUp = 8;
+	bool isActive = 10;
 
 	NSCluster nsCluster = 32;
 	//NodeLogin login = 33;

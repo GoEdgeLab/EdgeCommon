@@ -1377,6 +1377,150 @@ func (x *DownloadNSNodeInstallationFileResponse) GetFilename() string {
 	return ""
 }
 
+// 节点stream
+type NSNodeStreamMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsNodeId       int64  `protobuf:"varint,1,opt,name=nsNodeId,proto3" json:"nsNodeId,omitempty"`
+	RequestId      int64  `protobuf:"varint,2,opt,name=requestId,proto3" json:"requestId,omitempty"`
+	TimeoutSeconds int32  `protobuf:"varint,3,opt,name=timeoutSeconds,proto3" json:"timeoutSeconds,omitempty"`
+	Code           string `protobuf:"bytes,4,opt,name=code,proto3" json:"code,omitempty"`
+	DataJSON       []byte `protobuf:"bytes,5,opt,name=dataJSON,proto3" json:"dataJSON,omitempty"`
+	IsOk           bool   `protobuf:"varint,6,opt,name=isOk,proto3" json:"isOk,omitempty"`
+	Message        string `protobuf:"bytes,7,opt,name=message,proto3" json:"message,omitempty"`
+}
+
+func (x *NSNodeStreamMessage) Reset() {
+	*x = NSNodeStreamMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *NSNodeStreamMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NSNodeStreamMessage) ProtoMessage() {}
+
+func (x *NSNodeStreamMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NSNodeStreamMessage.ProtoReflect.Descriptor instead.
+func (*NSNodeStreamMessage) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *NSNodeStreamMessage) GetNsNodeId() int64 {
+	if x != nil {
+		return x.NsNodeId
+	}
+	return 0
+}
+
+func (x *NSNodeStreamMessage) GetRequestId() int64 {
+	if x != nil {
+		return x.RequestId
+	}
+	return 0
+}
+
+func (x *NSNodeStreamMessage) GetTimeoutSeconds() int32 {
+	if x != nil {
+		return x.TimeoutSeconds
+	}
+	return 0
+}
+
+func (x *NSNodeStreamMessage) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *NSNodeStreamMessage) GetDataJSON() []byte {
+	if x != nil {
+		return x.DataJSON
+	}
+	return nil
+}
+
+func (x *NSNodeStreamMessage) GetIsOk() bool {
+	if x != nil {
+		return x.IsOk
+	}
+	return false
+}
+
+func (x *NSNodeStreamMessage) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// 更改节点连接的API节点信息
+type UpdateNSNodeConnectedAPINodesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ApiNodeIds []int64 `protobuf:"varint,1,rep,packed,name=apiNodeIds,proto3" json:"apiNodeIds,omitempty"`
+}
+
+func (x *UpdateNSNodeConnectedAPINodesRequest) Reset() {
+	*x = UpdateNSNodeConnectedAPINodesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_node_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateNSNodeConnectedAPINodesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateNSNodeConnectedAPINodesRequest) ProtoMessage() {}
+
+func (x *UpdateNSNodeConnectedAPINodesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_node_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateNSNodeConnectedAPINodesRequest.ProtoReflect.Descriptor instead.
+func (*UpdateNSNodeConnectedAPINodesRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_node_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *UpdateNSNodeConnectedAPINodesRequest) GetApiNodeIds() []int64 {
+	if x != nil {
+		return x.ApiNodeIds
+	}
+	return nil
+}
+
 var File_service_ns_node_proto protoreflect.FileDescriptor
 
 var file_service_ns_node_proto_rawDesc = []byte{
@@ -1523,7 +1667,25 @@ var file_service_ns_node_proto_rawDesc = []byte{
 	0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
 	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12,
 	0x1a, 0x0a, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x32, 0xa9, 0x0b, 0x0a, 0x0d,
+	0x09, 0x52, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0xd5, 0x01, 0x0a, 0x13,
+	0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x4d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x6e, 0x73, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x12,
+	0x1c, 0x0a, 0x09, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x09, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x49, 0x64, 0x12, 0x26, 0x0a,
+	0x0e, 0x74, 0x69, 0x6d, 0x65, 0x6f, 0x75, 0x74, 0x53, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x73, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0e, 0x74, 0x69, 0x6d, 0x65, 0x6f, 0x75, 0x74, 0x53, 0x65,
+	0x63, 0x6f, 0x6e, 0x64, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x64, 0x61, 0x74,
+	0x61, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x08, 0x64, 0x61, 0x74,
+	0x61, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x73, 0x4f, 0x6b, 0x18, 0x06, 0x20,
+	0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73, 0x4f, 0x6b, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x22, 0x46, 0x0a, 0x24, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x4e,
+	0x6f, 0x64, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x65, 0x64, 0x41, 0x50, 0x49, 0x4e,
+	0x6f, 0x64, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x61,
+	0x70, 0x69, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x03, 0x52,
+	0x0a, 0x61, 0x70, 0x69, 0x4e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x73, 0x32, 0x93, 0x0d, 0x0a, 0x0d,
 	0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x89, 0x01,
 	0x0a, 0x24, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
 	0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x4e, 0x53, 0x43, 0x6c, 0x75,
@@ -1614,8 +1776,23 @@ var file_service_ns_node_proto_rawDesc = []byte{
 	0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x70, 0x62,
 	0x2e, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x49,
 	0x6e, 0x73, 0x74, 0x61, 0x6c, 0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x46, 0x69, 0x6c, 0x65, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0c, 0x6e, 0x73, 0x4e, 0x6f, 0x64,
+	0x65, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x12, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x4e,
+	0x6f, 0x64, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x1a, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x28, 0x01, 0x30, 0x01, 0x12, 0x47, 0x0a,
+	0x13, 0x73, 0x65, 0x6e, 0x64, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x54, 0x6f, 0x4e, 0x53,
+	0x4e, 0x6f, 0x64, 0x65, 0x12, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65,
+	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x17, 0x2e,
+	0x70, 0x62, 0x2e, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x4d,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x59, 0x0a, 0x1d, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x65, 0x64, 0x41,
+	0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x12, 0x28, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x4e, 0x53, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
+	0x65, 0x64, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73,
+	0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -1630,7 +1807,7 @@ func file_service_ns_node_proto_rawDescGZIP() []byte {
 	return file_service_ns_node_proto_rawDescData
 }
 
-var file_service_ns_node_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
+var file_service_ns_node_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
 var file_service_ns_node_proto_goTypes = []interface{}{
 	(*FindAllEnabledNSNodesWithNSClusterIdRequest)(nil),  // 0: pb.FindAllEnabledNSNodesWithNSClusterIdRequest
 	(*FindAllEnabledNSNodesWithNSClusterIdResponse)(nil), // 1: pb.FindAllEnabledNSNodesWithNSClusterIdResponse
@@ -1657,16 +1834,18 @@ var file_service_ns_node_proto_goTypes = []interface{}{
 	(*CheckNSNodeLatestVersionResponse)(nil),             // 22: pb.CheckNSNodeLatestVersionResponse
 	(*DownloadNSNodeInstallationFileRequest)(nil),        // 23: pb.DownloadNSNodeInstallationFileRequest
 	(*DownloadNSNodeInstallationFileResponse)(nil),       // 24: pb.DownloadNSNodeInstallationFileResponse
-	(*NSNode)(nil),            // 25: pb.NSNode
-	(*NodeInstallStatus)(nil), // 26: pb.NodeInstallStatus
-	(*RPCCountResponse)(nil),  // 27: pb.RPCCountResponse
-	(*RPCSuccess)(nil),        // 28: pb.RPCSuccess
+	(*NSNodeStreamMessage)(nil),                          // 25: pb.NSNodeStreamMessage
+	(*UpdateNSNodeConnectedAPINodesRequest)(nil),         // 26: pb.UpdateNSNodeConnectedAPINodesRequest
+	(*NSNode)(nil),            // 27: pb.NSNode
+	(*NodeInstallStatus)(nil), // 28: pb.NodeInstallStatus
+	(*RPCCountResponse)(nil),  // 29: pb.RPCCountResponse
+	(*RPCSuccess)(nil),        // 30: pb.RPCSuccess
 }
 var file_service_ns_node_proto_depIdxs = []int32{
-	25, // 0: pb.FindAllEnabledNSNodesWithNSClusterIdResponse.nsNodes:type_name -> pb.NSNode
-	25, // 1: pb.ListEnabledNSNodesMatchResponse.nsNodes:type_name -> pb.NSNode
-	25, // 2: pb.FindEnabledNSNodeResponse.nsNode:type_name -> pb.NSNode
-	26, // 3: pb.FindNSNodeInstallStatusResponse.installStatus:type_name -> pb.NodeInstallStatus
+	27, // 0: pb.FindAllEnabledNSNodesWithNSClusterIdResponse.nsNodes:type_name -> pb.NSNode
+	27, // 1: pb.ListEnabledNSNodesMatchResponse.nsNodes:type_name -> pb.NSNode
+	27, // 2: pb.FindEnabledNSNodeResponse.nsNode:type_name -> pb.NSNode
+	28, // 3: pb.FindNSNodeInstallStatusResponse.installStatus:type_name -> pb.NodeInstallStatus
 	0,  // 4: pb.NSNodeService.findAllEnabledNSNodesWithNSClusterId:input_type -> pb.FindAllEnabledNSNodesWithNSClusterIdRequest
 	2,  // 5: pb.NSNodeService.countAllEnabledNSNodes:input_type -> pb.CountAllEnabledNSNodesRequest
 	3,  // 6: pb.NSNodeService.countAllEnabledNSNodesMatch:input_type -> pb.CountAllEnabledNSNodesMatchRequest
@@ -1683,24 +1862,30 @@ var file_service_ns_node_proto_depIdxs = []int32{
 	19, // 17: pb.NSNodeService.findCurrentNSNodeConfig:input_type -> pb.FindCurrentNSNodeConfigRequest
 	21, // 18: pb.NSNodeService.checkNSNodeLatestVersion:input_type -> pb.CheckNSNodeLatestVersionRequest
 	23, // 19: pb.NSNodeService.downloadNSNodeInstallationFile:input_type -> pb.DownloadNSNodeInstallationFileRequest
-	1,  // 20: pb.NSNodeService.findAllEnabledNSNodesWithNSClusterId:output_type -> pb.FindAllEnabledNSNodesWithNSClusterIdResponse
-	27, // 21: pb.NSNodeService.countAllEnabledNSNodes:output_type -> pb.RPCCountResponse
-	27, // 22: pb.NSNodeService.countAllEnabledNSNodesMatch:output_type -> pb.RPCCountResponse
-	5,  // 23: pb.NSNodeService.listEnabledNSNodesMatch:output_type -> pb.ListEnabledNSNodesMatchResponse
-	27, // 24: pb.NSNodeService.countAllUpgradeNSNodesWithNSClusterId:output_type -> pb.RPCCountResponse
-	8,  // 25: pb.NSNodeService.createNSNode:output_type -> pb.CreateNSNodeResponse
-	28, // 26: pb.NSNodeService.deleteNSNode:output_type -> pb.RPCSuccess
-	11, // 27: pb.NSNodeService.findEnabledNSNode:output_type -> pb.FindEnabledNSNodeResponse
-	28, // 28: pb.NSNodeService.updateNSNode:output_type -> pb.RPCSuccess
-	14, // 29: pb.NSNodeService.installNSNode:output_type -> pb.InstallNSNodeResponse
-	16, // 30: pb.NSNodeService.findNSNodeInstallStatus:output_type -> pb.FindNSNodeInstallStatusResponse
-	28, // 31: pb.NSNodeService.updateNSNodeIsInstalled:output_type -> pb.RPCSuccess
-	28, // 32: pb.NSNodeService.updateNSNodeStatus:output_type -> pb.RPCSuccess
-	20, // 33: pb.NSNodeService.findCurrentNSNodeConfig:output_type -> pb.FindCurrentNSNodeConfigResponse
-	22, // 34: pb.NSNodeService.checkNSNodeLatestVersion:output_type -> pb.CheckNSNodeLatestVersionResponse
-	24, // 35: pb.NSNodeService.downloadNSNodeInstallationFile:output_type -> pb.DownloadNSNodeInstallationFileResponse
-	20, // [20:36] is the sub-list for method output_type
-	4,  // [4:20] is the sub-list for method input_type
+	25, // 20: pb.NSNodeService.nsNodeStream:input_type -> pb.NSNodeStreamMessage
+	25, // 21: pb.NSNodeService.sendCommandToNSNode:input_type -> pb.NSNodeStreamMessage
+	26, // 22: pb.NSNodeService.updateNSNodeConnectedAPINodes:input_type -> pb.UpdateNSNodeConnectedAPINodesRequest
+	1,  // 23: pb.NSNodeService.findAllEnabledNSNodesWithNSClusterId:output_type -> pb.FindAllEnabledNSNodesWithNSClusterIdResponse
+	29, // 24: pb.NSNodeService.countAllEnabledNSNodes:output_type -> pb.RPCCountResponse
+	29, // 25: pb.NSNodeService.countAllEnabledNSNodesMatch:output_type -> pb.RPCCountResponse
+	5,  // 26: pb.NSNodeService.listEnabledNSNodesMatch:output_type -> pb.ListEnabledNSNodesMatchResponse
+	29, // 27: pb.NSNodeService.countAllUpgradeNSNodesWithNSClusterId:output_type -> pb.RPCCountResponse
+	8,  // 28: pb.NSNodeService.createNSNode:output_type -> pb.CreateNSNodeResponse
+	30, // 29: pb.NSNodeService.deleteNSNode:output_type -> pb.RPCSuccess
+	11, // 30: pb.NSNodeService.findEnabledNSNode:output_type -> pb.FindEnabledNSNodeResponse
+	30, // 31: pb.NSNodeService.updateNSNode:output_type -> pb.RPCSuccess
+	14, // 32: pb.NSNodeService.installNSNode:output_type -> pb.InstallNSNodeResponse
+	16, // 33: pb.NSNodeService.findNSNodeInstallStatus:output_type -> pb.FindNSNodeInstallStatusResponse
+	30, // 34: pb.NSNodeService.updateNSNodeIsInstalled:output_type -> pb.RPCSuccess
+	30, // 35: pb.NSNodeService.updateNSNodeStatus:output_type -> pb.RPCSuccess
+	20, // 36: pb.NSNodeService.findCurrentNSNodeConfig:output_type -> pb.FindCurrentNSNodeConfigResponse
+	22, // 37: pb.NSNodeService.checkNSNodeLatestVersion:output_type -> pb.CheckNSNodeLatestVersionResponse
+	24, // 38: pb.NSNodeService.downloadNSNodeInstallationFile:output_type -> pb.DownloadNSNodeInstallationFileResponse
+	25, // 39: pb.NSNodeService.nsNodeStream:output_type -> pb.NSNodeStreamMessage
+	25, // 40: pb.NSNodeService.sendCommandToNSNode:output_type -> pb.NSNodeStreamMessage
+	30, // 41: pb.NSNodeService.updateNSNodeConnectedAPINodes:output_type -> pb.RPCSuccess
+	23, // [23:42] is the sub-list for method output_type
+	4,  // [4:23] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name
 	4,  // [4:4] is the sub-list for extension extendee
 	0,  // [0:4] is the sub-list for field type_name
@@ -2015,6 +2200,30 @@ func file_service_ns_node_proto_init() {
 				return nil
 			}
 		}
+		file_service_ns_node_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*NSNodeStreamMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_node_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateNSNodeConnectedAPINodesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -2022,7 +2231,7 @@ func file_service_ns_node_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_ns_node_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   25,
+			NumMessages:   27,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -2080,6 +2289,12 @@ type NSNodeServiceClient interface {
 	CheckNSNodeLatestVersion(ctx context.Context, in *CheckNSNodeLatestVersionRequest, opts ...grpc.CallOption) (*CheckNSNodeLatestVersionResponse, error)
 	// 下载最新DNS节点安装文件
 	DownloadNSNodeInstallationFile(ctx context.Context, in *DownloadNSNodeInstallationFileRequest, opts ...grpc.CallOption) (*DownloadNSNodeInstallationFileResponse, error)
+	// 节点stream
+	NsNodeStream(ctx context.Context, opts ...grpc.CallOption) (NSNodeService_NsNodeStreamClient, error)
+	// 向节点发送命令
+	SendCommandToNSNode(ctx context.Context, in *NSNodeStreamMessage, opts ...grpc.CallOption) (*NSNodeStreamMessage, error)
+	// 更改节点连接的API节点信息
+	UpdateNSNodeConnectedAPINodes(ctx context.Context, in *UpdateNSNodeConnectedAPINodesRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
 
 type nSNodeServiceClient struct {
@@ -2234,6 +2449,55 @@ func (c *nSNodeServiceClient) DownloadNSNodeInstallationFile(ctx context.Context
 	return out, nil
 }
 
+func (c *nSNodeServiceClient) NsNodeStream(ctx context.Context, opts ...grpc.CallOption) (NSNodeService_NsNodeStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_NSNodeService_serviceDesc.Streams[0], "/pb.NSNodeService/nsNodeStream", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &nSNodeServiceNsNodeStreamClient{stream}
+	return x, nil
+}
+
+type NSNodeService_NsNodeStreamClient interface {
+	Send(*NSNodeStreamMessage) error
+	Recv() (*NSNodeStreamMessage, error)
+	grpc.ClientStream
+}
+
+type nSNodeServiceNsNodeStreamClient struct {
+	grpc.ClientStream
+}
+
+func (x *nSNodeServiceNsNodeStreamClient) Send(m *NSNodeStreamMessage) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *nSNodeServiceNsNodeStreamClient) Recv() (*NSNodeStreamMessage, error) {
+	m := new(NSNodeStreamMessage)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *nSNodeServiceClient) SendCommandToNSNode(ctx context.Context, in *NSNodeStreamMessage, opts ...grpc.CallOption) (*NSNodeStreamMessage, error) {
+	out := new(NSNodeStreamMessage)
+	err := c.cc.Invoke(ctx, "/pb.NSNodeService/sendCommandToNSNode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSNodeServiceClient) UpdateNSNodeConnectedAPINodes(ctx context.Context, in *UpdateNSNodeConnectedAPINodesRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.NSNodeService/updateNSNodeConnectedAPINodes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NSNodeServiceServer is the server API for NSNodeService service.
 type NSNodeServiceServer interface {
 	// 根据集群查找所有节点
@@ -2268,6 +2532,12 @@ type NSNodeServiceServer interface {
 	CheckNSNodeLatestVersion(context.Context, *CheckNSNodeLatestVersionRequest) (*CheckNSNodeLatestVersionResponse, error)
 	// 下载最新DNS节点安装文件
 	DownloadNSNodeInstallationFile(context.Context, *DownloadNSNodeInstallationFileRequest) (*DownloadNSNodeInstallationFileResponse, error)
+	// 节点stream
+	NsNodeStream(NSNodeService_NsNodeStreamServer) error
+	// 向节点发送命令
+	SendCommandToNSNode(context.Context, *NSNodeStreamMessage) (*NSNodeStreamMessage, error)
+	// 更改节点连接的API节点信息
+	UpdateNSNodeConnectedAPINodes(context.Context, *UpdateNSNodeConnectedAPINodesRequest) (*RPCSuccess, error)
 }
 
 // UnimplementedNSNodeServiceServer can be embedded to have forward compatible implementations.
@@ -2321,6 +2591,15 @@ func (*UnimplementedNSNodeServiceServer) CheckNSNodeLatestVersion(context.Contex
 }
 func (*UnimplementedNSNodeServiceServer) DownloadNSNodeInstallationFile(context.Context, *DownloadNSNodeInstallationFileRequest) (*DownloadNSNodeInstallationFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DownloadNSNodeInstallationFile not implemented")
+}
+func (*UnimplementedNSNodeServiceServer) NsNodeStream(NSNodeService_NsNodeStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method NsNodeStream not implemented")
+}
+func (*UnimplementedNSNodeServiceServer) SendCommandToNSNode(context.Context, *NSNodeStreamMessage) (*NSNodeStreamMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendCommandToNSNode not implemented")
+}
+func (*UnimplementedNSNodeServiceServer) UpdateNSNodeConnectedAPINodes(context.Context, *UpdateNSNodeConnectedAPINodesRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateNSNodeConnectedAPINodes not implemented")
 }
 
 func RegisterNSNodeServiceServer(s *grpc.Server, srv NSNodeServiceServer) {
@@ -2615,6 +2894,68 @@ func _NSNodeService_DownloadNSNodeInstallationFile_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NSNodeService_NsNodeStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(NSNodeServiceServer).NsNodeStream(&nSNodeServiceNsNodeStreamServer{stream})
+}
+
+type NSNodeService_NsNodeStreamServer interface {
+	Send(*NSNodeStreamMessage) error
+	Recv() (*NSNodeStreamMessage, error)
+	grpc.ServerStream
+}
+
+type nSNodeServiceNsNodeStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *nSNodeServiceNsNodeStreamServer) Send(m *NSNodeStreamMessage) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *nSNodeServiceNsNodeStreamServer) Recv() (*NSNodeStreamMessage, error) {
+	m := new(NSNodeStreamMessage)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func _NSNodeService_SendCommandToNSNode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NSNodeStreamMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSNodeServiceServer).SendCommandToNSNode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSNodeService/SendCommandToNSNode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSNodeServiceServer).SendCommandToNSNode(ctx, req.(*NSNodeStreamMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSNodeService_UpdateNSNodeConnectedAPINodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateNSNodeConnectedAPINodesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSNodeServiceServer).UpdateNSNodeConnectedAPINodes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSNodeService/UpdateNSNodeConnectedAPINodes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSNodeServiceServer).UpdateNSNodeConnectedAPINodes(ctx, req.(*UpdateNSNodeConnectedAPINodesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _NSNodeService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.NSNodeService",
 	HandlerType: (*NSNodeServiceServer)(nil),
@@ -2683,7 +3024,22 @@ var _NSNodeService_serviceDesc = grpc.ServiceDesc{
 			MethodName: "downloadNSNodeInstallationFile",
 			Handler:    _NSNodeService_DownloadNSNodeInstallationFile_Handler,
 		},
+		{
+			MethodName: "sendCommandToNSNode",
+			Handler:    _NSNodeService_SendCommandToNSNode_Handler,
+		},
+		{
+			MethodName: "updateNSNodeConnectedAPINodes",
+			Handler:    _NSNodeService_UpdateNSNodeConnectedAPINodes_Handler,
+		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "nsNodeStream",
+			Handler:       _NSNodeService_NsNodeStream_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "service_ns_node.proto",
 }
