@@ -38,7 +38,8 @@ message CreateNSRecordRequest {
 	string type = 4;
 	string value = 5;
 	int32 ttl = 6;
-	repeated int64 nsRouteIds = 7;
+	repeated int64 nsRouteIds = 7 [deprecated = true];
+	repeated string nsRouteCodes = 8; // 路线代号
 }
 
 message CreateNSRecordResponse {
@@ -53,8 +54,9 @@ message UpdateNSRecordRequest {
 	string type = 4;
 	string value = 5;
 	int32 ttl = 6;
-	repeated int64 nsRouteIds = 7;
+	repeated int64 nsRouteIds = 7 [deprecated = true];
 	bool isOn = 8;
+	repeated string nsRouteCodes = 9; // 路线代号
 }
 
 // 删除记录
@@ -66,7 +68,8 @@ message DeleteNSRecordRequest {
 message CountAllEnabledNSRecordsRequest {
 	int64 nsDomainId = 1;
 	string type = 2;
-	int64 nsRouteId = 3;
+	int64 nsRouteId = 3 [deprecated = true]; // 使用nsRouteCode代替
+	string nsRouteCode = 5;
 	string keyword = 4;
 }
 
@@ -74,7 +77,8 @@ message CountAllEnabledNSRecordsRequest {
 message ListEnabledNSRecordsRequest {
 	int64 nsDomainId = 1;
 	string type = 2;
-	int64 nsRouteId = 3;
+	int64 nsRouteId = 3 [deprecated = true]; // 使用nsRouteCode代替
+	string nsRouteCode = 7;
 	string keyword = 4;
 	int64 offset = 5;
 	int64 size = 6;

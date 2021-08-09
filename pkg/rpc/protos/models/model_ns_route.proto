@@ -15,6 +15,7 @@ message NSRoute {
 	bool isDeleted = 5;
 	int64 order = 6;
 	int64 version = 7;
+	string code = 8;
 
 	NSCluster nsCluster = 30;
 	NSDomain nsDomain = 31;

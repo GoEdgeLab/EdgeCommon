@@ -8,6 +8,34 @@ type Route struct {
 	AliasNames []string `json:"aliasNames"`
 }
 
+var allDefaultRouteMapping = map[string]*Route{} // code => *Route
+
+func init() {
+	for _, route := range AllDefaultRoutes {
+		allDefaultRouteMapping[route.Code] = route
+	}
+	for _, route := range AllDefaultISPRoutes {
+		allDefaultRouteMapping[route.Code] = route
+	}
+	for _, route := range AllDefaultChinaProvinceRoutes {
+		allDefaultRouteMapping[route.Code] = route
+	}
+	for _, route := range AllDefaultWorldRegionRoutes {
+		allDefaultRouteMapping[route.Code] = route
+	}
+}
+
+// AllDefaultRoutes 默认线路
+var AllDefaultRoutes = []*Route{
+	{
+		Name:       "默认线路",
+		Code:       DefaultRouteCode,
+		AliasNames: []string{"默认线路"},
+	},
+}
+
+const DefaultRouteCode = "default"
+
 // AllDefaultISPRoutes 运营商线路
 var AllDefaultISPRoutes = []*Route{
 	{
@@ -1454,4 +1482,9 @@ var AllDefaultWorldRegionRoutes = []*Route{
 		Code:       "world:CX",
 		AliasNames: []string{"圣诞岛"},
 	},
+}
+
+// FindDefaultRoute 根据代号查找线路
+func FindDefaultRoute(code string) *Route {
+	return allDefaultRouteMapping[code]
 }

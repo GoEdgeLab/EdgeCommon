@@ -41,3 +41,16 @@ func TestRoutes(t *testing.T) {
 		}
 	}
 }
+
+func TestFindDefaultRoute(t *testing.T) {
+	t.Log(FindDefaultRoute("isp:china_unicom"))
+	t.Log(FindDefaultRoute("china:province:beijing"))
+	t.Log(FindDefaultRoute("world:CN"))
+	t.Log(FindDefaultRoute("world:US"))
+}
+
+func BenchmarkFindDefaultRoute(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = FindDefaultRoute("world:CN")
+	}
+}
