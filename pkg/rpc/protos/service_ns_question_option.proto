@@ -1,0 +1,43 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_ns_question_option.proto";
+
+// DNS查询选项
+service NSQuestionOptionService {
+	// 创建选项
+	rpc createNSQuestionOption(CreateNSQuestionOptionRequest) returns (CreateNSQuestionOptionResponse);
+
+	// 读取选项
+	rpc findNSQuestionOption(FindNSQuestionOptionRequest) returns (FindNSQuestionOptionResponse);
+
+	// 删除选项
+	rpc deleteNSQuestionOption(DeleteNSQuestionOptionRequest) returns (RPCSuccess);
+}
+
+// 创建选项
+message CreateNSQuestionOptionRequest {
+	string name = 1;
+	bytes valuesJSON = 2;
+}
+
+message CreateNSQuestionOptionResponse {
+	int64 nsQuestionOptionId = 1;
+}
+
+// 读取选项
+message FindNSQuestionOptionRequest {
+	int64 nsQuestionOptionId = 1;
+}
+
+message FindNSQuestionOptionResponse {
+	NSQuestionOption nsQuestionOption = 1;
+}
+
+// 删除选项
+message DeleteNSQuestionOptionRequest {
+	int64 nsQuestionOptionId = 1;
+}

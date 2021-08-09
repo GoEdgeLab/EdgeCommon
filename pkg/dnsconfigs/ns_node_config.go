@@ -7,6 +7,7 @@ import "fmt"
 type NSNodeConfig struct {
 	Id           int64           `yaml:"id" json:"id"`
 	NodeId       string          `yaml:"nodeId" json:"nodeId"`
+	Secret       string          `yaml:"secret" json:"secret"`
 	ClusterId    int64           `yaml:"clusterId" json:"clusterId"`
 	AccessLogRef *NSAccessLogRef `yaml:"accessLogRef" json:"accessLogRef"`
 
