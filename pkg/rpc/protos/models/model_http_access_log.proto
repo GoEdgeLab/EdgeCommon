@@ -3,6 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
+import "models/model_node.proto";
+
 // HTTP访问日志
 message HTTPAccessLog {
 	string requestId = 48;
@@ -66,6 +68,9 @@ message HTTPAccessLog {
 
 	repeated string firewallActions = 49;
 	repeated string tags = 50;
+
+	// 详情
+	Node node = 100;
 
 }
 
