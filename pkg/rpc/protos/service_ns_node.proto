@@ -6,6 +6,7 @@ package pb;
 import "models/model_ns_node.proto";
 import "models/model_node_install_status.proto";
 import "models/rpc_messages.proto";
+import "models/model_node_login.proto";
 
 // 域名服务器节点服务
 service NSNodeService {
@@ -65,6 +66,9 @@ service NSNodeService {
 
 	// 更改节点连接的API节点信息
 	rpc updateNSNodeConnectedAPINodes (UpdateNSNodeConnectedAPINodesRequest) returns (RPCSuccess);
+
+	// 修改节点登录信息
+	rpc updateNSNodeLogin (UpdateNSNodeLoginRequest) returns (RPCSuccess);
 }
 
 // 根据集群查找所有节点
@@ -116,6 +120,7 @@ message CountAllUpgradeNSNodesWithNSClusterIdRequest {
 message CreateNSNodeRequest {
 	string name = 1;
 	int64 nodeClusterId = 2;
+	NodeLogin nodeLogin = 3;
 }
 
 message CreateNSNodeResponse {
@@ -141,6 +146,7 @@ message UpdateNSNodeRequest {
 	int64 nsNodeId = 1;
 	string name = 2;
 	int64 nsClusterId = 3;
+	NodeLogin nodeLogin = 4;
 	bool isOn = 6;
 }
 
@@ -224,4 +230,10 @@ message NSNodeStreamMessage {
 // 更改节点连接的API节点信息
 message UpdateNSNodeConnectedAPINodesRequest {
 	repeated int64 apiNodeIds = 1;
+}
+
+// 修改节点登录信息
+message UpdateNSNodeLoginRequest {
+	int64 nsNodeId = 1;
+	NodeLogin nodeLogin = 2;
 }

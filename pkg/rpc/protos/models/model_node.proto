@@ -33,7 +33,7 @@ message Node {
 	SizeCapacity maxCacheMemoryCapacity = 18;
 
 	NodeCluster nodeCluster = 32; // 主集群
-	NodeLogin login = 33;
+	NodeLogin nodeLogin = 33;
 	NodeInstallStatus installStatus = 34;
 	repeated NodeIPAddress ipAddresses = 35;
 	NodeGroup nodeGroup = 36;
