@@ -69,6 +69,12 @@ service NSNodeService {
 
 	// 修改节点登录信息
 	rpc updateNSNodeLogin (UpdateNSNodeLoginRequest) returns (RPCSuccess);
+
+	// 启动节点
+	rpc startNSNode (StartNSNodeRequest) returns (StartNSNodeResponse);
+
+	// 停止节点
+	rpc stopNSNode (StopNSNodeRequest) returns (StopNSNodeResponse);
 }
 
 // 根据集群查找所有节点
@@ -236,4 +242,24 @@ message UpdateNSNodeConnectedAPINodesRequest {
 message UpdateNSNodeLoginRequest {
 	int64 nsNodeId = 1;
 	NodeLogin nodeLogin = 2;
+}
+
+// 启动节点
+message StartNSNodeRequest {
+	int64 nsNodeId = 1;
+}
+
+message StartNSNodeResponse {
+	bool isOk = 1;
+	string error = 2;
+}
+
+// 停止节点
+message StopNSNodeRequest {
+	int64 nsNodeId = 1;
+}
+
+message StopNSNodeResponse {
+	bool isOk = 1;
+	string error = 2;
 }
