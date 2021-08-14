@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 节点登录相关
+service NodeLoginService {
+	// 读取建议的端口
+	rpc findNodeLoginSuggestPorts(FindNodeLoginSuggestPortsRequest) returns (FindNodeLoginSuggestPortsResponse);
+}
+
+// 读取建议的端口
+message FindNodeLoginSuggestPortsRequest {
+	string host = 1;
+}
+
+message FindNodeLoginSuggestPortsResponse {
+	repeated int32 ports = 1;
+	repeated int32 availablePorts = 2;
+}
