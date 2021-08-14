@@ -29,6 +29,9 @@ service NodeGrantService {
 
 	// 测试连接
 	rpc testNodeGrant (TestNodeGrantRequest) returns (TestNodeGrantResponse);
+
+	// 查找集群推荐的认证
+	rpc findSuggestNodeGrants(FindSuggestNodeGrantsRequest) returns (FindSuggestNodeGrantsResponse);
 }
 
 // 创建节点认证
@@ -111,4 +114,14 @@ message TestNodeGrantRequest {
 message TestNodeGrantResponse {
 	bool isOk = 1;
 	string error = 2;
+}
+
+// 查找集群推荐的认证
+message FindSuggestNodeGrantsRequest {
+	int64 nodeClusterId = 1; // 边缘节点集群
+	int64 nsClusterId = 2; // NS节点集群
+}
+
+message FindSuggestNodeGrantsResponse {
+	repeated NodeGrant nodeGrants = 1;
 }
