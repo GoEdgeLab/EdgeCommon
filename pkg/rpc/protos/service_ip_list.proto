@@ -28,6 +28,9 @@ service IPListService {
 
 	// 检查IPList是否存在
 	rpc existsEnabledIPList (ExistsEnabledIPListRequest) returns (ExistsEnabledIPListResponse);
+
+	// 根据IP来搜索IP名单
+	rpc findEnabledIPListContainsIP(FindEnabledIPListContainsIPRequest) returns (FindEnabledIPListContainsIPResponse);
 }
 
 // 创建IP列表
@@ -94,4 +97,13 @@ message ExistsEnabledIPListRequest {
 
 message ExistsEnabledIPListResponse {
 	bool exists = 1;
+}
+
+// 根据IP来搜索IP名单
+message FindEnabledIPListContainsIPRequest {
+	string ip = 1;
+}
+
+message FindEnabledIPListContainsIPResponse {
+	repeated IPList ipLists = 1;
 }
