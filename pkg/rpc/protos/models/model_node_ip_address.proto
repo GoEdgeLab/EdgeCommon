@@ -3,6 +3,7 @@ option go_package = "./pb";
 
 package pb;
 
+// 节点地址
 message NodeIPAddress {
 	int64 id = 1;
 	int64 nodeId = 2;
@@ -12,4 +13,7 @@ message NodeIPAddress {
 	int64 state = 6;
 	int64 order = 7;
 	bool canAccess = 8;
+	bool isOn = 9;
+	bool isUp = 10;
+	bytes thresholdsJSON = 11;
 }

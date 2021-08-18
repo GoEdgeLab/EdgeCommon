@@ -48,6 +48,7 @@ message UpdateNodeIPAddressRequest {
 	string name = 2;
 	string ip = 3;
 	bool canAccess = 4;
+	bool isOn = 5;
 }
 
 // 修改IP地址所属节点

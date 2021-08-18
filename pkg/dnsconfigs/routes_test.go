@@ -49,6 +49,36 @@ func TestFindDefaultRoute(t *testing.T) {
 	t.Log(FindDefaultRoute("world:US"))
 }
 
+func TestRoutes_Markdown(t *testing.T) {
+	var markdown = ""
+
+	for index, routes := range [][]*Route{
+		AllDefaultRoutes,
+		AllDefaultChinaProvinceRoutes,
+		AllDefaultISPRoutes,
+		AllDefaultWorldRegionRoutes,
+	} {
+		switch index {
+		case 0:
+			markdown += "## 默认线路\n"
+		case 1:
+			markdown += "## 中国地区\n"
+		case 2:
+			markdown += "## 运营商\n"
+		case 3:
+			markdown += "## 全球地区\n"
+		}
+
+		markdown += "| 名称 | 代号 |\n"
+		markdown += "|-----------|-----------|\n"
+		for _, route := range routes {
+			markdown += "| "  + route.Name + " | " + route.Code + " |\n"
+		}
+		markdown += "\n"
+	}
+	t.Log(markdown)
+}
+
 func BenchmarkFindDefaultRoute(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		_ = FindDefaultRoute("world:CN")
