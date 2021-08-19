@@ -44,6 +44,9 @@ service DNSDomainService {
 
 	// 检查域名是否在记录中
 	rpc existDNSDomainRecord (ExistDNSDomainRecordRequest) returns (ExistDNSDomainRecordResponse);
+
+	// 从服务商同步域名
+	rpc syncDNSDomainsFromProvider(SyncDNSDomainsFromProviderRequest) returns (SyncDNSDomainsFromProviderResponse);
 }
 
 // 创建域名
@@ -150,4 +153,13 @@ message ExistDNSDomainRecordRequest {
 
 message ExistDNSDomainRecordResponse {
 	bool isOk = 1;
+}
+
+// 从服务商同步域名
+message SyncDNSDomainsFromProviderRequest {
+	int64 dnsProviderId = 1;
+}
+
+message SyncDNSDomainsFromProviderResponse {
+	bool hasChanges = 1;
 }

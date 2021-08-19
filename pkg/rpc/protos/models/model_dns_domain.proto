@@ -20,4 +20,5 @@ message DNSDomain {
 	repeated DNSRoute routes = 10;
 	int64 providerId = 11;
 	int64 countNodeClusters = 12;
+	bool isUp = 15;
 }
