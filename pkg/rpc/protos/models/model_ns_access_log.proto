@@ -3,6 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
+import "models/model_ns_route.proto";
+
 // 域名服务访问记录
 message NSAccessLog {
 	int64 nsNodeId = 1;
@@ -10,6 +12,7 @@ message NSAccessLog {
 	int64 nsRecordId = 3;
 	repeated int64 nsRouteIds = 4 [deprecated = true];
 	repeated string nsRouteCodes = 17;
+	repeated NSRoute nsRoutes = 18; // 仅供查看访问日志时使用
 	string remoteAddr = 5;
 	string questionName = 6;
 	string questionType = 7;
