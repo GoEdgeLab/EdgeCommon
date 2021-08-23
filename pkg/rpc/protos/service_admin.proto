@@ -200,6 +200,7 @@ message CheckAdminOTPWithUsernameResponse {
 
 // 取得管理员Dashboard数据
 message ComposeAdminDashboardRequest {
+	string apiVersion = 1;
 }
 
 message ComposeAdminDashboardResponse {
@@ -266,8 +267,6 @@ message ComposeAdminDashboardResponse {
 		int64 countNodes = 1;
 		string newVersion = 2;
 	}
-
-
 }
 
 // 修改管理员使用的界面风格

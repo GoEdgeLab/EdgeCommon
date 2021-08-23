@@ -25,4 +25,5 @@ message NSAccessLog {
 	string requestId = 14;
 	string timeLocal = 15;
 	string error = 16;
+	bool isRecursive = 19;
 }

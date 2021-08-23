@@ -34,6 +34,12 @@ service NSClusterService {
 
 	// 查找所有可用集群
 	rpc findAllEnabledNSClusters (FindAllEnabledNSClustersRequest) returns (FindAllEnabledNSClustersResponse);
+
+	// 设置递归DNS配置
+	rpc updateNSClusterRecursionConfig(UpdateNSClusterRecursionConfigRequest) returns (RPCSuccess);
+
+	// 读取递归DNS配置
+	rpc findNSClusterRecursionConfig(FindNSClusterRecursionConfigRequest) returns (FindNSClusterRecursionConfigResponse);
 }
 
 // 创建集群
@@ -103,4 +109,19 @@ message FindAllEnabledNSClustersRequest {
 
 message FindAllEnabledNSClustersResponse {
 	repeated NSCluster nsClusters = 1;
+}
+
+// 设置递归DNS配置
+message UpdateNSClusterRecursionConfigRequest {
+	int64 nsClusterId = 1;
+	bytes recursionJSON = 2;
+}
+
+// 读取递归DNS配置
+message FindNSClusterRecursionConfigRequest {
+	int64 nsClusterId = 1;
+}
+
+message FindNSClusterRecursionConfigResponse {
+	bytes recursionJSON = 1;
 }
