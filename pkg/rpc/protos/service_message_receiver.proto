@@ -23,6 +23,7 @@ service MessageReceiverService {
 
 // 修改接收者
 message UpdateMessageReceiversRequest {
+	string role = 7;
 	int64 nodeClusterId = 1;
 	int64 nodeId = 2;
 	int64 serverId = 3;
@@ -41,6 +42,7 @@ message UpdateMessageReceiversRequest {
 
 // 查找接收者
 message FindAllEnabledMessageReceiversRequest {
+	string role = 4;
 	int64 nodeClusterId = 1;
 	int64 nodeId = 2;
 	int64 serverId = 3;
@@ -57,6 +59,7 @@ message DeleteMessageReceiverRequest {
 
 // 计算接收者数量
 message CountAllEnabledMessageReceiversRequest {
+	string role = 4;
 	int64 nodeClusterId = 1;
 	int64 nodeId = 2;
 	int64 serverId = 3;
