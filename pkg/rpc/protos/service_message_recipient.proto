@@ -34,6 +34,8 @@ message CreateMessageRecipientRequest {
 	repeated int64 messageRecipientGroupIds = 3;
 	string description = 4;
 	string user = 5;
+	string timeFrom = 6;
+	string timeTo = 7;
 }
 
 message CreateMessageRecipientResponse {
@@ -49,6 +51,8 @@ message UpdateMessageRecipientRequest {
 	string description = 5;
 	bool isOn = 6;
 	string user = 7;
+	string timeFrom = 8;
+	string timeTo = 9;
 }
 
 // 删除接收人

@@ -15,4 +15,6 @@ message MessageRecipient {
 	repeated MessageRecipientGroup messageRecipientGroups = 5;
 	string description = 6;
 	string user = 7;
+	string timeFrom = 8;
+	string timeTo = 9;
 }

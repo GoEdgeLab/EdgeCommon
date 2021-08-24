@@ -570,7 +570,7 @@ func (x *FindEnabledMessageTaskResponse) GetMessageTask() *MessageTask {
 	return nil
 }
 
-// 计算正在发送的消息任务数量
+// 计算某个状态的消息任务数量
 type CountMessageTasksWithStatusRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -618,7 +618,7 @@ func (x *CountMessageTasksWithStatusRequest) GetStatus() CountMessageTasksWithSt
 	return CountMessageTasksWithStatusRequest_MessageTaskStatusNone
 }
 
-// 列出单页正在发送的消息任务
+// 根据状态列出某页任务
 type ListMessageTasksWithStatusRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
