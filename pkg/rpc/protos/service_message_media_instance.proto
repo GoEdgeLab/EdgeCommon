@@ -35,6 +35,7 @@ message CreateMessageMediaInstanceRequest {
 	repeated int64 groupIds = 4;
 	string description = 5;
 	bytes rateJSON = 6;
+	int32 hashLife = 7;
 }
 
 message CreateMessageMediaInstanceResponse {
@@ -49,6 +50,7 @@ message UpdateMessageMediaInstanceRequest {
 	bytes paramsJSON = 4;
 	string description = 5;
 	bytes rateJSON = 7;
+	int32 hashLife = 8;
 	bool isOn = 6;
 }
 
