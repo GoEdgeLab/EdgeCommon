@@ -22,6 +22,12 @@ service MessageTaskService {
 
 	// 读取消息任务状态
 	rpc findEnabledMessageTask (FindEnabledMessageTaskRequest) returns (FindEnabledMessageTaskResponse);
+
+	// 计算某个状态的消息任务数量
+	rpc countMessageTasksWithStatus(CountMessageTasksWithStatusRequest) returns (RPCCountResponse);
+
+	// 根据状态列出某页任务
+	rpc listMessageTasksWithStatus(ListMessageTasksWithStatusRequest) returns (ListMessageTasksWithStatusResponse);
 }
 
 // 创建消息任务
@@ -66,4 +72,34 @@ message FindEnabledMessageTaskRequest {
 
 message FindEnabledMessageTaskResponse {
 	MessageTask messageTask = 1;
+}
+
+// 计算某个状态的消息任务数量
+message CountMessageTasksWithStatusRequest {
+	Status  status = 1;
+
+	enum Status {
+		MessageTaskStatusNone = 0;
+		MessageTaskStatusSending = 1;
+		MessageTaskStatusSuccess = 2;
+		MessageTaskStatusFailed = 3;
+	}
+}
+
+// 根据状态列出某页任务
+message ListMessageTasksWithStatusRequest {
+	Status status = 1;
+	int64 offset = 2;
+	int64 size = 3;
+
+	enum Status {
+		MessageTaskStatusNone = 0;
+		MessageTaskStatusSending = 1;
+		MessageTaskStatusSuccess = 2;
+		MessageTaskStatusFailed = 3;
+	}
+}
+
+message ListMessageTasksWithStatusResponse {
+	repeated MessageTask messageTasks = 1;
 }
