@@ -11,4 +11,10 @@ pkg/
   configutils/ - 配置公共函数等
   errors/  - 错误处理
   rpc/  - RPC通讯
+     protos/   RPC数据和接口定义
+        sevice_*.proto  RPC接口定义
+        models/
+           model_*.proto RPC数据定义
 ~~~
+
+开发时需要将 `rpc/protos/` 和 `rpc/protos/models/` 两个目录放入到Proto Buffer检查工具可以找到的位置。

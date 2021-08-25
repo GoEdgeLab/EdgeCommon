@@ -3,6 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
+import "models/model_dns_issue.proto";
+
 service DNSService {
 	// 查找问题
 	rpc findAllDNSIssues (FindAllDNSIssuesRequest) returns (FindAllDNSIssuesResponse);
@@ -17,10 +19,3 @@ message FindAllDNSIssuesResponse {
 	repeated DNSIssue issues = 1;
 }
 
-message DNSIssue {
-	string target = 1;
-	int64 targetId = 2;
-	string type = 3;
-	string description = 4;
-	map<string, string> params = 5;
-}

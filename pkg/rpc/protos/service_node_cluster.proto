@@ -244,6 +244,7 @@ message FindEnabledNodeClusterDNSResponse {
 	string name = 1;
 	DNSDomain domain = 2;
 	DNSProvider provider = 3;
+	string defaultRoute = 6;
 	bool nodesAutoSync = 4;
 	bool serversAutoSync = 5;
 }
