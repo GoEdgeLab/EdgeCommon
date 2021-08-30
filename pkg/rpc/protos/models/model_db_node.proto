@@ -21,4 +21,5 @@ message DBNodeStatus {
 	bool isOk = 1;
 	int64 size = 2;
 	string error = 3;
+	string version = 4;
 }

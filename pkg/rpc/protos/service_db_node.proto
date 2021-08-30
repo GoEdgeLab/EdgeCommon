@@ -34,6 +34,9 @@ service DBNodeService {
 
 	// 清空表
 	rpc truncateDBNodeTable (TruncateDBNodeTableRequest) returns (RPCSuccess);
+
+	// 检查数据库节点状态
+	rpc checkDBNodeStatus(CheckDBNodeStatusRequest) returns (CheckDBNodeStatusResponse);
 }
 
 // 创建数据库节点
@@ -115,4 +118,13 @@ message DeleteDBNodeTableRequest {
 message TruncateDBNodeTableRequest {
 	int64 dbNodeId = 1;
 	string dbNodeTable = 2;
+}
+
+// 检查数据库节点状态
+message CheckDBNodeStatusRequest {
+	int64 dbNodeId = 1;
+}
+
+message CheckDBNodeStatusResponse  {
+	DBNodeStatus dbNodeStatus = 1;
 }
