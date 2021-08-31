@@ -264,6 +264,85 @@ func (x *Node) GetSecondaryNodeClusters() []*NodeCluster {
 	return nil
 }
 
+type BasicNode struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id          int64        `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name        string       `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	IsOn        bool         `protobuf:"varint,3,opt,name=isOn,proto3" json:"isOn,omitempty"`
+	IsUp        bool         `protobuf:"varint,4,opt,name=isUp,proto3" json:"isUp,omitempty"`
+	NodeCluster *NodeCluster `protobuf:"bytes,30,opt,name=nodeCluster,proto3" json:"nodeCluster,omitempty"` // 主集群
+}
+
+func (x *BasicNode) Reset() {
+	*x = BasicNode{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_models_model_node_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BasicNode) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BasicNode) ProtoMessage() {}
+
+func (x *BasicNode) ProtoReflect() protoreflect.Message {
+	mi := &file_models_model_node_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BasicNode.ProtoReflect.Descriptor instead.
+func (*BasicNode) Descriptor() ([]byte, []int) {
+	return file_models_model_node_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *BasicNode) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *BasicNode) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *BasicNode) GetIsOn() bool {
+	if x != nil {
+		return x.IsOn
+	}
+	return false
+}
+
+func (x *BasicNode) GetIsUp() bool {
+	if x != nil {
+		return x.IsUp
+	}
+	return false
+}
+
+func (x *BasicNode) GetNodeCluster() *NodeCluster {
+	if x != nil {
+		return x.NodeCluster
+	}
+	return nil
+}
+
 var File_models_model_node_proto protoreflect.FileDescriptor
 
 var file_models_model_node_proto_rawDesc = []byte{
@@ -346,8 +425,17 @@ var file_models_model_node_proto_rawDesc = []byte{
 	0x6e, 0x64, 0x61, 0x72, 0x79, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
 	0x73, 0x18, 0x26, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x6f, 0x64,
 	0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x15, 0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64,
-	0x61, 0x72, 0x79, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x42,
-	0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x72, 0x79, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x22,
+	0x8a, 0x01, 0x0a, 0x09, 0x42, 0x61, 0x73, 0x69, 0x63, 0x4e, 0x6f, 0x64, 0x65, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52,
+	0x04, 0x69, 0x73, 0x4f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x73, 0x55, 0x70, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73, 0x55, 0x70, 0x12, 0x31, 0x0a, 0x0b, 0x6e, 0x6f, 0x64,
+	0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x18, 0x1e, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f,
+	0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52,
+	0x0b, 0x6e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x42, 0x06, 0x5a, 0x04,
+	0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -362,34 +450,36 @@ func file_models_model_node_proto_rawDescGZIP() []byte {
 	return file_models_model_node_proto_rawDescData
 }
 
-var file_models_model_node_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_models_model_node_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_models_model_node_proto_goTypes = []interface{}{
 	(*Node)(nil),              // 0: pb.Node
-	(*DNSRoute)(nil),          // 1: pb.DNSRoute
-	(*SizeCapacity)(nil),      // 2: pb.SizeCapacity
-	(*NodeCluster)(nil),       // 3: pb.NodeCluster
-	(*NodeLogin)(nil),         // 4: pb.NodeLogin
-	(*NodeInstallStatus)(nil), // 5: pb.NodeInstallStatus
-	(*NodeIPAddress)(nil),     // 6: pb.NodeIPAddress
-	(*NodeGroup)(nil),         // 7: pb.NodeGroup
-	(*NodeRegion)(nil),        // 8: pb.NodeRegion
+	(*BasicNode)(nil),         // 1: pb.BasicNode
+	(*DNSRoute)(nil),          // 2: pb.DNSRoute
+	(*SizeCapacity)(nil),      // 3: pb.SizeCapacity
+	(*NodeCluster)(nil),       // 4: pb.NodeCluster
+	(*NodeLogin)(nil),         // 5: pb.NodeLogin
+	(*NodeInstallStatus)(nil), // 6: pb.NodeInstallStatus
+	(*NodeIPAddress)(nil),     // 7: pb.NodeIPAddress
+	(*NodeGroup)(nil),         // 8: pb.NodeGroup
+	(*NodeRegion)(nil),        // 9: pb.NodeRegion
 }
 var file_models_model_node_proto_depIdxs = []int32{
-	1,  // 0: pb.Node.dnsRoutes:type_name -> pb.DNSRoute
-	2,  // 1: pb.Node.maxCacheDiskCapacity:type_name -> pb.SizeCapacity
-	2,  // 2: pb.Node.maxCacheMemoryCapacity:type_name -> pb.SizeCapacity
-	3,  // 3: pb.Node.nodeCluster:type_name -> pb.NodeCluster
-	4,  // 4: pb.Node.nodeLogin:type_name -> pb.NodeLogin
-	5,  // 5: pb.Node.installStatus:type_name -> pb.NodeInstallStatus
-	6,  // 6: pb.Node.ipAddresses:type_name -> pb.NodeIPAddress
-	7,  // 7: pb.Node.nodeGroup:type_name -> pb.NodeGroup
-	8,  // 8: pb.Node.nodeRegion:type_name -> pb.NodeRegion
-	3,  // 9: pb.Node.secondaryNodeClusters:type_name -> pb.NodeCluster
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	2,  // 0: pb.Node.dnsRoutes:type_name -> pb.DNSRoute
+	3,  // 1: pb.Node.maxCacheDiskCapacity:type_name -> pb.SizeCapacity
+	3,  // 2: pb.Node.maxCacheMemoryCapacity:type_name -> pb.SizeCapacity
+	4,  // 3: pb.Node.nodeCluster:type_name -> pb.NodeCluster
+	5,  // 4: pb.Node.nodeLogin:type_name -> pb.NodeLogin
+	6,  // 5: pb.Node.installStatus:type_name -> pb.NodeInstallStatus
+	7,  // 6: pb.Node.ipAddresses:type_name -> pb.NodeIPAddress
+	8,  // 7: pb.Node.nodeGroup:type_name -> pb.NodeGroup
+	9,  // 8: pb.Node.nodeRegion:type_name -> pb.NodeRegion
+	4,  // 9: pb.Node.secondaryNodeClusters:type_name -> pb.NodeCluster
+	4,  // 10: pb.BasicNode.nodeCluster:type_name -> pb.NodeCluster
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_models_model_node_proto_init() }
@@ -418,6 +508,18 @@ func file_models_model_node_proto_init() {
 				return nil
 			}
 		}
+		file_models_model_node_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BasicNode); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -425,7 +527,7 @@ func file_models_model_node_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_models_model_node_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

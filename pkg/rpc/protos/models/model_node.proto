@@ -40,3 +40,12 @@ message Node {
 	NodeRegion nodeRegion = 37;
 	repeated NodeCluster secondaryNodeClusters = 38; // 从集群
 }
+
+message BasicNode {
+	int64 id = 1;
+	string name = 2;
+	bool isOn = 3;
+	bool isUp = 4;
+
+	NodeCluster nodeCluster = 30; // 主集群
+}

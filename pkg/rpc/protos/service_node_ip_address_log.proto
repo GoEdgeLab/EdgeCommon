@@ -1,0 +1,32 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_node_ip_address_log.proto";
+
+// IP地址相关日志
+service NodeIPAddressLogService {
+	// 计算日志数量
+	rpc countAllNodeIPAddressLogs(CountAllNodeIPAddressLogsRequest) returns (RPCCountResponse);
+
+	// 列出单页日志
+	rpc listNodeIPAddressLogs(ListNodeIPAddressLogsRequest) returns (ListNodeIPAddressLogsResponse);
+}
+
+// 计算日志数量
+message CountAllNodeIPAddressLogsRequest {
+	int64 nodeIPAddressId = 1;
+}
+
+// 列出单页日志
+message ListNodeIPAddressLogsRequest {
+	int64 nodeIPAddressId = 1;
+	int64 offset = 2;
+	int64 size = 3;
+}
+
+message ListNodeIPAddressLogsResponse {
+	repeated NodeIPAddressLog nodeIPAddressLogs = 1;
+}

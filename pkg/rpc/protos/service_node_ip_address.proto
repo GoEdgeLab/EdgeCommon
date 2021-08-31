@@ -27,6 +27,12 @@ service NodeIPAddressService {
 
 	// 查找节点的所有地址
 	rpc findAllEnabledIPAddressesWithNodeId (FindAllEnabledIPAddressesWithNodeIdRequest) returns (FindAllEnabledIPAddressesWithNodeIdResponse);
+
+	// 计算IP地址数量
+	rpc countAllEnabledIPAddresses(CountAllEnabledIPAddressesRequest) returns (RPCCountResponse);
+
+	// 列出单页IP地址
+	rpc listEnabledIPAddresses(ListEnabledIPAddressesRequest) returns (ListEnabledIPAddressesResponse);
 }
 
 // 创建IP地址
@@ -40,12 +46,12 @@ message CreateNodeIPAddressRequest {
 }
 
 message CreateNodeIPAddressResponse {
-	int64 addressId = 1;
+	int64 nodeIPAddressId = 1;
 }
 
 // 修改IP地址
 message UpdateNodeIPAddressRequest {
-	int64 addressId = 1;
+	int64 nodeIPAddressId = 1;
 	string name = 2;
 	string ip = 3;
 	bool canAccess = 4;
@@ -55,13 +61,13 @@ message UpdateNodeIPAddressRequest {
 
 // 修改IP地址所属节点
 message UpdateNodeIPAddressNodeIdRequest {
-	int64 addressId = 1;
+	int64 nodeIPAddressId = 1;
 	int64 nodeId = 2;
 }
 
 // 禁用单个IP地址
 message DisableNodeIPAddressRequest {
-	int64 addressId = 1;
+	int64 nodeIPAddressId = 1;
 }
 
 message DisableNodeIPAddressResponse {
@@ -80,11 +86,11 @@ message DisableAllIPAddressesWithNodeIdResponse {
 
 // 查找单个IP地址
 message FindEnabledNodeIPAddressRequest {
-	int64 addressId = 1;
+	int64 nodeIPAddressId = 1;
 }
 
 message FindEnabledNodeIPAddressResponse {
-	NodeIPAddress ipAddress = 1;
+	NodeIPAddress nodeIPAddress = 1;
 }
 
 // 查找节点的所有地址
@@ -95,4 +101,26 @@ message FindAllEnabledIPAddressesWithNodeIdRequest {
 
 message FindAllEnabledIPAddressesWithNodeIdResponse {
 	repeated NodeIPAddress addresses = 1;
+}
+
+// 计算IP地址数量
+message CountAllEnabledIPAddressesRequest {
+	int64 nodeClusterId = 1;
+	string role = 2;
+	int32 upState = 3;
+	string keyword = 4;
+}
+
+// 列出单页IP地址
+message ListEnabledIPAddressesRequest {
+	int64 nodeClusterId = 1;
+	string role = 2;
+	int32 upState = 3;
+	string keyword = 4;
+	int64 offset = 5;
+	int64 size = 6;
+}
+
+message ListEnabledIPAddressesResponse {
+	repeated NodeIPAddress nodeIPAddresses = 1;
 }
