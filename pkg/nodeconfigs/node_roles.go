@@ -14,4 +14,5 @@ const (
 	NodeRoleNode      NodeRole = "node"
 	NodeRoleCluster   NodeRole = "cluster"
 	NodeRoleAuthority NodeRole = "authority"
+	NodeRoleReport    NodeRole = "report"
 )

@@ -989,7 +989,7 @@ func (x *UpdateNSNodeIsInstalledRequest) GetIsInstalled() bool {
 	return false
 }
 
-// 更新认证状态
+// 更新节点状态
 type UpdateNSNodeStatusRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

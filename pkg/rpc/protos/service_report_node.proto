@@ -1,0 +1,115 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_report_node.proto";
+import "models/rpc_messages.proto";
+
+// 监控终端服务
+service ReportNodeService {
+	// 添加终端
+	rpc createReportNode(CreateReportNodeRequest) returns (CreateReportNodeResponse);
+
+	// 删除终端
+	rpc deleteReportNode(DeleteReportNodeRequest) returns (RPCSuccess);
+
+	// 修改终端
+	rpc updateReportNode(UpdateReportNodeRequest) returns (RPCSuccess);
+
+	// 计算终端数量
+	rpc countAllEnabledReportNodes(CountAllEnabledReportNodesRequest) returns (RPCCountResponse);
+
+	// 列出单页终端
+	rpc listEnabledReportNodes(ListEnabledReportNodesRequest) returns (ListEnabledReportNodesResponse);
+
+	// 查找单个终端
+	rpc findEnabledReportNode(FindEnabledReportNodeRequest) returns (FindEnabledReportNodeResponse);
+
+	// 终端stream
+	rpc reportNodeStream (stream ReportNodeStreamMessage) returns (stream ReportNodeStreamMessage);
+
+	// 更新节点状态
+	rpc updateReportNodeStatus (UpdateReportNodeStatusRequest) returns (RPCSuccess);
+
+	// 获取当前节点信息
+	rpc findCurrentReportNodeConfig (FindCurrentReportNodeConfigRequest) returns (FindCurrentReportNodeConfigResponse);
+}
+
+// 添加终端
+message CreateReportNodeRequest {
+	string name = 1;
+	string location = 2;
+	string isp = 3;
+	repeated string allowIPs = 4;
+}
+
+message CreateReportNodeResponse {
+	int64 reportNodeId = 1;
+}
+
+// 删除终端
+message DeleteReportNodeRequest {
+	int64 reportNodeId = 1;
+}
+
+// 修改终端
+message UpdateReportNodeRequest{
+	int64 reportNodeId = 1;
+	string name = 2;
+	string location = 3;
+	string isp = 4;
+	repeated string allowIPs = 5;
+	bool isOn = 6;
+}
+
+// 计算终端数量
+message CountAllEnabledReportNodesRequest {
+	string keyword = 1;
+}
+
+// 列出单页终端
+message ListEnabledReportNodesRequest {
+	string keyword = 1;
+	int64 offset = 2;
+	int64 size = 3;
+}
+
+message ListEnabledReportNodesResponse {
+	repeated ReportNode reportNodes = 1;
+}
+
+// 查找单个终端
+message FindEnabledReportNodeRequest{
+	int64 reportNodeId = 1;
+}
+
+message FindEnabledReportNodeResponse {
+	ReportNode reportNode = 1;
+}
+
+// 终端stream
+message ReportNodeStreamMessage {
+	int64 reportNodeId = 1;
+	int64 requestId = 2;
+	int32 timeoutSeconds = 3;
+	string code = 4;
+	bytes dataJSON = 5;
+	bool isOk = 6;
+	string message = 7;
+}
+
+// 更新节点状态
+message UpdateReportNodeStatusRequest {
+	bytes statusJSON = 1;
+}
+
+
+// 获取当前节点信息
+message FindCurrentReportNodeConfigRequest {
+
+}
+
+message FindCurrentReportNodeConfigResponse {
+	bytes reportNodeJSON = 1;
+}

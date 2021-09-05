@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message ReportNode {
+	int64 id = 1;
+	string uniqueId = 2;
+	string secret = 3;
+	bool isOn = 4;
+	string name = 5;
+	string location = 6;
+	string isp = 7;
+	bool isActive = 8;
+	bytes statusJSON = 9;
+	repeated string allowIPs = 10;
+}

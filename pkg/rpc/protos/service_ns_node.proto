@@ -180,7 +180,7 @@ message UpdateNSNodeIsInstalledRequest {
 	bool isInstalled = 2;
 }
 
-// 更新认证状态
+// 更新节点状态
 message UpdateNSNodeStatusRequest {
 	int64 nodeId = 1;
 	bytes statusJSON = 2;

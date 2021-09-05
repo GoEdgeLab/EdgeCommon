@@ -6,7 +6,7 @@ type NSMessageCode = string
 const (
 	NSMessageCodeConnectedAPINode    NSMessageCode = "connectedAPINode"    // NS节点连接API节点成功
 	NSMessageCodeCheckSystemdService NSMessageCode = "checkSystemdService" // 检查Systemd服务
-	NSMessageCodeNewNodeTask         MessageCode   = "newNodeTask"         // 有新的节点任务产生
+	NSMessageCodeNewNodeTask         NSMessageCode = "newNodeTask"         // 有新的节点任务产生
 )
 
 // NSConnectedAPINodeMessage 连接API节点成功
