@@ -34,6 +34,9 @@ service ReportNodeService {
 
 	// 获取当前节点信息
 	rpc findCurrentReportNodeConfig (FindCurrentReportNodeConfigRequest) returns (FindCurrentReportNodeConfigResponse);
+
+	// 读取任务
+	rpc findReportNodeTasks(FindReportNodeTasksRequest) returns (FindReportNodeTasksResponse);
 }
 
 // 添加终端
@@ -112,4 +115,13 @@ message FindCurrentReportNodeConfigRequest {
 
 message FindCurrentReportNodeConfigResponse {
 	bytes reportNodeJSON = 1;
+}
+
+// 读取任务
+message FindReportNodeTasksRequest {
+
+}
+
+message FindReportNodeTasksResponse {
+	bytes ipAddrTasksJSON = 1;
 }

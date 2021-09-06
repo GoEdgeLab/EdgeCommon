@@ -1,0 +1,42 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_report_result.proto";
+
+// 区域监控报告结果
+service ReportResultService {
+	// 计算监控结果数量
+	rpc countAllReportResults(CountAllReportResultsRequest) returns (RPCCountResponse);
+
+	// 列出单页监控结果
+	rpc listReportResults(ListReportResultsRequest) returns (ListReportResultsResponse);
+
+	// 上传报告结果
+	rpc updateReportResults(UpdateReportResultsRequest) returns (RPCSuccess);
+}
+
+// 计算监控结果数量
+message CountAllReportResultsRequest {
+	int64 reportNodeId = 1;
+	int32 okState = 2;
+}
+
+// 列出单页监控结果
+message ListReportResultsRequest {
+	int64 reportNodeId = 1;
+	int32 okState = 2;
+	int64 offset = 3;
+	int64 size = 4;
+}
+
+message ListReportResultsResponse {
+	repeated ReportResult reportResults = 1;
+}
+
+// 上传报告结果
+message UpdateReportResultsRequest {
+	repeated ReportResult reportResults = 1;
+}
