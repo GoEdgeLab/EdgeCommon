@@ -1,0 +1,71 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_report_node_group.proto";
+import "models/rpc_messages.proto";
+
+// 监控节点分组
+service ReportNodeGroupService {
+	// 创建分组
+	rpc createReportNodeGroup(CreateReportNodeGroupRequest) returns (CreateReportNodeGroupResponse);
+
+	// 修改分组
+	rpc updateReportNodeGroup(UpdateReportNodeGroupRequest) returns (RPCSuccess);
+
+	// 删除分组
+	rpc deleteReportNodeGroup(DeleteReportNodeGroupRequest) returns (RPCSuccess);
+
+	// 查找所有分组
+	rpc findAllEnabledReportNodeGroups(FindAllEnabledReportNodeGroupsRequest) returns (FindAllEnabledReportNodeGroupsResponse);
+
+	// 查找单个分组
+	rpc findEnabledReportNodeGroup(FindEnabledReportNodeGroupRequest) returns (FindEnabledReportNodeGroupResponse);
+
+	// 计算所有分组数量
+	rpc countAllEnabledReportNodeGroups(CountAllEnabledReportNodeGroupsRequest) returns (RPCCountResponse);
+}
+
+// 创建分组
+message CreateReportNodeGroupRequest {
+	string name = 1;
+}
+
+message CreateReportNodeGroupResponse {
+	int64 reportNodeGroupId = 1;
+}
+
+// 修改分组
+message UpdateReportNodeGroupRequest {
+	int64 reportNodeGroupId = 1;
+	string name = 2;
+}
+
+// 删除分组
+message DeleteReportNodeGroupRequest {
+	int64 reportNodeGroupId = 1;
+}
+
+// 查找所有分组
+message FindAllEnabledReportNodeGroupsRequest {
+
+}
+
+message FindAllEnabledReportNodeGroupsResponse {
+	repeated ReportNodeGroup reportNodeGroups = 1;
+}
+
+// 查找单个分组
+message FindEnabledReportNodeGroupRequest {
+	int64 reportNodeGroupId = 1;
+}
+
+message FindEnabledReportNodeGroupResponse {
+	ReportNodeGroup reportNodeGroup = 1;
+}
+
+// 计算所有分组数量
+message CountAllEnabledReportNodeGroupsRequest {
+
+}

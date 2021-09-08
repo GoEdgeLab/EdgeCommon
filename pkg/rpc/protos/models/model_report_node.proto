@@ -3,6 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
+import "models/model_report_node_group.proto";
+
 message ReportNode {
 	int64 id = 1;
 	string uniqueId = 2;
@@ -14,4 +16,5 @@ message ReportNode {
 	bool isActive = 8;
 	bytes statusJSON = 9;
 	repeated string allowIPs = 10;
+	repeated ReportNodeGroup reportNodeGroups = 11;
 }

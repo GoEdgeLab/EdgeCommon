@@ -4,6 +4,7 @@ option go_package = "./pb";
 package pb;
 
 import "models/model_report_node.proto";
+import "models/model_report_task.proto";
 import "models/rpc_messages.proto";
 
 // 监控终端服务
@@ -37,6 +38,15 @@ service ReportNodeService {
 
 	// 读取任务
 	rpc findReportNodeTasks(FindReportNodeTasksRequest) returns (FindReportNodeTasksResponse);
+
+	// 取得最新的版本号
+	rpc findLatestReportNodeVersion(FindLatestReportNodeVersionRequest) returns (FindLatestReportNodeVersionResponse);
+
+	// 计算任务数量
+	rpc countAllReportNodeTasks(CountAllReportNodeTasksRequest) returns (RPCCountResponse);
+
+	// 列出单页任务
+	rpc listReportNodeTasks(ListReportNodeTasksRequest) returns (ListReportNodeTasksResponse);
 }
 
 // 添加终端
@@ -45,6 +55,7 @@ message CreateReportNodeRequest {
 	string location = 2;
 	string isp = 3;
 	repeated string allowIPs = 4;
+	repeated int64 reportNodeGroupIds = 5;
 }
 
 message CreateReportNodeResponse {
@@ -64,16 +75,19 @@ message UpdateReportNodeRequest{
 	string isp = 4;
 	repeated string allowIPs = 5;
 	bool isOn = 6;
+	repeated int64 reportNodeGroupIds = 7;
 }
 
 // 计算终端数量
 message CountAllEnabledReportNodesRequest {
 	string keyword = 1;
+	int64 reportNodeGroupId = 2;
 }
 
 // 列出单页终端
 message ListEnabledReportNodesRequest {
 	string keyword = 1;
+	int64 reportNodeGroupId = 4;
 	int64 offset = 2;
 	int64 size = 3;
 }
@@ -124,4 +138,33 @@ message FindReportNodeTasksRequest {
 
 message FindReportNodeTasksResponse {
 	bytes ipAddrTasksJSON = 1;
+}
+
+// 取得最新的版本号
+message FindLatestReportNodeVersionRequest {
+
+}
+
+message FindLatestReportNodeVersionResponse {
+	string version = 1;
+}
+
+// 计算任务数量
+message CountAllReportNodeTasksRequest {
+	string role = 1;
+	int64 nodeClusterId = 2;
+	string type = 3;
+}
+
+// 列出单页任务
+message ListReportNodeTasksRequest {
+	string role = 1;
+	int64 nodeClusterId = 2;
+	string type = 3;
+	int64 offset = 4;
+	int64 size = 5;
+}
+
+message ListReportNodeTasksResponse {
+	repeated IPAddrReportTask ipAddrReportTasks = 1;
 }

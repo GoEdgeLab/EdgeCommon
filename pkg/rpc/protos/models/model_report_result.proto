@@ -13,4 +13,5 @@ message ReportResult {
 	float costMs = 7;
 	string error = 8;
 	int64 updatedAt = 9;
+	string level =10;
 }
