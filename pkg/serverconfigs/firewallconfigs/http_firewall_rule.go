@@ -1,6 +1,7 @@
 package firewallconfigs
 
 import (
+	"errors"
 	"regexp"
 	"strings"
 )
@@ -21,6 +22,20 @@ type HTTPFirewallRule struct {
 
 func (this *HTTPFirewallRule) Init() error {
 	// TODO 执行更严谨的校验
+
+	switch this.Operator {
+	case HTTPFirewallRuleOperatorMatch:
+		_, err := regexp.Compile(this.Value)
+		if err != nil {
+			return errors.New("regexp validate failed: " + err.Error())
+		}
+	case HTTPFirewallRuleOperatorNotMatch:
+		_, err := regexp.Compile(this.Value)
+		if err != nil {
+			return errors.New("regexp validate failed: " + err.Error())
+		}
+	}
+
 	return nil
 }
 
