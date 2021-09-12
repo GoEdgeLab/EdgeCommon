@@ -2,7 +2,9 @@
 
 package nodeconfigs
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 // NodeValueItem 监控项
 type NodeValueItem = string
@@ -305,13 +307,4 @@ func UnmarshalNodeValue(valueJSON []byte) string {
 		// 暂时不提示错误
 	}
 	return result
-}
-
-// NodeValueThresholdConfig 阈值
-type NodeValueThresholdConfig struct {
-	Item         NodeValueItem         `json:"item"`
-	Operator     NodeValueOperator     `json:"operator"`
-	Value        int64                 `json:"value"`
-	Duration     int                   `json:"duration"`
-	DurationUnit NodeValueDurationUnit `json:"durationUnit"`
 }

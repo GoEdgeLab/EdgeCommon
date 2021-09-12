@@ -1,0 +1,71 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_node_ip_address_threshold.proto";
+import "models/rpc_messages.proto";
+
+//  IP阈值相关服务
+service NodeIPAddressThresholdService {
+	// 创建阈值
+	rpc createNodeIPAddressThreshold(CreateNodeIPAddressThresholdRequest) returns (CreateNodeIPAddressThresholdResponse);
+
+	// 修改阈值
+	rpc updateNodeIPAddressThreshold(UpdateNodeIPAddressThresholdRequest) returns (RPCSuccess);
+
+	// 删除阈值
+	rpc deleteNodeIPAddressThreshold(DeleteNodeIPAddressThresholdRequest) returns (RPCSuccess);
+
+	// 查找IP的所有阈值
+	rpc findAllEnabledNodeIPAddressThresholds(FindAllEnabledNodeIPAddressThresholdsRequest) returns (FindAllEnabledNodeIPAddressThresholdsResponse);
+
+	// 计算IP阈值的数量
+	rpc countAllEnabledNodeIPAddressThresholds(CountAllEnabledNodeIPAddressThresholdsRequest) returns (RPCCountResponse);
+
+	// 批量更新阈值
+	rpc updateAllNodeIPAddressThresholds(UpdateAllNodeIPAddressThresholdsRequest) returns (RPCSuccess);
+}
+
+// 创建阈值
+message CreateNodeIPAddressThresholdRequest{
+	int64 nodeIPAddressId = 1;
+	bytes itemsJSON = 2;
+	bytes actionsJSON = 3;
+}
+
+message CreateNodeIPAddressThresholdResponse {
+	int64 nodeIPAddressThresholdId = 1;
+}
+
+// 修改阈值
+message UpdateNodeIPAddressThresholdRequest {
+	int64 nodeIPAddressThresholdId = 1;
+	bytes itemsJSON = 2;
+	bytes actionsJSON = 3;
+}
+
+// 删除阈值
+message DeleteNodeIPAddressThresholdRequest {
+	int64 nodeIPAddressThresholdId = 1;
+}
+
+// 查找IP的所有阈值
+message FindAllEnabledNodeIPAddressThresholdsRequest {
+	int64 nodeIPAddressId = 1;
+}
+
+message FindAllEnabledNodeIPAddressThresholdsResponse {
+	repeated NodeIPAddressThreshold nodeIPAddressThresholds = 1;
+}
+
+// 计算IP阈值的数量
+message CountAllEnabledNodeIPAddressThresholdsRequest {
+	int64 nodeIPAddressId = 1;
+}
+
+// 批量更新阈值
+message UpdateAllNodeIPAddressThresholdsRequest {
+	int64 nodeIPAddressId = 1;
+	bytes nodeIPAddressThresholdsJSON = 2;
+}

@@ -15,6 +15,5 @@ message NodeIPAddress {
 	bool canAccess = 8;
 	bool isOn = 9;
 	bool isUp = 10;
-	bytes thresholdsJSON = 11;
 	string role = 12;
 }
