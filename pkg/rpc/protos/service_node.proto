@@ -124,6 +124,12 @@ service NodeService {
 
 	// 下载最新边缘节点安装文件
 	rpc downloadNodeInstallationFile (DownloadNodeInstallationFileRequest) returns (DownloadNodeInstallationFileResponse);
+
+	// 修改节点系统信息
+	rpc updateNodeSystem(UpdateNodeSystemRequest) returns (RPCSuccess);
+
+	// 修改节点缓存设置
+	rpc updateNodeCache(UpdateNodeCacheRequest) returns (RPCSuccess);
 }
 
 // 创建节点
@@ -208,15 +214,9 @@ message UpdateNodeRequest {
 	string name = 2;
 	int64 nodeClusterId = 3;
 	repeated int64 secondaryNodeClusterIds = 13;
-	NodeLogin nodeLogin = 4;
-	int32 maxCPU = 5;
 	bool isOn = 6;
 	int64 nodeGroupId = 7;
-	int64 dnsDomainId = 8 [deprecated = true];
-	repeated string dnsRoutes = 9;
 	int64 nodeRegionId = 10;
-	SizeCapacity maxCacheDiskCapacity = 11;
-	SizeCapacity maxCacheMemoryCapacity = 12;
 }
 
 // 获取单个节点信息
@@ -476,4 +476,17 @@ message DownloadNodeInstallationFileResponse {
 	int64 offset = 3;
 	string version = 4;
 	string filename = 5;
+}
+
+// 修改节点系统信息
+message UpdateNodeSystemRequest {
+	int64 nodeId = 1;
+	int32 maxCPU = 2;
+}
+
+// 修改节点缓存设置
+message UpdateNodeCacheRequest {
+	int64 nodeId = 1;
+	SizeCapacity maxCacheDiskCapacity = 2;
+	SizeCapacity maxCacheMemoryCapacity = 3;
 }
