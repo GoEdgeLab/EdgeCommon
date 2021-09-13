@@ -13,6 +13,7 @@ message NodeIPAddressLog {
 	bool isUp = 4;
 	bool isOn = 5;
 	bool canAccess = 6;
+	string backupIP = 7;
 
 	NodeIPAddress nodeIPAddress = 30;
 	Admin admin = 31;
