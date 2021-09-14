@@ -19,68 +19,69 @@ const (
 	IPAddressThresholdItemConnectivity         IPAddressThresholdItem = "connectivity"         // 0-100
 )
 
+// FindAllIPAddressThresholdItems IP相关阈值项目
 func FindAllIPAddressThresholdItems() []maps.Map {
 	return []maps.Map{
 		{
 			"name":        "节点平均请求数",
-			"code":        "nodeAvgRequests",
+			"code":        IPAddressThresholdItemNodeAvgRequests,
 			"description": "当前节点在单位时间内接收到的平均请求数。",
 			"unit":        "个",
 		},
 		{
 			"name":        "节点平均下行流量",
-			"code":        "nodeAvgTrafficOut",
+			"code":        IPAddressThresholdItemNodeAvgTrafficOut,
 			"description": "当前节点在单位时间内发送的下行流量。",
 			"unit":        "M",
 		},
 		{
 			"name":        "节点平均上行流量",
-			"code":        "nodeAvgTrafficIn",
+			"code":        IPAddressThresholdItemNodeAvgTrafficIn,
 			"description": "当前节点在单位时间内接收的上行流量。",
 			"unit":        "M",
 		},
 
 		{
 			"name":        "IP连通性",
-			"code":        "connectivity",
+			"code":        IPAddressThresholdItemConnectivity,
 			"description": "通过区域监控得到的当前IP地址的连通性数值，取值在0和100之间。",
 			"unit":        "%",
 		},
 
 		{
 			"name":        "分组平均请求数",
-			"code":        "groupAvgRequests",
+			"code":        IPAddressThresholdItemGroupAvgRequests,
 			"description": "当前节点所在分组在单位时间内接收到的平均请求数。",
 			"unit":        "个",
 		},
 		{
 			"name":        "分组平均下行流量",
-			"code":        "groupAvgTrafficOut",
+			"code":        IPAddressThresholdItemGroupAvgTrafficOut,
 			"description": "当前节点所在分组在单位时间内发送的下行流量。",
 			"unit":        "M",
 		},
 		{
 			"name":        "分组平均上行流量",
-			"code":        "groupAvgTrafficIn",
+			"code":        IPAddressThresholdItemGroupAvgTrafficIn,
 			"description": "当前节点所在分组在单位时间内接收的上行流量。",
 			"unit":        "M",
 		},
 
 		{
 			"name":        "集群平均请求数",
-			"code":        "clusterAvgRequests",
+			"code":        IPAddressThresholdItemClusterAvgRequests,
 			"description": "当前节点所在集群在单位时间内接收到的平均请求数。",
 			"unit":        "个",
 		},
 		{
 			"name":        "集群平均下行流量",
-			"code":        "clusterAvgTrafficOut",
+			"code":        IPAddressThresholdItemClusterAvgTrafficOut,
 			"description": "当前节点所在集群在单位时间内发送的下行流量。",
 			"unit":        "M",
 		},
 		{
 			"name":        "集群平均上行流量",
-			"code":        "clusterAvgTrafficIn",
+			"code":        IPAddressThresholdItemClusterAvgTrafficIn,
 			"description": "当前节点所在集群在单位时间内接收的上行流量。",
 			"unit":        "M",
 		},
@@ -109,13 +110,44 @@ type NodeValueThresholdActionConfig struct {
 	Options maps.Map `json:"options"`
 }
 
-// NodeValueThresholdAction 动作
-type NodeValueThresholdAction = string
+// IPAddressThresholdAction 动作
+type IPAddressThresholdAction = string
 
 const (
-	NodeValueThresholdActionUp      NodeValueThresholdAction = "up"      // 上线
-	NodeValueThresholdActionDown    NodeValueThresholdAction = "down"    // 下线
-	NodeValueThresholdActionNotify  NodeValueThresholdAction = "notify"  // 通知
-	NodeValueThresholdActionSwitch  NodeValueThresholdAction = "switch"  // 切换到备用IP
-	NodeValueThresholdActionWebHook NodeValueThresholdAction = "webHook" // 调用外部Webhook
+	IPAddressThresholdActionUp      IPAddressThresholdAction = "up"      // 上线
+	IPAddressThresholdActionDown    IPAddressThresholdAction = "down"    // 下线
+	IPAddressThresholdActionNotify  IPAddressThresholdAction = "notify"  // 通知
+	IPAddressThresholdActionSwitch  IPAddressThresholdAction = "switch"  // 切换到备用IP
+	IPAddressThresholdActionWebHook IPAddressThresholdAction = "webHook" // 调用外部Webhook
 )
+
+// FindAllIPAddressThresholdActions IP相关阈值动作
+func FindAllIPAddressThresholdActions() []maps.Map {
+	return []maps.Map{
+		{
+			"name":        "上线",
+			"code":        IPAddressThresholdActionUp,
+			"description": "上线当前IP。",
+		},
+		{
+			"name":        "下线",
+			"code":        IPAddressThresholdActionDown,
+			"description": "下线当前IP。",
+		},
+		{
+			"name":        "通知",
+			"code":        IPAddressThresholdActionNotify,
+			"description": "发送已达到阈值通知。",
+		},
+		{
+			"name":        "切换",
+			"code":        IPAddressThresholdActionSwitch,
+			"description": "在DNS中记录中将IP切换到指定的备用IP。",
+		},
+		{
+			"name":        "WebHook",
+			"code":        IPAddressThresholdActionWebHook,
+			"description": "调用外部的WebHook。",
+		},
+	}
+}
