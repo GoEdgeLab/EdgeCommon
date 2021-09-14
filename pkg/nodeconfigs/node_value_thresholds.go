@@ -88,24 +88,24 @@ func FindAllIPAddressThresholdItems() []maps.Map {
 	}
 }
 
-// NodeValueThresholdConfig 阈值列表
-type NodeValueThresholdConfig struct {
+// IPAddressThresholdConfig 阈值列表
+type IPAddressThresholdConfig struct {
 	Id      int64                             `json:"id"`
-	Items   []*NodeValueThresholdItemConfig   `json:"items"`
-	Actions []*NodeValueThresholdActionConfig `json:"actions"`
+	Items   []*IPAddressThresholdItemConfig   `json:"items"`
+	Actions []*IPAddressThresholdActionConfig `json:"actions"`
 }
 
-// NodeValueThresholdItemConfig 阈值项目
-type NodeValueThresholdItemConfig struct {
-	Item         NodeValueItem         `json:"item"`
-	Operator     NodeValueOperator     `json:"operator"`
-	Value        float64               `json:"value"`
-	Duration     int                   `json:"duration"`
-	DurationUnit NodeValueDurationUnit `json:"durationUnit"`
-	Options      maps.Map              `json:"options"` // 附加选项
+// IPAddressThresholdItemConfig 阈值项目
+type IPAddressThresholdItemConfig struct {
+	Item         IPAddressThresholdItem `json:"item"`
+	Operator     NodeValueOperator      `json:"operator"`
+	Value        float64                `json:"value"`
+	Duration     int                    `json:"duration"`
+	DurationUnit NodeValueDurationUnit  `json:"durationUnit"`
+	Options      maps.Map               `json:"options"` // 附加选项
 }
 
-type NodeValueThresholdActionConfig struct {
+type IPAddressThresholdActionConfig struct {
 	Action  string   `json:"action"`
 	Options maps.Map `json:"options"`
 }
