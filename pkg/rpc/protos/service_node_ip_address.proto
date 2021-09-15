@@ -48,6 +48,7 @@ message CreateNodeIPAddressRequest {
 	string name = 3;
 	string ip = 4;
 	bool canAccess = 5;
+	bool isUp = 6;
 }
 
 message CreateNodeIPAddressResponse {
@@ -61,6 +62,7 @@ message UpdateNodeIPAddressRequest {
 	string ip = 3;
 	bool canAccess = 4;
 	bool isOn = 5;
+	bool isUp = 6;
 }
 
 // 修改IP地址所属节点
