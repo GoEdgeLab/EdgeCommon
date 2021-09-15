@@ -16,6 +16,9 @@ service ReportResultService {
 
 	// 上传报告结果
 	rpc updateReportResults(UpdateReportResultsRequest) returns (RPCSuccess);
+
+	// 查询某个对象的监控结果
+	rpc findAllReportResults(FindAllReportResultsRequest) returns (FindAllReportResultsResponse);
 }
 
 // 计算监控结果数量
@@ -40,5 +43,15 @@ message ListReportResultsResponse {
 
 // 上传报告结果
 message UpdateReportResultsRequest {
+	repeated ReportResult reportResults = 1;
+}
+
+// 查询某个对象的监控结果
+message FindAllReportResultsRequest {
+	string type = 1;
+	int64 targetId = 2;
+}
+
+message FindAllReportResultsResponse {
 	repeated ReportResult reportResults = 1;
 }
