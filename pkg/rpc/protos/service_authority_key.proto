@@ -16,6 +16,9 @@ service AuthorityKeyService {
 
 	// 重置Key
 	rpc resetAuthorityKey (ResetAuthorityKeyRequest) returns (RPCSuccess);
+
+	// 校验Key
+	rpc validateAuthorityKey(ValidateAuthorityKeyRequest) returns (ValidateAuthorityKeyResponse);
 }
 
 // 设置Key
@@ -40,4 +43,14 @@ message ReadAuthorityKeyResponse {
 // 重置Key
 message ResetAuthorityKeyRequest {
 
+}
+
+// 校验Key
+message ValidateAuthorityKeyRequest {
+	string key = 1;
+}
+
+message ValidateAuthorityKeyResponse {
+	bool isOk = 1;
+	string error = 2;
 }
