@@ -47,6 +47,12 @@ service ReportNodeService {
 
 	// 列出单页任务
 	rpc listReportNodeTasks(ListReportNodeTasksRequest) returns (ListReportNodeTasksResponse);
+
+	// 修改全局设置
+	rpc updateReportNodeGlobalSetting(UpdateReportNodeGlobalSetting) returns (RPCSuccess);
+
+	// 读取全局设置
+	rpc readReportNodeGlobalSetting(ReadReportNodeGlobalSettingRequest) returns (ReadReportNodeGlobalSettingResponse);
 }
 
 // 添加终端
@@ -167,4 +173,17 @@ message ListReportNodeTasksRequest {
 
 message ListReportNodeTasksResponse {
 	repeated IPAddrReportTask ipAddrReportTasks = 1;
+}
+
+// 修改全局设置
+message UpdateReportNodeGlobalSetting {
+	bytes settingJSON = 1;
+}
+
+// 读取全局设置
+message ReadReportNodeGlobalSettingRequest {
+}
+
+message ReadReportNodeGlobalSettingResponse {
+	bytes settingJSON = 1;
 }

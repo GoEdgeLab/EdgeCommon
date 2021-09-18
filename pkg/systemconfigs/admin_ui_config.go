@@ -1,6 +1,6 @@
 package systemconfigs
 
-// 管理员界面相关配置
+// AdminUIConfig 管理员界面相关配置
 type AdminUIConfig struct {
 	ProductName        string `json:"productName"`        // 产品名
 	AdminSystemName    string `json:"adminSystemName"`    // 管理员系统名称
