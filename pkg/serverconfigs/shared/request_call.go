@@ -5,22 +5,24 @@ import (
 	"net/http"
 )
 
-// 请求调用
+// RequestCall 请求调用
 type RequestCall struct {
-	Formatter         func(source string) string
-	Request           *http.Request
+	Formatter func(source string) string // 当前变量格式化函数
+	Request   *http.Request              // 当前请求
+	Domain    string                     // 当前域名
+
 	ResponseCallbacks []func(resp http.ResponseWriter)
 	Options           maps.Map
 }
 
-// 获取新对象
+// NewRequestCall 获取新对象
 func NewRequestCall() *RequestCall {
 	return &RequestCall{
 		Options: maps.Map{},
 	}
 }
 
-// 重置
+// Reset 重置
 func (this *RequestCall) Reset() {
 	this.Formatter = nil
 	this.Request = nil
@@ -28,12 +30,12 @@ func (this *RequestCall) Reset() {
 	this.Options = maps.Map{}
 }
 
-// 添加响应回调
+// AddResponseCall 添加响应回调
 func (this *RequestCall) AddResponseCall(callback func(resp http.ResponseWriter)) {
 	this.ResponseCallbacks = append(this.ResponseCallbacks, callback)
 }
 
-// 执行响应回调
+// CallResponseCallbacks 执行响应回调
 func (this *RequestCall) CallResponseCallbacks(resp http.ResponseWriter) {
 	for _, callback := range this.ResponseCallbacks {
 		callback(resp)

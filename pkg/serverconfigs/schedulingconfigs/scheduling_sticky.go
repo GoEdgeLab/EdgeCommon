@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-// Sticky调度算法
+// StickyScheduling Sticky调度算法
 type StickyScheduling struct {
 	Scheduling
 
@@ -16,7 +16,7 @@ type StickyScheduling struct {
 	mapping map[string]CandidateInterface // code => candidate
 }
 
-// 启动
+// Start 启动
 func (this *StickyScheduling) Start() {
 	this.mapping = map[string]CandidateInterface{}
 	for _, c := range this.Candidates {
@@ -29,7 +29,7 @@ func (this *StickyScheduling) Start() {
 	rand.Seed(time.Now().UnixNano())
 }
 
-// 获取下一个候选对象
+// Next 获取下一个候选对象
 func (this *StickyScheduling) Next(call *shared.RequestCall) CandidateInterface {
 	if this.count == 0 {
 		return nil
@@ -95,7 +95,7 @@ func (this *StickyScheduling) Next(call *shared.RequestCall) CandidateInterface 
 	return c
 }
 
-// 获取简要信息
+// Summary 获取简要信息
 func (this *StickyScheduling) Summary() maps.Map {
 	return maps.Map{
 		"code":        "sticky",

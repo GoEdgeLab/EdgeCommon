@@ -11,4 +11,5 @@ message Origin {
 	string name = 3;
 	NetworkAddress addr = 4;
 	string description = 5;
+	repeated string domains = 6;
 }

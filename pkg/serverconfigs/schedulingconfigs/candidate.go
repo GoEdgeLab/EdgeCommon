@@ -1,10 +1,10 @@
 package schedulingconfigs
 
-// 候选对象接口
+// CandidateInterface 候选对象接口
 type CandidateInterface interface {
-	// 权重
+	// CandidateWeight 权重
 	CandidateWeight() uint
 
-	// 代号
+	// CandidateCodes 代号
 	CandidateCodes() []string
 }

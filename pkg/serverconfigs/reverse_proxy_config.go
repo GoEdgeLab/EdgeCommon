@@ -2,7 +2,6 @@ package serverconfigs
 
 import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
-	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/schedulingconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/lists"
 	"sync"
@@ -45,11 +44,8 @@ type ReverseProxyConfig struct {
 	requestHostHasVariables bool
 	requestURIHasVariables  bool
 
-	hasPrimaryOrigins  bool
-	hasBackupOrigins   bool
-	schedulingIsBackup bool
-	schedulingObject   schedulingconfigs.SchedulingInterface
-	schedulingLocker   sync.Mutex
+	schedulingGroupMap map[string]*SchedulingGroup // domain => *SchedulingGroup
+	schedulingLocker   sync.RWMutex
 
 	addXRealIPHeader         bool
 	addXForwardedForHeader   bool
@@ -64,9 +60,68 @@ func (this *ReverseProxyConfig) Init() error {
 	this.requestHostHasVariables = configutils.HasVariables(this.RequestHost)
 	this.requestURIHasVariables = configutils.HasVariables(this.RequestURI)
 
-	this.hasPrimaryOrigins = len(this.PrimaryOrigins) > 0
-	this.hasBackupOrigins = len(this.BackupOrigins) > 0
+	// 将源站分组
+	this.schedulingGroupMap = map[string]*SchedulingGroup{}
+	for _, origin := range this.PrimaryOrigins {
+		if len(origin.Domains) == 0 {
+			group, ok := this.schedulingGroupMap[""]
+			if !ok {
+				group = &SchedulingGroup{}
+				if this.Scheduling != nil {
+					group.Scheduling = this.Scheduling.Clone()
+				}
+				this.schedulingGroupMap[""] = group
+			}
+			group.PrimaryOrigins = append(group.PrimaryOrigins, origin)
+		} else {
+			for _, domain := range origin.Domains {
+				group, ok := this.schedulingGroupMap[domain]
+				if !ok {
+					group = &SchedulingGroup{}
+					if this.Scheduling != nil {
+						group.Scheduling = this.Scheduling.Clone()
+					}
+					this.schedulingGroupMap[domain] = group
+				}
+				group.PrimaryOrigins = append(group.PrimaryOrigins, origin)
+			}
+		}
+	}
+	for _, origin := range this.BackupOrigins {
+		if len(origin.Domains) == 0 {
+			group, ok := this.schedulingGroupMap[""]
+			if !ok {
+				group = &SchedulingGroup{}
+				if this.Scheduling != nil {
+					group.Scheduling = this.Scheduling.Clone()
+				}
+				this.schedulingGroupMap[""] = group
+			}
+			group.BackupOrigins = append(group.BackupOrigins, origin)
+		} else {
+			for _, domain := range origin.Domains {
+				group, ok := this.schedulingGroupMap[domain]
+				if !ok {
+					group = &SchedulingGroup{}
+					if this.Scheduling != nil {
+						group.Scheduling = this.Scheduling.Clone()
+					}
+					this.schedulingGroupMap[domain] = group
+				}
+				group.BackupOrigins = append(group.BackupOrigins, origin)
+			}
+		}
+	}
 
+	// 初始化分组
+	for _, group := range this.schedulingGroupMap {
+		err := group.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// 初始化Origin
 	for _, origins := range [][]*OriginConfig{this.PrimaryOrigins, this.BackupOrigins} {
 		for _, origin := range origins {
 			// 覆盖参数设置
@@ -131,54 +186,39 @@ func (this *ReverseProxyConfig) AddBackupOrigin(origin *OriginConfig) {
 
 // NextOrigin 取得下一个可用的后端服务
 func (this *ReverseProxyConfig) NextOrigin(call *shared.RequestCall) *OriginConfig {
-	this.schedulingLocker.Lock()
-	defer this.schedulingLocker.Unlock()
+	this.schedulingLocker.RLock()
+	defer this.schedulingLocker.RUnlock()
 
-	if this.schedulingObject == nil {
+	if len(this.schedulingGroupMap) == 0 {
 		return nil
 	}
 
-	if this.Scheduling != nil && call != nil && call.Options != nil {
-		for k, v := range this.Scheduling.Options {
-			call.Options[k] = v
+	// 空域名
+	if len(call.Domain) == 0 {
+		group, ok := this.schedulingGroupMap[""]
+		if ok {
+			return group.NextOrigin(call)
 		}
+		return nil
 	}
 
-	candidate := this.schedulingObject.Next(call)
-
-	// 末了重置状态
-	defer func() {
-		if candidate == nil {
-			this.schedulingIsBackup = false
-		}
-	}()
-
-	if candidate == nil {
-		// 启用备用服务器
-		if !this.schedulingIsBackup {
-			this.SetupScheduling(true, true, false)
-			candidate = this.schedulingObject.Next(call)
-			if candidate == nil {
-				// 不检查主要源站
-				this.SetupScheduling(false, false, false)
-				candidate = this.schedulingObject.Next(call)
-				if candidate == nil {
-					// 不检查备用源站
-					this.SetupScheduling(true, false, false)
-					candidate = this.schedulingObject.Next(call)
-					if candidate == nil {
-						return nil
-					}
-				}
+	// 按域名匹配
+	for domainPattern, group := range this.schedulingGroupMap {
+		if len(domainPattern) > 0 && configutils.MatchDomain(domainPattern, call.Domain) {
+			origin := group.NextOrigin(call)
+			if origin != nil {
+				return origin
 			}
 		}
-
-		if candidate == nil {
-			return nil
-		}
 	}
 
-	return candidate.(*OriginConfig)
+	// 再次查找没有设置域名的分组
+	group, ok := this.schedulingGroupMap[""]
+	if ok {
+		return group.NextOrigin(call)
+	}
+
+	return nil
 }
 
 // SetupScheduling 设置调度算法
@@ -188,40 +228,9 @@ func (this *ReverseProxyConfig) SetupScheduling(isBackup bool, checkOk bool, loc
 		defer this.schedulingLocker.Unlock()
 	}
 
-	this.schedulingIsBackup = isBackup
-
-	if this.Scheduling == nil {
-		this.schedulingObject = &schedulingconfigs.RandomScheduling{}
-	} else {
-		typeCode := this.Scheduling.Code
-		s := schedulingconfigs.FindSchedulingType(typeCode)
-		if s == nil {
-			this.Scheduling = nil
-			this.schedulingObject = &schedulingconfigs.RandomScheduling{}
-		} else {
-			this.schedulingObject = s["instance"].(schedulingconfigs.SchedulingInterface)
-		}
+	for _, group := range this.schedulingGroupMap {
+		group.SetupScheduling(isBackup, checkOk)
 	}
-
-	if !isBackup {
-		for _, origin := range this.PrimaryOrigins {
-			if origin.IsOn && (origin.IsOk || !checkOk) {
-				this.schedulingObject.Add(origin)
-			}
-		}
-	} else {
-		for _, origin := range this.BackupOrigins {
-			if origin.IsOn && (origin.IsOk || !checkOk) {
-				this.schedulingObject.Add(origin)
-			}
-		}
-	}
-
-	if !this.schedulingObject.HasCandidates() {
-		return
-	}
-
-	this.schedulingObject.Start()
 }
 
 // FindSchedulingConfig 获取调度配置对象

@@ -28,6 +28,8 @@ type OriginConfig struct {
 	MaxConns     int                  `yaml:"maxConns" json:"maxConns"`       // 最大并发连接数
 	MaxIdleConns int                  `yaml:"idleConns" json:"idleConns"`     // 最大空闲连接数
 
+	Domains []string `yaml:"domains" json:"domains"` // 所属域名
+
 	StripPrefix string `yaml:"stripPrefix" json:"stripPrefix"` // 去除URL前缀
 	RequestURI  string `yaml:"requestURI" json:"requestURI"`   // 转发后的请求URI TODO
 	RequestHost string `yaml:"requestHost" json:"requestHost"` // 自定义主机名 TODO

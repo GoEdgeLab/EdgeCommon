@@ -76,4 +76,8 @@ func TestMatchDomain(t *testing.T) {
 		ok := MatchDomains([]string{"~^\\d+.example.com$"}, "123.example.com")
 		a.IsTrue(ok)
 	}
+	{
+		ok := MatchDomains([]string{"*"}, "example.com")
+		a.IsTrue(ok)
+	}
 }

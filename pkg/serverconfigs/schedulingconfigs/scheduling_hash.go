@@ -6,19 +6,19 @@ import (
 	"hash/crc32"
 )
 
-// Hash调度算法
+// HashScheduling Hash调度算法
 type HashScheduling struct {
 	Scheduling
 
 	count uint32
 }
 
-// 启动
+// Start 启动
 func (this *HashScheduling) Start() {
 	this.count = uint32(len(this.Candidates))
 }
 
-// 获取下一个候选对象
+// Next 获取下一个候选对象
 func (this *HashScheduling) Next(call *shared.RequestCall) CandidateInterface {
 	if this.count == 0 {
 		return nil
@@ -34,7 +34,7 @@ func (this *HashScheduling) Next(call *shared.RequestCall) CandidateInterface {
 	return this.Candidates[sum%this.count]
 }
 
-// 获取简要信息
+// Summary 获取简要信息
 func (this *HashScheduling) Summary() maps.Map {
 	return maps.Map{
 		"code":        "hash",

@@ -33,6 +33,7 @@ message CreateOriginRequest {
 	bytes idleTimeoutJSON = 8;
 	int32 maxConns = 9;
 	int32 maxIdleConns = 10;
+	repeated string domains = 11;
 }
 
 message CreateOriginResponse {
@@ -52,6 +53,7 @@ message UpdateOriginRequest {
 	bytes idleTimeoutJSON = 9;
 	int32 maxConns = 10;
 	int32 maxIdleConns = 11;
+	repeated string domains = 12;
 }
 
 // 查找单个源站信息
