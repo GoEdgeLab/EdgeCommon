@@ -30,6 +30,7 @@ message ExistsDNSTasksResponse {
 
 // 查找需要通知的任务
 message FindAllDoingDNSTasksRequest {
+	int64 nodeClusterId = 1;
 }
 
 message FindAllDoingDNSTasksResponse {
