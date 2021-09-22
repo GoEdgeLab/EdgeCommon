@@ -41,6 +41,9 @@ type ServerConfig struct {
 	HTTPCachePolicyId int64            `yaml:"httpCachePolicyId" json:"httpCachePolicyId"`
 	HTTPCachePolicy   *HTTPCachePolicy `yaml:"httpCachePolicy" json:"httpCachePolicy"` // 通过 HTTPCachePolicyId 获取
 
+	// 分组
+	Group *ServerGroupConfig `yaml:"group" json:"group"`
+
 	isOk bool
 }
 
@@ -56,6 +59,23 @@ func NewServerConfig() *ServerConfig {
 }
 
 func (this *ServerConfig) Init() error {
+	// 分解Group
+	if this.Group != nil && this.Group.IsOn {
+		// reverse proxy
+		if this.IsHTTPFamily() && this.Group.HTTPReverseProxyRef != nil && this.Group.HTTPReverseProxyRef.IsPrior {
+			this.ReverseProxyRef = this.Group.HTTPReverseProxyRef
+			this.ReverseProxy = this.Group.HTTPReverseProxy
+		}
+		if this.IsTCPFamily() && this.Group.TCPReverseProxyRef != nil && this.Group.TCPReverseProxyRef.IsPrior {
+			this.ReverseProxyRef = this.Group.TCPReverseProxyRef
+			this.ReverseProxy = this.Group.TCPReverseProxy
+		}
+		if this.IsUDPFamily() && this.Group.UDPReverseProxyRef != nil && this.Group.UDPReverseProxyRef.IsPrior {
+			this.ReverseProxyRef = this.Group.UDPReverseProxyRef
+			this.ReverseProxy = this.Group.UDPReverseProxy
+		}
+	}
+
 	if this.HTTP != nil {
 		err := this.HTTP.Init()
 		if err != nil {

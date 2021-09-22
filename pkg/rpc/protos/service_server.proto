@@ -199,6 +199,7 @@ message UpdateServerWebRequest {
 	int64 webId = 2;
 }
 
+// 修改服务的反向代理设置
 message UpdateServerReverseProxyRequest {
 	int64 serverId = 1;
 	bytes reverseProxyJSON = 2;

@@ -25,6 +25,27 @@ service ServerGroupService {
 
 	// 查找单个分组信息
 	rpc findEnabledServerGroup (FindEnabledServerGroupRequest) returns (FindEnabledServerGroupResponse);
+
+	// 查找HTTP反向代理设置
+	rpc findAndInitServerGroupHTTPReverseProxyConfig (FindAndInitServerGroupHTTPReverseProxyConfigRequest) returns (FindAndInitServerGroupHTTPReverseProxyConfigResponse);
+
+	// 查找TCP反向代理设置
+	rpc findAndInitServerGroupTCPReverseProxyConfig (FindAndInitServerGroupTCPReverseProxyConfigRequest) returns (FindAndInitServerGroupTCPReverseProxyConfigResponse);
+
+	// 查找UDP反向代理设置
+	rpc findAndInitServerGroupUDPReverseProxyConfig (FindAndInitServerGroupUDPReverseProxyConfigRequest) returns (FindAndInitServerGroupUDPReverseProxyConfigResponse);
+
+	// 修改分组的HTTP反向代理设置
+	rpc updateServerGroupHTTPReverseProxy (UpdateServerGroupHTTPReverseProxyRequest) returns (RPCSuccess);
+
+	// 修改分组的TCP反向代理设置
+	rpc updateServerGroupTCPReverseProxy (UpdateServerGroupTCPReverseProxyRequest) returns (RPCSuccess);
+
+	// 修改分组的UDP反向代理设置
+	rpc updateServerGroupUDPReverseProxy (UpdateServerGroupUDPReverseProxyRequest) returns (RPCSuccess);
+
+	// 取得分组的配置概要信息
+	rpc findEnabledServerGroupConfigInfo (FindEnabledServerGroupConfigInfoRequest) returns (FindEnabledServerGroupConfigInfoResponse);
 }
 
 // 创建分组
@@ -67,4 +88,64 @@ message FindEnabledServerGroupRequest {
 
 message FindEnabledServerGroupResponse {
 	ServerGroup serverGroup = 1;
+}
+
+// 查找HTTP反向代理设置
+message FindAndInitServerGroupHTTPReverseProxyConfigRequest {
+	int64 serverGroupId = 1;
+}
+
+message FindAndInitServerGroupHTTPReverseProxyConfigResponse {
+	bytes reverseProxyJSON = 1;
+	bytes reverseProxyRefJSON = 2;
+}
+
+// 查找TCP反向代理设置
+message FindAndInitServerGroupTCPReverseProxyConfigRequest {
+	int64 serverGroupId = 1;
+}
+
+message FindAndInitServerGroupTCPReverseProxyConfigResponse {
+	bytes reverseProxyJSON = 1;
+	bytes reverseProxyRefJSON = 2;
+}
+
+// 查找UDP反向代理设置
+message FindAndInitServerGroupUDPReverseProxyConfigRequest {
+	int64 serverGroupId = 1;
+}
+
+message FindAndInitServerGroupUDPReverseProxyConfigResponse {
+	bytes reverseProxyJSON = 1;
+	bytes reverseProxyRefJSON = 2;
+}
+
+// 修改分组的HTTP反向代理设置
+message UpdateServerGroupHTTPReverseProxyRequest {
+	int64 serverGroupId = 1;
+	bytes reverseProxyJSON = 2;
+}
+
+// 修改分组的TCP反向代理设置
+message UpdateServerGroupTCPReverseProxyRequest {
+	int64 serverGroupId = 1;
+	bytes reverseProxyJSON = 2;
+}
+
+// 修改分组的UDP反向代理设置
+message UpdateServerGroupUDPReverseProxyRequest {
+	int64 serverGroupId = 1;
+	bytes reverseProxyJSON = 2;
+}
+
+// 取得分组的配置概要信息
+message FindEnabledServerGroupConfigInfoRequest {
+	int64 serverGroupId = 1;
+	int64 serverId = 2;
+}
+
+message FindEnabledServerGroupConfigInfoResponse {
+	bool hasHTTPReverseProxy = 1;
+	bool hasTCPReverseProxy = 2;
+	bool hasUDPReverseProxy = 3;
 }

@@ -791,6 +791,7 @@ func (x *UpdateServerWebRequest) GetWebId() int64 {
 	return 0
 }
 
+// 修改服务的反向代理设置
 type UpdateServerReverseProxyRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -210,8 +210,8 @@ func (this *NodeConfig) Init() error {
 }
 
 // AvailableGroups 根据网络地址和协议分组
-func (this *NodeConfig) AvailableGroups() []*serverconfigs.ServerGroup {
-	groupMapping := map[string]*serverconfigs.ServerGroup{} // protocol://addr => Server Group
+func (this *NodeConfig) AvailableGroups() []*serverconfigs.ServerAddressGroup {
+	groupMapping := map[string]*serverconfigs.ServerAddressGroup{} // protocol://addr => Server Group
 	for _, server := range this.Servers {
 		if !server.IsOk() || !server.IsOn {
 			continue
@@ -221,13 +221,13 @@ func (this *NodeConfig) AvailableGroups() []*serverconfigs.ServerGroup {
 			if ok {
 				group.Add(server)
 			} else {
-				group = serverconfigs.NewServerGroup(addr)
+				group = serverconfigs.NewServerAddressGroup(addr)
 				group.Add(server)
 			}
 			groupMapping[addr] = group
 		}
 	}
-	result := []*serverconfigs.ServerGroup{}
+	result := []*serverconfigs.ServerAddressGroup{}
 	for _, group := range groupMapping {
 		result = append(result, group)
 	}

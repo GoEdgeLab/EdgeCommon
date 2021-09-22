@@ -73,6 +73,6 @@ func (this *RandomScheduling) Summary() maps.Map {
 		"code":        "random",
 		"name":        "Random随机算法",
 		"description": "根据权重设置随机分配源站",
-		"networks":    []string{"http", "tcp"},
+		"networks":    []string{"http", "tcp", "udp", "unix"},
 	}
 }

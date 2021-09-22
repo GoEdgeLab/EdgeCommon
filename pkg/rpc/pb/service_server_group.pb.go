@@ -457,6 +457,602 @@ func (x *FindEnabledServerGroupResponse) GetServerGroup() *ServerGroup {
 	return nil
 }
 
+// 查找HTTP反向代理设置
+type FindAndInitServerGroupHTTPReverseProxyConfigRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerGroupId int64 `protobuf:"varint,1,opt,name=serverGroupId,proto3" json:"serverGroupId,omitempty"`
+}
+
+func (x *FindAndInitServerGroupHTTPReverseProxyConfigRequest) Reset() {
+	*x = FindAndInitServerGroupHTTPReverseProxyConfigRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_group_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAndInitServerGroupHTTPReverseProxyConfigRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAndInitServerGroupHTTPReverseProxyConfigRequest) ProtoMessage() {}
+
+func (x *FindAndInitServerGroupHTTPReverseProxyConfigRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_group_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAndInitServerGroupHTTPReverseProxyConfigRequest.ProtoReflect.Descriptor instead.
+func (*FindAndInitServerGroupHTTPReverseProxyConfigRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_group_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *FindAndInitServerGroupHTTPReverseProxyConfigRequest) GetServerGroupId() int64 {
+	if x != nil {
+		return x.ServerGroupId
+	}
+	return 0
+}
+
+type FindAndInitServerGroupHTTPReverseProxyConfigResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ReverseProxyJSON    []byte `protobuf:"bytes,1,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"`
+	ReverseProxyRefJSON []byte `protobuf:"bytes,2,opt,name=reverseProxyRefJSON,proto3" json:"reverseProxyRefJSON,omitempty"`
+}
+
+func (x *FindAndInitServerGroupHTTPReverseProxyConfigResponse) Reset() {
+	*x = FindAndInitServerGroupHTTPReverseProxyConfigResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_group_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAndInitServerGroupHTTPReverseProxyConfigResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAndInitServerGroupHTTPReverseProxyConfigResponse) ProtoMessage() {}
+
+func (x *FindAndInitServerGroupHTTPReverseProxyConfigResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_group_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAndInitServerGroupHTTPReverseProxyConfigResponse.ProtoReflect.Descriptor instead.
+func (*FindAndInitServerGroupHTTPReverseProxyConfigResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_group_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *FindAndInitServerGroupHTTPReverseProxyConfigResponse) GetReverseProxyJSON() []byte {
+	if x != nil {
+		return x.ReverseProxyJSON
+	}
+	return nil
+}
+
+func (x *FindAndInitServerGroupHTTPReverseProxyConfigResponse) GetReverseProxyRefJSON() []byte {
+	if x != nil {
+		return x.ReverseProxyRefJSON
+	}
+	return nil
+}
+
+// 查找TCP反向代理设置
+type FindAndInitServerGroupTCPReverseProxyConfigRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerGroupId int64 `protobuf:"varint,1,opt,name=serverGroupId,proto3" json:"serverGroupId,omitempty"`
+}
+
+func (x *FindAndInitServerGroupTCPReverseProxyConfigRequest) Reset() {
+	*x = FindAndInitServerGroupTCPReverseProxyConfigRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_group_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAndInitServerGroupTCPReverseProxyConfigRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAndInitServerGroupTCPReverseProxyConfigRequest) ProtoMessage() {}
+
+func (x *FindAndInitServerGroupTCPReverseProxyConfigRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_group_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAndInitServerGroupTCPReverseProxyConfigRequest.ProtoReflect.Descriptor instead.
+func (*FindAndInitServerGroupTCPReverseProxyConfigRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_group_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *FindAndInitServerGroupTCPReverseProxyConfigRequest) GetServerGroupId() int64 {
+	if x != nil {
+		return x.ServerGroupId
+	}
+	return 0
+}
+
+type FindAndInitServerGroupTCPReverseProxyConfigResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ReverseProxyJSON    []byte `protobuf:"bytes,1,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"`
+	ReverseProxyRefJSON []byte `protobuf:"bytes,2,opt,name=reverseProxyRefJSON,proto3" json:"reverseProxyRefJSON,omitempty"`
+}
+
+func (x *FindAndInitServerGroupTCPReverseProxyConfigResponse) Reset() {
+	*x = FindAndInitServerGroupTCPReverseProxyConfigResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_group_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAndInitServerGroupTCPReverseProxyConfigResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAndInitServerGroupTCPReverseProxyConfigResponse) ProtoMessage() {}
+
+func (x *FindAndInitServerGroupTCPReverseProxyConfigResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_group_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAndInitServerGroupTCPReverseProxyConfigResponse.ProtoReflect.Descriptor instead.
+func (*FindAndInitServerGroupTCPReverseProxyConfigResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_group_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *FindAndInitServerGroupTCPReverseProxyConfigResponse) GetReverseProxyJSON() []byte {
+	if x != nil {
+		return x.ReverseProxyJSON
+	}
+	return nil
+}
+
+func (x *FindAndInitServerGroupTCPReverseProxyConfigResponse) GetReverseProxyRefJSON() []byte {
+	if x != nil {
+		return x.ReverseProxyRefJSON
+	}
+	return nil
+}
+
+// 查找UDP反向代理设置
+type FindAndInitServerGroupUDPReverseProxyConfigRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerGroupId int64 `protobuf:"varint,1,opt,name=serverGroupId,proto3" json:"serverGroupId,omitempty"`
+}
+
+func (x *FindAndInitServerGroupUDPReverseProxyConfigRequest) Reset() {
+	*x = FindAndInitServerGroupUDPReverseProxyConfigRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_group_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAndInitServerGroupUDPReverseProxyConfigRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAndInitServerGroupUDPReverseProxyConfigRequest) ProtoMessage() {}
+
+func (x *FindAndInitServerGroupUDPReverseProxyConfigRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_group_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAndInitServerGroupUDPReverseProxyConfigRequest.ProtoReflect.Descriptor instead.
+func (*FindAndInitServerGroupUDPReverseProxyConfigRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_group_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *FindAndInitServerGroupUDPReverseProxyConfigRequest) GetServerGroupId() int64 {
+	if x != nil {
+		return x.ServerGroupId
+	}
+	return 0
+}
+
+type FindAndInitServerGroupUDPReverseProxyConfigResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ReverseProxyJSON    []byte `protobuf:"bytes,1,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"`
+	ReverseProxyRefJSON []byte `protobuf:"bytes,2,opt,name=reverseProxyRefJSON,proto3" json:"reverseProxyRefJSON,omitempty"`
+}
+
+func (x *FindAndInitServerGroupUDPReverseProxyConfigResponse) Reset() {
+	*x = FindAndInitServerGroupUDPReverseProxyConfigResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_group_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAndInitServerGroupUDPReverseProxyConfigResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAndInitServerGroupUDPReverseProxyConfigResponse) ProtoMessage() {}
+
+func (x *FindAndInitServerGroupUDPReverseProxyConfigResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_group_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAndInitServerGroupUDPReverseProxyConfigResponse.ProtoReflect.Descriptor instead.
+func (*FindAndInitServerGroupUDPReverseProxyConfigResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_group_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *FindAndInitServerGroupUDPReverseProxyConfigResponse) GetReverseProxyJSON() []byte {
+	if x != nil {
+		return x.ReverseProxyJSON
+	}
+	return nil
+}
+
+func (x *FindAndInitServerGroupUDPReverseProxyConfigResponse) GetReverseProxyRefJSON() []byte {
+	if x != nil {
+		return x.ReverseProxyRefJSON
+	}
+	return nil
+}
+
+// 修改分组的HTTP反向代理设置
+type UpdateServerGroupHTTPReverseProxyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerGroupId    int64  `protobuf:"varint,1,opt,name=serverGroupId,proto3" json:"serverGroupId,omitempty"`
+	ReverseProxyJSON []byte `protobuf:"bytes,2,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"`
+}
+
+func (x *UpdateServerGroupHTTPReverseProxyRequest) Reset() {
+	*x = UpdateServerGroupHTTPReverseProxyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_group_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerGroupHTTPReverseProxyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerGroupHTTPReverseProxyRequest) ProtoMessage() {}
+
+func (x *UpdateServerGroupHTTPReverseProxyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_group_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerGroupHTTPReverseProxyRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerGroupHTTPReverseProxyRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_group_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *UpdateServerGroupHTTPReverseProxyRequest) GetServerGroupId() int64 {
+	if x != nil {
+		return x.ServerGroupId
+	}
+	return 0
+}
+
+func (x *UpdateServerGroupHTTPReverseProxyRequest) GetReverseProxyJSON() []byte {
+	if x != nil {
+		return x.ReverseProxyJSON
+	}
+	return nil
+}
+
+// 修改分组的TCP反向代理设置
+type UpdateServerGroupTCPReverseProxyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerGroupId    int64  `protobuf:"varint,1,opt,name=serverGroupId,proto3" json:"serverGroupId,omitempty"`
+	ReverseProxyJSON []byte `protobuf:"bytes,2,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"`
+}
+
+func (x *UpdateServerGroupTCPReverseProxyRequest) Reset() {
+	*x = UpdateServerGroupTCPReverseProxyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_group_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerGroupTCPReverseProxyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerGroupTCPReverseProxyRequest) ProtoMessage() {}
+
+func (x *UpdateServerGroupTCPReverseProxyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_group_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerGroupTCPReverseProxyRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerGroupTCPReverseProxyRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_group_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *UpdateServerGroupTCPReverseProxyRequest) GetServerGroupId() int64 {
+	if x != nil {
+		return x.ServerGroupId
+	}
+	return 0
+}
+
+func (x *UpdateServerGroupTCPReverseProxyRequest) GetReverseProxyJSON() []byte {
+	if x != nil {
+		return x.ReverseProxyJSON
+	}
+	return nil
+}
+
+// 修改分组的UDP反向代理设置
+type UpdateServerGroupUDPReverseProxyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerGroupId    int64  `protobuf:"varint,1,opt,name=serverGroupId,proto3" json:"serverGroupId,omitempty"`
+	ReverseProxyJSON []byte `protobuf:"bytes,2,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"`
+}
+
+func (x *UpdateServerGroupUDPReverseProxyRequest) Reset() {
+	*x = UpdateServerGroupUDPReverseProxyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_group_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateServerGroupUDPReverseProxyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateServerGroupUDPReverseProxyRequest) ProtoMessage() {}
+
+func (x *UpdateServerGroupUDPReverseProxyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_group_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateServerGroupUDPReverseProxyRequest.ProtoReflect.Descriptor instead.
+func (*UpdateServerGroupUDPReverseProxyRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_group_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *UpdateServerGroupUDPReverseProxyRequest) GetServerGroupId() int64 {
+	if x != nil {
+		return x.ServerGroupId
+	}
+	return 0
+}
+
+func (x *UpdateServerGroupUDPReverseProxyRequest) GetReverseProxyJSON() []byte {
+	if x != nil {
+		return x.ReverseProxyJSON
+	}
+	return nil
+}
+
+// 取得分组的配置概要信息
+type FindEnabledServerGroupConfigInfoRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerGroupId int64 `protobuf:"varint,1,opt,name=serverGroupId,proto3" json:"serverGroupId,omitempty"`
+	ServerId      int64 `protobuf:"varint,2,opt,name=serverId,proto3" json:"serverId,omitempty"`
+}
+
+func (x *FindEnabledServerGroupConfigInfoRequest) Reset() {
+	*x = FindEnabledServerGroupConfigInfoRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_group_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledServerGroupConfigInfoRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledServerGroupConfigInfoRequest) ProtoMessage() {}
+
+func (x *FindEnabledServerGroupConfigInfoRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_group_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledServerGroupConfigInfoRequest.ProtoReflect.Descriptor instead.
+func (*FindEnabledServerGroupConfigInfoRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_group_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *FindEnabledServerGroupConfigInfoRequest) GetServerGroupId() int64 {
+	if x != nil {
+		return x.ServerGroupId
+	}
+	return 0
+}
+
+func (x *FindEnabledServerGroupConfigInfoRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+type FindEnabledServerGroupConfigInfoResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	HasHTTPReverseProxy bool `protobuf:"varint,1,opt,name=hasHTTPReverseProxy,proto3" json:"hasHTTPReverseProxy,omitempty"`
+	HasTCPReverseProxy  bool `protobuf:"varint,2,opt,name=hasTCPReverseProxy,proto3" json:"hasTCPReverseProxy,omitempty"`
+	HasUDPReverseProxy  bool `protobuf:"varint,3,opt,name=hasUDPReverseProxy,proto3" json:"hasUDPReverseProxy,omitempty"`
+}
+
+func (x *FindEnabledServerGroupConfigInfoResponse) Reset() {
+	*x = FindEnabledServerGroupConfigInfoResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_group_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindEnabledServerGroupConfigInfoResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindEnabledServerGroupConfigInfoResponse) ProtoMessage() {}
+
+func (x *FindEnabledServerGroupConfigInfoResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_group_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindEnabledServerGroupConfigInfoResponse.ProtoReflect.Descriptor instead.
+func (*FindEnabledServerGroupConfigInfoResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_group_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *FindEnabledServerGroupConfigInfoResponse) GetHasHTTPReverseProxy() bool {
+	if x != nil {
+		return x.HasHTTPReverseProxy
+	}
+	return false
+}
+
+func (x *FindEnabledServerGroupConfigInfoResponse) GetHasTCPReverseProxy() bool {
+	if x != nil {
+		return x.HasTCPReverseProxy
+	}
+	return false
+}
+
+func (x *FindEnabledServerGroupConfigInfoResponse) GetHasUDPReverseProxy() bool {
+	if x != nil {
+		return x.HasUDPReverseProxy
+	}
+	return false
+}
+
 var File_service_server_group_proto protoreflect.FileDescriptor
 
 var file_service_server_group_proto_rawDesc = []byte{
@@ -504,41 +1100,185 @@ var file_service_server_group_proto_rawDesc = []byte{
 	0x75, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x31, 0x0a, 0x0b, 0x73, 0x65,
 	0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x0f, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70,
-	0x52, 0x0b, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x32, 0x89, 0x04,
-	0x0a, 0x12, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x12, 0x50, 0x0a, 0x11, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65,
-	0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65,
+	0x52, 0x0b, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x22, 0x5b, 0x0a,
+	0x33, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x48, 0x54, 0x54, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72,
+	0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72,
+	0x6f, 0x75, 0x70, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x22, 0x94, 0x01, 0x0a, 0x34, 0x46,
+	0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x48, 0x54, 0x54, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65,
+	0x50, 0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x10, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72,
+	0x6f, 0x78, 0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x10, 0x72,
+	0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x12,
+	0x30, 0x0a, 0x13, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x52,
+	0x65, 0x66, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x13, 0x72, 0x65,
+	0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x52, 0x65, 0x66, 0x4a, 0x53, 0x4f,
+	0x4e, 0x22, 0x5a, 0x0a, 0x32, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x54, 0x43, 0x50, 0x52, 0x65,
+	0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x73, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d,
+	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x22, 0x93, 0x01,
+	0x0a, 0x33, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x54, 0x43, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72,
+	0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x10, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65,
+	0x50, 0x72, 0x6f, 0x78, 0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52,
+	0x10, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x4a, 0x53, 0x4f,
+	0x4e, 0x12, 0x30, 0x0a, 0x13, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78,
+	0x79, 0x52, 0x65, 0x66, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x13,
+	0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x52, 0x65, 0x66, 0x4a,
+	0x53, 0x4f, 0x4e, 0x22, 0x5a, 0x0a, 0x32, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e,
+	0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x55, 0x44, 0x50,
+	0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66,
+	0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x0d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x22,
+	0x93, 0x01, 0x0a, 0x33, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x55, 0x44, 0x50, 0x52, 0x65, 0x76,
+	0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x10, 0x72, 0x65, 0x76, 0x65, 0x72,
+	0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0c, 0x52, 0x10, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x4a,
+	0x53, 0x4f, 0x4e, 0x12, 0x30, 0x0a, 0x13, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72,
+	0x6f, 0x78, 0x79, 0x52, 0x65, 0x66, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c,
+	0x52, 0x13, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x52, 0x65,
+	0x66, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x7c, 0x0a, 0x28, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x48, 0x54, 0x54, 0x50, 0x52, 0x65,
+	0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x24, 0x0a, 0x0d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70,
+	0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x12, 0x2a, 0x0a, 0x10, 0x72, 0x65, 0x76, 0x65, 0x72,
+	0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0c, 0x52, 0x10, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x4a,
+	0x53, 0x4f, 0x4e, 0x22, 0x7b, 0x0a, 0x27, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x54, 0x43, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72,
+	0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x24,
+	0x0a, 0x0d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f,
+	0x75, 0x70, 0x49, 0x64, 0x12, 0x2a, 0x0a, 0x10, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50,
+	0x72, 0x6f, 0x78, 0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x10,
+	0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x4a, 0x53, 0x4f, 0x4e,
+	0x22, 0x7b, 0x0a, 0x27, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x55, 0x44, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50,
+	0x72, 0x6f, 0x78, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x0d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49,
+	0x64, 0x12, 0x2a, 0x0a, 0x10, 0x72, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78,
+	0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x10, 0x72, 0x65, 0x76,
+	0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x6b, 0x0a,
+	0x27, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x49, 0x6e, 0x66,
+	0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x24, 0x0a, 0x0d, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x0d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x12, 0x1a,
+	0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x22, 0xbc, 0x01, 0x0a, 0x28, 0x46,
+	0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30, 0x0a, 0x13, 0x68, 0x61, 0x73, 0x48, 0x54,
+	0x54, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x13, 0x68, 0x61, 0x73, 0x48, 0x54, 0x54, 0x50, 0x52, 0x65, 0x76,
+	0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x12, 0x2e, 0x0a, 0x12, 0x68, 0x61, 0x73,
+	0x54, 0x43, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x12, 0x68, 0x61, 0x73, 0x54, 0x43, 0x50, 0x52, 0x65, 0x76,
+	0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x12, 0x2e, 0x0a, 0x12, 0x68, 0x61, 0x73,
+	0x55, 0x44, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x12, 0x68, 0x61, 0x73, 0x55, 0x44, 0x50, 0x52, 0x65, 0x76,
+	0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x32, 0x93, 0x0b, 0x0a, 0x12, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x12, 0x50, 0x0a, 0x11, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x41, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64,
 	0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x41, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x1c, 0x2e, 0x70, 0x62,
-	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f,
-	0x75, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52,
-	0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x41, 0x0a, 0x11, 0x64, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x1c,
-	0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
-	0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70,
-	0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x6b, 0x0a, 0x1a,
-	0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65,
-	0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e,
-	0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65,
-	0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x26, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x41, 0x0a, 0x11, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75,
+	0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50,
+	0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x6b, 0x0a, 0x1a, 0x66, 0x69, 0x6e, 0x64,
+	0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
+	0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e,
+	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4d, 0x0a, 0x17, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73,
+	0x12, 0x22, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x12, 0x5f, 0x0a, 0x16, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62,
+	0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x21,
+	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x22, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c,
+	0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0xa1, 0x01, 0x0a, 0x2c, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6e,
+	0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70,
+	0x48, 0x54, 0x54, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79,
+	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x37, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
+	0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f,
+	0x75, 0x70, 0x48, 0x54, 0x54, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f,
+	0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x38, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x48, 0x54, 0x54, 0x50, 0x52,
+	0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69,
+	0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x9e, 0x01, 0x0a, 0x2b, 0x66, 0x69,
+	0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47,
+	0x72, 0x6f, 0x75, 0x70, 0x54, 0x43, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72,
+	0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x36, 0x2e, 0x70, 0x62, 0x2e, 0x46,
+	0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x54, 0x43, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50,
+	0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x37, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e,
+	0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x54, 0x43, 0x50,
+	0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66,
+	0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x9e, 0x01, 0x0a, 0x2b, 0x66,
+	0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x55, 0x44, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50,
+	0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x36, 0x2e, 0x70, 0x62, 0x2e,
+	0x46, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49, 0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x55, 0x44, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65,
+	0x50, 0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x37, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6e, 0x64, 0x49,
+	0x6e, 0x69, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x55, 0x44,
+	0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x43, 0x6f, 0x6e,
+	0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x61, 0x0a, 0x21, 0x75,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70,
+	0x48, 0x54, 0x54, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79,
+	0x12, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x48, 0x54, 0x54, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72,
+	0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e,
+	0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x5f,
+	0x0a, 0x20, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72,
+	0x6f, 0x75, 0x70, 0x54, 0x43, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f,
+	0x78, 0x79, 0x12, 0x2b, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x54, 0x43, 0x50, 0x52, 0x65, 0x76, 0x65,
+	0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12,
+	0x5f, 0x0a, 0x20, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47,
+	0x72, 0x6f, 0x75, 0x70, 0x55, 0x44, 0x50, 0x52, 0x65, 0x76, 0x65, 0x72, 0x73, 0x65, 0x50, 0x72,
+	0x6f, 0x78, 0x79, 0x12, 0x2b, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x55, 0x44, 0x50, 0x52, 0x65, 0x76,
+	0x65, 0x72, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x78, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x12, 0x7d, 0x0a, 0x20, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x49, 0x6e, 0x66, 0x6f, 0x12, 0x2b, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e,
 	0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70,
-	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4d, 0x0a, 0x17, 0x75, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x4f, 0x72,
-	0x64, 0x65, 0x72, 0x73, 0x12, 0x22, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x4f, 0x72, 0x64, 0x65, 0x72,
-	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50,
-	0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x5f, 0x0a, 0x16, 0x66, 0x69, 0x6e, 0x64,
-	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f,
-	0x75, 0x70, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62,
-	0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45,
-	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75,
-	0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70,
-	0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c,
+	0x65, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x43, 0x6f, 0x6e,
+	0x66, 0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42,
+	0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -553,37 +1293,62 @@ func file_service_server_group_proto_rawDescGZIP() []byte {
 	return file_service_server_group_proto_rawDescData
 }
 
-var file_service_server_group_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_service_server_group_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_service_server_group_proto_goTypes = []interface{}{
-	(*CreateServerGroupRequest)(nil),           // 0: pb.CreateServerGroupRequest
-	(*CreateServerGroupResponse)(nil),          // 1: pb.CreateServerGroupResponse
-	(*UpdateServerGroupRequest)(nil),           // 2: pb.UpdateServerGroupRequest
-	(*DeleteServerGroupRequest)(nil),           // 3: pb.DeleteServerGroupRequest
-	(*FindAllEnabledServerGroupsRequest)(nil),  // 4: pb.FindAllEnabledServerGroupsRequest
-	(*FindAllEnabledServerGroupsResponse)(nil), // 5: pb.FindAllEnabledServerGroupsResponse
-	(*UpdateServerGroupOrdersRequest)(nil),     // 6: pb.UpdateServerGroupOrdersRequest
-	(*FindEnabledServerGroupRequest)(nil),      // 7: pb.FindEnabledServerGroupRequest
-	(*FindEnabledServerGroupResponse)(nil),     // 8: pb.FindEnabledServerGroupResponse
-	(*ServerGroup)(nil),                        // 9: pb.ServerGroup
-	(*RPCSuccess)(nil),                         // 10: pb.RPCSuccess
+	(*CreateServerGroupRequest)(nil),                             // 0: pb.CreateServerGroupRequest
+	(*CreateServerGroupResponse)(nil),                            // 1: pb.CreateServerGroupResponse
+	(*UpdateServerGroupRequest)(nil),                             // 2: pb.UpdateServerGroupRequest
+	(*DeleteServerGroupRequest)(nil),                             // 3: pb.DeleteServerGroupRequest
+	(*FindAllEnabledServerGroupsRequest)(nil),                    // 4: pb.FindAllEnabledServerGroupsRequest
+	(*FindAllEnabledServerGroupsResponse)(nil),                   // 5: pb.FindAllEnabledServerGroupsResponse
+	(*UpdateServerGroupOrdersRequest)(nil),                       // 6: pb.UpdateServerGroupOrdersRequest
+	(*FindEnabledServerGroupRequest)(nil),                        // 7: pb.FindEnabledServerGroupRequest
+	(*FindEnabledServerGroupResponse)(nil),                       // 8: pb.FindEnabledServerGroupResponse
+	(*FindAndInitServerGroupHTTPReverseProxyConfigRequest)(nil),  // 9: pb.FindAndInitServerGroupHTTPReverseProxyConfigRequest
+	(*FindAndInitServerGroupHTTPReverseProxyConfigResponse)(nil), // 10: pb.FindAndInitServerGroupHTTPReverseProxyConfigResponse
+	(*FindAndInitServerGroupTCPReverseProxyConfigRequest)(nil),   // 11: pb.FindAndInitServerGroupTCPReverseProxyConfigRequest
+	(*FindAndInitServerGroupTCPReverseProxyConfigResponse)(nil),  // 12: pb.FindAndInitServerGroupTCPReverseProxyConfigResponse
+	(*FindAndInitServerGroupUDPReverseProxyConfigRequest)(nil),   // 13: pb.FindAndInitServerGroupUDPReverseProxyConfigRequest
+	(*FindAndInitServerGroupUDPReverseProxyConfigResponse)(nil),  // 14: pb.FindAndInitServerGroupUDPReverseProxyConfigResponse
+	(*UpdateServerGroupHTTPReverseProxyRequest)(nil),             // 15: pb.UpdateServerGroupHTTPReverseProxyRequest
+	(*UpdateServerGroupTCPReverseProxyRequest)(nil),              // 16: pb.UpdateServerGroupTCPReverseProxyRequest
+	(*UpdateServerGroupUDPReverseProxyRequest)(nil),              // 17: pb.UpdateServerGroupUDPReverseProxyRequest
+	(*FindEnabledServerGroupConfigInfoRequest)(nil),              // 18: pb.FindEnabledServerGroupConfigInfoRequest
+	(*FindEnabledServerGroupConfigInfoResponse)(nil),             // 19: pb.FindEnabledServerGroupConfigInfoResponse
+	(*ServerGroup)(nil),                                          // 20: pb.ServerGroup
+	(*RPCSuccess)(nil),                                           // 21: pb.RPCSuccess
 }
 var file_service_server_group_proto_depIdxs = []int32{
-	9,  // 0: pb.FindAllEnabledServerGroupsResponse.serverGroups:type_name -> pb.ServerGroup
-	9,  // 1: pb.FindEnabledServerGroupResponse.serverGroup:type_name -> pb.ServerGroup
+	20, // 0: pb.FindAllEnabledServerGroupsResponse.serverGroups:type_name -> pb.ServerGroup
+	20, // 1: pb.FindEnabledServerGroupResponse.serverGroup:type_name -> pb.ServerGroup
 	0,  // 2: pb.ServerGroupService.createServerGroup:input_type -> pb.CreateServerGroupRequest
 	2,  // 3: pb.ServerGroupService.updateServerGroup:input_type -> pb.UpdateServerGroupRequest
 	3,  // 4: pb.ServerGroupService.deleteServerGroup:input_type -> pb.DeleteServerGroupRequest
 	4,  // 5: pb.ServerGroupService.findAllEnabledServerGroups:input_type -> pb.FindAllEnabledServerGroupsRequest
 	6,  // 6: pb.ServerGroupService.updateServerGroupOrders:input_type -> pb.UpdateServerGroupOrdersRequest
 	7,  // 7: pb.ServerGroupService.findEnabledServerGroup:input_type -> pb.FindEnabledServerGroupRequest
-	1,  // 8: pb.ServerGroupService.createServerGroup:output_type -> pb.CreateServerGroupResponse
-	10, // 9: pb.ServerGroupService.updateServerGroup:output_type -> pb.RPCSuccess
-	10, // 10: pb.ServerGroupService.deleteServerGroup:output_type -> pb.RPCSuccess
-	5,  // 11: pb.ServerGroupService.findAllEnabledServerGroups:output_type -> pb.FindAllEnabledServerGroupsResponse
-	10, // 12: pb.ServerGroupService.updateServerGroupOrders:output_type -> pb.RPCSuccess
-	8,  // 13: pb.ServerGroupService.findEnabledServerGroup:output_type -> pb.FindEnabledServerGroupResponse
-	8,  // [8:14] is the sub-list for method output_type
-	2,  // [2:8] is the sub-list for method input_type
+	9,  // 8: pb.ServerGroupService.findAndInitServerGroupHTTPReverseProxyConfig:input_type -> pb.FindAndInitServerGroupHTTPReverseProxyConfigRequest
+	11, // 9: pb.ServerGroupService.findAndInitServerGroupTCPReverseProxyConfig:input_type -> pb.FindAndInitServerGroupTCPReverseProxyConfigRequest
+	13, // 10: pb.ServerGroupService.findAndInitServerGroupUDPReverseProxyConfig:input_type -> pb.FindAndInitServerGroupUDPReverseProxyConfigRequest
+	15, // 11: pb.ServerGroupService.updateServerGroupHTTPReverseProxy:input_type -> pb.UpdateServerGroupHTTPReverseProxyRequest
+	16, // 12: pb.ServerGroupService.updateServerGroupTCPReverseProxy:input_type -> pb.UpdateServerGroupTCPReverseProxyRequest
+	17, // 13: pb.ServerGroupService.updateServerGroupUDPReverseProxy:input_type -> pb.UpdateServerGroupUDPReverseProxyRequest
+	18, // 14: pb.ServerGroupService.findEnabledServerGroupConfigInfo:input_type -> pb.FindEnabledServerGroupConfigInfoRequest
+	1,  // 15: pb.ServerGroupService.createServerGroup:output_type -> pb.CreateServerGroupResponse
+	21, // 16: pb.ServerGroupService.updateServerGroup:output_type -> pb.RPCSuccess
+	21, // 17: pb.ServerGroupService.deleteServerGroup:output_type -> pb.RPCSuccess
+	5,  // 18: pb.ServerGroupService.findAllEnabledServerGroups:output_type -> pb.FindAllEnabledServerGroupsResponse
+	21, // 19: pb.ServerGroupService.updateServerGroupOrders:output_type -> pb.RPCSuccess
+	8,  // 20: pb.ServerGroupService.findEnabledServerGroup:output_type -> pb.FindEnabledServerGroupResponse
+	10, // 21: pb.ServerGroupService.findAndInitServerGroupHTTPReverseProxyConfig:output_type -> pb.FindAndInitServerGroupHTTPReverseProxyConfigResponse
+	12, // 22: pb.ServerGroupService.findAndInitServerGroupTCPReverseProxyConfig:output_type -> pb.FindAndInitServerGroupTCPReverseProxyConfigResponse
+	14, // 23: pb.ServerGroupService.findAndInitServerGroupUDPReverseProxyConfig:output_type -> pb.FindAndInitServerGroupUDPReverseProxyConfigResponse
+	21, // 24: pb.ServerGroupService.updateServerGroupHTTPReverseProxy:output_type -> pb.RPCSuccess
+	21, // 25: pb.ServerGroupService.updateServerGroupTCPReverseProxy:output_type -> pb.RPCSuccess
+	21, // 26: pb.ServerGroupService.updateServerGroupUDPReverseProxy:output_type -> pb.RPCSuccess
+	19, // 27: pb.ServerGroupService.findEnabledServerGroupConfigInfo:output_type -> pb.FindEnabledServerGroupConfigInfoResponse
+	15, // [15:28] is the sub-list for method output_type
+	2,  // [2:15] is the sub-list for method input_type
 	2,  // [2:2] is the sub-list for extension type_name
 	2,  // [2:2] is the sub-list for extension extendee
 	0,  // [0:2] is the sub-list for field type_name
@@ -705,6 +1470,138 @@ func file_service_server_group_proto_init() {
 				return nil
 			}
 		}
+		file_service_server_group_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAndInitServerGroupHTTPReverseProxyConfigRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_group_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAndInitServerGroupHTTPReverseProxyConfigResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_group_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAndInitServerGroupTCPReverseProxyConfigRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_group_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAndInitServerGroupTCPReverseProxyConfigResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_group_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAndInitServerGroupUDPReverseProxyConfigRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_group_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAndInitServerGroupUDPReverseProxyConfigResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_group_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerGroupHTTPReverseProxyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_group_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerGroupTCPReverseProxyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_group_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateServerGroupUDPReverseProxyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_group_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledServerGroupConfigInfoRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_group_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledServerGroupConfigInfoResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -712,7 +1609,7 @@ func file_service_server_group_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_server_group_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -750,6 +1647,20 @@ type ServerGroupServiceClient interface {
 	UpdateServerGroupOrders(ctx context.Context, in *UpdateServerGroupOrdersRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 查找单个分组信息
 	FindEnabledServerGroup(ctx context.Context, in *FindEnabledServerGroupRequest, opts ...grpc.CallOption) (*FindEnabledServerGroupResponse, error)
+	// 查找HTTP反向代理设置
+	FindAndInitServerGroupHTTPReverseProxyConfig(ctx context.Context, in *FindAndInitServerGroupHTTPReverseProxyConfigRequest, opts ...grpc.CallOption) (*FindAndInitServerGroupHTTPReverseProxyConfigResponse, error)
+	// 查找TCP反向代理设置
+	FindAndInitServerGroupTCPReverseProxyConfig(ctx context.Context, in *FindAndInitServerGroupTCPReverseProxyConfigRequest, opts ...grpc.CallOption) (*FindAndInitServerGroupTCPReverseProxyConfigResponse, error)
+	// 查找UDP反向代理设置
+	FindAndInitServerGroupUDPReverseProxyConfig(ctx context.Context, in *FindAndInitServerGroupUDPReverseProxyConfigRequest, opts ...grpc.CallOption) (*FindAndInitServerGroupUDPReverseProxyConfigResponse, error)
+	// 修改分组的HTTP反向代理设置
+	UpdateServerGroupHTTPReverseProxy(ctx context.Context, in *UpdateServerGroupHTTPReverseProxyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 修改分组的TCP反向代理设置
+	UpdateServerGroupTCPReverseProxy(ctx context.Context, in *UpdateServerGroupTCPReverseProxyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 修改分组的UDP反向代理设置
+	UpdateServerGroupUDPReverseProxy(ctx context.Context, in *UpdateServerGroupUDPReverseProxyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 取得分组的配置概要信息
+	FindEnabledServerGroupConfigInfo(ctx context.Context, in *FindEnabledServerGroupConfigInfoRequest, opts ...grpc.CallOption) (*FindEnabledServerGroupConfigInfoResponse, error)
 }
 
 type serverGroupServiceClient struct {
@@ -814,6 +1725,69 @@ func (c *serverGroupServiceClient) FindEnabledServerGroup(ctx context.Context, i
 	return out, nil
 }
 
+func (c *serverGroupServiceClient) FindAndInitServerGroupHTTPReverseProxyConfig(ctx context.Context, in *FindAndInitServerGroupHTTPReverseProxyConfigRequest, opts ...grpc.CallOption) (*FindAndInitServerGroupHTTPReverseProxyConfigResponse, error) {
+	out := new(FindAndInitServerGroupHTTPReverseProxyConfigResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerGroupService/findAndInitServerGroupHTTPReverseProxyConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverGroupServiceClient) FindAndInitServerGroupTCPReverseProxyConfig(ctx context.Context, in *FindAndInitServerGroupTCPReverseProxyConfigRequest, opts ...grpc.CallOption) (*FindAndInitServerGroupTCPReverseProxyConfigResponse, error) {
+	out := new(FindAndInitServerGroupTCPReverseProxyConfigResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerGroupService/findAndInitServerGroupTCPReverseProxyConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverGroupServiceClient) FindAndInitServerGroupUDPReverseProxyConfig(ctx context.Context, in *FindAndInitServerGroupUDPReverseProxyConfigRequest, opts ...grpc.CallOption) (*FindAndInitServerGroupUDPReverseProxyConfigResponse, error) {
+	out := new(FindAndInitServerGroupUDPReverseProxyConfigResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerGroupService/findAndInitServerGroupUDPReverseProxyConfig", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverGroupServiceClient) UpdateServerGroupHTTPReverseProxy(ctx context.Context, in *UpdateServerGroupHTTPReverseProxyRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.ServerGroupService/updateServerGroupHTTPReverseProxy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverGroupServiceClient) UpdateServerGroupTCPReverseProxy(ctx context.Context, in *UpdateServerGroupTCPReverseProxyRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.ServerGroupService/updateServerGroupTCPReverseProxy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverGroupServiceClient) UpdateServerGroupUDPReverseProxy(ctx context.Context, in *UpdateServerGroupUDPReverseProxyRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.ServerGroupService/updateServerGroupUDPReverseProxy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverGroupServiceClient) FindEnabledServerGroupConfigInfo(ctx context.Context, in *FindEnabledServerGroupConfigInfoRequest, opts ...grpc.CallOption) (*FindEnabledServerGroupConfigInfoResponse, error) {
+	out := new(FindEnabledServerGroupConfigInfoResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerGroupService/findEnabledServerGroupConfigInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServerGroupServiceServer is the server API for ServerGroupService service.
 type ServerGroupServiceServer interface {
 	// 创建分组
@@ -828,6 +1802,20 @@ type ServerGroupServiceServer interface {
 	UpdateServerGroupOrders(context.Context, *UpdateServerGroupOrdersRequest) (*RPCSuccess, error)
 	// 查找单个分组信息
 	FindEnabledServerGroup(context.Context, *FindEnabledServerGroupRequest) (*FindEnabledServerGroupResponse, error)
+	// 查找HTTP反向代理设置
+	FindAndInitServerGroupHTTPReverseProxyConfig(context.Context, *FindAndInitServerGroupHTTPReverseProxyConfigRequest) (*FindAndInitServerGroupHTTPReverseProxyConfigResponse, error)
+	// 查找TCP反向代理设置
+	FindAndInitServerGroupTCPReverseProxyConfig(context.Context, *FindAndInitServerGroupTCPReverseProxyConfigRequest) (*FindAndInitServerGroupTCPReverseProxyConfigResponse, error)
+	// 查找UDP反向代理设置
+	FindAndInitServerGroupUDPReverseProxyConfig(context.Context, *FindAndInitServerGroupUDPReverseProxyConfigRequest) (*FindAndInitServerGroupUDPReverseProxyConfigResponse, error)
+	// 修改分组的HTTP反向代理设置
+	UpdateServerGroupHTTPReverseProxy(context.Context, *UpdateServerGroupHTTPReverseProxyRequest) (*RPCSuccess, error)
+	// 修改分组的TCP反向代理设置
+	UpdateServerGroupTCPReverseProxy(context.Context, *UpdateServerGroupTCPReverseProxyRequest) (*RPCSuccess, error)
+	// 修改分组的UDP反向代理设置
+	UpdateServerGroupUDPReverseProxy(context.Context, *UpdateServerGroupUDPReverseProxyRequest) (*RPCSuccess, error)
+	// 取得分组的配置概要信息
+	FindEnabledServerGroupConfigInfo(context.Context, *FindEnabledServerGroupConfigInfoRequest) (*FindEnabledServerGroupConfigInfoResponse, error)
 }
 
 // UnimplementedServerGroupServiceServer can be embedded to have forward compatible implementations.
@@ -851,6 +1839,27 @@ func (*UnimplementedServerGroupServiceServer) UpdateServerGroupOrders(context.Co
 }
 func (*UnimplementedServerGroupServiceServer) FindEnabledServerGroup(context.Context, *FindEnabledServerGroupRequest) (*FindEnabledServerGroupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledServerGroup not implemented")
+}
+func (*UnimplementedServerGroupServiceServer) FindAndInitServerGroupHTTPReverseProxyConfig(context.Context, *FindAndInitServerGroupHTTPReverseProxyConfigRequest) (*FindAndInitServerGroupHTTPReverseProxyConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAndInitServerGroupHTTPReverseProxyConfig not implemented")
+}
+func (*UnimplementedServerGroupServiceServer) FindAndInitServerGroupTCPReverseProxyConfig(context.Context, *FindAndInitServerGroupTCPReverseProxyConfigRequest) (*FindAndInitServerGroupTCPReverseProxyConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAndInitServerGroupTCPReverseProxyConfig not implemented")
+}
+func (*UnimplementedServerGroupServiceServer) FindAndInitServerGroupUDPReverseProxyConfig(context.Context, *FindAndInitServerGroupUDPReverseProxyConfigRequest) (*FindAndInitServerGroupUDPReverseProxyConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAndInitServerGroupUDPReverseProxyConfig not implemented")
+}
+func (*UnimplementedServerGroupServiceServer) UpdateServerGroupHTTPReverseProxy(context.Context, *UpdateServerGroupHTTPReverseProxyRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerGroupHTTPReverseProxy not implemented")
+}
+func (*UnimplementedServerGroupServiceServer) UpdateServerGroupTCPReverseProxy(context.Context, *UpdateServerGroupTCPReverseProxyRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerGroupTCPReverseProxy not implemented")
+}
+func (*UnimplementedServerGroupServiceServer) UpdateServerGroupUDPReverseProxy(context.Context, *UpdateServerGroupUDPReverseProxyRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerGroupUDPReverseProxy not implemented")
+}
+func (*UnimplementedServerGroupServiceServer) FindEnabledServerGroupConfigInfo(context.Context, *FindEnabledServerGroupConfigInfoRequest) (*FindEnabledServerGroupConfigInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledServerGroupConfigInfo not implemented")
 }
 
 func RegisterServerGroupServiceServer(s *grpc.Server, srv ServerGroupServiceServer) {
@@ -965,6 +1974,132 @@ func _ServerGroupService_FindEnabledServerGroup_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServerGroupService_FindAndInitServerGroupHTTPReverseProxyConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAndInitServerGroupHTTPReverseProxyConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerGroupServiceServer).FindAndInitServerGroupHTTPReverseProxyConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerGroupService/FindAndInitServerGroupHTTPReverseProxyConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerGroupServiceServer).FindAndInitServerGroupHTTPReverseProxyConfig(ctx, req.(*FindAndInitServerGroupHTTPReverseProxyConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerGroupService_FindAndInitServerGroupTCPReverseProxyConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAndInitServerGroupTCPReverseProxyConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerGroupServiceServer).FindAndInitServerGroupTCPReverseProxyConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerGroupService/FindAndInitServerGroupTCPReverseProxyConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerGroupServiceServer).FindAndInitServerGroupTCPReverseProxyConfig(ctx, req.(*FindAndInitServerGroupTCPReverseProxyConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerGroupService_FindAndInitServerGroupUDPReverseProxyConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAndInitServerGroupUDPReverseProxyConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerGroupServiceServer).FindAndInitServerGroupUDPReverseProxyConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerGroupService/FindAndInitServerGroupUDPReverseProxyConfig",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerGroupServiceServer).FindAndInitServerGroupUDPReverseProxyConfig(ctx, req.(*FindAndInitServerGroupUDPReverseProxyConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerGroupService_UpdateServerGroupHTTPReverseProxy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerGroupHTTPReverseProxyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerGroupServiceServer).UpdateServerGroupHTTPReverseProxy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerGroupService/UpdateServerGroupHTTPReverseProxy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerGroupServiceServer).UpdateServerGroupHTTPReverseProxy(ctx, req.(*UpdateServerGroupHTTPReverseProxyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerGroupService_UpdateServerGroupTCPReverseProxy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerGroupTCPReverseProxyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerGroupServiceServer).UpdateServerGroupTCPReverseProxy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerGroupService/UpdateServerGroupTCPReverseProxy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerGroupServiceServer).UpdateServerGroupTCPReverseProxy(ctx, req.(*UpdateServerGroupTCPReverseProxyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerGroupService_UpdateServerGroupUDPReverseProxy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateServerGroupUDPReverseProxyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerGroupServiceServer).UpdateServerGroupUDPReverseProxy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerGroupService/UpdateServerGroupUDPReverseProxy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerGroupServiceServer).UpdateServerGroupUDPReverseProxy(ctx, req.(*UpdateServerGroupUDPReverseProxyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerGroupService_FindEnabledServerGroupConfigInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledServerGroupConfigInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerGroupServiceServer).FindEnabledServerGroupConfigInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerGroupService/FindEnabledServerGroupConfigInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerGroupServiceServer).FindEnabledServerGroupConfigInfo(ctx, req.(*FindEnabledServerGroupConfigInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _ServerGroupService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.ServerGroupService",
 	HandlerType: (*ServerGroupServiceServer)(nil),
@@ -992,6 +2127,34 @@ var _ServerGroupService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findEnabledServerGroup",
 			Handler:    _ServerGroupService_FindEnabledServerGroup_Handler,
+		},
+		{
+			MethodName: "findAndInitServerGroupHTTPReverseProxyConfig",
+			Handler:    _ServerGroupService_FindAndInitServerGroupHTTPReverseProxyConfig_Handler,
+		},
+		{
+			MethodName: "findAndInitServerGroupTCPReverseProxyConfig",
+			Handler:    _ServerGroupService_FindAndInitServerGroupTCPReverseProxyConfig_Handler,
+		},
+		{
+			MethodName: "findAndInitServerGroupUDPReverseProxyConfig",
+			Handler:    _ServerGroupService_FindAndInitServerGroupUDPReverseProxyConfig_Handler,
+		},
+		{
+			MethodName: "updateServerGroupHTTPReverseProxy",
+			Handler:    _ServerGroupService_UpdateServerGroupHTTPReverseProxy_Handler,
+		},
+		{
+			MethodName: "updateServerGroupTCPReverseProxy",
+			Handler:    _ServerGroupService_UpdateServerGroupTCPReverseProxy_Handler,
+		},
+		{
+			MethodName: "updateServerGroupUDPReverseProxy",
+			Handler:    _ServerGroupService_UpdateServerGroupUDPReverseProxy_Handler,
+		},
+		{
+			MethodName: "findEnabledServerGroupConfigInfo",
+			Handler:    _ServerGroupService_FindEnabledServerGroupConfigInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
