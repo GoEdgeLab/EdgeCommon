@@ -148,4 +148,5 @@ message FindEnabledServerGroupConfigInfoResponse {
 	bool hasHTTPReverseProxy = 1;
 	bool hasTCPReverseProxy = 2;
 	bool hasUDPReverseProxy = 3;
+	int64 serverGroupId = 4;
 }
