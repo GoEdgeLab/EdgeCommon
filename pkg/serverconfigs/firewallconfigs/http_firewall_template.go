@@ -445,8 +445,8 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		{
 			set := &HTTPFirewallRuleSet{}
 			set.IsOn = true
-			set.Name = "CC请求数"
-			set.Description = "限制单IP在一定时间内的请求数"
+			set.Name = "CC单URL请求数"
+			set.Description = "限制单IP在一定时间内对单URL的请求数"
 			set.Code = "8001"
 			set.Connector = HTTPFirewallRuleConnectorAnd
 			set.Actions = []*HTTPFirewallActionConfig{
@@ -458,11 +458,66 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				IsOn:     true,
 				Param:    "${cc2}",
 				Operator: HTTPFirewallRuleOperatorGt,
-				Value:    "1000",
+				Value:    "120",
 				CheckpointOptions: map[string]interface{}{
 					"keys":      []string{"${remoteAddr}", "${requestPath}"},
 					"period":    "60",
-					"threshold": 1000,
+					"threshold": 120,
+				},
+				IsCaseInsensitive: false,
+			})
+			set.AddRule(&HTTPFirewallRule{
+				IsOn:              true,
+				Param:             "${remoteAddr}",
+				Operator:          HTTPFirewallRuleOperatorNotIPRange,
+				Value:             `127.0.0.1/8`,
+				IsCaseInsensitive: false,
+			})
+			set.AddRule(&HTTPFirewallRule{
+				IsOn:              true,
+				Param:             "${remoteAddr}",
+				Operator:          HTTPFirewallRuleOperatorNotIPRange,
+				Value:             `192.168.0.1/16`,
+				IsCaseInsensitive: false,
+			})
+			set.AddRule(&HTTPFirewallRule{
+				IsOn:              true,
+				Param:             "${remoteAddr}",
+				Operator:          HTTPFirewallRuleOperatorNotIPRange,
+				Value:             `10.0.0.1/8`,
+				IsCaseInsensitive: false,
+			})
+			set.AddRule(&HTTPFirewallRule{
+				IsOn:              true,
+				Param:             "${remoteAddr}",
+				Operator:          HTTPFirewallRuleOperatorNotIPRange,
+				Value:             `172.16.0.1/12`,
+				IsCaseInsensitive: false,
+			})
+
+			group.AddRuleSet(set)
+		}
+		{
+			set := &HTTPFirewallRuleSet{}
+			set.IsOn = true
+			set.Name = "CC请求数"
+			set.Description = "限制单IP在一定时间内的总体请求数"
+			set.Code = "8001"
+			set.Connector = HTTPFirewallRuleConnectorAnd
+			set.Actions = []*HTTPFirewallActionConfig{
+				{
+					Code: HTTPFirewallActionBlock,
+				},
+			}
+			set.AddRule(&HTTPFirewallRule{
+				IsOn:     true,
+				Param:    "${cc2}",
+				Operator: HTTPFirewallRuleOperatorGt,
+				Value:    "1200",
+				CheckpointOptions: map[string]interface{}{
+					"keys":      []string{"${remoteAddr}"},
+					"period":    "60",
+					"threshold": 1200,
 				},
 				IsCaseInsensitive: false,
 			})
