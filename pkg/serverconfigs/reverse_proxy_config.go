@@ -194,7 +194,7 @@ func (this *ReverseProxyConfig) NextOrigin(call *shared.RequestCall) *OriginConf
 	}
 
 	// 空域名
-	if len(call.Domain) == 0 {
+	if call == nil || len(call.Domain) == 0 {
 		group, ok := this.schedulingGroupMap[""]
 		if ok {
 			return group.NextOrigin(call)
