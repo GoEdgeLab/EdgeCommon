@@ -232,3 +232,12 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 	},
 }
+
+func FindRuleOperatorName(code string) string {
+	for _, operator := range AllRuleOperators {
+		if operator.Code == code {
+			return operator.Name
+		}
+	}
+	return ""
+}

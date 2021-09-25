@@ -48,3 +48,7 @@ func (this *HTTPFirewallRule) Prefix() string {
 	}
 	return this.Param
 }
+
+func (this *HTTPFirewallRule) Summary() string {
+	return this.Param + " " + FindRuleOperatorName(this.Operator) + " " + this.Value
+}

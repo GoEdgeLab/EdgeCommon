@@ -1,6 +1,9 @@
 package firewallconfigs
 
-import "github.com/iwind/TeaGo/maps"
+import (
+	"github.com/iwind/TeaGo/logs"
+	"github.com/iwind/TeaGo/maps"
+)
 
 // HTTPFirewallActionConfig 单个动作配置
 type HTTPFirewallActionConfig struct {
@@ -30,7 +33,9 @@ func (this *HTTPFirewallRuleSet) Init() error {
 	for _, rule := range this.Rules {
 		err := rule.Init()
 		if err != nil {
-			return err
+			logs.Println("ERROR", "validate rule '"+rule.Summary()+"' failed: "+err.Error())
+
+			// 这里不阻断执行，因为先前有些用户填写了错误的规则
 		}
 	}
 
