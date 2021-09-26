@@ -15,7 +15,8 @@ type HTTPCacheRef struct {
 	Key     string               `yaml:"key" json:"key"`         // 每个缓存的Key规则，里面可以有变量
 	Life    *shared.TimeDuration `yaml:"life" json:"life"`       // 时间
 	Status  []int                `yaml:"status" json:"status"`   // 缓存的状态码列表
-	MaxSize *shared.SizeCapacity `yaml:"maxSize" json:"maxSize"` // 能够请求的最大尺寸
+	MinSize *shared.SizeCapacity `yaml:"minSize" json:"minSize"` // 能够缓存的最小尺寸
+	MaxSize *shared.SizeCapacity `yaml:"maxSize" json:"maxSize"` // 能够缓存的最大尺寸
 
 	SkipResponseCacheControlValues []string `yaml:"skipCacheControlValues" json:"skipCacheControlValues"`     // 可以跳过的响应的Cache-Control值
 	SkipResponseSetCookie          bool     `yaml:"skipSetCookie" json:"skipSetCookie"`                       // 是否跳过响应的Set-Cookie Header
@@ -29,11 +30,15 @@ type HTTPCacheRef struct {
 	IsReverse bool `yaml:"isReverse" json:"isReverse"` // 是否为反向条件，反向条件的不缓存
 
 	lifeSeconds                     int64
+	minSize                         int64
 	maxSize                         int64
 	uppercaseSkipCacheControlValues []string
 }
 
 func (this *HTTPCacheRef) Init() error {
+	if this.MinSize != nil {
+		this.minSize = this.MinSize.Bytes()
+	}
 	if this.MaxSize != nil {
 		this.maxSize = this.MaxSize.Bytes()
 	}
@@ -66,17 +71,22 @@ func (this *HTTPCacheRef) Init() error {
 	return nil
 }
 
-// 最大数据尺寸
+// MaxSizeBytes 最大数据尺寸
 func (this *HTTPCacheRef) MaxSizeBytes() int64 {
 	return this.maxSize
 }
 
-// 生命周期
+// MinSizeBytes 最小数据尺寸
+func (this *HTTPCacheRef) MinSizeBytes() int64 {
+	return this.minSize
+}
+
+// LifeSeconds 生命周期
 func (this *HTTPCacheRef) LifeSeconds() int64 {
 	return this.lifeSeconds
 }
 
-// 是否包含某个Cache-Control值
+// ContainsCacheControl 是否包含某个Cache-Control值
 func (this *HTTPCacheRef) ContainsCacheControl(value string) bool {
 	return lists.ContainsString(this.uppercaseSkipCacheControlValues, strings.ToUpper(value))
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/iwind/TeaGo/maps"
 )
 
-// 健康检查设置
+// HealthCheckConfig 健康检查设置
 type HealthCheckConfig struct {
 	IsOn           bool                 `yaml:"isOn" json:"isOn"`                     // 是否开启
 	URL            string               `yaml:"url" json:"url"`                       // 读取的URL
@@ -21,7 +21,7 @@ type HealthCheckConfig struct {
 	CountDown      int                  `yaml:"countDown" json:"countDown"`           // 连续离线认定次数
 }
 
-// 初始化
+// Init 初始化
 func (this *HealthCheckConfig) Init() error {
 	return nil
 }
