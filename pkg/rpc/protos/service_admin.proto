@@ -206,11 +206,15 @@ message ComposeAdminDashboardRequest {
 message ComposeAdminDashboardResponse {
 	int64 countNodeClusters = 1;
 	int64 countNodes = 2;
+	int64 countOfflineNodes = 9;
 	int64 countServers = 3;
 	int64 countUsers = 4;
 	int64 countAPINodes = 5;
+	int64 countOfflineAPINodes = 10;
 	int64 countDBNodes = 6;
+	int64 countOfflineDBNodes = 11;
 	int64 countUserNodes = 7;
+	int64 countOfflineUserNodes = 12;
 	int64 defaultNodeClusterId = 8;
 
 	repeated DailyTrafficStat dailyTrafficStats = 30;
