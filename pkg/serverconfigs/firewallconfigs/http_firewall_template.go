@@ -1,5 +1,7 @@
 package firewallconfigs
 
+import "github.com/iwind/TeaGo/maps"
+
 type HTTPFirewallRuleConnector = string
 
 const (
@@ -452,6 +454,9 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
 					Code: HTTPFirewallActionBlock,
+					Options: maps.Map{
+						"timeout": 600,
+					},
 				},
 			}
 			set.AddRule(&HTTPFirewallRule{
@@ -507,6 +512,9 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
 					Code: HTTPFirewallActionBlock,
+					Options: maps.Map{
+						"timeout": 600,
+					},
 				},
 			}
 			set.AddRule(&HTTPFirewallRule{
