@@ -151,6 +151,9 @@ func (this *HTTPCompressionConfig) MaxBytes() int64 {
 // MatchResponse 是否匹配响应
 func (this *HTTPCompressionConfig) MatchResponse(mimeType string, contentLength int64, requestExt string, formatter shared.Formatter) bool {
 	if this.Conds != nil && formatter != nil {
+		if !this.Conds.MatchRequest(formatter) {
+			return false
+		}
 		if !this.Conds.MatchResponse(formatter) {
 			return false
 		}
