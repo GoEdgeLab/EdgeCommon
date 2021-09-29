@@ -19,8 +19,8 @@ service HTTPWebService {
 	// 更改Web配置
 	rpc updateHTTPWeb (UpdateHTTPWebRequest) returns (RPCSuccess);
 
-	// 更改Gzip配置
-	rpc updateHTTPWebGzip (UpdateHTTPWebGzipRequest) returns (RPCSuccess);
+	// 更改压缩配置
+	rpc updateHTTPWebCompression (UpdateHTTPWebCompressionRequest) returns (RPCSuccess);
 
 	// 更改字符集配置
 	rpc updateHTTPWebCharset (UpdateHTTPWebCharsetRequest) returns (RPCSuccess);
@@ -107,10 +107,10 @@ message UpdateHTTPWebRequest {
 	bytes rootJSON = 2;
 }
 
-// 更改Gzip配置
-message UpdateHTTPWebGzipRequest {
+// 更改压缩配置
+message UpdateHTTPWebCompressionRequest {
 	int64 webId = 1;
-	bytes gzipJSON = 2;
+	bytes compressionJSON = 2;
 }
 
 // 更改字符集配置

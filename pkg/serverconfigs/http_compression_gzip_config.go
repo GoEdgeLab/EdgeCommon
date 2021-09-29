@@ -4,8 +4,8 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 )
 
-// gzip配置
-type HTTPGzipConfig struct {
+// HTTPGzipCompressionConfig gzip配置
+type HTTPGzipCompressionConfig struct {
 	Id        int64                          `yaml:"id" json:"id"`               // ID
 	IsOn      bool                           `yaml:"isOn" json:"isOn"`           // 是否启用
 	Level     int8                           `yaml:"level" json:"level"`         // 1-9
@@ -15,11 +15,10 @@ type HTTPGzipConfig struct {
 
 	minLength int64
 	maxLength int64
-	mimeTypes []*MimeTypeRule
 }
 
-// 校验
-func (this *HTTPGzipConfig) Init() error {
+// Init 校验
+func (this *HTTPGzipCompressionConfig) Init() error {
 	if this.MinLength != nil {
 		this.minLength = this.MinLength.Bytes()
 	}
@@ -37,12 +36,12 @@ func (this *HTTPGzipConfig) Init() error {
 	return nil
 }
 
-// 可压缩最小尺寸
-func (this *HTTPGzipConfig) MinBytes() int64 {
+// MinBytes 可压缩最小尺寸
+func (this *HTTPGzipCompressionConfig) MinBytes() int64 {
 	return this.minLength
 }
 
-// 可压缩最大尺寸
-func (this *HTTPGzipConfig) MaxBytes() int64 {
+// MaxBytes 可压缩最大尺寸
+func (this *HTTPGzipCompressionConfig) MaxBytes() int64 {
 	return this.maxLength
 }

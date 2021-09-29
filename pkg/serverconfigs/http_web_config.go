@@ -6,12 +6,13 @@ import (
 )
 
 type HTTPWebConfig struct {
-	Id                 int64                               `yaml:"id" json:"id"`                                 // ID
-	IsOn               bool                                `yaml:"isOn" json:"isOn"`                             // 是否启用
-	Locations          []*HTTPLocationConfig               `yaml:"locations" json:"locations"`                   // 路径规则 TODO
-	LocationRefs       []*HTTPLocationRef                  `yaml:"locationRefs" json:"locationRefs"`             // 路径规则应用
-	GzipRef            *HTTPGzipRef                        `yaml:"gzipRef" json:"gzipRef"`                       // Gzip引用
-	Gzip               *HTTPGzipConfig                     `yaml:"gzip" json:"gzip"`                             // Gzip配置
+	Id           int64                 `yaml:"id" json:"id"`                     // ID
+	IsOn         bool                  `yaml:"isOn" json:"isOn"`                 // 是否启用
+	Locations    []*HTTPLocationConfig `yaml:"locations" json:"locations"`       // 路径规则 TODO
+	LocationRefs []*HTTPLocationRef    `yaml:"locationRefs" json:"locationRefs"` // 路径规则应用
+	//GzipRef            *HTTPGzipRef                        `yaml:"gzipRef" json:"gzipRef"`                       // Gzip引用
+	//Gzip               *HTTPCompressGzipConfig             `yaml:"gzip" json:"gzip"`                             // Gzip配置
+	Compression        *HTTPCompressionConfig              `yaml:"compression" json:"compression"`               //
 	Charset            *HTTPCharsetConfig                  `yaml:"charset" json:"charset"`                       // 字符编码
 	Shutdown           *HTTPShutdownConfig                 `yaml:"shutdown" json:"shutdown"`                     // 临时关闭配置
 	Pages              []*HTTPPageConfig                   `yaml:"pages" json:"pages"`                           // 特殊页面配置
@@ -61,9 +62,9 @@ func (this *HTTPWebConfig) Init() error {
 		}
 	}
 
-	// gzip
-	if this.Gzip != nil {
-		err := this.Gzip.Init()
+	// compression
+	if this.Compression != nil {
+		err := this.Compression.Init()
 		if err != nil {
 			return err
 		}

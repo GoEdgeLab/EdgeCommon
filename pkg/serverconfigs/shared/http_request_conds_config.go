@@ -40,8 +40,8 @@ func (this *HTTPRequestCondsConfig) Init() error {
 }
 
 // MatchRequest 判断请求是否匹配
-func (this *HTTPRequestCondsConfig) MatchRequest(formatter func(s string) string) bool {
-	if !this.IsOn && len(this.Groups) == 0 {
+func (this *HTTPRequestCondsConfig) MatchRequest(formatter Formatter) bool {
+	if !this.IsOn || len(this.Groups) == 0 {
 		return true
 	}
 	ok := false
@@ -63,7 +63,7 @@ func (this *HTTPRequestCondsConfig) MatchRequest(formatter func(s string) string
 
 // MatchResponse 判断响应是否匹配
 func (this *HTTPRequestCondsConfig) MatchResponse(formatter func(s string) string) bool {
-	if !this.IsOn && len(this.Groups) == 0 {
+	if !this.IsOn || len(this.Groups) == 0 {
 		return true
 	}
 	ok := false
