@@ -93,6 +93,7 @@ message UpdateHTTPFirewallPolicyRequest {
 	string description = 4;
 	repeated string firewallGroupCodes = 5;
 	bytes blockOptionsJSON = 6;
+	string mode = 7;
 }
 
 // 修改分组信息

@@ -283,6 +283,7 @@ func (this *NodeConfig) lookupWeb(server *serverconfigs.ServerConfig, web *serve
 		// 复用节点的拦截选项设置
 		if web.FirewallPolicy.BlockOptions == nil && server.HTTPFirewallPolicy != nil && server.HTTPFirewallPolicy.BlockOptions != nil {
 			web.FirewallPolicy.BlockOptions = server.HTTPFirewallPolicy.BlockOptions
+			web.FirewallPolicy.Mode = server.HTTPFirewallPolicy.Mode
 		}
 		this.firewallPolicies = append(this.firewallPolicies, web.FirewallPolicy)
 	}

@@ -11,7 +11,7 @@ type HTTPFirewallPolicy struct {
 	Inbound      *HTTPFirewallInboundConfig  `yaml:"inbound" json:"inbound"`
 	Outbound     *HTTPFirewallOutboundConfig `yaml:"outbound" json:"outbound"`
 	BlockOptions *HTTPFirewallBlockAction    `yaml:"blockOptions" json:"blockOptions"`
-
+	Mode         FirewallMode                `yaml:"mode" json:"mode"`
 }
 
 // Init 初始化
