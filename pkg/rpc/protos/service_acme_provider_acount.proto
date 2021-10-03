@@ -1,0 +1,89 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_acme_provider_account.proto";
+
+// ACME服务商账号
+service ACMEProviderAccountService {
+	// 创建服务商账号
+	rpc createACMEProviderAccount(CreateACMEProviderAccountRequest) returns (CreateACMEProviderAccountResponse);
+
+	// 使用代号查找服务商账号
+	rpc findAllACMEProviderAccountsWithProviderCode(FindAllACMEProviderAccountsWithProviderCodeRequest) returns (FindAllACMEProviderAccountsWithProviderCodeResponse);
+
+	// 修改服务商账号
+	rpc updateACMEProviderAccount(UpdateACMEProviderAccountRequest) returns (RPCSuccess);
+
+	// 删除服务商账号
+	rpc deleteACMEProviderAccount(DeleteACMEProviderAccountRequest) returns (RPCSuccess);
+
+	// 查找单个服务商账号
+	rpc findEnabledACMEProviderAccount(FindEnabledACMEProviderAccountRequest) returns (FindEnabledACMEProviderAccountResponse);
+
+	// 计算所有服务商账号数量
+	rpc countAllEnabledACMEProviderAccounts(CountAllEnabledACMEProviderAccountsRequest) returns (RPCCountResponse);
+
+	// 列出单页服务商账号
+	rpc listEnabledACMEProviderAccounts(ListEnabledACMEProviderAccountsRequest) returns (ListEnabledACMEProviderAccountsResponse);
+}
+
+// 创建服务商
+message CreateACMEProviderAccountRequest {
+	string name = 1;
+	string providerCode = 2;
+	string eabKid = 3;
+	string eabKey = 4;
+}
+
+message CreateACMEProviderAccountResponse {
+	int64 acmeProviderAccountId = 1;
+}
+
+// 使用代号查找服务商账号
+message FindAllACMEProviderAccountsWithProviderCodeRequest {
+	string acmeProviderCode = 1;
+}
+
+message FindAllACMEProviderAccountsWithProviderCodeResponse {
+	repeated ACMEProviderAccount acmeProviderAccounts = 1;
+}
+
+// 修改服务商账号
+message UpdateACMEProviderAccountRequest {
+	int64 acmeProviderAccountId = 1;
+	string name = 2;
+	string eabKid = 3;
+	string eabKey = 4;
+}
+
+// 删除服务商账号
+message DeleteACMEProviderAccountRequest {
+	int64 acmeProviderAccountId = 1;
+}
+
+// 查找单个服务商账号
+message FindEnabledACMEProviderAccountRequest {
+	int64 acmeProviderAccountId = 1;
+}
+
+message FindEnabledACMEProviderAccountResponse {
+	ACMEProviderAccount acmeProviderAccount = 1;
+}
+
+// 计算所有服务商账号数量
+message CountAllEnabledACMEProviderAccountsRequest {
+
+}
+
+// 列出单页服务商账号
+message ListEnabledACMEProviderAccountsRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListEnabledACMEProviderAccountsResponse {
+	repeated ACMEProviderAccount acmeProviderAccounts = 1;
+}

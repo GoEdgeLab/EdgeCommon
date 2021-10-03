@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message ACMEProvider {
+	string name = 1;
+	string code = 2;
+	string description = 4;
+	string  apiURL = 5;
+	bool requireEAB = 6;
+	string eabDescription = 7;
+}

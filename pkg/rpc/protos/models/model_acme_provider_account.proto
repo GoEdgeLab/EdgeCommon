@@ -1,0 +1,18 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_acme_provider.proto";
+
+message ACMEProviderAccount {
+	int64 id = 1;
+	string name = 2;
+	bool isOn = 3;
+	string providerCode = 4;
+	string eabKid = 5;
+	string eabKey = 6;
+	string error = 7;
+
+	ACMEProvider acmeProvider = 30;
+}

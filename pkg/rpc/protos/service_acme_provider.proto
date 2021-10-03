@@ -1,0 +1,33 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_acme_provider.proto";
+
+// ACME服务商
+service ACMEProviderService {
+	// 查找所有的服务商
+	rpc findAllACMEProviders(FindAllACMEProvidersRequest) returns (FindAllACMEProvidersResponse);
+
+	// 根据代号查找服务商
+	rpc findACMEProviderWithCode(FindACMEProviderWithCodeRequest) returns (FindACMEProviderWithCodeResponse);
+}
+
+// 查找所有的服务商
+message FindAllACMEProvidersRequest {
+
+}
+
+message FindAllACMEProvidersResponse {
+	repeated ACMEProvider acmeProviders = 1;
+}
+
+// 根据代号查找服务商
+message FindACMEProviderWithCodeRequest{
+	string acmeProviderCode = 1;
+}
+
+message FindACMEProviderWithCodeResponse {
+	ACMEProvider acmeProvider = 1;
+}
