@@ -121,6 +121,27 @@ func (this *WebPImageConfig) MatchResponse(mimeType string, contentLength int64,
 	return false
 }
 
+// MatchRequest 是否匹配请求
+func (this *WebPImageConfig) MatchRequest(requestExt string, formatter shared.Formatter) bool {
+	if this.Conds != nil && formatter != nil {
+		if !this.Conds.MatchRequest(formatter) {
+			return false
+		}
+	}
+
+	// extensions
+	if len(this.mimeTypeRules) == 0 && len(this.extensions) > 0 && len(requestExt) > 0 {
+		for _, ext := range this.extensions {
+			if ext == requestExt {
+				return true
+			}
+		}
+		return false
+	}
+
+	return true
+}
+
 // MatchAccept 检查客户端是否能接受WebP
 func (this *WebPImageConfig) MatchAccept(acceptContentTypes string) bool {
 	var t = "image/webp"
