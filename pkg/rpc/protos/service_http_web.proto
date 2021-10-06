@@ -25,6 +25,9 @@ service HTTPWebService {
 	// 更改WebP配置
 	rpc updateHTTPWebWebP (UpdateHTTPWebWebPRequest) returns (RPCSuccess);
 
+	// 更改RemoteAddr配置
+	rpc updateHTTPWebRemoteAddr(UpdateHTTPWebRemoteAddrRequest) returns (RPCSuccess);
+
 	// 更改字符集配置
 	rpc updateHTTPWebCharset (UpdateHTTPWebCharsetRequest) returns (RPCSuccess);
 
@@ -120,6 +123,12 @@ message UpdateHTTPWebCompressionRequest {
 message UpdateHTTPWebWebPRequest {
 	int64 webId = 1;
 	bytes webpJSON = 2;
+}
+
+// 更改RemoteAddr配置
+message UpdateHTTPWebRemoteAddrRequest {
+	int64 webId = 1;
+	bytes remoteAddrJSON = 2;
 }
 
 // 更改字符集配置

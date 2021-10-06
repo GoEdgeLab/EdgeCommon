@@ -482,6 +482,62 @@ func (x *UpdateHTTPWebWebPRequest) GetWebpJSON() []byte {
 	return nil
 }
 
+// 更改RemoteAddr配置
+type UpdateHTTPWebRemoteAddrRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	WebId          int64  `protobuf:"varint,1,opt,name=webId,proto3" json:"webId,omitempty"`
+	RemoteAddrJSON []byte `protobuf:"bytes,2,opt,name=remoteAddrJSON,proto3" json:"remoteAddrJSON,omitempty"`
+}
+
+func (x *UpdateHTTPWebRemoteAddrRequest) Reset() {
+	*x = UpdateHTTPWebRemoteAddrRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_web_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateHTTPWebRemoteAddrRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateHTTPWebRemoteAddrRequest) ProtoMessage() {}
+
+func (x *UpdateHTTPWebRemoteAddrRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_web_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateHTTPWebRemoteAddrRequest.ProtoReflect.Descriptor instead.
+func (*UpdateHTTPWebRemoteAddrRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_web_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *UpdateHTTPWebRemoteAddrRequest) GetWebId() int64 {
+	if x != nil {
+		return x.WebId
+	}
+	return 0
+}
+
+func (x *UpdateHTTPWebRemoteAddrRequest) GetRemoteAddrJSON() []byte {
+	if x != nil {
+		return x.RemoteAddrJSON
+	}
+	return nil
+}
+
 // 更改字符集配置
 type UpdateHTTPWebCharsetRequest struct {
 	state         protoimpl.MessageState
@@ -495,7 +551,7 @@ type UpdateHTTPWebCharsetRequest struct {
 func (x *UpdateHTTPWebCharsetRequest) Reset() {
 	*x = UpdateHTTPWebCharsetRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[9]
+		mi := &file_service_http_web_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -508,7 +564,7 @@ func (x *UpdateHTTPWebCharsetRequest) String() string {
 func (*UpdateHTTPWebCharsetRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebCharsetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[9]
+	mi := &file_service_http_web_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -521,7 +577,7 @@ func (x *UpdateHTTPWebCharsetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebCharsetRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebCharsetRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{9}
+	return file_service_http_web_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UpdateHTTPWebCharsetRequest) GetWebId() int64 {
@@ -551,7 +607,7 @@ type UpdateHTTPWebRequestHeaderRequest struct {
 func (x *UpdateHTTPWebRequestHeaderRequest) Reset() {
 	*x = UpdateHTTPWebRequestHeaderRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[10]
+		mi := &file_service_http_web_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -564,7 +620,7 @@ func (x *UpdateHTTPWebRequestHeaderRequest) String() string {
 func (*UpdateHTTPWebRequestHeaderRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebRequestHeaderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[10]
+	mi := &file_service_http_web_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -577,7 +633,7 @@ func (x *UpdateHTTPWebRequestHeaderRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use UpdateHTTPWebRequestHeaderRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebRequestHeaderRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{10}
+	return file_service_http_web_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *UpdateHTTPWebRequestHeaderRequest) GetWebId() int64 {
@@ -607,7 +663,7 @@ type UpdateHTTPWebResponseHeaderRequest struct {
 func (x *UpdateHTTPWebResponseHeaderRequest) Reset() {
 	*x = UpdateHTTPWebResponseHeaderRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[11]
+		mi := &file_service_http_web_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -620,7 +676,7 @@ func (x *UpdateHTTPWebResponseHeaderRequest) String() string {
 func (*UpdateHTTPWebResponseHeaderRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebResponseHeaderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[11]
+	mi := &file_service_http_web_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -633,7 +689,7 @@ func (x *UpdateHTTPWebResponseHeaderRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use UpdateHTTPWebResponseHeaderRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebResponseHeaderRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{11}
+	return file_service_http_web_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *UpdateHTTPWebResponseHeaderRequest) GetWebId() int64 {
@@ -663,7 +719,7 @@ type UpdateHTTPWebShutdownRequest struct {
 func (x *UpdateHTTPWebShutdownRequest) Reset() {
 	*x = UpdateHTTPWebShutdownRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[12]
+		mi := &file_service_http_web_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -676,7 +732,7 @@ func (x *UpdateHTTPWebShutdownRequest) String() string {
 func (*UpdateHTTPWebShutdownRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebShutdownRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[12]
+	mi := &file_service_http_web_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -689,7 +745,7 @@ func (x *UpdateHTTPWebShutdownRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebShutdownRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebShutdownRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{12}
+	return file_service_http_web_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *UpdateHTTPWebShutdownRequest) GetWebId() int64 {
@@ -719,7 +775,7 @@ type UpdateHTTPWebPagesRequest struct {
 func (x *UpdateHTTPWebPagesRequest) Reset() {
 	*x = UpdateHTTPWebPagesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[13]
+		mi := &file_service_http_web_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -732,7 +788,7 @@ func (x *UpdateHTTPWebPagesRequest) String() string {
 func (*UpdateHTTPWebPagesRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebPagesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[13]
+	mi := &file_service_http_web_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -745,7 +801,7 @@ func (x *UpdateHTTPWebPagesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebPagesRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebPagesRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{13}
+	return file_service_http_web_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *UpdateHTTPWebPagesRequest) GetWebId() int64 {
@@ -775,7 +831,7 @@ type UpdateHTTPWebAccessLogRequest struct {
 func (x *UpdateHTTPWebAccessLogRequest) Reset() {
 	*x = UpdateHTTPWebAccessLogRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[14]
+		mi := &file_service_http_web_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -788,7 +844,7 @@ func (x *UpdateHTTPWebAccessLogRequest) String() string {
 func (*UpdateHTTPWebAccessLogRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebAccessLogRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[14]
+	mi := &file_service_http_web_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -801,7 +857,7 @@ func (x *UpdateHTTPWebAccessLogRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebAccessLogRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebAccessLogRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{14}
+	return file_service_http_web_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *UpdateHTTPWebAccessLogRequest) GetWebId() int64 {
@@ -831,7 +887,7 @@ type UpdateHTTPWebStatRequest struct {
 func (x *UpdateHTTPWebStatRequest) Reset() {
 	*x = UpdateHTTPWebStatRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[15]
+		mi := &file_service_http_web_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -844,7 +900,7 @@ func (x *UpdateHTTPWebStatRequest) String() string {
 func (*UpdateHTTPWebStatRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebStatRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[15]
+	mi := &file_service_http_web_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -857,7 +913,7 @@ func (x *UpdateHTTPWebStatRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebStatRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebStatRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{15}
+	return file_service_http_web_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *UpdateHTTPWebStatRequest) GetWebId() int64 {
@@ -887,7 +943,7 @@ type UpdateHTTPWebCacheRequest struct {
 func (x *UpdateHTTPWebCacheRequest) Reset() {
 	*x = UpdateHTTPWebCacheRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[16]
+		mi := &file_service_http_web_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -900,7 +956,7 @@ func (x *UpdateHTTPWebCacheRequest) String() string {
 func (*UpdateHTTPWebCacheRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebCacheRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[16]
+	mi := &file_service_http_web_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -913,7 +969,7 @@ func (x *UpdateHTTPWebCacheRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebCacheRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebCacheRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{16}
+	return file_service_http_web_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *UpdateHTTPWebCacheRequest) GetWebId() int64 {
@@ -943,7 +999,7 @@ type UpdateHTTPWebFirewallRequest struct {
 func (x *UpdateHTTPWebFirewallRequest) Reset() {
 	*x = UpdateHTTPWebFirewallRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[17]
+		mi := &file_service_http_web_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -956,7 +1012,7 @@ func (x *UpdateHTTPWebFirewallRequest) String() string {
 func (*UpdateHTTPWebFirewallRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebFirewallRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[17]
+	mi := &file_service_http_web_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -969,7 +1025,7 @@ func (x *UpdateHTTPWebFirewallRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebFirewallRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebFirewallRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{17}
+	return file_service_http_web_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *UpdateHTTPWebFirewallRequest) GetWebId() int64 {
@@ -999,7 +1055,7 @@ type UpdateHTTPWebLocationsRequest struct {
 func (x *UpdateHTTPWebLocationsRequest) Reset() {
 	*x = UpdateHTTPWebLocationsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[18]
+		mi := &file_service_http_web_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1012,7 +1068,7 @@ func (x *UpdateHTTPWebLocationsRequest) String() string {
 func (*UpdateHTTPWebLocationsRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebLocationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[18]
+	mi := &file_service_http_web_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1025,7 +1081,7 @@ func (x *UpdateHTTPWebLocationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebLocationsRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebLocationsRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{18}
+	return file_service_http_web_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *UpdateHTTPWebLocationsRequest) GetWebId() int64 {
@@ -1055,7 +1111,7 @@ type UpdateHTTPWebRedirectToHTTPSRequest struct {
 func (x *UpdateHTTPWebRedirectToHTTPSRequest) Reset() {
 	*x = UpdateHTTPWebRedirectToHTTPSRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[19]
+		mi := &file_service_http_web_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1068,7 +1124,7 @@ func (x *UpdateHTTPWebRedirectToHTTPSRequest) String() string {
 func (*UpdateHTTPWebRedirectToHTTPSRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebRedirectToHTTPSRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[19]
+	mi := &file_service_http_web_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1081,7 +1137,7 @@ func (x *UpdateHTTPWebRedirectToHTTPSRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use UpdateHTTPWebRedirectToHTTPSRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebRedirectToHTTPSRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{19}
+	return file_service_http_web_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *UpdateHTTPWebRedirectToHTTPSRequest) GetWebId() int64 {
@@ -1111,7 +1167,7 @@ type UpdateHTTPWebWebsocketRequest struct {
 func (x *UpdateHTTPWebWebsocketRequest) Reset() {
 	*x = UpdateHTTPWebWebsocketRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[20]
+		mi := &file_service_http_web_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1124,7 +1180,7 @@ func (x *UpdateHTTPWebWebsocketRequest) String() string {
 func (*UpdateHTTPWebWebsocketRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebWebsocketRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[20]
+	mi := &file_service_http_web_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1137,7 +1193,7 @@ func (x *UpdateHTTPWebWebsocketRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebWebsocketRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebWebsocketRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{20}
+	return file_service_http_web_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *UpdateHTTPWebWebsocketRequest) GetWebId() int64 {
@@ -1167,7 +1223,7 @@ type UpdateHTTPWebFastcgiRequest struct {
 func (x *UpdateHTTPWebFastcgiRequest) Reset() {
 	*x = UpdateHTTPWebFastcgiRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[21]
+		mi := &file_service_http_web_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1180,7 +1236,7 @@ func (x *UpdateHTTPWebFastcgiRequest) String() string {
 func (*UpdateHTTPWebFastcgiRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebFastcgiRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[21]
+	mi := &file_service_http_web_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1193,7 +1249,7 @@ func (x *UpdateHTTPWebFastcgiRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebFastcgiRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebFastcgiRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{21}
+	return file_service_http_web_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *UpdateHTTPWebFastcgiRequest) GetWebId() int64 {
@@ -1223,7 +1279,7 @@ type UpdateHTTPWebRewriteRulesRequest struct {
 func (x *UpdateHTTPWebRewriteRulesRequest) Reset() {
 	*x = UpdateHTTPWebRewriteRulesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[22]
+		mi := &file_service_http_web_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1236,7 +1292,7 @@ func (x *UpdateHTTPWebRewriteRulesRequest) String() string {
 func (*UpdateHTTPWebRewriteRulesRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebRewriteRulesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[22]
+	mi := &file_service_http_web_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1249,7 +1305,7 @@ func (x *UpdateHTTPWebRewriteRulesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebRewriteRulesRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebRewriteRulesRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{22}
+	return file_service_http_web_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *UpdateHTTPWebRewriteRulesRequest) GetWebId() int64 {
@@ -1279,7 +1335,7 @@ type UpdateHTTPWebHostRedirectsRequest struct {
 func (x *UpdateHTTPWebHostRedirectsRequest) Reset() {
 	*x = UpdateHTTPWebHostRedirectsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[23]
+		mi := &file_service_http_web_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1292,7 +1348,7 @@ func (x *UpdateHTTPWebHostRedirectsRequest) String() string {
 func (*UpdateHTTPWebHostRedirectsRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebHostRedirectsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[23]
+	mi := &file_service_http_web_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1305,7 +1361,7 @@ func (x *UpdateHTTPWebHostRedirectsRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use UpdateHTTPWebHostRedirectsRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebHostRedirectsRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{23}
+	return file_service_http_web_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *UpdateHTTPWebHostRedirectsRequest) GetWebId() int64 {
@@ -1334,7 +1390,7 @@ type FindHTTPWebHostRedirectsRequest struct {
 func (x *FindHTTPWebHostRedirectsRequest) Reset() {
 	*x = FindHTTPWebHostRedirectsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[24]
+		mi := &file_service_http_web_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1347,7 +1403,7 @@ func (x *FindHTTPWebHostRedirectsRequest) String() string {
 func (*FindHTTPWebHostRedirectsRequest) ProtoMessage() {}
 
 func (x *FindHTTPWebHostRedirectsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[24]
+	mi := &file_service_http_web_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1360,7 +1416,7 @@ func (x *FindHTTPWebHostRedirectsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindHTTPWebHostRedirectsRequest.ProtoReflect.Descriptor instead.
 func (*FindHTTPWebHostRedirectsRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{24}
+	return file_service_http_web_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *FindHTTPWebHostRedirectsRequest) GetWebId() int64 {
@@ -1381,7 +1437,7 @@ type FindHTTPWebHostRedirectsResponse struct {
 func (x *FindHTTPWebHostRedirectsResponse) Reset() {
 	*x = FindHTTPWebHostRedirectsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[25]
+		mi := &file_service_http_web_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1394,7 +1450,7 @@ func (x *FindHTTPWebHostRedirectsResponse) String() string {
 func (*FindHTTPWebHostRedirectsResponse) ProtoMessage() {}
 
 func (x *FindHTTPWebHostRedirectsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[25]
+	mi := &file_service_http_web_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1407,7 +1463,7 @@ func (x *FindHTTPWebHostRedirectsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindHTTPWebHostRedirectsResponse.ProtoReflect.Descriptor instead.
 func (*FindHTTPWebHostRedirectsResponse) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{25}
+	return file_service_http_web_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *FindHTTPWebHostRedirectsResponse) GetHostRedirectsJSON() []byte {
@@ -1430,7 +1486,7 @@ type UpdateHTTPWebAuthRequest struct {
 func (x *UpdateHTTPWebAuthRequest) Reset() {
 	*x = UpdateHTTPWebAuthRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_web_proto_msgTypes[26]
+		mi := &file_service_http_web_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1443,7 +1499,7 @@ func (x *UpdateHTTPWebAuthRequest) String() string {
 func (*UpdateHTTPWebAuthRequest) ProtoMessage() {}
 
 func (x *UpdateHTTPWebAuthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_web_proto_msgTypes[26]
+	mi := &file_service_http_web_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1456,7 +1512,7 @@ func (x *UpdateHTTPWebAuthRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHTTPWebAuthRequest.ProtoReflect.Descriptor instead.
 func (*UpdateHTTPWebAuthRequest) Descriptor() ([]byte, []int) {
-	return file_service_http_web_proto_rawDescGZIP(), []int{26}
+	return file_service_http_web_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *UpdateHTTPWebAuthRequest) GetWebId() int64 {
@@ -1517,7 +1573,13 @@ var file_service_http_web_proto_rawDesc = []byte{
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x1a, 0x0a,
 	0x08, 0x77, 0x65, 0x62, 0x70, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52,
-	0x08, 0x77, 0x65, 0x62, 0x70, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x55, 0x0a, 0x1b, 0x55, 0x70, 0x64,
+	0x08, 0x77, 0x65, 0x62, 0x70, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x5e, 0x0a, 0x1e, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x6d, 0x6f, 0x74, 0x65,
+	0x41, 0x64, 0x64, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77,
+	0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49,
+	0x64, 0x12, 0x26, 0x0a, 0x0e, 0x72, 0x65, 0x6d, 0x6f, 0x74, 0x65, 0x41, 0x64, 0x64, 0x72, 0x4a,
+	0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0e, 0x72, 0x65, 0x6d, 0x6f, 0x74,
+	0x65, 0x41, 0x64, 0x64, 0x72, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x55, 0x0a, 0x1b, 0x55, 0x70, 0x64,
 	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x68, 0x61, 0x72, 0x73, 0x65,
 	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x77, 0x65, 0x62, 0x49,
 	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x12, 0x20,
@@ -1617,7 +1679,7 @@ var file_service_http_web_proto_rawDesc = []byte{
 	0x0a, 0x05, 0x77, 0x65, 0x62, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x77,
 	0x65, 0x62, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x61, 0x75, 0x74, 0x68, 0x4a, 0x53, 0x4f, 0x4e,
 	0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x08, 0x61, 0x75, 0x74, 0x68, 0x4a, 0x53, 0x4f, 0x4e,
-	0x32, 0x94, 0x0e, 0x0a, 0x0e, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x65, 0x72, 0x76,
+	0x32, 0xe3, 0x0e, 0x0a, 0x0e, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x65, 0x72, 0x76,
 	0x69, 0x63, 0x65, 0x12, 0x44, 0x0a, 0x0d, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
 	0x50, 0x57, 0x65, 0x62, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
 	0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19,
@@ -1647,91 +1709,96 @@ var file_service_http_web_proto_rawDesc = []byte{
 	0x65, 0x62, 0x57, 0x65, 0x62, 0x50, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61,
 	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x57, 0x65, 0x62, 0x50, 0x52, 0x65, 0x71,
 	0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63,
-	0x63, 0x65, 0x73, 0x73, 0x12, 0x47, 0x0a, 0x14, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
-	0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x12, 0x1f, 0x2e, 0x70,
-	0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43,
-	0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e,
-	0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x53, 0x0a,
-	0x1a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x12, 0x25, 0x2e, 0x70, 0x62,
-	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65,
-	0x73, 0x73, 0x12, 0x55, 0x0a, 0x1b, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50,
+	0x63, 0x65, 0x73, 0x73, 0x12, 0x4d, 0x0a, 0x17, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
+	0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x6d, 0x6f, 0x74, 0x65, 0x41, 0x64, 0x64, 0x72, 0x12,
+	0x22, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57,
+	0x65, 0x62, 0x52, 0x65, 0x6d, 0x6f, 0x74, 0x65, 0x41, 0x64, 0x64, 0x72, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x12, 0x47, 0x0a, 0x14, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
+	0x50, 0x57, 0x65, 0x62, 0x43, 0x68, 0x61, 0x72, 0x73, 0x65, 0x74, 0x12, 0x1f, 0x2e, 0x70, 0x62,
+	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x68,
+	0x61, 0x72, 0x73, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70,
+	0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x53, 0x0a, 0x1a,
+	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73,
+	0x73, 0x12, 0x55, 0x0a, 0x1b, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57,
+	0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72,
+	0x12, 0x26, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50,
 	0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x65, 0x61, 0x64, 0x65,
-	0x72, 0x12, 0x26, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
-	0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x48, 0x65, 0x61, 0x64,
-	0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52,
-	0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x49, 0x0a, 0x15, 0x75, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x68, 0x75, 0x74, 0x64, 0x6f,
-	0x77, 0x6e, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
-	0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x68, 0x75, 0x74, 0x64, 0x6f, 0x77, 0x6e, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63,
-	0x63, 0x65, 0x73, 0x73, 0x12, 0x43, 0x0a, 0x12, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
-	0x54, 0x50, 0x57, 0x65, 0x62, 0x50, 0x61, 0x67, 0x65, 0x73, 0x12, 0x1d, 0x2e, 0x70, 0x62, 0x2e,
-	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x50, 0x61, 0x67,
-	0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52,
-	0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x4b, 0x0a, 0x16, 0x75, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73,
-	0x4c, 0x6f, 0x67, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48,
-	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53,
-	0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x41, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x74, 0x61, 0x74, 0x12, 0x1c, 0x2e, 0x70, 0x62,
-	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x74,
-	0x61, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52,
-	0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x43, 0x0a, 0x12, 0x75, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x61, 0x63, 0x68, 0x65, 0x12,
-	0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57,
-	0x65, 0x62, 0x43, 0x61, 0x63, 0x68, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e,
-	0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x49,
-	0x0a, 0x15, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x46,
-	0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61,
-	0x6c, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52,
-	0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x4b, 0x0a, 0x16, 0x75, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x4c, 0x6f, 0x63, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x73, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48,
-	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x4c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53,
-	0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x57, 0x0a, 0x1c, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x54,
-	0x6f, 0x48, 0x54, 0x54, 0x50, 0x53, 0x12, 0x27, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63,
-	0x74, 0x54, 0x6f, 0x48, 0x54, 0x54, 0x50, 0x53, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12,
-	0x4b, 0x0a, 0x16, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62,
-	0x57, 0x65, 0x62, 0x73, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x57, 0x65, 0x62, 0x73,
-	0x6f, 0x63, 0x6b, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70,
-	0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x47, 0x0a, 0x14,
-	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x46, 0x61, 0x73,
-	0x74, 0x63, 0x67, 0x69, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x46, 0x61, 0x73, 0x74, 0x63, 0x67, 0x69, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
-	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x51, 0x0a, 0x19, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48,
-	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x77, 0x72, 0x69, 0x74, 0x65, 0x52, 0x75, 0x6c,
-	0x65, 0x73, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
-	0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x77, 0x72, 0x69, 0x74, 0x65, 0x52, 0x75, 0x6c, 0x65,
+	0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50,
+	0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x49, 0x0a, 0x15, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x68, 0x75, 0x74, 0x64, 0x6f, 0x77,
+	0x6e, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
+	0x50, 0x57, 0x65, 0x62, 0x53, 0x68, 0x75, 0x74, 0x64, 0x6f, 0x77, 0x6e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x12, 0x43, 0x0a, 0x12, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
+	0x50, 0x57, 0x65, 0x62, 0x50, 0x61, 0x67, 0x65, 0x73, 0x12, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x50, 0x61, 0x67, 0x65,
 	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50,
-	0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x53, 0x0a, 0x1a, 0x75, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x48, 0x6f, 0x73, 0x74, 0x52, 0x65, 0x64,
-	0x69, 0x72, 0x65, 0x63, 0x74, 0x73, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x48, 0x6f, 0x73, 0x74, 0x52, 0x65, 0x64,
-	0x69, 0x72, 0x65, 0x63, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e,
-	0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x65, 0x0a,
-	0x18, 0x66, 0x69, 0x6e, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x48, 0x6f, 0x73, 0x74,
-	0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x73, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x46,
-	0x69, 0x6e, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x48, 0x6f, 0x73, 0x74, 0x52, 0x65,
-	0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24,
-	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x48,
-	0x6f, 0x73, 0x74, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x41, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
-	0x54, 0x50, 0x57, 0x65, 0x62, 0x41, 0x75, 0x74, 0x68, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x41, 0x75, 0x74, 0x68,
+	0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x4b, 0x0a, 0x16, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c,
+	0x6f, 0x67, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
+	0x54, 0x50, 0x57, 0x65, 0x62, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x4c, 0x6f, 0x67, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x41, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48,
+	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x74, 0x61, 0x74, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x53, 0x74, 0x61,
+	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50,
+	0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x43, 0x0a, 0x12, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x43, 0x61, 0x63, 0x68, 0x65, 0x12, 0x1d,
+	0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65,
+	0x62, 0x43, 0x61, 0x63, 0x68, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e,
+	0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x49, 0x0a,
+	0x15, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x46, 0x69,
+	0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c,
+	0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50,
+	0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x4b, 0x0a, 0x16, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x4c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
+	0x54, 0x50, 0x57, 0x65, 0x62, 0x4c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x57, 0x0a, 0x1c, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48,
+	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x54, 0x6f,
+	0x48, 0x54, 0x54, 0x50, 0x53, 0x12, 0x27, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74,
+	0x54, 0x6f, 0x48, 0x54, 0x54, 0x50, 0x53, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e,
+	0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x4b,
+	0x0a, 0x16, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x57,
+	0x65, 0x62, 0x73, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x57, 0x65, 0x62, 0x73, 0x6f,
+	0x63, 0x6b, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62,
+	0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x47, 0x0a, 0x14, 0x75,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x46, 0x61, 0x73, 0x74,
+	0x63, 0x67, 0x69, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48,
+	0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x46, 0x61, 0x73, 0x74, 0x63, 0x67, 0x69, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x12, 0x51, 0x0a, 0x19, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54,
+	0x54, 0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x77, 0x72, 0x69, 0x74, 0x65, 0x52, 0x75, 0x6c, 0x65,
+	0x73, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
+	0x50, 0x57, 0x65, 0x62, 0x52, 0x65, 0x77, 0x72, 0x69, 0x74, 0x65, 0x52, 0x75, 0x6c, 0x65, 0x73,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43,
-	0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x53, 0x0a, 0x1a, 0x75, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x48, 0x6f, 0x73, 0x74, 0x52, 0x65, 0x64, 0x69,
+	0x72, 0x65, 0x63, 0x74, 0x73, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x48, 0x6f, 0x73, 0x74, 0x52, 0x65, 0x64, 0x69,
+	0x72, 0x65, 0x63, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70,
+	0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x65, 0x0a, 0x18,
+	0x66, 0x69, 0x6e, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x48, 0x6f, 0x73, 0x74, 0x52,
+	0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x73, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
+	0x6e, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x48, 0x6f, 0x73, 0x74, 0x52, 0x65, 0x64,
+	0x69, 0x72, 0x65, 0x63, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e,
+	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x48, 0x6f,
+	0x73, 0x74, 0x52, 0x65, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x41, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
+	0x50, 0x57, 0x65, 0x62, 0x41, 0x75, 0x74, 0x68, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x57, 0x65, 0x62, 0x41, 0x75, 0x74, 0x68, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53,
+	0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1746,7 +1813,7 @@ func file_service_http_web_proto_rawDescGZIP() []byte {
 	return file_service_http_web_proto_rawDescData
 }
 
-var file_service_http_web_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
+var file_service_http_web_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_service_http_web_proto_goTypes = []interface{}{
 	(*CreateHTTPWebRequest)(nil),                // 0: pb.CreateHTTPWebRequest
 	(*CreateHTTPWebResponse)(nil),               // 1: pb.CreateHTTPWebResponse
@@ -1757,77 +1824,80 @@ var file_service_http_web_proto_goTypes = []interface{}{
 	(*UpdateHTTPWebRequest)(nil),                // 6: pb.UpdateHTTPWebRequest
 	(*UpdateHTTPWebCompressionRequest)(nil),     // 7: pb.UpdateHTTPWebCompressionRequest
 	(*UpdateHTTPWebWebPRequest)(nil),            // 8: pb.UpdateHTTPWebWebPRequest
-	(*UpdateHTTPWebCharsetRequest)(nil),         // 9: pb.UpdateHTTPWebCharsetRequest
-	(*UpdateHTTPWebRequestHeaderRequest)(nil),   // 10: pb.UpdateHTTPWebRequestHeaderRequest
-	(*UpdateHTTPWebResponseHeaderRequest)(nil),  // 11: pb.UpdateHTTPWebResponseHeaderRequest
-	(*UpdateHTTPWebShutdownRequest)(nil),        // 12: pb.UpdateHTTPWebShutdownRequest
-	(*UpdateHTTPWebPagesRequest)(nil),           // 13: pb.UpdateHTTPWebPagesRequest
-	(*UpdateHTTPWebAccessLogRequest)(nil),       // 14: pb.UpdateHTTPWebAccessLogRequest
-	(*UpdateHTTPWebStatRequest)(nil),            // 15: pb.UpdateHTTPWebStatRequest
-	(*UpdateHTTPWebCacheRequest)(nil),           // 16: pb.UpdateHTTPWebCacheRequest
-	(*UpdateHTTPWebFirewallRequest)(nil),        // 17: pb.UpdateHTTPWebFirewallRequest
-	(*UpdateHTTPWebLocationsRequest)(nil),       // 18: pb.UpdateHTTPWebLocationsRequest
-	(*UpdateHTTPWebRedirectToHTTPSRequest)(nil), // 19: pb.UpdateHTTPWebRedirectToHTTPSRequest
-	(*UpdateHTTPWebWebsocketRequest)(nil),       // 20: pb.UpdateHTTPWebWebsocketRequest
-	(*UpdateHTTPWebFastcgiRequest)(nil),         // 21: pb.UpdateHTTPWebFastcgiRequest
-	(*UpdateHTTPWebRewriteRulesRequest)(nil),    // 22: pb.UpdateHTTPWebRewriteRulesRequest
-	(*UpdateHTTPWebHostRedirectsRequest)(nil),   // 23: pb.UpdateHTTPWebHostRedirectsRequest
-	(*FindHTTPWebHostRedirectsRequest)(nil),     // 24: pb.FindHTTPWebHostRedirectsRequest
-	(*FindHTTPWebHostRedirectsResponse)(nil),    // 25: pb.FindHTTPWebHostRedirectsResponse
-	(*UpdateHTTPWebAuthRequest)(nil),            // 26: pb.UpdateHTTPWebAuthRequest
-	(*HTTPWeb)(nil),                             // 27: pb.HTTPWeb
-	(*RPCSuccess)(nil),                          // 28: pb.RPCSuccess
+	(*UpdateHTTPWebRemoteAddrRequest)(nil),      // 9: pb.UpdateHTTPWebRemoteAddrRequest
+	(*UpdateHTTPWebCharsetRequest)(nil),         // 10: pb.UpdateHTTPWebCharsetRequest
+	(*UpdateHTTPWebRequestHeaderRequest)(nil),   // 11: pb.UpdateHTTPWebRequestHeaderRequest
+	(*UpdateHTTPWebResponseHeaderRequest)(nil),  // 12: pb.UpdateHTTPWebResponseHeaderRequest
+	(*UpdateHTTPWebShutdownRequest)(nil),        // 13: pb.UpdateHTTPWebShutdownRequest
+	(*UpdateHTTPWebPagesRequest)(nil),           // 14: pb.UpdateHTTPWebPagesRequest
+	(*UpdateHTTPWebAccessLogRequest)(nil),       // 15: pb.UpdateHTTPWebAccessLogRequest
+	(*UpdateHTTPWebStatRequest)(nil),            // 16: pb.UpdateHTTPWebStatRequest
+	(*UpdateHTTPWebCacheRequest)(nil),           // 17: pb.UpdateHTTPWebCacheRequest
+	(*UpdateHTTPWebFirewallRequest)(nil),        // 18: pb.UpdateHTTPWebFirewallRequest
+	(*UpdateHTTPWebLocationsRequest)(nil),       // 19: pb.UpdateHTTPWebLocationsRequest
+	(*UpdateHTTPWebRedirectToHTTPSRequest)(nil), // 20: pb.UpdateHTTPWebRedirectToHTTPSRequest
+	(*UpdateHTTPWebWebsocketRequest)(nil),       // 21: pb.UpdateHTTPWebWebsocketRequest
+	(*UpdateHTTPWebFastcgiRequest)(nil),         // 22: pb.UpdateHTTPWebFastcgiRequest
+	(*UpdateHTTPWebRewriteRulesRequest)(nil),    // 23: pb.UpdateHTTPWebRewriteRulesRequest
+	(*UpdateHTTPWebHostRedirectsRequest)(nil),   // 24: pb.UpdateHTTPWebHostRedirectsRequest
+	(*FindHTTPWebHostRedirectsRequest)(nil),     // 25: pb.FindHTTPWebHostRedirectsRequest
+	(*FindHTTPWebHostRedirectsResponse)(nil),    // 26: pb.FindHTTPWebHostRedirectsResponse
+	(*UpdateHTTPWebAuthRequest)(nil),            // 27: pb.UpdateHTTPWebAuthRequest
+	(*HTTPWeb)(nil),                             // 28: pb.HTTPWeb
+	(*RPCSuccess)(nil),                          // 29: pb.RPCSuccess
 }
 var file_service_http_web_proto_depIdxs = []int32{
-	27, // 0: pb.FindEnabledHTTPWebResponse.web:type_name -> pb.HTTPWeb
+	28, // 0: pb.FindEnabledHTTPWebResponse.web:type_name -> pb.HTTPWeb
 	0,  // 1: pb.HTTPWebService.createHTTPWeb:input_type -> pb.CreateHTTPWebRequest
 	2,  // 2: pb.HTTPWebService.findEnabledHTTPWeb:input_type -> pb.FindEnabledHTTPWebRequest
 	4,  // 3: pb.HTTPWebService.findEnabledHTTPWebConfig:input_type -> pb.FindEnabledHTTPWebConfigRequest
 	6,  // 4: pb.HTTPWebService.updateHTTPWeb:input_type -> pb.UpdateHTTPWebRequest
 	7,  // 5: pb.HTTPWebService.updateHTTPWebCompression:input_type -> pb.UpdateHTTPWebCompressionRequest
 	8,  // 6: pb.HTTPWebService.updateHTTPWebWebP:input_type -> pb.UpdateHTTPWebWebPRequest
-	9,  // 7: pb.HTTPWebService.updateHTTPWebCharset:input_type -> pb.UpdateHTTPWebCharsetRequest
-	10, // 8: pb.HTTPWebService.updateHTTPWebRequestHeader:input_type -> pb.UpdateHTTPWebRequestHeaderRequest
-	11, // 9: pb.HTTPWebService.updateHTTPWebResponseHeader:input_type -> pb.UpdateHTTPWebResponseHeaderRequest
-	12, // 10: pb.HTTPWebService.updateHTTPWebShutdown:input_type -> pb.UpdateHTTPWebShutdownRequest
-	13, // 11: pb.HTTPWebService.updateHTTPWebPages:input_type -> pb.UpdateHTTPWebPagesRequest
-	14, // 12: pb.HTTPWebService.updateHTTPWebAccessLog:input_type -> pb.UpdateHTTPWebAccessLogRequest
-	15, // 13: pb.HTTPWebService.updateHTTPWebStat:input_type -> pb.UpdateHTTPWebStatRequest
-	16, // 14: pb.HTTPWebService.updateHTTPWebCache:input_type -> pb.UpdateHTTPWebCacheRequest
-	17, // 15: pb.HTTPWebService.updateHTTPWebFirewall:input_type -> pb.UpdateHTTPWebFirewallRequest
-	18, // 16: pb.HTTPWebService.updateHTTPWebLocations:input_type -> pb.UpdateHTTPWebLocationsRequest
-	19, // 17: pb.HTTPWebService.updateHTTPWebRedirectToHTTPS:input_type -> pb.UpdateHTTPWebRedirectToHTTPSRequest
-	20, // 18: pb.HTTPWebService.updateHTTPWebWebsocket:input_type -> pb.UpdateHTTPWebWebsocketRequest
-	21, // 19: pb.HTTPWebService.updateHTTPWebFastcgi:input_type -> pb.UpdateHTTPWebFastcgiRequest
-	22, // 20: pb.HTTPWebService.updateHTTPWebRewriteRules:input_type -> pb.UpdateHTTPWebRewriteRulesRequest
-	23, // 21: pb.HTTPWebService.updateHTTPWebHostRedirects:input_type -> pb.UpdateHTTPWebHostRedirectsRequest
-	24, // 22: pb.HTTPWebService.findHTTPWebHostRedirects:input_type -> pb.FindHTTPWebHostRedirectsRequest
-	26, // 23: pb.HTTPWebService.updateHTTPWebAuth:input_type -> pb.UpdateHTTPWebAuthRequest
-	1,  // 24: pb.HTTPWebService.createHTTPWeb:output_type -> pb.CreateHTTPWebResponse
-	3,  // 25: pb.HTTPWebService.findEnabledHTTPWeb:output_type -> pb.FindEnabledHTTPWebResponse
-	5,  // 26: pb.HTTPWebService.findEnabledHTTPWebConfig:output_type -> pb.FindEnabledHTTPWebConfigResponse
-	28, // 27: pb.HTTPWebService.updateHTTPWeb:output_type -> pb.RPCSuccess
-	28, // 28: pb.HTTPWebService.updateHTTPWebCompression:output_type -> pb.RPCSuccess
-	28, // 29: pb.HTTPWebService.updateHTTPWebWebP:output_type -> pb.RPCSuccess
-	28, // 30: pb.HTTPWebService.updateHTTPWebCharset:output_type -> pb.RPCSuccess
-	28, // 31: pb.HTTPWebService.updateHTTPWebRequestHeader:output_type -> pb.RPCSuccess
-	28, // 32: pb.HTTPWebService.updateHTTPWebResponseHeader:output_type -> pb.RPCSuccess
-	28, // 33: pb.HTTPWebService.updateHTTPWebShutdown:output_type -> pb.RPCSuccess
-	28, // 34: pb.HTTPWebService.updateHTTPWebPages:output_type -> pb.RPCSuccess
-	28, // 35: pb.HTTPWebService.updateHTTPWebAccessLog:output_type -> pb.RPCSuccess
-	28, // 36: pb.HTTPWebService.updateHTTPWebStat:output_type -> pb.RPCSuccess
-	28, // 37: pb.HTTPWebService.updateHTTPWebCache:output_type -> pb.RPCSuccess
-	28, // 38: pb.HTTPWebService.updateHTTPWebFirewall:output_type -> pb.RPCSuccess
-	28, // 39: pb.HTTPWebService.updateHTTPWebLocations:output_type -> pb.RPCSuccess
-	28, // 40: pb.HTTPWebService.updateHTTPWebRedirectToHTTPS:output_type -> pb.RPCSuccess
-	28, // 41: pb.HTTPWebService.updateHTTPWebWebsocket:output_type -> pb.RPCSuccess
-	28, // 42: pb.HTTPWebService.updateHTTPWebFastcgi:output_type -> pb.RPCSuccess
-	28, // 43: pb.HTTPWebService.updateHTTPWebRewriteRules:output_type -> pb.RPCSuccess
-	28, // 44: pb.HTTPWebService.updateHTTPWebHostRedirects:output_type -> pb.RPCSuccess
-	25, // 45: pb.HTTPWebService.findHTTPWebHostRedirects:output_type -> pb.FindHTTPWebHostRedirectsResponse
-	28, // 46: pb.HTTPWebService.updateHTTPWebAuth:output_type -> pb.RPCSuccess
-	24, // [24:47] is the sub-list for method output_type
-	1,  // [1:24] is the sub-list for method input_type
+	9,  // 7: pb.HTTPWebService.updateHTTPWebRemoteAddr:input_type -> pb.UpdateHTTPWebRemoteAddrRequest
+	10, // 8: pb.HTTPWebService.updateHTTPWebCharset:input_type -> pb.UpdateHTTPWebCharsetRequest
+	11, // 9: pb.HTTPWebService.updateHTTPWebRequestHeader:input_type -> pb.UpdateHTTPWebRequestHeaderRequest
+	12, // 10: pb.HTTPWebService.updateHTTPWebResponseHeader:input_type -> pb.UpdateHTTPWebResponseHeaderRequest
+	13, // 11: pb.HTTPWebService.updateHTTPWebShutdown:input_type -> pb.UpdateHTTPWebShutdownRequest
+	14, // 12: pb.HTTPWebService.updateHTTPWebPages:input_type -> pb.UpdateHTTPWebPagesRequest
+	15, // 13: pb.HTTPWebService.updateHTTPWebAccessLog:input_type -> pb.UpdateHTTPWebAccessLogRequest
+	16, // 14: pb.HTTPWebService.updateHTTPWebStat:input_type -> pb.UpdateHTTPWebStatRequest
+	17, // 15: pb.HTTPWebService.updateHTTPWebCache:input_type -> pb.UpdateHTTPWebCacheRequest
+	18, // 16: pb.HTTPWebService.updateHTTPWebFirewall:input_type -> pb.UpdateHTTPWebFirewallRequest
+	19, // 17: pb.HTTPWebService.updateHTTPWebLocations:input_type -> pb.UpdateHTTPWebLocationsRequest
+	20, // 18: pb.HTTPWebService.updateHTTPWebRedirectToHTTPS:input_type -> pb.UpdateHTTPWebRedirectToHTTPSRequest
+	21, // 19: pb.HTTPWebService.updateHTTPWebWebsocket:input_type -> pb.UpdateHTTPWebWebsocketRequest
+	22, // 20: pb.HTTPWebService.updateHTTPWebFastcgi:input_type -> pb.UpdateHTTPWebFastcgiRequest
+	23, // 21: pb.HTTPWebService.updateHTTPWebRewriteRules:input_type -> pb.UpdateHTTPWebRewriteRulesRequest
+	24, // 22: pb.HTTPWebService.updateHTTPWebHostRedirects:input_type -> pb.UpdateHTTPWebHostRedirectsRequest
+	25, // 23: pb.HTTPWebService.findHTTPWebHostRedirects:input_type -> pb.FindHTTPWebHostRedirectsRequest
+	27, // 24: pb.HTTPWebService.updateHTTPWebAuth:input_type -> pb.UpdateHTTPWebAuthRequest
+	1,  // 25: pb.HTTPWebService.createHTTPWeb:output_type -> pb.CreateHTTPWebResponse
+	3,  // 26: pb.HTTPWebService.findEnabledHTTPWeb:output_type -> pb.FindEnabledHTTPWebResponse
+	5,  // 27: pb.HTTPWebService.findEnabledHTTPWebConfig:output_type -> pb.FindEnabledHTTPWebConfigResponse
+	29, // 28: pb.HTTPWebService.updateHTTPWeb:output_type -> pb.RPCSuccess
+	29, // 29: pb.HTTPWebService.updateHTTPWebCompression:output_type -> pb.RPCSuccess
+	29, // 30: pb.HTTPWebService.updateHTTPWebWebP:output_type -> pb.RPCSuccess
+	29, // 31: pb.HTTPWebService.updateHTTPWebRemoteAddr:output_type -> pb.RPCSuccess
+	29, // 32: pb.HTTPWebService.updateHTTPWebCharset:output_type -> pb.RPCSuccess
+	29, // 33: pb.HTTPWebService.updateHTTPWebRequestHeader:output_type -> pb.RPCSuccess
+	29, // 34: pb.HTTPWebService.updateHTTPWebResponseHeader:output_type -> pb.RPCSuccess
+	29, // 35: pb.HTTPWebService.updateHTTPWebShutdown:output_type -> pb.RPCSuccess
+	29, // 36: pb.HTTPWebService.updateHTTPWebPages:output_type -> pb.RPCSuccess
+	29, // 37: pb.HTTPWebService.updateHTTPWebAccessLog:output_type -> pb.RPCSuccess
+	29, // 38: pb.HTTPWebService.updateHTTPWebStat:output_type -> pb.RPCSuccess
+	29, // 39: pb.HTTPWebService.updateHTTPWebCache:output_type -> pb.RPCSuccess
+	29, // 40: pb.HTTPWebService.updateHTTPWebFirewall:output_type -> pb.RPCSuccess
+	29, // 41: pb.HTTPWebService.updateHTTPWebLocations:output_type -> pb.RPCSuccess
+	29, // 42: pb.HTTPWebService.updateHTTPWebRedirectToHTTPS:output_type -> pb.RPCSuccess
+	29, // 43: pb.HTTPWebService.updateHTTPWebWebsocket:output_type -> pb.RPCSuccess
+	29, // 44: pb.HTTPWebService.updateHTTPWebFastcgi:output_type -> pb.RPCSuccess
+	29, // 45: pb.HTTPWebService.updateHTTPWebRewriteRules:output_type -> pb.RPCSuccess
+	29, // 46: pb.HTTPWebService.updateHTTPWebHostRedirects:output_type -> pb.RPCSuccess
+	26, // 47: pb.HTTPWebService.findHTTPWebHostRedirects:output_type -> pb.FindHTTPWebHostRedirectsResponse
+	29, // 48: pb.HTTPWebService.updateHTTPWebAuth:output_type -> pb.RPCSuccess
+	25, // [25:49] is the sub-list for method output_type
+	1,  // [1:25] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name
 	1,  // [1:1] is the sub-list for extension extendee
 	0,  // [0:1] is the sub-list for field type_name
@@ -1950,7 +2020,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebCharsetRequest); i {
+			switch v := v.(*UpdateHTTPWebRemoteAddrRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1962,7 +2032,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebRequestHeaderRequest); i {
+			switch v := v.(*UpdateHTTPWebCharsetRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1974,7 +2044,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebResponseHeaderRequest); i {
+			switch v := v.(*UpdateHTTPWebRequestHeaderRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1986,7 +2056,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebShutdownRequest); i {
+			switch v := v.(*UpdateHTTPWebResponseHeaderRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1998,7 +2068,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebPagesRequest); i {
+			switch v := v.(*UpdateHTTPWebShutdownRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2010,7 +2080,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebAccessLogRequest); i {
+			switch v := v.(*UpdateHTTPWebPagesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2022,7 +2092,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebStatRequest); i {
+			switch v := v.(*UpdateHTTPWebAccessLogRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2034,7 +2104,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebCacheRequest); i {
+			switch v := v.(*UpdateHTTPWebStatRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2046,7 +2116,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebFirewallRequest); i {
+			switch v := v.(*UpdateHTTPWebCacheRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2058,7 +2128,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebLocationsRequest); i {
+			switch v := v.(*UpdateHTTPWebFirewallRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2070,7 +2140,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebRedirectToHTTPSRequest); i {
+			switch v := v.(*UpdateHTTPWebLocationsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2082,7 +2152,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebWebsocketRequest); i {
+			switch v := v.(*UpdateHTTPWebRedirectToHTTPSRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2094,7 +2164,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebFastcgiRequest); i {
+			switch v := v.(*UpdateHTTPWebWebsocketRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2106,7 +2176,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebRewriteRulesRequest); i {
+			switch v := v.(*UpdateHTTPWebFastcgiRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2118,7 +2188,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateHTTPWebHostRedirectsRequest); i {
+			switch v := v.(*UpdateHTTPWebRewriteRulesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2130,7 +2200,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindHTTPWebHostRedirectsRequest); i {
+			switch v := v.(*UpdateHTTPWebHostRedirectsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2142,7 +2212,7 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindHTTPWebHostRedirectsResponse); i {
+			switch v := v.(*FindHTTPWebHostRedirectsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2154,6 +2224,18 @@ func file_service_http_web_proto_init() {
 			}
 		}
 		file_service_http_web_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindHTTPWebHostRedirectsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_web_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateHTTPWebAuthRequest); i {
 			case 0:
 				return &v.state
@@ -2172,7 +2254,7 @@ func file_service_http_web_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_http_web_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   27,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -2210,6 +2292,8 @@ type HTTPWebServiceClient interface {
 	UpdateHTTPWebCompression(ctx context.Context, in *UpdateHTTPWebCompressionRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 更改WebP配置
 	UpdateHTTPWebWebP(ctx context.Context, in *UpdateHTTPWebWebPRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 更改RemoteAddr配置
+	UpdateHTTPWebRemoteAddr(ctx context.Context, in *UpdateHTTPWebRemoteAddrRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 更改字符集配置
 	UpdateHTTPWebCharset(ctx context.Context, in *UpdateHTTPWebCharsetRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 更改请求Header策略
@@ -2302,6 +2386,15 @@ func (c *hTTPWebServiceClient) UpdateHTTPWebCompression(ctx context.Context, in 
 func (c *hTTPWebServiceClient) UpdateHTTPWebWebP(ctx context.Context, in *UpdateHTTPWebWebPRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
 	out := new(RPCSuccess)
 	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPWebWebP", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPWebServiceClient) UpdateHTTPWebRemoteAddr(ctx context.Context, in *UpdateHTTPWebRemoteAddrRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.HTTPWebService/updateHTTPWebRemoteAddr", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2475,6 +2568,8 @@ type HTTPWebServiceServer interface {
 	UpdateHTTPWebCompression(context.Context, *UpdateHTTPWebCompressionRequest) (*RPCSuccess, error)
 	// 更改WebP配置
 	UpdateHTTPWebWebP(context.Context, *UpdateHTTPWebWebPRequest) (*RPCSuccess, error)
+	// 更改RemoteAddr配置
+	UpdateHTTPWebRemoteAddr(context.Context, *UpdateHTTPWebRemoteAddrRequest) (*RPCSuccess, error)
 	// 更改字符集配置
 	UpdateHTTPWebCharset(context.Context, *UpdateHTTPWebCharsetRequest) (*RPCSuccess, error)
 	// 更改请求Header策略
@@ -2532,6 +2627,9 @@ func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebCompression(context.Conte
 }
 func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebWebP(context.Context, *UpdateHTTPWebWebPRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebWebP not implemented")
+}
+func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebRemoteAddr(context.Context, *UpdateHTTPWebRemoteAddrRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebRemoteAddr not implemented")
 }
 func (*UnimplementedHTTPWebServiceServer) UpdateHTTPWebCharset(context.Context, *UpdateHTTPWebCharsetRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebCharset not implemented")
@@ -2693,6 +2791,24 @@ func _HTTPWebService_UpdateHTTPWebWebP_Handler(srv interface{}, ctx context.Cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(HTTPWebServiceServer).UpdateHTTPWebWebP(ctx, req.(*UpdateHTTPWebWebPRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPWebService_UpdateHTTPWebRemoteAddr_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPWebRemoteAddrRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebRemoteAddr(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPWebService/UpdateHTTPWebRemoteAddr",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebRemoteAddr(ctx, req.(*UpdateHTTPWebRemoteAddrRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3030,6 +3146,10 @@ var _HTTPWebService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "updateHTTPWebWebP",
 			Handler:    _HTTPWebService_UpdateHTTPWebWebP_Handler,
+		},
+		{
+			MethodName: "updateHTTPWebRemoteAddr",
+			Handler:    _HTTPWebService_UpdateHTTPWebRemoteAddr_Handler,
 		},
 		{
 			MethodName: "updateHTTPWebCharset",

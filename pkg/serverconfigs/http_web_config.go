@@ -40,6 +40,8 @@ type HTTPWebConfig struct {
 
 	HostRedirects []*HTTPHostRedirectConfig `yaml:"hostRedirects" json:"hostRedirects"` // 主机跳转
 	Auth          *HTTPAuthConfig           `yaml:"auth" json:"auth"`                   // 认证配置
+
+	RemoteAddr *HTTPRemoteAddrConfig `yaml:"remoteAddr" json:"remoteAddr"`
 }
 
 func (this *HTTPWebConfig) Init() error {
@@ -236,6 +238,14 @@ func (this *HTTPWebConfig) Init() error {
 	// webp
 	if this.WebP != nil {
 		err := this.WebP.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// remoteAddr
+	if this.RemoteAddr != nil {
+		err := this.RemoteAddr.Init()
 		if err != nil {
 			return err
 		}
