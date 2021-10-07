@@ -10,7 +10,7 @@ type FirewallMode = string
 const (
 	FirewallModeDefend  FirewallMode = "defend"  // 防御模式
 	FirewallModeObserve FirewallMode = "observe" // 观察模式
-	FirewallModePass    FirewallMode = "pass"    // 通过模式
+	FirewallModeBypass  FirewallMode = "bypass"  // 通过模式
 )
 
 func FindAllFirewallModes() []*shared.Definition {
@@ -28,7 +28,7 @@ func FindAllFirewallModes() []*shared.Definition {
 		{
 			Name:        "通过模式",
 			Description: "不执行任何规则，所有的请求都将会直接通过。",
-			Code:        FirewallModePass,
+			Code:        FirewallModeBypass,
 		},
 	}
 }
