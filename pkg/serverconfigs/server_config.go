@@ -74,6 +74,77 @@ func (this *ServerConfig) Init() error {
 			this.ReverseProxyRef = this.Group.UDPReverseProxyRef
 			this.ReverseProxy = this.Group.UDPReverseProxy
 		}
+
+		// web
+		if this.Group.Web != nil {
+			if this.Web == nil {
+				this.Web = this.Group.Web
+			} else {
+				var groupWeb = this.Group.Web
+
+				// root
+				if groupWeb.Root != nil && groupWeb.Root.IsPrior {
+					this.Web.Root = groupWeb.Root
+				}
+
+				// waf
+				if groupWeb.FirewallRef != nil && groupWeb.FirewallRef.IsPrior {
+					this.Web.FirewallRef = groupWeb.FirewallRef
+					this.Web.FirewallPolicy = groupWeb.FirewallPolicy
+				}
+
+				// cache
+				if groupWeb.Cache != nil && groupWeb.Cache.IsPrior {
+					this.Web.Cache = groupWeb.Cache
+				}
+
+				// charset
+				if groupWeb.Charset != nil && groupWeb.Charset.IsPrior {
+					this.Web.Charset = groupWeb.Charset
+				}
+
+				// accessLog
+				if groupWeb.AccessLogRef != nil && groupWeb.AccessLogRef.IsPrior {
+					this.Web.AccessLogRef = groupWeb.AccessLogRef
+				}
+
+				// stat
+				if groupWeb.StatRef != nil && groupWeb.StatRef.IsPrior {
+					this.Web.StatRef = groupWeb.StatRef
+				}
+
+				// compression
+				if groupWeb.Compression != nil && groupWeb.Compression.IsPrior {
+					this.Web.Compression = groupWeb.Compression
+				}
+
+				// headers
+				if groupWeb.RequestHeaderPolicyRef != nil && groupWeb.RequestHeaderPolicyRef.IsPrior {
+					this.Web.RequestHeaderPolicyRef = groupWeb.RequestHeaderPolicyRef
+					this.Web.RequestHeaderPolicy = groupWeb.RequestHeaderPolicy
+				}
+				if groupWeb.ResponseHeaderPolicyRef != nil && groupWeb.ResponseHeaderPolicyRef.IsPrior {
+					this.Web.ResponseHeaderPolicyRef = groupWeb.ResponseHeaderPolicyRef
+					this.Web.ResponseHeaderPolicy = groupWeb.ResponseHeaderPolicy
+				}
+
+				// websocket
+				if groupWeb.WebsocketRef != nil && groupWeb.WebsocketRef.IsPrior {
+					this.Web.WebsocketRef = groupWeb.WebsocketRef
+					this.Web.Websocket = groupWeb.Websocket
+				}
+
+				// webp
+				if groupWeb.WebP != nil && groupWeb.WebP.IsPrior {
+					this.Web.WebP = groupWeb.WebP
+				}
+
+				// remote addr
+				if groupWeb.RemoteAddr != nil && groupWeb.RemoteAddr.IsPrior {
+					this.Web.RemoteAddr = groupWeb.RemoteAddr
+				}
+			}
+		}
 	}
 
 	if this.HTTP != nil {

@@ -15,4 +15,6 @@ type ServerGroupConfig struct {
 	TCPReverseProxy     *ReverseProxyConfig `yaml:"tcpReverseProxy" json:"tcpReverseProxy"`
 	UDPReverseProxyRef  *ReverseProxyRef    `yaml:"udpReverseProxyRef" json:"udpReverseProxyRef"`
 	UDPReverseProxy     *ReverseProxyConfig `yaml:"udpReverseProxy" json:"udpReverseProxy"`
+
+	Web *HTTPWebConfig `yaml:"web" json:"web"`
 }

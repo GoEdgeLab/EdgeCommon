@@ -46,6 +46,9 @@ service ServerGroupService {
 
 	// 取得分组的配置概要信息
 	rpc findEnabledServerGroupConfigInfo (FindEnabledServerGroupConfigInfoRequest) returns (FindEnabledServerGroupConfigInfoResponse);
+
+	// 初始化Web设置
+	rpc findAndInitServerGroupWebConfig (FindAndInitServerGroupWebConfigRequest) returns (FindAndInitServerGroupWebConfigResponse);
 }
 
 // 创建分组
@@ -149,4 +152,25 @@ message FindEnabledServerGroupConfigInfoResponse {
 	bool hasTCPReverseProxy = 2;
 	bool hasUDPReverseProxy = 3;
 	int64 serverGroupId = 4;
+	bool hasRootConfig = 5;
+	bool hasWAFConfig = 6;
+	bool hasCacheConfig = 7;
+	bool hasCharsetConfig = 8;
+	bool hasStatConfig = 9;
+	bool hasCompressionConfig = 10;
+	bool hasRequestHeadersConfig = 11;
+	bool hasResponseHeadersConfig = 12;
+	bool hasWebsocketConfig = 13;
+	bool hasWebPConfig = 14;
+	bool hasAccessLogConfig = 15;
+	bool hasRemoteAddrConfig = 16;
+}
+
+// 初始化Web设置
+message FindAndInitServerGroupWebConfigRequest {
+	int64 serverGroupId = 1;
+}
+
+message FindAndInitServerGroupWebConfigResponse {
+	bytes webJSON = 1;
 }

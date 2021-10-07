@@ -13,7 +13,7 @@ type ServerDAO struct {
 	BaseDAO
 }
 
-// 查找服务配置
+// FindEnabledServerConfig 查找服务配置
 func (this *ServerDAO) FindEnabledServerConfig(ctx context.Context, serverId int64) (*serverconfigs.ServerConfig, error) {
 	resp, err := this.RPC().ServerRPC().FindEnabledServerConfig(ctx, &pb.FindEnabledServerConfigRequest{ServerId: serverId})
 	if err != nil {
@@ -30,7 +30,7 @@ func (this *ServerDAO) FindEnabledServerConfig(ctx context.Context, serverId int
 	return config, nil
 }
 
-// 查找服务
+// FindEnabledServer 查找服务
 func (this *ServerDAO) FindEnabledServer(ctx context.Context, serverId int64) (*pb.Server, error) {
 	resp, err := this.RPC().ServerRPC().FindEnabledServer(ctx, &pb.FindEnabledServerRequest{ServerId: serverId})
 	if err != nil {
