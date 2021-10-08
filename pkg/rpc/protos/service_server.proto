@@ -116,6 +116,9 @@ service ServerService {
 
 	// 查找最近访问的服务
 	rpc findLatestServers (FindLatestServersRequest) returns (FindLatestServersResponse);
+
+	// 查找某个服务附近的服务
+	rpc findNearbyServers(FindNearbyServersRequest) returns (FindNearbyServersResponse);
 }
 
 // 创建服务
@@ -457,4 +460,19 @@ message FindLatestServersRequest {
 
 message FindLatestServersResponse {
 	repeated Server servers = 1;
+}
+
+// 查找某个服务附近的服务
+message FindNearbyServersRequest {
+	int64 serverId = 1;
+}
+
+message FindNearbyServersResponse {
+	string scope = 1; // 范围 cluster|group
+	repeated GroupInfo groups = 2;
+
+	message GroupInfo {
+		string name = 1;
+		repeated Server servers = 2;
+	}
 }
