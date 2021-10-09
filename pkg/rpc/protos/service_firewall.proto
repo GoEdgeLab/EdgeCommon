@@ -29,6 +29,8 @@ message ComposeFirewallGlobalBoardResponse {
 	repeated HTTPFirewallRuleGroupStat httpFirewallRuleGroups = 30;
 	repeated DailyStat dailyStats = 31;
 	repeated HourlyStat hourlyStats = 32;
+	repeated NodeStat topNodeStats = 33;
+	repeated DomainStat topDomainStats = 34;
 
 	message HTTPFirewallRuleGroupStat {
 		HTTPFirewallRuleGroup httpFirewallRuleGroup = 1;
@@ -47,6 +49,24 @@ message ComposeFirewallGlobalBoardResponse {
 		int64 countLogs = 2;
 		int64 countCaptcha = 3;
 		int64 countBlocks = 4;
+	}
+
+	message NodeStat {
+		int64 nodeId = 1;
+		string nodeName = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
+		int64 countAttackRequests = 6;
+		int64 attackBytes = 7;
+	}
+
+	message DomainStat {
+		int64 serverId = 1;
+		string domain = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
+		int64 countAttackRequests = 6;
+		int64 attackBytes = 7;
 	}
 }
 
