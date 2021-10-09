@@ -10,6 +10,30 @@ type RecordTTL struct {
 func FindAllRecordTTL() []*RecordTTL {
 	return []*RecordTTL{
 		{
+			Name:  "5秒",
+			Value: 5,
+		},
+		{
+			Name:  "10秒",
+			Value: 10,
+		},
+		{
+			Name:  "30秒",
+			Value: 30,
+		},
+		{
+			Name:  "1分钟",
+			Value: 60,
+		},
+		{
+			Name:  "3分钟",
+			Value: 3 * 60,
+		},
+		{
+			Name:  "5分钟",
+			Value: 5 * 60,
+		},
+		{
 			Name:  "10分钟",
 			Value: 10 * 60,
 		},
@@ -28,6 +52,14 @@ func FindAllRecordTTL() []*RecordTTL {
 		{
 			Name:  "1天",
 			Value: 86400,
+		},
+		{
+			Name:  "30天",
+			Value: 30 * 86400,
+		},
+		{
+			Name:  "一年",
+			Value: 365 * 86400,
 		},
 	}
 }
