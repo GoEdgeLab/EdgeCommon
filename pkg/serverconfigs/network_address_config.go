@@ -17,8 +17,8 @@ type NetworkAddressConfig struct {
 	Host      string   `yaml:"host" json:"host"`           // 主机地址或主机名，支持变量
 	PortRange string   `yaml:"portRange" json:"portRange"` // 端口范围，支持 8080、8080-8090、8080:8090
 
-	minPort int
-	maxPort int
+	MinPort int `yaml:"minPort" json:"minPort"` // minPort和maxPort只是用来记录PortRange分解后的结果，不需要用户输入
+	MaxPort int `yaml:"maxPort" json:"maxPort"`
 
 	hostHasVariables bool
 }
@@ -29,8 +29,8 @@ func (this *NetworkAddressConfig) Init() error {
 
 	// 8080
 	if regexpSinglePort.MatchString(this.PortRange) {
-		this.minPort = types.Int(this.PortRange)
-		this.maxPort = this.minPort
+		this.MinPort = types.Int(this.PortRange)
+		this.MaxPort = this.MinPort
 		return nil
 	}
 
@@ -42,8 +42,8 @@ func (this *NetworkAddressConfig) Init() error {
 		if minPort > maxPort {
 			minPort, maxPort = maxPort, minPort
 		}
-		this.minPort = minPort
-		this.maxPort = maxPort
+		this.MinPort = minPort
+		this.MaxPort = maxPort
 		return nil
 	}
 
@@ -55,8 +55,8 @@ func (this *NetworkAddressConfig) Init() error {
 		if minPort > maxPort {
 			minPort, maxPort = maxPort, minPort
 		}
-		this.minPort = minPort
-		this.maxPort = maxPort
+		this.MinPort = minPort
+		this.MaxPort = maxPort
 		return nil
 	}
 
@@ -70,7 +70,7 @@ func (this *NetworkAddressConfig) Addresses() []string {
 	}
 
 	result := []string{}
-	for i := this.minPort; i <= this.maxPort; i++ {
+	for i := this.MinPort; i <= this.MaxPort; i++ {
 		host := this.Host
 		result = append(result, configutils.QuoteIP(host)+":"+strconv.Itoa(i))
 	}
@@ -84,7 +84,7 @@ func (this *NetworkAddressConfig) FullAddresses() []string {
 	}
 
 	result := []string{}
-	for i := this.minPort; i <= this.maxPort; i++ {
+	for i := this.MinPort; i <= this.MaxPort; i++ {
 		host := this.Host
 		result = append(result, this.Protocol.String()+"://"+configutils.QuoteIP(host)+":"+strconv.Itoa(i))
 	}
@@ -93,10 +93,10 @@ func (this *NetworkAddressConfig) FullAddresses() []string {
 
 // PickAddress 选择其中一个地址
 func (this *NetworkAddressConfig) PickAddress() string {
-	if this.maxPort > this.minPort {
-		return configutils.QuoteIP(this.Host) + ":" + strconv.Itoa(rands.Int(this.minPort, this.maxPort))
+	if this.MaxPort > this.MinPort {
+		return configutils.QuoteIP(this.Host) + ":" + strconv.Itoa(rands.Int(this.MinPort, this.MaxPort))
 	}
-	return configutils.QuoteIP(this.Host) + ":" + strconv.Itoa(this.minPort)
+	return configutils.QuoteIP(this.Host) + ":" + strconv.Itoa(this.MinPort)
 }
 
 // HostHasVariables 判断Host是否包含变量
