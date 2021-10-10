@@ -164,6 +164,7 @@ message FindEnabledServerGroupConfigInfoResponse {
 	bool hasWebPConfig = 14;
 	bool hasAccessLogConfig = 15;
 	bool hasRemoteAddrConfig = 16;
+	bool hasPagesConfig = 17;
 }
 
 // 初始化Web设置

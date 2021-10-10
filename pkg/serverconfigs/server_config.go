@@ -143,6 +143,12 @@ func (this *ServerConfig) Init() error {
 				if groupWeb.RemoteAddr != nil && groupWeb.RemoteAddr.IsPrior {
 					this.Web.RemoteAddr = groupWeb.RemoteAddr
 				}
+
+				// pages
+				if len(groupWeb.Pages) > 0 || (groupWeb.Shutdown != nil && groupWeb.Shutdown.IsOn) {
+					this.Web.Pages = groupWeb.Pages
+					this.Web.Shutdown = groupWeb.Shutdown
+				}
 			}
 		}
 	}
