@@ -19,7 +19,9 @@ service HTTPPageService {
 // 创建Page
 message CreateHTTPPageRequest {
 	repeated string statusList = 1;
+	string bodyType = 5;
 	string url = 2;
+	string body = 4;
 	int32 newStatus = 3;
 }
 
@@ -31,7 +33,9 @@ message CreateHTTPPageResponse {
 message UpdateHTTPPageRequest {
 	int64 pageId = 1;
 	repeated string statusList = 2;
+	string bodyType = 6;
 	string url = 3;
+	string body = 5;
 	int32 newStatus = 4;
 }
 
