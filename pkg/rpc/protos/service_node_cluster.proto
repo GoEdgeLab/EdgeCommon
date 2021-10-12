@@ -145,8 +145,7 @@ message UpdateNodeClusterRequest {
 	string name = 2;
 	int64 nodeGrantId = 3;
 	string installDir = 4;
-	int64 httpCachePolicyId = 5;
-	int64 httpFirewallPolicyId = 6;
+	string timeZone = 5;
 }
 
 // 删除集群

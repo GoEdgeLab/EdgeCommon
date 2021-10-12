@@ -38,6 +38,7 @@ type NodeConfig struct {
 	TOA                  *TOAConfig                              `yaml:"toa" json:"toa"`
 	SystemServices       map[string]maps.Map                     `yaml:"systemServices" json:"systemServices"` // 系统服务配置 type => params
 	FirewallActions      []*firewallconfigs.FirewallActionConfig `yaml:"firewallActions" json:"firewallActions"`
+	TimeZone             string                                  `yaml:"timeZone" json:"timeZone"`
 
 	MetricItems []*serverconfigs.MetricItemConfig `yaml:"metricItems" json:"metricItems"`
 

@@ -16,4 +16,5 @@ message NodeCluster {
 	int64 httpCachePolicyId = 10;
 	int64 httpFirewallPolicyId = 11;
 	bool isOn = 12;
+	string timeZone = 13;
 }
