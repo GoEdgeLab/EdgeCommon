@@ -41,6 +41,8 @@ type ReverseProxyConfig struct {
 
 	AutoFlush bool `yaml:"autoFlush" json:"autoFlush"` // 是否自动刷新缓冲区，在比如SSE（server-sent events）场景下很有用
 
+	ProxyProtocol *ProxyProtocolConfig `yaml:"proxyProtocol" json:"proxyProtocol"`
+
 	requestHostHasVariables bool
 	requestURIHasVariables  bool
 
@@ -169,6 +171,14 @@ func (this *ReverseProxyConfig) Init() error {
 		this.addXForwardedByHeader = lists.ContainsString(this.AddHeaders, "X-Forwarded-By")
 		this.addXForwardedHostHeader = lists.ContainsString(this.AddHeaders, "X-Forwarded-Host")
 		this.addXForwardedProtoHeader = lists.ContainsString(this.AddHeaders, "X-Forwarded-Proto")
+	}
+
+	// PROXY Protocol
+	if this.ProxyProtocol != nil {
+		err := this.ProxyProtocol.Init()
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil

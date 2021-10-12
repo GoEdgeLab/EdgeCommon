@@ -90,4 +90,5 @@ message UpdateReverseProxyRequest {
 	bytes idleTimeoutJSON = 10;
 	int32 maxConns = 11;
 	int32 maxIdleConns = 12;
+	bytes proxyProtocolJSON = 13;
 }
