@@ -19,6 +19,12 @@ service NodeLogService {
 
 	// 设置日志为已修复
 	rpc fixNodeLog (FixNodeLogRequest) returns (RPCSuccess);
+
+	// 计算未读的日志数量
+	rpc countAllUnreadNodeLogs(CountAllUnreadNodeLogsRequest) returns (RPCCountResponse);
+
+	// 设置日志为已读
+	rpc updateNodeLogsRead(UpdateNodeLogsReadRequest) returns (RPCSuccess);
 }
 
 // 创建日志
@@ -40,6 +46,7 @@ message CountNodeLogsRequest {
 	string level = 6;
 	int64 serverId = 7;
 	int64 originId = 8;
+	bool isUnread = 9;
 }
 
 // 列出单页日志
@@ -57,6 +64,7 @@ message ListNodeLogsRequest {
 	int32 fixedState = 10;
 	bool allServers = 11; // 是否获取所有服务相关的日志
 	int64 originId = 12;
+	bool isUnread = 13;
 }
 
 message ListNodeLogsResponse {
@@ -66,4 +74,13 @@ message ListNodeLogsResponse {
 // 设置日志为已修复
 message FixNodeLogRequest {
 	int64 nodeLogId = 1;
+}
+
+// 计算未读的日志数量
+message CountAllUnreadNodeLogsRequest {
+}
+
+// 设置日志为已读
+message UpdateNodeLogsReadRequest {
+	repeated int64 nodeLogIds = 1;
 }
