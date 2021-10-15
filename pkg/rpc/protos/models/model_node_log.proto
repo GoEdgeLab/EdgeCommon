@@ -15,4 +15,5 @@ message NodeLog {
 	int64 serverId = 9;
 	bool isFixed = 10;
 	int64 originId = 11;
+	bool isRead = 12;
 }
