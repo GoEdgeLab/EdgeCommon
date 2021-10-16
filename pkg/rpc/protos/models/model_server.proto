@@ -18,6 +18,7 @@ message Server {
 	bytes excludeNodes = 6;
 	int64 createdAt = 7;
 	string dnsName = 19;
+	bool supportCNAME = 23;
 
 	// 配置相关
 	bytes config = 17;

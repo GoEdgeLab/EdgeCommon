@@ -22,6 +22,7 @@ type NodeConfig struct {
 	Secret                 string                        `yaml:"secret" json:"secret"`
 	IsOn                   bool                          `yaml:"isOn" json:"isOn"`
 	Servers                []*serverconfigs.ServerConfig `yaml:"servers" json:"servers"`
+	SupportCNAME           bool                          `yaml:"supportCNAME" json:"supportCNAME"`
 	Version                int64                         `yaml:"version" json:"version"`
 	Name                   string                        `yaml:"name" json:"name"`
 	MaxCPU                 int32                         `yaml:"maxCPU" json:"maxCPU"`

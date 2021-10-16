@@ -51,6 +51,12 @@ service ServerService {
 	// 审核服务的域名设置
 	rpc updateServerNamesAuditing (UpdateServerNamesAuditingRequest) returns (RPCSuccess);
 
+	// 修改服务的DNS相关设置
+	rpc updateServerDNS(UpdateServerDNSRequest) returns (RPCSuccess);
+
+	// 重新生成CNAME
+	rpc regenerateServerCNAME(RegenerateServerCNAMERequest) returns (RPCSuccess);
+
 	// 计算匹配的服务数量
 	rpc countAllEnabledServersMatch (CountAllEnabledServersMatchRequest) returns (RPCCountResponse);
 
@@ -232,6 +238,17 @@ message UpdateServerNamesAuditingRequest {
 	ServerNameAuditingResult auditingResult = 2;
 }
 
+// 修改服务的DNS相关设置
+message UpdateServerDNSRequest {
+	int64 serverId = 1;
+	bool supportCNAME = 2;
+}
+
+// 重新生成CNAME
+message RegenerateServerCNAMERequest {
+	int64 serverId = 1;
+}
+
 // 计算服务数量
 message CountAllEnabledServersMatchRequest {
 	int64 serverGroupId = 1;
@@ -365,6 +382,7 @@ message FindEnabledServerDNSRequest {
 message FindEnabledServerDNSResponse {
 	string dnsName = 1;
 	DNSDomain domain = 2;
+	bool supportCNAME = 3;
 }
 
 // 检查服务是否属于某个用户
