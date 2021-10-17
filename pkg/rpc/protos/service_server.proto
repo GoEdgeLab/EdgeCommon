@@ -125,6 +125,9 @@ service ServerService {
 
 	// 查找某个服务附近的服务
 	rpc findNearbyServers(FindNearbyServersRequest) returns (FindNearbyServersResponse);
+
+	// 清除缓存
+	rpc purgeServerCache(PurgeServerCacheRequest) returns (PurgeServerCacheResponse);
 }
 
 // 创建服务
@@ -493,4 +496,16 @@ message FindNearbyServersResponse {
 		string name = 1;
 		repeated Server servers = 2;
 	}
+}
+
+// 清除缓存
+message PurgeServerCacheRequest {
+	repeated string domains = 1;
+	repeated string keys = 2;
+	repeated string prefixes = 3;
+}
+
+message PurgeServerCacheResponse {
+	bool isOk = 1;
+	string message = 2;
 }
