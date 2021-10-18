@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-var DefaultHTTPCompressionTypes = []HTTPCompressionType{HTTPCompressionTypeGzip, HTTPCompressionTypeDeflate, HTTPCompressionTypeBrotli}
+var DefaultHTTPCompressionTypes = []HTTPCompressionType{HTTPCompressionTypeBrotli, HTTPCompressionTypeGzip, HTTPCompressionTypeDeflate}
 
 type HTTPCompressionRef struct {
 	Id   int64 `yaml:"id" json:"id"`
