@@ -23,6 +23,7 @@ type HTTPCompressionConfig struct {
 	UseDefaultTypes bool                  `yaml:"useDefaultTypes" json:"useDefaultTypes"` // 是否使用默认的类型
 	Types           []HTTPCompressionType `yaml:"types" json:"types"`                     // 支持的类型，如果为空表示默认顺序
 	Level           int8                  `yaml:"level" json:"level"`                     // 级别：1-12
+	DecompressData  bool                  `yaml:"decompressData" json:"decompressData"`   // 是否解压已压缩内容
 
 	GzipRef    *HTTPCompressionRef `yaml:"gzipRef" json:"gzipRef"`
 	DeflateRef *HTTPCompressionRef `yaml:"deflateRef" json:"deflateRef"`
