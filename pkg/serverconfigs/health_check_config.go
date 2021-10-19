@@ -5,7 +5,7 @@ import (
 	"github.com/iwind/TeaGo/maps"
 )
 
-const HealthCheckHeaderName = "Edge-Health-Check-Key"
+const HealthCheckHeaderName = "X-Edge-Health-Check-Key"
 
 // HealthCheckConfig 健康检查设置
 type HealthCheckConfig struct {
