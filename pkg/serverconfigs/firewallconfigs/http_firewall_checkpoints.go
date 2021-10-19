@@ -193,6 +193,14 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		IsComposed:  true,
 	},
 	{
+		Name:        "防盗链",
+		Prefix:      "refererBlock",
+		Description: "对统计对象进行统计",
+		HasParams:   false,
+		IsRequest:   true,
+		IsComposed:  true,
+	},
+	{
 		Name:        "CC统计（旧）",
 		Prefix:      "cc",
 		Description: "统计某段时间段内的请求信息（请使用新的CC统计代替）",
