@@ -42,6 +42,10 @@ type ServerConfig struct {
 	HTTPCachePolicyId int64            `yaml:"httpCachePolicyId" json:"httpCachePolicyId"`
 	HTTPCachePolicy   *HTTPCachePolicy `yaml:"httpCachePolicy" json:"httpCachePolicy"` // 通过 HTTPCachePolicyId 获取
 
+	// 带宽限制
+	BandwidthLimit       *BandwidthLimitConfig `yaml:"bandwidthLimit" json:"bandwidthLimit"`
+	BandwidthLimitStatus *BandwidthLimitStatus `yaml:"bandwidthLimitStatus" json:"bandwidthLimitStatus"`
+
 	// 分组
 	Group *ServerGroupConfig `yaml:"group" json:"group"`
 

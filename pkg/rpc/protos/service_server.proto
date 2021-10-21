@@ -128,6 +128,12 @@ service ServerService {
 
 	// 清除缓存
 	rpc purgeServerCache(PurgeServerCacheRequest) returns (PurgeServerCacheResponse);
+
+	// 查找带宽限制
+	rpc findEnabledServerBandwidthLimit(FindEnabledServerBandwidthLimitRequest) returns (FindEnabledServerBandwidthLimitResponse);
+
+	// 设置带宽限制
+	rpc updateServerBandwidthLimit(UpdateServerBandwidthLimitRequest) returns (RPCSuccess);
 }
 
 // 创建服务
@@ -508,4 +514,19 @@ message PurgeServerCacheRequest {
 message PurgeServerCacheResponse {
 	bool isOk = 1;
 	string message = 2;
+}
+
+// 查找带宽限制
+message FindEnabledServerBandwidthLimitRequest {
+	int64 serverId = 1;
+}
+
+message FindEnabledServerBandwidthLimitResponse {
+	bytes bandwidthLimitJSON = 1;
+}
+
+// 设置带宽限制
+message UpdateServerBandwidthLimitRequest {
+	int64 serverId = 1;
+	bytes bandwidthLimitJSON = 2;
 }
