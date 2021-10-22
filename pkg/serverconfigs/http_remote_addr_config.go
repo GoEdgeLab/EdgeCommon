@@ -9,9 +9,10 @@ import (
 
 // HTTPRemoteAddrConfig HTTP获取客户端IP地址方式
 type HTTPRemoteAddrConfig struct {
-	IsPrior bool   `yaml:"isPrior" json:"isPrior"`
-	IsOn    bool   `yaml:"isOn" json:"isOn"`
-	Value   string `yaml:"value" json:"value"` // 值变量
+	IsPrior      bool   `yaml:"isPrior" json:"isPrior"`
+	IsOn         bool   `yaml:"isOn" json:"isOn"`
+	Value        string `yaml:"value" json:"value"`               // 值变量
+	IsCustomized bool   `yaml:"isCustomized" json:"isCustomized"` // 是否自定义
 
 	isEmpty bool
 }
