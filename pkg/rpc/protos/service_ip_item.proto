@@ -70,11 +70,13 @@ message DeleteIPItemRequest {
 // 计算IP数量
 message CountIPItemsWithListIdRequest {
 	int64 ipListId = 1;
+	string keyword = 2;
 }
 
 // 列出单页的IP
 message ListIPItemsWithListIdRequest {
 	int64 ipListId = 1;
+	string keyword = 4;
 	int64 offset = 2;
 	int64 size = 3;
 }
