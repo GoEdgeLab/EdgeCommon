@@ -433,6 +433,30 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			group.AddRuleSet(set)
 		}
 
+		{
+			set := &HTTPFirewallRuleSet{}
+			set.IsOn = true
+			set.Name = "空Agent"
+			set.Code = "20002"
+			set.Connector = HTTPFirewallRuleConnectorOr
+			set.Actions = []*HTTPFirewallActionConfig{
+				{
+					Code: HTTPFirewallActionBlock,
+				},
+			}
+
+			// 空Agent
+			set.AddRule(&HTTPFirewallRule{
+				IsOn:              true,
+				Param:             "${userAgent}",
+				Operator:          HTTPFirewallRuleOperatorEqString,
+				Value:             "",
+				IsCaseInsensitive: false,
+			})
+
+			group.AddRuleSet(set)
+		}
+
 		policy.Inbound.Groups = append(policy.Inbound.Groups, group)
 	}
 
@@ -507,7 +531,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.IsOn = true
 			set.Name = "CC请求数"
 			set.Description = "限制单IP在一定时间内的总体请求数"
-			set.Code = "8001"
+			set.Code = "8002"
 			set.Connector = HTTPFirewallRuleConnectorAnd
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
@@ -555,6 +579,33 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				Param:             "${remoteAddr}",
 				Operator:          HTTPFirewallRuleOperatorNotIPRange,
 				Value:             `172.16.0.1/12`,
+				IsCaseInsensitive: false,
+			})
+
+			group.AddRuleSet(set)
+		}
+
+		{
+			set := &HTTPFirewallRuleSet{}
+			set.IsOn = true
+			set.Name = "随机URL攻击"
+			set.Description = "限制用户使用随机URL访问网站"
+			set.Code = "8003"
+			set.Connector = HTTPFirewallRuleConnectorAnd
+			set.Actions = []*HTTPFirewallActionConfig{
+				{
+					Code: HTTPFirewallActionBlock,
+					Options: maps.Map{
+						"timeout": 600,
+					},
+				},
+			}
+
+			set.AddRule(&HTTPFirewallRule{
+				IsOn:              true,
+				Param:             "${args}",
+				Operator:          HTTPFirewallRuleOperatorMatch,
+				Value:             `^[0-9a-zA-Z_\-.]{12,}$`,
 				IsCaseInsensitive: false,
 			})
 
