@@ -619,6 +619,49 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 	{
 		group := &HTTPFirewallRuleGroup{}
 		group.IsOn = true
+		group.Name = "防盗链"
+		group.Description = "防止第三方网站引用本站资源。"
+		group.Code = "referer"
+
+		{
+			set := &HTTPFirewallRuleSet{}
+			set.IsOn = true
+			set.Name = "防盗链"
+			set.Description = "防止第三方网站引用本站资源"
+			set.Code = "9001"
+			set.Connector = HTTPFirewallRuleConnectorAnd
+			set.Actions = []*HTTPFirewallActionConfig{
+				{
+					Code: HTTPFirewallActionBlock,
+					Options: maps.Map{
+						"timeout": 60,
+					},
+				},
+			}
+
+			set.AddRule(&HTTPFirewallRule{
+				IsOn:     true,
+				Param:    "${refererBlock}",
+				Operator: HTTPFirewallRuleOperatorEq,
+				Value:    "0",
+				CheckpointOptions: map[string]interface{}{
+					"allowEmpty":      true,
+					"allowSameDomain": true,
+					"allowDomains":    []string{"*"},
+				},
+				IsCaseInsensitive: false,
+			})
+
+			group.AddRuleSet(set)
+		}
+
+		policy.Inbound.Groups = append(policy.Inbound.Groups, group)
+	}
+
+	// custom
+	{
+		group := &HTTPFirewallRuleGroup{}
+		group.IsOn = true
 		group.Name = "自定义规则分组"
 		group.Description = "我的自定义规则分组，可以将自定义的规则放在这个分组下"
 		group.Code = "custom"

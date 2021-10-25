@@ -39,6 +39,7 @@ message UpdateHTTPFirewallRuleGroupIsOnRequest {
 message CreateHTTPFirewallRuleGroupRequest {
 	bool isOn = 1;
 	string name = 2;
+	string code = 4;
 	string description = 3;
 }
 
