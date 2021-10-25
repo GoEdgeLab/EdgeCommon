@@ -60,6 +60,12 @@ var AllActions = []*HTTPFirewallActionDefinition{
 		Category:    HTTPFirewallActionCategoryAllow,
 	},
 	{
+		Name:        "显示网页",
+		Code:        HTTPFirewallActionPage,
+		Description: "在网页中显示提示文字。",
+		Category:    HTTPFirewallActionCategoryBlock,
+	},
+	{
 		Name:     "跳到下一个规则分组",
 		Code:     HTTPFirewallActionGoGroup,
 		Type:     reflect.TypeOf(new(HTTPFirewallGoGroupAction)).Elem(),

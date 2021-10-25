@@ -11,6 +11,7 @@ const (
 	HTTPFirewallActionPost307  HTTPFirewallActionString = "post_307"  // 针对POST的307重定向认证
 	HTTPFirewallActionRecordIP HTTPFirewallActionString = "record_ip" // 记录IP
 	HTTPFirewallActionTag      HTTPFirewallActionString = "tag"       // 标签
+	HTTPFirewallActionPage     HTTPFirewallActionString = "page"      // 显示页面
 	HTTPFirewallActionAllow    HTTPFirewallActionString = "allow"     // allow
 	HTTPFirewallActionGoGroup  HTTPFirewallActionString = "go_group"  // go to next rule group
 	HTTPFirewallActionGoSet    HTTPFirewallActionString = "go_set"    // go to next rule set
