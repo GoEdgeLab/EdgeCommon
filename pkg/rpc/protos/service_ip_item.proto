@@ -64,19 +64,23 @@ message UpdateIPItemRequest {
 
 // 删除IP
 message DeleteIPItemRequest {
-	int64 ipItemId = 1;
+	int64 ipItemId = 1; // IP条目的ID
 }
 
 // 计算IP数量
 message CountIPItemsWithListIdRequest {
 	int64 ipListId = 1;
 	string keyword = 2;
+	string ipFrom = 3;
+	string ipTo = 4;
 }
 
 // 列出单页的IP
 message ListIPItemsWithListIdRequest {
 	int64 ipListId = 1;
 	string keyword = 4;
+	string ipFrom = 5;
+	string ipTo = 6;
 	int64 offset = 2;
 	int64 size = 3;
 }
@@ -126,5 +130,3 @@ message ExistsEnabledIPItemRequest {
 message ExistsEnabledIPItemResponse {
 	bool exists = 1;
 }
-
-//
