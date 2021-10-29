@@ -1,0 +1,83 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_user_plan.proto";
+
+// 用户购买的套餐
+service UserPlanService {
+	// 添加已购套餐
+	rpc createUserPlan(CreateUserPlanRequest) returns (CreateUserPlanResponse);
+
+	// 查找单个已购套餐信息
+	rpc findEnabledUserPlan(FindEnabledUserPlanRequest) returns (FindEnabledUserPlanResponse);
+
+	// 修改已购套餐
+	rpc updateUserPlan(UpdateUserPlanRequest) returns (RPCSuccess);
+
+	// 删除已购套餐
+	rpc deleteUserPlan(DeleteUserPlanRequest) returns (RPCSuccess);
+
+	// 计算已购套餐数
+	rpc countAllEnabledUserPlans(CountAllEnabledUserPlansRequest) returns (RPCCountResponse);
+
+	// 列出单页已购套餐
+	rpc listEnabledUserPlans(ListEnabledUserPlansRequest) returns (ListEnabledUserPlansResponse);
+}
+
+// 添加已购套餐
+message CreateUserPlanRequest{
+	int64 userId = 1;
+	int64 planId = 2;
+	string dayTo = 3;
+}
+
+message CreateUserPlanResponse {
+	int64 userPlanId = 1;
+}
+
+// 查找单个已购套餐信息
+message FindEnabledUserPlanRequest {
+	int64 userPlanId = 1;
+}
+
+message FindEnabledUserPlanResponse {
+	UserPlan userPlan = 1;
+}
+
+// 修改已购套餐
+message UpdateUserPlanRequest {
+	int64 userPlanId = 1;
+	int64 planId = 2;
+	string dayTo = 3;
+	bool isOn = 4;
+}
+
+// 删除已购套餐
+message DeleteUserPlanRequest {
+	int64 userPlanId = 1;
+}
+
+// 计算已购套餐数
+message CountAllEnabledUserPlansRequest {
+	bool isAvailable = 1;
+	bool isExpired = 2;
+	int32 expiringDays = 3;
+	int64 userId = 4;
+}
+
+// 列出单页已购套餐
+message ListEnabledUserPlansRequest {
+	bool isAvailable = 1;
+	bool isExpired = 2;
+	int32 expiringDays = 3;
+	int64 userId = 4;
+	int64 offset = 5;
+	int64 size = 6;
+}
+
+message ListEnabledUserPlansResponse {
+	repeated UserPlan userPlans = 1;
+}

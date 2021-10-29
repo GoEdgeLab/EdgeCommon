@@ -1,0 +1,97 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_plan.proto";
+import "models/rpc_messages.proto";
+
+// 套餐相关服务
+service PlanService {
+	// 创建套餐
+	rpc createPlan(CreatePlanRequest) returns (CreatePlanResponse);
+
+	// 修改套餐
+	rpc updatePlan(UpdatePlanRequest) returns (RPCSuccess);
+
+	// 删除套餐
+	rpc deletePlan(DeletePlanRequest) returns (RPCSuccess);
+
+	// 查找单个套餐
+	rpc findEnabledPlan(FindEnabledPlanRequest) returns (FindEnabledPlanResponse);
+
+	// 计算套餐数量
+	rpc countAllEnabledPlans(CountAllEnabledPlansRequest) returns (RPCCountResponse);
+
+	// 列出单页套餐
+	rpc listEnabledPlans(ListEnabledPlansRequest) returns (ListEnabledPlansResponse);
+
+	// 对套餐进行排序
+	rpc sortPlans(SortPlansRequest) returns (RPCSuccess);
+}
+
+// 创建套餐
+message CreatePlanRequest {
+	string name = 1;
+	int64 clusterId = 2;
+	bytes bandwidthLimitJSON = 3;
+	bytes featuresJSON = 4;
+	string priceType = 5;
+	bytes bandwidthPriceJSON = 6;
+	float monthlyPrice = 7;
+	float seasonallyPrice = 8;
+	float yearlyPrice = 9;
+}
+
+message CreatePlanResponse {
+	int64 planId = 1;
+}
+
+// 修改套餐
+message UpdatePlanRequest {
+	int64 planId = 1;
+	string name = 2;
+	bool isOn = 3;
+	int64 clusterId = 4;
+	bytes bandwidthLimitJSON = 5;
+	bytes featuresJSON = 6;
+	string priceType = 7;
+	bytes bandwidthPriceJSON = 8;
+	float monthlyPrice = 9;
+	float seasonallyPrice = 10;
+	float yearlyPrice = 11;
+}
+
+// 删除套餐
+message DeletePlanRequest {
+	int64 planId = 1;
+}
+
+// 查找单个套餐
+message FindEnabledPlanRequest {
+	int64 planId = 1;
+}
+
+message FindEnabledPlanResponse {
+	Plan plan = 1;
+}
+
+// 计算套餐数量
+message CountAllEnabledPlansRequest {
+
+}
+
+// 列出单页套餐
+message ListEnabledPlansRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListEnabledPlansResponse {
+	repeated Plan plans = 1;
+}
+
+// 对套餐进行排序
+message SortPlansRequest {
+	repeated int64 planIds = 1;
+}
