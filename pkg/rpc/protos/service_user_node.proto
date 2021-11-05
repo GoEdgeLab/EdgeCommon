@@ -32,6 +32,9 @@ service UserNodeService {
 
 	// 更新节点状态
 	rpc updateUserNodeStatus (UpdateUserNodeStatusRequest) returns (RPCSuccess);
+
+	// 计算使用某个SSL证书的用户节点数量
+	rpc countAllEnabledUserNodesWithSSLCertId (CountAllEnabledUserNodesWithSSLCertIdRequest) returns (RPCCountResponse);
 }
 
 // 创建用户节点
@@ -45,12 +48,12 @@ message CreateUserNodeRequest {
 }
 
 message CreateUserNodeResponse {
-	int64 nodeId = 1;
+	int64 userNodeId = 1;
 }
 
 // 修改用户节点
 message UpdateUserNodeRequest {
-	int64 nodeId = 1;
+	int64 userNodeId = 1;
 	string name = 2;
 	string description = 3;
 	bytes httpJSON = 4;
@@ -61,7 +64,7 @@ message UpdateUserNodeRequest {
 
 // 删除用户节点
 message DeleteUserNodeRequest {
-	int64 nodeId = 1;
+	int64 userNodeId = 1;
 }
 
 // 列出所有可用用户节点
@@ -70,7 +73,7 @@ message FindAllEnabledUserNodesRequest {
 }
 
 message FindAllEnabledUserNodesResponse {
-	repeated UserNode nodes = 1;
+	repeated UserNode userNodes = 1;
 }
 
 // 计算用户节点数量
@@ -85,16 +88,16 @@ message ListEnabledUserNodesRequest {
 }
 
 message ListEnabledUserNodesResponse {
-	repeated UserNode nodes = 1;
+	repeated UserNode userNodes = 1;
 }
 
 // 根据ID查找节点
 message FindEnabledUserNodeRequest {
-	int64 nodeId = 1;
+	int64 userNodeId = 1;
 }
 
 message FindEnabledUserNodeResponse {
-	UserNode node = 1;
+	UserNode userNode = 1;
 }
 
 // 获取当前用户节点
@@ -103,11 +106,16 @@ message FindCurrentUserNodeRequest {
 }
 
 message FindCurrentUserNodeResponse {
-	UserNode node = 1;
+	UserNode userNode = 1;
 }
 
 // 更新节点状态
 message UpdateUserNodeStatusRequest {
-	int64 nodeId = 1;
+	int64 userNodeId = 1;
 	bytes statusJSON = 2;
+}
+
+// 计算使用某个SSL证书的用户节点数量
+message CountAllEnabledUserNodesWithSSLCertIdRequest {
+	int64 sslCertId = 1;
 }

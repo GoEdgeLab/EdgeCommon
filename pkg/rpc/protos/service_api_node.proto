@@ -32,6 +32,9 @@ service APINodeService {
 
 	// 获取当前API节点的版本
 	rpc findCurrentAPINodeVersion (FindCurrentAPINodeVersionRequest) returns (FindCurrentAPINodeVersionResponse);
+
+	// 计算使用某个SSL证书的API节点数量
+	rpc countAllEnabledAPINodesWithSSLCertId (CountAllEnabledAPINodesWithSSLCertIdRequest) returns (RPCCountResponse);
 }
 
 // 创建API节点
@@ -115,4 +118,9 @@ message FindCurrentAPINodeVersionRequest {
 
 message FindCurrentAPINodeVersionResponse {
 	string version = 1;
+}
+
+// 计算使用某个SSL证书的API节点数量
+message CountAllEnabledAPINodesWithSSLCertIdRequest {
+	int64 sslCertId = 1;
 }
