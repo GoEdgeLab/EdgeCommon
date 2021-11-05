@@ -21,6 +21,9 @@ service APINodeService {
 	// 计算API节点数量
 	rpc countAllEnabledAPINodes (CountAllEnabledAPINodesRequest) returns (RPCCountResponse);
 
+	// 计算启用的API节点数量
+	rpc countAllEnabledAndOnAPINodes (CountAllEnabledAndOnAPINodesRequest) returns (RPCCountResponse);
+
 	// 列出单页的API节点
 	rpc listEnabledAPINodes (ListEnabledAPINodesRequest) returns (ListEnabledAPINodesResponse);
 
@@ -45,12 +48,12 @@ message CreateAPINodeRequest {
 }
 
 message CreateAPINodeResponse {
-	int64 nodeId = 1;
+	int64 apiNodeId = 1;
 }
 
 // 修改API节点
 message UpdateAPINodeRequest {
-	int64 nodeId = 1;
+	int64 apiNodeId = 1;
 	string name = 2;
 	string description = 3;
 	bytes httpJSON = 4;
@@ -64,7 +67,7 @@ message UpdateAPINodeRequest {
 
 // 删除API节点
 message DeleteAPINodeRequest {
-	int64 nodeId = 1;
+	int64 apiNodeId = 1;
 }
 
 // 列出所有可用API节点
@@ -73,11 +76,16 @@ message FindAllEnabledAPINodesRequest {
 }
 
 message FindAllEnabledAPINodesResponse {
-	repeated APINode nodes = 1;
+	repeated APINode apiNodes = 1;
 }
 
 // 计算API节点数量
 message CountAllEnabledAPINodesRequest {
+
+}
+
+// 计算启用的API节点数量
+message CountAllEnabledAndOnAPINodesRequest {
 
 }
 
@@ -88,16 +96,16 @@ message ListEnabledAPINodesRequest {
 }
 
 message ListEnabledAPINodesResponse {
-	repeated APINode nodes = 1;
+	repeated APINode apiNodes = 1;
 }
 
 // 根据ID查找节点
 message FindEnabledAPINodeRequest {
-	int64 nodeId = 1;
+	int64 apiNodeId = 1;
 }
 
 message FindEnabledAPINodeResponse {
-	APINode node = 1;
+	APINode apiNode = 1;
 }
 
 // 获取当前API节点的版本
