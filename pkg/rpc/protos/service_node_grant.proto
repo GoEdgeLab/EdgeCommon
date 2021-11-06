@@ -41,6 +41,7 @@ message CreateNodeGrantRequest {
 	string username = 3;
 	string password = 4;
 	string privateKey = 5;
+	string passphrase = 8;
 	string description = 6;
 	int64 nodeId = 7;
 }
@@ -57,6 +58,7 @@ message UpdateNodeGrantRequest {
 	string username = 3;
 	string password = 4;
 	string privateKey = 5;
+	string passphrase = 9;
 	string description = 6;
 	int64 nodeId = 7;
 }

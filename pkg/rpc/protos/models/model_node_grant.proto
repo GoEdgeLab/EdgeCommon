@@ -11,6 +11,7 @@ message NodeGrant {
 	string password = 5;
 	bool su = 6;
 	string privateKey = 7;
+	string passphrase = 10;
 	string description = 8;
 	int64 nodeId = 9;
 }
