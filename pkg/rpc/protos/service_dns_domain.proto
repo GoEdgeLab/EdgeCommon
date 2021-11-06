@@ -18,6 +18,9 @@ service DNSDomainService {
 	// 删除域名
 	rpc deleteDNSDomain (DeleteDNSDomainRequest) returns (RPCSuccess);
 
+	// 恢复删除的域名
+	rpc recoverDNSDomain (RecoverDNSDomainRequest) returns (RPCSuccess);
+
 	// 查询单个域名完整信息
 	rpc findEnabledDNSDomain (FindEnabledDNSDomainRequest) returns (FindEnabledDNSDomainResponse);
 
@@ -68,6 +71,11 @@ message UpdateDNSDomainRequest {
 
 // 删除域名
 message DeleteDNSDomainRequest {
+	int64 dnsDomainId = 1;
+}
+
+// 恢复删除的域名
+message RecoverDNSDomainRequest {
 	int64 dnsDomainId = 1;
 }
 

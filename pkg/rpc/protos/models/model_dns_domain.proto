@@ -21,4 +21,5 @@ message DNSDomain {
 	int64 providerId = 11;
 	int64 countNodeClusters = 12;
 	bool isUp = 15;
+	bool isDeleted = 16;
 }
