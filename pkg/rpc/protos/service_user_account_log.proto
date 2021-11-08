@@ -1,0 +1,37 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_user_account_log.proto";
+import "models/rpc_messages.proto";
+
+// 用户账户日志服务
+service UserAccountLogService {
+	// 计算日志数量
+	rpc countUserAccountLogs(CountUserAccountLogsRequest) returns (RPCCountResponse);
+
+	// 列出单页日志
+	rpc listUserAccountLogs(ListUserAccountLogsRequest) returns (ListUserAccountLogsResponse);
+}
+
+// 计算日志数量
+message CountUserAccountLogsRequest {
+	int64 userAccountId = 1;
+	string keyword = 2;
+	string eventType = 3;
+}
+
+// 列出单页日志
+message ListUserAccountLogsRequest {
+	int64 userAccountId = 1;
+	string keyword = 2;
+	string eventType = 3;
+	int64 offset = 4;
+	int64 size = 5;
+}
+
+message ListUserAccountLogsResponse {
+	repeated UserAccountLog userAccountLogs = 1;
+}
+

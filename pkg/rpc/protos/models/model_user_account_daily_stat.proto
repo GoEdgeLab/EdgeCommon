@@ -1,0 +1,12 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message UserAccountDailyStat {
+	int64 id = 1;
+	string day = 2;
+	string month = 3;
+	float income = 4;
+	float expense = 5;
+}

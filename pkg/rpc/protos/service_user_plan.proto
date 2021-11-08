@@ -8,8 +8,11 @@ import "models/model_user_plan.proto";
 
 // 用户购买的套餐
 service UserPlanService {
-	// 添加已购套餐
-	rpc createUserPlan(CreateUserPlanRequest) returns (CreateUserPlanResponse);
+	// 购买套餐
+	rpc buyUserPlan(BuyUserPlanRequest) returns (BuyUserPlanResponse);
+
+	// 续费套餐
+	rpc renewUserPlan(RenewUserPlanRequest) returns (RPCSuccess);
 
 	// 查找单个已购套餐信息
 	rpc findEnabledUserPlan(FindEnabledUserPlanRequest) returns (FindEnabledUserPlanResponse);
@@ -28,14 +31,24 @@ service UserPlanService {
 }
 
 // 添加已购套餐
-message CreateUserPlanRequest{
+message BuyUserPlanRequest{
 	int64 userId = 1;
 	int64 planId = 2;
 	string dayTo = 3;
+	string period = 4;
+	int32  countPeriod = 5;
 }
 
-message CreateUserPlanResponse {
+message BuyUserPlanResponse {
 	int64 userPlanId = 1;
+}
+
+// 续费套餐
+message RenewUserPlanRequest {
+	int64 userPlanId = 1;
+	string dayTo = 3;
+	string period = 4;
+	int32  countPeriod = 5;
 }
 
 // 查找单个已购套餐信息

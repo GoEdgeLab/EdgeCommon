@@ -1,0 +1,68 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_user_account.proto";
+import "models/rpc_messages.proto";
+
+// 用户账户服务
+service UserAccountService {
+	// 计算账户数量
+	rpc countUserAccounts(CountUserAccountsRequest) returns (RPCCountResponse);
+
+	// 列出单页账户
+	rpc listUserAccounts(ListUserAccountsRequest) returns (ListUserAccountsResponse);
+
+	// 根据用户ID查找单个账户
+	rpc findEnabledUserAccountWithUserId(FindEnabledUserAccountWithUserIdRequest) returns (FindEnabledUserAccountWithUserIdResponse);
+
+	// 查找单个账户
+	rpc findEnabledUserAccount(FindEnabledUserAccountRequest) returns (FindEnabledUserAccountResponse);
+
+	// 修改用户账户
+	rpc updateUserAccount(UpdateUserAccountRequest) returns (RPCSuccess);
+}
+
+// 计算账户数量
+message CountUserAccountsRequest {
+	string keyword = 1;
+}
+
+// 列出单页账户
+message ListUserAccountsRequest  {
+	string keyword = 1;
+	int64 offset = 2;
+	int64 size = 3;
+}
+
+message ListUserAccountsResponse {
+	repeated UserAccount userAccounts = 1;
+}
+
+// 根据用户ID查找单个账户
+message FindEnabledUserAccountWithUserIdRequest {
+	int64 userId = 1;
+}
+
+message FindEnabledUserAccountWithUserIdResponse {
+	UserAccount userAccount = 1;
+}
+
+// 查找单个账户
+message FindEnabledUserAccountRequest {
+	int64 userAccountId = 1;
+}
+
+message FindEnabledUserAccountResponse {
+	UserAccount userAccount = 1;
+}
+
+// 修改用户账户
+message UpdateUserAccountRequest {
+	int64 userAccountId = 1;
+	float delta = 2;
+	string eventType = 3;
+	string description = 4;
+	bytes paramsJSON = 5;
+}
