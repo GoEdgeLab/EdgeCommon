@@ -46,6 +46,9 @@ type ServerConfig struct {
 	BandwidthLimit       *BandwidthLimitConfig `yaml:"bandwidthLimit" json:"bandwidthLimit"`
 	BandwidthLimitStatus *BandwidthLimitStatus `yaml:"bandwidthLimitStatus" json:"bandwidthLimitStatus"`
 
+	// 套餐
+	UserPlan *UserPlanConfig `yaml:"userPlan" json:"userPlan"`
+
 	// 分组
 	Group *ServerGroupConfig `yaml:"group" json:"group"`
 
@@ -216,6 +219,14 @@ func (this *ServerConfig) Init() error {
 
 	if this.Web != nil {
 		err := this.Web.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// 套餐
+	if this.UserPlan != nil {
+		err := this.UserPlan.Init()
 		if err != nil {
 			return err
 		}

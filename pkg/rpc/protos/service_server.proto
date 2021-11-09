@@ -134,6 +134,9 @@ service ServerService {
 
 	// 设置带宽限制
 	rpc updateServerBandwidthLimit(UpdateServerBandwidthLimitRequest) returns (RPCSuccess);
+
+	// 修改服务套餐
+	rpc updateServerUserPlan(UpdateServerUserPlanRequest) returns (RPCSuccess);
 }
 
 // 创建服务
@@ -155,6 +158,7 @@ message CreateServerRequest {
 	int64 webId = 15;
 	bytes reverseProxyJSON = 16;
 	repeated int64 serverGroupIds = 17;
+	int64 userPlanId = 18;
 
 	int64 nodeClusterId = 30;
 	bytes includeNodesJSON = 31;
@@ -529,4 +533,10 @@ message FindEnabledServerBandwidthLimitResponse {
 message UpdateServerBandwidthLimitRequest {
 	int64 serverId = 1;
 	bytes bandwidthLimitJSON = 2;
+}
+
+// 修改服务套餐
+message UpdateServerUserPlanRequest {
+	int64 serverId = 1;
+	int64 userPlanId = 2;
 }

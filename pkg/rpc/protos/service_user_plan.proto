@@ -28,6 +28,9 @@ service UserPlanService {
 
 	// 列出单页已购套餐
 	rpc listEnabledUserPlans(ListEnabledUserPlansRequest) returns (ListEnabledUserPlansResponse);
+
+	// 查找所有服务可用的套餐
+	rpc findAllEnabledUserPlansForServer(FindAllEnabledUserPlansForServerRequest) returns (FindAllEnabledUserPlansForServerResponse);
 }
 
 // 添加已购套餐
@@ -92,5 +95,15 @@ message ListEnabledUserPlansRequest {
 }
 
 message ListEnabledUserPlansResponse {
+	repeated UserPlan userPlans = 1;
+}
+
+// 查找所有服务可用的套餐
+message FindAllEnabledUserPlansForServerRequest {
+	int64 userId = 1;
+	int64 serverId = 2;
+}
+
+message FindAllEnabledUserPlansForServerResponse {
 	repeated UserPlan userPlans = 1;
 }
