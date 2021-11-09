@@ -4,12 +4,12 @@ package serverconfigs
 
 import timeutil "github.com/iwind/TeaGo/utils/time"
 
-// BandwidthLimitStatus 带宽限制状态
-type BandwidthLimitStatus struct {
+// TrafficLimitStatus 流量限制状态
+type TrafficLimitStatus struct {
 	UntilDay string `yaml:"untilDay" json:"untilDay"` // 有效日期，格式YYYYMMDD
 }
 
-func (this *BandwidthLimitStatus) IsValid() bool {
+func (this *TrafficLimitStatus) IsValid() bool {
 	if len(this.UntilDay) == 0 {
 		return false
 	}

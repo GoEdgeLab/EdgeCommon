@@ -4,20 +4,20 @@ package serverconfigs
 
 import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 
-// DefaultBandwidthLimitNoticePageBody 达到带宽限制时默认提示内容
-const DefaultBandwidthLimitNoticePageBody = `<!DOCTYPE html>
+// DefaultTrafficLimitNoticePageBody 达到流量限制时默认提示内容
+const DefaultTrafficLimitNoticePageBody = `<!DOCTYPE html>
 <html>
 <head>
-<title>Bandwidth Limit Exceeded Warning/title>
+<title>Traffic Limit Exceeded Warning/title>
 <body>
 
-The site bandwidth has exceeded the limit. Please contact with the site administrator.
+The site traffic has exceeded the limit. Please contact with the site administrator.
 
 </body>
 </html>`
 
-// BandwidthLimitConfig 带宽限制
-type BandwidthLimitConfig struct {
+// TrafficLimitConfig 流量限制
+type TrafficLimitConfig struct {
 	IsOn bool `yaml:"isOn" json:"isOn"` // 是否启用
 
 	DailySize   *shared.SizeCapacity `yaml:"dailySize" json:"dailySize"`     // 每日限制
@@ -29,7 +29,7 @@ type BandwidthLimitConfig struct {
 
 // DailyBytes 每天限制
 // 不使用Init()来初始化数据，是为了让其他地方不经过Init()也能得到计算值
-func (this *BandwidthLimitConfig) DailyBytes() int64 {
+func (this *TrafficLimitConfig) DailyBytes() int64 {
 	if this.DailySize != nil {
 		return this.DailySize.Bytes()
 	}
@@ -37,7 +37,7 @@ func (this *BandwidthLimitConfig) DailyBytes() int64 {
 }
 
 // MonthlyBytes 每月限制
-func (this *BandwidthLimitConfig) MonthlyBytes() int64 {
+func (this *TrafficLimitConfig) MonthlyBytes() int64 {
 	if this.MonthlySize != nil {
 		return this.MonthlySize.Bytes()
 	}
@@ -45,7 +45,7 @@ func (this *BandwidthLimitConfig) MonthlyBytes() int64 {
 }
 
 // TotalBytes 总限制
-func (this *BandwidthLimitConfig) TotalBytes() int64 {
+func (this *TrafficLimitConfig) TotalBytes() int64 {
 	if this.TotalSize != nil {
 		return this.TotalSize.Bytes()
 	}
@@ -53,6 +53,6 @@ func (this *BandwidthLimitConfig) TotalBytes() int64 {
 }
 
 // IsEmpty 检查是否有限制值
-func (this *BandwidthLimitConfig) IsEmpty() bool {
+func (this *TrafficLimitConfig) IsEmpty() bool {
 	return !this.IsOn || (this.DailyBytes() <= 0 && this.MonthlyBytes() <= 0 && this.TotalBytes() <= 0)
 }

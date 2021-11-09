@@ -129,11 +129,11 @@ service ServerService {
 	// 清除缓存
 	rpc purgeServerCache(PurgeServerCacheRequest) returns (PurgeServerCacheResponse);
 
-	// 查找带宽限制
-	rpc findEnabledServerBandwidthLimit(FindEnabledServerBandwidthLimitRequest) returns (FindEnabledServerBandwidthLimitResponse);
+	// 查找流量限制
+	rpc findEnabledServerTrafficLimit(FindEnabledServerTrafficLimitRequest) returns (FindEnabledServerTrafficLimitResponse);
 
-	// 设置带宽限制
-	rpc updateServerBandwidthLimit(UpdateServerBandwidthLimitRequest) returns (RPCSuccess);
+	// 设置流量限制
+	rpc updateServerTrafficLimit(UpdateServerTrafficLimitRequest) returns (RPCSuccess);
 
 	// 修改服务套餐
 	rpc updateServerUserPlan(UpdateServerUserPlanRequest) returns (RPCSuccess);
@@ -520,19 +520,19 @@ message PurgeServerCacheResponse {
 	string message = 2;
 }
 
-// 查找带宽限制
-message FindEnabledServerBandwidthLimitRequest {
+// 查找流量限制
+message FindEnabledServerTrafficLimitRequest {
 	int64 serverId = 1;
 }
 
-message FindEnabledServerBandwidthLimitResponse {
-	bytes bandwidthLimitJSON = 1;
+message FindEnabledServerTrafficLimitResponse {
+	bytes trafficLimitJSON = 1;
 }
 
-// 设置带宽限制
-message UpdateServerBandwidthLimitRequest {
+// 设置流量限制
+message UpdateServerTrafficLimitRequest {
 	int64 serverId = 1;
-	bytes bandwidthLimitJSON = 2;
+	bytes trafficLimitJSON = 2;
 }
 
 // 修改服务套餐

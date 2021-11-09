@@ -42,9 +42,9 @@ type ServerConfig struct {
 	HTTPCachePolicyId int64            `yaml:"httpCachePolicyId" json:"httpCachePolicyId"`
 	HTTPCachePolicy   *HTTPCachePolicy `yaml:"httpCachePolicy" json:"httpCachePolicy"` // 通过 HTTPCachePolicyId 获取
 
-	// 带宽限制
-	BandwidthLimit       *BandwidthLimitConfig `yaml:"bandwidthLimit" json:"bandwidthLimit"`
-	BandwidthLimitStatus *BandwidthLimitStatus `yaml:"bandwidthLimitStatus" json:"bandwidthLimitStatus"`
+	// 流量限制
+	TrafficLimit       *TrafficLimitConfig `yaml:"trafficLimit" json:"trafficLimit"`
+	TrafficLimitStatus *TrafficLimitStatus `yaml:"trafficLimitStatus" json:"trafficLimitStatus"`
 
 	// 套餐
 	UserPlan *UserPlanConfig `yaml:"userPlan" json:"userPlan"`

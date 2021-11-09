@@ -34,10 +34,10 @@ service PlanService {
 message CreatePlanRequest {
 	string name = 1;
 	int64 clusterId = 2;
-	bytes bandwidthLimitJSON = 3;
+	bytes trafficLimitJSON = 3;
 	bytes featuresJSON = 4;
 	string priceType = 5;
-	bytes bandwidthPriceJSON = 6;
+	bytes trafficPriceJSON = 6;
 	float monthlyPrice = 7;
 	float seasonallyPrice = 8;
 	float yearlyPrice = 9;
@@ -53,10 +53,10 @@ message UpdatePlanRequest {
 	string name = 2;
 	bool isOn = 3;
 	int64 clusterId = 4;
-	bytes bandwidthLimitJSON = 5;
+	bytes trafficLimitJSON = 5;
 	bytes featuresJSON = 6;
 	string priceType = 7;
-	bytes bandwidthPriceJSON = 8;
+	bytes trafficPriceJSON = 8;
 	float monthlyPrice = 9;
 	float seasonallyPrice = 10;
 	float yearlyPrice = 11;

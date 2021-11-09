@@ -5,13 +5,13 @@ package serverconfigs
 type PlanPriceType = string
 
 const (
-	PlanPriceTypeBandwidth PlanPriceType = "bandwidth"
-	PlanPriceTypePeriod    PlanPriceType = "period"
+	PlanPriceTypeTraffic PlanPriceType = "traffic"
+	PlanPriceTypePeriod  PlanPriceType = "period"
 )
 
 func FindPlanPriceTypeName(priceType PlanPriceType) string {
 	switch priceType {
-	case PlanPriceTypeBandwidth:
+	case PlanPriceTypeTraffic:
 		return "带宽用量"
 	case PlanPriceTypePeriod:
 		return "时间周期"
@@ -19,6 +19,6 @@ func FindPlanPriceTypeName(priceType PlanPriceType) string {
 	return ""
 }
 
-type PlanBandwidthPrice struct {
+type PlanTrafficPrice struct {
 	Base float32 `yaml:"base" json:"base"` // 基础价格，单位是 元/GB
 }
