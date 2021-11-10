@@ -363,3 +363,8 @@ func (this *ServerConfig) FindAndCheckReverseProxy(dataType string) (*ReversePro
 		return nil, errors.New("invalid data type:'" + dataType + "'")
 	}
 }
+
+// ShouldCheckTrafficLimit 检查是否需要检查流量限制
+func (this *ServerConfig) ShouldCheckTrafficLimit() bool {
+	return this.TrafficLimit != nil && !this.TrafficLimit.IsEmpty()
+}
