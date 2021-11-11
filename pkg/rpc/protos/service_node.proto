@@ -241,11 +241,15 @@ message FindEnabledBasicNodeResponse {
 message FindCurrentNodeConfigRequest {
 	// 由于登录信息中已经包含了节点信息，所以这里不需要nodeId
 	int64 version = 1;
+	bool compress = 2; // 是否压缩
+	int64 nodeTaskVersion = 3; // 通知任务版本
 }
 
 message FindCurrentNodeConfigResponse {
 	bytes nodeJSON = 1;
 	bool isChanged = 2;
+	bool isCompressed = 3;
+	int64 dataSize = 4;
 }
 
 // 节点stream
