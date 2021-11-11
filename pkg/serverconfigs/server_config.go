@@ -53,6 +53,8 @@ type ServerConfig struct {
 	Group *ServerGroupConfig `yaml:"group" json:"group"`
 
 	isOk bool
+
+	planId int64
 }
 
 // NewServerConfigFromJSON 从JSON中解析Server配置
@@ -230,6 +232,10 @@ func (this *ServerConfig) Init() error {
 		if err != nil {
 			return err
 		}
+
+		if this.UserPlan.Plan != nil {
+			this.planId = this.UserPlan.Plan.Id
+		}
 	}
 
 	this.isOk = true
@@ -367,4 +373,9 @@ func (this *ServerConfig) FindAndCheckReverseProxy(dataType string) (*ReversePro
 // ShouldCheckTrafficLimit 检查是否需要检查流量限制
 func (this *ServerConfig) ShouldCheckTrafficLimit() bool {
 	return this.TrafficLimit != nil && !this.TrafficLimit.IsEmpty()
+}
+
+// PlanId 套餐ID
+func (this *ServerConfig) PlanId() int64 {
+	return this.planId
 }

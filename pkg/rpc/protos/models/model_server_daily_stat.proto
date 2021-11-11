@@ -15,4 +15,5 @@ message ServerDailyStat {
 	int64 countAttackRequests = 8;
 	int64 attackBytes = 9;
 	bool checkTrafficLimiting = 10;
+	int64 planId = 11;
 }

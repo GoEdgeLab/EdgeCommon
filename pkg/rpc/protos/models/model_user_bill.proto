@@ -15,4 +15,5 @@ message UserBill {
 	string month = 7;
 	bool isPaid = 8;
 	int64 paidAt = 9;
+	string code = 10;
 }

@@ -21,10 +21,18 @@ const DefaultPlanExpireNoticePageBody = `<!DOCTYPE html>
 // UserPlanConfig 用户套餐配置
 type UserPlanConfig struct {
 	DayTo string `yaml:"dayTo" json:"dayTo"` // 有效期
+
+	Plan *PlanConfig `yaml:"plan" json:"plan"`
 }
 
 // Init 初始化
 func (this *UserPlanConfig) Init() error {
+	if this.Plan != nil {
+		err := this.Plan.Init()
+		if err != nil {
+			return err
+		}
+	}
 	return nil
 }
 
