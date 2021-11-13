@@ -23,6 +23,15 @@ type HTTPCachePolicy struct {
 
 	CacheRefs []*HTTPCacheRef `yaml:"cacheRefs" json:"cacheRefs"` // 缓存配置
 
+	PersistenceAutoPurgeCount    int     `yaml:"persistenceAutoPurgeCount" json:"persistenceAutoPurgeCount"`       // 每次自动清理的条数 TODO 需要实现
+	PersistenceAutoPurgeInterval int     `yaml:"persistenceAutoPurgeInterval" json:"persistenceAutoPurgeInterval"` // 自动清理的时间间隔（秒） TODO 需要实现
+	PersistenceLFUFreePercent    float32 `yaml:"persistenceLFUFreePercent" json:"persistenceLFUFreePercent"`       // LFU算法执行阈值，剩余空间比例，使用百分比，比如20 TODO 需要实现
+
+	MemoryAutoPurgeCount     int     `yaml:"memoryAutoPurgeCount" json:"memoryAutoPurgeCount"`         // 每次自动清理的条数 TODO 需要实现
+	MemoryAutoPurgeInterval  int     `yaml:"memoryAutoPurgeInterval" json:"memoryAutoPurgeInterval"`   // 自动清理的时间间隔（秒） TODO 需要实现
+	MemoryLFUFreePercent     float32 `yaml:"memoryLFUFreePercent" json:"memoryLFUFreePercent"`         // LFU算法执行阈值，剩余空间比例，使用百分比，比如20 TODO 需要实现
+	MemoryAutoFlushQueueSize int     `yaml:"memoryAutoFlushQueueSize" json:"memoryAutoFlushQueueSize"` // 自动刷新到持久层队列尺寸 TODO 需要实现
+
 	capacity int64
 	maxSize  int64
 }
