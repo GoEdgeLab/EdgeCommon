@@ -81,3 +81,14 @@ func TestMatchDomain(t *testing.T) {
 		a.IsTrue(ok)
 	}
 }
+
+func TestIsSpecialDomain(t *testing.T) {
+	var a = assert.NewAssertion(t)
+
+	a.IsTrue(IsFuzzyDomain(""))
+	a.IsTrue(IsFuzzyDomain(".hello.com"))
+	a.IsTrue(IsFuzzyDomain("*.hello.com"))
+	a.IsTrue(IsFuzzyDomain("hello.*.com"))
+	a.IsTrue(IsFuzzyDomain("~^hello\\.com"))
+	a.IsFalse(IsFuzzyDomain("hello.com"))
+}

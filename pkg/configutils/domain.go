@@ -27,6 +27,10 @@ func MatchDomain(pattern string, domain string) (isMatched bool) {
 		return
 	}
 
+	if pattern == domain {
+		return true
+	}
+
 	if pattern == "*" {
 		return true
 	}
@@ -60,4 +64,20 @@ func MatchDomain(pattern string, domain string) (isMatched bool) {
 		break
 	}
 	return isMatched
+}
+
+// IsFuzzyDomain 判断是否为特殊域名
+func IsFuzzyDomain(domain string) bool {
+	if len(domain) == 0 {
+		return true
+	}
+	if domain[0] == '.' || domain[0] == '~' {
+		return true
+	}
+	for _, c := range domain {
+		if c == '*' {
+			return true
+		}
+	}
+	return false
 }

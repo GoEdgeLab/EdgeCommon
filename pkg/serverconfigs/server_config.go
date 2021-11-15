@@ -315,35 +315,60 @@ func (this *ServerConfig) IsUDPFamily() bool {
 	return this.UDP != nil
 }
 
-// MatchName 判断是否和域名匹配
-func (this *ServerConfig) MatchName(name string) bool {
-	if len(name) == 0 {
-		return false
-	}
-	if len(this.AliasServerNames) > 0 && configutils.MatchDomains(this.AliasServerNames, name) {
-		return true
-	}
-	for _, serverName := range this.ServerNames {
-		if serverName.Match(name) {
-			return true
+// AllStrictNames 所有严格域名
+func (this *ServerConfig) AllStrictNames() []string {
+	var result = []string{}
+	for _, name := range this.AliasServerNames {
+		if len(name) > 0 {
+			if !configutils.IsFuzzyDomain(name) {
+				result = append(result, name)
+			}
 		}
 	}
-	return false
+	for _, serverName := range this.ServerNames {
+		var name = serverName.Name
+		if len(name) > 0 {
+			if !configutils.IsFuzzyDomain(name) {
+				result = append(result, name)
+			}
+		}
+		for _, name := range serverName.SubNames {
+			if len(name) > 0 {
+				if !configutils.IsFuzzyDomain(name) {
+					result = append(result, name)
+				}
+			}
+		}
+	}
+	return result
 }
 
-// MatchNameStrictly 判断是否严格匹配
-func (this *ServerConfig) MatchNameStrictly(name string) bool {
-	for _, serverName := range this.AliasServerNames {
-		if serverName == name {
-			return true
+// AllFuzzyNames 所有模糊域名
+func (this *ServerConfig) AllFuzzyNames() []string {
+	var result = []string{}
+	for _, name := range this.AliasServerNames {
+		if len(name) > 0 {
+			if configutils.IsFuzzyDomain(name) {
+				result = append(result, name)
+			}
 		}
 	}
 	for _, serverName := range this.ServerNames {
-		if serverName.Name == name {
-			return true
+		var name = serverName.Name
+		if len(name) > 0 {
+			if configutils.IsFuzzyDomain(name) {
+				result = append(result, name)
+			}
+		}
+		for _, name := range serverName.SubNames {
+			if len(name) > 0 {
+				if configutils.IsFuzzyDomain(name) {
+					result = append(result, name)
+				}
+			}
 		}
 	}
-	return false
+	return result
 }
 
 // SSLPolicy SSL信息

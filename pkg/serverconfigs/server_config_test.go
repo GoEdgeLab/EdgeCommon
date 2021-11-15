@@ -72,3 +72,22 @@ func TestServerConfig_Protocols(t *testing.T) {
 		t.Log(server.FullAddresses())
 	}
 }
+
+func TestServerConfig_AllStrictNames(t *testing.T) {
+	var config = &ServerConfig{
+		AliasServerNames: []string{"hello.com", ".hello.com"},
+		ServerNames: []*ServerNameConfig{
+			{
+				Name: "hello2.com",
+			},
+			{
+				SubNames: []string{"hello3.com", "hello4.com", "*.hello5.com"},
+			},
+			{
+				Name: "~hello.com",
+			},
+		},
+	}
+	t.Log(config.AllStrictNames())
+	t.Log(config.AllFuzzyNames())
+}
