@@ -553,6 +553,45 @@ func (x *UpdateNodeLogsReadRequest) GetNodeLogIds() []int64 {
 	return nil
 }
 
+// 设置所有日志未已读
+type UpdateAllNodeLogsReadRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdateAllNodeLogsReadRequest) Reset() {
+	*x = UpdateAllNodeLogsReadRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_log_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateAllNodeLogsReadRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAllNodeLogsReadRequest) ProtoMessage() {}
+
+func (x *UpdateAllNodeLogsReadRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_log_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAllNodeLogsReadRequest.ProtoReflect.Descriptor instead.
+func (*UpdateAllNodeLogsReadRequest) Descriptor() ([]byte, []int) {
+	return file_service_node_log_proto_rawDescGZIP(), []int{8}
+}
+
 var File_service_node_log_proto protoreflect.FileDescriptor
 
 var file_service_node_log_proto_rawDesc = []byte{
@@ -617,8 +656,10 @@ var file_service_node_log_proto_rawDesc = []byte{
 	0x73, 0x74, 0x22, 0x3b, 0x0a, 0x19, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65,
 	0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
 	0x1e, 0x0a, 0x0a, 0x6e, 0x6f, 0x64, 0x65, 0x4c, 0x6f, 0x67, 0x49, 0x64, 0x73, 0x18, 0x01, 0x20,
-	0x03, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x6f, 0x64, 0x65, 0x4c, 0x6f, 0x67, 0x49, 0x64, 0x73, 0x32,
-	0xaa, 0x03, 0x0a, 0x0e, 0x4e, 0x6f, 0x64, 0x65, 0x4c, 0x6f, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x03, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x6f, 0x64, 0x65, 0x4c, 0x6f, 0x67, 0x49, 0x64, 0x73, 0x22,
+	0x1e, 0x0a, 0x1c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x6c, 0x4e, 0x6f, 0x64, 0x65,
+	0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x32,
+	0xf5, 0x03, 0x0a, 0x0e, 0x4e, 0x6f, 0x64, 0x65, 0x4c, 0x6f, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69,
 	0x63, 0x65, 0x12, 0x47, 0x0a, 0x0e, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65,
 	0x4c, 0x6f, 0x67, 0x73, 0x12, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
 	0x4e, 0x6f, 0x64, 0x65, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
@@ -644,8 +685,13 @@ var file_service_node_log_proto_rawDesc = []byte{
 	0x65, 0x4e, 0x6f, 0x64, 0x65, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x61, 0x64, 0x12, 0x1d, 0x2e,
 	0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x4c, 0x6f, 0x67,
 	0x73, 0x52, 0x65, 0x61, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70,
-	0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04,
-	0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x49, 0x0a, 0x15,
+	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x6c, 0x4e, 0x6f, 0x64, 0x65, 0x4c, 0x6f, 0x67,
+	0x73, 0x52, 0x65, 0x61, 0x64, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x41, 0x6c, 0x6c, 0x4e, 0x6f, 0x64, 0x65, 0x4c, 0x6f, 0x67, 0x73, 0x52, 0x65, 0x61, 0x64,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43,
+	0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -660,7 +706,7 @@ func file_service_node_log_proto_rawDescGZIP() []byte {
 	return file_service_node_log_proto_rawDescData
 }
 
-var file_service_node_log_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_service_node_log_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_service_node_log_proto_goTypes = []interface{}{
 	(*CreateNodeLogsRequest)(nil),         // 0: pb.CreateNodeLogsRequest
 	(*CreateNodeLogsResponse)(nil),        // 1: pb.CreateNodeLogsResponse
@@ -670,27 +716,30 @@ var file_service_node_log_proto_goTypes = []interface{}{
 	(*FixNodeLogRequest)(nil),             // 5: pb.FixNodeLogRequest
 	(*CountAllUnreadNodeLogsRequest)(nil), // 6: pb.CountAllUnreadNodeLogsRequest
 	(*UpdateNodeLogsReadRequest)(nil),     // 7: pb.UpdateNodeLogsReadRequest
-	(*NodeLog)(nil),                       // 8: pb.NodeLog
-	(*RPCCountResponse)(nil),              // 9: pb.RPCCountResponse
-	(*RPCSuccess)(nil),                    // 10: pb.RPCSuccess
+	(*UpdateAllNodeLogsReadRequest)(nil),  // 8: pb.UpdateAllNodeLogsReadRequest
+	(*NodeLog)(nil),                       // 9: pb.NodeLog
+	(*RPCCountResponse)(nil),              // 10: pb.RPCCountResponse
+	(*RPCSuccess)(nil),                    // 11: pb.RPCSuccess
 }
 var file_service_node_log_proto_depIdxs = []int32{
-	8,  // 0: pb.CreateNodeLogsRequest.nodeLogs:type_name -> pb.NodeLog
-	8,  // 1: pb.ListNodeLogsResponse.nodeLogs:type_name -> pb.NodeLog
+	9,  // 0: pb.CreateNodeLogsRequest.nodeLogs:type_name -> pb.NodeLog
+	9,  // 1: pb.ListNodeLogsResponse.nodeLogs:type_name -> pb.NodeLog
 	0,  // 2: pb.NodeLogService.createNodeLogs:input_type -> pb.CreateNodeLogsRequest
 	2,  // 3: pb.NodeLogService.countNodeLogs:input_type -> pb.CountNodeLogsRequest
 	3,  // 4: pb.NodeLogService.listNodeLogs:input_type -> pb.ListNodeLogsRequest
 	5,  // 5: pb.NodeLogService.fixNodeLog:input_type -> pb.FixNodeLogRequest
 	6,  // 6: pb.NodeLogService.countAllUnreadNodeLogs:input_type -> pb.CountAllUnreadNodeLogsRequest
 	7,  // 7: pb.NodeLogService.updateNodeLogsRead:input_type -> pb.UpdateNodeLogsReadRequest
-	1,  // 8: pb.NodeLogService.createNodeLogs:output_type -> pb.CreateNodeLogsResponse
-	9,  // 9: pb.NodeLogService.countNodeLogs:output_type -> pb.RPCCountResponse
-	4,  // 10: pb.NodeLogService.listNodeLogs:output_type -> pb.ListNodeLogsResponse
-	10, // 11: pb.NodeLogService.fixNodeLog:output_type -> pb.RPCSuccess
-	9,  // 12: pb.NodeLogService.countAllUnreadNodeLogs:output_type -> pb.RPCCountResponse
-	10, // 13: pb.NodeLogService.updateNodeLogsRead:output_type -> pb.RPCSuccess
-	8,  // [8:14] is the sub-list for method output_type
-	2,  // [2:8] is the sub-list for method input_type
+	8,  // 8: pb.NodeLogService.updateAllNodeLogsRead:input_type -> pb.UpdateAllNodeLogsReadRequest
+	1,  // 9: pb.NodeLogService.createNodeLogs:output_type -> pb.CreateNodeLogsResponse
+	10, // 10: pb.NodeLogService.countNodeLogs:output_type -> pb.RPCCountResponse
+	4,  // 11: pb.NodeLogService.listNodeLogs:output_type -> pb.ListNodeLogsResponse
+	11, // 12: pb.NodeLogService.fixNodeLog:output_type -> pb.RPCSuccess
+	10, // 13: pb.NodeLogService.countAllUnreadNodeLogs:output_type -> pb.RPCCountResponse
+	11, // 14: pb.NodeLogService.updateNodeLogsRead:output_type -> pb.RPCSuccess
+	11, // 15: pb.NodeLogService.updateAllNodeLogsRead:output_type -> pb.RPCSuccess
+	9,  // [9:16] is the sub-list for method output_type
+	2,  // [2:9] is the sub-list for method input_type
 	2,  // [2:2] is the sub-list for extension type_name
 	2,  // [2:2] is the sub-list for extension extendee
 	0,  // [0:2] is the sub-list for field type_name
@@ -800,6 +849,18 @@ func file_service_node_log_proto_init() {
 				return nil
 			}
 		}
+		file_service_node_log_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateAllNodeLogsReadRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -807,7 +868,7 @@ func file_service_node_log_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_node_log_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -845,6 +906,8 @@ type NodeLogServiceClient interface {
 	CountAllUnreadNodeLogs(ctx context.Context, in *CountAllUnreadNodeLogsRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 设置日志为已读
 	UpdateNodeLogsRead(ctx context.Context, in *UpdateNodeLogsReadRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 设置所有日志未已读
+	UpdateAllNodeLogsRead(ctx context.Context, in *UpdateAllNodeLogsReadRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
 
 type nodeLogServiceClient struct {
@@ -909,6 +972,15 @@ func (c *nodeLogServiceClient) UpdateNodeLogsRead(ctx context.Context, in *Updat
 	return out, nil
 }
 
+func (c *nodeLogServiceClient) UpdateAllNodeLogsRead(ctx context.Context, in *UpdateAllNodeLogsReadRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.NodeLogService/updateAllNodeLogsRead", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NodeLogServiceServer is the server API for NodeLogService service.
 type NodeLogServiceServer interface {
 	// 创建日志
@@ -923,6 +995,8 @@ type NodeLogServiceServer interface {
 	CountAllUnreadNodeLogs(context.Context, *CountAllUnreadNodeLogsRequest) (*RPCCountResponse, error)
 	// 设置日志为已读
 	UpdateNodeLogsRead(context.Context, *UpdateNodeLogsReadRequest) (*RPCSuccess, error)
+	// 设置所有日志未已读
+	UpdateAllNodeLogsRead(context.Context, *UpdateAllNodeLogsReadRequest) (*RPCSuccess, error)
 }
 
 // UnimplementedNodeLogServiceServer can be embedded to have forward compatible implementations.
@@ -946,6 +1020,9 @@ func (*UnimplementedNodeLogServiceServer) CountAllUnreadNodeLogs(context.Context
 }
 func (*UnimplementedNodeLogServiceServer) UpdateNodeLogsRead(context.Context, *UpdateNodeLogsReadRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateNodeLogsRead not implemented")
+}
+func (*UnimplementedNodeLogServiceServer) UpdateAllNodeLogsRead(context.Context, *UpdateAllNodeLogsReadRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAllNodeLogsRead not implemented")
 }
 
 func RegisterNodeLogServiceServer(s *grpc.Server, srv NodeLogServiceServer) {
@@ -1060,6 +1137,24 @@ func _NodeLogService_UpdateNodeLogsRead_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NodeLogService_UpdateAllNodeLogsRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAllNodeLogsReadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeLogServiceServer).UpdateAllNodeLogsRead(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NodeLogService/UpdateAllNodeLogsRead",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeLogServiceServer).UpdateAllNodeLogsRead(ctx, req.(*UpdateAllNodeLogsReadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _NodeLogService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.NodeLogService",
 	HandlerType: (*NodeLogServiceServer)(nil),
@@ -1087,6 +1182,10 @@ var _NodeLogService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "updateNodeLogsRead",
 			Handler:    _NodeLogService_UpdateNodeLogsRead_Handler,
+		},
+		{
+			MethodName: "updateAllNodeLogsRead",
+			Handler:    _NodeLogService_UpdateAllNodeLogsRead_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

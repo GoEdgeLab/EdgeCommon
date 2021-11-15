@@ -15,4 +15,5 @@ message IPItem {
 	string type = 9;
 	string eventLevel = 10; // 级别
 	string listType = 11; // 所在名单类型，加此字段是为了快速定位IP的性质
+	int64 createdAt = 12;
 }

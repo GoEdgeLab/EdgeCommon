@@ -25,6 +25,9 @@ service NodeLogService {
 
 	// 设置日志为已读
 	rpc updateNodeLogsRead(UpdateNodeLogsReadRequest) returns (RPCSuccess);
+
+	// 设置所有日志未已读
+	rpc updateAllNodeLogsRead(UpdateAllNodeLogsReadRequest) returns (RPCSuccess);
 }
 
 // 创建日志
@@ -83,4 +86,9 @@ message CountAllUnreadNodeLogsRequest {
 // 设置日志为已读
 message UpdateNodeLogsReadRequest {
 	repeated int64 nodeLogIds = 1;
+}
+
+// 设置所有日志未已读
+message UpdateAllNodeLogsReadRequest {
+
 }
