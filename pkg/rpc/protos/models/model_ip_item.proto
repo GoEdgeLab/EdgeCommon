@@ -3,6 +3,11 @@ option go_package = "./pb";
 
 package pb;
 
+import "models/model_http_firewall_policy.proto";
+import "models/model_http_firewall_rule_group.proto";
+import "models/model_http_firewall_rule_set.proto";
+import "models/model_server.proto";
+
 message IPItem {
 	int64 id = 1;
 	string ipFrom = 2;
@@ -16,4 +21,19 @@ message IPItem {
 	string eventLevel = 10; // 级别
 	string listType = 11; // 所在名单类型，加此字段是为了快速定位IP的性质
 	int64 createdAt = 12;
+
+	int64 nodeId = 13;
+	int64 serverId = 14;
+
+	int64 sourceNodeId = 15;
+	int64 sourceServerId = 16;
+	int64 sourceHTTPFirewallPolicyId = 17;
+	int64 sourceHTTPFirewallRuleGroupId = 18;
+	int64 sourceHTTPFirewallRuleSetId = 19;
+
+
+	Server sourceServer = 30;
+	HTTPFirewallPolicy  sourceHTTPFirewallPolicy = 31;
+	HTTPFirewallRuleGroup sourceHTTPFirewallRuleGroup = 32;
+	HTTPFirewallRuleSet sourceHTTPFirewallRuleSet = 33;
 }

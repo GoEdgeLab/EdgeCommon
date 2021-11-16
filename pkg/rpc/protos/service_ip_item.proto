@@ -45,6 +45,15 @@ message CreateIPItemRequest {
 	string reason = 5; // 加入理由（可选）
 	string type = 6; // 类型
 	string eventLevel = 7; // 级别
+
+	int64 nodeId = 8; // 所属节点ID
+	int64 serverId = 9; // 所属服务ID
+
+	int64 sourceNodeId = 10;
+	int64 sourceServerId = 11;
+	int64 sourceHTTPFirewallPolicyId = 12;
+	int64 sourceHTTPFirewallRuleGroupId = 13;
+	int64 sourceHTTPFirewallRuleSetId = 14;
 }
 
 message CreateIPItemResponse {

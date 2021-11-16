@@ -11,4 +11,5 @@ message HTTPFirewallPolicy {
 	string description = 4;
 	bytes inboundJSON = 5;
 	bytes outboundJSON = 6;
+	int64 serverId = 8;
 }
