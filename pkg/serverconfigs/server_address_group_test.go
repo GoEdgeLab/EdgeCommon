@@ -75,6 +75,10 @@ func TestServerAddressGroup_MatchServerName(t *testing.T) {
 	for i := 0; i < 100_000; i++ {
 		_ = group.MatchServerName("world.hello.com")
 	}
+
+	// 检查死锁问题
+	group.MatchServerName("world2.hello.com")
+
 }
 
 func TestServerAddressGroup_MatchServerCNAME(t *testing.T) {

@@ -157,6 +157,7 @@ func (this *ServerAddressGroup) MatchServerName(serverName string) *ServerConfig
 		if ok {
 			server, ok := domainMap[serverName]
 			if ok {
+				this.cacheLocker.RUnlock()
 				return server
 			}
 		}
