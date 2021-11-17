@@ -152,13 +152,15 @@ message ExistsEnabledIPItemResponse {
 // 计算所有IP数量
 message CountAllEnabledIPItemsRequest {
 	string ip = 1;
+	bool globalOnly = 2;
 }
 
 // 列出所有名单中的IP
 message ListAllEnabledIPItemsRequest {
 	string ip = 1;
-	int64 offset = 2;
-	int64 size = 3;
+	bool globalOnly = 2;
+	int64 offset = 3;
+	int64 size = 4;
 }
 
 message ListAllEnabledIPItemsResponse {
