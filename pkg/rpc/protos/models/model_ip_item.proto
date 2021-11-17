@@ -19,7 +19,8 @@ message IPItem {
 	bool isDeleted = 8;
 	string type = 9;
 	string eventLevel = 10; // 级别
-	string listType = 11; // 所在名单类型，加此字段是为了快速定位IP的性质
+	string listType = 11; // 所在名单类型，来自名单
+	bool isGlobal = 20; // 是否全局，来自名单
 	int64 createdAt = 12;
 
 	int64 nodeId = 13;

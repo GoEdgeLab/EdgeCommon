@@ -41,6 +41,7 @@ message CreateIPListRequest {
 	bytes timeoutJSON = 4;
 	bool isPublic = 5;
 	string description = 6;
+	bool isGlobal = 7;
 }
 
 message CreateIPListResponse {

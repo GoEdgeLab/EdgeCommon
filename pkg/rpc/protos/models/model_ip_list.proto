@@ -12,4 +12,5 @@ message IPList {
 	bytes timeoutJSON = 6;
 	bool isPublic = 7;
 	string description = 8;
+	bool isGlobal = 9;
 }
