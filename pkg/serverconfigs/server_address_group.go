@@ -177,6 +177,7 @@ func (this *ServerAddressGroup) MatchServerName(serverName string) *ServerConfig
 			this.cacheLocker.Lock()
 
 			// 限制缓存的最大尺寸，防止内存耗尽
+			// TODO 清理20%比较老的数据
 			if this.countCacheDomains < 1_000_000 {
 				domainMap, ok := this.cacheDomainMap[prefix]
 				if ok {

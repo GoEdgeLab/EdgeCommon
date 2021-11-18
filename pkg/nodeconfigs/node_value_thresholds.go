@@ -7,16 +7,17 @@ import "github.com/iwind/TeaGo/maps"
 type IPAddressThresholdItem = string
 
 const (
-	IPAddressThresholdItemNodeAvgRequests      IPAddressThresholdItem = "nodeAvgRequests"      // 个
-	IPAddressThresholdItemNodeAvgTrafficOut    IPAddressThresholdItem = "nodeAvgTrafficOut"    // 节点下行流量 M
-	IPAddressThresholdItemNodeAvgTrafficIn     IPAddressThresholdItem = "nodeAvgTrafficIn"     // 节点上行流量 M
-	IPAddressThresholdItemGroupAvgRequests     IPAddressThresholdItem = "groupAvgRequests"     // 个
-	IPAddressThresholdItemGroupAvgTrafficIn    IPAddressThresholdItem = "groupAvgTrafficIn"    // 分组上行流量 M
-	IPAddressThresholdItemGroupAvgTrafficOut   IPAddressThresholdItem = "groupAvgTrafficOut"   // 分组下行流量 M
-	IPAddressThresholdItemClusterAvgRequests   IPAddressThresholdItem = "clusterAvgRequests"   // 个
-	IPAddressThresholdItemClusterAvgTrafficIn  IPAddressThresholdItem = "clusterAvgTrafficIn"  // 集群上行流量 M
-	IPAddressThresholdItemClusterAvgTrafficOut IPAddressThresholdItem = "clusterAvgTrafficOut" // 集群下行流量 M
-	IPAddressThresholdItemConnectivity         IPAddressThresholdItem = "connectivity"         // 0-100
+	IPAddressThresholdItemNodeAvgRequests       IPAddressThresholdItem = "nodeAvgRequests"       // 个
+	IPAddressThresholdItemNodeAvgTrafficOut     IPAddressThresholdItem = "nodeAvgTrafficOut"     // 节点下行流量 M
+	IPAddressThresholdItemNodeAvgTrafficIn      IPAddressThresholdItem = "nodeAvgTrafficIn"      // 节点上行流量 M
+	IPAddressThresholdItemNodeHealthCheckFailed IPAddressThresholdItem = "nodeHealthCheckFailed" // 节点健康检查失败
+	IPAddressThresholdItemGroupAvgRequests      IPAddressThresholdItem = "groupAvgRequests"      // 个
+	IPAddressThresholdItemGroupAvgTrafficIn     IPAddressThresholdItem = "groupAvgTrafficIn"     // 分组上行流量 M
+	IPAddressThresholdItemGroupAvgTrafficOut    IPAddressThresholdItem = "groupAvgTrafficOut"    // 分组下行流量 M
+	IPAddressThresholdItemClusterAvgRequests    IPAddressThresholdItem = "clusterAvgRequests"    // 个
+	IPAddressThresholdItemClusterAvgTrafficIn   IPAddressThresholdItem = "clusterAvgTrafficIn"   // 集群上行流量 M
+	IPAddressThresholdItemClusterAvgTrafficOut  IPAddressThresholdItem = "clusterAvgTrafficOut"  // 集群下行流量 M
+	IPAddressThresholdItemConnectivity          IPAddressThresholdItem = "connectivity"          // 0-100
 )
 
 // FindAllIPAddressThresholdItems IP相关阈值项目
@@ -39,6 +40,12 @@ func FindAllIPAddressThresholdItems() []maps.Map {
 			"code":        IPAddressThresholdItemNodeAvgTrafficIn,
 			"description": "当前节点在单位时间内接收的上行流量。",
 			"unit":        "M",
+		},
+		{
+			"name":        "节点健康检查失败",
+			"code":        IPAddressThresholdItemNodeHealthCheckFailed,
+			"description": "当前节点健康检查失败",
+			"unit":        "",
 		},
 
 		{
