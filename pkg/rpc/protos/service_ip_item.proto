@@ -20,6 +20,9 @@ service IPItemService {
 	// 删除IP
 	rpc deleteIPItem (DeleteIPItemRequest) returns (RPCSuccess);
 
+	// 批量删除IP
+	rpc deleteIPItems(DeleteIPItemsRequest) returns (RPCSuccess);
+
 	// 计算IP数量
 	rpc countIPItemsWithListId (CountIPItemsWithListIdRequest) returns (RPCCountResponse);
 
@@ -83,6 +86,11 @@ message UpdateIPItemRequest {
 // 删除IP
 message DeleteIPItemRequest {
 	int64 ipItemId = 1; // IP条目的ID
+}
+
+// 批量删除IP
+message DeleteIPItemsRequest {
+	repeated int64 ipItemIds = 1;
 }
 
 // 计算IP数量
