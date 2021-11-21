@@ -11,15 +11,16 @@ const (
 	MessageCodeCleanCache          MessageCode = "cleanCache"          // 清理缓存
 	MessageCodePreheatCache        MessageCode = "preheatCache"        // 预热缓存
 	MessageCodeCheckSystemdService MessageCode = "checkSystemdService" // 检查Systemd服务
-	MessageCodeNewNodeTask         MessageCode = "NewNodeTask"         // 有新的节点任务产生
+	MessageCodeNewNodeTask         MessageCode = "newNodeTask"         // 有新的节点任务产生
+	MessageCodeChangeAPINode       MessageCode = "changeAPINode"       // 改变新的API节点
 )
 
-// 连接API节点成功
+// ConnectedAPINodeMessage 连接API节点成功
 type ConnectedAPINodeMessage struct {
 	APINodeId int64 `json:"apiNodeId"`
 }
 
-// 写入缓存
+// WriteCacheMessage 写入缓存
 type WriteCacheMessage struct {
 	CachePolicyJSON []byte `json:"cachePolicyJSON"`
 	Key             string `json:"key"`
@@ -27,13 +28,13 @@ type WriteCacheMessage struct {
 	LifeSeconds     int64  `json:"lifeSeconds"`
 }
 
-// 读取缓存
+// ReadCacheMessage 读取缓存
 type ReadCacheMessage struct {
 	CachePolicyJSON []byte `json:"cachePolicyJSON"`
 	Key             string `json:"key"`
 }
 
-// 统计缓存
+// StatCacheMessage 统计缓存
 type StatCacheMessage struct {
 	CachePolicyJSON []byte `json:"cachePolicyJSON"`
 }
@@ -44,7 +45,7 @@ type CleanCacheMessage struct {
 	CachePolicyJSON []byte `json:"cachePolicyJSON"`
 }
 
-// 删除缓存
+// PurgeCacheMessageType 删除缓存
 type PurgeCacheMessageType = string
 
 const (
@@ -58,16 +59,21 @@ type PurgeCacheMessage struct {
 	Type            PurgeCacheMessageType `json:"type"` // 清理类型
 }
 
-// 预热缓存
+// PreheatCacheMessage 预热缓存
 type PreheatCacheMessage struct {
 	CachePolicyJSON []byte   `json:"cachePolicyJSON"`
 	Keys            []string `json:"keys"`
 }
 
-// Systemd服务
+// CheckSystemdServiceMessage Systemd服务
 type CheckSystemdServiceMessage struct {
 }
 
-// 有新的节点任务
+// NewNodeTaskMessage 有新的节点任务
 type NewNodeTaskMessage struct {
+}
+
+// ChangeAPINodeMessage 修改API地址
+type ChangeAPINodeMessage struct {
+	Addr string `json:"addr"`
 }
