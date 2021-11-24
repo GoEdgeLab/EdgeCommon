@@ -16,7 +16,7 @@ func NewTLSProtocolConfigFromJSON(configJSON []byte) (*TLSProtocolConfig, error)
 	return config, nil
 }
 
-// TLS协议配置
+// TLSProtocolConfig TLS协议配置
 type TLSProtocolConfig struct {
 	BaseProtocol `yaml:",inline"`
 
@@ -24,7 +24,7 @@ type TLSProtocolConfig struct {
 	SSLPolicy    *sslconfigs.SSLPolicy    `yaml:"sslPolicy" json:"sslPolicy"`
 }
 
-// 初始化
+// Init 初始化
 func (this *TLSProtocolConfig) Init() error {
 	err := this.InitBase()
 	if err != nil {
@@ -41,7 +41,7 @@ func (this *TLSProtocolConfig) Init() error {
 	return nil
 }
 
-// 转换为JSON
+// AsJSON 转换为JSON
 func (this *TLSProtocolConfig) AsJSON() ([]byte, error) {
 	return json.Marshal(this)
 }

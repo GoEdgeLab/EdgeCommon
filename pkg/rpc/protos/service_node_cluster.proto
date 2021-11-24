@@ -374,6 +374,7 @@ message FindNodeClusterSystemServiceResponse {
 // 获取集群中可以使用的端口
 message FindFreePortInNodeClusterRequest {
 	int64 nodeClusterId = 1;
+	string protocolFamily = 2;
 }
 
 message FindFreePortInNodeClusterResponse {
@@ -386,6 +387,7 @@ message CheckPortIsUsingInNodeClusterRequest {
 	int64 nodeClusterId = 2;
 	int64 excludeServerId = 3;
 	string excludeProtocol = 4;
+	string protocolFamily = 5;
 }
 
 message CheckPortIsUsingInNodeClusterResponse {
