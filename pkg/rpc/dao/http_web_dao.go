@@ -59,12 +59,12 @@ func (this *HTTPWebDAO) FindWebConfigWithServerGroupId(ctx context.Context, serv
 
 // FindWebConfigWithId 根据WebId查找Web配置
 func (this *HTTPWebDAO) FindWebConfigWithId(ctx context.Context, webId int64) (*serverconfigs.HTTPWebConfig, error) {
-	resp, err := this.RPC().HTTPWebRPC().FindEnabledHTTPWebConfig(ctx, &pb.FindEnabledHTTPWebConfigRequest{WebId: webId})
+	resp, err := this.RPC().HTTPWebRPC().FindEnabledHTTPWebConfig(ctx, &pb.FindEnabledHTTPWebConfigRequest{HttpWebId: webId})
 	if err != nil {
 		return nil, err
 	}
 	config := &serverconfigs.HTTPWebConfig{}
-	err = json.Unmarshal(resp.WebJSON, config)
+	err = json.Unmarshal(resp.HttpWebJSON, config)
 	if err != nil {
 		return nil, err
 	}
@@ -98,7 +98,7 @@ func (this *HTTPWebDAO) InitEmptyHTTPFirewallPolicy(ctx context.Context, serverG
 	}
 
 	_, err = this.RPC().HTTPWebRPC().UpdateHTTPWebFirewall(ctx, &pb.UpdateHTTPWebFirewallRequest{
-		WebId:        webId,
+		HttpWebId:    webId,
 		FirewallJSON: firewallRefJSON,
 	})
 	if err != nil {

@@ -42,12 +42,12 @@ message CreateMonitorNodeRequest {
 }
 
 message CreateMonitorNodeResponse {
-	int64 nodeId = 1;
+	int64 monitorNodeId = 1;
 }
 
 // 修改监控节点
 message UpdateMonitorNodeRequest {
-	int64 nodeId = 1;
+	int64 monitorNodeId = 1;
 	string name = 2;
 	string description = 3;
 	bool isOn = 4;
@@ -55,7 +55,7 @@ message UpdateMonitorNodeRequest {
 
 // 删除监控节点
 message DeleteMonitorNodeRequest {
-	int64 nodeId = 1;
+	int64 monitorNodeId = 1;
 }
 
 // 列出所有可用监控节点
@@ -64,7 +64,7 @@ message FindAllEnabledMonitorNodesRequest {
 }
 
 message FindAllEnabledMonitorNodesResponse {
-	repeated MonitorNode nodes = 1;
+	repeated MonitorNode monitorNodes = 1;
 }
 
 // 计算监控节点数量
@@ -79,16 +79,16 @@ message ListEnabledMonitorNodesRequest {
 }
 
 message ListEnabledMonitorNodesResponse {
-	repeated MonitorNode nodes = 1;
+	repeated MonitorNode monitorNodes = 1;
 }
 
 // 根据ID查找节点
 message FindEnabledMonitorNodeRequest {
-	int64 nodeId = 1;
+	int64 monitorNodeId = 1;
 }
 
 message FindEnabledMonitorNodeResponse {
-	MonitorNode node = 1;
+	MonitorNode monitorNode = 1;
 }
 
 // 获取当前监控节点
@@ -97,11 +97,11 @@ message FindCurrentMonitorNodeRequest {
 }
 
 message FindCurrentMonitorNodeResponse {
-	MonitorNode node = 1;
+	MonitorNode monitorNode = 1;
 }
 
 // 更新监控状态
 message UpdateMonitorNodeStatusRequest {
-	int64 nodeId = 1;
+	int64 monitorNodeId = 1;
 	bytes statusJSON = 2;
 }

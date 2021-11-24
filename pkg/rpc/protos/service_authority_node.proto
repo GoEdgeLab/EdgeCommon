@@ -43,12 +43,12 @@ message CreateAuthorityNodeRequest {
 }
 
 message CreateAuthorityNodeResponse {
-	int64 nodeId = 1;
+	int64 authorityNodeId = 1;
 }
 
 // 修改认证节点
 message UpdateAuthorityNodeRequest {
-	int64 nodeId = 1;
+	int64 authorityNodeId = 1;
 	string name = 2;
 	string description = 3;
 	bool isOn = 4;
@@ -56,7 +56,7 @@ message UpdateAuthorityNodeRequest {
 
 // 删除认证节点
 message DeleteAuthorityNodeRequest {
-	int64 nodeId = 1;
+	int64 authorityNodeId = 1;
 }
 
 // 列出所有可用认证节点
@@ -65,7 +65,7 @@ message FindAllEnabledAuthorityNodesRequest {
 }
 
 message FindAllEnabledAuthorityNodesResponse {
-	repeated AuthorityNode nodes = 1;
+	repeated AuthorityNode authorityNodes = 1;
 }
 
 // 计算认证节点数量
@@ -80,16 +80,16 @@ message ListEnabledAuthorityNodesRequest {
 }
 
 message ListEnabledAuthorityNodesResponse {
-	repeated AuthorityNode nodes = 1;
+	repeated AuthorityNode authorityNodes = 1;
 }
 
 // 根据ID查找节点
 message FindEnabledAuthorityNodeRequest {
-	int64 nodeId = 1;
+	int64 authorityNodeId = 1;
 }
 
 message FindEnabledAuthorityNodeResponse {
-	AuthorityNode node = 1;
+	AuthorityNode authorityNode = 1;
 }
 
 // 获取当前认证节点
@@ -98,11 +98,11 @@ message FindCurrentAuthorityNodeRequest {
 }
 
 message FindCurrentAuthorityNodeResponse {
-	AuthorityNode node = 1;
+	AuthorityNode authorityNode = 1;
 }
 
 // 更新认证状态
 message UpdateAuthorityNodeStatusRequest {
-	int64 nodeId = 1;
+	int64 authorityNodeId = 1;
 	bytes statusJSON = 2;
 }

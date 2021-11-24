@@ -78,6 +78,9 @@ service HTTPWebService {
 
 	// 更改认证设置
 	rpc updateHTTPWebAuth (UpdateHTTPWebAuthRequest) returns (RPCSuccess);
+
+	// 更改通用设置
+	rpc updateHTTPWebCommon(UpdateHTTPWebCommonRequest) returns (RPCSuccess);
 }
 
 // 创建Web配置
@@ -86,144 +89,144 @@ message CreateHTTPWebRequest {
 }
 
 message CreateHTTPWebResponse {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 }
 
 // 查找Web信息
 message FindEnabledHTTPWebRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 }
 
 message FindEnabledHTTPWebResponse {
-	HTTPWeb web = 1;
+	HTTPWeb httpWeb = 1;
 }
 
 // 查找Web配置
 message FindEnabledHTTPWebConfigRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 }
 
 message FindEnabledHTTPWebConfigResponse {
-	bytes webJSON = 1;
+	bytes httpWebJSON = 1;
 }
 
 // 更改Web配置
 message UpdateHTTPWebRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes rootJSON = 2;
 }
 
 // 更改压缩配置
 message UpdateHTTPWebCompressionRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes compressionJSON = 2;
 }
 
 // 更改WebP配置
 message UpdateHTTPWebWebPRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes webpJSON = 2;
 }
 
 // 更改RemoteAddr配置
 message UpdateHTTPWebRemoteAddrRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes remoteAddrJSON = 2;
 }
 
 // 更改字符集配置
 message UpdateHTTPWebCharsetRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes charsetJSON = 2;
 }
 
 // 更改请求Header策略
 message UpdateHTTPWebRequestHeaderRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes headerJSON = 2;
 }
 
 // 更改响应Header策略
 message UpdateHTTPWebResponseHeaderRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes headerJSON = 2;
 }
 
 // 更改Shutdown
 message UpdateHTTPWebShutdownRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes shutdownJSON = 2;
 }
 
 // 更改Pages
 message UpdateHTTPWebPagesRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes pagesJSON = 2;
 }
 
 // 更改访问日志配置
 message UpdateHTTPWebAccessLogRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes accessLogJSON = 2;
 }
 
 // 更改统计配置
 message UpdateHTTPWebStatRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes statJSON = 2;
 }
 
 // 更改缓存配置
 message UpdateHTTPWebCacheRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes cacheJSON = 2;
 }
 
 // 更改防火墙设置
 message UpdateHTTPWebFirewallRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes firewallJSON = 2;
 }
 
 // 更改路径规则配置
 message UpdateHTTPWebLocationsRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes locationsJSON = 3;
 }
 
 // 更改跳转到HTTPS设置
 message UpdateHTTPWebRedirectToHTTPSRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes redirectToHTTPSJSON = 2;
 }
 
 // 更改Websocket设置
 message UpdateHTTPWebWebsocketRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes websocketJSON = 2;
 }
 
 // 更改Fastcgi设置
 message UpdateHTTPWebFastcgiRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes fastcgiJSON = 2;
 }
 
 // 更改重写规则设置
 message UpdateHTTPWebRewriteRulesRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes rewriteRulesJSON = 2;
 }
 
 // 更改主机跳转设置
 message UpdateHTTPWebHostRedirectsRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes hostRedirectsJSON = 2;
 }
 
 // 查找主机跳转设置
 message FindHTTPWebHostRedirectsRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 }
 
 message FindHTTPWebHostRedirectsResponse {
@@ -232,6 +235,12 @@ message FindHTTPWebHostRedirectsResponse {
 
 // 更改认证设置
 message UpdateHTTPWebAuthRequest {
-	int64 webId = 1;
+	int64 httpWebId = 1;
 	bytes authJSON = 2;
+}
+
+// 更改通用设置
+message UpdateHTTPWebCommonRequest {
+	int64 httpWebId = 1;
+	bool mergeSlashes = 2;
 }

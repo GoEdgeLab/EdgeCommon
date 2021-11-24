@@ -41,7 +41,8 @@ type HTTPWebConfig struct {
 	HostRedirects []*HTTPHostRedirectConfig `yaml:"hostRedirects" json:"hostRedirects"` // 主机跳转
 	Auth          *HTTPAuthConfig           `yaml:"auth" json:"auth"`                   // 认证配置
 
-	RemoteAddr *HTTPRemoteAddrConfig `yaml:"remoteAddr" json:"remoteAddr"`
+	RemoteAddr   *HTTPRemoteAddrConfig `yaml:"remoteAddr" json:"remoteAddr"`     // 客户端IP获取方式
+	MergeSlashes bool                  `yaml:"mergeSlashes" json:"mergeSlashes"` // 是否合并路径中的斜杠（/）
 }
 
 func (this *HTTPWebConfig) Init() error {
