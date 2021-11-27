@@ -69,7 +69,7 @@ message ClusterTask {
 
 // 检查是否有正在执行的任务
 message ExistsNodeTasksRequest {
-
+	repeated string excludeTypes = 1;
 }
 
 message ExistsNodeTasksResponse {
