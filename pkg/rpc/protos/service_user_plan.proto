@@ -40,6 +40,7 @@ message BuyUserPlanRequest{
 	string dayTo = 3;
 	string period = 4;
 	int32  countPeriod = 5;
+	string name = 6;
 }
 
 message BuyUserPlanResponse {
@@ -69,6 +70,7 @@ message UpdateUserPlanRequest {
 	int64 planId = 2;
 	string dayTo = 3;
 	bool isOn = 4;
+	string name = 5;
 }
 
 // 删除已购套餐

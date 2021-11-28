@@ -3,7 +3,8 @@
 package serverconfigs
 
 type PlanConfig struct {
-	Id int64 `yaml:"id" json:"id"`
+	Id   int64  `yaml:"id" json:"id"`
+	Name string `yaml:"name" json:"name"`
 }
 
 func (this *PlanConfig) Init() error {

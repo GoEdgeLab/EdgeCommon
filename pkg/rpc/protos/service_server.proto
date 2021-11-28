@@ -7,6 +7,7 @@ import "models/model_server.proto";
 import "models/model_dns_domain.proto";
 import "models/model_server_name_auditing_result.proto";
 import "models/rpc_messages.proto";
+import "models/model_user_plan.proto";
 
 service ServerService {
 	// 创建服务
@@ -137,6 +138,9 @@ service ServerService {
 
 	// 修改服务套餐
 	rpc updateServerUserPlan(UpdateServerUserPlanRequest) returns (RPCSuccess);
+
+	// 获取服务套餐信息
+	rpc findServerUserPlan(FindServerUserPlanRequest) returns (FindServerUserPlanResponse);
 }
 
 // 创建服务
@@ -539,4 +543,13 @@ message UpdateServerTrafficLimitRequest {
 message UpdateServerUserPlanRequest {
 	int64 serverId = 1;
 	int64 userPlanId = 2;
+}
+
+// 获取服务套餐信息
+message FindServerUserPlanRequest {
+	int64 serverId = 1;
+}
+
+message FindServerUserPlanResponse {
+	UserPlan userPlan = 1;
 }
