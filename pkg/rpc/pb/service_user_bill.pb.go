@@ -29,7 +29,7 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-// 手工生成订单
+// 手工生成账单
 type GenerateAllUserBillsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -268,6 +268,244 @@ func (x *ListUserBillsResponse) GetUserBills() []*UserBill {
 	return nil
 }
 
+// 查找账单信息
+type FindUserBillRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserBillId int64 `protobuf:"varint,1,opt,name=userBillId,proto3" json:"userBillId,omitempty"`
+}
+
+func (x *FindUserBillRequest) Reset() {
+	*x = FindUserBillRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_user_bill_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindUserBillRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindUserBillRequest) ProtoMessage() {}
+
+func (x *FindUserBillRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_user_bill_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindUserBillRequest.ProtoReflect.Descriptor instead.
+func (*FindUserBillRequest) Descriptor() ([]byte, []int) {
+	return file_service_user_bill_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *FindUserBillRequest) GetUserBillId() int64 {
+	if x != nil {
+		return x.UserBillId
+	}
+	return 0
+}
+
+type FindUserBillResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserBill *UserBill `protobuf:"bytes,1,opt,name=userBill,proto3" json:"userBill,omitempty"`
+}
+
+func (x *FindUserBillResponse) Reset() {
+	*x = FindUserBillResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_user_bill_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindUserBillResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindUserBillResponse) ProtoMessage() {}
+
+func (x *FindUserBillResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_user_bill_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindUserBillResponse.ProtoReflect.Descriptor instead.
+func (*FindUserBillResponse) Descriptor() ([]byte, []int) {
+	return file_service_user_bill_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *FindUserBillResponse) GetUserBill() *UserBill {
+	if x != nil {
+		return x.UserBill
+	}
+	return nil
+}
+
+// 支付账单
+type PayUserBillRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserBillId int64 `protobuf:"varint,1,opt,name=userBillId,proto3" json:"userBillId,omitempty"`
+}
+
+func (x *PayUserBillRequest) Reset() {
+	*x = PayUserBillRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_user_bill_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PayUserBillRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayUserBillRequest) ProtoMessage() {}
+
+func (x *PayUserBillRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_user_bill_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayUserBillRequest.ProtoReflect.Descriptor instead.
+func (*PayUserBillRequest) Descriptor() ([]byte, []int) {
+	return file_service_user_bill_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *PayUserBillRequest) GetUserBillId() int64 {
+	if x != nil {
+		return x.UserBillId
+	}
+	return 0
+}
+
+// 计算用户所有未支付账单总额
+type SumUserUnpaidBillsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId int64 `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+}
+
+func (x *SumUserUnpaidBillsRequest) Reset() {
+	*x = SumUserUnpaidBillsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_user_bill_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SumUserUnpaidBillsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SumUserUnpaidBillsRequest) ProtoMessage() {}
+
+func (x *SumUserUnpaidBillsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_user_bill_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SumUserUnpaidBillsRequest.ProtoReflect.Descriptor instead.
+func (*SumUserUnpaidBillsRequest) Descriptor() ([]byte, []int) {
+	return file_service_user_bill_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *SumUserUnpaidBillsRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type SumUserUnpaidBillsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Amount float32 `protobuf:"fixed32,1,opt,name=amount,proto3" json:"amount,omitempty"`
+}
+
+func (x *SumUserUnpaidBillsResponse) Reset() {
+	*x = SumUserUnpaidBillsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_user_bill_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SumUserUnpaidBillsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SumUserUnpaidBillsResponse) ProtoMessage() {}
+
+func (x *SumUserUnpaidBillsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_user_bill_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SumUserUnpaidBillsResponse.ProtoReflect.Descriptor instead.
+func (*SumUserUnpaidBillsResponse) Descriptor() ([]byte, []int) {
+	return file_service_user_bill_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *SumUserUnpaidBillsResponse) GetAmount() float32 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
 var File_service_user_bill_proto protoreflect.FileDescriptor
 
 var file_service_user_bill_proto_rawDesc = []byte{
@@ -299,23 +537,53 @@ var file_service_user_bill_proto_rawDesc = []byte{
 	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x09, 0x75, 0x73, 0x65,
 	0x72, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70,
 	0x62, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x52, 0x09, 0x75, 0x73, 0x65, 0x72,
-	0x42, 0x69, 0x6c, 0x6c, 0x73, 0x32, 0xe9, 0x01, 0x0a, 0x0f, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69,
-	0x6c, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x47, 0x0a, 0x14, 0x67, 0x65, 0x6e,
-	0x65, 0x72, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x6c, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c,
-	0x73, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x41,
-	0x6c, 0x6c, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65,
-	0x73, 0x73, 0x12, 0x47, 0x0a, 0x11, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x55, 0x73,
-	0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75,
-	0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f,
-	0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0d, 0x6c,
-	0x69, 0x73, 0x74, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x12, 0x18, 0x2e, 0x70,
-	0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74,
-	0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x42, 0x69, 0x6c, 0x6c, 0x73, 0x22, 0x35, 0x0a, 0x13, 0x46, 0x69, 0x6e, 0x64, 0x55, 0x73, 0x65,
+	0x72, 0x42, 0x69, 0x6c, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a,
+	0x75, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x0a, 0x75, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x49, 0x64, 0x22, 0x40, 0x0a, 0x14,
+	0x46, 0x69, 0x6e, 0x64, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x28, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x73, 0x65, 0x72,
+	0x42, 0x69, 0x6c, 0x6c, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x22, 0x34,
+	0x0a, 0x12, 0x50, 0x61, 0x79, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x75, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c,
+	0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x75, 0x73, 0x65, 0x72, 0x42, 0x69,
+	0x6c, 0x6c, 0x49, 0x64, 0x22, 0x33, 0x0a, 0x19, 0x53, 0x75, 0x6d, 0x55, 0x73, 0x65, 0x72, 0x55,
+	0x6e, 0x70, 0x61, 0x69, 0x64, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x34, 0x0a, 0x1a, 0x53, 0x75, 0x6d,
+	0x55, 0x73, 0x65, 0x72, 0x55, 0x6e, 0x70, 0x61, 0x69, 0x64, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x02, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x32,
+	0xb8, 0x03, 0x0a, 0x0f, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x53, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x12, 0x47, 0x0a, 0x14, 0x67, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x41,
+	0x6c, 0x6c, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x12, 0x1f, 0x2e, 0x70, 0x62,
+	0x2e, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x41, 0x6c, 0x6c, 0x55, 0x73, 0x65, 0x72,
+	0x42, 0x69, 0x6c, 0x6c, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70,
+	0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x47, 0x0a, 0x11,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c,
+	0x73, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x55,
+	0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0d, 0x6c, 0x69, 0x73, 0x74, 0x55, 0x73, 0x65,
+	0x72, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74,
+	0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69,
+	0x6c, 0x6c, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x41, 0x0a, 0x0c, 0x66,
+	0x69, 0x6e, 0x64, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x12, 0x17, 0x2e, 0x70, 0x62,
+	0x2e, 0x46, 0x69, 0x6e, 0x64, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x55, 0x73,
+	0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x35,
+	0x0a, 0x0b, 0x70, 0x61, 0x79, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x12, 0x16, 0x2e,
+	0x70, 0x62, 0x2e, 0x50, 0x61, 0x79, 0x55, 0x73, 0x65, 0x72, 0x42, 0x69, 0x6c, 0x6c, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x53, 0x0a, 0x12, 0x73, 0x75, 0x6d, 0x55, 0x73, 0x65, 0x72,
+	0x55, 0x6e, 0x70, 0x61, 0x69, 0x64, 0x42, 0x69, 0x6c, 0x6c, 0x73, 0x12, 0x1d, 0x2e, 0x70, 0x62,
+	0x2e, 0x53, 0x75, 0x6d, 0x55, 0x73, 0x65, 0x72, 0x55, 0x6e, 0x70, 0x61, 0x69, 0x64, 0x42, 0x69,
+	0x6c, 0x6c, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x70, 0x62, 0x2e,
+	0x53, 0x75, 0x6d, 0x55, 0x73, 0x65, 0x72, 0x55, 0x6e, 0x70, 0x61, 0x69, 0x64, 0x42, 0x69, 0x6c,
+	0x6c, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f,
+	0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -330,29 +598,41 @@ func file_service_user_bill_proto_rawDescGZIP() []byte {
 	return file_service_user_bill_proto_rawDescData
 }
 
-var file_service_user_bill_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_service_user_bill_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_service_user_bill_proto_goTypes = []interface{}{
 	(*GenerateAllUserBillsRequest)(nil), // 0: pb.GenerateAllUserBillsRequest
 	(*CountAllUserBillsRequest)(nil),    // 1: pb.CountAllUserBillsRequest
 	(*ListUserBillsRequest)(nil),        // 2: pb.ListUserBillsRequest
 	(*ListUserBillsResponse)(nil),       // 3: pb.ListUserBillsResponse
-	(*UserBill)(nil),                    // 4: pb.UserBill
-	(*RPCSuccess)(nil),                  // 5: pb.RPCSuccess
-	(*RPCCountResponse)(nil),            // 6: pb.RPCCountResponse
+	(*FindUserBillRequest)(nil),         // 4: pb.FindUserBillRequest
+	(*FindUserBillResponse)(nil),        // 5: pb.FindUserBillResponse
+	(*PayUserBillRequest)(nil),          // 6: pb.PayUserBillRequest
+	(*SumUserUnpaidBillsRequest)(nil),   // 7: pb.SumUserUnpaidBillsRequest
+	(*SumUserUnpaidBillsResponse)(nil),  // 8: pb.SumUserUnpaidBillsResponse
+	(*UserBill)(nil),                    // 9: pb.UserBill
+	(*RPCSuccess)(nil),                  // 10: pb.RPCSuccess
+	(*RPCCountResponse)(nil),            // 11: pb.RPCCountResponse
 }
 var file_service_user_bill_proto_depIdxs = []int32{
-	4, // 0: pb.ListUserBillsResponse.userBills:type_name -> pb.UserBill
-	0, // 1: pb.UserBillService.generateAllUserBills:input_type -> pb.GenerateAllUserBillsRequest
-	1, // 2: pb.UserBillService.countAllUserBills:input_type -> pb.CountAllUserBillsRequest
-	2, // 3: pb.UserBillService.listUserBills:input_type -> pb.ListUserBillsRequest
-	5, // 4: pb.UserBillService.generateAllUserBills:output_type -> pb.RPCSuccess
-	6, // 5: pb.UserBillService.countAllUserBills:output_type -> pb.RPCCountResponse
-	3, // 6: pb.UserBillService.listUserBills:output_type -> pb.ListUserBillsResponse
-	4, // [4:7] is the sub-list for method output_type
-	1, // [1:4] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	9,  // 0: pb.ListUserBillsResponse.userBills:type_name -> pb.UserBill
+	9,  // 1: pb.FindUserBillResponse.userBill:type_name -> pb.UserBill
+	0,  // 2: pb.UserBillService.generateAllUserBills:input_type -> pb.GenerateAllUserBillsRequest
+	1,  // 3: pb.UserBillService.countAllUserBills:input_type -> pb.CountAllUserBillsRequest
+	2,  // 4: pb.UserBillService.listUserBills:input_type -> pb.ListUserBillsRequest
+	4,  // 5: pb.UserBillService.findUserBill:input_type -> pb.FindUserBillRequest
+	6,  // 6: pb.UserBillService.payUserBill:input_type -> pb.PayUserBillRequest
+	7,  // 7: pb.UserBillService.sumUserUnpaidBills:input_type -> pb.SumUserUnpaidBillsRequest
+	10, // 8: pb.UserBillService.generateAllUserBills:output_type -> pb.RPCSuccess
+	11, // 9: pb.UserBillService.countAllUserBills:output_type -> pb.RPCCountResponse
+	3,  // 10: pb.UserBillService.listUserBills:output_type -> pb.ListUserBillsResponse
+	5,  // 11: pb.UserBillService.findUserBill:output_type -> pb.FindUserBillResponse
+	10, // 12: pb.UserBillService.payUserBill:output_type -> pb.RPCSuccess
+	8,  // 13: pb.UserBillService.sumUserUnpaidBills:output_type -> pb.SumUserUnpaidBillsResponse
+	8,  // [8:14] is the sub-list for method output_type
+	2,  // [2:8] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_service_user_bill_proto_init() }
@@ -411,6 +691,66 @@ func file_service_user_bill_proto_init() {
 				return nil
 			}
 		}
+		file_service_user_bill_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindUserBillRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_user_bill_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindUserBillResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_user_bill_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PayUserBillRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_user_bill_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SumUserUnpaidBillsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_user_bill_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SumUserUnpaidBillsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -418,7 +758,7 @@ func file_service_user_bill_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_user_bill_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -444,12 +784,18 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type UserBillServiceClient interface {
-	// 手工生成订单
+	// 手工生成账单
 	GenerateAllUserBills(ctx context.Context, in *GenerateAllUserBillsRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 计算所有账单数量
 	CountAllUserBills(ctx context.Context, in *CountAllUserBillsRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 列出单页账单
 	ListUserBills(ctx context.Context, in *ListUserBillsRequest, opts ...grpc.CallOption) (*ListUserBillsResponse, error)
+	// 查找账单信息
+	FindUserBill(ctx context.Context, in *FindUserBillRequest, opts ...grpc.CallOption) (*FindUserBillResponse, error)
+	// 支付账单
+	PayUserBill(ctx context.Context, in *PayUserBillRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 计算用户所有未支付账单总额
+	SumUserUnpaidBills(ctx context.Context, in *SumUserUnpaidBillsRequest, opts ...grpc.CallOption) (*SumUserUnpaidBillsResponse, error)
 }
 
 type userBillServiceClient struct {
@@ -487,14 +833,47 @@ func (c *userBillServiceClient) ListUserBills(ctx context.Context, in *ListUserB
 	return out, nil
 }
 
+func (c *userBillServiceClient) FindUserBill(ctx context.Context, in *FindUserBillRequest, opts ...grpc.CallOption) (*FindUserBillResponse, error) {
+	out := new(FindUserBillResponse)
+	err := c.cc.Invoke(ctx, "/pb.UserBillService/findUserBill", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userBillServiceClient) PayUserBill(ctx context.Context, in *PayUserBillRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.UserBillService/payUserBill", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userBillServiceClient) SumUserUnpaidBills(ctx context.Context, in *SumUserUnpaidBillsRequest, opts ...grpc.CallOption) (*SumUserUnpaidBillsResponse, error) {
+	out := new(SumUserUnpaidBillsResponse)
+	err := c.cc.Invoke(ctx, "/pb.UserBillService/sumUserUnpaidBills", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserBillServiceServer is the server API for UserBillService service.
 type UserBillServiceServer interface {
-	// 手工生成订单
+	// 手工生成账单
 	GenerateAllUserBills(context.Context, *GenerateAllUserBillsRequest) (*RPCSuccess, error)
 	// 计算所有账单数量
 	CountAllUserBills(context.Context, *CountAllUserBillsRequest) (*RPCCountResponse, error)
 	// 列出单页账单
 	ListUserBills(context.Context, *ListUserBillsRequest) (*ListUserBillsResponse, error)
+	// 查找账单信息
+	FindUserBill(context.Context, *FindUserBillRequest) (*FindUserBillResponse, error)
+	// 支付账单
+	PayUserBill(context.Context, *PayUserBillRequest) (*RPCSuccess, error)
+	// 计算用户所有未支付账单总额
+	SumUserUnpaidBills(context.Context, *SumUserUnpaidBillsRequest) (*SumUserUnpaidBillsResponse, error)
 }
 
 // UnimplementedUserBillServiceServer can be embedded to have forward compatible implementations.
@@ -509,6 +888,15 @@ func (*UnimplementedUserBillServiceServer) CountAllUserBills(context.Context, *C
 }
 func (*UnimplementedUserBillServiceServer) ListUserBills(context.Context, *ListUserBillsRequest) (*ListUserBillsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUserBills not implemented")
+}
+func (*UnimplementedUserBillServiceServer) FindUserBill(context.Context, *FindUserBillRequest) (*FindUserBillResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindUserBill not implemented")
+}
+func (*UnimplementedUserBillServiceServer) PayUserBill(context.Context, *PayUserBillRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PayUserBill not implemented")
+}
+func (*UnimplementedUserBillServiceServer) SumUserUnpaidBills(context.Context, *SumUserUnpaidBillsRequest) (*SumUserUnpaidBillsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SumUserUnpaidBills not implemented")
 }
 
 func RegisterUserBillServiceServer(s *grpc.Server, srv UserBillServiceServer) {
@@ -569,6 +957,60 @@ func _UserBillService_ListUserBills_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserBillService_FindUserBill_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindUserBillRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserBillServiceServer).FindUserBill(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.UserBillService/FindUserBill",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserBillServiceServer).FindUserBill(ctx, req.(*FindUserBillRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserBillService_PayUserBill_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayUserBillRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserBillServiceServer).PayUserBill(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.UserBillService/PayUserBill",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserBillServiceServer).PayUserBill(ctx, req.(*PayUserBillRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserBillService_SumUserUnpaidBills_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SumUserUnpaidBillsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserBillServiceServer).SumUserUnpaidBills(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.UserBillService/SumUserUnpaidBills",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserBillServiceServer).SumUserUnpaidBills(ctx, req.(*SumUserUnpaidBillsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _UserBillService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.UserBillService",
 	HandlerType: (*UserBillServiceServer)(nil),
@@ -584,6 +1026,18 @@ var _UserBillService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "listUserBills",
 			Handler:    _UserBillService_ListUserBills_Handler,
+		},
+		{
+			MethodName: "findUserBill",
+			Handler:    _UserBillService_FindUserBill_Handler,
+		},
+		{
+			MethodName: "payUserBill",
+			Handler:    _UserBillService_PayUserBill_Handler,
+		},
+		{
+			MethodName: "sumUserUnpaidBills",
+			Handler:    _UserBillService_SumUserUnpaidBills_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
