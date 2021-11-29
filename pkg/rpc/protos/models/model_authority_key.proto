@@ -13,4 +13,5 @@ message AuthorityKey {
 	int64 updatedAt = 6;
 	string company = 7;
 	int32 nodes = 8;
+	repeated string components = 9;
 }
