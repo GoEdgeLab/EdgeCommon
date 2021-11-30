@@ -18,7 +18,7 @@ service NodeLogService {
 	rpc listNodeLogs (ListNodeLogsRequest) returns (ListNodeLogsResponse);
 
 	// 设置日志为已修复
-	rpc fixNodeLog (FixNodeLogRequest) returns (RPCSuccess);
+	rpc fixNodeLogs (FixNodeLogsRequest) returns (RPCSuccess);
 
 	// 计算未读的日志数量
 	rpc countAllUnreadNodeLogs(CountAllUnreadNodeLogsRequest) returns (RPCCountResponse);
@@ -75,8 +75,8 @@ message ListNodeLogsResponse {
 }
 
 // 设置日志为已修复
-message FixNodeLogRequest {
-	int64 nodeLogId = 1;
+message FixNodeLogsRequest {
+	repeated int64 nodeLogIds = 1;
 }
 
 // 计算未读的日志数量

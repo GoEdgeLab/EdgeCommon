@@ -25,7 +25,7 @@ func HumanError(err error) error {
 	case codes.Unimplemented:
 		return errors.New("请求的RPC服务或方法不存在，可能是没有升级API节点或者当前节点没有升级：" + err.Error())
 	case codes.Unavailable:
-		return errors.New("RPC当前不可用，1、当前节点的api.yaml配置中的地址填写正确；2、请确保API节点已启动，并检查当前节点和API节点之间的网络连接是正常的。错误信息：" + err.Error())
+		return errors.New("RPC当前不可用，1、请确保当前节点的api.yaml配置中的地址填写正确；2、请确保API节点已启动，并检查当前节点和API节点之间的网络连接是正常的。错误信息：" + err.Error())
 	}
 
 	return err
