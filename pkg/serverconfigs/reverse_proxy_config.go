@@ -196,8 +196,9 @@ func (this *ReverseProxyConfig) AddBackupOrigin(origin *OriginConfig) {
 
 // NextOrigin 取得下一个可用的后端服务
 func (this *ReverseProxyConfig) NextOrigin(call *shared.RequestCall) *OriginConfig {
-	this.schedulingLocker.RLock()
-	defer this.schedulingLocker.RUnlock()
+	// 这里不能使用RLock/RUnlock，因为在NextOrigin()方法中可能会对调度对象动态调整
+	this.schedulingLocker.Lock()
+	defer this.schedulingLocker.Unlock()
 
 	if len(this.schedulingGroupMap) == 0 {
 		return nil
