@@ -5,5 +5,6 @@ package nodeconfigs
 type NodeLogType = string
 
 const (
-	NodeLogTypeListenAddressFailed NodeLogType = "listenAddressFailed"
+	NodeLogTypeListenAddressFailed    NodeLogType = "listenAddressFailed"
+	NodeLogTypeServerConfigInitFailed NodeLogType = "serverConfigInitFailed"
 )

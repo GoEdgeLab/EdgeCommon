@@ -7,13 +7,21 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/firewallconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/Tea"
-	"github.com/iwind/TeaGo/logs"
 	"github.com/iwind/TeaGo/maps"
 	"io/ioutil"
 	"strconv"
 )
 
 var sharedNodeConfig *NodeConfig = nil
+
+type ServerError struct {
+	Id      int64
+	Message string
+}
+
+func NewServerError(serverId int64, message string) *ServerError {
+	return &ServerError{Id: serverId, Message: message}
+}
 
 // NodeConfig 边缘节点配置
 type NodeConfig struct {
@@ -87,32 +95,32 @@ func ResetNodeConfig(nodeConfig *NodeConfig) {
 }
 
 // Init 初始化
-func (this *NodeConfig) Init() error {
+func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 	this.paddedId = fmt.Sprintf("%08d", this.Id)
 
 	// servers
 	for _, server := range this.Servers {
-		err := server.Init()
+		err = server.Init()
 		if err != nil {
 			// 这里不返回错误，而是继续往下，防止单个服务错误而影响其他服务
-			logs.Println("[INIT]server '" + strconv.FormatInt(server.Id, 10) + "' init failed: " + err.Error())
+			serverErrors = append(serverErrors, NewServerError(server.Id, "server '"+strconv.FormatInt(server.Id, 10)+"' init failed: "+err.Error()))
 		}
 	}
 
 	// global config
 	if this.GlobalConfig != nil {
-		err := this.GlobalConfig.Init()
+		err = this.GlobalConfig.Init()
 		if err != nil {
-			return err
+			return
 		}
 	}
 
 	// cache policy
 	if len(this.HTTPCachePolicies) > 0 {
 		for _, policy := range this.HTTPCachePolicies {
-			err := policy.Init()
+			err = policy.Init()
 			if err != nil {
-				return err
+				return
 			}
 		}
 	}
@@ -120,18 +128,18 @@ func (this *NodeConfig) Init() error {
 	// firewall policy
 	if len(this.HTTPFirewallPolicies) > 0 {
 		for _, policy := range this.HTTPFirewallPolicies {
-			err := policy.Init()
+			err = policy.Init()
 			if err != nil {
-				return err
+				return
 			}
 		}
 	}
 
 	// TOA
 	if this.TOA != nil {
-		err := this.TOA.Init()
+		err = this.TOA.Init()
 		if err != nil {
-			return err
+			return
 		}
 	}
 
@@ -190,25 +198,25 @@ func (this *NodeConfig) Init() error {
 
 	// firewall actions
 	for _, action := range this.FirewallActions {
-		err := action.Init()
+		err = action.Init()
 		if err != nil {
-			return err
+			return
 		}
 	}
 
 	// metric items
 	this.hasHTTPConnectionMetrics = false
 	for _, item := range this.MetricItems {
-		err := item.Init()
+		err = item.Init()
 		if err != nil {
-			return err
+			return
 		}
 		if item.IsOn && item.HasHTTPConnectionValue() {
 			this.hasHTTPConnectionMetrics = true
 		}
 	}
 
-	return nil
+	return
 }
 
 // AvailableGroups 根据网络地址和协议分组
