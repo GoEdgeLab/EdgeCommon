@@ -16,6 +16,8 @@ type HTTPAccessLogRef struct {
 	Status4 bool `yaml:"status4" json:"status4"` // 4xx
 	Status5 bool `yaml:"status5" json:"status5"` // 5xx
 
+	EnableClientClosed bool `yaml:"enableClientClosed" json:"enableClientClosed"` // 是否记录客户端关闭事件
+
 	StorageOnly     bool    `yaml:"storageOnly" json:"storageOnly"`         // 是否只输出到存储策略
 	StoragePolicies []int64 `yaml:"storagePolicies" json:"storagePolicies"` // 存储策略Ids
 
