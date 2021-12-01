@@ -239,6 +239,7 @@ message FindServerNamesRequest {
 message FindServerNamesResponse {
 	bytes serverNamesJSON = 1;
 	bool isAuditing = 2;
+	int64 auditingAt = 5;
 	bytes auditingServerNamesJSON = 3;
 	ServerNameAuditingResult auditingResult = 4;
 }

@@ -25,6 +25,7 @@ message Server {
 	bytes config = 17;
 	bytes serverNamesJSON = 8;
 	bool isAuditing = 20;
+	int64 auditingAt = 25;
 	bytes auditingServerNamesJSON = 21;
 	ServerNameAuditingResult auditingResult = 22;
 
