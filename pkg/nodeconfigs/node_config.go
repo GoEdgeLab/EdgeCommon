@@ -100,10 +100,12 @@ func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 
 	// servers
 	for _, server := range this.Servers {
-		err = server.Init()
-		if err != nil {
+		errs := server.Init()
+		if len(errs) > 0 {
 			// 这里不返回错误，而是继续往下，防止单个服务错误而影响其他服务
-			serverErrors = append(serverErrors, NewServerError(server.Id, "server '"+strconv.FormatInt(server.Id, 10)+"' init failed: "+err.Error()))
+			for _, serverErr := range errs {
+				serverErrors = append(serverErrors, NewServerError(server.Id, "server '"+strconv.FormatInt(server.Id, 10)+"' init failed: "+serverErr.Error()))
+			}
 		}
 	}
 

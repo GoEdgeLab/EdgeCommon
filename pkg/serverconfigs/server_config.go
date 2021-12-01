@@ -68,7 +68,7 @@ func NewServerConfig() *ServerConfig {
 	return &ServerConfig{}
 }
 
-func (this *ServerConfig) Init() error {
+func (this *ServerConfig) Init() (results []error) {
 	// 分解Group
 	if this.Group != nil && this.Group.IsOn {
 		// reverse proxy
@@ -166,63 +166,63 @@ func (this *ServerConfig) Init() error {
 	if this.HTTP != nil {
 		err := this.HTTP.Init()
 		if err != nil {
-			return err
+			results = append(results, err)
 		}
 	}
 
 	if this.HTTPS != nil {
 		err := this.HTTPS.Init()
 		if err != nil {
-			return err
+			results = append(results, err)
 		}
 	}
 
 	if this.TCP != nil {
 		err := this.TCP.Init()
 		if err != nil {
-			return err
+			results = append(results, err)
 		}
 	}
 
 	if this.TLS != nil {
 		err := this.TLS.Init()
 		if err != nil {
-			return err
+			results = append(results, err)
 		}
 	}
 
 	if this.Unix != nil {
 		err := this.Unix.Init()
 		if err != nil {
-			return err
+			results = append(results, err)
 		}
 	}
 
 	if this.UDP != nil {
 		err := this.UDP.Init()
 		if err != nil {
-			return err
+			results = append(results, err)
 		}
 	}
 
 	if this.ReverseProxyRef != nil {
 		err := this.ReverseProxyRef.Init()
 		if err != nil {
-			return err
+			results = append(results, err)
 		}
 	}
 
 	if this.ReverseProxy != nil {
 		err := this.ReverseProxy.Init()
 		if err != nil {
-			return err
+			results = append(results, err)
 		}
 	}
 
 	if this.Web != nil {
 		err := this.Web.Init()
 		if err != nil {
-			return err
+			results = append(results, err)
 		}
 	}
 
@@ -230,7 +230,7 @@ func (this *ServerConfig) Init() error {
 	if this.UserPlan != nil {
 		err := this.UserPlan.Init()
 		if err != nil {
-			return err
+			results = append(results, err)
 		}
 
 		if this.UserPlan.Plan != nil {
