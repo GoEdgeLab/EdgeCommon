@@ -87,6 +87,13 @@ func (this *SchedulingGroup) NextOrigin(call *shared.RequestCall) *OriginConfig 
 
 // SetupScheduling 设置调度算法
 func (this *SchedulingGroup) SetupScheduling(isBackup bool, checkOk bool) {
+	// 如果只有一个源站，则快速返回，避免因为状态的改变而不停地转换
+	if checkOk {
+		if len(this.PrimaryOrigins) == 1 && len(this.BackupOrigins) == 0 && this.schedulingObject != nil {
+			return
+		}
+	}
+
 	this.schedulingIsBackup = isBackup
 
 	if this.Scheduling == nil {
