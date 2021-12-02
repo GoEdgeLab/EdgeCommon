@@ -11,7 +11,9 @@ const DefaultTrafficLimitNoticePageBody = `<!DOCTYPE html>
 <title>Traffic Limit Exceeded Warning/title>
 <body>
 
-The site traffic has exceeded the limit. Please contact with the site administrator.
+<h1>Traffic Limit Exceeded Warning</h1>
+<p>The site traffic has exceeded the limit. Please contact with the site administrator.</p>
+<address>Request ID: ${requestId}.</address>
 
 </body>
 </html>`

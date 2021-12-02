@@ -11,9 +11,9 @@ const DefaultPlanExpireNoticePageBody = `<!DOCTYPE html>
 <title>套餐已过期</title>
 <body>
 
-<p>套餐已过期，请及时续费。</p>
+<h1>套餐已过期，请及时续费。</h1>
 <p>Your server plan has been expired, please renew the plan.</p>
-
+<address>Request ID: ${requestId}.</address>
 
 </body>
 </html>`
