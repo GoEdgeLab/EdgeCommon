@@ -21,6 +21,7 @@ type HTTPFirewallRuleSet struct {
 	Connector   string                 `yaml:"connector" json:"connector"`
 	RuleRefs    []*HTTPFirewallRuleRef `yaml:"ruleRefs" json:"ruleRefs"`
 	Rules       []*HTTPFirewallRule    `yaml:"rules" json:"rules"`
+	IgnoreLocal bool                   `yaml:"ignoreLocal" json:"ignoreLocal"`
 
 	Actions []*HTTPFirewallActionConfig `yaml:"actions" json:"actions"`
 
