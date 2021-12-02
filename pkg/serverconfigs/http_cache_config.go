@@ -9,9 +9,10 @@ type HTTPCacheConfig struct {
 	IsPrior bool `yaml:"isPrior" json:"isPrior"`
 	IsOn    bool `yaml:"isOn" json:"isOn"`
 
-	AddStatusHeader bool   `yaml:"addStatusHeader" json:"addStatusHeader"` // 是否增加命中状态Header
+	AddStatusHeader bool   `yaml:"addStatusHeader" json:"addStatusHeader"` // 是否增加命中状态Header（X-Cache）
+	AddAgeHeader    bool   `yaml:"addAgeHeader" json:"addAgeHeader"`       // 是否增加Age Header
 	PurgeIsOn       bool   `yaml:"purgeIsOn" json:"purgeIsOn"`             // 是否允许使用Purge方法清理
-	PurgeKey        string `yaml:"purgeKey" json:"purgeKey"`               // Purge时使用的Edge-Purge-Key
+	PurgeKey        string `yaml:"purgeKey" json:"purgeKey"`               // Purge时使用的X-Edge-Purge-Key
 
 	CacheRefs []*HTTPCacheRef `yaml:"cacheRefs" json:"cacheRefs"` // 缓存配置
 }
