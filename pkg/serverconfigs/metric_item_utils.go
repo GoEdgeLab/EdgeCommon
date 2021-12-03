@@ -13,6 +13,10 @@ const (
 	MetricItemCategoryUDP  MetricItemCategory = "udp"
 )
 
+func FindAllMetricItemCategoryCodes() []MetricItemCategory {
+	return []MetricItemCategory{MetricItemCategoryHTTP, MetricItemCategoryTCP, MetricItemCategoryUDP}
+}
+
 // MetricItemPeriodUnit 指标周期单位
 type MetricItemPeriodUnit = string
 

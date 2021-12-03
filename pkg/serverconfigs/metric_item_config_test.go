@@ -58,3 +58,26 @@ func TestMetricItemConfig_CurrentTime_Minute(t *testing.T) {
 		t.Log(period, ":", item.CurrentTime())
 	}
 }
+
+func TestMetricItemConfig_ServerExpiresDay(t *testing.T) {
+	{
+		var config = &MetricItemConfig{Period: 3, PeriodUnit: MetricItemPeriodUnitMonth}
+		t.Log(config.ServerExpiresDay())
+	}
+	{
+		var config = &MetricItemConfig{Period: 3, PeriodUnit: MetricItemPeriodUnitWeek}
+		t.Log(config.ServerExpiresDay())
+	}
+	{
+		var config = &MetricItemConfig{Period: 3, PeriodUnit: MetricItemPeriodUnitDay}
+		t.Log(config.ServerExpiresDay())
+	}
+	{
+		var config = &MetricItemConfig{Period: 3, PeriodUnit: MetricItemPeriodUnitHour}
+		t.Log(config.ServerExpiresDay())
+	}
+	{
+		var config = &MetricItemConfig{Period: 3, PeriodUnit: MetricItemPeriodUnitMinute}
+		t.Log(config.ServerExpiresDay())
+	}
+}

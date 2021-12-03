@@ -136,6 +136,24 @@ func (this *MetricItemConfig) ServerExpiresTime() string {
 	}
 }
 
+// ServerExpiresDay 根据周期计算服务器端数据过期日期
+func (this *MetricItemConfig) ServerExpiresDay() string {
+	switch this.PeriodUnit {
+	case MetricItemPeriodUnitMonth:
+		return timeutil.Format("Ymd", time.Now().AddDate(0, -(this.Period*4), 0))
+	case MetricItemPeriodUnitWeek:
+		return timeutil.FormatTime("Ymd", time.Now().Unix()-86400*7*int64(this.Period*5))
+	case MetricItemPeriodUnitDay:
+		return timeutil.FormatTime("Ymd", time.Now().Unix()-86400*int64(this.Period*32))
+	case MetricItemPeriodUnitHour:
+		return timeutil.FormatTime("Ymd", time.Now().Unix()-3600*int64(this.Period*25)-86400)
+	case MetricItemPeriodUnitMinute:
+		return timeutil.FormatTime("Ymd", time.Now().Unix()-60*int64(this.Period*60)-86400)
+	default:
+		return ""
+	}
+}
+
 // LocalExpiresTime 根据周期计算本地端过期时间
 func (this *MetricItemConfig) LocalExpiresTime() string {
 	switch this.PeriodUnit {
