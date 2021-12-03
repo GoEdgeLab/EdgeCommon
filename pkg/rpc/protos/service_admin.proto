@@ -208,6 +208,7 @@ message ComposeAdminDashboardResponse {
 	int64 countNodes = 2;
 	int64 countOfflineNodes = 9;
 	int64 countServers = 3;
+	int64 countAuditingServers = 13;
 	int64 countUsers = 4;
 	int64 countAPINodes = 5;
 	int64 countOfflineAPINodes = 10;
