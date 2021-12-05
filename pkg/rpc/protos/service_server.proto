@@ -447,7 +447,10 @@ message UploadServerHTTPRequestStatRequest {
 		string countryName = 2;
 		string provinceName = 3;
 		string cityName = 4;
-		int64 count = 5;
+		int64 countRequests = 5;
+		int64 bytes = 6;
+		int64 countAttackRequests = 7;
+		int64 attackBytes = 8;
 	}
 
 	message RegionProvider {

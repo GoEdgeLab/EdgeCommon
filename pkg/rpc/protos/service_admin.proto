@@ -232,6 +232,7 @@ message ComposeAdminDashboardResponse {
 	repeated NodeStat topNodeStats = 38;
 	repeated DomainStat topDomainStats = 39;
 
+	repeated CountryStat topCountryStats = 42;
 
 	repeated MetricDataChart metricDataCharts = 40;
 
@@ -267,6 +268,13 @@ message ComposeAdminDashboardResponse {
 		string domain = 2;
 		int64 countRequests = 3;
 		int64 bytes = 4;
+	}
+
+	message CountryStat {
+		string countryName = 1;
+		int64 bytes = 2;
+		int64 countRequests = 3;
+		float percent = 4; // 流量占比
 	}
 
 	// 节点升级信息
