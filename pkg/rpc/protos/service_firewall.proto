@@ -31,6 +31,7 @@ message ComposeFirewallGlobalBoardResponse {
 	repeated HourlyStat hourlyStats = 32;
 	repeated NodeStat topNodeStats = 33;
 	repeated DomainStat topDomainStats = 34;
+	repeated CountryStat topCountryStats = 35;
 
 	message HTTPFirewallRuleGroupStat {
 		HTTPFirewallRuleGroup httpFirewallRuleGroup = 1;
@@ -65,6 +66,15 @@ message ComposeFirewallGlobalBoardResponse {
 		string domain = 2;
 		int64 countRequests = 3;
 		int64 bytes = 4;
+		int64 countAttackRequests = 6;
+		int64 attackBytes = 7;
+	}
+
+	message CountryStat {
+		string countryName = 1;
+		int64 bytes = 2;
+		int64 countRequests = 3;
+		float percent = 4; // 流量占比
 		int64 countAttackRequests = 6;
 		int64 attackBytes = 7;
 	}

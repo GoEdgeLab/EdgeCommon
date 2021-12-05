@@ -275,6 +275,8 @@ message ComposeAdminDashboardResponse {
 		int64 bytes = 2;
 		int64 countRequests = 3;
 		float percent = 4; // 流量占比
+		int64 countAttackRequests = 6;
+		int64 attackBytes = 7;
 	}
 
 	// 节点升级信息
