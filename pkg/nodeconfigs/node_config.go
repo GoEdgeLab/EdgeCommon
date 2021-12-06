@@ -51,6 +51,8 @@ type NodeConfig struct {
 
 	MetricItems []*serverconfigs.MetricItemConfig `yaml:"metricItems" json:"metricItems"`
 
+	AllowedIPs []string `yaml:"allowedIPs" json:"allowedIPs"` // 自动白名单
+
 	paddedId string
 
 	// firewall
@@ -61,6 +63,9 @@ type NodeConfig struct {
 
 	// 源站集合
 	originMap map[int64]*serverconfigs.OriginConfig
+
+	// 自动白名单
+	allowedIPMap map[string]bool
 }
 
 // SharedNodeConfig 取得当前节点配置单例
@@ -218,6 +223,12 @@ func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 		}
 	}
 
+	// 自动白名单
+	this.allowedIPMap = map[string]bool{}
+	for _, allowIP := range this.AllowedIPs {
+		this.allowedIPMap[allowIP] = true
+	}
+
 	return
 }
 
@@ -321,4 +332,10 @@ func (this *NodeConfig) lookupWeb(server *serverconfigs.ServerConfig, web *serve
 			}
 		}
 	}
+}
+
+// IPIsAutoAllowed 检查是否自动允许某个IP
+func (this *NodeConfig) IPIsAutoAllowed(ip string) bool {
+	_, ok := this.allowedIPMap[ip]
+	return ok
 }
