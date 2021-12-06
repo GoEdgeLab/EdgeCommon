@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-// SSL证书
+// SSLCertConfig SSL证书
 type SSLCertConfig struct {
 	Id          int64  `yaml:"id" json:"id"`
 	IsOn        bool   `yaml:"isOn" json:"isOn"`
@@ -34,7 +34,7 @@ type SSLCertConfig struct {
 	timeEnd   time.Time
 }
 
-// 校验
+// Init 校验
 func (this *SSLCertConfig) Init() error {
 	var commonNames []string // 发行组织
 	var dnsNames []string    // 域名
@@ -91,6 +91,11 @@ func (this *SSLCertConfig) Init() error {
 			if err != nil {
 				continue
 			}
+
+			if cert.Leaf == nil {
+				cert.Leaf = c
+			}
+
 			for _, dnsName := range c.DNSNames {
 				if !lists.ContainsString(dnsNames, dnsName) {
 					dnsNames = append(dnsNames, dnsName)
@@ -117,7 +122,7 @@ func (this *SSLCertConfig) Init() error {
 	return nil
 }
 
-// 校验是否匹配某个域名
+// MatchDomain 校验是否匹配某个域名
 func (this *SSLCertConfig) MatchDomain(domain string) bool {
 	if len(this.DNSNames) == 0 {
 		return false
@@ -125,17 +130,17 @@ func (this *SSLCertConfig) MatchDomain(domain string) bool {
 	return configutils.MatchDomains(this.DNSNames, domain)
 }
 
-// 获取证书对象
+// CertObject 获取证书对象
 func (this *SSLCertConfig) CertObject() *tls.Certificate {
 	return this.cert
 }
 
-// 开始时间
+// TimeBegin 开始时间
 func (this *SSLCertConfig) TimeBegin() time.Time {
 	return this.timeBegin
 }
 
-// 结束时间
+// TimeEnd 结束时间
 func (this *SSLCertConfig) TimeEnd() time.Time {
 	return this.timeEnd
 }
