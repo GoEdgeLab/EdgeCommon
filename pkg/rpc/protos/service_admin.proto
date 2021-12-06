@@ -231,7 +231,6 @@ message ComposeAdminDashboardResponse {
 
 	repeated NodeStat topNodeStats = 38;
 	repeated DomainStat topDomainStats = 39;
-
 	repeated CountryStat topCountryStats = 42;
 
 	repeated MetricDataChart metricDataCharts = 40;
