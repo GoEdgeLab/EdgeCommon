@@ -44,6 +44,7 @@ message CreateNodeGrantRequest {
 	string passphrase = 8;
 	string description = 6;
 	int64 nodeId = 7;
+	bool su = 9;
 }
 
 message CreateNodeGrantResponse {
@@ -61,6 +62,7 @@ message UpdateNodeGrantRequest {
 	string passphrase = 9;
 	string description = 6;
 	int64 nodeId = 7;
+	bool su = 10;
 }
 
 // 禁用节点认证
