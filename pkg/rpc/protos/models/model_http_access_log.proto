@@ -25,6 +25,7 @@ message HTTPAccessLog {
 	double requestTime = 13;
 	string requestMethod = 14;
 	string requestFilename = 15;
+	bytes requestBody = 51;
 	string scheme = 16;
 	string proto = 17;
 	int64 bytesSent = 18;
