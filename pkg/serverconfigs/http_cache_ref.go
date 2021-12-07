@@ -78,11 +78,6 @@ func (this *HTTPCacheRef) Init() error {
 		for _, method := range this.Methods {
 			this.methodMap[strings.ToUpper(method)] = true
 		}
-	} else {
-		this.methodMap = map[string]bool{
-			"GET":  true,
-			"HEAD": true,
-		}
 	}
 
 	return nil
