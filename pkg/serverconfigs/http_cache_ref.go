@@ -3,6 +3,7 @@ package serverconfigs
 import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/lists"
+	"net/http"
 	"strings"
 )
 
@@ -17,6 +18,7 @@ type HTTPCacheRef struct {
 	Status  []int                `yaml:"status" json:"status"`   // 缓存的状态码列表
 	MinSize *shared.SizeCapacity `yaml:"minSize" json:"minSize"` // 能够缓存的最小尺寸
 	MaxSize *shared.SizeCapacity `yaml:"maxSize" json:"maxSize"` // 能够缓存的最大尺寸
+	Methods []string             `yaml:"methods" json:"methods"` // 支持的请求方法
 
 	SkipResponseCacheControlValues []string `yaml:"skipCacheControlValues" json:"skipCacheControlValues"`     // 可以跳过的响应的Cache-Control值
 	SkipResponseSetCookie          bool     `yaml:"skipSetCookie" json:"skipSetCookie"`                       // 是否跳过响应的Set-Cookie Header
@@ -33,6 +35,8 @@ type HTTPCacheRef struct {
 	minSize                         int64
 	maxSize                         int64
 	uppercaseSkipCacheControlValues []string
+
+	methodMap map[string]bool
 }
 
 func (this *HTTPCacheRef) Init() error {
@@ -68,6 +72,19 @@ func (this *HTTPCacheRef) Init() error {
 		}
 	}
 
+	// methods
+	this.methodMap = map[string]bool{}
+	if len(this.Methods) > 0 {
+		for _, method := range this.Methods {
+			this.methodMap[strings.ToUpper(method)] = true
+		}
+	} else {
+		this.methodMap = map[string]bool{
+			"GET":  true,
+			"HEAD": true,
+		}
+	}
+
 	return nil
 }
 
@@ -89,4 +106,17 @@ func (this *HTTPCacheRef) LifeSeconds() int64 {
 // ContainsCacheControl 是否包含某个Cache-Control值
 func (this *HTTPCacheRef) ContainsCacheControl(value string) bool {
 	return lists.ContainsString(this.uppercaseSkipCacheControlValues, strings.ToUpper(value))
+}
+
+// MatchRequest 匹配请求
+func (this *HTTPCacheRef) MatchRequest(req *http.Request) bool {
+	// 请求方法
+	if len(this.methodMap) > 0 {
+		_, ok := this.methodMap[req.Method]
+		if !ok {
+			return false
+		}
+	}
+
+	return true
 }
