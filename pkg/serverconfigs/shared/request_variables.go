@@ -33,6 +33,7 @@ func DefaultRequestVariables() []maps.Map {
 		{"code": "${contentType}", "name": "请求头部的Content-Type", "description": ""},
 		{"code": "${cookies}", "name": "所有cookie组合字符串", "description": ""},
 		{"code": "${cookie.NAME}", "name": "单个cookie值", "description": ""},
+		{"code": "${isArgs}", "name": "问号（?）标记", "description": "如果URL有参数，则值为`?`；否则，则值为空"},
 		{"code": "${args}", "name": "所有参数组合字符串", "description": ""},
 		{"code": "${arg.NAME}", "name": "单个参数值", "description": ""},
 		{"code": "${headers}", "name": "所有Header信息组合字符串", "description": ""},
