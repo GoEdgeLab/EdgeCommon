@@ -10,6 +10,9 @@ service NodeIPAddressService {
 	// 创建IP地址
 	rpc createNodeIPAddress (CreateNodeIPAddressRequest) returns (CreateNodeIPAddressResponse);
 
+	// 批量创建IP地址
+	rpc createNodeIPAddresses (CreateNodeIPAddressesRequest) returns (CreateNodeIPAddressesResponse);
+
 	// 修改IP地址
 	rpc updateNodeIPAddress (UpdateNodeIPAddressRequest) returns (RPCSuccess);
 
@@ -53,6 +56,21 @@ message CreateNodeIPAddressRequest {
 
 message CreateNodeIPAddressResponse {
 	int64 nodeIPAddressId = 1;
+}
+
+// 批量创建IP地址
+message CreateNodeIPAddressesRequest {
+	int64 nodeId = 1;
+	string role = 2;
+	string name = 3;
+	repeated string ipList = 4;
+	bool canAccess = 5;
+	bool isUp = 6;
+	string groupValue = 7;
+}
+
+message CreateNodeIPAddressesResponse {
+	repeated int64 nodeIPAddressIds = 1;
 }
 
 // 修改IP地址
