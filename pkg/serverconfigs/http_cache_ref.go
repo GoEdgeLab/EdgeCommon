@@ -13,12 +13,13 @@ type HTTPCacheRef struct {
 	IsOn          bool  `yaml:"isOn" json:"isOn"`
 	CachePolicyId int64 `yaml:"cachePolicyId" json:"cachePolicyId"`
 
-	Key     string               `yaml:"key" json:"key"`         // 每个缓存的Key规则，里面可以有变量
-	Life    *shared.TimeDuration `yaml:"life" json:"life"`       // 时间
-	Status  []int                `yaml:"status" json:"status"`   // 缓存的状态码列表
-	MinSize *shared.SizeCapacity `yaml:"minSize" json:"minSize"` // 能够缓存的最小尺寸
-	MaxSize *shared.SizeCapacity `yaml:"maxSize" json:"maxSize"` // 能够缓存的最大尺寸
-	Methods []string             `yaml:"methods" json:"methods"` // 支持的请求方法
+	Key         string                 `yaml:"key" json:"key"`                 // 每个缓存的Key规则，里面可以有变量
+	Life        *shared.TimeDuration   `yaml:"life" json:"life"`               // 时间
+	ExpiresTime *HTTPExpiresTimeConfig `yaml:"expiresTime" json:"expiresTime"` // 客户端过期时间
+	Status      []int                  `yaml:"status" json:"status"`           // 缓存的状态码列表
+	MinSize     *shared.SizeCapacity   `yaml:"minSize" json:"minSize"`         // 能够缓存的最小尺寸
+	MaxSize     *shared.SizeCapacity   `yaml:"maxSize" json:"maxSize"`         // 能够缓存的最大尺寸
+	Methods     []string               `yaml:"methods" json:"methods"`         // 支持的请求方法
 
 	SkipResponseCacheControlValues []string `yaml:"skipCacheControlValues" json:"skipCacheControlValues"`     // 可以跳过的响应的Cache-Control值
 	SkipResponseSetCookie          bool     `yaml:"skipSetCookie" json:"skipSetCookie"`                       // 是否跳过响应的Set-Cookie Header

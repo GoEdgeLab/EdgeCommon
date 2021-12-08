@@ -13,9 +13,10 @@ const (
 	TimeDurationUnitMinute TimeDurationUnit = "minute"
 	TimeDurationUnitHour   TimeDurationUnit = "hour"
 	TimeDurationUnitDay    TimeDurationUnit = "day"
+	TimeDurationUnitWeek   TimeDurationUnit = "week"
 )
 
-// 时间间隔
+// TimeDuration 时间间隔
 type TimeDuration struct {
 	Count int64            `yaml:"count" json:"count"` // 数量
 	Unit  TimeDurationUnit `yaml:"unit" json:"unit"`   // 单位
@@ -33,6 +34,8 @@ func (this *TimeDuration) Duration() time.Duration {
 		return time.Duration(this.Count) * time.Hour
 	case TimeDurationUnitDay:
 		return time.Duration(this.Count) * 24 * time.Hour
+	case TimeDurationUnitWeek:
+		return time.Duration(this.Count) * 24 * 7 * time.Hour
 	default:
 		return time.Duration(this.Count) * time.Second
 	}
