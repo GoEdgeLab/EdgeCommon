@@ -17,4 +17,6 @@ message NodeCluster {
 	int64 httpFirewallPolicyId = 11;
 	bool isOn = 12;
 	string timeZone = 13;
+	int32 nodeMaxThreads = 14;
+	int32 nodeTCPMaxConnections = 15;
 }

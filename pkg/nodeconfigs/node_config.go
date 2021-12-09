@@ -37,6 +37,8 @@ type NodeConfig struct {
 	RegionId               int64                         `yaml:"regionId" json:"regionId"`
 	MaxCacheDiskCapacity   *shared.SizeCapacity          `yaml:"maxCacheDiskCapacity" json:"maxCacheDiskCapacity"`
 	MaxCacheMemoryCapacity *shared.SizeCapacity          `yaml:"maxCacheMemoryCapacity" json:"maxCacheMemoryCapacity"`
+	MaxThreads             int                           `yaml:"maxThreads" json:"maxThreads"`
+	TCPMaxConnections      int                           `yaml:"tcpMaxConnections" json:"tcpMaxConnections"`
 
 	// 全局配置
 	GlobalConfig *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置

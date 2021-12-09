@@ -146,6 +146,8 @@ message UpdateNodeClusterRequest {
 	int64 nodeGrantId = 3;
 	string installDir = 4;
 	string timeZone = 5;
+	int32 nodeMaxThreads = 6;
+	int32 nodeTCPMaxConnections = 7;
 }
 
 // 删除集群
