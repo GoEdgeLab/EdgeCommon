@@ -159,6 +159,11 @@ func (this *ServerConfig) Init() (results []error) {
 					this.Web.Pages = groupWeb.Pages
 					this.Web.Shutdown = groupWeb.Shutdown
 				}
+
+				// request limit
+				if groupWeb.RequestLimit != nil && groupWeb.RequestLimit.IsPrior {
+					this.Web.RequestLimit = groupWeb.RequestLimit
+				}
 			}
 		}
 	}

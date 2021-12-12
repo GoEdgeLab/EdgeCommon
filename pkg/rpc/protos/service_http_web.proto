@@ -81,6 +81,12 @@ service HTTPWebService {
 
 	// 更改通用设置
 	rpc updateHTTPWebCommon(UpdateHTTPWebCommonRequest) returns (RPCSuccess);
+
+	// 修改请求限制
+	rpc updateHTTPWebRequestLimit(UpdateHTTPWebRequestLimitRequest) returns (RPCSuccess);
+
+	// 查找请求限制
+	rpc findHTTPWebRequestLimit(FindHTTPWebRequestLimitRequest) returns (FindHTTPWebRequestLimitResponse);
 }
 
 // 创建Web配置
@@ -243,4 +249,19 @@ message UpdateHTTPWebAuthRequest {
 message UpdateHTTPWebCommonRequest {
 	int64 httpWebId = 1;
 	bool mergeSlashes = 2;
+}
+
+// 修改请求限制
+message UpdateHTTPWebRequestLimitRequest {
+	int64 httpWebId = 1;
+	bytes requestLimitJSON = 2;
+}
+
+// 查找请求限制
+message FindHTTPWebRequestLimitRequest {
+	int64 httpWebId = 1;
+}
+
+message FindHTTPWebRequestLimitResponse {
+	bytes requestLimitJSON = 1;
 }
