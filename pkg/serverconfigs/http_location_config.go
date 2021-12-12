@@ -20,6 +20,7 @@ type HTTPLocationConfig struct {
 	IsBreak         bool                           `yaml:"isBreak" json:"isBreak"`                 // 终止向下解析
 	Children        []*HTTPLocationConfig          `yaml:"children" json:"children"`               // 子规则
 	Conds           *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"`                     // 匹配条件
+	Domains         []string                       `yaml:"domains" json:"domains"`                 // 所属域名
 
 	patternType HTTPLocationPatternType // 规则类型：LocationPattern*
 	prefix      string                  // 前缀

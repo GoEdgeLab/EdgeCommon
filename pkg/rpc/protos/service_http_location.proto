@@ -36,6 +36,7 @@ message CreateHTTPLocationRequest {
 	string pattern = 4;
 	bool isBreak = 5;
 	bytes condsJSON = 6;
+	repeated string domains = 7;
 }
 
 message CreateHTTPLocationResponse {
@@ -51,6 +52,7 @@ message UpdateHTTPLocationRequest {
 	bool isOn = 5;
 	bool isBreak = 6;
 	bytes condsJSON = 7;
+	repeated string domains = 8;
 }
 
 // 查找路径规则配置
