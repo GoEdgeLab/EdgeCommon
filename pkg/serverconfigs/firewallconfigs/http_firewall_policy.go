@@ -54,6 +54,16 @@ func (this *HTTPFirewallPolicy) FindRuleGroupWithCode(code string) *HTTPFirewall
 	return nil
 }
 
+// FindRuleGroupWithName 根据名称查找分组
+func (this *HTTPFirewallPolicy) FindRuleGroupWithName(name string) *HTTPFirewallRuleGroup {
+	for _, g := range this.AllRuleGroups() {
+		if g.Name == name {
+			return g
+		}
+	}
+	return nil
+}
+
 // FindRuleGroup 根据ID查找分组
 func (this *HTTPFirewallPolicy) FindRuleGroup(groupId int64) *HTTPFirewallRuleGroup {
 	for _, g := range this.AllRuleGroups() {

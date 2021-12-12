@@ -53,6 +53,7 @@ message UpdateHTTPFirewallRuleGroupRequest {
 	bool isOn = 2;
 	string name = 3;
 	string description = 4;
+	string code = 5;
 }
 
 // 获取分组配置

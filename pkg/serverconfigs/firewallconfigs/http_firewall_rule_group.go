@@ -9,6 +9,7 @@ type HTTPFirewallRuleGroup struct {
 	Code        string                    `yaml:"code" json:"code"`
 	SetRefs     []*HTTPFirewallRuleSetRef `yaml:"setRefs" json:"setRefs"`
 	Sets        []*HTTPFirewallRuleSet    `yaml:"sets" json:"sets"`
+	IsTemplate  bool                      `yaml:"isTemplate" json:"isTemplate"`
 }
 
 // Init 初始化
