@@ -26,9 +26,10 @@ type HTTPRequestCond struct {
 	// ${arg.name}, ${requestPath}
 	Param string `yaml:"param" json:"param"`
 
-	Operator  RequestCondOperator `yaml:"operator" json:"operator"`   // 运算符
-	Value     string              `yaml:"value" json:"value"`         // 对比值
-	IsReverse bool                `yaml:"isReverse" json:"isReverse"` // 是否反向匹配
+	Operator          RequestCondOperator `yaml:"operator" json:"operator"`                   // 运算符
+	Value             string              `yaml:"value" json:"value"`                         // 对比值
+	IsReverse         bool                `yaml:"isReverse" json:"isReverse"`                 // 是否反向匹配
+	IsCaseInsensitive bool                `yaml:"isCaseInsensitive" json:"isCaseInsensitive"` // 大小写是否敏感
 
 	isInt   bool
 	isFloat bool
@@ -49,7 +50,11 @@ func (this *HTTPRequestCond) Init() error {
 		RequestCondOperatorRegexp,
 		RequestCondOperatorNotRegexp,
 	}, this.Operator) {
-		reg, err := regexp.Compile(this.Value)
+		var value = this.Value
+		if this.IsCaseInsensitive && !strings.HasPrefix(this.Value, "(?i)") {
+			value = "(?i)" + value
+		}
+		reg, err := regexp.Compile(value)
 		if err != nil {
 			return err
 		}
@@ -186,16 +191,34 @@ func (this *HTTPRequestCond) match(formatter func(source string) string) bool {
 	case RequestCondOperatorMod100:
 		return types.Int64(paramValue)%100 == types.Int64(this.Value)
 	case RequestCondOperatorEqString:
+		if this.IsCaseInsensitive {
+			return strings.ToUpper(paramValue) == strings.ToUpper(this.Value)
+		}
 		return paramValue == this.Value
 	case RequestCondOperatorNeqString:
+		if this.IsCaseInsensitive {
+			return strings.ToUpper(paramValue) != strings.ToUpper(this.Value)
+		}
 		return paramValue != this.Value
 	case RequestCondOperatorHasPrefix:
+		if this.IsCaseInsensitive {
+			return strings.HasPrefix(strings.ToUpper(paramValue), strings.ToUpper(this.Value))
+		}
 		return strings.HasPrefix(paramValue, this.Value)
 	case RequestCondOperatorHasSuffix:
+		if this.IsCaseInsensitive {
+			return strings.HasSuffix(strings.ToUpper(paramValue), strings.ToUpper(this.Value))
+		}
 		return strings.HasSuffix(paramValue, this.Value)
 	case RequestCondOperatorContainsString:
+		if this.IsCaseInsensitive {
+			return strings.Contains(strings.ToUpper(paramValue), strings.ToUpper(this.Value))
+		}
 		return strings.Contains(paramValue, this.Value)
 	case RequestCondOperatorNotContainsString:
+		if this.IsCaseInsensitive {
+			return !strings.Contains(strings.ToUpper(paramValue), strings.ToUpper(this.Value))
+		}
 		return !strings.Contains(paramValue, this.Value)
 	case RequestCondOperatorEqIP:
 		ip := net.ParseIP(paramValue)
@@ -272,9 +295,29 @@ func (this *HTTPRequestCond) match(formatter func(source string) string) bool {
 			return false
 		}
 	case RequestCondOperatorIn:
-		return lists.ContainsString(this.arrayValue, paramValue)
+		if this.IsCaseInsensitive {
+			paramValue = strings.ToUpper(paramValue)
+			for _, v := range this.arrayValue {
+				if strings.ToUpper(v) == paramValue {
+					return true
+				}
+			}
+			return false
+		} else {
+			return lists.ContainsString(this.arrayValue, paramValue)
+		}
 	case RequestCondOperatorNotIn:
-		return !lists.ContainsString(this.arrayValue, paramValue)
+		if this.IsCaseInsensitive {
+			paramValue = strings.ToUpper(paramValue)
+			for _, v := range this.arrayValue {
+				if strings.ToUpper(v) == paramValue {
+					return false
+				}
+			}
+			return true
+		} else {
+			return !lists.ContainsString(this.arrayValue, paramValue)
+		}
 	case RequestCondOperatorFileExt:
 		ext := filepath.Ext(paramValue)
 		if len(ext) > 0 {
