@@ -31,7 +31,17 @@ func ParseVariables(source string, replacer func(varName string) (value string))
 		return source
 	}
 
-	// replace
+	// 只有一个占位时，我们快速返回
+	if len(holders) == 1 {
+		var h = holders[0]
+		holder, ok := h.(VariableHolder)
+		if ok {
+			return replacer(string(holder))
+		}
+		return source
+	}
+
+	// 多个占位时，使用Builder
 	result := strings.Builder{}
 	for _, h := range holders {
 		holder, ok := h.(VariableHolder)

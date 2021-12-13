@@ -1,17 +1,31 @@
 package configutils
 
 import (
-	"fmt"
 	"github.com/iwind/TeaGo/types"
+	"runtime"
 	"strconv"
 	"testing"
 )
 
 func TestParseVariables(t *testing.T) {
-	v := ParseVariables("hello, ${name}, world", func(s string) string {
-		return "Lu"
-	})
-	t.Log(v)
+	{
+		v := ParseVariables("hello, ${name}, world", func(s string) string {
+			return "Lu"
+		})
+		t.Log(v)
+	}
+	{
+		v := ParseVariables("hello, world", func(s string) string {
+			return "Lu"
+		})
+		t.Log(v)
+	}
+	{
+		v := ParseVariables("${name}", func(s string) string {
+			return "Lu"
+		})
+		t.Log(v)
+	}
 }
 
 func TestParseNoVariables(t *testing.T) {
@@ -58,7 +72,17 @@ func BenchmarkParseVariablesFromHolders(b *testing.B) {
 
 func BenchmarkParseVariablesUnique(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = ParseVariables("hello, ${name} "+strconv.Itoa(i%1000), func(s string) string {
+		_ = ParseVariables("hello, ${name} "+strconv.Itoa(i), func(s string) string {
+			return "Lu"
+		})
+	}
+}
+
+func BenchmarkParseVariablesUnique_Single(b *testing.B) {
+	runtime.GOMAXPROCS(1)
+
+	for i := 0; i < b.N; i++ {
+		_ = ParseVariables("${name}", func(s string) string {
 			return "Lu"
 		})
 	}
@@ -66,7 +90,7 @@ func BenchmarkParseVariablesUnique(b *testing.B) {
 
 func BenchmarkParseNoVariables(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = ParseVariables("hello, world, "+fmt.Sprintf("%d", i%1000), func(s string) string {
+		_ = ParseVariables("hello, world", func(s string) string {
 			return "Lu"
 		})
 	}
