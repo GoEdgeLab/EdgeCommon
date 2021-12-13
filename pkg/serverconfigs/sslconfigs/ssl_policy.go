@@ -3,15 +3,17 @@ package sslconfigs
 import (
 	"crypto/tls"
 	"crypto/x509"
+	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
+	"golang.org/x/net/http2"
 )
 
-// TLS Version
+// TLSVersion TLS Version
 type TLSVersion = string
 
-// Cipher Suites
+// TLSCipherSuite Cipher Suites
 type TLSCipherSuite = string
 
-// SSL配置
+// SSLPolicy SSL配置
 type SSLPolicy struct {
 	Id   int64 `yaml:"id" json:"id"`     // ID
 	IsOn bool  `yaml:"isOn" json:"isOn"` // 是否开启
@@ -35,15 +37,24 @@ type SSLPolicy struct {
 	cipherSuites []uint16
 
 	clientCAPool *x509.CertPool
+
+	tlsConfig *tls.Config
 }
 
-// 校验配置
+// Init 校验配置
 func (this *SSLPolicy) Init() error {
+	this.nameMapping = map[string]*tls.Certificate{}
+
 	// certs
+	var certs = []tls.Certificate{}
 	for _, cert := range this.Certs {
 		err := cert.Init()
 		if err != nil {
 			return err
+		}
+		certs = append(certs, *cert.CertObject())
+		for _, dnsName := range cert.DNSNames {
+			this.nameMapping[dnsName] = cert.CertObject()
 		}
 	}
 
@@ -52,6 +63,10 @@ func (this *SSLPolicy) Init() error {
 		err := cert.Init()
 		if err != nil {
 			return err
+		}
+		certs = append(certs, *cert.CertObject())
+		for _, dnsName := range cert.DNSNames {
+			this.nameMapping[dnsName] = cert.CertObject()
 		}
 	}
 
@@ -69,30 +84,56 @@ func (this *SSLPolicy) Init() error {
 		}
 	}
 
+	// tls config
+	this.tlsConfig = &tls.Config{}
+	cipherSuites := this.TLSCipherSuites()
+	if !this.CipherSuitesIsOn || len(cipherSuites) == 0 {
+		cipherSuites = nil
+	}
+
+	nextProto := []string{}
+	if this.HTTP2Enabled {
+		nextProto = []string{http2.NextProtoTLS}
+	}
+	this.tlsConfig = &tls.Config{
+		Certificates:   certs,
+		MinVersion:     this.TLSMinVersion(),
+		CipherSuites:   cipherSuites,
+		GetCertificate: nil,
+		ClientAuth:     GoSSLClientAuthType(this.ClientAuthType),
+		ClientCAs:      this.CAPool(),
+		NextProtos:     nextProto,
+	}
+
 	return nil
 }
 
-// 取得最小版本
+// TLSMinVersion 取得最小版本
 func (this *SSLPolicy) TLSMinVersion() uint16 {
 	return this.minVersion
 }
 
-// 套件
+// TLSCipherSuites 套件
 func (this *SSLPolicy) TLSCipherSuites() []uint16 {
 	return this.cipherSuites
 }
 
-// 校验是否匹配某个域名
+// MatchDomain 校验是否匹配某个域名
 func (this *SSLPolicy) MatchDomain(domain string) (cert *tls.Certificate, ok bool) {
-	for _, cert := range this.Certs {
-		if cert.MatchDomain(domain) {
-			return cert.CertObject(), true
+	cert, ok = this.nameMapping[domain]
+	if ok {
+		return
+	}
+
+	for name, cert := range this.nameMapping {
+		if configutils.MatchDomain(name, domain) {
+			return cert, true
 		}
 	}
 	return nil, false
 }
 
-// 取得第一个证书
+// FirstCert 取得第一个证书
 func (this *SSLPolicy) FirstCert() *tls.Certificate {
 	for _, cert := range this.Certs {
 		return cert.CertObject()
@@ -100,7 +141,11 @@ func (this *SSLPolicy) FirstCert() *tls.Certificate {
 	return nil
 }
 
-// CA证书Pool，用于TLS对客户端进行认证
+// CAPool CA证书Pool，用于TLS对客户端进行认证
 func (this *SSLPolicy) CAPool() *x509.CertPool {
 	return this.clientCAPool
+}
+
+func (this *SSLPolicy) TLSConfig() *tls.Config {
+	return this.tlsConfig
 }
