@@ -12,7 +12,7 @@ type VariableHolders = []interface{}
 
 var variableMapping = map[string][]interface{}{} // source => [holder1, ...]
 var variableLocker = sync.RWMutex{}
-var regexpNamedVariable = regexp.MustCompile("\\${[\\w.-]+}")
+var regexpNamedVariable = regexp.MustCompile(`\${[\w.-]+}`)
 
 // ParseVariables 分析变量
 func ParseVariables(source string, replacer func(varName string) (value string)) string {
