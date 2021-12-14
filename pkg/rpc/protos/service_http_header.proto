@@ -20,6 +20,13 @@ service HTTPHeaderService {
 message CreateHTTPHeaderRequest {
 	string name = 1;
 	string value = 2;
+	repeated int32 status = 3;
+	bool disableRedirect = 4;
+	bool shouldAppend = 5;
+	bool shouldReplace = 6;
+	bytes replaceValuesJSON = 7;
+	repeated string methods = 8;
+	repeated string domains = 9;
 }
 
 message CreateHTTPHeaderResponse {
@@ -31,6 +38,13 @@ message UpdateHTTPHeaderRequest {
 	int64 headerId = 1;
 	string name = 2;
 	string value = 3;
+	repeated int32 status = 4;
+	bool disableRedirect = 5;
+	bool shouldAppend = 6;
+	bool shouldReplace = 7;
+	bytes replaceValuesJSON = 8;
+	repeated string methods = 9;
+	repeated string domains = 10;
 }
 
 // 查找配置

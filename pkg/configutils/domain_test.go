@@ -80,6 +80,12 @@ func TestMatchDomain(t *testing.T) {
 		ok := MatchDomains([]string{"*"}, "example.com")
 		a.IsTrue(ok)
 	}
+
+	// port
+	{
+		ok := MatchDomains([]string{"example.com:8001"}, "example.com:8001")
+		a.IsTrue(ok)
+	}
 }
 
 func TestIsSpecialDomain(t *testing.T) {
