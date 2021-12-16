@@ -16,6 +16,8 @@ type HTTPCacheConfig struct {
 	PurgeIsOn bool   `yaml:"purgeIsOn" json:"purgeIsOn"` // 是否允许使用Purge方法清理
 	PurgeKey  string `yaml:"purgeKey" json:"purgeKey"`   // Purge时使用的X-Edge-Purge-Key
 
+	Stale *HTTPCacheStaleConfig `yaml:"stale" json:"stale"` // 陈旧缓存使用策略
+
 	CacheRefs []*HTTPCacheRef `yaml:"cacheRefs" json:"cacheRefs"` // 缓存配置
 }
 
