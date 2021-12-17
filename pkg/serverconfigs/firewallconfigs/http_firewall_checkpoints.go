@@ -124,7 +124,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "主机名",
 		Prefix:      "host",
-		Description: "比如teaos.cn",
+		Description: "比如goedge.cn",
 		IsRequest:   true,
 	},
 	{
