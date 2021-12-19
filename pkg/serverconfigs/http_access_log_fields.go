@@ -31,9 +31,6 @@ var HTTPAccessLogFieldsCodes = []HTTPAccessLogField{
 var HTTPAccessLogDefaultFieldsCodes = []HTTPAccessLogField{
 	HTTPAccessLogFieldHeader,
 	HTTPAccessLogFieldSentHeader,
-	HTTPAccessLogFieldArg,
-	HTTPAccessLogFieldCookie,
-	HTTPAccessLogFieldExtend,
 	HTTPAccessLogFieldReferer,
 	HTTPAccessLogFieldUserAgent,
 }
