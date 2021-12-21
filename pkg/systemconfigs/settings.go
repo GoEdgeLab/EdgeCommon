@@ -10,6 +10,7 @@ const (
 	SettingCodeAdminSecurityConfig   SettingCode = "adminSecurityConfig" // 管理员安全设置
 	SettingCodeDatabaseConfigSetting SettingCode = "databaseConfig"      // 数据库相关配置
 	SettingCodeAccessLogQueue        SettingCode = "accessLogQueue"      // 访问日志队列
+	SettingCodeCheckUpdates          SettingCode = "checkUpdates"        // 检查自动更新配置
 
 	SettingCodeNSAccessLogSetting SettingCode = "nsAccessLogSetting" // NS相关全局配置
 	SettingCodeNSNodeMonitor      SettingCode = "nsNodeMonitor"      // 监控NS节点状态
