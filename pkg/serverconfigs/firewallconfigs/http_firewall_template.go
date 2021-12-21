@@ -421,7 +421,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		{
 			set := &HTTPFirewallRuleSet{}
 			set.IsOn = true
-			set.Name = "常见网络爬虫"
+			set.Name = "搜索引擎"
 			set.Code = "20001"
 			set.Connector = HTTPFirewallRuleConnectorOr
 			set.Actions = []*HTTPFirewallActionConfig{
@@ -434,7 +434,56 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				IsOn:              true,
 				Param:             "${userAgent}",
 				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `Googlebot|AdsBot|bingbot|BingPreview|facebookexternalhit|Slurp|Sogou|proximic|Baiduspider|yandex|twitterbot|spider|python`,
+				Value:             `360spider|adldxbot|adsbot-google|applebot|admantx|alexa|baidu|bingbot|bingpreview|facebookexternalhit|googlebot|proximic|slurp|sogou|twitterbot|yandex|spider`,
+				IsCaseInsensitive: true,
+			})
+
+			group.AddRuleSet(set)
+		}
+
+		{
+			set := &HTTPFirewallRuleSet{}
+			set.IsOn = true
+			set.Name = "爬虫工具"
+			set.Code = "20003"
+			set.Connector = HTTPFirewallRuleConnectorOr
+			set.Actions = []*HTTPFirewallActionConfig{
+				{
+					Code: HTTPFirewallActionBlock,
+				},
+			}
+
+			set.AddRule(&HTTPFirewallRule{
+				IsOn:              true,
+				Param:             "${userAgent}",
+				Operator:          HTTPFirewallRuleOperatorMatch,
+				Value:             `python|pycurl|http-client|httpclient|apachebench|nethttp|http_request|java|perl|ruby|scrapy|php|rust`,
+				IsCaseInsensitive: true,
+			})
+
+			group.AddRuleSet(set)
+		}
+
+		{
+			set := &HTTPFirewallRuleSet{}
+			set.IsOn = true
+			set.Name = "下载工具"
+			set.Code = "20004"
+			set.Connector = HTTPFirewallRuleConnectorOr
+			set.Actions = []*HTTPFirewallActionConfig{
+				{
+					Code: HTTPFirewallActionTag,
+					Options: maps.Map{
+						"tags": []string{"download"},
+					},
+				},
+			}
+
+			set.AddRule(&HTTPFirewallRule{
+				IsOn:              true,
+				Param:             "${userAgent}",
+				Operator:          HTTPFirewallRuleOperatorMatch,
+				Value:             `wget|curl`,
 				IsCaseInsensitive: true,
 			})
 
