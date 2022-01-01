@@ -44,7 +44,8 @@ type HTTPWebConfig struct {
 	RemoteAddr   *HTTPRemoteAddrConfig `yaml:"remoteAddr" json:"remoteAddr"`     // 客户端IP获取方式
 	MergeSlashes bool                  `yaml:"mergeSlashes" json:"mergeSlashes"` // 是否合并路径中的斜杠（/）
 
-	RequestLimit *HTTPRequestLimitConfig `yaml:"requestLimit" json:"requestLimit"` // 并发请求限制
+	RequestLimit   *HTTPRequestLimitConfig   `yaml:"requestLimit" json:"requestLimit"`     // 并发请求限制
+	RequestScripts *HTTPRequestScriptsConfig `yaml:"requestScripts" json:"requestScripts"` // HTTP请求相关脚本
 }
 
 func (this *HTTPWebConfig) Init() error {
@@ -257,6 +258,14 @@ func (this *HTTPWebConfig) Init() error {
 	// request limit
 	if this.RequestLimit != nil {
 		err := this.RequestLimit.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// request script
+	if this.RequestScripts != nil {
+		err := this.RequestScripts.Init()
 		if err != nil {
 			return err
 		}

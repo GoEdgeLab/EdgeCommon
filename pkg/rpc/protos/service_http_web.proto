@@ -87,6 +87,12 @@ service HTTPWebService {
 
 	// 查找请求限制
 	rpc findHTTPWebRequestLimit(FindHTTPWebRequestLimitRequest) returns (FindHTTPWebRequestLimitResponse);
+
+	// 修改请求脚本
+	rpc updateHTTPWebRequestScripts(UpdateHTTPWebRequestScriptsRequest) returns (RPCSuccess);
+
+	// 查找请求脚本
+	rpc findHTTPWebRequestScripts(FindHTTPWebRequestScriptsRequest) returns (FindHTTPWebRequestScriptsResponse);
 }
 
 // 创建Web配置
@@ -264,4 +270,19 @@ message FindHTTPWebRequestLimitRequest {
 
 message FindHTTPWebRequestLimitResponse {
 	bytes requestLimitJSON = 1;
+}
+
+// 修改请求脚本
+message UpdateHTTPWebRequestScriptsRequest {
+	int64 httpWebId = 1;
+	bytes requestScriptsJSON = 2;
+}
+
+// 查找请求脚本
+message FindHTTPWebRequestScriptsRequest {
+	int64 httpWebId = 1;
+}
+
+message FindHTTPWebRequestScriptsResponse {
+	bytes requestScriptsJSON = 1;
 }
