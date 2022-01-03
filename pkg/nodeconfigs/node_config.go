@@ -50,6 +50,7 @@ type NodeConfig struct {
 	SystemServices       map[string]maps.Map                     `yaml:"systemServices" json:"systemServices"` // 系统服务配置 type => params
 	FirewallActions      []*firewallconfigs.FirewallActionConfig `yaml:"firewallActions" json:"firewallActions"`
 	TimeZone             string                                  `yaml:"timeZone" json:"timeZone"`
+	AutoOpenPorts        bool                                    `yaml:"autoOpenPorts" json:"autoOpenPorts"`
 
 	MetricItems []*serverconfigs.MetricItemConfig `yaml:"metricItems" json:"metricItems"`
 

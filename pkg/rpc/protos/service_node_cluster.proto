@@ -148,6 +148,7 @@ message UpdateNodeClusterRequest {
 	string timeZone = 5;
 	int32 nodeMaxThreads = 6;
 	int32 nodeTCPMaxConnections = 7;
+	bool autoOpenPorts = 8;
 }
 
 // 删除集群

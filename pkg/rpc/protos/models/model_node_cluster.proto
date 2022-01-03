@@ -19,4 +19,5 @@ message NodeCluster {
 	string timeZone = 13;
 	int32 nodeMaxThreads = 14;
 	int32 nodeTCPMaxConnections = 15;
+	bool autoOpenPorts = 16;
 }
