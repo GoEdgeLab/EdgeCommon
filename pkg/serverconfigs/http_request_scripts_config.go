@@ -3,20 +3,20 @@
 package serverconfigs
 
 type HTTPRequestScriptsConfig struct {
-	OnInitScript    *JSScriptConfig `yaml:"onInitScript" json:"onInitScript"`       // 接收到请求之后
-	OnRequestScript *JSScriptConfig `yaml:"onRequestScript" json:"onRequestScript"` // 准备转发请求之前
+	InitGroup    *ScriptGroupConfig `yaml:"initGroup" json:"initGroup"`
+	RequestGroup *ScriptGroupConfig `yaml:"requestGroup" json:"requestGroup"`
 }
 
 func (this *HTTPRequestScriptsConfig) Init() error {
-	if this.OnInitScript != nil {
-		err := this.OnInitScript.Init()
+	if this.InitGroup != nil {
+		err := this.InitGroup.Init()
 		if err != nil {
 			return err
 		}
 	}
 
-	if this.OnRequestScript != nil {
-		err := this.OnRequestScript.Init()
+	if this.RequestGroup != nil {
+		err := this.RequestGroup.Init()
 		if err != nil {
 			return err
 		}
@@ -26,8 +26,6 @@ func (this *HTTPRequestScriptsConfig) Init() error {
 }
 
 func (this *HTTPRequestScriptsConfig) IsEmpty() bool {
-	if (this.OnInitScript == nil || !this.OnInitScript.IsOn) && (this.OnRequestScript == nil || !this.OnRequestScript.IsOn) {
-		return true
-	}
-	return false
+	return (this.InitGroup == nil || this.InitGroup.IsEmpty()) &&
+		(this.RequestGroup == nil || this.RequestGroup.IsEmpty())
 }

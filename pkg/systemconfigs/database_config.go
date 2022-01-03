@@ -1,6 +1,6 @@
 package systemconfigs
 
-// 数据库相关配置
+// DatabaseConfig 数据库相关配置
 type DatabaseConfig struct {
 	ServerAccessLog struct {
 		Clean struct {
