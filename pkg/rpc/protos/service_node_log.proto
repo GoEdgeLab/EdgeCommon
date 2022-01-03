@@ -50,6 +50,7 @@ message CountNodeLogsRequest {
 	int64 serverId = 7;
 	int64 originId = 8;
 	bool isUnread = 9;
+	string tag = 10;
 }
 
 // 列出单页日志
@@ -68,6 +69,7 @@ message ListNodeLogsRequest {
 	bool allServers = 11; // 是否获取所有服务相关的日志
 	int64 originId = 12;
 	bool isUnread = 13;
+	string tag = 14;
 }
 
 message ListNodeLogsResponse {
