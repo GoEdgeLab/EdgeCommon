@@ -16,6 +16,11 @@ message User {
 	string remark = 7;
 	bool isOn = 8;
 	int64 createdAt = 9;
+	string registeredIP = 12;
+	bool isVerified = 13;
+	bool isRejected = 14;
+	string rejectReason = 15;
+
 	NodeCluster nodeCluster = 10;
 	repeated UserFeature features = 11;
 }

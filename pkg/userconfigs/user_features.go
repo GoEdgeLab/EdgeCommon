@@ -11,6 +11,9 @@ const (
 	UserFeatureCodeServerAccessLog     UserFeatureCode = "server.accessLog"
 	UserFeatureCodeServerViewAccessLog UserFeatureCode = "server.viewAccessLog"
 	UserFeatureCodePlan                UserFeatureCode = "plan"
+	UserFeatureCodeScript              UserFeatureCode = "script"
+	UserFeatureCodeServerWAF           UserFeatureCode = "server.waf"
+	UserFeatureCodeFinance             UserFeatureCode = "finance"
 )
 
 // UserFeature 用户功能
@@ -64,18 +67,23 @@ func FindAllUserFeatures() []*UserFeature {
 		},
 		{
 			Name:        "开启WAF",
-			Code:        "server.waf",
+			Code:        UserFeatureCodeServerWAF,
 			Description: "用户可以开启WAF功能并可以设置黑白名单等",
 		},
 		{
 			Name:        "费用账单",
-			Code:        "finance",
+			Code:        UserFeatureCodeFinance,
 			Description: "开启费用账单相关功能",
 		},
 		{
 			Name:        "套餐",
 			Code:        UserFeatureCodePlan,
 			Description: "用户可以购买和管理套餐",
+		},
+		{
+			Name:        "边缘脚本",
+			Code:        UserFeatureCodeScript,
+			Description: "用户可以在使用边缘脚本过滤请求",
 		},
 	}
 }

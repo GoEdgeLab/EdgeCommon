@@ -13,6 +13,12 @@ service UserService {
 	// 创建用户
 	rpc createUser (CreateUserRequest) returns (CreateUserResponse);
 
+	// 注册用户
+	rpc registerUser(RegisterUserRequest) returns (RPCSuccess);
+
+	// 审核用户
+	rpc verifyUser(VerifyUserRequest) returns (RPCSuccess);
+
 	// 修改用户
 	rpc updateUser (UpdateUserRequest) returns (RPCSuccess);
 
@@ -74,6 +80,24 @@ message CreateUserRequest {
 
 message CreateUserResponse {
 	int64 userId = 1;
+}
+
+// 注册用户
+message RegisterUserRequest {
+	string username = 1;
+	string password = 2;
+	string mobile = 3;
+	string email = 4;
+	string fullname = 5;
+	string ip = 6;
+	string source = 7;
+}
+
+// 审核用户
+message VerifyUserRequest {
+	int64 userId = 1;
+	bool isRejected = 2;
+	string rejectReason = 3;
 }
 
 // 修改用户
@@ -146,6 +170,8 @@ message LoginUserResponse {
 message UpdateUserInfoRequest {
 	int64 userId = 1;
 	string fullname = 2;
+	string mobile = 3;
+	string email = 4;
 }
 
 // 修改用户登录信息

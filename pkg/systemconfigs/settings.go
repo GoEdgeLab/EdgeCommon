@@ -12,6 +12,9 @@ const (
 	SettingCodeAccessLogQueue        SettingCode = "accessLogQueue"      // 访问日志队列
 	SettingCodeCheckUpdates          SettingCode = "checkUpdates"        // 检查自动更新配置
 
+	SettingCodeUserUIConfig       SettingCode = "userUIConfig"       // 用户界面配置
+	SettingCodeUserRegisterConfig SettingCode = "userRegisterConfig" // 用户注册配置
+
 	SettingCodeNSAccessLogSetting SettingCode = "nsAccessLogSetting" // NS相关全局配置
 	SettingCodeNSNodeMonitor      SettingCode = "nsNodeMonitor"      // 监控NS节点状态
 
