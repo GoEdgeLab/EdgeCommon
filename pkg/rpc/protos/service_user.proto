@@ -122,11 +122,13 @@ message DeleteUserRequest {
 // 计算用户数量
 message CountAllEnabledUsersRequest {
 	string keyword = 1;
+	bool isVerifying = 2;
 }
 
 // 列出单页用户
 message ListEnabledUsersRequest {
 	string keyword = 1;
+	bool isVerifying = 4;
 	int64 offset = 2;
 	int64 size = 3;
 }
@@ -245,6 +247,7 @@ message ComposeUserGlobalBoardResponse {
 	int64 countWeeklyUsers = 3;
 	int64 countUserNodes = 4;
 	int64 countOfflineUserNodes = 5;
+	int64 countVerifyingUsers = 6;
 
 	repeated DailyStat dailyStats = 30;
 	repeated NodeValue cpuNodeValues = 31;
