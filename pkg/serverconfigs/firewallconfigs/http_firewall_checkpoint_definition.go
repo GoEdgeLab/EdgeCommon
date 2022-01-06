@@ -12,7 +12,7 @@ func NewKeyValue(name string, value string) *KeyValue {
 	}
 }
 
-// check point definition
+// HTTPFirewallCheckpointDefinition check point definition
 type HTTPFirewallCheckpointDefinition struct {
 	Name        string            `json:"name"`        // 名称
 	Description string            `json:"description"` // 描述

@@ -20,14 +20,14 @@ message FindAllEnabledRegionCountriesRequest {
 }
 
 message FindAllEnabledRegionCountriesResponse {
-	repeated RegionCountry countries = 1;
+	repeated RegionCountry regionCountries = 1;
 }
 
 // 查找单个国家信息
 message FindEnabledRegionCountryRequest {
-	int64 countryId = 1;
+	int64 regionCountryId = 1;
 }
 
 message FindEnabledRegionCountryResponse {
-	RegionCountry country = 1;
+	RegionCountry regionCountry = 1;
 }

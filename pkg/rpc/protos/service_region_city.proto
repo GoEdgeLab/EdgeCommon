@@ -1,0 +1,33 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_region_city.proto";
+
+// 城市相关服务
+service RegionCityService {
+	// 查找所有城市
+	rpc findAllEnabledRegionCities (FindAllEnabledRegionCitiesRequest) returns (FindAllEnabledRegionCitiesResponse);
+
+	// 查找单个城市信息
+	rpc findEnabledRegionCity (FindEnabledRegionCityRequest) returns (FindEnabledRegionCityResponse);
+}
+
+// 查找所有城市
+message FindAllEnabledRegionCitiesRequest {
+
+}
+
+message FindAllEnabledRegionCitiesResponse {
+	repeated RegionCity regionCities = 1;
+}
+
+// 查找单个城市信息
+message FindEnabledRegionCityRequest {
+	int64 regionCityId = 1;
+}
+
+message FindEnabledRegionCityResponse {
+	RegionCity regionCity = 1;
+}

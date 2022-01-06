@@ -16,18 +16,18 @@ service RegionProvinceService {
 
 // 查找所有省份
 message FindAllEnabledRegionProvincesWithCountryIdRequest {
-	int64 countryId = 1;
+	int64 regionCountryId = 1;
 }
 
 message FindAllEnabledRegionProvincesWithCountryIdResponse {
-	repeated RegionProvince provinces = 1;
+	repeated RegionProvince regionProvinces = 1;
 }
 
 // 查找单个省份信息
 message FindEnabledRegionProvinceRequest {
-	int64 provinceId = 1;
+	int64 regionProvinceId = 1;
 }
 
 message FindEnabledRegionProvinceResponse {
-	RegionProvince province = 1;
+	RegionProvince regionProvince = 1;
 }

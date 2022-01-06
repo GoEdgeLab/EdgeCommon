@@ -174,7 +174,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "所有Header信息",
 		Prefix:      "headers",
-		Description: "使用\n隔开的Header信息字符串",
+		Description: "使用\\n隔开的Header信息字符串",
 		IsRequest:   true,
 	},
 	{
@@ -183,6 +183,34 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		Description: "单个Header值",
 		IsRequest:   true,
 		HasParams:   true,
+	},
+	{
+		Name:        "国家/地区名称",
+		Prefix:      "geoCountryName",
+		Description: "国家/地区名称",
+		IsRequest:   true,
+		HasParams:   false,
+	},
+	{
+		Name:        "省份名称",
+		Prefix:      "geoProvinceName",
+		Description: "中国省份名称",
+		IsRequest:   true,
+		HasParams:   false,
+	},
+	{
+		Name:        "城市名称",
+		Prefix:      "geoCityName",
+		Description: "中国城市名称",
+		IsRequest:   true,
+		HasParams:   false,
+	},
+	{
+		Name:        "ISP名称",
+		Prefix:      "ispName",
+		Description: "ISP名称",
+		IsRequest:   true,
+		HasParams:   false,
 	},
 	{
 		Name:        "CC统计",
@@ -306,7 +334,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	},
 }
 
-// 查找Checkpoint定义
+// FindCheckpointDefinition 查找Checkpoint定义
 func FindCheckpointDefinition(prefix string) *HTTPFirewallCheckpointDefinition {
 	for _, checkpoint := range AllCheckpoints {
 		if checkpoint.Prefix == prefix {
@@ -316,7 +344,7 @@ func FindCheckpointDefinition(prefix string) *HTTPFirewallCheckpointDefinition {
 	return nil
 }
 
-// 判断Checkpoint是否为组合的
+// CheckCheckpointIsComposed 判断Checkpoint是否为组合的
 func CheckCheckpointIsComposed(prefix string) bool {
 	for _, checkpoint := range AllCheckpoints {
 		if checkpoint.Prefix == prefix {

@@ -7,4 +7,5 @@ message RegionCity {
 	int64 id = 1;
 	string name = 2;
 	repeated string codes = 3;
+	int64 regionProvinceId = 4;
 }

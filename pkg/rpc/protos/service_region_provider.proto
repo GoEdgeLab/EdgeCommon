@@ -1,0 +1,33 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_region_provider.proto";
+
+// ISP相关服务
+service RegionProviderService {
+	// 查找所有ISP
+	rpc findAllEnabledRegionProviders (FindAllEnabledRegionProvidersRequest) returns (FindAllEnabledRegionProvidersResponse);
+
+	// 查找单个ISP信息
+	rpc findEnabledRegionProvider (FindEnabledRegionProviderRequest) returns (FindEnabledRegionProviderResponse);
+}
+
+// 查找所有ISP
+message FindAllEnabledRegionProvidersRequest {
+
+}
+
+message FindAllEnabledRegionProvidersResponse {
+	repeated RegionProvider regionProviders = 1;
+}
+
+// 查找单个ISP信息
+message FindEnabledRegionProviderRequest {
+	int64 regionProviderId = 1;
+}
+
+message FindEnabledRegionProviderResponse {
+	RegionProvider regionProvider = 1;
+}
