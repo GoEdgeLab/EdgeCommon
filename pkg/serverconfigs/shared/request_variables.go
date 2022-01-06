@@ -38,5 +38,18 @@ func DefaultRequestVariables() []maps.Map {
 		{"code": "${arg.NAME}", "name": "单个参数值", "description": ""},
 		{"code": "${headers}", "name": "所有Header信息组合字符串", "description": ""},
 		{"code": "${header.NAME}", "name": "单个Header值", "description": ""},
+		{"code": "${geo.country.name}", "name": "国家/地区名称", "description": ""},
+		{"code": "${geo.country.id}", "name": "国家/地区ID", "description": ""},
+		{"code": "${geo.province.name}", "name": "省份名称", "description": "目前只包含中国省份"},
+		{"code": "${geo.province.id}", "name": "省份ID", "description": "目前只包含中国省份"},
+		{"code": "${geo.city.name}", "name": "城市名称", "description": "目前只包含中国城市"},
+		{"code": "${geo.city.id}", "name": "城市名称", "description": "目前只包含中国城市"},
+		{"code": "${isp.name}", "name": "ISP服务商名称", "description": ""},
+		{"code": "${isp.id}", "name": "ISP服务商ID", "description": ""},
+		{"code": "${browser.os.name}", "name": "操作系统名称", "description": "客户端所在操作系统名称"},
+		{"code": "${browser.os.version}", "name": "操作系统版本", "description": "客户端所在操作系统版本"},
+		{"code": "${browser.name}", "name": "浏览器名称", "description": "客户端浏览器名称"},
+		{"code": "${browser.version}", "name": "浏览器版本", "description": "客户端浏览器版本"},
+		{"code": "${browser.isMobile}", "name": "手机标识", "description": "如果客户端是手机，则值为1，否则为0"},
 	}
 }
