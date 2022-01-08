@@ -32,6 +32,8 @@ message IPItem {
 	int64 sourceHTTPFirewallRuleGroupId = 18;
 	int64 sourceHTTPFirewallRuleSetId = 19;
 
+	bool isRead = 21;
+
 	Server sourceServer = 30;
 	Server server = 34;
 	HTTPFirewallPolicy  sourceHTTPFirewallPolicy = 31;

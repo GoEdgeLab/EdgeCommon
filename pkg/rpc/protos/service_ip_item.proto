@@ -46,6 +46,9 @@ service IPItemService {
 
 	// 列出所有名单中的IP
 	rpc listAllEnabledIPItems(ListAllEnabledIPItemsRequest) returns (ListAllEnabledIPItemsResponse);
+
+	// 设置所有为已读
+	rpc updateIPItemsRead(UpdateIPItemsReadRequest) returns (RPCSuccess);
 }
 
 // 创建IP
@@ -161,12 +164,14 @@ message ExistsEnabledIPItemResponse {
 message CountAllEnabledIPItemsRequest {
 	string ip = 1;
 	bool globalOnly = 2;
+	bool unread = 3;
 }
 
 // 列出所有名单中的IP
 message ListAllEnabledIPItemsRequest {
 	string ip = 1;
 	bool globalOnly = 2;
+	bool unread = 5;
 	int64 offset = 3;
 	int64 size = 4;
 }
@@ -180,4 +185,9 @@ message ListAllEnabledIPItemsResponse {
 		Server server = 3; // 所属服务
 		HTTPFirewallPolicy httpFirewallPolicy = 4; // 所属WAF策略
 	}
+}
+
+// 设置所有为已读
+message UpdateIPItemsReadRequest {
+
 }
