@@ -96,6 +96,7 @@ message UpdateHTTPFirewallPolicyRequest {
 	repeated string firewallGroupCodes = 5;
 	bytes blockOptionsJSON = 6;
 	string mode = 7;
+	bool useLocalFirewall = 8;
 }
 
 // 修改分组信息

@@ -12,4 +12,5 @@ message HTTPFirewallPolicy {
 	bytes inboundJSON = 5;
 	bytes outboundJSON = 6;
 	int64 serverId = 8;
+	bool useLocalFirewall = 9;
 }

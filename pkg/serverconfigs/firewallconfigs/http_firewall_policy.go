@@ -4,14 +4,15 @@ import "encoding/json"
 
 // HTTPFirewallPolicy 防火墙策略
 type HTTPFirewallPolicy struct {
-	Id           int64                       `yaml:"id" json:"id"`
-	IsOn         bool                        `yaml:"isOn" json:"isOn"`
-	Name         string                      `yaml:"name" json:"name"`
-	Description  string                      `yaml:"description" json:"description"`
-	Inbound      *HTTPFirewallInboundConfig  `yaml:"inbound" json:"inbound"`
-	Outbound     *HTTPFirewallOutboundConfig `yaml:"outbound" json:"outbound"`
-	BlockOptions *HTTPFirewallBlockAction    `yaml:"blockOptions" json:"blockOptions"`
-	Mode         FirewallMode                `yaml:"mode" json:"mode"`
+	Id               int64                       `yaml:"id" json:"id"`
+	IsOn             bool                        `yaml:"isOn" json:"isOn"`
+	Name             string                      `yaml:"name" json:"name"`
+	Description      string                      `yaml:"description" json:"description"`
+	Inbound          *HTTPFirewallInboundConfig  `yaml:"inbound" json:"inbound"`
+	Outbound         *HTTPFirewallOutboundConfig `yaml:"outbound" json:"outbound"`
+	BlockOptions     *HTTPFirewallBlockAction    `yaml:"blockOptions" json:"blockOptions"`
+	Mode             FirewallMode                `yaml:"mode" json:"mode"`
+	UseLocalFirewall bool                        `yaml:"useLocalFirewall" json:"useLocalFirewall"`
 }
 
 // Init 初始化

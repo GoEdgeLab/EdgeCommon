@@ -311,6 +311,7 @@ func (this *NodeConfig) lookupWeb(server *serverconfigs.ServerConfig, web *serve
 		if web.FirewallPolicy.BlockOptions == nil && server.HTTPFirewallPolicy != nil && server.HTTPFirewallPolicy.BlockOptions != nil {
 			web.FirewallPolicy.BlockOptions = server.HTTPFirewallPolicy.BlockOptions
 			web.FirewallPolicy.Mode = server.HTTPFirewallPolicy.Mode
+			web.FirewallPolicy.UseLocalFirewall = server.HTTPFirewallPolicy.UseLocalFirewall
 		}
 		this.firewallPolicies = append(this.firewallPolicies, web.FirewallPolicy)
 	}
