@@ -252,7 +252,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				IsOn:              true,
 				Param:             "${requestPath}",
 				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `/\.(git|svn|htaccess|idea)\b`, // TODO more keywords here
+				Value:             `/\.(git|svn|htaccess|idea|env)\b`, // TODO more keywords here
 				IsCaseInsensitive: true,
 			})
 			group.AddRuleSet(set)
