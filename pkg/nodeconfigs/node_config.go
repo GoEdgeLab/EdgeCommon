@@ -41,7 +41,8 @@ type NodeConfig struct {
 	TCPMaxConnections      int                           `yaml:"tcpMaxConnections" json:"tcpMaxConnections"`
 
 	// 全局配置
-	GlobalConfig *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置
+	GlobalConfig  *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置
+	ProductConfig *ProductConfig              `yaml:"productConfig" json:"productConfig"`
 
 	// 集群统一配置
 	HTTPFirewallPolicies []*firewallconfigs.HTTPFirewallPolicy   `yaml:"httpFirewallPolicies" json:"httpFirewallPolicies"`

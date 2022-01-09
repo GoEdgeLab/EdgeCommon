@@ -5,7 +5,7 @@ const (
 	DefaultTCPPortRangeMax = 40000
 )
 
-// 服务相关的全局设置
+// GlobalConfig 服务相关的全局设置
 type GlobalConfig struct {
 	// HTTP & HTTPS相关配置
 	HTTPAll struct {

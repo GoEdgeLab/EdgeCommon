@@ -8,6 +8,7 @@ const (
 	SettingCodeClusterHealthCheck    SettingCode = "clusterHealthCheck"  // 集群健康检查
 	SettingCodeIPListVersion         SettingCode = "ipListVersion"       // IP名单的版本号
 	SettingCodeAdminSecurityConfig   SettingCode = "adminSecurityConfig" // 管理员安全设置
+	SettingCodeAdminUIConfig         SettingCode = "adminUIConfig"       // 管理员界面设置
 	SettingCodeDatabaseConfigSetting SettingCode = "databaseConfig"      // 数据库相关配置
 	SettingCodeAccessLogQueue        SettingCode = "accessLogQueue"      // 访问日志队列
 	SettingCodeCheckUpdates          SettingCode = "checkUpdates"        // 检查自动更新配置
