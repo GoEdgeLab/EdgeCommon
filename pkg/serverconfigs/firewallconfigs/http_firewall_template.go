@@ -446,7 +446,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.IsOn = true
 			set.Name = "爬虫工具"
 			set.Code = "20003"
-			set.Connector = HTTPFirewallRuleConnectorOr
+			set.Connector = HTTPFirewallRuleConnectorAnd
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
 					Code: HTTPFirewallActionBlock,
@@ -459,6 +459,14 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				Operator:          HTTPFirewallRuleOperatorMatch,
 				Value:             `python|pycurl|http-client|httpclient|apachebench|nethttp|http_request|java|perl|ruby|scrapy|php|rust`,
 				IsCaseInsensitive: true,
+			})
+			set.AddRule(&HTTPFirewallRule{
+				IsOn:              true,
+				Param:             "${userAgent}",
+				Operator:          HTTPFirewallRuleOperatorNotMatch,
+				Value:             `goedge`,
+				IsCaseInsensitive: true,
+				Description:       "User-Agent白名单",
 			})
 
 			group.AddRuleSet(set)
