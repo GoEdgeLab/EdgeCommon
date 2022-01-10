@@ -420,7 +420,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 		{
 			set := &HTTPFirewallRuleSet{}
-			set.IsOn = true
+			set.IsOn = false
 			set.Name = "搜索引擎"
 			set.Code = "20001"
 			set.Connector = HTTPFirewallRuleConnectorOr
