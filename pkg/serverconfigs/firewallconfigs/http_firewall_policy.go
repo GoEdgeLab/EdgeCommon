@@ -13,6 +13,7 @@ type HTTPFirewallPolicy struct {
 	BlockOptions     *HTTPFirewallBlockAction    `yaml:"blockOptions" json:"blockOptions"`
 	Mode             FirewallMode                `yaml:"mode" json:"mode"`
 	UseLocalFirewall bool                        `yaml:"useLocalFirewall" json:"useLocalFirewall"`
+	SYNFlood         *SYNFloodConfig             `yaml:"synFlood" json:"synFlood"`
 }
 
 // Init 初始化
@@ -23,8 +24,16 @@ func (this *HTTPFirewallPolicy) Init() error {
 			return err
 		}
 	}
+
 	if this.Outbound != nil {
 		err := this.Outbound.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	if this.SYNFlood != nil {
+		err := this.SYNFlood.Init()
 		if err != nil {
 			return err
 		}

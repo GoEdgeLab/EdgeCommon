@@ -70,6 +70,9 @@ type NodeConfig struct {
 
 	// 自动白名单
 	allowedIPMap map[string]bool
+
+	// syn flood
+	synFlood *firewallconfigs.SYNFloodConfig
 }
 
 // SharedNodeConfig 取得当前节点配置单例
@@ -162,6 +165,9 @@ func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 	for _, policy := range this.HTTPFirewallPolicies {
 		if policy.IsOn {
 			this.firewallPolicies = append(this.firewallPolicies, policy)
+			if policy.SYNFlood != nil && policy.SYNFlood.IsOn {
+				this.synFlood = policy.SYNFlood
+			}
 		}
 	}
 	for _, server := range this.Servers {
@@ -343,4 +349,9 @@ func (this *NodeConfig) lookupWeb(server *serverconfigs.ServerConfig, web *serve
 func (this *NodeConfig) IPIsAutoAllowed(ip string) bool {
 	_, ok := this.allowedIPMap[ip]
 	return ok
+}
+
+// SYNFloodConfig 获取SYN Flood配置
+func (this *NodeConfig) SYNFloodConfig() *firewallconfigs.SYNFloodConfig {
+	return this.synFlood
 }
