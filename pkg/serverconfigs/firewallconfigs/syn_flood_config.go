@@ -10,6 +10,15 @@ type SYNFloodConfig struct {
 	IgnoreLocal    bool  `yaml:"ignoreLocal" json:"ignoreLocal"`       // 忽略本地IP
 }
 
+func DefaultSYNFloodConfig() *SYNFloodConfig {
+	return &SYNFloodConfig{
+		IsOn:           true,
+		MinAttempts:    10,
+		TimeoutSeconds: 600,
+		IgnoreLocal:    true,
+	}
+}
+
 func (this *SYNFloodConfig) Init() error {
 	return nil
 }
