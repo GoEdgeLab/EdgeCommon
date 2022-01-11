@@ -267,6 +267,92 @@ func (x *NotifyHTTPFirewallEventRequest) GetCreatedAt() int64 {
 	return 0
 }
 
+// 读取当前Block动作次数
+type CountFirewallDailyBlocksRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *CountFirewallDailyBlocksRequest) Reset() {
+	*x = CountFirewallDailyBlocksRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_firewall_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CountFirewallDailyBlocksRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountFirewallDailyBlocksRequest) ProtoMessage() {}
+
+func (x *CountFirewallDailyBlocksRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_firewall_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountFirewallDailyBlocksRequest.ProtoReflect.Descriptor instead.
+func (*CountFirewallDailyBlocksRequest) Descriptor() ([]byte, []int) {
+	return file_service_firewall_proto_rawDescGZIP(), []int{3}
+}
+
+type CountFirewallDailyBlocksResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CountBlocks int64 `protobuf:"varint,1,opt,name=countBlocks,proto3" json:"countBlocks,omitempty"`
+}
+
+func (x *CountFirewallDailyBlocksResponse) Reset() {
+	*x = CountFirewallDailyBlocksResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_firewall_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CountFirewallDailyBlocksResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountFirewallDailyBlocksResponse) ProtoMessage() {}
+
+func (x *CountFirewallDailyBlocksResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_firewall_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountFirewallDailyBlocksResponse.ProtoReflect.Descriptor instead.
+func (*CountFirewallDailyBlocksResponse) Descriptor() ([]byte, []int) {
+	return file_service_firewall_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *CountFirewallDailyBlocksResponse) GetCountBlocks() int64 {
+	if x != nil {
+		return x.CountBlocks
+	}
+	return 0
+}
+
 type ComposeFirewallGlobalBoardResponse_HTTPFirewallRuleGroupStat struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -279,7 +365,7 @@ type ComposeFirewallGlobalBoardResponse_HTTPFirewallRuleGroupStat struct {
 func (x *ComposeFirewallGlobalBoardResponse_HTTPFirewallRuleGroupStat) Reset() {
 	*x = ComposeFirewallGlobalBoardResponse_HTTPFirewallRuleGroupStat{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_firewall_proto_msgTypes[3]
+		mi := &file_service_firewall_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -292,7 +378,7 @@ func (x *ComposeFirewallGlobalBoardResponse_HTTPFirewallRuleGroupStat) String() 
 func (*ComposeFirewallGlobalBoardResponse_HTTPFirewallRuleGroupStat) ProtoMessage() {}
 
 func (x *ComposeFirewallGlobalBoardResponse_HTTPFirewallRuleGroupStat) ProtoReflect() protoreflect.Message {
-	mi := &file_service_firewall_proto_msgTypes[3]
+	mi := &file_service_firewall_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -336,7 +422,7 @@ type ComposeFirewallGlobalBoardResponse_HourlyStat struct {
 func (x *ComposeFirewallGlobalBoardResponse_HourlyStat) Reset() {
 	*x = ComposeFirewallGlobalBoardResponse_HourlyStat{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_firewall_proto_msgTypes[4]
+		mi := &file_service_firewall_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -349,7 +435,7 @@ func (x *ComposeFirewallGlobalBoardResponse_HourlyStat) String() string {
 func (*ComposeFirewallGlobalBoardResponse_HourlyStat) ProtoMessage() {}
 
 func (x *ComposeFirewallGlobalBoardResponse_HourlyStat) ProtoReflect() protoreflect.Message {
-	mi := &file_service_firewall_proto_msgTypes[4]
+	mi := &file_service_firewall_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -407,7 +493,7 @@ type ComposeFirewallGlobalBoardResponse_DailyStat struct {
 func (x *ComposeFirewallGlobalBoardResponse_DailyStat) Reset() {
 	*x = ComposeFirewallGlobalBoardResponse_DailyStat{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_firewall_proto_msgTypes[5]
+		mi := &file_service_firewall_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -420,7 +506,7 @@ func (x *ComposeFirewallGlobalBoardResponse_DailyStat) String() string {
 func (*ComposeFirewallGlobalBoardResponse_DailyStat) ProtoMessage() {}
 
 func (x *ComposeFirewallGlobalBoardResponse_DailyStat) ProtoReflect() protoreflect.Message {
-	mi := &file_service_firewall_proto_msgTypes[5]
+	mi := &file_service_firewall_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -480,7 +566,7 @@ type ComposeFirewallGlobalBoardResponse_NodeStat struct {
 func (x *ComposeFirewallGlobalBoardResponse_NodeStat) Reset() {
 	*x = ComposeFirewallGlobalBoardResponse_NodeStat{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_firewall_proto_msgTypes[6]
+		mi := &file_service_firewall_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -493,7 +579,7 @@ func (x *ComposeFirewallGlobalBoardResponse_NodeStat) String() string {
 func (*ComposeFirewallGlobalBoardResponse_NodeStat) ProtoMessage() {}
 
 func (x *ComposeFirewallGlobalBoardResponse_NodeStat) ProtoReflect() protoreflect.Message {
-	mi := &file_service_firewall_proto_msgTypes[6]
+	mi := &file_service_firewall_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -567,7 +653,7 @@ type ComposeFirewallGlobalBoardResponse_DomainStat struct {
 func (x *ComposeFirewallGlobalBoardResponse_DomainStat) Reset() {
 	*x = ComposeFirewallGlobalBoardResponse_DomainStat{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_firewall_proto_msgTypes[7]
+		mi := &file_service_firewall_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -580,7 +666,7 @@ func (x *ComposeFirewallGlobalBoardResponse_DomainStat) String() string {
 func (*ComposeFirewallGlobalBoardResponse_DomainStat) ProtoMessage() {}
 
 func (x *ComposeFirewallGlobalBoardResponse_DomainStat) ProtoReflect() protoreflect.Message {
-	mi := &file_service_firewall_proto_msgTypes[7]
+	mi := &file_service_firewall_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -654,7 +740,7 @@ type ComposeFirewallGlobalBoardResponse_CountryStat struct {
 func (x *ComposeFirewallGlobalBoardResponse_CountryStat) Reset() {
 	*x = ComposeFirewallGlobalBoardResponse_CountryStat{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_firewall_proto_msgTypes[8]
+		mi := &file_service_firewall_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -667,7 +753,7 @@ func (x *ComposeFirewallGlobalBoardResponse_CountryStat) String() string {
 func (*ComposeFirewallGlobalBoardResponse_CountryStat) ProtoMessage() {}
 
 func (x *ComposeFirewallGlobalBoardResponse_CountryStat) ProtoReflect() protoreflect.Message {
-	mi := &file_service_firewall_proto_msgTypes[8]
+	mi := &file_service_firewall_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -866,19 +952,32 @@ var file_service_firewall_proto_rawDesc = []byte{
 	0x70, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x52, 0x75, 0x6c, 0x65, 0x53, 0x65, 0x74,
 	0x49, 0x64, 0x12, 0x1c, 0x0a, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x18,
 	0x05, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74,
-	0x32, 0xcd, 0x01, 0x0a, 0x0f, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x12, 0x6b, 0x0a, 0x1a, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x73, 0x65, 0x46,
+	0x22, 0x21, 0x0a, 0x1f, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c,
+	0x6c, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x22, 0x44, 0x0a, 0x20, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x46, 0x69, 0x72, 0x65,
+	0x77, 0x61, 0x6c, 0x6c, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x73, 0x32, 0xb4, 0x02, 0x0a, 0x0f, 0x46, 0x69,
+	0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x6b, 0x0a,
+	0x1a, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x73, 0x65, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c,
+	0x47, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x42, 0x6f, 0x61, 0x72, 0x64, 0x12, 0x25, 0x2e, 0x70, 0x62,
+	0x2e, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x73, 0x65, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c,
+	0x47, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x42, 0x6f, 0x61, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x26, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x73, 0x65, 0x46,
 	0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x47, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x42, 0x6f, 0x61,
-	0x72, 0x64, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x73, 0x65, 0x46,
-	0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x47, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x42, 0x6f, 0x61,
-	0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x70, 0x62, 0x2e, 0x43,
-	0x6f, 0x6d, 0x70, 0x6f, 0x73, 0x65, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x47, 0x6c,
-	0x6f, 0x62, 0x61, 0x6c, 0x42, 0x6f, 0x61, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x4d, 0x0a, 0x17, 0x6e, 0x6f, 0x74, 0x69, 0x66, 0x79, 0x48, 0x54, 0x54, 0x50, 0x46,
-	0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x22, 0x2e, 0x70,
-	0x62, 0x2e, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x79, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65,
-	0x77, 0x61, 0x6c, 0x6c, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4d, 0x0a, 0x17, 0x6e, 0x6f,
+	0x74, 0x69, 0x66, 0x79, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c,
+	0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x22, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x6f, 0x74, 0x69, 0x66,
+	0x79, 0x48, 0x54, 0x54, 0x50, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x45, 0x76, 0x65,
+	0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52,
+	0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x65, 0x0a, 0x18, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x42,
+	0x6c, 0x6f, 0x63, 0x6b, 0x73, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74,
+	0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x42, 0x6c, 0x6f,
+	0x63, 0x6b, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x70, 0x62, 0x2e,
+	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x46, 0x69, 0x72, 0x65, 0x77, 0x61, 0x6c, 0x6c, 0x44, 0x61, 0x69,
+	0x6c, 0x79, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
 	0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
@@ -894,34 +993,38 @@ func file_service_firewall_proto_rawDescGZIP() []byte {
 	return file_service_firewall_proto_rawDescData
 }
 
-var file_service_firewall_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_service_firewall_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_service_firewall_proto_goTypes = []interface{}{
 	(*ComposeFirewallGlobalBoardRequest)(nil),                            // 0: pb.ComposeFirewallGlobalBoardRequest
 	(*ComposeFirewallGlobalBoardResponse)(nil),                           // 1: pb.ComposeFirewallGlobalBoardResponse
 	(*NotifyHTTPFirewallEventRequest)(nil),                               // 2: pb.NotifyHTTPFirewallEventRequest
-	(*ComposeFirewallGlobalBoardResponse_HTTPFirewallRuleGroupStat)(nil), // 3: pb.ComposeFirewallGlobalBoardResponse.HTTPFirewallRuleGroupStat
-	(*ComposeFirewallGlobalBoardResponse_HourlyStat)(nil),                // 4: pb.ComposeFirewallGlobalBoardResponse.HourlyStat
-	(*ComposeFirewallGlobalBoardResponse_DailyStat)(nil),                 // 5: pb.ComposeFirewallGlobalBoardResponse.DailyStat
-	(*ComposeFirewallGlobalBoardResponse_NodeStat)(nil),                  // 6: pb.ComposeFirewallGlobalBoardResponse.NodeStat
-	(*ComposeFirewallGlobalBoardResponse_DomainStat)(nil),                // 7: pb.ComposeFirewallGlobalBoardResponse.DomainStat
-	(*ComposeFirewallGlobalBoardResponse_CountryStat)(nil),               // 8: pb.ComposeFirewallGlobalBoardResponse.CountryStat
-	(*HTTPFirewallRuleGroup)(nil),                                        // 9: pb.HTTPFirewallRuleGroup
-	(*RPCSuccess)(nil),                                                   // 10: pb.RPCSuccess
+	(*CountFirewallDailyBlocksRequest)(nil),                              // 3: pb.CountFirewallDailyBlocksRequest
+	(*CountFirewallDailyBlocksResponse)(nil),                             // 4: pb.CountFirewallDailyBlocksResponse
+	(*ComposeFirewallGlobalBoardResponse_HTTPFirewallRuleGroupStat)(nil), // 5: pb.ComposeFirewallGlobalBoardResponse.HTTPFirewallRuleGroupStat
+	(*ComposeFirewallGlobalBoardResponse_HourlyStat)(nil),                // 6: pb.ComposeFirewallGlobalBoardResponse.HourlyStat
+	(*ComposeFirewallGlobalBoardResponse_DailyStat)(nil),                 // 7: pb.ComposeFirewallGlobalBoardResponse.DailyStat
+	(*ComposeFirewallGlobalBoardResponse_NodeStat)(nil),                  // 8: pb.ComposeFirewallGlobalBoardResponse.NodeStat
+	(*ComposeFirewallGlobalBoardResponse_DomainStat)(nil),                // 9: pb.ComposeFirewallGlobalBoardResponse.DomainStat
+	(*ComposeFirewallGlobalBoardResponse_CountryStat)(nil),               // 10: pb.ComposeFirewallGlobalBoardResponse.CountryStat
+	(*HTTPFirewallRuleGroup)(nil),                                        // 11: pb.HTTPFirewallRuleGroup
+	(*RPCSuccess)(nil),                                                   // 12: pb.RPCSuccess
 }
 var file_service_firewall_proto_depIdxs = []int32{
-	3,  // 0: pb.ComposeFirewallGlobalBoardResponse.httpFirewallRuleGroups:type_name -> pb.ComposeFirewallGlobalBoardResponse.HTTPFirewallRuleGroupStat
-	5,  // 1: pb.ComposeFirewallGlobalBoardResponse.dailyStats:type_name -> pb.ComposeFirewallGlobalBoardResponse.DailyStat
-	4,  // 2: pb.ComposeFirewallGlobalBoardResponse.hourlyStats:type_name -> pb.ComposeFirewallGlobalBoardResponse.HourlyStat
-	6,  // 3: pb.ComposeFirewallGlobalBoardResponse.topNodeStats:type_name -> pb.ComposeFirewallGlobalBoardResponse.NodeStat
-	7,  // 4: pb.ComposeFirewallGlobalBoardResponse.topDomainStats:type_name -> pb.ComposeFirewallGlobalBoardResponse.DomainStat
-	8,  // 5: pb.ComposeFirewallGlobalBoardResponse.topCountryStats:type_name -> pb.ComposeFirewallGlobalBoardResponse.CountryStat
-	9,  // 6: pb.ComposeFirewallGlobalBoardResponse.HTTPFirewallRuleGroupStat.httpFirewallRuleGroup:type_name -> pb.HTTPFirewallRuleGroup
+	5,  // 0: pb.ComposeFirewallGlobalBoardResponse.httpFirewallRuleGroups:type_name -> pb.ComposeFirewallGlobalBoardResponse.HTTPFirewallRuleGroupStat
+	7,  // 1: pb.ComposeFirewallGlobalBoardResponse.dailyStats:type_name -> pb.ComposeFirewallGlobalBoardResponse.DailyStat
+	6,  // 2: pb.ComposeFirewallGlobalBoardResponse.hourlyStats:type_name -> pb.ComposeFirewallGlobalBoardResponse.HourlyStat
+	8,  // 3: pb.ComposeFirewallGlobalBoardResponse.topNodeStats:type_name -> pb.ComposeFirewallGlobalBoardResponse.NodeStat
+	9,  // 4: pb.ComposeFirewallGlobalBoardResponse.topDomainStats:type_name -> pb.ComposeFirewallGlobalBoardResponse.DomainStat
+	10, // 5: pb.ComposeFirewallGlobalBoardResponse.topCountryStats:type_name -> pb.ComposeFirewallGlobalBoardResponse.CountryStat
+	11, // 6: pb.ComposeFirewallGlobalBoardResponse.HTTPFirewallRuleGroupStat.httpFirewallRuleGroup:type_name -> pb.HTTPFirewallRuleGroup
 	0,  // 7: pb.FirewallService.composeFirewallGlobalBoard:input_type -> pb.ComposeFirewallGlobalBoardRequest
 	2,  // 8: pb.FirewallService.notifyHTTPFirewallEvent:input_type -> pb.NotifyHTTPFirewallEventRequest
-	1,  // 9: pb.FirewallService.composeFirewallGlobalBoard:output_type -> pb.ComposeFirewallGlobalBoardResponse
-	10, // 10: pb.FirewallService.notifyHTTPFirewallEvent:output_type -> pb.RPCSuccess
-	9,  // [9:11] is the sub-list for method output_type
-	7,  // [7:9] is the sub-list for method input_type
+	3,  // 9: pb.FirewallService.countFirewallDailyBlocks:input_type -> pb.CountFirewallDailyBlocksRequest
+	1,  // 10: pb.FirewallService.composeFirewallGlobalBoard:output_type -> pb.ComposeFirewallGlobalBoardResponse
+	12, // 11: pb.FirewallService.notifyHTTPFirewallEvent:output_type -> pb.RPCSuccess
+	4,  // 12: pb.FirewallService.countFirewallDailyBlocks:output_type -> pb.CountFirewallDailyBlocksResponse
+	10, // [10:13] is the sub-list for method output_type
+	7,  // [7:10] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name
 	7,  // [7:7] is the sub-list for extension extendee
 	0,  // [0:7] is the sub-list for field type_name
@@ -972,7 +1075,7 @@ func file_service_firewall_proto_init() {
 			}
 		}
 		file_service_firewall_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ComposeFirewallGlobalBoardResponse_HTTPFirewallRuleGroupStat); i {
+			switch v := v.(*CountFirewallDailyBlocksRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -984,7 +1087,7 @@ func file_service_firewall_proto_init() {
 			}
 		}
 		file_service_firewall_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ComposeFirewallGlobalBoardResponse_HourlyStat); i {
+			switch v := v.(*CountFirewallDailyBlocksResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -996,7 +1099,7 @@ func file_service_firewall_proto_init() {
 			}
 		}
 		file_service_firewall_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ComposeFirewallGlobalBoardResponse_DailyStat); i {
+			switch v := v.(*ComposeFirewallGlobalBoardResponse_HTTPFirewallRuleGroupStat); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1008,7 +1111,7 @@ func file_service_firewall_proto_init() {
 			}
 		}
 		file_service_firewall_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ComposeFirewallGlobalBoardResponse_NodeStat); i {
+			switch v := v.(*ComposeFirewallGlobalBoardResponse_HourlyStat); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1020,7 +1123,7 @@ func file_service_firewall_proto_init() {
 			}
 		}
 		file_service_firewall_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ComposeFirewallGlobalBoardResponse_DomainStat); i {
+			switch v := v.(*ComposeFirewallGlobalBoardResponse_DailyStat); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1032,6 +1135,30 @@ func file_service_firewall_proto_init() {
 			}
 		}
 		file_service_firewall_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ComposeFirewallGlobalBoardResponse_NodeStat); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_firewall_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ComposeFirewallGlobalBoardResponse_DomainStat); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_firewall_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ComposeFirewallGlobalBoardResponse_CountryStat); i {
 			case 0:
 				return &v.state
@@ -1050,7 +1177,7 @@ func file_service_firewall_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_firewall_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -1080,6 +1207,8 @@ type FirewallServiceClient interface {
 	ComposeFirewallGlobalBoard(ctx context.Context, in *ComposeFirewallGlobalBoardRequest, opts ...grpc.CallOption) (*ComposeFirewallGlobalBoardResponse, error)
 	// 发送告警(notify)消息
 	NotifyHTTPFirewallEvent(ctx context.Context, in *NotifyHTTPFirewallEventRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 读取当前Block动作次数
+	CountFirewallDailyBlocks(ctx context.Context, in *CountFirewallDailyBlocksRequest, opts ...grpc.CallOption) (*CountFirewallDailyBlocksResponse, error)
 }
 
 type firewallServiceClient struct {
@@ -1108,12 +1237,23 @@ func (c *firewallServiceClient) NotifyHTTPFirewallEvent(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *firewallServiceClient) CountFirewallDailyBlocks(ctx context.Context, in *CountFirewallDailyBlocksRequest, opts ...grpc.CallOption) (*CountFirewallDailyBlocksResponse, error) {
+	out := new(CountFirewallDailyBlocksResponse)
+	err := c.cc.Invoke(ctx, "/pb.FirewallService/countFirewallDailyBlocks", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FirewallServiceServer is the server API for FirewallService service.
 type FirewallServiceServer interface {
 	// 组合看板数据
 	ComposeFirewallGlobalBoard(context.Context, *ComposeFirewallGlobalBoardRequest) (*ComposeFirewallGlobalBoardResponse, error)
 	// 发送告警(notify)消息
 	NotifyHTTPFirewallEvent(context.Context, *NotifyHTTPFirewallEventRequest) (*RPCSuccess, error)
+	// 读取当前Block动作次数
+	CountFirewallDailyBlocks(context.Context, *CountFirewallDailyBlocksRequest) (*CountFirewallDailyBlocksResponse, error)
 }
 
 // UnimplementedFirewallServiceServer can be embedded to have forward compatible implementations.
@@ -1125,6 +1265,9 @@ func (*UnimplementedFirewallServiceServer) ComposeFirewallGlobalBoard(context.Co
 }
 func (*UnimplementedFirewallServiceServer) NotifyHTTPFirewallEvent(context.Context, *NotifyHTTPFirewallEventRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NotifyHTTPFirewallEvent not implemented")
+}
+func (*UnimplementedFirewallServiceServer) CountFirewallDailyBlocks(context.Context, *CountFirewallDailyBlocksRequest) (*CountFirewallDailyBlocksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountFirewallDailyBlocks not implemented")
 }
 
 func RegisterFirewallServiceServer(s *grpc.Server, srv FirewallServiceServer) {
@@ -1167,6 +1310,24 @@ func _FirewallService_NotifyHTTPFirewallEvent_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FirewallService_CountFirewallDailyBlocks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountFirewallDailyBlocksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FirewallServiceServer).CountFirewallDailyBlocks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.FirewallService/CountFirewallDailyBlocks",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FirewallServiceServer).CountFirewallDailyBlocks(ctx, req.(*CountFirewallDailyBlocksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _FirewallService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.FirewallService",
 	HandlerType: (*FirewallServiceServer)(nil),
@@ -1178,6 +1339,10 @@ var _FirewallService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "notifyHTTPFirewallEvent",
 			Handler:    _FirewallService_NotifyHTTPFirewallEvent_Handler,
+		},
+		{
+			MethodName: "countFirewallDailyBlocks",
+			Handler:    _FirewallService_CountFirewallDailyBlocks_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

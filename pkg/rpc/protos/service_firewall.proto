@@ -13,6 +13,9 @@ service FirewallService {
 
 	// 发送告警(notify)消息
 	rpc notifyHTTPFirewallEvent (NotifyHTTPFirewallEventRequest) returns (RPCSuccess);
+
+	// 读取当前Block动作次数
+	rpc countFirewallDailyBlocks(CountFirewallDailyBlocksRequest) returns (CountFirewallDailyBlocksResponse);
 }
 
 // 组合看板数据
@@ -87,4 +90,13 @@ message NotifyHTTPFirewallEventRequest {
 	int64 httpFirewallRuleGroupId = 3;
 	int64 httpFirewallRuleSetId = 4;
 	int64 createdAt = 5;
+}
+
+// 读取当前Block动作次数
+message CountFirewallDailyBlocksRequest {
+
+}
+
+message CountFirewallDailyBlocksResponse {
+	int64 countBlocks = 1;
 }
