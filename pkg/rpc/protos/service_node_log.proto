@@ -41,6 +41,7 @@ message CreateNodeLogsResponse {
 
 // 查询日志数量
 message CountNodeLogsRequest {
+	int64 nodeClusterId = 11;
 	int64 nodeId = 1;
 	string role = 2;
 	string dayFrom = 3;
@@ -55,6 +56,7 @@ message CountNodeLogsRequest {
 
 // 列出单页日志
 message ListNodeLogsRequest {
+	int64 nodeClusterId = 15;
 	int64 nodeId = 1;
 	string role = 2;
 	int64 offset = 3;
