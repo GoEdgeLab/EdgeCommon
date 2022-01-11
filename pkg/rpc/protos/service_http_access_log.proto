@@ -42,6 +42,8 @@ message ListHTTPAccessLogsRequest {
 	string keyword = 12; // 关键词
 	string ip = 13;
 	string domain = 14;
+	int64 nodeClusterId = 15;
+	int64 nodeId = 16;
 }
 
 message ListHTTPAccessLogsResponse {
