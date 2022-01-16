@@ -34,6 +34,7 @@ message CreateOriginRequest {
 	int32 maxConns = 9;
 	int32 maxIdleConns = 10;
 	repeated string domains = 11;
+	bytes certRefJSON = 12;
 }
 
 message CreateOriginResponse {
@@ -54,6 +55,7 @@ message UpdateOriginRequest {
 	int32 maxConns = 10;
 	int32 maxIdleConns = 11;
 	repeated string domains = 12;
+	bytes certRefJSON = 13;
 }
 
 // 查找单个源站信息

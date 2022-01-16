@@ -43,8 +43,8 @@ type OriginConfig struct {
 	// - http|https 返回2xx-3xx认为成功
 	HealthCheck *HealthCheckConfig `yaml:"healthCheck" json:"healthCheck"` // TODO
 
-	CertRef *sslconfigs.SSLCertRef    `yaml:"certRef" json:"certRef"` // 证书的引用 TODO
-	Cert    *sslconfigs.SSLCertConfig `yaml:"cert" json:"cert"`       // 请求源服务器用的证书 TODO
+	CertRef *sslconfigs.SSLCertRef    `yaml:"certRef" json:"certRef"` // 证书的引用
+	Cert    *sslconfigs.SSLCertConfig `yaml:"cert" json:"cert"`       // 请求源服务器用的证书
 
 	// ftp
 	FTPServerRef *FTPServerRef    `yaml:"ftpServerRef" json:"ftpServerRef"` // TODO
