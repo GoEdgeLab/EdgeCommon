@@ -1,0 +1,30 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_api_method_stat.proto";
+import "models/rpc_messages.proto";
+
+// API方法统计服务
+service APIMethodStatService {
+	// 查找某天的统计
+	rpc findAPIMethodStatsWithDay(FindAPIMethodStatsWithDayRequest) returns (FindAPIMethodStatsWithDayResponse);
+
+	// 检查是否有统计数据
+	rpc countAPIMethodStatsWithDay(CountAPIMethodStatsWithDayRequest) returns (RPCCountResponse);
+}
+
+// 查找某天的统计
+message FindAPIMethodStatsWithDayRequest {
+	string day = 1; // YYYYMMDD
+}
+
+message FindAPIMethodStatsWithDayResponse {
+	repeated APIMethodStat apiMethodStats = 1;
+}
+
+// 检查是否有统计数据
+message CountAPIMethodStatsWithDayRequest {
+	string day = 1; // YYYYMMDD
+}

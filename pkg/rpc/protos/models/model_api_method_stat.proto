@@ -1,0 +1,18 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_api_node.proto";
+
+message APIMethodStat {
+	int64 id = 1;
+	int64 apiNodeId = 2;
+	string method = 3;
+	string tag = 4;
+	float costMs = 5;
+	float peekMs = 6;
+	int64  countCalls = 7;
+
+	APINode apiNode = 30;
+}

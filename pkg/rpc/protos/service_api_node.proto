@@ -38,6 +38,9 @@ service APINodeService {
 
 	// 计算使用某个SSL证书的API节点数量
 	rpc countAllEnabledAPINodesWithSSLCertId (CountAllEnabledAPINodesWithSSLCertIdRequest) returns (RPCCountResponse);
+
+	// 修改调试模式状态
+	rpc debugAPINode(DebugAPINodeRequest) returns (RPCSuccess);
 }
 
 // 创建API节点
@@ -134,4 +137,9 @@ message FindCurrentAPINodeResponse {
 // 计算使用某个SSL证书的API节点数量
 message CountAllEnabledAPINodesWithSSLCertIdRequest {
 	int64 sslCertId = 1;
+}
+
+// 修改调试模式状态
+message DebugAPINodeRequest {
+	bool debug = 1;
 }
