@@ -16,7 +16,9 @@ message NodeTask {
 	int64 updatedAt = 6;
 	int64 version = 7;
 	bool isPrimary = 8; // 是否为主节点，非主节点稍等再同步有利于提升同步速度
+	int64 serverId = 9;
 
 	Node node = 30;
 	NodeCluster nodeCluster = 31;
+	NodeCluster server = 32;
 }

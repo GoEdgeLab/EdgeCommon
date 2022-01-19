@@ -141,6 +141,9 @@ service ServerService {
 
 	// 获取服务套餐信息
 	rpc findServerUserPlan(FindServerUserPlanRequest) returns (FindServerUserPlanResponse);
+
+	// 获取服务配置
+	rpc composeServerConfig(ComposeServerConfigRequest) returns (ComposeServerConfigResponse);
 }
 
 // 创建服务
@@ -556,4 +559,13 @@ message FindServerUserPlanRequest {
 
 message FindServerUserPlanResponse {
 	UserPlan userPlan = 1;
+}
+
+// 获取服务配置
+message ComposeServerConfigRequest {
+	int64 serverId = 1;
+}
+
+message ComposeServerConfigResponse {
+	bytes serverConfigJSON = 1;
 }

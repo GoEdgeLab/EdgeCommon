@@ -2,6 +2,7 @@ package nodeconfigs
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/firewallconfigs"
@@ -9,6 +10,7 @@ import (
 	"github.com/iwind/TeaGo/Tea"
 	"github.com/iwind/TeaGo/maps"
 	"io/ioutil"
+	"reflect"
 	"strconv"
 )
 
@@ -106,18 +108,51 @@ func ResetNodeConfig(nodeConfig *NodeConfig) {
 	shared.Locker.Unlock()
 }
 
+// CloneNodeConfig 复制节点配置
+func CloneNodeConfig(nodeConfig *NodeConfig) (*NodeConfig, error) {
+	if nodeConfig == nil {
+		return nil, errors.New("node config should not be nil")
+	}
+
+	var newConfigValue = reflect.Indirect(reflect.ValueOf(&NodeConfig{}))
+	var oldValue = reflect.Indirect(reflect.ValueOf(nodeConfig))
+	var valueType = oldValue.Type()
+	for i := 0; i < valueType.NumField(); i++ {
+		var field = valueType.Field(i)
+		var fieldName = field.Name
+		if !field.IsExported() {
+			continue
+		}
+		if fieldName == "Servers" {
+			continue
+		}
+
+		newConfigValue.FieldByName(fieldName).Set(oldValue.FieldByName(fieldName))
+	}
+
+	var newConfig = newConfigValue.Interface().(NodeConfig)
+	newConfig.Servers = append([]*serverconfigs.ServerConfig{}, nodeConfig.Servers...)
+	return &newConfig, nil
+}
+
 // Init 初始化
 func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 	this.paddedId = fmt.Sprintf("%08d", this.Id)
 
 	// servers
 	for _, server := range this.Servers {
+		// 初始化
 		errs := server.Init()
 		if len(errs) > 0 {
 			// 这里不返回错误，而是继续往下，防止单个服务错误而影响其他服务
 			for _, serverErr := range errs {
 				serverErrors = append(serverErrors, NewServerError(server.Id, "server '"+strconv.FormatInt(server.Id, 10)+"' init failed: "+serverErr.Error()))
 			}
+		}
+
+		// 检查ACME支持
+		if server.IsOn && server.SupportCNAME {
+			this.SupportCNAME = true
 		}
 	}
 
@@ -161,6 +196,7 @@ func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 	this.originMap = map[int64]*serverconfigs.OriginConfig{}
 
 	// 查找FirewallPolicy
+	this.synFlood = nil
 	this.firewallPolicies = []*firewallconfigs.HTTPFirewallPolicy{}
 	for _, policy := range this.HTTPFirewallPolicies {
 		if policy.IsOn {
@@ -240,6 +276,35 @@ func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 	}
 
 	return
+}
+
+// AddServer 添加服务
+func (this *NodeConfig) AddServer(server *serverconfigs.ServerConfig) {
+	if server == nil {
+		return
+	}
+
+	var found = false
+	for index, oldServer := range this.Servers {
+		if oldServer.Id == server.Id {
+			this.Servers[index] = server
+			found = true
+			break
+		}
+	}
+	if !found {
+		this.Servers = append(this.Servers, server)
+	}
+}
+
+// RemoveServer 删除服务
+func (this *NodeConfig) RemoveServer(serverId int64) {
+	for index, oldServer := range this.Servers {
+		if oldServer.Id == serverId {
+			this.Servers = append(this.Servers[:index], this.Servers[index+1:]...)
+			break
+		}
+	}
 }
 
 // AvailableGroups 根据网络地址和协议分组
