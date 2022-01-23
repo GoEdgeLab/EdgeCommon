@@ -1,0 +1,27 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_plan.proto";
+import "models/model_user_plan.proto";
+import "models/model_user.proto";
+import "models/model_server.proto";
+
+message ServerBill {
+	int64 id = 1;
+	int64 userId = 2;
+	int64 serverId = 3;
+	float amount = 4;
+	int64 createdAt = 5;
+	int64 userPlanId = 6;
+	int64 planId = 7;
+	int64 totalTrafficBytes = 8;
+	int64 bandwidthPercentileBytes = 9;
+	int32 bandwidthPercentile = 10;
+
+	UserPlan userPlan = 30;
+	Plan plan = 31;
+	User user = 32;
+	Server server = 33;
+}

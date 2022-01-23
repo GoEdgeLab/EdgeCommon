@@ -20,6 +20,7 @@ message User {
 	bool isVerified = 13;
 	bool isRejected = 14;
 	string rejectReason = 15;
+	bool isDeleted = 16;
 
 	NodeCluster nodeCluster = 10;
 	repeated UserFeature features = 11;

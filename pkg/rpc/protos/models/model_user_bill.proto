@@ -16,4 +16,5 @@ message UserBill {
 	bool isPaid = 8;
 	int64 paidAt = 9;
 	string code = 10;
+	bool canPay = 11;
 }

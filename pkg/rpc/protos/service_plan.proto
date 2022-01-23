@@ -38,6 +38,7 @@ message CreatePlanRequest {
 	bytes featuresJSON = 4;
 	string priceType = 5;
 	bytes trafficPriceJSON = 6;
+	bytes bandwidthPriceJSON = 10;
 	float monthlyPrice = 7;
 	float seasonallyPrice = 8;
 	float yearlyPrice = 9;
@@ -57,6 +58,7 @@ message UpdatePlanRequest {
 	bytes featuresJSON = 6;
 	string priceType = 7;
 	bytes trafficPriceJSON = 8;
+	bytes bandwidthPriceJSON = 12;
 	float monthlyPrice = 9;
 	float seasonallyPrice = 10;
 	float yearlyPrice = 11;
