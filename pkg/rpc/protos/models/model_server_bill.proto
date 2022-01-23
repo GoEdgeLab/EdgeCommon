@@ -19,6 +19,7 @@ message ServerBill {
 	int64 totalTrafficBytes = 8;
 	int64 bandwidthPercentileBytes = 9;
 	int32 bandwidthPercentile = 10;
+	string priceType = 11;
 
 	UserPlan userPlan = 30;
 	Plan plan = 31;
