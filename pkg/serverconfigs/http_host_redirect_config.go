@@ -11,12 +11,15 @@ type HTTPHostRedirectConfig struct {
 	IsOn   bool `yaml:"isOn" json:"isOn"`     // 是否开启
 	Status int  `yaml:"status" json:"status"` // 跳转用的状态码
 
+	Mode string `yaml:"mode" json:"mode"` // 模式
+
 	BeforeURL string `yaml:"beforeURL" json:"beforeURL"` // 跳转前的地址
 	AfterURL  string `yaml:"afterURL" json:"afterURL"`   // 跳转后的地址
 
 	MatchPrefix    bool                           `yaml:"matchPrefix" json:"matchPrefix"`       // 只匹配前缀部分
 	MatchRegexp    bool                           `yaml:"matchRegexp" json:"matchRegexp"`       // 匹配正则表达式
 	KeepRequestURI bool                           `yaml:"keepRequestURI" json:"keepRequestURI"` // 保留请求URI
+	KeepArgs       bool                           `yaml:"keepArgs" json:"keepArgs"`             // 保留参数
 	Conds          *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"`                   // 匹配条件
 
 	realBeforeURL   string
