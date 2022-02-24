@@ -54,6 +54,7 @@ message CreateHTTPCachePolicyRequest {
 	bytes maxSizeJSON = 6;
 	string type = 7;
 	bytes optionsJSON = 8;
+	bool syncCompressionCache = 9;
 }
 
 message CreateHTTPCachePolicyResponse {
@@ -71,6 +72,7 @@ message UpdateHTTPCachePolicyRequest {
 	bytes maxSizeJSON = 7;
 	string type = 8;
 	bytes optionsJSON = 9;
+	bool syncCompressionCache = 10;
 }
 
 // 删除缓存策略
