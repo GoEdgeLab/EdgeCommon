@@ -25,6 +25,7 @@ type HTTPCacheRef struct {
 	SkipResponseSetCookie          bool     `yaml:"skipSetCookie" json:"skipSetCookie"`                       // 是否跳过响应的Set-Cookie Header
 	EnableRequestCachePragma       bool     `yaml:"enableRequestCachePragma" json:"enableRequestCachePragma"` // 是否支持客户端的Pragma: no-cache
 	AllowChunkedEncoding           bool     `yaml:"allowChunkedEncoding" json:"allowChunkedEncoding"`         // 是否允许分片内容
+	AllowPartialContent            bool     `yaml:"allowPartialContent" json:"allowPartialContent"`           // 支持分段内容缓存
 
 	Conds *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"` // 请求条件
 
