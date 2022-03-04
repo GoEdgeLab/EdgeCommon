@@ -38,7 +38,8 @@ type HTTPCacheRef struct {
 	maxSize                         int64
 	uppercaseSkipCacheControlValues []string
 
-	methodMap map[string]bool
+	methodMap  map[string]bool
+	statusList []int
 }
 
 func (this *HTTPCacheRef) Init() error {
@@ -82,6 +83,16 @@ func (this *HTTPCacheRef) Init() error {
 		}
 	}
 
+	// status
+	this.statusList = this.Status
+	if this.AllowPartialContent {
+		if !lists.ContainsInt(this.statusList, http.StatusPartialContent) {
+			this.statusList = append(this.statusList, http.StatusPartialContent)
+		}
+	} else if lists.ContainsInt(this.statusList, http.StatusPartialContent) {
+		this.AllowPartialContent = true
+	}
+
 	return nil
 }
 
@@ -116,4 +127,18 @@ func (this *HTTPCacheRef) MatchRequest(req *http.Request) bool {
 	}
 
 	return true
+}
+
+// MatchStatus 检查是否包含某个状态码
+func (this *HTTPCacheRef) MatchStatus(statusCode int) bool {
+	if len(this.statusList) == 0 {
+		return true
+	}
+
+	for _, status := range this.statusList {
+		if status == statusCode {
+			return true
+		}
+	}
+	return false
 }

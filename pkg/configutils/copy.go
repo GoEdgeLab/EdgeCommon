@@ -4,7 +4,7 @@ import (
 	"reflect"
 )
 
-// 拷贝同类型struct指针对象中的字段
+// CopyStructObject 拷贝同类型struct指针对象中的字段
 func CopyStructObject(destPtr, sourcePtr interface{}) {
 	value := reflect.ValueOf(destPtr)
 	value2 := reflect.ValueOf(sourcePtr)
