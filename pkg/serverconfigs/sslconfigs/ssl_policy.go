@@ -31,6 +31,8 @@ type SSLPolicy struct {
 	HSTS         *HSTSConfig `yaml:"hsts" json:"hsts"`                 // HSTS配置
 	HTTP2Enabled bool        `yaml:"http2Enabled" json:"http2Enabled"` // 是否启用HTTP2
 
+	OCSPIsOn bool `yaml:"ocspIsOn" json:"ocspIsOn"` // 是否启用OCSP
+
 	nameMapping map[string]*tls.Certificate // dnsName => cert
 
 	minVersion   uint16
@@ -51,6 +53,9 @@ func (this *SSLPolicy) Init() error {
 		err := cert.Init()
 		if err != nil {
 			return err
+		}
+		if this.OCSPIsOn && len(cert.OCSP) > 0 {
+			cert.CertObject().OCSPStaple = cert.OCSP
 		}
 		certs = append(certs, *cert.CertObject())
 		for _, dnsName := range cert.DNSNames {

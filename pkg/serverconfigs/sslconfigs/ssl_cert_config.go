@@ -29,6 +29,9 @@ type SSLCertConfig struct {
 	DNSNames    []string `yaml:"dnsNames" json:"dnsNames"`
 	CommonNames []string `yaml:"commonNames" json:"commonNames"`
 
+	// OCSP
+	OCSP []byte `yaml:"ocsp" json:"ocsp"`
+
 	cert      *tls.Certificate
 	timeBegin time.Time
 	timeEnd   time.Time

@@ -26,6 +26,7 @@ message CreateSSLPolicyRequest {
 	bytes clientCACertsJSON = 6;
 	repeated string cipherSuites = 7;
 	bool cipherSuitesIsOn = 8;
+	bool ocspIsOn = 9;
 }
 
 message CreateSSLPolicyResponse {
@@ -43,6 +44,7 @@ message UpdateSSLPolicyRequest {
 	bytes clientCACertsJSON = 7;
 	repeated string cipherSuites = 8;
 	bool cipherSuitesIsOn = 9;
+	bool ocspIsOn = 10;
 }
 
 // 查找Policy
