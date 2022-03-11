@@ -4,6 +4,7 @@ option go_package = "./pb";
 package pb;
 
 import "models/rpc_messages.proto";
+import "models/model_ssl_cert.proto";
 
 service SSLCertService {
 	// 创建Cert
@@ -23,6 +24,21 @@ service SSLCertService {
 
 	// 列出单页匹配的Cert
 	rpc listSSLCerts (ListSSLCertsRequest) returns (ListSSLCertsResponse);
+
+	// 计算有OCSP错误的证书数量
+	rpc countAllSSLCertsWithOCSPError (CountAllSSLCertsWithOCSPErrorRequest) returns (RPCCountResponse);
+
+	// 列出有OCSP错误的证书
+	rpc listSSLCertsWithOCSPError (ListSSLCertsWithOCSPErrorRequest) returns (ListSSLCertsWithOCSPErrorResponse);
+
+	// 忽略一组OCSP证书错误
+	rpc ignoreSSLCertsWithOCSPError (IgnoreSSLCertsWithOCSPErrorRequest) returns (RPCSuccess);
+
+	// 重置一组证书OCSP错误状态
+	rpc resetSSLCertsWithOCSPError (ResetSSLCertsWithOCSPErrorRequest) returns (RPCSuccess);
+
+	// 重置所有证书OCSP错误状态
+	rpc resetAllSSLCertsWithOCSPError (ResetAllSSLCertsWithOCSPErrorRequest) returns (RPCSuccess);
 }
 
 // 创建Cert
@@ -98,4 +114,35 @@ message ListSSLCertsRequest {
 
 message ListSSLCertsResponse {
 	bytes sslCertsJSON = 1;
+}
+
+// 计算有OCSP错误的证书数量
+message CountAllSSLCertsWithOCSPErrorRequest {
+	string keyword = 1;
+}
+
+// 列出有OCSP错误的证书
+message ListSSLCertsWithOCSPErrorRequest {
+	string keyword = 1;
+	int64 offset = 2;
+	int64 size = 3;
+}
+
+message ListSSLCertsWithOCSPErrorResponse {
+	repeated SSLCert sslCerts = 1;
+}
+
+// 忽略一组OCSP证书错误
+message IgnoreSSLCertsWithOCSPErrorRequest {
+	repeated int64 sslCertIds = 1;
+}
+
+// 重置一组证书OCSP错误状态
+message ResetSSLCertsWithOCSPErrorRequest {
+	repeated int64 sslCertIds = 1;
+}
+
+// 重置所有证书OCSP错误状态
+message ResetAllSSLCertsWithOCSPErrorRequest {
+
 }

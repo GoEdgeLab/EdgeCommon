@@ -9,4 +9,16 @@ message SSLCert {
 	string name = 3;
 	int64 timeBeginAt = 4;
 	int64 timeEndAt = 5;
+	repeated string dnsNames = 6;
+	repeated string commonNames = 7;
+	bool isACME = 8;
+	int64 acmeTaskId = 17;
+	bytes ocsp = 9;
+	bool ocspIsUpdated = 10;
+	string ocspError = 11;
+	string description = 12;
+	bool isCA = 13;
+	string serverName = 14;
+	int64 createdAt = 15;
+	int64 updatedAt = 16;
 }
