@@ -41,7 +41,8 @@ type ReverseProxyConfig struct {
 
 	AutoFlush bool `yaml:"autoFlush" json:"autoFlush"` // 是否自动刷新缓冲区，在比如SSE（server-sent events）场景下很有用
 
-	ProxyProtocol *ProxyProtocolConfig `yaml:"proxyProtocol" json:"proxyProtocol"`
+	ProxyProtocol   *ProxyProtocolConfig `yaml:"proxyProtocol" json:"proxyProtocol"`     // PROXY Protocol
+	FollowRedirects bool                 `yaml:"followRedirects" json:"followRedirects"` // 回源跟随
 
 	requestHostHasVariables bool
 	requestURIHasVariables  bool

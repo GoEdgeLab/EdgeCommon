@@ -91,4 +91,5 @@ message UpdateReverseProxyRequest {
 	int32 maxConns = 11;
 	int32 maxIdleConns = 12;
 	bytes proxyProtocolJSON = 13;
+	bool followRedirects = 14;
 }
