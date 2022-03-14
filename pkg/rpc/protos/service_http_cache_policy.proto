@@ -84,6 +84,7 @@ message DeleteHTTPCachePolicyRequest {
 message CountAllEnabledHTTPCachePoliciesRequest {
 	string keyword = 1;
 	int64 nodeClusterId = 2;
+	string type = 3;
 }
 
 // 列出单页的缓存策略
@@ -92,6 +93,7 @@ message ListEnabledHTTPCachePoliciesRequest {
 	int64 size = 2;
 	string keyword = 3;
 	int64 nodeClusterId = 4;
+	string type = 5;
 }
 
 message ListEnabledHTTPCachePoliciesResponse {
