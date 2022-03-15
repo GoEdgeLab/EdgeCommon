@@ -15,5 +15,13 @@ func (this *HTTPFileCacheStorage) Init() error {
 			return err
 		}
 	}
+
+	if this.MemoryPolicy != nil {
+		err := this.MemoryPolicy.Init()
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
