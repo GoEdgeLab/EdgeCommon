@@ -37,8 +37,9 @@ type NodeConfig struct {
 	Name                   string                        `yaml:"name" json:"name"`
 	MaxCPU                 int32                         `yaml:"maxCPU" json:"maxCPU"`
 	RegionId               int64                         `yaml:"regionId" json:"regionId"`
-	MaxCacheDiskCapacity   *shared.SizeCapacity          `yaml:"maxCacheDiskCapacity" json:"maxCacheDiskCapacity"`
-	MaxCacheMemoryCapacity *shared.SizeCapacity          `yaml:"maxCacheMemoryCapacity" json:"maxCacheMemoryCapacity"`
+	CacheDiskDir           string                        `yaml:"cacheDiskDir" json:"cacheDiskDir"`                     // 文件缓存目录
+	MaxCacheDiskCapacity   *shared.SizeCapacity          `yaml:"maxCacheDiskCapacity" json:"maxCacheDiskCapacity"`     // 文件缓存容量
+	MaxCacheMemoryCapacity *shared.SizeCapacity          `yaml:"maxCacheMemoryCapacity" json:"maxCacheMemoryCapacity"` // 内容缓存容量
 	MaxThreads             int                           `yaml:"maxThreads" json:"maxThreads"`
 	TCPMaxConnections      int                           `yaml:"tcpMaxConnections" json:"tcpMaxConnections"`
 

@@ -493,4 +493,5 @@ message UpdateNodeCacheRequest {
 	int64 nodeId = 1;
 	SizeCapacity maxCacheDiskCapacity = 2;
 	SizeCapacity maxCacheMemoryCapacity = 3;
+	string cacheDiskDir = 4;
 }

@@ -31,6 +31,7 @@ message Node {
 	bool isActive = 16;
 	SizeCapacity maxCacheDiskCapacity = 17;
 	SizeCapacity maxCacheMemoryCapacity = 18;
+	string cacheDiskDir = 19;
 
 	NodeCluster nodeCluster = 32; // 主集群
 	NodeLogin nodeLogin = 33;

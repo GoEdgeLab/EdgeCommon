@@ -45,6 +45,10 @@ func (this *SizeCapacity) Bytes() int64 {
 	}
 }
 
+func (this *SizeCapacity) IsNotEmpty() bool {
+	return this.Count > 0
+}
+
 func (this *SizeCapacity) AsJSON() ([]byte, error) {
 	return json.Marshal(this)
 }
