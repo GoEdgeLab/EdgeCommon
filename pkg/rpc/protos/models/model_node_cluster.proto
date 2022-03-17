@@ -20,4 +20,5 @@ message NodeCluster {
 	int32 nodeMaxThreads = 14;
 	int32 nodeTCPMaxConnections = 15;
 	bool autoOpenPorts = 16;
+	bool isPinned = 17;
 }

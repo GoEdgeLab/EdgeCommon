@@ -112,6 +112,9 @@ service NodeClusterService {
 
 	// 取得集群的配置概要信息
 	rpc findEnabledNodeClusterConfigInfo (FindEnabledNodeClusterConfigInfoRequest) returns (FindEnabledNodeClusterConfigInfoResponse);
+
+	// 设置集群是否置顶
+	rpc updateNodeClusterPinned(UpdateNodeClusterPinnedRequest) returns (RPCSuccess);
 }
 
 // 获取所有集群的信息
@@ -418,4 +421,10 @@ message FindEnabledNodeClusterConfigInfoResponse {
 	bool hasMessageReceivers = 4;
 	bool isTOAEnabled = 5;
 	bool hasMetricItems = 6;
+}
+
+// 设置集群是否置顶
+message UpdateNodeClusterPinnedRequest {
+	int64 nodeClusterId = 1;
+	bool isPinned = 2;
 }
