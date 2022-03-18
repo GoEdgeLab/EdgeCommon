@@ -428,7 +428,7 @@ func (this *NodeConfig) SYNFloodConfig() *firewallconfigs.SYNFloodConfig {
 }
 
 // UpdateCertOCSP 修改证书OCSP
-func (this *NodeConfig) UpdateCertOCSP(certId int64, ocsp []byte) {
+func (this *NodeConfig) UpdateCertOCSP(certId int64, ocsp []byte, expiresAt int64) {
 	shared.Locker.Lock()
 	defer shared.Locker.Unlock()
 
@@ -438,14 +438,14 @@ func (this *NodeConfig) UpdateCertOCSP(certId int64, ocsp []byte) {
 			server.HTTPS.SSLPolicy != nil &&
 			server.HTTPS.SSLPolicy.OCSPIsOn &&
 			server.HTTPS.SSLPolicy.ContainsCert(certId) {
-			server.HTTPS.SSLPolicy.UpdateCertOCSP(certId, ocsp)
+			server.HTTPS.SSLPolicy.UpdateCertOCSP(certId, ocsp, expiresAt)
 		}
 
 		if server.TLS != nil &&
 			server.TLS.SSLPolicy != nil &&
 			server.TLS.SSLPolicy.OCSPIsOn &&
 			server.TLS.SSLPolicy.ContainsCert(certId) {
-			server.TLS.SSLPolicy.UpdateCertOCSP(certId, ocsp)
+			server.TLS.SSLPolicy.UpdateCertOCSP(certId, ocsp, expiresAt)
 		}
 	}
 }

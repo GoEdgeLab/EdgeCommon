@@ -6,6 +6,7 @@ import (
 	"crypto/x509"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"golang.org/x/net/http2"
+	"time"
 )
 
 // TLSVersion TLS Version
@@ -42,6 +43,8 @@ type SSLPolicy struct {
 	clientCAPool *x509.CertPool
 
 	tlsConfig *tls.Config
+
+	ocspExpiresAt int64 // OCSP最早过期时间
 }
 
 // Init 校验配置
@@ -55,7 +58,10 @@ func (this *SSLPolicy) Init() error {
 		if err != nil {
 			return err
 		}
-		if this.OCSPIsOn && len(cert.OCSP) > 0 {
+		if this.OCSPIsOn && len(cert.OCSP) > 0 && cert.OCSPExpiresAt > time.Now().Unix() {
+			if this.ocspExpiresAt == 0 || cert.OCSPExpiresAt < this.ocspExpiresAt {
+				this.ocspExpiresAt = cert.OCSPExpiresAt
+			}
 			cert.CertObject().OCSPStaple = cert.OCSP
 		}
 		certs = append(certs, *cert.CertObject())
@@ -167,21 +173,67 @@ func (this *SSLPolicy) ContainsCert(certId int64) bool {
 }
 
 // UpdateCertOCSP 修改某个证书的OCSP
-func (this *SSLPolicy) UpdateCertOCSP(certId int64, ocsp []byte) {
+func (this *SSLPolicy) UpdateCertOCSP(certId int64, ocsp []byte, expiresAt int64) {
+	var nowTime = time.Now().Unix()
+
 	for _, cert := range this.Certs {
 		if cert.Id == certId {
 			cert.OCSP = ocsp
+			cert.OCSPExpiresAt = expiresAt
 			cert.CertObject().OCSPStaple = cert.OCSP
 
 			// 修改tlsConfig中的cert
-			for index, cert2 := range this.tlsConfig.Certificates {
-				if this.certIsEqual(*cert.CertObject(), cert2) {
-					this.tlsConfig.Certificates[index].OCSPStaple = ocsp
+			for index, certObj := range this.tlsConfig.Certificates {
+				if this.certIsEqual(*cert.CertObject(), certObj) {
+					if len(cert.OCSP) > 0 && cert.OCSPExpiresAt > nowTime {
+						this.tlsConfig.Certificates[index].OCSPStaple = ocsp
+
+						// 重置过期时间
+						if this.ocspExpiresAt == 0 || cert.OCSPExpiresAt < this.ocspExpiresAt {
+							this.ocspExpiresAt = cert.OCSPExpiresAt
+						}
+					} else {
+						this.tlsConfig.Certificates[index].OCSPStaple = nil
+					}
 				}
 			}
 			break
 		}
 	}
+}
+
+// CheckOCSP 检查OCSP过期时间
+func (this *SSLPolicy) CheckOCSP() {
+	if !this.OCSPIsOn || this.ocspExpiresAt == 0 {
+		return
+	}
+
+	var nowTime = time.Now().Unix()
+	if this.ocspExpiresAt > nowTime {
+		return
+	}
+	this.ocspExpiresAt = 0
+
+	for _, cert := range this.Certs {
+		if cert.OCSPExpiresAt > 0 && cert.OCSPExpiresAt < nowTime+1 {
+			// 重置OCSP
+			cert.OCSP = nil
+			cert.OCSPExpiresAt = 0
+			for index, certObj := range this.tlsConfig.Certificates {
+				if this.certIsEqual(*cert.CertObject(), certObj) {
+					this.tlsConfig.Certificates[index].OCSPStaple = nil
+				}
+			}
+		} else if len(cert.OCSP) > 0 && cert.OCSPExpiresAt > nowTime && (this.ocspExpiresAt == 0 || cert.OCSPExpiresAt < this.ocspExpiresAt) {
+			// 重置过期时间
+			this.ocspExpiresAt = cert.OCSPExpiresAt
+		}
+	}
+}
+
+// OcspExpiresAt OCSP最近过期时间
+func (this *SSLPolicy) OcspExpiresAt() int64 {
+	return this.ocspExpiresAt
 }
 
 func (this *SSLPolicy) certIsEqual(cert1 tls.Certificate, cert2 tls.Certificate) bool {

@@ -161,7 +161,8 @@ message ListUpdatedSSLCertOCSPResponse {
 
 	message SSLCertOCSP {
 		int64 sslCertId = 1;
-		bytes ocsp = 2;
+		bytes data = 2;
 		int64 version = 3;
+		int64 expiresAt = 4;
 	}
 }

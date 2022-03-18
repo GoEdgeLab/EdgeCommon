@@ -30,8 +30,9 @@ type SSLCertConfig struct {
 	CommonNames []string `yaml:"commonNames" json:"commonNames"`
 
 	// OCSP
-	OCSP      []byte `yaml:"ocsp" json:"ocsp"`
-	OCSPError string `yaml:"ocspError" json:"ocspError"`
+	OCSP          []byte `yaml:"ocsp" json:"ocsp"`
+	OCSPExpiresAt int64  `yaml:"ocspExpiresAt" json:"ocspExpiresAt"`
+	OCSPError     string `yaml:"ocspError" json:"ocspError"`
 
 	cert      *tls.Certificate
 	timeBegin time.Time
