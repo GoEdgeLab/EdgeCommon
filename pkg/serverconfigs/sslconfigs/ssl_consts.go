@@ -2,7 +2,6 @@ package sslconfigs
 
 import (
 	"crypto/tls"
-	"os"
 )
 
 var AllTlsVersions = []TLSVersion{"SSL 3.0", "TLS 1.0", "TLS 1.1", "TLS 1.2", "TLS 1.3"}
@@ -78,8 +77,6 @@ func (this *SSLPolicy) convertMinVersion() {
 		this.minVersion = tls.VersionTLS12
 	case "TLS 1.3":
 		this.minVersion = tls.VersionTLS13
-
-		os.Setenv("GODEBUG", "tls13=1") // TODO should be removed in go 1.14, in go 1.12 tls IS NOT FULL IMPLEMENTED YET
 	default:
 		this.minVersion = tls.VersionTLS10
 	}

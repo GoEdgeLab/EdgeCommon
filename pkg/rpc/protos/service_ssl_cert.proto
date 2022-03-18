@@ -39,6 +39,9 @@ service SSLCertService {
 
 	// 重置所有证书OCSP错误状态
 	rpc resetAllSSLCertsWithOCSPError (ResetAllSSLCertsWithOCSPErrorRequest) returns (RPCSuccess);
+
+	// 读取证书的OCSP
+	rpc listUpdatedSSLCertOCSP(ListUpdatedSSLCertOCSPRequest) returns (ListUpdatedSSLCertOCSPResponse);
 }
 
 // 创建Cert
@@ -145,4 +148,20 @@ message ResetSSLCertsWithOCSPErrorRequest {
 // 重置所有证书OCSP错误状态
 message ResetAllSSLCertsWithOCSPErrorRequest {
 
+}
+
+// 读取证书的OCSP
+message ListUpdatedSSLCertOCSPRequest {
+	int64 version = 1;
+	int32 size = 2;
+}
+
+message ListUpdatedSSLCertOCSPResponse {
+	repeated SSLCertOCSP sslCertOCSP = 1;
+
+	message SSLCertOCSP {
+		int64 sslCertId = 1;
+		bytes ocsp = 2;
+		int64 version = 3;
+	}
 }

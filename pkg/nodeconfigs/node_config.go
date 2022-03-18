@@ -27,21 +27,24 @@ func NewServerError(serverId int64, message string) *ServerError {
 
 // NodeConfig 边缘节点配置
 type NodeConfig struct {
-	Id                     int64                         `yaml:"id" json:"id"`
-	NodeId                 string                        `yaml:"nodeId" json:"nodeId"`
-	Secret                 string                        `yaml:"secret" json:"secret"`
-	IsOn                   bool                          `yaml:"isOn" json:"isOn"`
-	Servers                []*serverconfigs.ServerConfig `yaml:"servers" json:"servers"`
-	SupportCNAME           bool                          `yaml:"supportCNAME" json:"supportCNAME"`
-	Version                int64                         `yaml:"version" json:"version"`
-	Name                   string                        `yaml:"name" json:"name"`
-	MaxCPU                 int32                         `yaml:"maxCPU" json:"maxCPU"`
-	RegionId               int64                         `yaml:"regionId" json:"regionId"`
-	CacheDiskDir           string                        `yaml:"cacheDiskDir" json:"cacheDiskDir"`                     // 文件缓存目录
-	MaxCacheDiskCapacity   *shared.SizeCapacity          `yaml:"maxCacheDiskCapacity" json:"maxCacheDiskCapacity"`     // 文件缓存容量
-	MaxCacheMemoryCapacity *shared.SizeCapacity          `yaml:"maxCacheMemoryCapacity" json:"maxCacheMemoryCapacity"` // 内容缓存容量
-	MaxThreads             int                           `yaml:"maxThreads" json:"maxThreads"`
-	TCPMaxConnections      int                           `yaml:"tcpMaxConnections" json:"tcpMaxConnections"`
+	Id           int64                         `yaml:"id" json:"id"`
+	NodeId       string                        `yaml:"nodeId" json:"nodeId"`
+	Secret       string                        `yaml:"secret" json:"secret"`
+	IsOn         bool                          `yaml:"isOn" json:"isOn"`
+	Servers      []*serverconfigs.ServerConfig `yaml:"servers" json:"servers"`
+	SupportCNAME bool                          `yaml:"supportCNAME" json:"supportCNAME"`
+	Version      int64                         `yaml:"version" json:"version"`
+	Name         string                        `yaml:"name" json:"name"`
+	RegionId     int64                         `yaml:"regionId" json:"regionId"`
+	OCSPVersion  int64                         `yaml:"ocspVersion" json:"ocspVersion"`
+
+	// 性能
+	MaxCPU                 int32                `yaml:"maxCPU" json:"maxCPU"`
+	CacheDiskDir           string               `yaml:"cacheDiskDir" json:"cacheDiskDir"`                     // 文件缓存目录
+	MaxCacheDiskCapacity   *shared.SizeCapacity `yaml:"maxCacheDiskCapacity" json:"maxCacheDiskCapacity"`     // 文件缓存容量
+	MaxCacheMemoryCapacity *shared.SizeCapacity `yaml:"maxCacheMemoryCapacity" json:"maxCacheMemoryCapacity"` // 内容缓存容量
+	MaxThreads             int                  `yaml:"maxThreads" json:"maxThreads"`
+	TCPMaxConnections      int                  `yaml:"tcpMaxConnections" json:"tcpMaxConnections"`
 
 	// 全局配置
 	GlobalConfig  *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置
@@ -56,9 +59,11 @@ type NodeConfig struct {
 	TimeZone             string                                  `yaml:"timeZone" json:"timeZone"`
 	AutoOpenPorts        bool                                    `yaml:"autoOpenPorts" json:"autoOpenPorts"`
 
+	// 指标
 	MetricItems []*serverconfigs.MetricItemConfig `yaml:"metricItems" json:"metricItems"`
 
-	AllowedIPs []string `yaml:"allowedIPs" json:"allowedIPs"` // 自动白名单
+	// 自动白名单
+	AllowedIPs []string `yaml:"allowedIPs" json:"allowedIPs"`
 
 	paddedId string
 
@@ -420,4 +425,27 @@ func (this *NodeConfig) IPIsAutoAllowed(ip string) bool {
 // SYNFloodConfig 获取SYN Flood配置
 func (this *NodeConfig) SYNFloodConfig() *firewallconfigs.SYNFloodConfig {
 	return this.synFlood
+}
+
+// UpdateCertOCSP 修改证书OCSP
+func (this *NodeConfig) UpdateCertOCSP(certId int64, ocsp []byte) {
+	shared.Locker.Lock()
+	defer shared.Locker.Unlock()
+
+	var servers = this.Servers
+	for _, server := range servers {
+		if server.HTTPS != nil &&
+			server.HTTPS.SSLPolicy != nil &&
+			server.HTTPS.SSLPolicy.OCSPIsOn &&
+			server.HTTPS.SSLPolicy.ContainsCert(certId) {
+			server.HTTPS.SSLPolicy.UpdateCertOCSP(certId, ocsp)
+		}
+
+		if server.TLS != nil &&
+			server.TLS.SSLPolicy != nil &&
+			server.TLS.SSLPolicy.OCSPIsOn &&
+			server.TLS.SSLPolicy.ContainsCert(certId) {
+			server.TLS.SSLPolicy.UpdateCertOCSP(certId, ocsp)
+		}
+	}
 }

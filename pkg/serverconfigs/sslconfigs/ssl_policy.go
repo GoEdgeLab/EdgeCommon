@@ -1,6 +1,7 @@
 package sslconfigs
 
 import (
+	"bytes"
 	"crypto/tls"
 	"crypto/x509"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
@@ -153,4 +154,48 @@ func (this *SSLPolicy) CAPool() *x509.CertPool {
 
 func (this *SSLPolicy) TLSConfig() *tls.Config {
 	return this.tlsConfig
+}
+
+// ContainsCert 检查是否包括某个证书
+func (this *SSLPolicy) ContainsCert(certId int64) bool {
+	for _, cert := range this.Certs {
+		if cert.Id == certId {
+			return true
+		}
+	}
+	return false
+}
+
+// UpdateCertOCSP 修改某个证书的OCSP
+func (this *SSLPolicy) UpdateCertOCSP(certId int64, ocsp []byte) {
+	for _, cert := range this.Certs {
+		if cert.Id == certId {
+			cert.OCSP = ocsp
+			cert.CertObject().OCSPStaple = cert.OCSP
+
+			// 修改tlsConfig中的cert
+			for index, cert2 := range this.tlsConfig.Certificates {
+				if this.certIsEqual(*cert.CertObject(), cert2) {
+					this.tlsConfig.Certificates[index].OCSPStaple = ocsp
+				}
+			}
+			break
+		}
+	}
+}
+
+func (this *SSLPolicy) certIsEqual(cert1 tls.Certificate, cert2 tls.Certificate) bool {
+	var b1 = cert1.Certificate
+	var b2 = cert2.Certificate
+	if len(b1) != len(b2) {
+		return false
+	}
+
+	for index, b := range b1 {
+		if bytes.Compare(b, b2[index]) != 0 {
+			return false
+		}
+	}
+
+	return true
 }
