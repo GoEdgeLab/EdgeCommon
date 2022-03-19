@@ -376,7 +376,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				IsOn:              true,
 				Param:             "${requestAll}",
 				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `(updatexml|extractvalue|ascii|ord|char|chr|count|concat|rand|floor|substr|length|len|user|database|benchmark|analyse)\s*\(`,
+				Value:             `\b(updatexml|extractvalue|ascii|ord|char|chr|count|concat|rand|floor|substr|length|len|user|database|benchmark|analyse)\s*\(.*\)`,
 				IsCaseInsensitive: true,
 			})
 
