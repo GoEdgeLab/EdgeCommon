@@ -46,9 +46,9 @@ func (this *SSLCertConfig) Init() error {
 
 	// 分析证书
 	if this.IsCA { // CA证书
-		data := this.CertData
+		var data = this.CertData
 
-		index := -1
+		var index = -1
 		this.cert = &tls.Certificate{
 			Certificate: [][]byte{},
 		}
@@ -57,9 +57,6 @@ func (this *SSLCertConfig) Init() error {
 
 			block, rest := pem.Decode(data)
 			if block == nil {
-				break
-			}
-			if len(rest) == 0 {
 				break
 			}
 			this.cert.Certificate = append(this.cert.Certificate, block.Bytes)
@@ -83,6 +80,10 @@ func (this *SSLCertConfig) Init() error {
 			if index == 0 {
 				this.timeBegin = c.NotBefore
 				this.timeEnd = c.NotAfter
+			}
+
+			if len(rest) == 0 {
+				break
 			}
 		}
 	} else { // 证书+私钥
