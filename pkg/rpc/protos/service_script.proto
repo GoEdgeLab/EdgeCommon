@@ -1,0 +1,111 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_script.proto";
+import "models/rpc_messages.proto";
+
+// 脚本相关服务
+service ScriptService {
+	// 添加脚本
+	rpc createScript(CreateScriptRequest) returns (CreateScriptResponse);
+
+	// 删除脚本
+	rpc deleteScript(DeleteScriptRequest) returns (RPCSuccess);
+
+	// 计算脚本数量
+	rpc countAllEnabledScripts(CountAllEnabledScriptsRequest) returns (RPCCountResponse);
+
+	// 列出单页脚本
+	rpc listEnabledScripts(ListEnabledScriptsRequest) returns (ListEnabledScriptsResponse);
+
+	// 发布脚本
+	rpc publishScripts(PublishScriptsRequest) returns (RPCSuccess);
+
+	// 检查脚本是否需要有更新
+	rpc checkScriptUpdates(CheckScriptUpdatesRequest) returns (CheckScriptUpdatesResponse);
+
+	// 查找单个脚本
+	rpc findEnabledScript(FindEnabledScriptRequest) returns (FindEnabledScriptResponse);
+
+	// 修改脚本
+	rpc updateScript(UpdateScriptRequest) returns (RPCSuccess);
+
+	// 组合脚本配置
+	rpc composeScriptConfigs(ComposeScriptConfigsRequest) returns (ComposeScriptConfigsResponse);
+}
+
+// 添加脚本
+message CreateScriptRequest {
+	string name = 1;
+	string filename = 2;
+	string code = 3;
+}
+
+message CreateScriptResponse {
+	int64 scriptId = 1;
+}
+
+// 删除脚本
+message DeleteScriptRequest {
+	int64 scriptId = 1;
+}
+
+// 计算脚本数量
+message CountAllEnabledScriptsRequest {
+	int64 userId = 1;
+}
+
+// 列出单页脚本
+message ListEnabledScriptsRequest {
+	int64 userId = 1;
+	int64 offset = 2;
+	int64 size = 3;
+}
+
+message ListEnabledScriptsResponse {
+	repeated Script scripts = 1;
+}
+
+// 发布脚本
+message PublishScriptsRequest {
+	int64  userId = 1;
+}
+
+// 检查脚本是否需要有更新
+message CheckScriptUpdatesRequest {
+	int64  userId = 1;
+}
+
+message CheckScriptUpdatesResponse {
+	bool hasUpdates = 1;
+	int64 version = 2;
+}
+
+// 查找单个脚本
+message FindEnabledScriptRequest {
+	int64 scriptId = 1;
+}
+
+message FindEnabledScriptResponse {
+	Script script = 1;
+}
+
+// 修改脚本
+message UpdateScriptRequest {
+	int64 scriptId = 1;
+	string name = 2;
+	string filename = 3;
+	string code = 4;
+	bool isOn = 5;
+}
+
+// 组合脚本配置
+message ComposeScriptConfigsRequest {
+
+}
+
+message ComposeScriptConfigsResponse {
+	bytes scriptConfigsJSON = 1;
+}

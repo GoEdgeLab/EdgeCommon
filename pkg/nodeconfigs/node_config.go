@@ -65,6 +65,9 @@ type NodeConfig struct {
 	// 自动白名单
 	AllowedIPs []string `yaml:"allowedIPs" json:"allowedIPs"`
 
+	// 脚本
+	CommonScripts []*serverconfigs.CommonScript `yaml:"commonScripts" json:"commonScripts"`
+
 	paddedId string
 
 	// firewall
