@@ -11,4 +11,5 @@ type AdminUIConfig struct {
 	FaviconFileId      int64  `json:"faviconFileId"`      // Favicon文件ID
 	LogoFileId         int64  `json:"logoFileId"`         // Logo文件ID
 	DefaultPageSize    int    `json:"defaultPageSize"`    // 默认每页显示数
+	TimeZone           string `json:"timeZone"`           // 时区
 }
