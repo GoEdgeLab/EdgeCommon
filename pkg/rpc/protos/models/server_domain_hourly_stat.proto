@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 单个小时统计
+message ServerDomainHourlyStat {
+	int64 serverId = 1;
+	string domain = 2;
+	int64 countRequests = 3;
+	int64 bytes = 4;
+	int64 countAttackRequests = 6;
+	int64 attackBytes = 7;
+}

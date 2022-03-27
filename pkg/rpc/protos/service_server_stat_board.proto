@@ -46,7 +46,6 @@ message ComposeServerStatNodeClusterBoardResponse {
 	repeated DailyTrafficStat dailyTrafficStats = 30;
 	repeated HourlyTrafficStat hourlyTrafficStats = 31;
 	repeated NodeStat topNodeStats = 32;
-	repeated DomainStat topDomainStats = 33;
 
 	repeated NodeValue cpuNodeValues = 34;
 	repeated NodeValue memoryNodeValues = 35;
@@ -77,15 +76,6 @@ message ComposeServerStatNodeClusterBoardResponse {
 	message NodeStat {
 		int64 nodeId = 1;
 		string nodeName = 2;
-		int64 countRequests = 3;
-		int64 bytes = 4;
-		int64 countAttackRequests = 6;
-		int64 attackBytes = 7;
-	}
-
-	message DomainStat {
-		int64 serverId = 1;
-		string domain = 2;
 		int64 countRequests = 3;
 		int64 bytes = 4;
 		int64 countAttackRequests = 6;
@@ -114,7 +104,6 @@ message ComposeServerStatNodeBoardResponse {
 
 	repeated DailyTrafficStat dailyTrafficStats = 31;
 	repeated HourlyTrafficStat hourlyTrafficStats = 32;
-	repeated DomainStat topDomainStats = 33;
 
 	repeated NodeValue cpuNodeValues = 34;
 	repeated NodeValue memoryNodeValues = 35;
@@ -142,15 +131,6 @@ message ComposeServerStatNodeBoardResponse {
 		int64 countAttackRequests = 6;
 		int64 attackBytes = 7;
 	}
-
-	message DomainStat {
-		int64 serverId = 1;
-		string domain = 2;
-		int64 countRequests = 3;
-		int64 bytes = 4;
-		int64 countAttackRequests = 6;
-		int64 attackBytes = 7;
-	}
 }
 
 // 组合服务看板数据
@@ -162,7 +142,6 @@ message ComposeServerStatBoardResponse {
 	repeated DailyTrafficStat dailyTrafficStats = 30;
 	repeated HourlyTrafficStat hourlyTrafficStats = 31;
 	repeated NodeStat topNodeStats = 32;
-	repeated DomainStat topDomainStats = 33;
 	repeated CountryStat topCountryStats = 35;
 
 	repeated MetricDataChart metricDataCharts = 34;
@@ -190,15 +169,6 @@ message ComposeServerStatBoardResponse {
 	message NodeStat {
 		int64 nodeId = 1;
 		string nodeName = 2;
-		int64 countRequests = 3;
-		int64 bytes = 4;
-		int64 countAttackRequests = 6;
-		int64 attackBytes = 7;
-	}
-
-	message DomainStat {
-		int64 serverId = 1;
-		string domain = 2;
 		int64 countRequests = 3;
 		int64 bytes = 4;
 		int64 countAttackRequests = 6;

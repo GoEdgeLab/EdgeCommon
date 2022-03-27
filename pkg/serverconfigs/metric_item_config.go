@@ -10,14 +10,15 @@ import (
 
 // MetricItemConfig 指标配置
 type MetricItemConfig struct {
-	Id         int64                `yaml:"id" json:"id"`
-	IsOn       bool                 `yaml:"isOn" json:"isOn"`
-	Category   MetricItemCategory   `yaml:"category" json:"category"`
-	Period     int                  `yaml:"period" json:"period"` // 单个周期
-	PeriodUnit MetricItemPeriodUnit `yaml:"periodUnit" json:"periodUnit"`
-	Keys       []string             `yaml:"keys" json:"keys"`
-	Value      string               `yaml:"value" json:"value"`
-	Version    int32                `yaml:"version" json:"version"`
+	Id            int64                `yaml:"id" json:"id"`
+	IsOn          bool                 `yaml:"isOn" json:"isOn"`
+	Category      MetricItemCategory   `yaml:"category" json:"category"`
+	Period        int                  `yaml:"period" json:"period"`         // 统计周期
+	PeriodUnit    MetricItemPeriodUnit `yaml:"periodUnit" json:"periodUnit"` // 统计周期单位
+	Keys          []string             `yaml:"keys" json:"keys"`
+	Value         string               `yaml:"value" json:"value"`
+	Version       int32                `yaml:"version" json:"version"`
+	ExpiresPeriod int                  `yaml:"expiresPeriod" json:"expiresPeriod"` // 过期周期
 
 	sumType                string    // 统计类型
 	baseTime               time.Time // 基准时间

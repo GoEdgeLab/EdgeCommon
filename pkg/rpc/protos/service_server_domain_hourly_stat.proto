@@ -1,0 +1,27 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/server_domain_hourly_stat.proto";
+
+// 服务域名按小时统计服务
+service ServerDomainHourlyStatService {
+	// 读取服务的域名排行
+	rpc listTopServerDomainStatsWithServerId(ListTopServerDomainStatsWithServerIdRequest) returns (ListTopServerDomainStatsWithServerIdResponse);
+}
+
+
+// 读取域名排行
+message ListTopServerDomainStatsWithServerIdRequest{
+	int64 nodeClusterId = 1;
+	int64 nodeId = 2;
+	int64 serverId = 3;
+	string hourFrom = 4;
+	string hourTo = 5;
+	int64 size = 6;
+}
+
+message ListTopServerDomainStatsWithServerIdResponse {
+	repeated ServerDomainHourlyStat  domainStats = 1;
+}
