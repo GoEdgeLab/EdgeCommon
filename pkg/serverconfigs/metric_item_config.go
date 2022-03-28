@@ -142,31 +142,31 @@ func (this *MetricItemConfig) ServerExpiresDay() string {
 	switch this.PeriodUnit {
 	case MetricItemPeriodUnitMonth:
 		if this.ExpiresPeriod > 0 {
-			return timeutil.Format("Ymd", time.Now().AddDate(0, -this.ExpiresPeriod, 0))
+			return timeutil.Format("Ymd", time.Now().AddDate(0, -(this.Period*this.ExpiresPeriod), 0))
 		} else {
 			return timeutil.Format("Ymd", time.Now().AddDate(0, -(this.Period*4), 0))
 		}
 	case MetricItemPeriodUnitWeek:
 		if this.ExpiresPeriod > 0 {
-			return timeutil.FormatTime("Ymd", time.Now().Unix()-86400*7*int64(this.ExpiresPeriod))
+			return timeutil.FormatTime("Ymd", time.Now().Unix()-86400*7*int64(this.Period*this.ExpiresPeriod))
 		} else {
 			return timeutil.FormatTime("Ymd", time.Now().Unix()-86400*7*int64(this.Period*5))
 		}
 	case MetricItemPeriodUnitDay:
 		if this.ExpiresPeriod > 0 {
-			return timeutil.FormatTime("Ymd", time.Now().Unix()-86400*int64(this.ExpiresPeriod))
+			return timeutil.FormatTime("Ymd", time.Now().Unix()-86400*int64(this.Period*this.ExpiresPeriod))
 		} else {
 			return timeutil.FormatTime("Ymd", time.Now().Unix()-86400*int64(this.Period*8))
 		}
 	case MetricItemPeriodUnitHour:
 		if this.ExpiresPeriod > 0 {
-			return timeutil.FormatTime("Ymd", time.Now().Unix()-3600*int64(this.ExpiresPeriod)-86400)
+			return timeutil.FormatTime("Ymd", time.Now().Unix()-3600*int64(this.Period*this.ExpiresPeriod)-86400)
 		} else {
 			return timeutil.FormatTime("Ymd", time.Now().Unix()-3600*int64(this.Period*25)-86400)
 		}
 	case MetricItemPeriodUnitMinute:
 		if this.ExpiresPeriod > 0 {
-			return timeutil.FormatTime("Ymd", time.Now().Unix()-60*int64(this.ExpiresPeriod)-86400)
+			return timeutil.FormatTime("Ymd", time.Now().Unix()-60*int64(this.Period*this.ExpiresPeriod)-86400)
 		} else {
 			return timeutil.FormatTime("Ymd", time.Now().Unix()-60*int64(this.Period*60)-86400)
 		}
