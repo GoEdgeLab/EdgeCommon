@@ -156,7 +156,7 @@ func (this *MetricItemConfig) ServerExpiresDay() string {
 		if this.ExpiresPeriod > 0 {
 			return timeutil.FormatTime("Ymd", time.Now().Unix()-86400*int64(this.ExpiresPeriod))
 		} else {
-			return timeutil.FormatTime("Ymd", time.Now().Unix()-86400*int64(this.Period*32))
+			return timeutil.FormatTime("Ymd", time.Now().Unix()-86400*int64(this.Period*8))
 		}
 	case MetricItemPeriodUnitHour:
 		if this.ExpiresPeriod > 0 {
