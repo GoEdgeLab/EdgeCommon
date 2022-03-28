@@ -13,6 +13,7 @@ message MetricItem {
 	repeated string keys = 6;
 	int32 period = 7;
 	string periodUnit = 8;
+	int32 expiresPeriod = 12;
 	string value = 10;
 	bool isPublic = 11;
 }

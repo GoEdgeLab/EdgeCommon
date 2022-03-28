@@ -35,6 +35,7 @@ message CreateMetricItemRequest {
 	repeated string keys = 4;
 	int32 period = 5;
 	string periodUnit = 6;
+	int32 expiresPeriod = 9;
 	string value = 7;
 	bool isPublic = 8;
 }
@@ -50,6 +51,7 @@ message UpdateMetricItemRequest {
 	repeated string keys = 3;
 	int32 period = 4;
 	string periodUnit = 5;
+	int32 expiresPeriod = 9;
 	string value = 6;
 	bool isOn = 7;
 	bool isPublic = 8;
