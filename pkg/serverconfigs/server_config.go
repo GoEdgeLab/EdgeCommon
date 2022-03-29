@@ -52,6 +52,9 @@ type ServerConfig struct {
 	// 分组
 	Group *ServerGroupConfig `yaml:"group" json:"group"`
 
+	// UAM
+	UAM *UAMConfig `yaml:"uam" json:"uam"`
+
 	isOk bool
 
 	planId int64
@@ -240,6 +243,14 @@ func (this *ServerConfig) Init() (results []error) {
 
 		if this.UserPlan.Plan != nil {
 			this.planId = this.UserPlan.Plan.Id
+		}
+	}
+
+	// UAM
+	if this.UAM != nil {
+		err := this.UAM.Init()
+		if err != nil {
+			results = append(results, err)
 		}
 	}
 

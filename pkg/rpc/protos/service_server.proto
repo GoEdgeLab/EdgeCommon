@@ -144,6 +144,12 @@ service ServerService {
 
 	// 获取服务配置
 	rpc composeServerConfig(ComposeServerConfigRequest) returns (ComposeServerConfigResponse);
+
+	// 修改服务UAM设置
+	rpc updateServerUAM(UpdateServerUAMRequest) returns (RPCSuccess);
+
+	// 查找服务UAM设置
+	rpc findEnabledServerUAM(FindEnabledServerUAMRequest) returns (FindEnabledServerUAMResponse);
 }
 
 // 创建服务
@@ -568,4 +574,19 @@ message ComposeServerConfigRequest {
 
 message ComposeServerConfigResponse {
 	bytes serverConfigJSON = 1;
+}
+
+// 修改服务UAM设置
+message UpdateServerUAMRequest {
+	int64 serverId = 1;
+	bytes uamJSON = 2;
+}
+
+// 查找服务UAM设置
+message FindEnabledServerUAMRequest {
+	int64 serverId = 1;
+}
+
+message FindEnabledServerUAMResponse {
+	bytes uamJSON = 1;
 }
