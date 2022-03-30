@@ -59,6 +59,7 @@ message CountAllEnabledDNSProvidersRequest {
 	int64 adminId = 1;
 	int64 userId = 2;
 	string keyword = 3;
+	string domain = 4;
 }
 
 // 列出单页的服务商信息
@@ -66,6 +67,7 @@ message ListEnabledDNSProvidersRequest {
 	int64 adminId = 1;
 	int64 userId = 2;
 	string keyword = 5;
+	string domain = 6;
 	int64 offset = 3;
 	int64 size = 4;
 }
