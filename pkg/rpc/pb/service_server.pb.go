@@ -3768,7 +3768,7 @@ func (x *ComposeServerConfigResponse) GetServerConfigJSON() []byte {
 	return nil
 }
 
-// 修复服务UAM设置
+// 修改服务UAM设置
 type UpdateServerUAMRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -6390,7 +6390,7 @@ type ServerServiceClient interface {
 	FindServerUserPlan(ctx context.Context, in *FindServerUserPlanRequest, opts ...grpc.CallOption) (*FindServerUserPlanResponse, error)
 	// 获取服务配置
 	ComposeServerConfig(ctx context.Context, in *ComposeServerConfigRequest, opts ...grpc.CallOption) (*ComposeServerConfigResponse, error)
-	// 修复服务UAM设置
+	// 修改服务UAM设置
 	UpdateServerUAM(ctx context.Context, in *UpdateServerUAMRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 查找服务UAM设置
 	FindEnabledServerUAM(ctx context.Context, in *FindEnabledServerUAMRequest, opts ...grpc.CallOption) (*FindEnabledServerUAMResponse, error)
@@ -6919,7 +6919,7 @@ type ServerServiceServer interface {
 	FindServerUserPlan(context.Context, *FindServerUserPlanRequest) (*FindServerUserPlanResponse, error)
 	// 获取服务配置
 	ComposeServerConfig(context.Context, *ComposeServerConfigRequest) (*ComposeServerConfigResponse, error)
-	// 修复服务UAM设置
+	// 修改服务UAM设置
 	UpdateServerUAM(context.Context, *UpdateServerUAMRequest) (*RPCSuccess, error)
 	// 查找服务UAM设置
 	FindEnabledServerUAM(context.Context, *FindEnabledServerUAMRequest) (*FindEnabledServerUAMResponse, error)

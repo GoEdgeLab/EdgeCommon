@@ -102,6 +102,7 @@ message CountIPItemsWithListIdRequest {
 	string keyword = 2;
 	string ipFrom = 3;
 	string ipTo = 4;
+	string eventLevel = 5;
 }
 
 // 列出单页的IP
@@ -110,6 +111,7 @@ message ListIPItemsWithListIdRequest {
 	string keyword = 4;
 	string ipFrom = 5;
 	string ipTo = 6;
+	string eventLevel = 7;
 	int64 offset = 2;
 	int64 size = 3;
 }
@@ -165,6 +167,7 @@ message CountAllEnabledIPItemsRequest {
 	string ip = 1;
 	bool globalOnly = 2;
 	bool unread = 3;
+	string eventLevel = 4;
 }
 
 // 列出所有名单中的IP
@@ -172,6 +175,7 @@ message ListAllEnabledIPItemsRequest {
 	string ip = 1;
 	bool globalOnly = 2;
 	bool unread = 5;
+	string eventLevel = 6;
 	int64 offset = 3;
 	int64 size = 4;
 }
