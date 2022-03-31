@@ -13,6 +13,8 @@ const (
 	UserFeatureCodePlan                UserFeatureCode = "plan"
 	UserFeatureCodeScript              UserFeatureCode = "script"
 	UserFeatureCodeServerWAF           UserFeatureCode = "server.waf"
+	UserFeatureCodeServerUAM           UserFeatureCode = "server.uam"
+	UserFeatureCodeServerWebP          UserFeatureCode = "server.webp"
 	UserFeatureCodeFinance             UserFeatureCode = "finance"
 )
 
@@ -71,6 +73,21 @@ func FindAllUserFeatures() []*UserFeature {
 			Description: "用户可以开启WAF功能并可以设置黑白名单等",
 		},
 		{
+			Name:        "边缘脚本",
+			Code:        UserFeatureCodeScript,
+			Description: "用户可以在使用边缘脚本过滤请求",
+		},
+		{
+			Name:        "5秒盾",
+			Code:        UserFeatureCodeServerUAM,
+			Description: "用户可以使用5秒盾全站防护功能",
+		},
+		{
+			Name:        "WebP",
+			Code:        UserFeatureCodeServerWebP,
+			Description: "用户可以开启WebP自动转换功能",
+		},
+		{
 			Name:        "费用账单",
 			Code:        UserFeatureCodeFinance,
 			Description: "开启费用账单相关功能",
@@ -79,11 +96,6 @@ func FindAllUserFeatures() []*UserFeature {
 			Name:        "套餐",
 			Code:        UserFeatureCodePlan,
 			Description: "用户可以购买和管理套餐",
-		},
-		{
-			Name:        "边缘脚本",
-			Code:        UserFeatureCodeScript,
-			Description: "用户可以在使用边缘脚本过滤请求",
 		},
 	}
 }
