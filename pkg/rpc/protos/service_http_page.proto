@@ -26,12 +26,12 @@ message CreateHTTPPageRequest {
 }
 
 message CreateHTTPPageResponse {
-	int64 pageId = 1;
+	int64 httpPageId = 1;
 }
 
 // 修改Page
 message UpdateHTTPPageRequest {
-	int64 pageId = 1;
+	int64 httpPageId = 1;
 	repeated string statusList = 2;
 	string bodyType = 6;
 	string url = 3;
@@ -41,7 +41,7 @@ message UpdateHTTPPageRequest {
 
 // 查找单个Page配置
 message FindEnabledHTTPPageConfigRequest {
-	int64 pageId = 1;
+	int64 httpPageId = 1;
 }
 
 message FindEnabledHTTPPageConfigResponse {
