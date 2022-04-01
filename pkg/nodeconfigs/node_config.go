@@ -68,6 +68,9 @@ type NodeConfig struct {
 	// 脚本
 	CommonScripts []*serverconfigs.CommonScript `yaml:"commonScripts" json:"commonScripts"`
 
+	// WebP
+	WebPImagePolicies map[int64]*WebPImagePolicy `yaml:"webpImagePolicies" json:"webpImagePolicies"`
+
 	paddedId string
 
 	// firewall
@@ -284,6 +287,16 @@ func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 		this.allowedIPMap[allowIP] = true
 	}
 
+	// webp image policy
+	if this.WebPImagePolicies != nil {
+		for _, policy := range this.WebPImagePolicies {
+			err = policy.Init()
+			if err != nil {
+				return
+			}
+		}
+	}
+
 	return
 }
 
@@ -451,4 +464,12 @@ func (this *NodeConfig) UpdateCertOCSP(certId int64, ocsp []byte, expiresAt int6
 			server.TLS.SSLPolicy.UpdateCertOCSP(certId, ocsp, expiresAt)
 		}
 	}
+}
+
+// FindWebPImagePolicyWithClusterId 使用集群ID查找WebP策略
+func (this *NodeConfig) FindWebPImagePolicyWithClusterId(clusterId int64) *WebPImagePolicy {
+	if this.WebPImagePolicies == nil {
+		return nil
+	}
+	return this.WebPImagePolicies[clusterId]
 }

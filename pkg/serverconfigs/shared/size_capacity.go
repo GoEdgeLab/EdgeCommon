@@ -21,6 +21,13 @@ type SizeCapacity struct {
 	Unit  SizeCapacityUnit `json:"unit" yaml:"unit"`
 }
 
+func NewSizeCapacity(count int64, unit SizeCapacityUnit) *SizeCapacity {
+	return &SizeCapacity{
+		Count: count,
+		Unit:  unit,
+	}
+}
+
 func (this *SizeCapacity) Bytes() int64 {
 	if this.Count < 0 {
 		return -1

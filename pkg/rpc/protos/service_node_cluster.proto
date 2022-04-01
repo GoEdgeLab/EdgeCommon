@@ -115,6 +115,12 @@ service NodeClusterService {
 
 	// 设置集群是否置顶
 	rpc updateNodeClusterPinned(UpdateNodeClusterPinnedRequest) returns (RPCSuccess);
+
+	// 读取集群WebP策略
+	rpc findEnabledNodeClusterWebPPolicy(FindEnabledNodeClusterWebPPolicyRequest) returns (FindEnabledNodeClusterWebPPolicyResponse);
+
+	// 设置集群WebP策略
+	rpc updateNodeClusterWebPPolicy(UpdateNodeClusterWebPPolicyRequest) returns (RPCSuccess);
 }
 
 // 获取所有集群的信息
@@ -421,10 +427,26 @@ message FindEnabledNodeClusterConfigInfoResponse {
 	bool hasMessageReceivers = 4;
 	bool isTOAEnabled = 5;
 	bool hasMetricItems = 6;
+	bool webpIsOn = 7;
 }
 
 // 设置集群是否置顶
 message UpdateNodeClusterPinnedRequest {
 	int64 nodeClusterId = 1;
 	bool isPinned = 2;
+}
+
+// 读取集群WebP策略
+message FindEnabledNodeClusterWebPPolicyRequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindEnabledNodeClusterWebPPolicyResponse {
+	bytes webpPolicyJSON = 1;
+}
+
+// 设置集群WebP策略
+message UpdateNodeClusterWebPPolicyRequest {
+	int64 nodeClusterId = 1;
+	bytes webpPolicyJSON = 2;
 }
