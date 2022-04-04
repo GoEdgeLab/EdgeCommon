@@ -1,6 +1,7 @@
 package nodeconfigs
 
 import (
+	"crypto/sha256"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -35,6 +36,7 @@ type NodeConfig struct {
 	SupportCNAME bool                          `yaml:"supportCNAME" json:"supportCNAME"`
 	Version      int64                         `yaml:"version" json:"version"`
 	Name         string                        `yaml:"name" json:"name"`
+	GroupId      int64                         `yaml:"groupId" json:"groupId"`
 	RegionId     int64                         `yaml:"regionId" json:"regionId"`
 	OCSPVersion  int64                         `yaml:"ocspVersion" json:"ocspVersion"`
 
@@ -45,6 +47,10 @@ type NodeConfig struct {
 	MaxCacheMemoryCapacity *shared.SizeCapacity `yaml:"maxCacheMemoryCapacity" json:"maxCacheMemoryCapacity"` // 内容缓存容量
 	MaxThreads             int                  `yaml:"maxThreads" json:"maxThreads"`
 	TCPMaxConnections      int                  `yaml:"tcpMaxConnections" json:"tcpMaxConnections"`
+
+	// 级别
+	Level       int32                         `yaml:"level" json:"level"`
+	ParentNodes map[int64][]*ParentNodeConfig `yaml:"parentNodes" json:"parentNodes"` // clusterId => []*ParentNodeConfig
 
 	// 全局配置
 	GlobalConfig  *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置
@@ -69,7 +75,7 @@ type NodeConfig struct {
 	CommonScripts []*serverconfigs.CommonScript `yaml:"commonScripts" json:"commonScripts"`
 
 	// WebP
-	WebPImagePolicies map[int64]*WebPImagePolicy `yaml:"webpImagePolicies" json:"webpImagePolicies"`
+	WebPImagePolicies map[int64]*WebPImagePolicy `yaml:"webpImagePolicies" json:"webpImagePolicies"` // clusterId => *WebPImagePolicy
 
 	paddedId string
 
@@ -87,6 +93,8 @@ type NodeConfig struct {
 
 	// syn flood
 	synFlood *firewallconfigs.SYNFloodConfig
+
+	secretHash string
 }
 
 // SharedNodeConfig 取得当前节点配置单例
@@ -149,6 +157,7 @@ func CloneNodeConfig(nodeConfig *NodeConfig) (*NodeConfig, error) {
 
 // Init 初始化
 func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
+	this.secretHash = fmt.Sprintf("%x", sha256.Sum256([]byte(this.NodeId+"@"+this.Secret)))
 	this.paddedId = fmt.Sprintf("%08d", this.Id)
 
 	// servers
@@ -472,4 +481,9 @@ func (this *NodeConfig) FindWebPImagePolicyWithClusterId(clusterId int64) *WebPI
 		return nil
 	}
 	return this.WebPImagePolicies[clusterId]
+}
+
+// SecretHash 对Id和Secret的Hash计算
+func (this *NodeConfig) SecretHash() string {
+	return this.secretHash
 }

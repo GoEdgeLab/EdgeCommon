@@ -130,6 +130,9 @@ service NodeService {
 
 	// 修改节点缓存设置
 	rpc updateNodeCache(UpdateNodeCacheRequest) returns (RPCSuccess);
+
+	// 读取节点级别信息
+	rpc findNodeLevelInfo(FindNodeLevelInfoRequest) returns (FindNodeLevelInfoResponse);
 }
 
 // 创建节点
@@ -173,6 +176,7 @@ message ListEnabledNodesMatchRequest {
 	string keyword = 6;
 	int64 nodeGroupId = 7;
 	int64 nodeRegionId = 8;
+	int32 level = 9;
 
 	bool cpuAsc = 20;
 	bool cpuDesc = 21;
@@ -217,6 +221,7 @@ message UpdateNodeRequest {
 	bool isOn = 6;
 	int64 nodeGroupId = 7;
 	int64 nodeRegionId = 10;
+	int32 level = 14;
 }
 
 // 获取单个节点信息
@@ -277,6 +282,7 @@ message CountAllEnabledNodesMatchRequest {
 	string keyword = 4;
 	int64 nodeGroupId = 5;
 	int64 nodeRegionId = 6;
+	int32 level = 7;
 }
 
 // 修改节点安装状态
@@ -494,4 +500,13 @@ message UpdateNodeCacheRequest {
 	SizeCapacity maxCacheDiskCapacity = 2;
 	SizeCapacity maxCacheMemoryCapacity = 3;
 	string cacheDiskDir = 4;
+}
+
+// 读取节点级别信息
+message FindNodeLevelInfoRequest {
+}
+
+message FindNodeLevelInfoResponse {
+	int32 level = 1;
+	bytes parentNodesMapJSON = 2;
 }

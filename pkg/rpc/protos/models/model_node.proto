@@ -32,6 +32,7 @@ message Node {
 	SizeCapacity maxCacheDiskCapacity = 17;
 	SizeCapacity maxCacheMemoryCapacity = 18;
 	string cacheDiskDir = 19;
+	int32 level = 20;
 
 	NodeCluster nodeCluster = 32; // 主集群
 	NodeLogin nodeLogin = 33;
@@ -47,6 +48,7 @@ message BasicNode {
 	string name = 2;
 	bool isOn = 3;
 	bool isUp = 4;
+	int32 level = 5;
 
 	NodeCluster nodeCluster = 30; // 主集群
 }
