@@ -53,6 +53,8 @@ func BenchmarkParseVariables(b *testing.B) {
 		return "Lu"
 	})
 
+	b.ResetTimer()
+
 	for i := 0; i < b.N; i++ {
 		_ = ParseVariables("hello, ${name}, ${age}, ${gender}, ${home}, world", func(s string) string {
 			return "Lu"
@@ -91,6 +93,14 @@ func BenchmarkParseVariablesUnique_Single(b *testing.B) {
 func BenchmarkParseNoVariables(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		_ = ParseVariables("hello, world", func(s string) string {
+			return "Lu"
+		})
+	}
+}
+
+func BenchmarkParseEmpty(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = ParseVariables("", func(s string) string {
 			return "Lu"
 		})
 	}

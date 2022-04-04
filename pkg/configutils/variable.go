@@ -16,6 +16,10 @@ var regexpNamedVariable = regexp.MustCompile(`\${[\w.-]+}`)
 
 // ParseVariables 分析变量
 func ParseVariables(source string, replacer func(varName string) (value string)) string {
+	if len(source) == 0 {
+		return ""
+	}
+
 	variableLocker.RLock()
 	holders, found := variableMapping[source]
 	variableLocker.RUnlock()
@@ -42,16 +46,16 @@ func ParseVariables(source string, replacer func(varName string) (value string))
 	}
 
 	// 多个占位时，使用Builder
-	result := strings.Builder{}
+	var builder = strings.Builder{}
 	for _, h := range holders {
 		holder, ok := h.(VariableHolder)
 		if ok {
-			result.WriteString(replacer(string(holder)))
+			builder.WriteString(replacer(string(holder)))
 		} else {
-			result.Write(h.([]byte))
+			builder.Write(h.([]byte))
 		}
 	}
-	return result.String()
+	return builder.String()
 }
 
 // ParseVariablesFromHolders 从占位中分析变量
@@ -92,5 +96,8 @@ func ParseHolders(source string) (holders VariableHolders) {
 
 // HasVariables 判断是否有变量
 func HasVariables(source string) bool {
+	if len(source) == 0 {
+		return false
+	}
 	return regexpNamedVariable.MatchString(source)
 }
