@@ -14,6 +14,12 @@ var variableMapping = map[string][]interface{}{} // source => [holder1, ...]
 var variableLocker = sync.RWMutex{}
 var regexpNamedVariable = regexp.MustCompile(`\${[\w.-]+}`)
 
+var stringBuilderPool = sync.Pool{
+	New: func() interface{} {
+		return &strings.Builder{}
+	},
+}
+
 // ParseVariables 分析变量
 func ParseVariables(source string, replacer func(varName string) (value string)) string {
 	if len(source) == 0 {
@@ -46,7 +52,9 @@ func ParseVariables(source string, replacer func(varName string) (value string))
 	}
 
 	// 多个占位时，使用Builder
-	var builder = strings.Builder{}
+	var builder = stringBuilderPool.Get().(*strings.Builder)
+	builder.Reset()
+	defer stringBuilderPool.Put(builder)
 	for _, h := range holders {
 		holder, ok := h.(VariableHolder)
 		if ok {
