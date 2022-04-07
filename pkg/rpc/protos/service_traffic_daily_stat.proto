@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_traffic_daily_stat.proto";
+
+// 按日统计服务
+service TrafficDailyStatService {
+	// 查找某日统计
+	rpc findTrafficDailyStatWithDay(FindTrafficDailyStatWithDayRequest) returns (FindTrafficDailyStatWithDayResponse);
+}
+
+// 查找某日统计
+message FindTrafficDailyStatWithDayRequest {
+	string day = 1; // YYYYMMDD
+}
+
+message FindTrafficDailyStatWithDayResponse {
+	TrafficDailyStat trafficDailyStat = 1;
+}
