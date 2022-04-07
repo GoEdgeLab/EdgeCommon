@@ -13,6 +13,9 @@ service NodeValueService {
 
 	// 读取数据
 	rpc listNodeValues (ListNodeValuesRequest) returns (ListNodeValuesResponse);
+
+	// 读取所有节点的最新数据
+	rpc sumAllNodeValueStats(SumAllNodeValueStatsRequest) returns (SumAllNodeValueStatsResponse);
 }
 
 // 记录数据
@@ -33,4 +36,22 @@ message ListNodeValuesRequest {
 
 message ListNodeValuesResponse {
 	repeated NodeValue nodeValues = 1;
+}
+
+// 读取所有节点的最新数据
+message SumAllNodeValueStatsRequest {
+
+}
+
+message SumAllNodeValueStatsResponse {
+	int64 totalTrafficBytesPerSecond = 1;
+	float avgCPUUsage = 2;
+	float maxCPUUsage = 3;
+	int32 totalCPUCores = 4;
+	float avgMemoryUsage = 5;
+	float maxMemoryUsage = 6;
+	int64 totalMemoryBytes = 7;
+	float avgLoad1min = 8;
+	float maxLoad1min = 9;
+	float avgLoad5min = 10;
 }

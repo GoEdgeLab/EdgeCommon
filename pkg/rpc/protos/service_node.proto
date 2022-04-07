@@ -186,6 +186,8 @@ message ListEnabledNodesMatchRequest {
 	bool trafficInDesc = 25;
 	bool trafficOutAsc = 26;
 	bool trafficOutDesc = 27;
+	bool loadAsc = 28;
+	bool loadDesc = 29;
 }
 
 message ListEnabledNodesMatchResponse {
