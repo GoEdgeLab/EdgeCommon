@@ -14,6 +14,7 @@ service TrafficDailyStatService {
 // 查找某日统计
 message FindTrafficDailyStatWithDayRequest {
 	string day = 1; // YYYYMMDD
+	string minute = 2; // HHIISS，可选项
 }
 
 message FindTrafficDailyStatWithDayResponse {
