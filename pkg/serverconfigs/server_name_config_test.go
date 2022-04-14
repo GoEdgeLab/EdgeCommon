@@ -26,9 +26,18 @@ func TestPlainServerNames(t *testing.T) {
 			Name:     "world.com",
 			SubNames: nil,
 		},
+		// duplicate
+		{
+			Name:     "world.com",
+			SubNames: nil,
+		},
 		{
 			Name:     "",
 			SubNames: []string{"WoRld.com", "XYZ.com"},
+		},
+		{
+			Name:     "*.world.com",
+			SubNames: nil,
 		},
 	}
 	logs.PrintAsJSON(PlainServerNames(serverNames), t)
