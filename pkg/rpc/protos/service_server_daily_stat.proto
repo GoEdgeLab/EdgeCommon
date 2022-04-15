@@ -19,6 +19,9 @@ service ServerDailyStatService {
 
 	// 按日读取统计数据
 	rpc findLatestServerDailyStats (FindLatestServerDailyStatsRequest) returns (FindLatestServerDailyStatsResponse);
+
+	// 查找单个服务当前统计数据
+	rpc sumCurrentServerDailyStats(SumCurrentServerDailyStatsRequest) returns (SumCurrentServerDailyStatsResponse);
 }
 
 // 上传统计
@@ -91,4 +94,13 @@ message FindLatestServerDailyStatsResponse {
 		int64 countRequests = 4;
 		int64 countCachedRequests = 5;
 	}
+}
+
+// 查找单个服务当前统计数据
+message SumCurrentServerDailyStatsRequest {
+	int64 serverId = 1;
+}
+
+message SumCurrentServerDailyStatsResponse {
+	ServerDailyStat serverDailyStat = 1;
 }

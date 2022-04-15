@@ -296,6 +296,8 @@ message ListEnabledServersMatchRequest {
 	int64 nodeClusterId = 6;
 	int32 auditingFlag = 7;
 	string protocolFamily = 8;
+	bool trafficOutAsc = 9;
+	bool trafficOutDesc = 10;
 }
 
 message ListEnabledServersMatchResponse {

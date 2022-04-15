@@ -7,6 +7,7 @@ import "models/model_node_cluster.proto";
 import "models/model_server_group.proto";
 import "models/model_user.proto";
 import "models/model_server_name_auditing_result.proto";
+import "models/model_server_daily_stat.proto";
 
 message Server {
 	int64 id = 1;
@@ -41,5 +42,5 @@ message Server {
 	NodeCluster nodeCluster = 30;
 	repeated ServerGroup serverGroups = 31;
 	User user = 32;
-
+	ServerDailyStat latestServerDailyStat = 33;
 }

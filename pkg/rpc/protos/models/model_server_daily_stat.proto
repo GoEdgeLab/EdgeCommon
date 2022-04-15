@@ -16,4 +16,8 @@ message ServerDailyStat {
 	int64 attackBytes = 9;
 	bool checkTrafficLimiting = 10;
 	int64 planId = 11;
+	string day = 12;
+	string hour = 13;
+	string timeFrom = 14;
+	string timeTo = 15;
 }
