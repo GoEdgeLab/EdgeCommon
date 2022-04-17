@@ -15,6 +15,9 @@ service HTTPAccessLogService {
 
 	// 查找单个日志
 	rpc findHTTPAccessLog (FindHTTPAccessLogRequest) returns (FindHTTPAccessLogResponse);
+
+	// 查找日志分区
+	rpc findHTTPAccessLogPartitions(FindHTTPAccessLogPartitionsRequest) returns (FindHTTPAccessLogPartitionsResponse);
 }
 
 // 创建访问日志
@@ -46,6 +49,7 @@ message ListHTTPAccessLogsRequest {
 	string domain = 14;
 	int64 nodeClusterId = 15;
 	int64 nodeId = 16;
+	int32 partition = 19; // 分区
 }
 
 message ListHTTPAccessLogsResponse {
@@ -63,3 +67,14 @@ message FindHTTPAccessLogRequest {
 message FindHTTPAccessLogResponse {
 	HTTPAccessLog httpAccessLog = 1;
 }
+
+// 查找日志分区
+message FindHTTPAccessLogPartitionsRequest {
+	string day = 1; // YYYYMMDD
+}
+
+message FindHTTPAccessLogPartitionsResponse {
+	repeated int32  partitions = 1;
+	repeated int32 reversePartitions = 2;
+}
+
