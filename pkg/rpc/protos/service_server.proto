@@ -188,6 +188,7 @@ message UpdateServerBasicRequest {
 	string name = 2;
 	string description = 3;
 	int64 nodeClusterId = 4;
+	bool keepOldConfigs = 7; // 是否在老节点上保留一段时间配置
 	bool isOn = 5;
 	repeated int64 serverGroupIds = 6;
 }
