@@ -98,6 +98,7 @@ message UpdateHTTPFirewallPolicyRequest {
 	string mode = 7;
 	bool useLocalFirewall = 8;
 	bytes synFloodJSON = 9;
+	bytes LogJSON = 10;
 }
 
 // 修改分组信息
