@@ -168,6 +168,7 @@ message CountAllEnabledIPItemsRequest {
 	bool globalOnly = 2;
 	bool unread = 3;
 	string eventLevel = 4;
+	string listType = 5;
 }
 
 // 列出所有名单中的IP
@@ -176,6 +177,7 @@ message ListAllEnabledIPItemsRequest {
 	bool globalOnly = 2;
 	bool unread = 5;
 	string eventLevel = 6;
+	string listType = 7;
 	int64 offset = 3;
 	int64 size = 4;
 }
