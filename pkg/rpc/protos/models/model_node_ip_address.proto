@@ -17,4 +17,5 @@ message NodeIPAddress {
 	bool isUp = 10;
 	string role = 12;
 	string backupIP = 13;
+	bool isHealthy = 14;
 }
