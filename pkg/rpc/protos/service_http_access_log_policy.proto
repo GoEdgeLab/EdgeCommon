@@ -52,6 +52,7 @@ message CreateHTTPAccessLogPolicyRequest {
 	bytes optionsJSON = 3;
 	bytes condsJSON = 4;
 	bool isPublic = 5;
+	bool firewallOnly = 6;
 }
 
 message CreateHTTPAccessLogPolicyResponse {
@@ -66,6 +67,7 @@ message UpdateHTTPAccessLogPolicyRequest {
 	bytes optionsJSON = 4;
 	bytes condsJSON = 5;
 	bool isPublic = 6;
+	bool firewallOnly = 7;
 }
 
 // 查找单个访问日志策略

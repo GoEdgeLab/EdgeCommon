@@ -11,4 +11,5 @@ message HTTPAccessLogPolicy {
 	bytes optionsJSON = 5;
 	bytes condsJSON = 6;
 	bool isPublic = 7;
+	bool firewallOnly = 8;
 }
