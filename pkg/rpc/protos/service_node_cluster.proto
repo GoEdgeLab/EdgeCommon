@@ -428,6 +428,7 @@ message FindEnabledNodeClusterConfigInfoResponse {
 	bool isTOAEnabled = 5;
 	bool hasMetricItems = 6;
 	bool webpIsOn = 7;
+	bool hasSystemServices = 8;
 }
 
 // 设置集群是否置顶
