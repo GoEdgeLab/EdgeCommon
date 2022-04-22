@@ -31,7 +31,7 @@ type NodeStatus struct {
 	CacheTotalDiskSize   int64 `json:"cacheTotalDiskSize"`
 	CacheTotalMemorySize int64 `json:"cacheTotalMemorySize"`
 
-	HasLocalFirewall bool `json:"hasLocalFirewall"`
+	LocalFirewallName string `json:"localFirewallName"`
 
 	IsActive bool   `json:"isActive"`
 	Error    string `json:"error"`
