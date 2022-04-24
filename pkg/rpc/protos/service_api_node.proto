@@ -72,6 +72,7 @@ message UpdateAPINodeRequest {
 	bool restIsOn = 8;
 	bytes restHTTPJSON = 9;
 	bytes restHTTPSJSON = 10;
+	bool isPrimary = 11;
 }
 
 // 删除API节点

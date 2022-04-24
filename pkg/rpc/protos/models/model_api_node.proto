@@ -19,6 +19,7 @@ message APINode {
 	bytes accessAddrsJSON = 10;
 	repeated string accessAddrs = 11;
 	bytes statusJSON = 12;
+	bool isPrimary = 16;
 
 	bool debug = 30;
 }
