@@ -75,8 +75,13 @@ func (this *WebPImageConfig) MatchResponse(mimeType string, contentLength int64,
 		}
 	}
 
+	// no content
+	if contentLength == 0 {
+		return false
+	}
+
 	// min length
-	if this.minLength > 0 && contentLength < this.minLength {
+	if this.minLength > 0 && contentLength >= 0 && contentLength < this.minLength {
 		return false
 	}
 
