@@ -93,6 +93,12 @@ service HTTPWebService {
 
 	// 查找请求脚本
 	rpc findHTTPWebRequestScripts(FindHTTPWebRequestScriptsRequest) returns (FindHTTPWebRequestScriptsResponse);
+
+	// 修改UAM设置
+	rpc updateHTTPWebUAM(UpdateHTTPWebUAMRequest) returns (RPCSuccess);
+
+	// 查找UAM设置
+	rpc findHTTPWebUAM(FindHTTPWebUAMRequest) returns (FindHTTPWebUAMResponse);
 }
 
 // 创建Web配置
@@ -285,4 +291,19 @@ message FindHTTPWebRequestScriptsRequest {
 
 message FindHTTPWebRequestScriptsResponse {
 	bytes requestScriptsJSON = 1;
+}
+
+// 修改服务UAM设置
+message UpdateHTTPWebUAMRequest {
+	int64 httpWebId = 1;
+	bytes uamJSON = 2;
+}
+
+// 查找服务UAM设置
+message FindHTTPWebUAMRequest {
+	int64 httpWebId = 1;
+}
+
+message FindHTTPWebUAMResponse {
+	bytes uamJSON = 1;
 }

@@ -3,7 +3,8 @@
 package serverconfigs
 
 type UAMConfig struct {
-	IsOn bool `yaml:"isOn" json:"isOn"`
+	IsPrior bool `yaml:"isPrior" json:"isPrior"`
+	IsOn    bool `yaml:"isOn" json:"isOn"`
 }
 
 func (this *UAMConfig) Init() error {

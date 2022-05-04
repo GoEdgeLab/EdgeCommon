@@ -46,6 +46,9 @@ type HTTPWebConfig struct {
 
 	RequestLimit   *HTTPRequestLimitConfig   `yaml:"requestLimit" json:"requestLimit"`     // 并发请求限制
 	RequestScripts *HTTPRequestScriptsConfig `yaml:"requestScripts" json:"requestScripts"` // HTTP请求相关脚本
+
+	// UAM
+	UAM *UAMConfig `yaml:"uam" json:"uam"`
 }
 
 func (this *HTTPWebConfig) Init() error {
@@ -266,6 +269,14 @@ func (this *HTTPWebConfig) Init() error {
 	// request script
 	if this.RequestScripts != nil {
 		err := this.RequestScripts.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// uam
+	if this.UAM != nil {
+		err := this.UAM.Init()
 		if err != nil {
 			return err
 		}
