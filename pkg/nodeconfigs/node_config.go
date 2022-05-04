@@ -77,6 +77,9 @@ type NodeConfig struct {
 	// WebP
 	WebPImagePolicies map[int64]*WebPImagePolicy `yaml:"webpImagePolicies" json:"webpImagePolicies"` // clusterId => *WebPImagePolicy
 
+	// DNS
+	DNSResolver *DNSResolverConfig `yaml:"dnsResolver" json:"dnsResolver"`
+
 	paddedId string
 
 	// firewall
@@ -303,6 +306,14 @@ func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 			if err != nil {
 				return
 			}
+		}
+	}
+
+	// dns resolver
+	if this.DNSResolver != nil {
+		err = this.DNSResolver.Init()
+		if err != nil {
+			return
 		}
 	}
 

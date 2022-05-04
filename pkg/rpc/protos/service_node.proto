@@ -133,6 +133,12 @@ service NodeService {
 
 	// 读取节点级别信息
 	rpc findNodeLevelInfo(FindNodeLevelInfoRequest) returns (FindNodeLevelInfoResponse);
+
+	// 读取节点DNS Resolver
+	rpc findNodeDNSResolver(FindNodeDNSResolverRequest) returns (FindNodeDNSResolverResponse);
+
+	// 修改DNS Resolver
+	rpc updateNodeDNSResolver(UpdateNodeDNSResolverRequest) returns (RPCSuccess);
 }
 
 // 创建节点
@@ -511,4 +517,19 @@ message FindNodeLevelInfoRequest {
 message FindNodeLevelInfoResponse {
 	int32 level = 1;
 	bytes parentNodesMapJSON = 2;
+}
+
+// 读取节点DNS Resolver
+message FindNodeDNSResolverRequest{
+	int64 nodeId = 1;
+}
+
+message FindNodeDNSResolverResponse {
+	bytes dnsResolverJSON = 1;
+}
+
+// 修改DNS Resolver
+message UpdateNodeDNSResolverRequest {
+	int64 nodeId = 1;
+	bytes dnsResolverJSON = 2;
 }
