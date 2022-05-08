@@ -279,7 +279,7 @@ message RegenerateServerCNAMERequest {
 
 // 计算服务数量
 message CountAllEnabledServersMatchRequest {
-	int64 serverGroupId = 1;
+	int64 serverGroupId = 1; // 服务分组ID，如果为-1表示查找未分组
 	string keyword = 2;
 	int64 userId = 3;
 	int64 nodeClusterId = 4;
@@ -291,7 +291,7 @@ message CountAllEnabledServersMatchRequest {
 message ListEnabledServersMatchRequest {
 	int64 offset = 1;
 	int64 size = 2;
-	int64 serverGroupId = 3;
+	int64 serverGroupId = 3;  // 服务分组ID，如果为-1表示查找未分组
 	string keyword = 4;
 	int64 userId = 5;
 	int64 nodeClusterId = 6;
