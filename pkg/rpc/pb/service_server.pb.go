@@ -1212,7 +1212,7 @@ type CountAllEnabledServersMatchRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerGroupId  int64  `protobuf:"varint,1,opt,name=serverGroupId,proto3" json:"serverGroupId,omitempty"`
+	ServerGroupId  int64  `protobuf:"varint,1,opt,name=serverGroupId,proto3" json:"serverGroupId,omitempty"` // 服务分组ID，如果为-1表示查找未分组
 	Keyword        string `protobuf:"bytes,2,opt,name=keyword,proto3" json:"keyword,omitempty"`
 	UserId         int64  `protobuf:"varint,3,opt,name=userId,proto3" json:"userId,omitempty"`
 	NodeClusterId  int64  `protobuf:"varint,4,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"`
@@ -1302,7 +1302,7 @@ type ListEnabledServersMatchRequest struct {
 
 	Offset         int64  `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
 	Size           int64  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
-	ServerGroupId  int64  `protobuf:"varint,3,opt,name=serverGroupId,proto3" json:"serverGroupId,omitempty"`
+	ServerGroupId  int64  `protobuf:"varint,3,opt,name=serverGroupId,proto3" json:"serverGroupId,omitempty"` // 服务分组ID，如果为-1表示查找未分组
 	Keyword        string `protobuf:"bytes,4,opt,name=keyword,proto3" json:"keyword,omitempty"`
 	UserId         int64  `protobuf:"varint,5,opt,name=userId,proto3" json:"userId,omitempty"`
 	NodeClusterId  int64  `protobuf:"varint,6,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"`

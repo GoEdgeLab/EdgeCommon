@@ -87,8 +87,13 @@ message UpdateIPItemRequest {
 }
 
 // 删除IP
+// 可以使用 ipItemId 删除，也可以使用 ipFrom+ipTo+ipListId 删除，如果只是单个IP，则不需要指定ipTo
 message DeleteIPItemRequest {
 	int64 ipItemId = 1; // IP条目的ID
+
+	string ipFrom = 2; // v0.4.8新增，开始IP，和ipItemId二选一
+	string ipTo = 3; // v0.4.8新增，结束IP，和ipItemId二选一
+	int64 ipListId = 4; // v0.4.8新增，IP列表，IP所在的IP列表，如果不指定，则会删除所有IP列表中的相关IP信息
 }
 
 // 批量删除IP
