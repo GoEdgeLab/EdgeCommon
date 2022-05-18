@@ -11,6 +11,7 @@ const (
 	MessageCodeCleanCache          MessageCode = "cleanCache"          // 清理缓存
 	MessageCodePreheatCache        MessageCode = "preheatCache"        // 预热缓存
 	MessageCodeCheckSystemdService MessageCode = "checkSystemdService" // 检查Systemd服务
+	MessageCodeCheckLocalFirewall  MessageCode = "checkLocalFirewall"  // 检查本地防火墙
 	MessageCodeNewNodeTask         MessageCode = "newNodeTask"         // 有新的节点任务产生
 	MessageCodeChangeAPINode       MessageCode = "changeAPINode"       // 改变新的API节点
 )
@@ -67,6 +68,11 @@ type PreheatCacheMessage struct {
 
 // CheckSystemdServiceMessage Systemd服务
 type CheckSystemdServiceMessage struct {
+}
+
+// CheckLocalFirewallMessage 检查本地防火墙
+type CheckLocalFirewallMessage struct {
+	Name string `json:"name"`
 }
 
 // NewNodeTaskMessage 有新的节点任务

@@ -28,6 +28,12 @@ func NewSizeCapacity(count int64, unit SizeCapacityUnit) *SizeCapacity {
 	}
 }
 
+func DecodeSizeCapacityJSON(sizeCapacityJSON []byte) (*SizeCapacity, error) {
+	var capacity = &SizeCapacity{}
+	err := json.Unmarshal(sizeCapacityJSON, capacity)
+	return capacity, err
+}
+
 func (this *SizeCapacity) Bytes() int64 {
 	if this.Count < 0 {
 		return -1

@@ -139,6 +139,15 @@ service NodeService {
 
 	// 修改DNS Resolver
 	rpc updateNodeDNSResolver(UpdateNodeDNSResolverRequest) returns (RPCSuccess);
+
+	// 获取节点的DDoS设置
+	rpc findNodeDDoSProtection(FindNodeDDoSProtectionRequest) returns (FindNodeDDoSProtectionResponse);
+
+	// 修改节点的DDoS设置
+	rpc updateNodeDDoSProtection(UpdateNodeDDoSProtectionRequest) returns (RPCSuccess);
+
+	// 取得节点的配置概要信息
+	rpc findEnabledNodeConfigInfo (FindEnabledNodeConfigInfoRequest) returns (FindEnabledNodeConfigInfoResponse);
 }
 
 // 创建节点
@@ -263,6 +272,7 @@ message FindCurrentNodeConfigResponse {
 	bool isChanged = 2;
 	bool isCompressed = 3;
 	int64 dataSize = 4;
+	int64 timestamp = 5;
 }
 
 // 节点stream
@@ -532,4 +542,33 @@ message FindNodeDNSResolverResponse {
 message UpdateNodeDNSResolverRequest {
 	int64 nodeId = 1;
 	bytes dnsResolverJSON = 2;
+}
+
+// 获取节点的DDoS设置
+message FindNodeDDoSProtectionRequest {
+	int64 nodeId = 1;
+}
+
+message FindNodeDDoSProtectionResponse {
+	bytes ddosProtectionJSON = 1;
+}
+
+// 修改节点的DDOS设置
+message UpdateNodeDDoSProtectionRequest {
+	int64 nodeId = 1;
+	bytes ddosProtectionJSON = 2;
+}
+
+// 取得节点的配置概要信息
+message FindEnabledNodeConfigInfoRequest {
+	int64 nodeId = 1;
+}
+
+message FindEnabledNodeConfigInfoResponse {
+	bool hasDNSInfo = 1;
+	bool  hasCacheInfo = 2;
+	bool  hasThresholds = 3;
+	bool  hasSSH = 4;
+	bool  hasSystemSettings = 5;
+	bool hasDDoSProtection = 6;
 }

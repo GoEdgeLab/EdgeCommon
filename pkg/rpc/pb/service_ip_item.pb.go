@@ -332,9 +332,9 @@ type DeleteIPItemRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	IpItemId int64  `protobuf:"varint,1,opt,name=ipItemId,proto3" json:"ipItemId,omitempty"` // IP条目的ID
-	IpFrom   string `protobuf:"bytes,2,opt,name=ipFrom,proto3" json:"ipFrom,omitempty"`      // 开始IP，和ipItemId二选一
-	IpTo     string `protobuf:"bytes,3,opt,name=ipTo,proto3" json:"ipTo,omitempty"`          // 结束IP，和ipItemId二选一
-	IpListId int64  `protobuf:"varint,4,opt,name=ipListId,proto3" json:"ipListId,omitempty"` // IP列表，IP所在的IP列表，如果不指定，则会删除所有IP列表中的相关IP信息
+	IpFrom   string `protobuf:"bytes,2,opt,name=ipFrom,proto3" json:"ipFrom,omitempty"`      // v0.4.8新增，开始IP，和ipItemId二选一
+	IpTo     string `protobuf:"bytes,3,opt,name=ipTo,proto3" json:"ipTo,omitempty"`          // v0.4.8新增，结束IP，和ipItemId二选一
+	IpListId int64  `protobuf:"varint,4,opt,name=ipListId,proto3" json:"ipListId,omitempty"` // v0.4.8新增，IP列表，IP所在的IP列表，如果不指定，则会删除所有IP列表中的相关IP信息
 }
 
 func (x *DeleteIPItemRequest) Reset() {

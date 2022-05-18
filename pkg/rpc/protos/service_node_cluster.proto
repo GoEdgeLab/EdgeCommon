@@ -121,6 +121,12 @@ service NodeClusterService {
 
 	// 设置集群WebP策略
 	rpc updateNodeClusterWebPPolicy(UpdateNodeClusterWebPPolicyRequest) returns (RPCSuccess);
+
+	// 获取集群的DDoS设置
+	rpc findNodeClusterDDoSProtection(FindNodeClusterDDoSProtectionRequest) returns (FindNodeClusterDDoSProtectionResponse);
+
+	// 修改集群的DDoS设置
+	rpc updateNodeClusterDDoSProtection(UpdateNodeClusterDDoSProtectionRequest) returns (RPCSuccess);
 }
 
 // 获取所有集群的信息
@@ -156,7 +162,7 @@ message UpdateNodeClusterRequest {
 	string installDir = 4;
 	string timeZone = 5;
 	int32 nodeMaxThreads = 6;
-	int32 nodeTCPMaxConnections = 7;
+
 	bool autoOpenPorts = 8;
 }
 
@@ -429,6 +435,7 @@ message FindEnabledNodeClusterConfigInfoResponse {
 	bool hasMetricItems = 6;
 	bool webpIsOn = 7;
 	bool hasSystemServices = 8;
+	bool hasDDoSProtection = 9;
 }
 
 // 设置集群是否置顶
@@ -450,4 +457,19 @@ message FindEnabledNodeClusterWebPPolicyResponse {
 message UpdateNodeClusterWebPPolicyRequest {
 	int64 nodeClusterId = 1;
 	bytes webpPolicyJSON = 2;
+}
+
+// 获取集群的DDoS设置
+message FindNodeClusterDDoSProtectionRequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindNodeClusterDDoSProtectionResponse {
+	bytes ddosProtectionJSON = 1;
+}
+
+// 修改集群的DDOS设置
+message UpdateNodeClusterDDoSProtectionRequest {
+	int64 nodeClusterId = 1;
+	bytes ddosProtectionJSON = 2;
 }
