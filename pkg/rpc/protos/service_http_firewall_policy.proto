@@ -95,6 +95,7 @@ message UpdateHTTPFirewallPolicyRequest {
 	string description = 4;
 	repeated string firewallGroupCodes = 5;
 	bytes blockOptionsJSON = 6;
+	bytes captchaOptionsJSON = 11;
 	string mode = 7;
 	bool useLocalFirewall = 8;
 	bytes synFloodJSON = 9;

@@ -421,12 +421,19 @@ func (this *NodeConfig) lookupWeb(server *serverconfigs.ServerConfig, web *serve
 		return
 	}
 	if web.FirewallPolicy != nil && web.FirewallPolicy.IsOn {
-		// 复用节点的拦截选项设置
-		if web.FirewallPolicy.BlockOptions == nil && server.HTTPFirewallPolicy != nil && server.HTTPFirewallPolicy.BlockOptions != nil {
-			web.FirewallPolicy.BlockOptions = server.HTTPFirewallPolicy.BlockOptions
+		// 复用节点的选项设置
+		if server.HTTPFirewallPolicy != nil {
+			if (web.FirewallPolicy.BlockOptions == nil || !web.FirewallPolicy.BlockOptions.IsPrior) || server.HTTPFirewallPolicy.BlockOptions != nil {
+				web.FirewallPolicy.BlockOptions = server.HTTPFirewallPolicy.BlockOptions
+			}
+			if (web.FirewallPolicy.CaptchaOptions == nil || !web.FirewallPolicy.CaptchaOptions.IsPrior) || server.HTTPFirewallPolicy.CaptchaOptions != nil {
+				web.FirewallPolicy.CaptchaOptions = server.HTTPFirewallPolicy.CaptchaOptions
+			}
+
 			web.FirewallPolicy.Mode = server.HTTPFirewallPolicy.Mode
 			web.FirewallPolicy.UseLocalFirewall = server.HTTPFirewallPolicy.UseLocalFirewall
 		}
+
 		this.firewallPolicies = append(this.firewallPolicies, web.FirewallPolicy)
 	}
 	if len(web.Locations) > 0 {
