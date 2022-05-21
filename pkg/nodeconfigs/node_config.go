@@ -423,11 +423,17 @@ func (this *NodeConfig) lookupWeb(server *serverconfigs.ServerConfig, web *serve
 	if web.FirewallPolicy != nil && web.FirewallPolicy.IsOn {
 		// 复用节点的选项设置
 		if server.HTTPFirewallPolicy != nil {
-			if (web.FirewallPolicy.BlockOptions == nil || !web.FirewallPolicy.BlockOptions.IsPrior) || server.HTTPFirewallPolicy.BlockOptions != nil {
+			if (web.FirewallPolicy.BlockOptions == nil || !web.FirewallPolicy.BlockOptions.IsPrior) && server.HTTPFirewallPolicy.BlockOptions != nil {
 				web.FirewallPolicy.BlockOptions = server.HTTPFirewallPolicy.BlockOptions
 			}
-			if (web.FirewallPolicy.CaptchaOptions == nil || !web.FirewallPolicy.CaptchaOptions.IsPrior) || server.HTTPFirewallPolicy.CaptchaOptions != nil {
+			if (web.FirewallPolicy.CaptchaOptions == nil || !web.FirewallPolicy.CaptchaOptions.IsPrior) && server.HTTPFirewallPolicy.CaptchaOptions != nil {
 				web.FirewallPolicy.CaptchaOptions = server.HTTPFirewallPolicy.CaptchaOptions
+			}
+			if (web.FirewallPolicy.SYNFlood == nil || !web.FirewallPolicy.SYNFlood.IsPrior) && server.HTTPFirewallPolicy.SYNFlood != nil {
+				web.FirewallPolicy.SYNFlood = server.HTTPFirewallPolicy.SYNFlood
+			}
+			if (web.FirewallPolicy.Log == nil || !web.FirewallPolicy.Log.IsPrior) && server.HTTPFirewallPolicy.Log != nil {
+				web.FirewallPolicy.Log = server.HTTPFirewallPolicy.Log
 			}
 
 			web.FirewallPolicy.Mode = server.HTTPFirewallPolicy.Mode

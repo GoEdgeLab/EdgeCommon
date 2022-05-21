@@ -8,6 +8,7 @@ var DefaultHTTPFirewallPolicyLogConfig = &HTTPFirewallPolicyLogConfig{
 }
 
 type HTTPFirewallPolicyLogConfig struct {
+	IsPrior     bool `yaml:"isPrior" json:"isPrior"`
 	IsOn        bool `yaml:"isOn" json:"isOn"`
 	RequestBody bool `yaml:"requestBody" json:"requestBody"`
 }

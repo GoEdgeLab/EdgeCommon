@@ -4,6 +4,7 @@ package firewallconfigs
 
 // SYNFloodConfig Syn flood防护设置
 type SYNFloodConfig struct {
+	IsPrior        bool  `yaml:"isPrior" json:"isPrior"`
 	IsOn           bool  `yaml:"isOn" json:"isOn"`
 	MinAttempts    int32 `yaml:"minAttempts" json:"minAttempts"`       // 最小尝试次数/分钟
 	TimeoutSeconds int32 `yaml:"timeoutSeconds" json:"timeoutSeconds"` // 拦截超时时间

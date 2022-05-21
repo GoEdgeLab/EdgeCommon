@@ -23,3 +23,12 @@ type HTTPFirewallCaptchaAction struct {
 
 	Lang string `yaml:"lang" json:"lang"` // 语言，zh-CN, en-US ... TODO 需要实现，目前是根据浏览器Accept-Language动态获取
 }
+
+func DefaultHTTPFirewallCaptchaAction() *HTTPFirewallCaptchaAction {
+	return &HTTPFirewallCaptchaAction{
+		Life:              600,
+		MaxFails:          100,
+		FailBlockTimeout:  3600,
+		FailBlockScopeAll: true,
+	}
+}
