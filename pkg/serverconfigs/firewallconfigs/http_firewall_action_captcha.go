@@ -30,5 +30,6 @@ func DefaultHTTPFirewallCaptchaAction() *HTTPFirewallCaptchaAction {
 		MaxFails:          100,
 		FailBlockTimeout:  3600,
 		FailBlockScopeAll: true,
+		UIShowRequestId:   true,
 	}
 }
