@@ -211,7 +211,8 @@ message ListEnabledNodesMatchResponse {
 
 // 根据集群查找所有节点
 message FindAllEnabledNodesWithNodeClusterIdRequest {
-	int64 nodeClusterId = 1;
+	int64 nodeClusterId = 1; // 集群ID
+	bool includeSecondary = 2; // 是否检查节点的从集群，如果为false，则只检查主集群ID
 }
 
 message FindAllEnabledNodesWithNodeClusterIdResponse {
