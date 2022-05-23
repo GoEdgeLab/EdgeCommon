@@ -65,6 +65,7 @@ func (this *ReverseProxyConfig) Init() error {
 
 	// 将源站分组
 	this.schedulingGroupMap = map[string]*SchedulingGroup{}
+	var hasDomainGroups = false
 	for _, origin := range this.PrimaryOrigins {
 		if len(origin.Domains) == 0 {
 			group, ok := this.schedulingGroupMap[""]
@@ -77,6 +78,7 @@ func (this *ReverseProxyConfig) Init() error {
 			}
 			group.PrimaryOrigins = append(group.PrimaryOrigins, origin)
 		} else {
+			hasDomainGroups = true
 			for _, domain := range origin.Domains {
 				group, ok := this.schedulingGroupMap[domain]
 				if !ok {
@@ -102,6 +104,7 @@ func (this *ReverseProxyConfig) Init() error {
 			}
 			group.BackupOrigins = append(group.BackupOrigins, origin)
 		} else {
+			hasDomainGroups = true
 			for _, domain := range origin.Domains {
 				group, ok := this.schedulingGroupMap[domain]
 				if !ok {
@@ -112,6 +115,23 @@ func (this *ReverseProxyConfig) Init() error {
 					this.schedulingGroupMap[domain] = group
 				}
 				group.BackupOrigins = append(group.BackupOrigins, origin)
+			}
+		}
+	}
+
+	// 再次分解
+	if hasDomainGroups {
+		defaultGroup, ok := this.schedulingGroupMap[""]
+		if ok {
+			delete(this.schedulingGroupMap, "")
+
+			for _, group := range this.schedulingGroupMap {
+				for _, origin := range defaultGroup.PrimaryOrigins {
+					group.PrimaryOrigins = append(group.PrimaryOrigins, origin)
+				}
+				for _, origin := range defaultGroup.BackupOrigins {
+					group.BackupOrigins = append(group.BackupOrigins, origin)
+				}
 			}
 		}
 	}
