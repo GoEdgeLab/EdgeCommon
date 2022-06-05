@@ -1,0 +1,15 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message HTTPCacheTaskKey {
+	int64 id = 1;
+	int64 taskId = 2;
+	string key = 3;
+	string type = 4;
+	string keyType = 5;
+	bool isDone = 6;
+	bytes errorsJSON = 7;
+	int64 nodeClusterId = 8;
+}

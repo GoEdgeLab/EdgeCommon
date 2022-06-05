@@ -530,9 +530,9 @@ message FindNearbyServersResponse {
 
 // 清除缓存
 message PurgeServerCacheRequest {
-	repeated string domains = 1;
 	repeated string keys = 2;
 	repeated string prefixes = 3;
+	string description = 4; // 任务描述
 }
 
 message PurgeServerCacheResponse {

@@ -1,0 +1,53 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_http_cache_task_key.proto";
+import "models/rpc_messages.proto";
+
+// 缓存任务Key管理
+service HTTPCacheTaskKeyService {
+	// 校验缓存Key
+	rpc validateHTTPCacheTaskKeys(ValidateHTTPCacheTaskKeysRequest) returns (ValidateHTTPCacheTaskKeysResponse);
+
+	// 查找需要执行的Key
+	rpc findDoingHTTPCacheTaskKeys(FindDoingHTTPCacheTaskKeysRequest) returns (FindDoingHTTPCacheTaskKeysResponse);
+
+	// 更新一组Key状态
+	rpc updateHTTPCacheTaskKeysStatus(UpdateHTTPCacheTaskKeysStatusRequest) returns (RPCSuccess);
+}
+
+// 校验缓存Key
+message ValidateHTTPCacheTaskKeysRequest {
+	repeated string keys = 1;
+}
+
+message ValidateHTTPCacheTaskKeysResponse {
+	repeated FailKey failKeys = 1;
+
+	message FailKey {
+		string key = 1;
+		string reasonCode = 2;
+	}
+}
+
+// 查找需要执行的Key
+message FindDoingHTTPCacheTaskKeysRequest{
+	int64 size = 1;
+}
+
+message FindDoingHTTPCacheTaskKeysResponse {
+	repeated HTTPCacheTaskKey httpCacheTaskKeys = 1;
+}
+
+// 更新一组Key状态
+message UpdateHTTPCacheTaskKeysStatusRequest {
+	repeated KeyResult keyResults = 1;
+
+	message KeyResult {
+		int64 id = 1;
+		int64 nodeClusterId = 2; // 特意设置的冗余数据
+		string error = 3;
+	}
+}

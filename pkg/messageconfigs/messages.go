@@ -7,9 +7,7 @@ const (
 	MessageCodeWriteCache          MessageCode = "writeCache"          // 写入缓存
 	MessageCodeReadCache           MessageCode = "readCache"           // 读取缓存
 	MessageCodeStatCache           MessageCode = "statCache"           // 统计缓存
-	MessageCodePurgeCache          MessageCode = "purgeCache"          // 删除缓存
 	MessageCodeCleanCache          MessageCode = "cleanCache"          // 清理缓存
-	MessageCodePreheatCache        MessageCode = "preheatCache"        // 预热缓存
 	MessageCodeCheckSystemdService MessageCode = "checkSystemdService" // 检查Systemd服务
 	MessageCodeCheckLocalFirewall  MessageCode = "checkLocalFirewall"  // 检查本地防火墙
 	MessageCodeNewNodeTask         MessageCode = "newNodeTask"         // 有新的节点任务产生
@@ -44,26 +42,6 @@ type StatCacheMessage struct {
 
 type CleanCacheMessage struct {
 	CachePolicyJSON []byte `json:"cachePolicyJSON"`
-}
-
-// PurgeCacheMessageType 删除缓存
-type PurgeCacheMessageType = string
-
-const (
-	PurgeCacheMessageTypeFile PurgeCacheMessageType = "file"
-	PurgeCacheMessageTypeDir  PurgeCacheMessageType = "dir"
-)
-
-type PurgeCacheMessage struct {
-	CachePolicyJSON []byte                `json:"cachePolicyJSON"`
-	Keys            []string              `json:"keys"`
-	Type            PurgeCacheMessageType `json:"type"` // 清理类型
-}
-
-// PreheatCacheMessage 预热缓存
-type PreheatCacheMessage struct {
-	CachePolicyJSON []byte   `json:"cachePolicyJSON"`
-	Keys            []string `json:"keys"`
 }
 
 // CheckSystemdServiceMessage Systemd服务

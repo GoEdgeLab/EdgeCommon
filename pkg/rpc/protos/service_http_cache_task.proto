@@ -1,0 +1,82 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_http_cache_task.proto";
+
+// 缓存任务管理
+service HTTPCacheTaskService {
+	// 创建任务
+	rpc createHTTPCacheTask(CreateHTTPCacheTaskRequest) returns (CreateHTTPCacheTaskResponse);
+
+	// 计算任务总数量
+	rpc countHTTPCacheTasks(CountHTTPCacheTasksRequest) returns (RPCCountResponse);
+
+	// 计算正在执行的任务数量
+	rpc countDoingHTTPCacheTasks(CountDoingHTTPCacheTasksRequest) returns (RPCCountResponse);
+
+	// 列出单页任务
+	rpc listHTTPCacheTasks(ListHTTPCacheTasksRequest) returns (ListHTTPCacheTasksResponse);
+
+	// 查找单个任务
+	rpc findEnabledHTTPCacheTask(FindEnabledHTTPCacheTaskRequest) returns (FindEnabledHTTPCacheTaskResponse);
+
+	// 删除任务
+	rpc deleteHTTPCacheTask(DeleteHTTPCacheTaskRequest) returns (RPCSuccess);
+
+	// 重置任务状态
+	rpc resetHTTPCacheTask(ResetHTTPCacheTaskRequest) returns (RPCSuccess);
+}
+
+// 创建任务
+message CreateHTTPCacheTaskRequest {
+	string type = 1;
+	string keyType = 2;
+	repeated string keys = 3;
+}
+
+message CreateHTTPCacheTaskResponse {
+	int64 httpCacheTaskId = 1;
+	int64 countKeys = 2;
+}
+
+// 计算任务总数量
+message CountHTTPCacheTasksRequest {
+
+}
+
+// 计算正在执行的任务数量
+message CountDoingHTTPCacheTasksRequest {
+
+}
+
+// 查找单个任务
+message FindEnabledHTTPCacheTaskRequest {
+	int64 httpCacheTaskId = 1;
+}
+
+message FindEnabledHTTPCacheTaskResponse {
+	HTTPCacheTask httpCacheTask = 1;
+}
+
+// 列出单页任务
+message ListHTTPCacheTasksRequest {
+	int64 offset = 1;
+	int64 size = 2;
+}
+
+message ListHTTPCacheTasksResponse {
+	repeated HTTPCacheTask httpCacheTasks = 1;
+}
+
+// 删除任务
+message DeleteHTTPCacheTaskRequest {
+	int64 httpCacheTaskId = 1;
+}
+
+// 重置任务状态
+message ResetHTTPCacheTaskRequest {
+	int64 httpCacheTaskId = 1;
+}
