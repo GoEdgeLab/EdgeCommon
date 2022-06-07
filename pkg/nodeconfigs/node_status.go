@@ -20,6 +20,7 @@ type NodeStatus struct {
 	DiskMaxUsagePartition string  `json:"diskMaxUsagePartition"`
 	DiskTotal             uint64  `json:"diskTotal"`
 	UpdatedAt             int64   `json:"updatedAt"`
+	Timestamp             int64   `json:"timestamp"` // 当前节点时间戳
 	Load1m                float64 `json:"load1m"`
 	Load5m                float64 `json:"load5m"`
 	Load15m               float64 `json:"load15m"`
