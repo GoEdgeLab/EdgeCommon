@@ -16,7 +16,7 @@ service RegionCityService {
 
 // 查找所有城市
 message FindAllEnabledRegionCitiesRequest {
-
+	bool includeRegionProvince = 1;
 }
 
 message FindAllEnabledRegionCitiesResponse {

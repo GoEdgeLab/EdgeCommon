@@ -48,17 +48,17 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "请求URI",
 		Prefix:      "requestURI",
-		Description: "包含URL参数的请求URI，类似于 /hello/world?lang=go",
+		Description: "包含URL参数的请求URI，类似于 /hello/world?lang=go，不包含域名部分",
 		IsRequest:   true,
 	},
 	{
 		Name:        "请求路径",
 		Prefix:      "requestPath",
-		Description: "不包含URL参数的请求路径，类似于 /hello/world",
+		Description: "不包含URL参数的请求路径，类似于 /hello/world，不包含域名部分",
 		IsRequest:   true,
 	},
 	{
-		Name:        "请求URL",
+		Name:        "请求完整URL",
 		Prefix:      "requestURL",
 		Description: "完整的请求URL，包含协议、域名、请求路径、参数等，类似于 https://example.com/hello?name=lily",
 		IsRequest:   true,
