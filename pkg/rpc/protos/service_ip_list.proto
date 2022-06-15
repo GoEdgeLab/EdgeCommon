@@ -42,6 +42,7 @@ message CreateIPListRequest {
 	bool isPublic = 5;
 	string description = 6;
 	bool isGlobal = 7;
+	int64 serverId = 8;
 }
 
 message CreateIPListResponse {

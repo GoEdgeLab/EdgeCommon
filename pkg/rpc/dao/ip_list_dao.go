@@ -102,6 +102,7 @@ func (this *IPListDAO) CreateIPListForServerId(ctx context.Context, serverId int
 		Type:        listType,
 		Name:        "IP名单",
 		Code:        listType,
+		ServerId:    serverId,
 		TimeoutJSON: nil,
 	})
 	if err != nil {
