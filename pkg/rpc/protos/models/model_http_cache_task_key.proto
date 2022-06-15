@@ -9,7 +9,8 @@ message HTTPCacheTaskKey {
 	string key = 3;
 	string type = 4;
 	string keyType = 5;
-	bool isDone = 6;
+	bool isDone = 6; // 是否已完成
+	bool isDoing = 9; // 是否执行中
 	bytes errorsJSON = 7;
 	int64 nodeClusterId = 8;
 }
