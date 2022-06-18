@@ -394,7 +394,7 @@ func (x *FindLatestServerDailyStatsResponse) GetStats() []*FindLatestServerDaily
 	return nil
 }
 
-// 查找单个服务当前统计数据
+// 查找单个服务当前时刻（N分钟内）统计数据
 type SumCurrentServerDailyStatsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -489,6 +489,212 @@ func (x *SumCurrentServerDailyStatsResponse) GetServerDailyStat() *ServerDailySt
 	return nil
 }
 
+// 计算单个服务的日统计
+type SumServerDailyStatsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Day      string `protobuf:"bytes,2,opt,name=day,proto3" json:"day,omitempty"` // YYYYMMDD
+}
+
+func (x *SumServerDailyStatsRequest) Reset() {
+	*x = SumServerDailyStatsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_daily_stat_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SumServerDailyStatsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SumServerDailyStatsRequest) ProtoMessage() {}
+
+func (x *SumServerDailyStatsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_daily_stat_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SumServerDailyStatsRequest.ProtoReflect.Descriptor instead.
+func (*SumServerDailyStatsRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_daily_stat_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *SumServerDailyStatsRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *SumServerDailyStatsRequest) GetDay() string {
+	if x != nil {
+		return x.Day
+	}
+	return ""
+}
+
+type SumServerDailyStatsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerDailyStat *ServerDailyStat `protobuf:"bytes,1,opt,name=serverDailyStat,proto3" json:"serverDailyStat,omitempty"`
+}
+
+func (x *SumServerDailyStatsResponse) Reset() {
+	*x = SumServerDailyStatsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_daily_stat_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SumServerDailyStatsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SumServerDailyStatsResponse) ProtoMessage() {}
+
+func (x *SumServerDailyStatsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_daily_stat_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SumServerDailyStatsResponse.ProtoReflect.Descriptor instead.
+func (*SumServerDailyStatsResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_daily_stat_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *SumServerDailyStatsResponse) GetServerDailyStat() *ServerDailyStat {
+	if x != nil {
+		return x.ServerDailyStat
+	}
+	return nil
+}
+
+// 计算单个服务的月统计
+type SumServerMonthlyStatsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Month    string `protobuf:"bytes,2,opt,name=month,proto3" json:"month,omitempty"` // YYYYMM
+}
+
+func (x *SumServerMonthlyStatsRequest) Reset() {
+	*x = SumServerMonthlyStatsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_daily_stat_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SumServerMonthlyStatsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SumServerMonthlyStatsRequest) ProtoMessage() {}
+
+func (x *SumServerMonthlyStatsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_daily_stat_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SumServerMonthlyStatsRequest.ProtoReflect.Descriptor instead.
+func (*SumServerMonthlyStatsRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_daily_stat_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *SumServerMonthlyStatsRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *SumServerMonthlyStatsRequest) GetMonth() string {
+	if x != nil {
+		return x.Month
+	}
+	return ""
+}
+
+type SumServerMonthlyStatsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerMonthlyStat *ServerDailyStat `protobuf:"bytes,1,opt,name=serverMonthlyStat,proto3" json:"serverMonthlyStat,omitempty"`
+}
+
+func (x *SumServerMonthlyStatsResponse) Reset() {
+	*x = SumServerMonthlyStatsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_daily_stat_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SumServerMonthlyStatsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SumServerMonthlyStatsResponse) ProtoMessage() {}
+
+func (x *SumServerMonthlyStatsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_daily_stat_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SumServerMonthlyStatsResponse.ProtoReflect.Descriptor instead.
+func (*SumServerMonthlyStatsResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_daily_stat_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *SumServerMonthlyStatsResponse) GetServerMonthlyStat() *ServerDailyStat {
+	if x != nil {
+		return x.ServerMonthlyStat
+	}
+	return nil
+}
+
 type UploadServerDailyStatsRequest_DomainStat struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -508,7 +714,7 @@ type UploadServerDailyStatsRequest_DomainStat struct {
 func (x *UploadServerDailyStatsRequest_DomainStat) Reset() {
 	*x = UploadServerDailyStatsRequest_DomainStat{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_server_daily_stat_proto_msgTypes[9]
+		mi := &file_service_server_daily_stat_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -521,7 +727,7 @@ func (x *UploadServerDailyStatsRequest_DomainStat) String() string {
 func (*UploadServerDailyStatsRequest_DomainStat) ProtoMessage() {}
 
 func (x *UploadServerDailyStatsRequest_DomainStat) ProtoReflect() protoreflect.Message {
-	mi := &file_service_server_daily_stat_proto_msgTypes[9]
+	mi := &file_service_server_daily_stat_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -615,7 +821,7 @@ type FindLatestServerHourlyStatsResponse_HourlyStat struct {
 func (x *FindLatestServerHourlyStatsResponse_HourlyStat) Reset() {
 	*x = FindLatestServerHourlyStatsResponse_HourlyStat{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_server_daily_stat_proto_msgTypes[10]
+		mi := &file_service_server_daily_stat_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -628,7 +834,7 @@ func (x *FindLatestServerHourlyStatsResponse_HourlyStat) String() string {
 func (*FindLatestServerHourlyStatsResponse_HourlyStat) ProtoMessage() {}
 
 func (x *FindLatestServerHourlyStatsResponse_HourlyStat) ProtoReflect() protoreflect.Message {
-	mi := &file_service_server_daily_stat_proto_msgTypes[10]
+	mi := &file_service_server_daily_stat_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -694,7 +900,7 @@ type FindLatestServerMinutelyStatsResponse_MinutelyStat struct {
 func (x *FindLatestServerMinutelyStatsResponse_MinutelyStat) Reset() {
 	*x = FindLatestServerMinutelyStatsResponse_MinutelyStat{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_server_daily_stat_proto_msgTypes[11]
+		mi := &file_service_server_daily_stat_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -707,7 +913,7 @@ func (x *FindLatestServerMinutelyStatsResponse_MinutelyStat) String() string {
 func (*FindLatestServerMinutelyStatsResponse_MinutelyStat) ProtoMessage() {}
 
 func (x *FindLatestServerMinutelyStatsResponse_MinutelyStat) ProtoReflect() protoreflect.Message {
-	mi := &file_service_server_daily_stat_proto_msgTypes[11]
+	mi := &file_service_server_daily_stat_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -773,7 +979,7 @@ type FindLatestServerDailyStatsResponse_DailyStat struct {
 func (x *FindLatestServerDailyStatsResponse_DailyStat) Reset() {
 	*x = FindLatestServerDailyStatsResponse_DailyStat{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_server_daily_stat_proto_msgTypes[12]
+		mi := &file_service_server_daily_stat_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -786,7 +992,7 @@ func (x *FindLatestServerDailyStatsResponse_DailyStat) String() string {
 func (*FindLatestServerDailyStatsResponse_DailyStat) ProtoMessage() {}
 
 func (x *FindLatestServerDailyStatsResponse_DailyStat) ProtoReflect() protoreflect.Message {
-	mi := &file_service_server_daily_stat_proto_msgTypes[12]
+	mi := &file_service_server_daily_stat_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -958,8 +1164,30 @@ var file_service_server_daily_stat_proto_rawDesc = []byte{
 	0x3d, 0x0a, 0x0f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74,
 	0x61, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65,
 	0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x52, 0x0f, 0x73,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x32, 0xa5,
-	0x04, 0x0a, 0x16, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x22, 0x4a,
+	0x0a, 0x1a, 0x53, 0x75, 0x6d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79,
+	0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08,
+	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08,
+	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x10, 0x0a, 0x03, 0x64, 0x61, 0x79, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x64, 0x61, 0x79, 0x22, 0x5c, 0x0a, 0x1b, 0x53, 0x75,
+	0x6d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3d, 0x0a, 0x0f, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61,
+	0x69, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x52, 0x0f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44,
+	0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x22, 0x50, 0x0a, 0x1c, 0x53, 0x75, 0x6d, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x05, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x22, 0x62, 0x0a, 0x1d, 0x53, 0x75,
+	0x6d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68, 0x6c, 0x79, 0x53, 0x74,
+	0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x41, 0x0a, 0x11, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x52, 0x11, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x32, 0xdb,
+	0x05, 0x0a, 0x16, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74,
 	0x61, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x4b, 0x0a, 0x16, 0x75, 0x70, 0x6c,
 	0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74,
 	0x61, 0x74, 0x73, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53,
@@ -993,8 +1221,19 @@ var file_service_server_daily_stat_proto_rawDesc = []byte{
 	0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x26,
 	0x2e, 0x70, 0x62, 0x2e, 0x53, 0x75, 0x6d, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x53, 0x65,
 	0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x13, 0x73, 0x75, 0x6d, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x1e, 0x2e,
+	0x70, 0x62, 0x2e, 0x53, 0x75, 0x6d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c,
+	0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e,
+	0x70, 0x62, 0x2e, 0x53, 0x75, 0x6d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x44, 0x61, 0x69, 0x6c,
+	0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5c,
+	0x0a, 0x15, 0x73, 0x75, 0x6d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68,
+	0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x75, 0x6d,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68, 0x6c, 0x79, 0x53, 0x74, 0x61,
+	0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x53,
+	0x75, 0x6d, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68, 0x6c, 0x79, 0x53,
+	0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04,
+	0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1009,7 +1248,7 @@ func file_service_server_daily_stat_proto_rawDescGZIP() []byte {
 	return file_service_server_daily_stat_proto_rawDescData
 }
 
-var file_service_server_daily_stat_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_service_server_daily_stat_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_service_server_daily_stat_proto_goTypes = []interface{}{
 	(*UploadServerDailyStatsRequest)(nil),                      // 0: pb.UploadServerDailyStatsRequest
 	(*FindLatestServerHourlyStatsRequest)(nil),                 // 1: pb.FindLatestServerHourlyStatsRequest
@@ -1020,35 +1259,45 @@ var file_service_server_daily_stat_proto_goTypes = []interface{}{
 	(*FindLatestServerDailyStatsResponse)(nil),                 // 6: pb.FindLatestServerDailyStatsResponse
 	(*SumCurrentServerDailyStatsRequest)(nil),                  // 7: pb.SumCurrentServerDailyStatsRequest
 	(*SumCurrentServerDailyStatsResponse)(nil),                 // 8: pb.SumCurrentServerDailyStatsResponse
-	(*UploadServerDailyStatsRequest_DomainStat)(nil),           // 9: pb.UploadServerDailyStatsRequest.DomainStat
-	(*FindLatestServerHourlyStatsResponse_HourlyStat)(nil),     // 10: pb.FindLatestServerHourlyStatsResponse.HourlyStat
-	(*FindLatestServerMinutelyStatsResponse_MinutelyStat)(nil), // 11: pb.FindLatestServerMinutelyStatsResponse.MinutelyStat
-	(*FindLatestServerDailyStatsResponse_DailyStat)(nil),       // 12: pb.FindLatestServerDailyStatsResponse.DailyStat
-	(*ServerDailyStat)(nil),                                    // 13: pb.ServerDailyStat
-	(*RPCSuccess)(nil),                                         // 14: pb.RPCSuccess
+	(*SumServerDailyStatsRequest)(nil),                         // 9: pb.SumServerDailyStatsRequest
+	(*SumServerDailyStatsResponse)(nil),                        // 10: pb.SumServerDailyStatsResponse
+	(*SumServerMonthlyStatsRequest)(nil),                       // 11: pb.SumServerMonthlyStatsRequest
+	(*SumServerMonthlyStatsResponse)(nil),                      // 12: pb.SumServerMonthlyStatsResponse
+	(*UploadServerDailyStatsRequest_DomainStat)(nil),           // 13: pb.UploadServerDailyStatsRequest.DomainStat
+	(*FindLatestServerHourlyStatsResponse_HourlyStat)(nil),     // 14: pb.FindLatestServerHourlyStatsResponse.HourlyStat
+	(*FindLatestServerMinutelyStatsResponse_MinutelyStat)(nil), // 15: pb.FindLatestServerMinutelyStatsResponse.MinutelyStat
+	(*FindLatestServerDailyStatsResponse_DailyStat)(nil),       // 16: pb.FindLatestServerDailyStatsResponse.DailyStat
+	(*ServerDailyStat)(nil),                                    // 17: pb.ServerDailyStat
+	(*RPCSuccess)(nil),                                         // 18: pb.RPCSuccess
 }
 var file_service_server_daily_stat_proto_depIdxs = []int32{
-	13, // 0: pb.UploadServerDailyStatsRequest.stats:type_name -> pb.ServerDailyStat
-	9,  // 1: pb.UploadServerDailyStatsRequest.domainStats:type_name -> pb.UploadServerDailyStatsRequest.DomainStat
-	10, // 2: pb.FindLatestServerHourlyStatsResponse.stats:type_name -> pb.FindLatestServerHourlyStatsResponse.HourlyStat
-	11, // 3: pb.FindLatestServerMinutelyStatsResponse.stats:type_name -> pb.FindLatestServerMinutelyStatsResponse.MinutelyStat
-	12, // 4: pb.FindLatestServerDailyStatsResponse.stats:type_name -> pb.FindLatestServerDailyStatsResponse.DailyStat
-	13, // 5: pb.SumCurrentServerDailyStatsResponse.serverDailyStat:type_name -> pb.ServerDailyStat
-	0,  // 6: pb.ServerDailyStatService.uploadServerDailyStats:input_type -> pb.UploadServerDailyStatsRequest
-	1,  // 7: pb.ServerDailyStatService.findLatestServerHourlyStats:input_type -> pb.FindLatestServerHourlyStatsRequest
-	3,  // 8: pb.ServerDailyStatService.findLatestServerMinutelyStats:input_type -> pb.FindLatestServerMinutelyStatsRequest
-	5,  // 9: pb.ServerDailyStatService.findLatestServerDailyStats:input_type -> pb.FindLatestServerDailyStatsRequest
-	7,  // 10: pb.ServerDailyStatService.sumCurrentServerDailyStats:input_type -> pb.SumCurrentServerDailyStatsRequest
-	14, // 11: pb.ServerDailyStatService.uploadServerDailyStats:output_type -> pb.RPCSuccess
-	2,  // 12: pb.ServerDailyStatService.findLatestServerHourlyStats:output_type -> pb.FindLatestServerHourlyStatsResponse
-	4,  // 13: pb.ServerDailyStatService.findLatestServerMinutelyStats:output_type -> pb.FindLatestServerMinutelyStatsResponse
-	6,  // 14: pb.ServerDailyStatService.findLatestServerDailyStats:output_type -> pb.FindLatestServerDailyStatsResponse
-	8,  // 15: pb.ServerDailyStatService.sumCurrentServerDailyStats:output_type -> pb.SumCurrentServerDailyStatsResponse
-	11, // [11:16] is the sub-list for method output_type
-	6,  // [6:11] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	17, // 0: pb.UploadServerDailyStatsRequest.stats:type_name -> pb.ServerDailyStat
+	13, // 1: pb.UploadServerDailyStatsRequest.domainStats:type_name -> pb.UploadServerDailyStatsRequest.DomainStat
+	14, // 2: pb.FindLatestServerHourlyStatsResponse.stats:type_name -> pb.FindLatestServerHourlyStatsResponse.HourlyStat
+	15, // 3: pb.FindLatestServerMinutelyStatsResponse.stats:type_name -> pb.FindLatestServerMinutelyStatsResponse.MinutelyStat
+	16, // 4: pb.FindLatestServerDailyStatsResponse.stats:type_name -> pb.FindLatestServerDailyStatsResponse.DailyStat
+	17, // 5: pb.SumCurrentServerDailyStatsResponse.serverDailyStat:type_name -> pb.ServerDailyStat
+	17, // 6: pb.SumServerDailyStatsResponse.serverDailyStat:type_name -> pb.ServerDailyStat
+	17, // 7: pb.SumServerMonthlyStatsResponse.serverMonthlyStat:type_name -> pb.ServerDailyStat
+	0,  // 8: pb.ServerDailyStatService.uploadServerDailyStats:input_type -> pb.UploadServerDailyStatsRequest
+	1,  // 9: pb.ServerDailyStatService.findLatestServerHourlyStats:input_type -> pb.FindLatestServerHourlyStatsRequest
+	3,  // 10: pb.ServerDailyStatService.findLatestServerMinutelyStats:input_type -> pb.FindLatestServerMinutelyStatsRequest
+	5,  // 11: pb.ServerDailyStatService.findLatestServerDailyStats:input_type -> pb.FindLatestServerDailyStatsRequest
+	7,  // 12: pb.ServerDailyStatService.sumCurrentServerDailyStats:input_type -> pb.SumCurrentServerDailyStatsRequest
+	9,  // 13: pb.ServerDailyStatService.sumServerDailyStats:input_type -> pb.SumServerDailyStatsRequest
+	11, // 14: pb.ServerDailyStatService.sumServerMonthlyStats:input_type -> pb.SumServerMonthlyStatsRequest
+	18, // 15: pb.ServerDailyStatService.uploadServerDailyStats:output_type -> pb.RPCSuccess
+	2,  // 16: pb.ServerDailyStatService.findLatestServerHourlyStats:output_type -> pb.FindLatestServerHourlyStatsResponse
+	4,  // 17: pb.ServerDailyStatService.findLatestServerMinutelyStats:output_type -> pb.FindLatestServerMinutelyStatsResponse
+	6,  // 18: pb.ServerDailyStatService.findLatestServerDailyStats:output_type -> pb.FindLatestServerDailyStatsResponse
+	8,  // 19: pb.ServerDailyStatService.sumCurrentServerDailyStats:output_type -> pb.SumCurrentServerDailyStatsResponse
+	10, // 20: pb.ServerDailyStatService.sumServerDailyStats:output_type -> pb.SumServerDailyStatsResponse
+	12, // 21: pb.ServerDailyStatService.sumServerMonthlyStats:output_type -> pb.SumServerMonthlyStatsResponse
+	15, // [15:22] is the sub-list for method output_type
+	8,  // [8:15] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_service_server_daily_stat_proto_init() }
@@ -1168,7 +1417,7 @@ func file_service_server_daily_stat_proto_init() {
 			}
 		}
 		file_service_server_daily_stat_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UploadServerDailyStatsRequest_DomainStat); i {
+			switch v := v.(*SumServerDailyStatsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1180,7 +1429,7 @@ func file_service_server_daily_stat_proto_init() {
 			}
 		}
 		file_service_server_daily_stat_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindLatestServerHourlyStatsResponse_HourlyStat); i {
+			switch v := v.(*SumServerDailyStatsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1192,7 +1441,7 @@ func file_service_server_daily_stat_proto_init() {
 			}
 		}
 		file_service_server_daily_stat_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindLatestServerMinutelyStatsResponse_MinutelyStat); i {
+			switch v := v.(*SumServerMonthlyStatsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1204,6 +1453,54 @@ func file_service_server_daily_stat_proto_init() {
 			}
 		}
 		file_service_server_daily_stat_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SumServerMonthlyStatsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_daily_stat_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UploadServerDailyStatsRequest_DomainStat); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_daily_stat_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindLatestServerHourlyStatsResponse_HourlyStat); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_daily_stat_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindLatestServerMinutelyStatsResponse_MinutelyStat); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_daily_stat_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FindLatestServerDailyStatsResponse_DailyStat); i {
 			case 0:
 				return &v.state
@@ -1222,7 +1519,7 @@ func file_service_server_daily_stat_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_server_daily_stat_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -1256,8 +1553,12 @@ type ServerDailyStatServiceClient interface {
 	FindLatestServerMinutelyStats(ctx context.Context, in *FindLatestServerMinutelyStatsRequest, opts ...grpc.CallOption) (*FindLatestServerMinutelyStatsResponse, error)
 	// 按日读取统计数据
 	FindLatestServerDailyStats(ctx context.Context, in *FindLatestServerDailyStatsRequest, opts ...grpc.CallOption) (*FindLatestServerDailyStatsResponse, error)
-	// 查找单个服务当前统计数据
+	// 查找单个服务当前时刻（N分钟内）统计数据
 	SumCurrentServerDailyStats(ctx context.Context, in *SumCurrentServerDailyStatsRequest, opts ...grpc.CallOption) (*SumCurrentServerDailyStatsResponse, error)
+	// 计算单个服务的日统计
+	SumServerDailyStats(ctx context.Context, in *SumServerDailyStatsRequest, opts ...grpc.CallOption) (*SumServerDailyStatsResponse, error)
+	// 计算单个服务的月统计
+	SumServerMonthlyStats(ctx context.Context, in *SumServerMonthlyStatsRequest, opts ...grpc.CallOption) (*SumServerMonthlyStatsResponse, error)
 }
 
 type serverDailyStatServiceClient struct {
@@ -1313,6 +1614,24 @@ func (c *serverDailyStatServiceClient) SumCurrentServerDailyStats(ctx context.Co
 	return out, nil
 }
 
+func (c *serverDailyStatServiceClient) SumServerDailyStats(ctx context.Context, in *SumServerDailyStatsRequest, opts ...grpc.CallOption) (*SumServerDailyStatsResponse, error) {
+	out := new(SumServerDailyStatsResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerDailyStatService/sumServerDailyStats", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverDailyStatServiceClient) SumServerMonthlyStats(ctx context.Context, in *SumServerMonthlyStatsRequest, opts ...grpc.CallOption) (*SumServerMonthlyStatsResponse, error) {
+	out := new(SumServerMonthlyStatsResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerDailyStatService/sumServerMonthlyStats", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServerDailyStatServiceServer is the server API for ServerDailyStatService service.
 type ServerDailyStatServiceServer interface {
 	// 上传统计
@@ -1323,8 +1642,12 @@ type ServerDailyStatServiceServer interface {
 	FindLatestServerMinutelyStats(context.Context, *FindLatestServerMinutelyStatsRequest) (*FindLatestServerMinutelyStatsResponse, error)
 	// 按日读取统计数据
 	FindLatestServerDailyStats(context.Context, *FindLatestServerDailyStatsRequest) (*FindLatestServerDailyStatsResponse, error)
-	// 查找单个服务当前统计数据
+	// 查找单个服务当前时刻（N分钟内）统计数据
 	SumCurrentServerDailyStats(context.Context, *SumCurrentServerDailyStatsRequest) (*SumCurrentServerDailyStatsResponse, error)
+	// 计算单个服务的日统计
+	SumServerDailyStats(context.Context, *SumServerDailyStatsRequest) (*SumServerDailyStatsResponse, error)
+	// 计算单个服务的月统计
+	SumServerMonthlyStats(context.Context, *SumServerMonthlyStatsRequest) (*SumServerMonthlyStatsResponse, error)
 }
 
 // UnimplementedServerDailyStatServiceServer can be embedded to have forward compatible implementations.
@@ -1345,6 +1668,12 @@ func (*UnimplementedServerDailyStatServiceServer) FindLatestServerDailyStats(con
 }
 func (*UnimplementedServerDailyStatServiceServer) SumCurrentServerDailyStats(context.Context, *SumCurrentServerDailyStatsRequest) (*SumCurrentServerDailyStatsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SumCurrentServerDailyStats not implemented")
+}
+func (*UnimplementedServerDailyStatServiceServer) SumServerDailyStats(context.Context, *SumServerDailyStatsRequest) (*SumServerDailyStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SumServerDailyStats not implemented")
+}
+func (*UnimplementedServerDailyStatServiceServer) SumServerMonthlyStats(context.Context, *SumServerMonthlyStatsRequest) (*SumServerMonthlyStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SumServerMonthlyStats not implemented")
 }
 
 func RegisterServerDailyStatServiceServer(s *grpc.Server, srv ServerDailyStatServiceServer) {
@@ -1441,6 +1770,42 @@ func _ServerDailyStatService_SumCurrentServerDailyStats_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServerDailyStatService_SumServerDailyStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SumServerDailyStatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerDailyStatServiceServer).SumServerDailyStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerDailyStatService/SumServerDailyStats",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerDailyStatServiceServer).SumServerDailyStats(ctx, req.(*SumServerDailyStatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerDailyStatService_SumServerMonthlyStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SumServerMonthlyStatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerDailyStatServiceServer).SumServerMonthlyStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerDailyStatService/SumServerMonthlyStats",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerDailyStatServiceServer).SumServerMonthlyStats(ctx, req.(*SumServerMonthlyStatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _ServerDailyStatService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.ServerDailyStatService",
 	HandlerType: (*ServerDailyStatServiceServer)(nil),
@@ -1464,6 +1829,14 @@ var _ServerDailyStatService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "sumCurrentServerDailyStats",
 			Handler:    _ServerDailyStatService_SumCurrentServerDailyStats_Handler,
+		},
+		{
+			MethodName: "sumServerDailyStats",
+			Handler:    _ServerDailyStatService_SumServerDailyStats_Handler,
+		},
+		{
+			MethodName: "sumServerMonthlyStats",
+			Handler:    _ServerDailyStatService_SumServerMonthlyStats_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
