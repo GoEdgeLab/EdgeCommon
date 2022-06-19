@@ -92,6 +92,7 @@ func (this *ReverseProxyConfig) Init() error {
 			}
 		}
 	}
+
 	for _, origin := range this.BackupOrigins {
 		if len(origin.Domains) == 0 {
 			group, ok := this.schedulingGroupMap[""]
@@ -123,9 +124,10 @@ func (this *ReverseProxyConfig) Init() error {
 	if hasDomainGroups {
 		defaultGroup, ok := this.schedulingGroupMap[""]
 		if ok {
-			delete(this.schedulingGroupMap, "")
-
-			for _, group := range this.schedulingGroupMap {
+			for domain, group := range this.schedulingGroupMap {
+				if domain == "" {
+					continue
+				}
 				for _, origin := range defaultGroup.PrimaryOrigins {
 					group.PrimaryOrigins = append(group.PrimaryOrigins, origin)
 				}
