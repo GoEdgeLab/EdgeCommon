@@ -15,14 +15,14 @@ import (
 	"regexp"
 )
 
-type Service struct {
-	Name     string    `json:"name"`
-	Methods  []*Method `json:"methods"`
-	Filename string    `json:"filename"`
-	Doc      string    `json:"doc"`
+type ServiceInfo struct {
+	Name     string        `json:"name"`
+	Methods  []*MethodInfo `json:"methods"`
+	Filename string        `json:"filename"`
+	Doc      string        `json:"doc"`
 }
 
-type Method struct {
+type MethodInfo struct {
 	Name                string `json:"name"`
 	RequestMessageName  string `json:"requestMessageName"`
 	ResponseMessageName string `json:"responseMessageName"`
@@ -30,15 +30,15 @@ type Method struct {
 	Doc                 string `json:"doc"`
 }
 
-type Message struct {
+type MessageInfo struct {
 	Name string `json:"name"`
 	Code string `json:"code"`
 	Doc  string `json:"doc"`
 }
 
 type RPCList struct {
-	Services []*Service `json:"services"`
-	Messages []*Message `json:"messages"`
+	Services []*ServiceInfo `json:"services"`
+	Messages []*MessageInfo `json:"messages"`
 }
 
 func readComments(data []byte) string {
@@ -67,10 +67,10 @@ func main() {
 	flag.BoolVar(&quiet, "quiet", false, "")
 	flag.Parse()
 
-	var dirs = []string{Tea.Root + "/../pkg/rpc/protos/"}
+	var dirs = []string{Tea.Root + "/../pkg/rpc/protos/", Tea.Root + "/../pkg/rpc/protos/models"}
 
-	var services = []*Service{}
-	var messages = []*Message{}
+	var services = []*ServiceInfo{}
+	var messages = []*MessageInfo{}
 
 	for _, dir := range dirs {
 		func(dir string) {
@@ -112,7 +112,7 @@ func main() {
 						var comment = readComments(data[:serviceNamePosition])
 
 						// 方法列表
-						var methods = []*Method{}
+						var methods = []*MethodInfo{}
 						var serviceData = serviceMatch[2]
 						var methodCodeReg = regexp.MustCompile(`\b(METHOD\d+)\b`)
 						var methodCodeMatches = methodCodeReg.FindAllSubmatch(serviceData, -1)
@@ -123,7 +123,7 @@ func main() {
 							var methodPieces = methodReg.FindSubmatch(methodData)
 							var methodCodePosition = methodCodePositions[methodMatchIndex]
 
-							methods = append(methods, &Method{
+							methods = append(methods, &MethodInfo{
 								Name:                string(methodPieces[1]),
 								RequestMessageName:  string(methodPieces[2]),
 								ResponseMessageName: string(methodPieces[3]),
@@ -132,7 +132,7 @@ func main() {
 							})
 						}
 
-						services = append(services, &Service{
+						services = append(services, &ServiceInfo{
 							Name:     serviceName,
 							Methods:  methods,
 							Filename: filepath.Base(path),
@@ -186,9 +186,9 @@ func main() {
 						// 注释
 						var index = bytes.Index(data, []byte(messageCode))
 						var messageName = string(firstMessagesReg.FindSubmatch(messageData)[1])
-						messages = append(messages, &Message{
+						messages = append(messages, &MessageInfo{
 							Name: messageName,
-							Code: string(messageData),
+							Code: string(bytes.TrimSpace(messageData)),
 							Doc:  readComments(data[:index]),
 						})
 					}

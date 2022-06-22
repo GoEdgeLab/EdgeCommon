@@ -9,6 +9,7 @@ import "models/model_server_name_auditing_result.proto";
 import "models/rpc_messages.proto";
 import "models/model_user_plan.proto";
 
+// 网站服务相关服务
 service ServerService {
 	// 创建服务
 	rpc createServer (CreateServerRequest) returns (CreateServerResponse);
