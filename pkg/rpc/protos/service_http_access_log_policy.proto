@@ -7,6 +7,7 @@ import "models/model_http_access_log_policy.proto";
 import "models/rpc_messages.proto";
 import "models/model_http_access_log.proto";
 
+// 访问日志策略服务
 service HTTPAccessLogPolicyService {
 	// 计算访问日志策略数量
 	rpc countAllEnabledHTTPAccessLogPolicies (CountAllEnabledHTTPAccessLogPoliciesRequest) returns (RPCCountResponse);

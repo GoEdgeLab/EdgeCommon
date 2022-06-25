@@ -6,6 +6,7 @@ package pb;
 import "models/rpc_messages.proto";
 import "models/model_http_firewall_rule_group.proto";
 
+// WAF分组服务
 service HTTPFirewallRuleGroupService {
 	// 设置是否启用分组
 	rpc updateHTTPFirewallRuleGroupIsOn (UpdateHTTPFirewallRuleGroupIsOnRequest) returns (RPCSuccess);

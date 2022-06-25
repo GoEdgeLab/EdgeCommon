@@ -7,6 +7,7 @@ import "models/model_db_node.proto";
 import "models/rpc_messages.proto";
 import "models/model_db_table.proto";
 
+// 数据库节点服务
 service DBNodeService {
 	// 创建数据库节点
 	rpc createDBNode (CreateDBNodeRequest) returns (CreateDBNodeResponse);

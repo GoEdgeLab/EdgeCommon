@@ -5,6 +5,7 @@ package pb;
 
 import "models/rpc_messages.proto";
 
+// 路由规则服务
 service HTTPLocationService {
 	// 创建路径规则
 	rpc createHTTPLocation (CreateHTTPLocationRequest) returns (CreateHTTPLocationResponse);

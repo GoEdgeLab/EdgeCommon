@@ -5,6 +5,7 @@ package pb;
 
 import "models/rpc_messages.proto";
 
+// 自定义页面服务
 service HTTPPageService {
 	// 创建Page
 	rpc createHTTPPage (CreateHTTPPageRequest) returns (CreateHTTPPageResponse);

@@ -6,6 +6,7 @@ package pb;
 import "models/model_http_cache_policy.proto";
 import "models/rpc_messages.proto";
 
+// 缓存策略服务
 service HTTPCachePolicyService {
 	// 获取所有可用策略
 	rpc findAllEnabledHTTPCachePolicies (FindAllEnabledHTTPCachePoliciesRequest) returns (FindAllEnabledHTTPCachePoliciesResponse);

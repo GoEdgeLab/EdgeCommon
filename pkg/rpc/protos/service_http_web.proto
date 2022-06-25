@@ -6,6 +6,7 @@ package pb;
 import "models/model_http_web.proto";
 import "models/rpc_messages.proto";
 
+// HTTP Web相关管理服务
 service HTTPWebService {
 	// 创建Web配置
 	rpc createHTTPWeb (CreateHTTPWebRequest) returns (CreateHTTPWebResponse);

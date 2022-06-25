@@ -5,6 +5,7 @@ package pb;
 
 import "models/rpc_messages.proto";
 
+// 系统设置管理服务
 service SysSettingService {
 	// 更改配置
 	rpc updateSysSetting (UpdateSysSettingRequest) returns (RPCSuccess);

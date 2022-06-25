@@ -5,6 +5,7 @@ package pb;
 
 import "models/rpc_messages.proto";
 
+// SSL/TLS策略管理服务
 service SSLPolicyService {
 	// 创建Policy
 	rpc createSSLPolicy (CreateSSLPolicyRequest) returns (CreateSSLPolicyResponse);

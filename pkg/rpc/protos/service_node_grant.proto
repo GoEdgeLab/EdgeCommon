@@ -5,6 +5,7 @@ package pb;
 import "models/model_node_grant.proto";
 import "models/rpc_messages.proto";
 
+// 节点认证信息管理服务
 service NodeGrantService {
 	// 创建认证
 	rpc createNodeGrant (CreateNodeGrantRequest) returns (CreateNodeGrantResponse);

@@ -5,6 +5,7 @@ package pb;
 import "models/model_user_node.proto";
 import "models/rpc_messages.proto";
 
+// 用户节点管理服务
 service UserNodeService {
 	// 创建用户节点
 	rpc createUserNode (CreateUserNodeRequest) returns (CreateUserNodeResponse);

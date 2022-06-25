@@ -10,6 +10,7 @@ import "models/model_dns_route.proto";
 import "models/model_size_capacity.proto";
 import "models/rpc_messages.proto";
 
+// 边缘节点管理服务
 service NodeService {
 	// 创建节点
 	rpc createNode (CreateNodeRequest) returns (CreateNodeResponse);

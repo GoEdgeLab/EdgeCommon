@@ -5,6 +5,7 @@ package pb;
 import "models/model_api_node.proto";
 import "models/rpc_messages.proto";
 
+// API节点服务
 service APINodeService {
 	// 创建API节点
 	rpc createAPINode (CreateAPINodeRequest) returns (CreateAPINodeResponse);

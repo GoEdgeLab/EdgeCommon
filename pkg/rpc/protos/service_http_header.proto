@@ -5,6 +5,7 @@ package pb;
 
 import "models/rpc_messages.proto";
 
+// HTTP Header管理服务
 service HTTPHeaderService {
 	// 创建Header
 	rpc createHTTPHeader (CreateHTTPHeaderRequest) returns (CreateHTTPHeaderResponse);

@@ -6,6 +6,7 @@ package pb;
 import "models/model_reverse_proxy.proto";
 import "models/rpc_messages.proto";
 
+// 反向代理管理服务
 service ReverseProxyService {
 	// 创建反向代理
 	rpc createReverseProxy (CreateReverseProxyRequest) returns (CreateReverseProxyResponse);

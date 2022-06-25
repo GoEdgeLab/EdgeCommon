@@ -6,6 +6,7 @@ package pb;
 import "models/model_node_ip_address.proto";
 import "models/rpc_messages.proto";
 
+// 节点IP地址服务
 service NodeIPAddressService {
 	// 创建IP地址
 	rpc createNodeIPAddress (CreateNodeIPAddressRequest) returns (CreateNodeIPAddressResponse);

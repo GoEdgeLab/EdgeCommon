@@ -8,6 +8,7 @@ import "models/model_admin_list.proto";
 import "models/rpc_messages.proto";
 import "service_server_stat_board.proto";
 
+// 管理员服务
 service AdminService {
 	// 登录
 	rpc loginAdmin (LoginAdminRequest) returns (LoginAdminResponse);

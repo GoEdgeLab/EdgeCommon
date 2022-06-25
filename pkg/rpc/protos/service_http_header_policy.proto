@@ -5,6 +5,7 @@ package pb;
 
 import "models/rpc_messages.proto";
 
+// HTTP Header策略服务
 service HTTPHeaderPolicyService {
 	// 查找策略配置
 	rpc findEnabledHTTPHeaderPolicyConfig (FindEnabledHTTPHeaderPolicyConfigRequest) returns (FindEnabledHTTPHeaderPolicyConfigResponse);

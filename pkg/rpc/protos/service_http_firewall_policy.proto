@@ -10,6 +10,7 @@ import "models/model_region_country.proto";
 import "models/model_region_province.proto";
 import "models/rpc_messages.proto";
 
+// HTTP防火墙（WAF）服务
 service HTTPFirewallPolicyService {
 	// 获取所有可用策略
 	rpc findAllEnabledHTTPFirewallPolicies (FindAllEnabledHTTPFirewallPoliciesRequest) returns (FindAllEnabledHTTPFirewallPoliciesResponse);

@@ -6,6 +6,7 @@ package pb;
 import "models/rpc_messages.proto";
 import "models/model_http_firewall_rule_set.proto";
 
+// WAF规则集服务
 service HTTPFirewallRuleSetService {
 	// 根据配置创建或修改规则集
 	rpc createOrUpdateHTTPFirewallRuleSetFromConfig (CreateOrUpdateHTTPFirewallRuleSetFromConfigRequest) returns (CreateOrUpdateHTTPFirewallRuleSetFromConfigResponse);

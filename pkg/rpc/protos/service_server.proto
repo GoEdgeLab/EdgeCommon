@@ -16,6 +16,9 @@ service ServerService {
 
 	// 修改服务基本信息
 	rpc updateServerBasic (UpdateServerBasicRequest) returns (RPCSuccess);
+	
+	// 修改服务所在分组
+	rpc updateServerGroupIds(UpdateServerGroupIdsRequest) returns (RPCSuccess);
 
 	// 修改服务是否启用
 	rpc updateServerIsOn (UpdateServerIsOnRequest) returns (RPCSuccess);
@@ -192,6 +195,12 @@ message UpdateServerBasicRequest {
 	bool keepOldConfigs = 7; // 是否在老节点上保留一段时间配置
 	bool isOn = 5;
 	repeated int64 serverGroupIds = 6;
+}
+
+// 修改服务所在分组
+message UpdateServerGroupIdsRequest {
+	int64 serverId = 1;
+	repeated int64 serverGroupIds = 2;
 }
 
 // 修改服务启是否启用

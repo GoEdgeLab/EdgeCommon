@@ -6,6 +6,7 @@ package pb;
 import "models/model_size_capacity.proto";
 import "models/rpc_messages.proto";
 
+// Gzip服务
 service HTTPGzipService {
 	// 创建Gzip配置
 	rpc createHTTPGzip (CreateHTTPGzipRequest) returns (CreateHTTPGzipResponse);

@@ -10,6 +10,7 @@ import "models/rpc_messages.proto";
 import "models/model_dns_domain.proto";
 import "models/model_dns_provider.proto";
 
+// 边缘节点集群管理服务
 service NodeClusterService {
 	// 创建集群
 	rpc createNodeCluster (CreateNodeClusterRequest) returns (CreateNodeClusterResponse);

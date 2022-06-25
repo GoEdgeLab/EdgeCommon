@@ -5,6 +5,7 @@ package pb;
 import "models/model_monitor_node.proto";
 import "models/rpc_messages.proto";
 
+// 监控节点管理服务
 service MonitorNodeService {
 	// 创建监控节点
 	rpc createMonitorNode (CreateMonitorNodeRequest) returns (CreateMonitorNodeResponse);
