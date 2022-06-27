@@ -49,6 +49,7 @@ type HTTPCompressionConfig struct {
 	supportGzip    bool
 	supportDeflate bool
 	supportBrotli  bool
+	supportZSTD    bool
 }
 
 // Init 初始化
@@ -133,6 +134,8 @@ func (this *HTTPCompressionConfig) Init() error {
 			if this.BrotliRef == nil || (this.BrotliRef != nil && this.BrotliRef.IsOn && this.Brotli != nil && this.Brotli.IsOn) {
 				this.supportBrotli = true
 			}
+		case HTTPCompressionTypeZSTD:
+			this.supportZSTD = true
 		}
 	}
 
@@ -243,6 +246,10 @@ func (this *HTTPCompressionConfig) MatchAcceptEncoding(acceptEncodings string) (
 		case HTTPCompressionTypeBrotli:
 			if this.supportBrotli && lists.ContainsString(encodings, "br") {
 				return HTTPCompressionTypeBrotli, "br", true
+			}
+		case HTTPCompressionTypeZSTD:
+			if this.supportZSTD && lists.ContainsString(encodings, "zstd") {
+				return HTTPCompressionTypeZSTD, "zstd", true
 			}
 		}
 	}
