@@ -120,12 +120,12 @@ var AllDefaultChinaProvinceRoutes = []*Route{
 	{
 		Name:       "河北省",
 		Code:       "china:province:heibei",
-		AliasNames: []string{"河北省"},
+		AliasNames: []string{"河北省", "河北"},
 	},
 	{
 		Name:       "山西省",
 		Code:       "china:province:shanxi",
-		AliasNames: []string{"山西省"},
+		AliasNames: []string{"山西省", "山西"},
 	},
 	{
 		Name:       "内蒙古自治区",
@@ -135,17 +135,17 @@ var AllDefaultChinaProvinceRoutes = []*Route{
 	{
 		Name:       "辽宁省",
 		Code:       "china:province:liaoning",
-		AliasNames: []string{"辽宁省"},
+		AliasNames: []string{"辽宁省", "辽宁"},
 	},
 	{
 		Name:       "吉林省",
 		Code:       "china:jilin",
-		AliasNames: []string{"吉林省"},
+		AliasNames: []string{"吉林省", "吉林"},
 	},
 	{
 		Name:       "黑龙江省",
 		Code:       "china:province:heilongjiang",
-		AliasNames: []string{"黑龙江省"},
+		AliasNames: []string{"黑龙江省", "黑龙江"},
 	},
 	{
 		Name:       "上海市",
@@ -155,52 +155,52 @@ var AllDefaultChinaProvinceRoutes = []*Route{
 	{
 		Name:       "江苏省",
 		Code:       "china:province:jiangsu",
-		AliasNames: []string{"江苏省"},
+		AliasNames: []string{"江苏省", "江苏"},
 	},
 	{
 		Name:       "浙江省",
 		Code:       "china:province:zhejiang",
-		AliasNames: []string{"浙江省"},
+		AliasNames: []string{"浙江省", "浙江"},
 	},
 	{
 		Name:       "安徽省",
 		Code:       "china:province:anhui",
-		AliasNames: []string{"安徽省"},
+		AliasNames: []string{"安徽省", "安徽"},
 	},
 	{
 		Name:       "福建省",
 		Code:       "china:province:fujian",
-		AliasNames: []string{"福建省"},
+		AliasNames: []string{"福建省", "福建"},
 	},
 	{
 		Name:       "江西省",
 		Code:       "china:province:jiangxi",
-		AliasNames: []string{"江西省"},
+		AliasNames: []string{"江西省", "江西"},
 	},
 	{
 		Name:       "山东省",
 		Code:       "china:province:shandong",
-		AliasNames: []string{"山东省"},
+		AliasNames: []string{"山东省", "山东"},
 	},
 	{
 		Name:       "河南省",
 		Code:       "china:province:henan",
-		AliasNames: []string{"河南省"},
+		AliasNames: []string{"河南省", "河南"},
 	},
 	{
 		Name:       "湖北省",
 		Code:       "china:province:hubei",
-		AliasNames: []string{"湖北省"},
+		AliasNames: []string{"湖北省", "湖北"},
 	},
 	{
 		Name:       "湖南省",
 		Code:       "china:province:hunan",
-		AliasNames: []string{"湖南省"},
+		AliasNames: []string{"湖南省", "湖南"},
 	},
 	{
 		Name:       "广东省",
 		Code:       "china:province:guangdong",
-		AliasNames: []string{"广东省"},
+		AliasNames: []string{"广东省", "广东"},
 	},
 	{
 		Name:       "广西壮族自治区",
@@ -210,7 +210,7 @@ var AllDefaultChinaProvinceRoutes = []*Route{
 	{
 		Name:       "海南省",
 		Code:       "china:province:hainan",
-		AliasNames: []string{"海南省"},
+		AliasNames: []string{"海南省", "海南"},
 	},
 	{
 		Name:       "重庆市",
@@ -220,17 +220,17 @@ var AllDefaultChinaProvinceRoutes = []*Route{
 	{
 		Name:       "四川省",
 		Code:       "china:province:sichuan",
-		AliasNames: []string{"四川省"},
+		AliasNames: []string{"四川省", "四川"},
 	},
 	{
 		Name:       "贵州省",
 		Code:       "china:province:guizhou",
-		AliasNames: []string{"贵州省"},
+		AliasNames: []string{"贵州省", "贵州"},
 	},
 	{
 		Name:       "云南省",
 		Code:       "china:province:yunnan",
-		AliasNames: []string{"云南省"},
+		AliasNames: []string{"云南省", "云南"},
 	},
 	{
 		Name:       "西藏自治区",
@@ -240,17 +240,17 @@ var AllDefaultChinaProvinceRoutes = []*Route{
 	{
 		Name:       "陕西省",
 		Code:       "china:province:shaanxi",
-		AliasNames: []string{"陕西省"},
+		AliasNames: []string{"陕西省", "陕西"},
 	},
 	{
 		Name:       "甘肃省",
 		Code:       "china:province:gansu",
-		AliasNames: []string{"甘肃省"},
+		AliasNames: []string{"甘肃省", "甘肃"},
 	},
 	{
 		Name:       "青海省",
 		Code:       "china:province:qinghai",
-		AliasNames: []string{"青海省"},
+		AliasNames: []string{"青海省", "青海"},
 	},
 	{
 		Name:       "宁夏回族自治区",
@@ -275,7 +275,7 @@ var AllDefaultChinaProvinceRoutes = []*Route{
 	{
 		Name:       "台湾省",
 		Code:       "china:province:tw",
-		AliasNames: []string{"台湾省"},
+		AliasNames: []string{"台湾省", "台湾"},
 	},
 }
 

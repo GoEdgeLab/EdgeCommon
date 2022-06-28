@@ -2,27 +2,71 @@ package configutils
 
 import (
 	"encoding/binary"
-	"github.com/cespare/xxhash/v2"
-	"math"
+	"math/big"
 	"net"
 	"strings"
 )
 
-// IP2Long 将IP转换为整型
+// IPString2Long 将IP转换为整型
 // 注意IPv6没有顺序
-func IP2Long(ip string) uint64 {
+func IPString2Long(ip string) uint64 {
 	if len(ip) == 0 {
 		return 0
 	}
-	s := net.ParseIP(ip)
-	if len(s) == 0 {
+	var netIP = net.ParseIP(ip)
+	if len(netIP) == 0 {
+		return 0
+	}
+	return IP2Long(netIP)
+}
+
+// IP2Long 将IP对象转换为整型
+func IP2Long(netIP net.IP) uint64 {
+	if len(netIP) == 0 {
 		return 0
 	}
 
-	if strings.Contains(ip, ":") {
-		return math.MaxUint32 + xxhash.Sum64(s)
+	var b4 = netIP.To4()
+	if b4 != nil {
+		return uint64(binary.BigEndian.Uint32(b4.To4()))
 	}
-	return uint64(binary.BigEndian.Uint32(s.To4()))
+
+	var i = big.NewInt(0)
+	i.SetBytes(netIP.To16())
+	return i.Uint64()
+}
+
+// IsIPv4 检查是否为IPv4
+func IsIPv4(netIP net.IP) bool {
+	if len(netIP) == 0 {
+		return false
+	}
+	return netIP.To4() != nil
+}
+
+// IsIPv6 检查是否为IPv6
+func IsIPv6(netIP net.IP) bool {
+	if len(netIP) == 0 {
+		return false
+	}
+	return netIP.To4() == nil && netIP.To16() != nil
+}
+
+// IPVersion 获取IP版本号
+func IPVersion(netIP net.IP) int {
+	if len(netIP) == 0 {
+		return 0
+	}
+
+	if netIP.To4() != nil {
+		return 4
+	}
+
+	if netIP.To16() != nil {
+		return 6
+	}
+
+	return 0
 }
 
 // ParseCIDR 计算CIDR最大值
