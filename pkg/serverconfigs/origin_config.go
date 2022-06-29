@@ -33,6 +33,7 @@ type OriginConfig struct {
 	StripPrefix string `yaml:"stripPrefix" json:"stripPrefix"` // 去除URL前缀
 	RequestURI  string `yaml:"requestURI" json:"requestURI"`   // 转发后的请求URI TODO
 	RequestHost string `yaml:"requestHost" json:"requestHost"` // 自定义主机名
+	FollowPort  bool   `yaml:"followPort" json:"followPort"`   // 端口跟随
 
 	RequestHeaderPolicyRef  *shared.HTTPHeaderPolicyRef `yaml:"requestHeaderPolicyRef" json:"requestHeaderPolicyRef"`   // 请求Header
 	RequestHeaderPolicy     *shared.HTTPHeaderPolicy    `yaml:"requestHeaderPolicy" json:"requestHeaderPolicy"`         // 请求Header策略
@@ -50,7 +51,7 @@ type OriginConfig struct {
 	FTPServerRef *FTPServerRef    `yaml:"ftpServerRef" json:"ftpServerRef"` // TODO
 	FTPServer    *FTPServerConfig `yaml:"ftpServer" json:"ftpServer"`       // TODO
 
-	IsOk bool `yaml:"isOk" json:"isOk"` // 是否可以正常访问
+	IsOk bool `yaml:"isOk" json:"isOk"` // 是否可以正常访问，仅仅用于运行时检查
 
 	connTimeoutDuration time.Duration
 	readTimeoutDuration time.Duration

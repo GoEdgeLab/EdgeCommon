@@ -37,6 +37,7 @@ message CreateOriginRequest {
 	repeated string domains = 11;
 	bytes certRefJSON = 12;
 	string host = 13;
+	bool followPort = 14;
 }
 
 message CreateOriginResponse {
@@ -59,6 +60,7 @@ message UpdateOriginRequest {
 	repeated string domains = 12;
 	bytes certRefJSON = 13;
 	string host = 14;
+	bool followPort = 15;
 }
 
 // 查找单个源站信息

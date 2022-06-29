@@ -13,4 +13,5 @@ message Origin {
 	string description = 5;
 	repeated string domains = 6;
 	string host = 7;
+	bool followPort = 8;
 }
