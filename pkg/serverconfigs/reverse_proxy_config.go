@@ -32,10 +32,11 @@ type ReverseProxyConfig struct {
 	MaxConns     int                  `yaml:"maxConns" json:"maxConns"`         // 最大并发连接数 TODO
 	MaxIdleConns int                  `yaml:"maxIdleConns" json:"maxIdleConns"` // 最大空闲连接数 TODO
 
-	StripPrefix     string          `yaml:"stripPrefix" json:"stripPrefix"`         // 去除URL前缀
-	RequestHostType RequestHostType `yaml:"requestHostType" json:"requestHostType"` // 请求Host类型
-	RequestHost     string          `yaml:"requestHost" json:"requestHost"`         // 请求Host，支持变量
-	RequestURI      string          `yaml:"requestURI" json:"requestURI"`           // 请求URI，支持变量，如果同时定义了StripPrefix，则先执行StripPrefix
+	StripPrefix              string          `yaml:"stripPrefix" json:"stripPrefix"`                           // 去除URL前缀
+	RequestHostType          RequestHostType `yaml:"requestHostType" json:"requestHostType"`                   // 请求Host类型
+	RequestHost              string          `yaml:"requestHost" json:"requestHost"`                           // 请求Host，支持变量
+	RequestURI               string          `yaml:"requestURI" json:"requestURI"`                             // 请求URI，支持变量，如果同时定义了StripPrefix，则先执行StripPrefix
+	RequestHostExcludingPort bool            `yaml:"requestHostExcludingPort" json:"requestHostExcludingPort"` // 请求Host不包括端口
 
 	AddHeaders []string `yaml:"addHeaders" json:"addHeaders"` // 自动添加的Header
 

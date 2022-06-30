@@ -82,6 +82,7 @@ message UpdateReverseProxyRequest {
 	int64 reverseProxyId = 1;
 	int32 requestHostType = 6;
 	string requestHost = 2;
+	bool requestHostExcludingPort = 15;
 	string requestURI = 3;
 	string stripPrefix = 4;
 	bool autoFlush = 5;
