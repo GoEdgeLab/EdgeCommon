@@ -2,6 +2,7 @@
 
 package serverconfigs
 
+// UAMConfig UAM配置
 type UAMConfig struct {
 	IsPrior bool `yaml:"isPrior" json:"isPrior"`
 	IsOn    bool `yaml:"isOn" json:"isOn"`

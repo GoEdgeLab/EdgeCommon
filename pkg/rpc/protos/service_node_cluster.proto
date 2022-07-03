@@ -123,6 +123,12 @@ service NodeClusterService {
 	// 设置集群WebP策略
 	rpc updateNodeClusterWebPPolicy(UpdateNodeClusterWebPPolicyRequest) returns (RPCSuccess);
 
+	// 读取集群的UAM策略
+	rpc findEnabledNodeClusterUAMPolicy(FindEnabledNodeClusterUAMPolicyRequest) returns (FindEnabledNodeClusterUAMPolicyResponse);
+
+	// 设置集群的UAM策略
+	rpc updateNodeClusterUAMPolicy(UpdateNodeClusterUAMPolicyRequest) returns (RPCSuccess);
+
 	// 获取集群的DDoS设置
 	rpc findNodeClusterDDoSProtection(FindNodeClusterDDoSProtectionRequest) returns (FindNodeClusterDDoSProtectionResponse);
 
@@ -435,6 +441,7 @@ message FindEnabledNodeClusterConfigInfoResponse {
 	bool isTOAEnabled = 5;
 	bool hasMetricItems = 6;
 	bool webpIsOn = 7;
+	bool uamIsOn = 10;
 	bool hasSystemServices = 8;
 	bool hasDDoSProtection = 9;
 }
@@ -458,6 +465,21 @@ message FindEnabledNodeClusterWebPPolicyResponse {
 message UpdateNodeClusterWebPPolicyRequest {
 	int64 nodeClusterId = 1;
 	bytes webpPolicyJSON = 2;
+}
+
+// 读取集群的UAM策略
+message FindEnabledNodeClusterUAMPolicyRequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindEnabledNodeClusterUAMPolicyResponse {
+	bytes uamPolicyJSON = 1;
+}
+
+// 设置集群的UAM策略
+message UpdateNodeClusterUAMPolicyRequest {
+	int64 nodeClusterId = 1;
+	bytes uamPolicyJSON = 2;
 }
 
 // 获取集群的DDoS设置

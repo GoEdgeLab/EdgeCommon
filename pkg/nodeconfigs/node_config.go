@@ -78,6 +78,9 @@ type NodeConfig struct {
 	// WebP
 	WebPImagePolicies map[int64]*WebPImagePolicy `yaml:"webpImagePolicies" json:"webpImagePolicies"` // clusterId => *WebPImagePolicy
 
+	// UAM相关配置
+	UAMPolicies map[int64]*UAMPolicy `yaml:"uamPolicies" yaml:"uamPolicies" json:"uamPolicies"` // clusterId => *UAMPolicy
+
 	// DNS
 	DNSResolver *DNSResolverConfig `yaml:"dnsResolver" json:"dnsResolver"`
 
@@ -310,6 +313,16 @@ func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 		}
 	}
 
+	// uam policy
+	if this.UAMPolicies != nil {
+		for _, policy := range this.UAMPolicies {
+			err = policy.Init()
+			if err != nil {
+				return
+			}
+		}
+	}
+
 	// dns resolver
 	if this.DNSResolver != nil {
 		err = this.DNSResolver.Init()
@@ -506,6 +519,14 @@ func (this *NodeConfig) FindWebPImagePolicyWithClusterId(clusterId int64) *WebPI
 		return nil
 	}
 	return this.WebPImagePolicies[clusterId]
+}
+
+// FindUAMPolicyWithClusterId 使用集群ID查找UAM策略
+func (this *NodeConfig) FindUAMPolicyWithClusterId(clusterId int64) *UAMPolicy {
+	if this.UAMPolicies == nil {
+		return nil
+	}
+	return this.UAMPolicies[clusterId]
 }
 
 // SecretHash 对Id和Secret的Hash计算
