@@ -7,6 +7,7 @@ import "models/model_server_stat_board.proto";
 import "models/model_node_value.proto";
 import "models/model_metric_chart.proto";
 import "models/model_metric_stat.proto";
+import "models/model_server_bandwidth_stat.proto";
 
 // 统计看板
 service ServerStatBoardService {
@@ -139,6 +140,7 @@ message ComposeServerStatBoardRequest {
 }
 
 message ComposeServerStatBoardResponse {
+	repeated ServerBandwidthStat serverBandwidthStats = 1;
 	repeated DailyTrafficStat dailyTrafficStats = 30;
 	repeated HourlyTrafficStat hourlyTrafficStats = 31;
 	repeated NodeStat topNodeStats = 32;
