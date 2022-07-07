@@ -11,6 +11,7 @@ import (
 type ServerConfig struct {
 	Id               int64               `yaml:"id" json:"id"`                             // ID
 	ClusterId        int64               `yaml:"clusterId" json:"clusterId"`               // 集群ID
+	UserId           int64               `yaml:"userId" json:"userId"`                     // 用户ID
 	Type             string              `yaml:"type" json:"type"`                         // 类型
 	IsOn             bool                `yaml:"isOn" json:"isOn"`                         // 是否开启
 	Name             string              `yaml:"name" json:"name"`                         // 名称

@@ -191,15 +191,20 @@ message ComposeUserDashboardRequest {
 message ComposeUserDashboardResponse {
 	int64 countServers = 1;
 	int64 monthlyTrafficBytes = 2;
-	int64 monthlyPeekTrafficBytes = 3;
+	int64 monthlyPeekBandwidthBytes = 3;
 	int64 dailyTrafficBytes = 4;
-	int64 dailyPeekTrafficBytes = 5;
-	repeated DailyStat dailyTrafficStats = 6;
-	repeated DailyStat dailyPeekTrafficStats = 7;
+	int64 dailyPeekBandwidthBytes = 5;
+	repeated DailyTrafficStat dailyTrafficStats = 6;
+	repeated DailyPeekBandwidthStat dailyPeekBandwidthStats = 7;
 
-	message DailyStat {
+	message DailyTrafficStat {
 		string day = 1;
-		int64 count = 2;
+		int64 bytes = 2;
+	}
+
+	message DailyPeekBandwidthStat {
+		string day = 1;
+		int64 bytes = 2;
 	}
 }
 

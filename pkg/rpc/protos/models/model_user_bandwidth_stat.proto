@@ -4,11 +4,10 @@ option go_package = "./pb";
 package pb;
 
 // 带宽统计数据
-message ServerBandwidthStat {
+message UserBandwidthStat {
 	int64 id = 1;
 	int64 userId = 2;
-	int64 serverId = 3;
-	string day = 4;
-	string timeAt = 5;
-	int64 bytes = 6;
+	string day = 3;
+	string timeAt = 4;
+	int64 bytes = 5;
 }
