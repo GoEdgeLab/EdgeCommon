@@ -10,6 +10,9 @@ type SecurityConfig struct {
 	AllowLocal         bool     `json:"allowLocal"`         // 允许本地+局域网IP访问
 	AllowIPs           []string `json:"allowIPs"`           // 允许访问的IP
 	AllowRememberLogin bool     `json:"allowRememberLogin"` // 是否允许在设备上记住登录
+	DenySearchEngines  bool     `json:"denySearchEngines"`  // 禁止常见的搜索引擎访问
+	DenySpiders        bool     `json:"denySpiders"`        // 禁止常见的爬虫
+	AllowDomains       []string `json:"allowDomains"`       // 允许访问的域名
 
 	allowIPRanges []*shared.IPRangeConfig
 }
