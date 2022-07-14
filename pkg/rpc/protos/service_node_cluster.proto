@@ -273,6 +273,7 @@ message FindEnabledNodeClusterDNSResponse {
 	bool serversAutoSync = 5;
 	repeated string cnameRecords = 7;
 	int32 ttl = 8;
+	bool cnameAsDomain = 9;
 }
 
 // 计算使用某个DNS服务商的集群数量
@@ -313,6 +314,7 @@ message UpdateNodeClusterDNSRequest {
 	bool serversAutoSync = 5;
 	repeated string cnameRecords = 6;
 	int32 ttl = 7;
+	bool cnameAsDomain = 8;
 }
 
 // 检查集群的DNS是否有变化
