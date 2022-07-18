@@ -18,6 +18,8 @@ type ServerConfig struct {
 	Description      string              `yaml:"description" json:"description"`           // 描述
 	AliasServerNames []string            `yaml:"aliasServerNames" json:"aliasServerNames"` // 关联的域名，比如CNAME之类的
 	ServerNames      []*ServerNameConfig `yaml:"serverNames" json:"serverNames"`           // 域名
+	CNameDomain      string              `yaml:"cnameDomain" json:"cnameDomain"`           // CNAME（末尾不带点（.））
+	CNameAsDomain    bool                `yaml:"cnameAsDomain" json:"cnameAsDomain"`       // 启用CNAME域名访问
 	SupportCNAME     bool                `yaml:"supportCNAME" json:"supportCNAME"`         // 是否支持CNAME
 
 	// 前端协议
