@@ -12,7 +12,7 @@ type HTTPCacheConfig struct {
 	AddStatusHeader          bool `yaml:"addStatusHeader" json:"addStatusHeader"`                   // 是否增加命中状态Header（X-Cache）
 	AddAgeHeader             bool `yaml:"addAgeHeader" json:"addAgeHeader"`                         // 是否增加Age Header
 	EnableCacheControlMaxAge bool `yaml:"enableCacheControlMaxAge" json:"enableCacheControlMaxAge"` // 是否支持Cache-Control: max-age=...
-	DisablePolicyRefs        bool `yaml:"disablePolicyRefs" json:"disablePolicyRefs"`               // 停用策略中定义的条件
+	DisablePolicyRefs        bool `yaml:"disablePolicyRefs" json:"disablePolicyRefs"`               // 是否停用策略中定义的条件
 
 	PurgeIsOn bool   `yaml:"purgeIsOn" json:"purgeIsOn"` // 是否允许使用Purge方法清理
 	PurgeKey  string `yaml:"purgeKey" json:"purgeKey"`   // Purge时使用的X-Edge-Purge-Key

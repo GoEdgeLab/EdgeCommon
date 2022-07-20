@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"path/filepath"
 	"regexp"
+	"strings"
 )
 
 type ServiceInfo struct {
@@ -36,9 +37,15 @@ type MessageInfo struct {
 	Doc  string `json:"doc"`
 }
 
+type LinkInfo struct {
+	Name    string `json:"name"`
+	Content string `json:"content"`
+}
+
 type RPCList struct {
 	Services []*ServiceInfo `json:"services"`
 	Messages []*MessageInfo `json:"messages"`
+	Links    []*LinkInfo    `json:"links"`
 }
 
 func readComments(data []byte) string {
@@ -67,134 +74,135 @@ func main() {
 	flag.BoolVar(&quiet, "quiet", false, "")
 	flag.Parse()
 
-	var dirs = []string{Tea.Root + "/../pkg/rpc/protos/", Tea.Root + "/../pkg/rpc/protos/models"}
-
 	var services = []*ServiceInfo{}
 	var messages = []*MessageInfo{}
 
-	for _, dir := range dirs {
-		func(dir string) {
-			dir = filepath.Clean(dir)
+	{
+		var dirs = []string{Tea.Root + "/../pkg/rpc/protos/", Tea.Root + "/../pkg/rpc/protos/models"}
+		for _, dir := range dirs {
+			func(dir string) {
+				dir = filepath.Clean(dir)
 
-			files, err := filepath.Glob(dir + "/*.proto")
-			if err != nil {
-				fmt.Println("[ERROR]list proto files failed: " + err.Error())
-				return
-			}
+				files, err := filepath.Glob(dir + "/*.proto")
+				if err != nil {
+					fmt.Println("[ERROR]list proto files failed: " + err.Error())
+					return
+				}
 
-			for _, path := range files {
-				func(path string) {
-					data, err := ioutil.ReadFile(path)
-					if err != nil {
-						fmt.Println("[ERROR]" + err.Error())
-						return
-					}
+				for _, path := range files {
+					func(path string) {
+						data, err := ioutil.ReadFile(path)
+						if err != nil {
+							fmt.Println("[ERROR]" + err.Error())
+							return
+						}
 
-					// 先将rpc代码替换成临时代码
-					var methodCodeMap = map[string][]byte{} // code => method
-					var methodIndex = 0
-					var methodReg = regexp.MustCompile(`rpc\s+(\w+)\s*\(\s*(\w+)\s*\)\s*returns\s*\(\s*(\w+)\s*\)\s*;`)
-					data = methodReg.ReplaceAllFunc(data, func(methodData []byte) []byte {
-						methodIndex++
-						var code = "METHOD" + types.String(methodIndex)
-						methodCodeMap[code] = methodData
-						return []byte("\n" + code)
-					})
+						// 先将rpc代码替换成临时代码
+						var methodCodeMap = map[string][]byte{} // code => method
+						var methodIndex = 0
+						var methodReg = regexp.MustCompile(`rpc\s+(\w+)\s*\(\s*(\w+)\s*\)\s*returns\s*\(\s*(\w+)\s*\)\s*;`)
+						data = methodReg.ReplaceAllFunc(data, func(methodData []byte) []byte {
+							methodIndex++
+							var code = "METHOD" + types.String(methodIndex)
+							methodCodeMap[code] = methodData
+							return []byte("\n" + code)
+						})
 
-					// 服务列表
-					// TODO 这里需要改进一下，当前实现方法如果方法注释里有括号（}），就会导致部分方法解析不到
-					var serviceNameReg = regexp.MustCompile(`(?sU)\n\s*service\s+(\w+)\s*\{(.+)}`)
-					var serviceMatches = serviceNameReg.FindAllSubmatch(data, -1)
-					var serviceNamePositions = serviceNameReg.FindAllIndex(data, -1)
-					for serviceMatchIndex, serviceMatch := range serviceMatches {
-						var serviceName = string(serviceMatch[1])
-						var serviceNamePosition = serviceNamePositions[serviceMatchIndex][0]
-						var comment = readComments(data[:serviceNamePosition])
+						// 服务列表
+						// TODO 这里需要改进一下，当前实现方法如果方法注释里有括号（}），就会导致部分方法解析不到
+						var serviceNameReg = regexp.MustCompile(`(?sU)\n\s*service\s+(\w+)\s*\{(.+)}`)
+						var serviceMatches = serviceNameReg.FindAllSubmatch(data, -1)
+						var serviceNamePositions = serviceNameReg.FindAllIndex(data, -1)
+						for serviceMatchIndex, serviceMatch := range serviceMatches {
+							var serviceName = string(serviceMatch[1])
+							var serviceNamePosition = serviceNamePositions[serviceMatchIndex][0]
+							var comment = readComments(data[:serviceNamePosition])
 
-						// 方法列表
-						var methods = []*MethodInfo{}
-						var serviceData = serviceMatch[2]
-						var methodCodeReg = regexp.MustCompile(`\b(METHOD\d+)\b`)
-						var methodCodeMatches = methodCodeReg.FindAllSubmatch(serviceData, -1)
-						var methodCodePositions = methodCodeReg.FindAllIndex(serviceData, -1)
-						for methodMatchIndex, methodMatch := range methodCodeMatches {
-							var methodCode = string(methodMatch[1])
-							var methodData = methodCodeMap[methodCode]
-							var methodPieces = methodReg.FindSubmatch(methodData)
-							var methodCodePosition = methodCodePositions[methodMatchIndex]
+							// 方法列表
+							var methods = []*MethodInfo{}
+							var serviceData = serviceMatch[2]
+							var methodCodeReg = regexp.MustCompile(`\b(METHOD\d+)\b`)
+							var methodCodeMatches = methodCodeReg.FindAllSubmatch(serviceData, -1)
+							var methodCodePositions = methodCodeReg.FindAllIndex(serviceData, -1)
+							for methodMatchIndex, methodMatch := range methodCodeMatches {
+								var methodCode = string(methodMatch[1])
+								var methodData = methodCodeMap[methodCode]
+								var methodPieces = methodReg.FindSubmatch(methodData)
+								var methodCodePosition = methodCodePositions[methodMatchIndex]
 
-							methods = append(methods, &MethodInfo{
-								Name:                string(methodPieces[1]),
-								RequestMessageName:  string(methodPieces[2]),
-								ResponseMessageName: string(methodPieces[3]),
-								Code:                string(methodData),
-								Doc:                 readComments(serviceData[:methodCodePosition[0]]),
+								methods = append(methods, &MethodInfo{
+									Name:                string(methodPieces[1]),
+									RequestMessageName:  string(methodPieces[2]),
+									ResponseMessageName: string(methodPieces[3]),
+									Code:                string(methodData),
+									Doc:                 readComments(serviceData[:methodCodePosition[0]]),
+								})
+							}
+
+							services = append(services, &ServiceInfo{
+								Name:     serviceName,
+								Methods:  methods,
+								Filename: filepath.Base(path),
+								Doc:      comment,
 							})
 						}
 
-						services = append(services, &ServiceInfo{
-							Name:     serviceName,
-							Methods:  methods,
-							Filename: filepath.Base(path),
-							Doc:      comment,
-						})
-					}
-
-					// 消息列表
-					var topMessageCodeMap = map[string][]byte{} // code => message
-					var allMessageCodeMap = map[string][]byte{}
-					var messageCodeIndex = 0
-					var messagesReg = regexp.MustCompile(`(?sU)\n\s*message\s+(\w+)\s*\{([^{}]+)\n\s*}`)
-					var firstMessagesReg = regexp.MustCompile(`message\s+(\w+)`)
-					var messageCodeREG = regexp.MustCompile(`MESSAGE\d+`)
-					for {
-						var hasMessage = false
-
-						data = messagesReg.ReplaceAllFunc(data, func(messageData []byte) []byte {
-							messageCodeIndex++
-							hasMessage = true
-
-							// 是否包含子Message
-							var subMatches = messageCodeREG.FindAllSubmatch(messageData, -1)
-							for _, subMatch := range subMatches {
-								var subMatchCode = string(subMatch[0])
-								delete(topMessageCodeMap, subMatchCode)
-							}
-
-							var code = "MESSAGE" + types.String(messageCodeIndex)
-							topMessageCodeMap[code] = messageData
-							allMessageCodeMap[code] = messageData
-							return []byte("\n" + code)
-						})
-						if !hasMessage {
-							break
-						}
-					}
-
-					for messageCode, messageData := range topMessageCodeMap {
-						// 替换其中的子Message
+						// 消息列表
+						var topMessageCodeMap = map[string][]byte{} // code => message
+						var allMessageCodeMap = map[string][]byte{}
+						var messageCodeIndex = 0
+						var messagesReg = regexp.MustCompile(`(?sU)\n\s*message\s+(\w+)\s*\{([^{}]+)\n\s*}`)
+						var firstMessagesReg = regexp.MustCompile(`message\s+(\w+)`)
+						var messageCodeREG = regexp.MustCompile(`MESSAGE\d+`)
 						for {
-							if messageCodeREG.Match(messageData) {
-								messageData = messageCodeREG.ReplaceAllFunc(messageData, func(messageCodeData []byte) []byte {
-									return allMessageCodeMap[string(messageCodeData)]
-								})
-							} else {
+							var hasMessage = false
+
+							data = messagesReg.ReplaceAllFunc(data, func(messageData []byte) []byte {
+								messageCodeIndex++
+								hasMessage = true
+
+								// 是否包含子Message
+								var subMatches = messageCodeREG.FindAllSubmatch(messageData, -1)
+								for _, subMatch := range subMatches {
+									var subMatchCode = string(subMatch[0])
+									delete(topMessageCodeMap, subMatchCode)
+								}
+
+								var code = "MESSAGE" + types.String(messageCodeIndex)
+								topMessageCodeMap[code] = messageData
+								allMessageCodeMap[code] = messageData
+								return []byte("\n" + code)
+							})
+							if !hasMessage {
 								break
 							}
 						}
 
-						// 注释
-						var index = bytes.Index(data, []byte(messageCode))
-						var messageName = string(firstMessagesReg.FindSubmatch(messageData)[1])
-						messages = append(messages, &MessageInfo{
-							Name: messageName,
-							Code: string(bytes.TrimSpace(messageData)),
-							Doc:  readComments(data[:index]),
-						})
-					}
-				}(path)
-			}
-		}(dir)
+						for messageCode, messageData := range topMessageCodeMap {
+							// 替换其中的子Message
+							for {
+								if messageCodeREG.Match(messageData) {
+									messageData = messageCodeREG.ReplaceAllFunc(messageData, func(messageCodeData []byte) []byte {
+										return allMessageCodeMap[string(messageCodeData)]
+									})
+								} else {
+									break
+								}
+							}
+
+							// 注释
+							var index = bytes.Index(data, []byte(messageCode))
+							var messageName = string(firstMessagesReg.FindSubmatch(messageData)[1])
+							messages = append(messages, &MessageInfo{
+								Name: messageName,
+								Code: string(bytes.TrimSpace(messageData)),
+								Doc:  readComments(data[:index]),
+							})
+						}
+					}(path)
+				}
+			}(dir)
+		}
 	}
 
 	var countServices = len(services)
@@ -204,9 +212,45 @@ func main() {
 		countMethods += len(service.Methods)
 	}
 
+	// 链接
+	var links = []*LinkInfo{}
+
+	// json links
+	{
+		var dirs = []string{Tea.Root + "/../pkg/rpc/jsons"}
+		for _, dir := range dirs {
+			func(dir string) {
+				dir = filepath.Clean(dir)
+
+				files, err := filepath.Glob(dir + "/*.md")
+				if err != nil {
+					fmt.Println("[ERROR]list .md files failed: " + err.Error())
+					return
+				}
+
+				for _, path := range files {
+					func(path string) {
+						var name = strings.TrimSuffix(filepath.Base(path), ".md")
+						data, err := ioutil.ReadFile(path)
+						if err != nil {
+							fmt.Println("[ERROR]read '" + path + "' failed: " + err.Error())
+							return
+						}
+
+						links = append(links, &LinkInfo{
+							Name:    "json:" + name,
+							Content: string(data),
+						})
+					}(path)
+				}
+			}(dir)
+		}
+	}
+
 	var rpcList = &RPCList{
 		Services: services,
 		Messages: messages,
+		Links:    links,
 	}
 	jsonData, err := json.MarshalIndent(rpcList, "", "  ")
 	if err != nil {

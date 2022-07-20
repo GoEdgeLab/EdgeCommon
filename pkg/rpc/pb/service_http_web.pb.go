@@ -489,7 +489,7 @@ type UpdateHTTPWebRemoteAddrRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	HttpWebId      int64  `protobuf:"varint,1,opt,name=httpWebId,proto3" json:"httpWebId,omitempty"`
-	RemoteAddrJSON []byte `protobuf:"bytes,2,opt,name=remoteAddrJSON,proto3" json:"remoteAddrJSON,omitempty"`
+	RemoteAddrJSON []byte `protobuf:"bytes,2,opt,name=remoteAddrJSON,proto3" json:"remoteAddrJSON,omitempty"` // @link json:http_remote_addr_config
 }
 
 func (x *UpdateHTTPWebRemoteAddrRequest) Reset() {
@@ -825,7 +825,7 @@ type UpdateHTTPWebAccessLogRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	HttpWebId     int64  `protobuf:"varint,1,opt,name=httpWebId,proto3" json:"httpWebId,omitempty"`
-	AccessLogJSON []byte `protobuf:"bytes,2,opt,name=accessLogJSON,proto3" json:"accessLogJSON,omitempty"`
+	AccessLogJSON []byte `protobuf:"bytes,2,opt,name=accessLogJSON,proto3" json:"accessLogJSON,omitempty"` // @link json:http_access_log_ref
 }
 
 func (x *UpdateHTTPWebAccessLogRequest) Reset() {
@@ -881,7 +881,7 @@ type UpdateHTTPWebStatRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	HttpWebId int64  `protobuf:"varint,1,opt,name=httpWebId,proto3" json:"httpWebId,omitempty"`
-	StatJSON  []byte `protobuf:"bytes,2,opt,name=statJSON,proto3" json:"statJSON,omitempty"`
+	StatJSON  []byte `protobuf:"bytes,2,opt,name=statJSON,proto3" json:"statJSON,omitempty"` // @link json:http_stat_stat_ref
 }
 
 func (x *UpdateHTTPWebStatRequest) Reset() {
@@ -937,7 +937,7 @@ type UpdateHTTPWebCacheRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	HttpWebId int64  `protobuf:"varint,1,opt,name=httpWebId,proto3" json:"httpWebId,omitempty"`
-	CacheJSON []byte `protobuf:"bytes,2,opt,name=cacheJSON,proto3" json:"cacheJSON,omitempty"`
+	CacheJSON []byte `protobuf:"bytes,2,opt,name=cacheJSON,proto3" json:"cacheJSON,omitempty"` // @link json:http_cache_config
 }
 
 func (x *UpdateHTTPWebCacheRequest) Reset() {
@@ -993,7 +993,7 @@ type UpdateHTTPWebFirewallRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	HttpWebId    int64  `protobuf:"varint,1,opt,name=httpWebId,proto3" json:"httpWebId,omitempty"`
-	FirewallJSON []byte `protobuf:"bytes,2,opt,name=firewallJSON,proto3" json:"firewallJSON,omitempty"`
+	FirewallJSON []byte `protobuf:"bytes,2,opt,name=firewallJSON,proto3" json:"firewallJSON,omitempty"` // @link json:http_firewall_ref
 }
 
 func (x *UpdateHTTPWebFirewallRequest) Reset() {
@@ -1161,7 +1161,7 @@ type UpdateHTTPWebWebsocketRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	HttpWebId     int64  `protobuf:"varint,1,opt,name=httpWebId,proto3" json:"httpWebId,omitempty"`
-	WebsocketJSON []byte `protobuf:"bytes,2,opt,name=websocketJSON,proto3" json:"websocketJSON,omitempty"`
+	WebsocketJSON []byte `protobuf:"bytes,2,opt,name=websocketJSON,proto3" json:"websocketJSON,omitempty"` // @link json:http_websocket_ref
 }
 
 func (x *UpdateHTTPWebWebsocketRequest) Reset() {

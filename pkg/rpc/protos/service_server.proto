@@ -165,7 +165,7 @@ message CreateServerRequest {
 	string description = 5;
 
 	// 配置相关
-	bytes serverNamesJON = 8;
+	bytes serverNamesJON = 8; // @link json:server_names
 	bytes httpJSON = 9;
 	bytes httpsJSON = 10;
 	bytes tcpJSON = 11;

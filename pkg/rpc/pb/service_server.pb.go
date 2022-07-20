@@ -41,7 +41,7 @@ type CreateServerRequest struct {
 	Name        string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
 	Description string `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	// 配置相关
-	ServerNamesJON   []byte  `protobuf:"bytes,8,opt,name=serverNamesJON,proto3" json:"serverNamesJON,omitempty"`
+	ServerNamesJON   []byte  `protobuf:"bytes,8,opt,name=serverNamesJON,proto3" json:"serverNamesJON,omitempty"` // @link json:server_names
 	HttpJSON         []byte  `protobuf:"bytes,9,opt,name=httpJSON,proto3" json:"httpJSON,omitempty"`
 	HttpsJSON        []byte  `protobuf:"bytes,10,opt,name=httpsJSON,proto3" json:"httpsJSON,omitempty"`
 	TcpJSON          []byte  `protobuf:"bytes,11,opt,name=tcpJSON,proto3" json:"tcpJSON,omitempty"`

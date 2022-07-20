@@ -150,7 +150,7 @@ message UpdateHTTPWebWebPRequest {
 // 更改RemoteAddr配置
 message UpdateHTTPWebRemoteAddrRequest {
 	int64 httpWebId = 1;
-	bytes remoteAddrJSON = 2;
+	bytes remoteAddrJSON = 2; // @link json:http_remote_addr_config
 }
 
 // 更改字符集配置
@@ -186,25 +186,25 @@ message UpdateHTTPWebPagesRequest {
 // 更改访问日志配置
 message UpdateHTTPWebAccessLogRequest {
 	int64 httpWebId = 1;
-	bytes accessLogJSON = 2;
+	bytes accessLogJSON = 2; // @link json:http_access_log_ref
 }
 
 // 更改统计配置
 message UpdateHTTPWebStatRequest {
 	int64 httpWebId = 1;
-	bytes statJSON = 2;
+	bytes statJSON = 2; // @link json:http_stat_stat_ref
 }
 
 // 更改缓存配置
 message UpdateHTTPWebCacheRequest {
 	int64 httpWebId = 1;
-	bytes cacheJSON = 2;
+	bytes cacheJSON = 2; // @link json:http_cache_config
 }
 
 // 更改防火墙设置
 message UpdateHTTPWebFirewallRequest {
 	int64 httpWebId = 1;
-	bytes firewallJSON = 2;
+	bytes firewallJSON = 2; // @link json:http_firewall_ref
 }
 
 // 更改路径规则配置
@@ -222,7 +222,7 @@ message UpdateHTTPWebRedirectToHTTPSRequest {
 // 更改Websocket设置
 message UpdateHTTPWebWebsocketRequest {
 	int64 httpWebId = 1;
-	bytes websocketJSON = 2;
+	bytes websocketJSON = 2; // @link json:http_websocket_ref
 }
 
 // 更改Fastcgi设置
