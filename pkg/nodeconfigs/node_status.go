@@ -25,6 +25,7 @@ type NodeStatus struct {
 	Load5m                float64 `json:"load5m"`
 	Load15m               float64 `json:"load15m"`
 	ConnectionCount       int     `json:"connectionCount"` // 连接数
+	ExePath               string  `json:"exePath"`         // 可执行文件路径
 
 	TrafficInBytes  uint64 `json:"trafficInBytes"`
 	TrafficOutBytes uint64 `json:"trafficOutBytes"`
