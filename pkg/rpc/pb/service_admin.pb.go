@@ -2153,8 +2153,8 @@ type ComposeAdminDashboardResponse_UpgradeInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CountNodes int64  `protobuf:"varint,1,opt,name=countNodes,proto3" json:"countNodes,omitempty"`
-	NewVersion string `protobuf:"bytes,2,opt,name=newVersion,proto3" json:"newVersion,omitempty"`
+	CountNodes int64  `protobuf:"varint,1,opt,name=countNodes,proto3" json:"countNodes,omitempty"` // 节点数
+	NewVersion string `protobuf:"bytes,2,opt,name=newVersion,proto3" json:"newVersion,omitempty"`  // 新版本
 }
 
 func (x *ComposeAdminDashboardResponse_UpgradeInfo) Reset() {

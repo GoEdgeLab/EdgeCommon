@@ -22,4 +22,5 @@ message APINode {
 	bool isPrimary = 16;
 
 	bool debug = 30;
+	string instanceCode = 31;
 }
