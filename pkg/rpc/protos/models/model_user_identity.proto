@@ -5,14 +5,16 @@ package pb;
 
 message UserIdentity {
 	int64 id = 1;
-	string type = 2;
-	string realName = 3;
-	string number = 4;
-	repeated int64 fileIds = 5;
-	string status = 6;
-	int64 createdAt = 7;
-	int64 updatedAt = 8;
-	int64 submittedAt = 9;
-	int64 rejectedAt = 10;
-	int64 verifiedAt = 11;
+	string orgType = 2;
+	string type = 3;
+	string realName = 4;
+	string number = 5;
+	repeated int64 fileIds = 6;
+	string status = 7;
+	int64 createdAt = 8;
+	int64 updatedAt = 9;
+	int64 submittedAt = 10;
+	int64 rejectedAt = 11;
+	int64 verifiedAt = 12;
+	string rejectedReason = 13;
 }

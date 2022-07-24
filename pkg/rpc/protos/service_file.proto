@@ -32,6 +32,8 @@ message CreateFileRequest {
 	string filename = 1;
 	int64 size = 2;
 	bool isPublic = 3;
+	string mimeType = 4;
+	string type = 5;
 }
 
 message CreateFileResponse {

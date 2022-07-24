@@ -11,8 +11,11 @@ service UserIdentityService {
 	// 创建身份认证信息
 	rpc createUserIdentity(CreateUserIdentityRequest) returns (CreateUserIdentityResponse);
 
+	// 查找单个身份认证信息
+	rpc findEnabledUserIdentity(FindEnabledUserIdentityRequest) returns (FindEnabledUserIdentityResponse);
+
 	// 查看某个类型的身份认证信息
-	rpc findUserEnabledUserIdentityWithType(FindUserEnabledUserIdentityWithTypeRequest) returns (FindUserEnabledUserIdentityWithTypeResponse);
+	rpc findEnabledUserIdentityWithOrgType(FindEnabledUserIdentityWithOrgTypeRequest) returns (FindEnabledUserIdentityWithOrgTypeResponse);
 
 	// 修改身份认证信息
 	rpc updateUserIdentity(UpdateUserIdentityRequest) returns (RPCSuccess);
@@ -32,23 +35,33 @@ service UserIdentityService {
 
 // 创建身份认证信息
 message CreateUserIdentityRequest {
-	string type = 1;
-	string realName = 2;
-	string number = 3;
-	repeated int64 fileIds = 4;
+	string orgType = 1;
+	string type = 2;
+	string realName = 3;
+	string number = 4;
+	repeated int64 fileIds = 5;
 }
 
 message CreateUserIdentityResponse {
 	int64 userIdentityId = 1;
 }
 
-// 查看某个类型的身份认证信息
-message FindUserEnabledUserIdentityWithTypeRequest {
-	int64 userId = 1; // 用户端不需要设置此参数
-	string type = 2; // 类型
+// 查找单个身份认证信息
+message FindEnabledUserIdentityRequest {
+	int64 userIdentityId = 1;
 }
 
-message FindUserEnabledUserIdentityWithTypeResponse {
+message FindEnabledUserIdentityResponse {
+	UserIdentity userIdentity = 1;
+}
+
+// 查看某个类型的身份认证信息
+message FindEnabledUserIdentityWithOrgTypeRequest {
+	int64 userId = 1; // 用户端不需要设置此参数
+	string orgType = 2; // 阻止类型
+}
+
+message FindEnabledUserIdentityWithOrgTypeResponse {
 	UserIdentity userIdentity = 1;
 }
 
@@ -74,6 +87,7 @@ message CancelUserIdentityRequest {
 // 拒绝用户身份认证信息
 message RejectUserIdentityRequest {
 	int64 userIdentityId = 1;
+	string reason = 2;
 }
 
 // 通过用户身份认证信息

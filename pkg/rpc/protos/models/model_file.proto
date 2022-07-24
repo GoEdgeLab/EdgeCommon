@@ -9,4 +9,6 @@ message File {
 	int64 size = 3;
 	int64 createdAt = 4;
 	bool isPublic = 5;
+	string mimeType = 6;
+	string type = 7;
 }
