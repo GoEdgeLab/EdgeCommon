@@ -17,6 +17,9 @@ service UserIdentityService {
 	// 查看某个类型的实名认证信息
 	rpc findEnabledUserIdentityWithOrgType(FindEnabledUserIdentityWithOrgTypeRequest) returns (FindEnabledUserIdentityWithOrgTypeResponse);
 
+	// 检查是否正在审核中
+	rpc checkUserIdentityIsSubmitted(CheckUserIdentityIsSubmittedRequest) returns (CheckUserIdentityIsSubmittedResponse);
+
 	// 修改实名认证信息
 	rpc updateUserIdentity(UpdateUserIdentityRequest) returns (RPCSuccess);
 
@@ -66,6 +69,15 @@ message FindEnabledUserIdentityWithOrgTypeRequest {
 
 message FindEnabledUserIdentityWithOrgTypeResponse {
 	UserIdentity userIdentity = 1;
+}
+
+// 检查是否正在审核中
+message CheckUserIdentityIsSubmittedRequest {
+	int64 userId = 1;
+}
+
+message CheckUserIdentityIsSubmittedResponse {
+	bool isSubmitted = 1;
 }
 
 // 修改实名认证信息

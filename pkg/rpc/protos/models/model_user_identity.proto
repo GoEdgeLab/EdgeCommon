@@ -16,5 +16,5 @@ message UserIdentity {
 	int64 submittedAt = 10;
 	int64 rejectedAt = 11;
 	int64 verifiedAt = 12;
-	string rejectedReason = 13;
+	string rejectReason = 13;
 }
