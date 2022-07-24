@@ -21,6 +21,8 @@ message User {
 	bool isRejected = 14;
 	string rejectReason = 15;
 	bool isDeleted = 16;
+	bool isIndividualIdentified = 17;
+	bool isEnterpriseIdentified = 18;
 
 	NodeCluster nodeCluster = 10;
 	repeated UserFeature features = 11;

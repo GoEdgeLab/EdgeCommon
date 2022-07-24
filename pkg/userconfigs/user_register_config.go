@@ -8,6 +8,7 @@ type UserRegisterConfig struct {
 	ComplexPassword     bool     `yaml:"complexPassword" json:"complexPassword"`         // 必须使用复杂密码
 	Features            []string `yaml:"features" json:"features"`                       // 默认启用的功能
 	RequireVerification bool     `yaml:"requireVerification" json:"requireVerification"` // 是否需要审核
+	RequireIdentity     bool     `yaml:"requireIdentity" json:"requireIdentity"`         // 是否需要实名认证
 }
 
 func DefaultUserRegisterConfig() *UserRegisterConfig {
