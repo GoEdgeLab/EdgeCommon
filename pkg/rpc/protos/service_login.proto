@@ -18,6 +18,7 @@ service LoginService {
 // 查找认证
 message FindEnabledLoginRequest {
 	int64 adminId = 1;
+	int64 userId = 3;
 	string type = 2;
 }
 

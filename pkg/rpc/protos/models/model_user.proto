@@ -5,6 +5,7 @@ package pb;
 
 import "models/model_node_cluster.proto";
 import "models/model_user_feature.proto";
+import "models/model_login.proto";
 
 message User {
 	int64 id = 1;
@@ -23,6 +24,8 @@ message User {
 	bool isDeleted = 16;
 	bool isIndividualIdentified = 17;
 	bool isEnterpriseIdentified = 18;
+
+	Login otpLogin = 19; // OTP认证
 
 	NodeCluster nodeCluster = 10;
 	repeated UserFeature features = 11;
