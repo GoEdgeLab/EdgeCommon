@@ -2,6 +2,8 @@
 
 package dnsconfigs
 
+type RouteCode = string
+
 type Route struct {
 	Name       string   `json:"name"`
 	Code       string   `json:"code"`
@@ -104,6 +106,12 @@ var AllDefaultISPRoutes = []*Route{
 		AliasNames: []string{"阿里云"},
 	},
 }
+
+const (
+	ChinaProvinceCodeHK RouteCode = "china:province:hk"
+	ChinaProvinceCodeMO RouteCode = "china:province:mo"
+	ChinaProvinceCodeTW RouteCode = "china:province:tw"
+)
 
 // AllDefaultChinaProvinceRoutes 中国地域线路
 var AllDefaultChinaProvinceRoutes = []*Route{
@@ -264,28 +272,62 @@ var AllDefaultChinaProvinceRoutes = []*Route{
 	},
 	{
 		Name:       "香港特别行政区",
-		Code:       "china:province:hk",
+		Code:       ChinaProvinceCodeHK,
 		AliasNames: []string{"香港特别行政区", "香港"},
 	},
 	{
 		Name:       "澳门特别行政区",
-		Code:       "china:province:mo",
+		Code:       ChinaProvinceCodeMO,
 		AliasNames: []string{"澳门特别行政区", "澳门"},
 	},
 	{
 		Name:       "台湾省",
-		Code:       "china:province:tw",
+		Code:       ChinaProvinceCodeTW,
 		AliasNames: []string{"台湾省", "台湾"},
 	},
 }
+
+const (
+	WorldRegionCodeChina         RouteCode = "world:CN"
+	WorldRegionCodeHK            RouteCode = "world:CN:hk"
+	WorldRegionCodeMO            RouteCode = "world:CN:mo"
+	WorldRegionCodeTW            RouteCode = "world:CN:tw"
+	WorldRegionCodeChinaMainland RouteCode = "world:CN:mainland"
+	WorldRegionCodeChinaAbroad   RouteCode = "world:CN:abroad"
+)
 
 // AllDefaultWorldRegionRoutes 世界地域线路
 // 参考：https://zh.wikipedia.org/wiki/%E5%9C%8B%E5%AE%B6%E5%9C%B0%E5%8D%80%E4%BB%A3%E7%A2%BC
 var AllDefaultWorldRegionRoutes = []*Route{
 	{
-		Name:       "中国",
-		Code:       "world:CN",
+		Name:       "中国全境",
+		Code:       WorldRegionCodeChina,
 		AliasNames: []string{"中国"},
+	},
+	{
+		Name:       "中国香港",
+		Code:       WorldRegionCodeHK,
+		AliasNames: []string{"中国香港地区"},
+	},
+	{
+		Name:       "中国澳门",
+		Code:       WorldRegionCodeMO,
+		AliasNames: []string{"中国澳门地区"},
+	},
+	{
+		Name:       "中国台湾",
+		Code:       WorldRegionCodeTW,
+		AliasNames: []string{"中国台湾地区"},
+	},
+	{
+		Name:       "中国大陆",
+		Code:       WorldRegionCodeChinaMainland,
+		AliasNames: []string{"中国大陆大区"},
+	},
+	{
+		Name:       "海外",
+		Code:       WorldRegionCodeChinaAbroad,
+		AliasNames: []string{"中国海外地区"},
 	},
 	{
 		Name:       "蒙古",
