@@ -62,7 +62,7 @@ func TestRoutes_Markdown(t *testing.T) {
 		case 0:
 			markdown += "## 默认线路\n"
 		case 1:
-			markdown += "## 中国地区\n"
+			markdown += "## 中国省市\n"
 		case 2:
 			markdown += "## 运营商\n"
 		case 3:
