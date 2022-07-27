@@ -29,13 +29,15 @@ message CreateNSAccessLogsResponse {
 // 列出往前的单页访问日志
 message ListNSAccessLogsRequest {
 	string requestId = 1; // 上一页请求ID，可选
+	int64 nsClusterId = 9; // 集群
 	int64 nsNodeId = 2; // 节点ID
 	int64 nsDomainId = 3; // 域名ID
 	int64 nsRecordId = 4; // 记录ID
 	int64 size = 5; // 单页条数
 	string day = 6; // 日期，格式YYYYMMDD
 	bool reverse = 7; // 是否反向查找，可选
-	string keyword = 8;
+	string keyword = 8; // 关键词
+	string recordType = 10; // 记录类型
 }
 
 message ListNSAccessLogsResponse {
