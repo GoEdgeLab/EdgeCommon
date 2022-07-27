@@ -40,6 +40,24 @@ service NSClusterService {
 
 	// 读取递归DNS配置
 	rpc findNSClusterRecursionConfig(FindNSClusterRecursionConfigRequest) returns (FindNSClusterRecursionConfigResponse);
+
+	// 查找集群的TCP设置
+	rpc findNSClusterTCPConfig(FindNSClusterTCPConfigRequest) returns (FindNSClusterTCPConfigResponse);
+
+	// 修改集群的TCP设置
+	rpc updateNSClusterTCP (UpdateNSClusterTCPRequest) returns (RPCSuccess);
+
+	// 查找集群的TLS设置
+	rpc findNSClusterTLSConfig(FindNSClusterTLSConfigRequest) returns (FindNSClusterTLSConfigResponse);
+
+	// 修改集群的TLS设置
+	rpc updateNSClusterTLS (UpdateNSClusterTLSRequest) returns (RPCSuccess);
+
+	// 查找集群的UDP设置
+	rpc findNSClusterUDPConfig(FindNSClusterUDPConfigRequest) returns (FindNSClusterUDPConfigResponse);
+
+	// 修改集群的UDP设置
+	rpc updateNSClusterUDP (UpdateNSClusterUDPRequest) returns (RPCSuccess);
 }
 
 // 创建集群
@@ -124,4 +142,49 @@ message FindNSClusterRecursionConfigRequest {
 
 message FindNSClusterRecursionConfigResponse {
 	bytes recursionJSON = 1;
+}
+
+// 查找集群的TCP设置
+message FindNSClusterTCPConfigRequest {
+	int64 nsClusterId = 1;
+}
+
+message FindNSClusterTCPConfigResponse {
+	bytes tcpJSON = 1;
+}
+
+// 查找集群的TLS设置
+message FindNSClusterTLSConfigRequest {
+	int64 nsClusterId = 1;
+}
+
+message FindNSClusterTLSConfigResponse {
+	bytes tlsJSON = 1;
+}
+
+// 查找集群的UDP设置
+message FindNSClusterUDPConfigRequest {
+	int64 nsClusterId = 1;
+}
+
+message FindNSClusterUDPConfigResponse {
+	bytes udpJSON = 1;
+}
+
+// 修改集群的TCP设置
+message UpdateNSClusterTCPRequest {
+	int64 nsClusterId = 1;
+	bytes tcpJSON = 2;
+}
+
+// 修改集群的TLS设置
+message UpdateNSClusterTLSRequest {
+	int64 nsClusterId = 1;
+	bytes tlsJSON = 2;
+}
+
+// 修改集群的UDP设置
+message UpdateNSClusterUDPRequest {
+	int64 nsClusterId = 1;
+	bytes udpJSON = 2;
 }

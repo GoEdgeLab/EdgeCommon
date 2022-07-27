@@ -26,7 +26,7 @@ func (this *TCPProtocolConfig) Init() error {
 	return nil
 }
 
-// 转换为JSON
+// AsJSON 转换为JSON
 func (this *TCPProtocolConfig) AsJSON() ([]byte, error) {
 	return json.Marshal(this)
 }

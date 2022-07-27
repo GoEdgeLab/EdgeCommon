@@ -55,9 +55,9 @@ func FindServerType(code string) maps.Map {
 	return nil
 }
 
-// AllServerProtocolsForType 获取所有协议
-func AllServerProtocolsForType(serverType ServerType) []maps.Map {
-	protocols := []maps.Map{
+// FindAllServerProtocols 查找所有协议
+func FindAllServerProtocols() []maps.Map {
+	return []maps.Map{
 		{
 			"name":        "HTTP",
 			"code":        "http",
@@ -89,10 +89,13 @@ func AllServerProtocolsForType(serverType ServerType) []maps.Map {
 			"serverTypes": []ServerType{ServerTypeUDPProxy},
 		},
 	}
+}
 
-	result := []maps.Map{}
-	for _, p := range protocols {
-		serverTypes := p.GetSlice("serverTypes")
+// FindAllServerProtocolsForType 获取所有协议
+func FindAllServerProtocolsForType(serverType ServerType) []maps.Map {
+	var result = []maps.Map{}
+	for _, p := range FindAllServerProtocols() {
+		var serverTypes = p.GetSlice("serverTypes")
 		if lists.Contains(serverTypes, serverType) {
 			result = append(result, p)
 		}

@@ -2,7 +2,10 @@
 
 package dnsconfigs
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs"
+)
 
 type NSNodeConfig struct {
 	Id              int64            `yaml:"id" json:"id"`
@@ -11,6 +14,10 @@ type NSNodeConfig struct {
 	ClusterId       int64            `yaml:"clusterId" json:"clusterId"`
 	AccessLogRef    *NSAccessLogRef  `yaml:"accessLogRef" json:"accessLogRef"`
 	RecursionConfig *RecursionConfig `yaml:"recursionConfig" json:"recursionConfig"`
+
+	TCP *serverconfigs.TCPProtocolConfig `yaml:"tcp" json:"tcp"` // TCP配置
+	TLS *serverconfigs.TLSProtocolConfig `yaml:"tls" json:"tls"` // TLS配置
+	UDP *serverconfigs.UDPProtocolConfig `yaml:"udp" json:"udp"` // UDP配置
 
 	paddedId string
 }
@@ -21,6 +28,30 @@ func (this *NSNodeConfig) Init() error {
 	// accessLog
 	if this.AccessLogRef != nil {
 		err := this.AccessLogRef.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// tcp
+	if this.TCP != nil {
+		err := this.TCP.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// tls
+	if this.TLS != nil {
+		err := this.TLS.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// udp
+	if this.UDP != nil {
+		err := this.UDP.Init()
 		if err != nil {
 			return err
 		}
