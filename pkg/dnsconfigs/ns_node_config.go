@@ -5,15 +5,18 @@ package dnsconfigs
 import (
 	"fmt"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs"
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/ddosconfigs"
 )
 
 type NSNodeConfig struct {
-	Id              int64            `yaml:"id" json:"id"`
-	NodeId          string           `yaml:"nodeId" json:"nodeId"`
-	Secret          string           `yaml:"secret" json:"secret"`
-	ClusterId       int64            `yaml:"clusterId" json:"clusterId"`
-	AccessLogRef    *NSAccessLogRef  `yaml:"accessLogRef" json:"accessLogRef"`
-	RecursionConfig *RecursionConfig `yaml:"recursionConfig" json:"recursionConfig"`
+	Id              int64                         `yaml:"id" json:"id"`
+	NodeId          string                        `yaml:"nodeId" json:"nodeId"`
+	Secret          string                        `yaml:"secret" json:"secret"`
+	ClusterId       int64                         `yaml:"clusterId" json:"clusterId"`
+	AccessLogRef    *NSAccessLogRef               `yaml:"accessLogRef" json:"accessLogRef"`
+	RecursionConfig *RecursionConfig              `yaml:"recursionConfig" json:"recursionConfig"`
+	DDoSProtection  *ddosconfigs.ProtectionConfig `yaml:"ddosProtection" json:"ddosProtection"`
+	AllowedIPs      []string                      `yaml:"allowedIPs" json:"allowedIPs"`
 
 	TCP *serverconfigs.TCPProtocolConfig `yaml:"tcp" json:"tcp"` // TCP配置
 	TLS *serverconfigs.TLSProtocolConfig `yaml:"tls" json:"tls"` // TLS配置
@@ -28,6 +31,22 @@ func (this *NSNodeConfig) Init() error {
 	// accessLog
 	if this.AccessLogRef != nil {
 		err := this.AccessLogRef.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// 递归DNS
+	if this.RecursionConfig != nil {
+		err := this.RecursionConfig.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// DDoS
+	if this.DDoSProtection != nil {
+		err := this.DDoSProtection.Init()
 		if err != nil {
 			return err
 		}

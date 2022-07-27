@@ -16,3 +16,7 @@ type RecursionConfig struct {
 	AllowDomains  []string   `json:"allowDomains"`
 	DenyDomains   []string   `json:"denyDomains"`
 }
+
+func (this *RecursionConfig) Init() error {
+	return nil
+}
