@@ -17,6 +17,7 @@ const (
 	SettingCodeUserRegisterConfig SettingCode = "userRegisterConfig" // 用户注册配置
 	SettingCodeUserServerConfig   SettingCode = "userServerConfig"   // 用户服务设置
 	SettingCodeUserFinanceConfig  SettingCode = "userFinanceConfig"  // 用户财务设置
+	SettingCodeUserOrderConfig    SettingCode = "userOrderConfig"    // 用户订单设置
 
 	SettingCodeNSAccessLogSetting SettingCode = "nsAccessLogSetting" // NS相关全局配置
 	SettingCodeNSNodeMonitor      SettingCode = "nsNodeMonitor"      // 监控NS节点状态

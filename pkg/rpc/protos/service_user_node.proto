@@ -2,6 +2,7 @@ syntax = "proto3";
 option go_package = "./pb";
 
 package pb;
+
 import "models/model_user_node.proto";
 import "models/rpc_messages.proto";
 

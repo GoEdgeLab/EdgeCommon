@@ -1,0 +1,79 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_user_order.proto";
+import "models/rpc_messages.proto";
+
+// 用户订单相关服务
+service UserOrderService {
+	// 创建订单
+	rpc createUserOrder(CreateUserOrderRequest) returns (CreateUserOrderResponse);
+
+	// 查看订单
+	rpc findEnabledUserOrder(FindEnabledUserOrderRequest) returns (FindEnabledUserOrderResponse);
+
+	// 取消订单
+	rpc cancelUserOrder(CancelUserOrderRequest) returns (RPCSuccess);
+
+	// 完成订单
+	rpc finishUserOrder(FinishUserOrderRequest) returns (RPCSuccess);
+
+	// 计算订单数量
+	rpc countEnabledUserOrders(CountEnabledUserOrdersRequest) returns (RPCCountResponse);
+
+	// 列出单页订单
+	rpc listEnabledUserOrders(ListEnabledUserOrdersRequest) returns (ListEnabledUserOrdersResponse);
+}
+
+// 创建订单
+message CreateUserOrderRequest {
+	string type = 1;
+	string orderMethodCode = 2;
+	float amount = 3;
+}
+
+message CreateUserOrderResponse {
+	string code = 1;
+	string payURL = 2;
+}
+
+// 查看订单
+message FindEnabledUserOrderRequest {
+	string code = 1;
+}
+
+message FindEnabledUserOrderResponse {
+	UserOrder userOrder = 1;
+}
+
+// 取消订单
+message CancelUserOrderRequest {
+	string code = 1;
+}
+
+// 完成订单
+message FinishUserOrderRequest {
+	string code = 1;
+}
+
+// 计算订单数量
+message CountEnabledUserOrdersRequest {
+	int64 userId = 1;
+	string keyword = 2;
+	string status = 3;
+}
+
+// 列出单页订单
+message ListEnabledUserOrdersRequest {
+	int64 userId = 1;
+	string keyword = 2;
+	string status = 3;
+	int64 offset = 4;
+	int64 size = 5;
+}
+
+message ListEnabledUserOrdersResponse {
+	repeated UserOrder userOrders = 1;
+}

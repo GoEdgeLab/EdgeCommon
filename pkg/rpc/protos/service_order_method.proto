@@ -1,0 +1,94 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_order_method.proto";
+import "models/rpc_messages.proto";
+
+// 订单支付方式相关服务
+service OrderMethodService {
+	// 创建支付方式
+	rpc createOrderMethod(CreateOrderMethodRequest) returns (CreateOrderMethodResponse);
+
+	// 修改支付方式
+	rpc updateOrderMethod(UpdateOrderMethodRequest) returns (RPCSuccess);
+
+	// 删除支付方式
+	rpc deleteOrderMethod(DeleteOrderMethodRequest) returns (RPCSuccess);
+
+	// 查找单个支付方式
+	rpc findEnabledOrderMethod(FindEnabledOrderMethodRequest) returns (FindEnabledOrderMethodResponse);
+
+	// 根据代号查找支付方式
+	rpc findEnabledOrderMethodWithCode(FindEnabledOrderMethodWithCodeRequest) returns (FindEnabledOrderMethodWithCodeResponse);
+
+	// 查找所有支付方式
+	rpc findAllEnabledOrderMethods(FindAllEnabledOrderMethodsRequest) returns (FindAllEnabledOrderMethodsResponse);
+
+	// 查找所有已启用的支付方式
+	rpc findAllEnabledAndOnOrderMethods(FindAllEnabledAndOnOrderMethodsRequest) returns (FindAllEnabledAndOnOrderMethodsResponse);
+}
+
+// 创建支付方式
+message CreateOrderMethodRequest {
+	string name = 1;
+	string code = 2;
+	string description = 3;
+	string url = 4;
+}
+
+message CreateOrderMethodResponse {
+	int64 orderMethodId = 1;
+}
+
+// 修改支付方式
+message UpdateOrderMethodRequest {
+	int64 orderMethodId = 1;
+	string name = 2;
+	string code = 3;
+	string description = 4;
+	string url = 5;
+	bool isOn = 6;
+}
+
+// 删除支付方式
+message DeleteOrderMethodRequest {
+	int64 orderMethodId = 1;
+}
+
+// 查找单个支付方式
+message FindEnabledOrderMethodRequest {
+	int64 orderMethodId = 1;
+}
+
+message FindEnabledOrderMethodResponse {
+	OrderMethod orderMethod = 1;
+}
+
+// 根据代号查找支付方式
+message FindEnabledOrderMethodWithCodeRequest {
+	string code = 1;
+}
+
+message FindEnabledOrderMethodWithCodeResponse {
+	OrderMethod orderMethod = 1;
+}
+
+// 查找所有支付方式
+message FindAllEnabledOrderMethodsRequest {
+
+}
+
+message FindAllEnabledOrderMethodsResponse {
+	repeated OrderMethod orderMethods = 1;
+}
+
+// 查找所有已启用的支付方式
+message FindAllEnabledAndOnOrderMethodsRequest {
+
+}
+
+message FindAllEnabledAndOnOrderMethodsResponse {
+	repeated OrderMethod orderMethods = 1;
+}
