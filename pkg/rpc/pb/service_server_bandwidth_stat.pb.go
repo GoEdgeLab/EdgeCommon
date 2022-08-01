@@ -77,6 +77,117 @@ func (x *UploadServerBandwidthStatsRequest) GetServerBandwidthStats() []*ServerB
 	return nil
 }
 
+// 获取服务的峰值带宽
+type FindServerBandwidthStatsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 服务ID
+	Month    string `protobuf:"bytes,2,opt,name=month,proto3" json:"month,omitempty"`        // YYYYMM，month和day二选一
+	Day      string `protobuf:"bytes,3,opt,name=day,proto3" json:"day,omitempty"`            // YYYYMMDD
+}
+
+func (x *FindServerBandwidthStatsRequest) Reset() {
+	*x = FindServerBandwidthStatsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_bandwidth_stat_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindServerBandwidthStatsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindServerBandwidthStatsRequest) ProtoMessage() {}
+
+func (x *FindServerBandwidthStatsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_bandwidth_stat_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindServerBandwidthStatsRequest.ProtoReflect.Descriptor instead.
+func (*FindServerBandwidthStatsRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_bandwidth_stat_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *FindServerBandwidthStatsRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *FindServerBandwidthStatsRequest) GetMonth() string {
+	if x != nil {
+		return x.Month
+	}
+	return ""
+}
+
+func (x *FindServerBandwidthStatsRequest) GetDay() string {
+	if x != nil {
+		return x.Day
+	}
+	return ""
+}
+
+type FindServerBandwidthStatsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerBandwidthStats []*ServerBandwidthStat `protobuf:"bytes,1,rep,name=serverBandwidthStats,proto3" json:"serverBandwidthStats,omitempty"`
+}
+
+func (x *FindServerBandwidthStatsResponse) Reset() {
+	*x = FindServerBandwidthStatsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_bandwidth_stat_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindServerBandwidthStatsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindServerBandwidthStatsResponse) ProtoMessage() {}
+
+func (x *FindServerBandwidthStatsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_bandwidth_stat_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindServerBandwidthStatsResponse.ProtoReflect.Descriptor instead.
+func (*FindServerBandwidthStatsResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_bandwidth_stat_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *FindServerBandwidthStatsResponse) GetServerBandwidthStats() []*ServerBandwidthStat {
+	if x != nil {
+		return x.ServerBandwidthStats
+	}
+	return nil
+}
+
 var File_service_server_bandwidth_stat_proto protoreflect.FileDescriptor
 
 var file_service_server_bandwidth_stat_proto_rawDesc = []byte{
@@ -94,14 +205,34 @@ var file_service_server_bandwidth_stat_proto_rawDesc = []byte{
 	0x0b, 0x32, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e,
 	0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x52, 0x14, 0x73, 0x65, 0x72, 0x76,
 	0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73,
-	0x32, 0x71, 0x0a, 0x1a, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69,
-	0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x53,
-	0x0a, 0x1a, 0x75, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61,
-	0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x25, 0x2e, 0x70,
-	0x62, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61,
+	0x22, 0x65, 0x0a, 0x1f, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61,
 	0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63,
-	0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12,
+	0x14, 0x0a, 0x05, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05,
+	0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x12, 0x10, 0x0a, 0x03, 0x64, 0x61, 0x79, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x64, 0x61, 0x79, 0x22, 0x6f, 0x0a, 0x20, 0x46, 0x69, 0x6e, 0x64, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74,
+	0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4b, 0x0a, 0x14, 0x73,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74,
+	0x61, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74,
+	0x61, 0x74, 0x52, 0x14, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69,
+	0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x32, 0xd8, 0x01, 0x0a, 0x1a, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74,
+	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x53, 0x0a, 0x1a, 0x75, 0x70, 0x6c, 0x6f, 0x61,
+	0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68,
+	0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61,
+	0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68,
+	0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70,
+	0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x65, 0x0a, 0x18,
+	0x66, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69,
+	0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
+	0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74,
+	0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e,
+	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e,
+	0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x33,
 }
 
@@ -117,21 +248,26 @@ func file_service_server_bandwidth_stat_proto_rawDescGZIP() []byte {
 	return file_service_server_bandwidth_stat_proto_rawDescData
 }
 
-var file_service_server_bandwidth_stat_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_service_server_bandwidth_stat_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_service_server_bandwidth_stat_proto_goTypes = []interface{}{
 	(*UploadServerBandwidthStatsRequest)(nil), // 0: pb.UploadServerBandwidthStatsRequest
-	(*ServerBandwidthStat)(nil),               // 1: pb.ServerBandwidthStat
-	(*RPCSuccess)(nil),                        // 2: pb.RPCSuccess
+	(*FindServerBandwidthStatsRequest)(nil),   // 1: pb.FindServerBandwidthStatsRequest
+	(*FindServerBandwidthStatsResponse)(nil),  // 2: pb.FindServerBandwidthStatsResponse
+	(*ServerBandwidthStat)(nil),               // 3: pb.ServerBandwidthStat
+	(*RPCSuccess)(nil),                        // 4: pb.RPCSuccess
 }
 var file_service_server_bandwidth_stat_proto_depIdxs = []int32{
-	1, // 0: pb.UploadServerBandwidthStatsRequest.serverBandwidthStats:type_name -> pb.ServerBandwidthStat
-	0, // 1: pb.ServerBandwidthStatService.uploadServerBandwidthStats:input_type -> pb.UploadServerBandwidthStatsRequest
-	2, // 2: pb.ServerBandwidthStatService.uploadServerBandwidthStats:output_type -> pb.RPCSuccess
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	3, // 0: pb.UploadServerBandwidthStatsRequest.serverBandwidthStats:type_name -> pb.ServerBandwidthStat
+	3, // 1: pb.FindServerBandwidthStatsResponse.serverBandwidthStats:type_name -> pb.ServerBandwidthStat
+	0, // 2: pb.ServerBandwidthStatService.uploadServerBandwidthStats:input_type -> pb.UploadServerBandwidthStatsRequest
+	1, // 3: pb.ServerBandwidthStatService.findServerBandwidthStats:input_type -> pb.FindServerBandwidthStatsRequest
+	4, // 4: pb.ServerBandwidthStatService.uploadServerBandwidthStats:output_type -> pb.RPCSuccess
+	2, // 5: pb.ServerBandwidthStatService.findServerBandwidthStats:output_type -> pb.FindServerBandwidthStatsResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_service_server_bandwidth_stat_proto_init() }
@@ -154,6 +290,30 @@ func file_service_server_bandwidth_stat_proto_init() {
 				return nil
 			}
 		}
+		file_service_server_bandwidth_stat_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindServerBandwidthStatsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_bandwidth_stat_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindServerBandwidthStatsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -161,7 +321,7 @@ func file_service_server_bandwidth_stat_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_server_bandwidth_stat_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -189,6 +349,8 @@ const _ = grpc.SupportPackageIsVersion6
 type ServerBandwidthStatServiceClient interface {
 	// 上传带宽统计
 	UploadServerBandwidthStats(ctx context.Context, in *UploadServerBandwidthStatsRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 获取服务的峰值带宽
+	FindServerBandwidthStats(ctx context.Context, in *FindServerBandwidthStatsRequest, opts ...grpc.CallOption) (*FindServerBandwidthStatsResponse, error)
 }
 
 type serverBandwidthStatServiceClient struct {
@@ -208,10 +370,21 @@ func (c *serverBandwidthStatServiceClient) UploadServerBandwidthStats(ctx contex
 	return out, nil
 }
 
+func (c *serverBandwidthStatServiceClient) FindServerBandwidthStats(ctx context.Context, in *FindServerBandwidthStatsRequest, opts ...grpc.CallOption) (*FindServerBandwidthStatsResponse, error) {
+	out := new(FindServerBandwidthStatsResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerBandwidthStatService/findServerBandwidthStats", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServerBandwidthStatServiceServer is the server API for ServerBandwidthStatService service.
 type ServerBandwidthStatServiceServer interface {
 	// 上传带宽统计
 	UploadServerBandwidthStats(context.Context, *UploadServerBandwidthStatsRequest) (*RPCSuccess, error)
+	// 获取服务的峰值带宽
+	FindServerBandwidthStats(context.Context, *FindServerBandwidthStatsRequest) (*FindServerBandwidthStatsResponse, error)
 }
 
 // UnimplementedServerBandwidthStatServiceServer can be embedded to have forward compatible implementations.
@@ -220,6 +393,9 @@ type UnimplementedServerBandwidthStatServiceServer struct {
 
 func (*UnimplementedServerBandwidthStatServiceServer) UploadServerBandwidthStats(context.Context, *UploadServerBandwidthStatsRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadServerBandwidthStats not implemented")
+}
+func (*UnimplementedServerBandwidthStatServiceServer) FindServerBandwidthStats(context.Context, *FindServerBandwidthStatsRequest) (*FindServerBandwidthStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindServerBandwidthStats not implemented")
 }
 
 func RegisterServerBandwidthStatServiceServer(s *grpc.Server, srv ServerBandwidthStatServiceServer) {
@@ -244,6 +420,24 @@ func _ServerBandwidthStatService_UploadServerBandwidthStats_Handler(srv interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServerBandwidthStatService_FindServerBandwidthStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindServerBandwidthStatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerBandwidthStatServiceServer).FindServerBandwidthStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerBandwidthStatService/FindServerBandwidthStats",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerBandwidthStatServiceServer).FindServerBandwidthStats(ctx, req.(*FindServerBandwidthStatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _ServerBandwidthStatService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.ServerBandwidthStatService",
 	HandlerType: (*ServerBandwidthStatServiceServer)(nil),
@@ -251,6 +445,10 @@ var _ServerBandwidthStatService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "uploadServerBandwidthStats",
 			Handler:    _ServerBandwidthStatService_UploadServerBandwidthStats_Handler,
+		},
+		{
+			MethodName: "findServerBandwidthStats",
+			Handler:    _ServerBandwidthStatService_FindServerBandwidthStats_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

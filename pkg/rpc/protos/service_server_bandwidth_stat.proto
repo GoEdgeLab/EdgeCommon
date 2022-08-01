@@ -10,9 +10,23 @@ import "models/model_server_bandwidth_stat.proto";
 service ServerBandwidthStatService {
 	// 上传带宽统计
 	rpc uploadServerBandwidthStats(UploadServerBandwidthStatsRequest) returns (RPCSuccess);
+
+	// 获取服务的峰值带宽
+	rpc findServerBandwidthStats(FindServerBandwidthStatsRequest) returns (FindServerBandwidthStatsResponse);
 }
 
 // 上传带宽统计
 message UploadServerBandwidthStatsRequest {
+	repeated ServerBandwidthStat serverBandwidthStats = 1;
+}
+
+// 获取服务的峰值带宽
+message FindServerBandwidthStatsRequest {
+	int64 serverId = 1; // 服务ID
+	string month = 2; // YYYYMM，month和day二选一
+	string day = 3; // YYYYMMDD
+}
+
+message FindServerBandwidthStatsResponse {
 	repeated ServerBandwidthStat serverBandwidthStats = 1;
 }
