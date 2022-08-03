@@ -36,7 +36,7 @@ func (this *SchedulingGroup) Init() error {
 	return nil
 }
 
-// NextOrigin 取得下一个可用的后端服务
+// NextOrigin 取得下一个可用源站
 func (this *SchedulingGroup) NextOrigin(call *shared.RequestCall) *OriginConfig {
 	if this.schedulingObject == nil {
 		return nil
@@ -48,7 +48,7 @@ func (this *SchedulingGroup) NextOrigin(call *shared.RequestCall) *OriginConfig 
 		}
 	}
 
-	candidate := this.schedulingObject.Next(call)
+	var candidate = this.schedulingObject.Next(call)
 
 	// 末了重置状态
 	defer func() {
@@ -83,6 +83,28 @@ func (this *SchedulingGroup) NextOrigin(call *shared.RequestCall) *OriginConfig 
 	}
 
 	return candidate.(*OriginConfig)
+}
+
+// AnyOrigin 取下一个任意源站
+func (this *SchedulingGroup) AnyOrigin(excludingOriginIds []int64) *OriginConfig {
+	for _, origin := range this.PrimaryOrigins {
+		if !origin.IsOn {
+			continue
+		}
+		if !this.containsInt64(excludingOriginIds, origin.Id) {
+			return origin
+		}
+	}
+	for _, origin := range this.BackupOrigins {
+		if !origin.IsOn {
+			continue
+		}
+		if !this.containsInt64(excludingOriginIds, origin.Id) {
+			return origin
+		}
+	}
+
+	return nil
 }
 
 // SetupScheduling 设置调度算法
@@ -128,4 +150,14 @@ func (this *SchedulingGroup) SetupScheduling(isBackup bool, checkOk bool) {
 	}
 
 	this.schedulingObject.Start()
+}
+
+// 判断是否包含int64
+func (this *SchedulingGroup) containsInt64(originIds []int64, originId int64) bool {
+	for _, id := range originIds {
+		if id == originId {
+			return true
+		}
+	}
+	return false
 }

@@ -218,7 +218,7 @@ func (this *ReverseProxyConfig) AddBackupOrigin(origin *OriginConfig) {
 	this.BackupOrigins = append(this.BackupOrigins, origin)
 }
 
-// NextOrigin 取得下一个可用的后端服务
+// NextOrigin 取得下一个可用的源站
 func (this *ReverseProxyConfig) NextOrigin(call *shared.RequestCall) *OriginConfig {
 	// 这里不能使用RLock/RUnlock，因为在NextOrigin()方法中可能会对调度对象动态调整
 	this.schedulingLocker.Lock()
@@ -251,6 +251,43 @@ func (this *ReverseProxyConfig) NextOrigin(call *shared.RequestCall) *OriginConf
 	group, ok := this.schedulingGroupMap[""]
 	if ok {
 		return group.NextOrigin(call)
+	}
+
+	return nil
+}
+
+// AnyOrigin 取下一个任意的源站
+func (this *ReverseProxyConfig) AnyOrigin(call *shared.RequestCall, excludingOriginIds []int64) *OriginConfig {
+	this.schedulingLocker.Lock()
+	defer this.schedulingLocker.Unlock()
+
+	if len(this.schedulingGroupMap) == 0 {
+		return nil
+	}
+
+	// 空域名
+	if call == nil || len(call.Domain) == 0 {
+		group, ok := this.schedulingGroupMap[""]
+		if ok {
+			return group.AnyOrigin(excludingOriginIds)
+		}
+		return nil
+	}
+
+	// 按域名匹配
+	for domainPattern, group := range this.schedulingGroupMap {
+		if len(domainPattern) > 0 && configutils.MatchDomain(domainPattern, call.Domain) {
+			origin := group.AnyOrigin(excludingOriginIds)
+			if origin != nil {
+				return origin
+			}
+		}
+	}
+
+	// 再次查找没有设置域名的分组
+	group, ok := this.schedulingGroupMap[""]
+	if ok {
+		return group.AnyOrigin(excludingOriginIds)
 	}
 
 	return nil
