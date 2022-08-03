@@ -1,0 +1,24 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_user_ticket_category.proto";
+import "models/model_user.proto";
+import "models/model_user_ticket_log.proto";
+
+// 工单
+message UserTicket {
+	int64 id = 1;
+	int64 categoryId = 2;
+	int64 userId = 3;
+	string subject = 4;
+	string body = 5;
+	string status = 6;
+	int64 createdAt = 7;
+	int64 lastLogAt = 8;
+
+	UserTicketCategory userTicketCategory = 30;
+	User user = 31;
+	UserTicketLog latestUserTicketLog = 32;
+}

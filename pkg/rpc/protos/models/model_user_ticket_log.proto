@@ -1,0 +1,22 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_admin.proto";
+import "models/model_user.proto";
+
+// 工单日志
+message UserTicketLog {
+	int64 id = 1;
+	int64 adminId = 2;
+	int64 userId = 3;
+	int64 ticketId = 4;
+	string status = 5;
+	string comment = 6;
+	int64 createdAt = 7;
+	bool isReadonly = 8;
+
+	Admin admin = 30;
+	User user = 31;
+}

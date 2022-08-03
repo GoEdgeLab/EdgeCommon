@@ -1,0 +1,76 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_user_ticket_category.proto";
+import "models/rpc_messages.proto";
+
+// 工单分类服务
+service UserTicketCategoryService {
+	// 创建分类
+	rpc createUserTicketCategory(CreateUserTicketCategoryRequest) returns (CreateUserTicketCategoryResponse);
+
+	// 修改分类
+	rpc updateUserTicketCategory(UpdateUserTicketCategoryRequest) returns (RPCSuccess);
+
+	// 删除分类
+	rpc deleteUserTicketCategory(DeleteUserTicketCategoryRequest) returns (RPCSuccess);
+
+	// 查找所有分类
+	rpc findAllUserTicketCategories(FindAllUserTicketCategoriesRequest) returns (FindAllUserTicketCategoriesResponse);
+
+	// 查找所有启用中的分类
+	rpc findAllOnUserTicketCategories(FindAllOnUserTicketCategoriesRequest) returns (FindAllOnUserTicketCategoriesResponse);
+
+	// 查询单个分类
+	rpc findUserTicketCategory(FindUserTicketCategoryRequest) returns (FindUserTicketCategoryResponse);
+}
+
+// 创建分类
+message CreateUserTicketCategoryRequest {
+	string name = 1;
+}
+
+message CreateUserTicketCategoryResponse {
+	int64 userTicketCategoryId = 1;
+}
+
+// 修改分类
+message UpdateUserTicketCategoryRequest {
+	int64 userTicketCategoryId = 1;
+	string name = 2;
+	bool isOn = 3;
+}
+
+// 删除分类
+message DeleteUserTicketCategoryRequest {
+	int64 userTicketCategoryId = 1;
+}
+
+// 查找所有分类
+message FindAllUserTicketCategoriesRequest {
+
+}
+
+message FindAllUserTicketCategoriesResponse {
+	repeated UserTicketCategory userTicketCategories = 1;
+}
+
+// 查找所有启用中的分类
+message FindAllOnUserTicketCategoriesRequest {
+
+}
+
+message FindAllOnUserTicketCategoriesResponse {
+	repeated UserTicketCategory userTicketCategories = 1;
+}
+
+// 查询单个分类
+message FindUserTicketCategoryRequest {
+	int64 userTicketCategoryId = 1;
+}
+
+message FindUserTicketCategoryResponse {
+	UserTicketCategory userTicketCategory = 1;
+}
