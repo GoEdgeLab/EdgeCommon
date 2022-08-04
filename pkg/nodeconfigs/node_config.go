@@ -11,7 +11,7 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/Tea"
 	"github.com/iwind/TeaGo/maps"
-	"io/ioutil"
+	"os"
 	"reflect"
 	"strconv"
 )
@@ -113,7 +113,7 @@ func SharedNodeConfig() (*NodeConfig, error) {
 		return sharedNodeConfig, nil
 	}
 
-	data, err := ioutil.ReadFile(Tea.ConfigFile("node.json"))
+	data, err := os.ReadFile(Tea.ConfigFile("node.json"))
 	if err != nil {
 		return &NodeConfig{}, err
 	}
@@ -403,7 +403,7 @@ func (this *NodeConfig) Save() error {
 		return err
 	}
 
-	return ioutil.WriteFile(Tea.ConfigFile("node.json"), data, 0777)
+	return os.WriteFile(Tea.ConfigFile("node.json"), data, 0777)
 }
 
 // PaddedId 获取填充后的ID
