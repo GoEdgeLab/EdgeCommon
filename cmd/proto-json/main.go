@@ -24,11 +24,12 @@ type ServiceInfo struct {
 }
 
 type MethodInfo struct {
-	Name                string `json:"name"`
-	RequestMessageName  string `json:"requestMessageName"`
-	ResponseMessageName string `json:"responseMessageName"`
-	Code                string `json:"code"`
-	Doc                 string `json:"doc"`
+	Name                string   `json:"name"`
+	RequestMessageName  string   `json:"requestMessageName"`
+	ResponseMessageName string   `json:"responseMessageName"`
+	Code                string   `json:"code"`
+	Doc                 string   `json:"doc"`
+	Roles               []string `json:"roles"`
 }
 
 type MessageInfo struct {
@@ -73,6 +74,66 @@ func main() {
 	var quiet = false
 	flag.BoolVar(&quiet, "quiet", false, "")
 	flag.Parse()
+
+	var methodRolesMap = map[string][]string{} // method => roles
+	{
+		var rootDir = filepath.Clean(Tea.Root + "/../../EdgeAPI/internal/rpc/services")
+		files, err := filepath.Glob(rootDir + "/service_*.go")
+		if err != nil {
+			fmt.Println("[ERROR]list service implementation files failed: " + err.Error())
+			return
+		}
+
+		var methodNameReg = regexp.MustCompile(`func\s*\(\w+\s+\*\s*(\w+Service)\)\s*(\w+)\s*\(`) // $1: serviceName, $2 methodName
+		for _, file := range files {
+			data, err := os.ReadFile(file)
+			if err != nil {
+				fmt.Println("[ERROR]read file '" + file + "' failed: " + err.Error())
+				return
+			}
+			var sourceCode = string(data)
+
+			var locList = methodNameReg.FindAllStringIndex(sourceCode, -1)
+			for index, loc := range locList {
+				var methodSource = ""
+				if index == len(locList)-1 { // last one
+					methodSource = sourceCode[loc[0]:]
+				} else {
+					methodSource = sourceCode[loc[0]:locList[index+1][0]]
+				}
+
+				// 方法名
+				var submatch = methodNameReg.FindStringSubmatch(methodSource)
+				if len(submatch) == 0 {
+					continue
+				}
+				var serviceName = submatch[1]
+				if serviceName == "BaseService" {
+					continue
+				}
+				var methodName = submatch[2]
+				if methodName[0] < 'A' || methodName[0] > 'Z' {
+					continue
+				}
+				var roles = []string{}
+				if strings.Contains(methodSource, ".ValidateNode(") {
+					roles = append(roles, "node")
+				} else if strings.Contains(methodSource, ".ValidateUserNode(") {
+					roles = append(roles, "user")
+				} else if strings.Contains(methodSource, ".ValidateAdmin(") {
+					roles = append(roles, "admin")
+				} else if strings.Contains(methodSource, ".ValidateAdminAndUser(") {
+					roles = append(roles, "admin", "user")
+				} else if strings.Contains(methodSource, ".ValidateNSNode(") {
+					roles = append(roles, "dns")
+				} else if strings.Contains(methodSource, ".ValidateMonitorNode(") {
+					roles = append(roles, "monitor")
+				}
+
+				methodRolesMap[strings.ToLower(methodName)] = roles
+			}
+		}
+	}
 
 	var services = []*ServiceInfo{}
 	var messages = []*MessageInfo{}
@@ -135,12 +196,18 @@ func main() {
 								var methodPieces = methodReg.FindSubmatch(methodData)
 								var methodCodePosition = methodCodePositions[methodMatchIndex]
 
+								var roles = methodRolesMap[strings.ToLower(string(methodPieces[1]))]
+								if roles == nil {
+									roles = []string{}
+								}
+
 								methods = append(methods, &MethodInfo{
 									Name:                string(methodPieces[1]),
 									RequestMessageName:  string(methodPieces[2]),
 									ResponseMessageName: string(methodPieces[3]),
 									Code:                string(methodData),
 									Doc:                 readComments(serviceData[:methodCodePosition[0]]),
+									Roles:               roles,
 								})
 							}
 
