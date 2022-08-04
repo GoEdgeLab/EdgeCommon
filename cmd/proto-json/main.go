@@ -10,7 +10,7 @@ import (
 	"github.com/iwind/TeaGo/Tea"
 	_ "github.com/iwind/TeaGo/bootstrap"
 	"github.com/iwind/TeaGo/types"
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -91,7 +91,12 @@ func main() {
 
 				for _, path := range files {
 					func(path string) {
-						data, err := ioutil.ReadFile(path)
+						var filename = filepath.Base(path)
+						if filename == "service_authority_key.proto" || filename == "service_authority_node.proto" {
+							return
+						}
+
+						data, err := os.ReadFile(path)
 						if err != nil {
 							fmt.Println("[ERROR]" + err.Error())
 							return
@@ -142,7 +147,7 @@ func main() {
 							services = append(services, &ServiceInfo{
 								Name:     serviceName,
 								Methods:  methods,
-								Filename: filepath.Base(path),
+								Filename: filename,
 								Doc:      comment,
 							})
 						}
@@ -231,7 +236,7 @@ func main() {
 				for _, path := range files {
 					func(path string) {
 						var name = strings.TrimSuffix(filepath.Base(path), ".md")
-						data, err := ioutil.ReadFile(path)
+						data, err := os.ReadFile(path)
 						if err != nil {
 							fmt.Println("[ERROR]read '" + path + "' failed: " + err.Error())
 							return
@@ -259,7 +264,7 @@ func main() {
 	}
 
 	var jsonFile = Tea.Root + "/rpc.json"
-	err = ioutil.WriteFile(jsonFile, jsonData, 0666)
+	err = os.WriteFile(jsonFile, jsonData, 0666)
 	if err != nil {
 		fmt.Println("[ERROR]write json to file failed: " + err.Error())
 		return
