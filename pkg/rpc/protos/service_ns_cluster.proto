@@ -58,6 +58,9 @@ service NSClusterService {
 
 	// 修改集群的UDP设置
 	rpc updateNSClusterUDP (UpdateNSClusterUDPRequest) returns (RPCSuccess);
+
+	// 计算使用某个SSL证书的集群数量
+	rpc countAllNSClustersWithSSLCertId (CountAllNSClustersWithSSLCertIdRequest) returns (RPCCountResponse);
 }
 
 // 创建集群
@@ -187,4 +190,9 @@ message UpdateNSClusterTLSRequest {
 message UpdateNSClusterUDPRequest {
 	int64 nsClusterId = 1;
 	bytes udpJSON = 2;
+}
+
+// 计算使用某个SSL证书的集群数量
+message CountAllNSClustersWithSSLCertIdRequest {
+	int64 sslCertId = 1;
 }
