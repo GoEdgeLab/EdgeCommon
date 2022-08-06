@@ -1,0 +1,12 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 域名分组
+message NSDomainGroup {
+	int64 id = 1;
+	string name = 2;
+	bool isOn = 3;
+	int64 userId = 4;
+}

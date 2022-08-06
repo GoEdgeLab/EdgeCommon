@@ -182,6 +182,149 @@ func (x *CreateNSRecordResponse) GetNsRecordId() int64 {
 	return 0
 }
 
+// 批量创建记录
+type CreateNSRecordsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsDomainId   int64    `protobuf:"varint,1,opt,name=nsDomainId,proto3" json:"nsDomainId,omitempty"`
+	Description  string   `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	Names        []string `protobuf:"bytes,3,rep,name=names,proto3" json:"names,omitempty"`
+	Type         string   `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
+	Value        string   `protobuf:"bytes,5,opt,name=value,proto3" json:"value,omitempty"`
+	Ttl          int32    `protobuf:"varint,6,opt,name=ttl,proto3" json:"ttl,omitempty"`
+	NsRouteCodes []string `protobuf:"bytes,7,rep,name=nsRouteCodes,proto3" json:"nsRouteCodes,omitempty"` // 路线代号
+}
+
+func (x *CreateNSRecordsRequest) Reset() {
+	*x = CreateNSRecordsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_record_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateNSRecordsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateNSRecordsRequest) ProtoMessage() {}
+
+func (x *CreateNSRecordsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_record_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateNSRecordsRequest.ProtoReflect.Descriptor instead.
+func (*CreateNSRecordsRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_record_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CreateNSRecordsRequest) GetNsDomainId() int64 {
+	if x != nil {
+		return x.NsDomainId
+	}
+	return 0
+}
+
+func (x *CreateNSRecordsRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *CreateNSRecordsRequest) GetNames() []string {
+	if x != nil {
+		return x.Names
+	}
+	return nil
+}
+
+func (x *CreateNSRecordsRequest) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *CreateNSRecordsRequest) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
+func (x *CreateNSRecordsRequest) GetTtl() int32 {
+	if x != nil {
+		return x.Ttl
+	}
+	return 0
+}
+
+func (x *CreateNSRecordsRequest) GetNsRouteCodes() []string {
+	if x != nil {
+		return x.NsRouteCodes
+	}
+	return nil
+}
+
+type CreateNSRecordsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsRecordIds []int64 `protobuf:"varint,1,rep,packed,name=nsRecordIds,proto3" json:"nsRecordIds,omitempty"`
+}
+
+func (x *CreateNSRecordsResponse) Reset() {
+	*x = CreateNSRecordsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_record_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateNSRecordsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateNSRecordsResponse) ProtoMessage() {}
+
+func (x *CreateNSRecordsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_record_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateNSRecordsResponse.ProtoReflect.Descriptor instead.
+func (*CreateNSRecordsResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_record_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CreateNSRecordsResponse) GetNsRecordIds() []int64 {
+	if x != nil {
+		return x.NsRecordIds
+	}
+	return nil
+}
+
 // 修改记录
 type UpdateNSRecordRequest struct {
 	state         protoimpl.MessageState
@@ -203,7 +346,7 @@ type UpdateNSRecordRequest struct {
 func (x *UpdateNSRecordRequest) Reset() {
 	*x = UpdateNSRecordRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_record_proto_msgTypes[2]
+		mi := &file_service_ns_record_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -216,7 +359,7 @@ func (x *UpdateNSRecordRequest) String() string {
 func (*UpdateNSRecordRequest) ProtoMessage() {}
 
 func (x *UpdateNSRecordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_record_proto_msgTypes[2]
+	mi := &file_service_ns_record_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -229,7 +372,7 @@ func (x *UpdateNSRecordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateNSRecordRequest.ProtoReflect.Descriptor instead.
 func (*UpdateNSRecordRequest) Descriptor() ([]byte, []int) {
-	return file_service_ns_record_proto_rawDescGZIP(), []int{2}
+	return file_service_ns_record_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *UpdateNSRecordRequest) GetNsRecordId() int64 {
@@ -308,7 +451,7 @@ type DeleteNSRecordRequest struct {
 func (x *DeleteNSRecordRequest) Reset() {
 	*x = DeleteNSRecordRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_record_proto_msgTypes[3]
+		mi := &file_service_ns_record_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -321,7 +464,7 @@ func (x *DeleteNSRecordRequest) String() string {
 func (*DeleteNSRecordRequest) ProtoMessage() {}
 
 func (x *DeleteNSRecordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_record_proto_msgTypes[3]
+	mi := &file_service_ns_record_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -334,7 +477,7 @@ func (x *DeleteNSRecordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteNSRecordRequest.ProtoReflect.Descriptor instead.
 func (*DeleteNSRecordRequest) Descriptor() ([]byte, []int) {
-	return file_service_ns_record_proto_rawDescGZIP(), []int{3}
+	return file_service_ns_record_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *DeleteNSRecordRequest) GetNsRecordId() int64 {
@@ -345,7 +488,7 @@ func (x *DeleteNSRecordRequest) GetNsRecordId() int64 {
 }
 
 // 计算记录数量
-type CountAllEnabledNSRecordsRequest struct {
+type CountAllNSRecordsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -358,23 +501,23 @@ type CountAllEnabledNSRecordsRequest struct {
 	Keyword     string `protobuf:"bytes,4,opt,name=keyword,proto3" json:"keyword,omitempty"`
 }
 
-func (x *CountAllEnabledNSRecordsRequest) Reset() {
-	*x = CountAllEnabledNSRecordsRequest{}
+func (x *CountAllNSRecordsRequest) Reset() {
+	*x = CountAllNSRecordsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_record_proto_msgTypes[4]
+		mi := &file_service_ns_record_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *CountAllEnabledNSRecordsRequest) String() string {
+func (x *CountAllNSRecordsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CountAllEnabledNSRecordsRequest) ProtoMessage() {}
+func (*CountAllNSRecordsRequest) ProtoMessage() {}
 
-func (x *CountAllEnabledNSRecordsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_record_proto_msgTypes[4]
+func (x *CountAllNSRecordsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_record_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -385,19 +528,19 @@ func (x *CountAllEnabledNSRecordsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CountAllEnabledNSRecordsRequest.ProtoReflect.Descriptor instead.
-func (*CountAllEnabledNSRecordsRequest) Descriptor() ([]byte, []int) {
-	return file_service_ns_record_proto_rawDescGZIP(), []int{4}
+// Deprecated: Use CountAllNSRecordsRequest.ProtoReflect.Descriptor instead.
+func (*CountAllNSRecordsRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_record_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *CountAllEnabledNSRecordsRequest) GetNsDomainId() int64 {
+func (x *CountAllNSRecordsRequest) GetNsDomainId() int64 {
 	if x != nil {
 		return x.NsDomainId
 	}
 	return 0
 }
 
-func (x *CountAllEnabledNSRecordsRequest) GetType() string {
+func (x *CountAllNSRecordsRequest) GetType() string {
 	if x != nil {
 		return x.Type
 	}
@@ -405,21 +548,21 @@ func (x *CountAllEnabledNSRecordsRequest) GetType() string {
 }
 
 // Deprecated: Do not use.
-func (x *CountAllEnabledNSRecordsRequest) GetNsRouteId() int64 {
+func (x *CountAllNSRecordsRequest) GetNsRouteId() int64 {
 	if x != nil {
 		return x.NsRouteId
 	}
 	return 0
 }
 
-func (x *CountAllEnabledNSRecordsRequest) GetNsRouteCode() string {
+func (x *CountAllNSRecordsRequest) GetNsRouteCode() string {
 	if x != nil {
 		return x.NsRouteCode
 	}
 	return ""
 }
 
-func (x *CountAllEnabledNSRecordsRequest) GetKeyword() string {
+func (x *CountAllNSRecordsRequest) GetKeyword() string {
 	if x != nil {
 		return x.Keyword
 	}
@@ -427,7 +570,7 @@ func (x *CountAllEnabledNSRecordsRequest) GetKeyword() string {
 }
 
 // 读取单页记录
-type ListEnabledNSRecordsRequest struct {
+type ListNSRecordsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -442,146 +585,8 @@ type ListEnabledNSRecordsRequest struct {
 	Size        int64  `protobuf:"varint,6,opt,name=size,proto3" json:"size,omitempty"`
 }
 
-func (x *ListEnabledNSRecordsRequest) Reset() {
-	*x = ListEnabledNSRecordsRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_record_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ListEnabledNSRecordsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListEnabledNSRecordsRequest) ProtoMessage() {}
-
-func (x *ListEnabledNSRecordsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_record_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListEnabledNSRecordsRequest.ProtoReflect.Descriptor instead.
-func (*ListEnabledNSRecordsRequest) Descriptor() ([]byte, []int) {
-	return file_service_ns_record_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *ListEnabledNSRecordsRequest) GetNsDomainId() int64 {
-	if x != nil {
-		return x.NsDomainId
-	}
-	return 0
-}
-
-func (x *ListEnabledNSRecordsRequest) GetType() string {
-	if x != nil {
-		return x.Type
-	}
-	return ""
-}
-
-// Deprecated: Do not use.
-func (x *ListEnabledNSRecordsRequest) GetNsRouteId() int64 {
-	if x != nil {
-		return x.NsRouteId
-	}
-	return 0
-}
-
-func (x *ListEnabledNSRecordsRequest) GetNsRouteCode() string {
-	if x != nil {
-		return x.NsRouteCode
-	}
-	return ""
-}
-
-func (x *ListEnabledNSRecordsRequest) GetKeyword() string {
-	if x != nil {
-		return x.Keyword
-	}
-	return ""
-}
-
-func (x *ListEnabledNSRecordsRequest) GetOffset() int64 {
-	if x != nil {
-		return x.Offset
-	}
-	return 0
-}
-
-func (x *ListEnabledNSRecordsRequest) GetSize() int64 {
-	if x != nil {
-		return x.Size
-	}
-	return 0
-}
-
-type ListEnabledNSRecordsResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	NsRecords []*NSRecord `protobuf:"bytes,1,rep,name=nsRecords,proto3" json:"nsRecords,omitempty"`
-}
-
-func (x *ListEnabledNSRecordsResponse) Reset() {
-	*x = ListEnabledNSRecordsResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_record_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ListEnabledNSRecordsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListEnabledNSRecordsResponse) ProtoMessage() {}
-
-func (x *ListEnabledNSRecordsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_record_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListEnabledNSRecordsResponse.ProtoReflect.Descriptor instead.
-func (*ListEnabledNSRecordsResponse) Descriptor() ([]byte, []int) {
-	return file_service_ns_record_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *ListEnabledNSRecordsResponse) GetNsRecords() []*NSRecord {
-	if x != nil {
-		return x.NsRecords
-	}
-	return nil
-}
-
-// 查询单个记录信息
-type FindEnabledNSRecordRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	NsRecordId int64 `protobuf:"varint,1,opt,name=nsRecordId,proto3" json:"nsRecordId,omitempty"`
-}
-
-func (x *FindEnabledNSRecordRequest) Reset() {
-	*x = FindEnabledNSRecordRequest{}
+func (x *ListNSRecordsRequest) Reset() {
+	*x = ListNSRecordsRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_ns_record_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -589,13 +594,13 @@ func (x *FindEnabledNSRecordRequest) Reset() {
 	}
 }
 
-func (x *FindEnabledNSRecordRequest) String() string {
+func (x *ListNSRecordsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*FindEnabledNSRecordRequest) ProtoMessage() {}
+func (*ListNSRecordsRequest) ProtoMessage() {}
 
-func (x *FindEnabledNSRecordRequest) ProtoReflect() protoreflect.Message {
+func (x *ListNSRecordsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_service_ns_record_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -607,28 +612,71 @@ func (x *FindEnabledNSRecordRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use FindEnabledNSRecordRequest.ProtoReflect.Descriptor instead.
-func (*FindEnabledNSRecordRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListNSRecordsRequest.ProtoReflect.Descriptor instead.
+func (*ListNSRecordsRequest) Descriptor() ([]byte, []int) {
 	return file_service_ns_record_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *FindEnabledNSRecordRequest) GetNsRecordId() int64 {
+func (x *ListNSRecordsRequest) GetNsDomainId() int64 {
 	if x != nil {
-		return x.NsRecordId
+		return x.NsDomainId
 	}
 	return 0
 }
 
-type FindEnabledNSRecordResponse struct {
+func (x *ListNSRecordsRequest) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+// Deprecated: Do not use.
+func (x *ListNSRecordsRequest) GetNsRouteId() int64 {
+	if x != nil {
+		return x.NsRouteId
+	}
+	return 0
+}
+
+func (x *ListNSRecordsRequest) GetNsRouteCode() string {
+	if x != nil {
+		return x.NsRouteCode
+	}
+	return ""
+}
+
+func (x *ListNSRecordsRequest) GetKeyword() string {
+	if x != nil {
+		return x.Keyword
+	}
+	return ""
+}
+
+func (x *ListNSRecordsRequest) GetOffset() int64 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *ListNSRecordsRequest) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+type ListNSRecordsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NsRecord *NSRecord `protobuf:"bytes,1,opt,name=nsRecord,proto3" json:"nsRecord,omitempty"`
+	NsRecords []*NSRecord `protobuf:"bytes,1,rep,name=nsRecords,proto3" json:"nsRecords,omitempty"`
 }
 
-func (x *FindEnabledNSRecordResponse) Reset() {
-	*x = FindEnabledNSRecordResponse{}
+func (x *ListNSRecordsResponse) Reset() {
+	*x = ListNSRecordsResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_ns_record_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -636,13 +684,13 @@ func (x *FindEnabledNSRecordResponse) Reset() {
 	}
 }
 
-func (x *FindEnabledNSRecordResponse) String() string {
+func (x *ListNSRecordsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*FindEnabledNSRecordResponse) ProtoMessage() {}
+func (*ListNSRecordsResponse) ProtoMessage() {}
 
-func (x *FindEnabledNSRecordResponse) ProtoReflect() protoreflect.Message {
+func (x *ListNSRecordsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_service_ns_record_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -654,12 +702,107 @@ func (x *FindEnabledNSRecordResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use FindEnabledNSRecordResponse.ProtoReflect.Descriptor instead.
-func (*FindEnabledNSRecordResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListNSRecordsResponse.ProtoReflect.Descriptor instead.
+func (*ListNSRecordsResponse) Descriptor() ([]byte, []int) {
 	return file_service_ns_record_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *FindEnabledNSRecordResponse) GetNsRecord() *NSRecord {
+func (x *ListNSRecordsResponse) GetNsRecords() []*NSRecord {
+	if x != nil {
+		return x.NsRecords
+	}
+	return nil
+}
+
+// 查询单个记录信息
+type FindNSRecordRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsRecordId int64 `protobuf:"varint,1,opt,name=nsRecordId,proto3" json:"nsRecordId,omitempty"`
+}
+
+func (x *FindNSRecordRequest) Reset() {
+	*x = FindNSRecordRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_record_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindNSRecordRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindNSRecordRequest) ProtoMessage() {}
+
+func (x *FindNSRecordRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_record_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindNSRecordRequest.ProtoReflect.Descriptor instead.
+func (*FindNSRecordRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_record_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *FindNSRecordRequest) GetNsRecordId() int64 {
+	if x != nil {
+		return x.NsRecordId
+	}
+	return 0
+}
+
+type FindNSRecordResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsRecord *NSRecord `protobuf:"bytes,1,opt,name=nsRecord,proto3" json:"nsRecord,omitempty"`
+}
+
+func (x *FindNSRecordResponse) Reset() {
+	*x = FindNSRecordResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_record_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindNSRecordResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindNSRecordResponse) ProtoMessage() {}
+
+func (x *FindNSRecordResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_record_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindNSRecordResponse.ProtoReflect.Descriptor instead.
+func (*FindNSRecordResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_record_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *FindNSRecordResponse) GetNsRecord() *NSRecord {
 	if x != nil {
 		return x.NsRecord
 	}
@@ -679,7 +822,7 @@ type ListNSRecordsAfterVersionRequest struct {
 func (x *ListNSRecordsAfterVersionRequest) Reset() {
 	*x = ListNSRecordsAfterVersionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_record_proto_msgTypes[9]
+		mi := &file_service_ns_record_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -692,7 +835,7 @@ func (x *ListNSRecordsAfterVersionRequest) String() string {
 func (*ListNSRecordsAfterVersionRequest) ProtoMessage() {}
 
 func (x *ListNSRecordsAfterVersionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_record_proto_msgTypes[9]
+	mi := &file_service_ns_record_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -705,7 +848,7 @@ func (x *ListNSRecordsAfterVersionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNSRecordsAfterVersionRequest.ProtoReflect.Descriptor instead.
 func (*ListNSRecordsAfterVersionRequest) Descriptor() ([]byte, []int) {
-	return file_service_ns_record_proto_rawDescGZIP(), []int{9}
+	return file_service_ns_record_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListNSRecordsAfterVersionRequest) GetVersion() int64 {
@@ -733,7 +876,7 @@ type ListNSRecordsAfterVersionResponse struct {
 func (x *ListNSRecordsAfterVersionResponse) Reset() {
 	*x = ListNSRecordsAfterVersionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_record_proto_msgTypes[10]
+		mi := &file_service_ns_record_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -746,7 +889,7 @@ func (x *ListNSRecordsAfterVersionResponse) String() string {
 func (*ListNSRecordsAfterVersionResponse) ProtoMessage() {}
 
 func (x *ListNSRecordsAfterVersionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_record_proto_msgTypes[10]
+	mi := &file_service_ns_record_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -759,7 +902,7 @@ func (x *ListNSRecordsAfterVersionResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ListNSRecordsAfterVersionResponse.ProtoReflect.Descriptor instead.
 func (*ListNSRecordsAfterVersionResponse) Descriptor() ([]byte, []int) {
-	return file_service_ns_record_proto_rawDescGZIP(), []int{10}
+	return file_service_ns_record_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListNSRecordsAfterVersionResponse) GetNsRecords() []*NSRecord {
@@ -796,7 +939,24 @@ var file_service_ns_record_proto_rawDesc = []byte{
 	0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70,
 	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64,
 	0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f,
-	0x72, 0x64, 0x49, 0x64, 0x22, 0x85, 0x02, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e,
+	0x72, 0x64, 0x49, 0x64, 0x22, 0xd0, 0x01, 0x0a, 0x16, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e,
+	0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x12,
+	0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f,
+	0x6e, 0x12, 0x14, 0x0a, 0x05, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x09,
+	0x52, 0x05, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x76,
+	0x61, 0x6c, 0x75, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x12, 0x10, 0x0a, 0x03, 0x74, 0x74, 0x6c, 0x18, 0x06, 0x20, 0x01, 0x28, 0x05, 0x52, 0x03,
+	0x74, 0x74, 0x6c, 0x12, 0x22, 0x0a, 0x0c, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x43, 0x6f,
+	0x64, 0x65, 0x73, 0x18, 0x07, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0c, 0x6e, 0x73, 0x52, 0x6f, 0x75,
+	0x74, 0x65, 0x43, 0x6f, 0x64, 0x65, 0x73, 0x22, 0x3b, 0x0a, 0x17, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x49, 0x64,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x03, 0x52, 0x0b, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72,
+	0x64, 0x49, 0x64, 0x73, 0x22, 0x85, 0x02, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e,
 	0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e,
 	0x0a, 0x0a, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x49, 0x64, 0x12, 0x20,
@@ -816,93 +976,92 @@ var file_service_ns_record_proto_rawDesc = []byte{
 	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72,
 	0x64, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x52, 0x65, 0x63,
-	0x6f, 0x72, 0x64, 0x49, 0x64, 0x22, 0xb3, 0x01, 0x0a, 0x1f, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41,
-	0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72,
-	0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44,
-	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e,
-	0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70,
-	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x20, 0x0a,
-	0x09, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x49, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03,
-	0x42, 0x02, 0x18, 0x01, 0x52, 0x09, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x49, 0x64, 0x12,
-	0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x05,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x43, 0x6f, 0x64,
-	0x65, 0x12, 0x18, 0x0a, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x04, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x22, 0xdb, 0x01, 0x0a, 0x1b,
-	0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63,
-	0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e,
-	0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52,
-	0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x74,
-	0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12,
-	0x20, 0x0a, 0x09, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x49, 0x64, 0x18, 0x03, 0x20, 0x01,
-	0x28, 0x03, 0x42, 0x02, 0x18, 0x01, 0x52, 0x09, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x49,
-	0x64, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x43, 0x6f, 0x64, 0x65,
-	0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x43,
-	0x6f, 0x64, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x04,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x16, 0x0a,
-	0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x6f,
-	0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x06, 0x20,
-	0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x22, 0x4a, 0x0a, 0x1c, 0x4c, 0x69, 0x73,
-	0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64,
-	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x09, 0x6e, 0x73, 0x52,
-	0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70,
-	0x62, 0x2e, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x09, 0x6e, 0x73, 0x52, 0x65,
-	0x63, 0x6f, 0x72, 0x64, 0x73, 0x22, 0x3c, 0x0a, 0x1a, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61,
-	0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x49,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72,
-	0x64, 0x49, 0x64, 0x22, 0x47, 0x0a, 0x1b, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c,
-	0x65, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x28, 0x0a, 0x08, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f,
-	0x72, 0x64, 0x52, 0x08, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x22, 0x50, 0x0a, 0x20,
-	0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x41, 0x66, 0x74,
-	0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x03, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69,
-	0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x22, 0x4f,
-	0x0a, 0x21, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x41,
-	0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x09, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73,
-	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x52, 0x65,
-	0x63, 0x6f, 0x72, 0x64, 0x52, 0x09, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x32,
-	0xc8, 0x04, 0x0a, 0x0f, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x53, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x12, 0x47, 0x0a, 0x0e, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52,
-	0x65, 0x63, 0x6f, 0x72, 0x64, 0x12, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74,
-	0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65,
-	0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x0e,
-	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x12, 0x19,
-	0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f,
-	0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52,
-	0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x3b, 0x0a, 0x0e, 0x64, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x12, 0x19, 0x2e, 0x70, 0x62,
-	0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53,
-	0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x55, 0x0a, 0x18, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41,
-	0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72,
-	0x64, 0x73, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c,
-	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43,
-	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x59, 0x0a,
-	0x14, 0x6c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x52, 0x65,
-	0x63, 0x6f, 0x72, 0x64, 0x73, 0x12, 0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45,
-	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74,
-	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x13, 0x66, 0x69, 0x6e, 0x64,
-	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x12,
-	0x1e, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x6f, 0x72, 0x64, 0x49, 0x64, 0x22, 0xac, 0x01, 0x0a, 0x18, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41,
+	0x6c, 0x6c, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x20, 0x0a, 0x09, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74,
+	0x65, 0x49, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x42, 0x02, 0x18, 0x01, 0x52, 0x09, 0x6e,
+	0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x49, 0x64, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x52, 0x6f,
+	0x75, 0x74, 0x65, 0x43, 0x6f, 0x64, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6e,
+	0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6b, 0x65,
+	0x79, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79,
+	0x77, 0x6f, 0x72, 0x64, 0x22, 0xd4, 0x01, 0x0a, 0x14, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x52,
+	0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a,
+	0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x12, 0x12, 0x0a,
+	0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70,
+	0x65, 0x12, 0x20, 0x0a, 0x09, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x49, 0x64, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x03, 0x42, 0x02, 0x18, 0x01, 0x52, 0x09, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74,
+	0x65, 0x49, 0x64, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x43, 0x6f,
+	0x64, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74,
+	0x65, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x12,
+	0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18,
+	0x06, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x22, 0x43, 0x0a, 0x15, 0x4c,
+	0x69, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x09, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x52,
+	0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x09, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73,
+	0x22, 0x35, 0x0a, 0x13, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x52, 0x65, 0x63,
+	0x6f, 0x72, 0x64, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x52,
+	0x65, 0x63, 0x6f, 0x72, 0x64, 0x49, 0x64, 0x22, 0x40, 0x0a, 0x14, 0x46, 0x69, 0x6e, 0x64, 0x4e,
+	0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x28, 0x0a, 0x08, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52,
+	0x08, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x22, 0x50, 0x0a, 0x20, 0x4c, 0x69, 0x73,
+	0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56,
+	0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a,
+	0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07,
+	0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x22, 0x4f, 0x0a, 0x21, 0x4c,
+	0x69, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x41, 0x66, 0x74, 0x65,
+	0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x2a, 0x0a, 0x09, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72,
+	0x64, 0x52, 0x09, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x32, 0xdc, 0x04, 0x0a,
+	0x0f, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x12, 0x47, 0x0a, 0x0e, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f,
+	0x72, 0x64, 0x12, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53,
+	0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e,
+	0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72,
+	0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4a, 0x0a, 0x0f, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x12, 0x1a, 0x2e, 0x70,
+	0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x0e, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e,
+	0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x12, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65,
+	0x73, 0x73, 0x12, 0x3b, 0x0a, 0x0e, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x65,
+	0x63, 0x6f, 0x72, 0x64, 0x12, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
 	0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x1f, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
-	0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x68, 0x0a, 0x19, 0x6c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64,
-	0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x24, 0x2e,
-	0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73,
-	0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x52,
-	0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69,
-	0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f,
-	0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12,
+	0x47, 0x0a, 0x11, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x4e, 0x53, 0x52, 0x65, 0x63,
+	0x6f, 0x72, 0x64, 0x73, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41,
+	0x6c, 0x6c, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0d, 0x6c, 0x69, 0x73, 0x74,
+	0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x52,
+	0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x41,
+	0x0a, 0x0c, 0x66, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x12, 0x17,
+	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e,
+	0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x68, 0x0a, 0x19, 0x6c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72,
+	0x64, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x24,
+	0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64,
+	0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53,
+	0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73,
+	0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e,
+	0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -917,43 +1076,47 @@ func file_service_ns_record_proto_rawDescGZIP() []byte {
 	return file_service_ns_record_proto_rawDescData
 }
 
-var file_service_ns_record_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_service_ns_record_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_service_ns_record_proto_goTypes = []interface{}{
 	(*CreateNSRecordRequest)(nil),             // 0: pb.CreateNSRecordRequest
 	(*CreateNSRecordResponse)(nil),            // 1: pb.CreateNSRecordResponse
-	(*UpdateNSRecordRequest)(nil),             // 2: pb.UpdateNSRecordRequest
-	(*DeleteNSRecordRequest)(nil),             // 3: pb.DeleteNSRecordRequest
-	(*CountAllEnabledNSRecordsRequest)(nil),   // 4: pb.CountAllEnabledNSRecordsRequest
-	(*ListEnabledNSRecordsRequest)(nil),       // 5: pb.ListEnabledNSRecordsRequest
-	(*ListEnabledNSRecordsResponse)(nil),      // 6: pb.ListEnabledNSRecordsResponse
-	(*FindEnabledNSRecordRequest)(nil),        // 7: pb.FindEnabledNSRecordRequest
-	(*FindEnabledNSRecordResponse)(nil),       // 8: pb.FindEnabledNSRecordResponse
-	(*ListNSRecordsAfterVersionRequest)(nil),  // 9: pb.ListNSRecordsAfterVersionRequest
-	(*ListNSRecordsAfterVersionResponse)(nil), // 10: pb.ListNSRecordsAfterVersionResponse
-	(*NSRecord)(nil),                          // 11: pb.NSRecord
-	(*RPCSuccess)(nil),                        // 12: pb.RPCSuccess
-	(*RPCCountResponse)(nil),                  // 13: pb.RPCCountResponse
+	(*CreateNSRecordsRequest)(nil),            // 2: pb.CreateNSRecordsRequest
+	(*CreateNSRecordsResponse)(nil),           // 3: pb.CreateNSRecordsResponse
+	(*UpdateNSRecordRequest)(nil),             // 4: pb.UpdateNSRecordRequest
+	(*DeleteNSRecordRequest)(nil),             // 5: pb.DeleteNSRecordRequest
+	(*CountAllNSRecordsRequest)(nil),          // 6: pb.CountAllNSRecordsRequest
+	(*ListNSRecordsRequest)(nil),              // 7: pb.ListNSRecordsRequest
+	(*ListNSRecordsResponse)(nil),             // 8: pb.ListNSRecordsResponse
+	(*FindNSRecordRequest)(nil),               // 9: pb.FindNSRecordRequest
+	(*FindNSRecordResponse)(nil),              // 10: pb.FindNSRecordResponse
+	(*ListNSRecordsAfterVersionRequest)(nil),  // 11: pb.ListNSRecordsAfterVersionRequest
+	(*ListNSRecordsAfterVersionResponse)(nil), // 12: pb.ListNSRecordsAfterVersionResponse
+	(*NSRecord)(nil),                          // 13: pb.NSRecord
+	(*RPCSuccess)(nil),                        // 14: pb.RPCSuccess
+	(*RPCCountResponse)(nil),                  // 15: pb.RPCCountResponse
 }
 var file_service_ns_record_proto_depIdxs = []int32{
-	11, // 0: pb.ListEnabledNSRecordsResponse.nsRecords:type_name -> pb.NSRecord
-	11, // 1: pb.FindEnabledNSRecordResponse.nsRecord:type_name -> pb.NSRecord
-	11, // 2: pb.ListNSRecordsAfterVersionResponse.nsRecords:type_name -> pb.NSRecord
+	13, // 0: pb.ListNSRecordsResponse.nsRecords:type_name -> pb.NSRecord
+	13, // 1: pb.FindNSRecordResponse.nsRecord:type_name -> pb.NSRecord
+	13, // 2: pb.ListNSRecordsAfterVersionResponse.nsRecords:type_name -> pb.NSRecord
 	0,  // 3: pb.NSRecordService.createNSRecord:input_type -> pb.CreateNSRecordRequest
-	2,  // 4: pb.NSRecordService.updateNSRecord:input_type -> pb.UpdateNSRecordRequest
-	3,  // 5: pb.NSRecordService.deleteNSRecord:input_type -> pb.DeleteNSRecordRequest
-	4,  // 6: pb.NSRecordService.countAllEnabledNSRecords:input_type -> pb.CountAllEnabledNSRecordsRequest
-	5,  // 7: pb.NSRecordService.listEnabledNSRecords:input_type -> pb.ListEnabledNSRecordsRequest
-	7,  // 8: pb.NSRecordService.findEnabledNSRecord:input_type -> pb.FindEnabledNSRecordRequest
-	9,  // 9: pb.NSRecordService.listNSRecordsAfterVersion:input_type -> pb.ListNSRecordsAfterVersionRequest
-	1,  // 10: pb.NSRecordService.createNSRecord:output_type -> pb.CreateNSRecordResponse
-	12, // 11: pb.NSRecordService.updateNSRecord:output_type -> pb.RPCSuccess
-	12, // 12: pb.NSRecordService.deleteNSRecord:output_type -> pb.RPCSuccess
-	13, // 13: pb.NSRecordService.countAllEnabledNSRecords:output_type -> pb.RPCCountResponse
-	6,  // 14: pb.NSRecordService.listEnabledNSRecords:output_type -> pb.ListEnabledNSRecordsResponse
-	8,  // 15: pb.NSRecordService.findEnabledNSRecord:output_type -> pb.FindEnabledNSRecordResponse
-	10, // 16: pb.NSRecordService.listNSRecordsAfterVersion:output_type -> pb.ListNSRecordsAfterVersionResponse
-	10, // [10:17] is the sub-list for method output_type
-	3,  // [3:10] is the sub-list for method input_type
+	2,  // 4: pb.NSRecordService.createNSRecords:input_type -> pb.CreateNSRecordsRequest
+	4,  // 5: pb.NSRecordService.updateNSRecord:input_type -> pb.UpdateNSRecordRequest
+	5,  // 6: pb.NSRecordService.deleteNSRecord:input_type -> pb.DeleteNSRecordRequest
+	6,  // 7: pb.NSRecordService.countAllNSRecords:input_type -> pb.CountAllNSRecordsRequest
+	7,  // 8: pb.NSRecordService.listNSRecords:input_type -> pb.ListNSRecordsRequest
+	9,  // 9: pb.NSRecordService.findNSRecord:input_type -> pb.FindNSRecordRequest
+	11, // 10: pb.NSRecordService.listNSRecordsAfterVersion:input_type -> pb.ListNSRecordsAfterVersionRequest
+	1,  // 11: pb.NSRecordService.createNSRecord:output_type -> pb.CreateNSRecordResponse
+	3,  // 12: pb.NSRecordService.createNSRecords:output_type -> pb.CreateNSRecordsResponse
+	14, // 13: pb.NSRecordService.updateNSRecord:output_type -> pb.RPCSuccess
+	14, // 14: pb.NSRecordService.deleteNSRecord:output_type -> pb.RPCSuccess
+	15, // 15: pb.NSRecordService.countAllNSRecords:output_type -> pb.RPCCountResponse
+	8,  // 16: pb.NSRecordService.listNSRecords:output_type -> pb.ListNSRecordsResponse
+	10, // 17: pb.NSRecordService.findNSRecord:output_type -> pb.FindNSRecordResponse
+	12, // 18: pb.NSRecordService.listNSRecordsAfterVersion:output_type -> pb.ListNSRecordsAfterVersionResponse
+	11, // [11:19] is the sub-list for method output_type
+	3,  // [3:11] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
 	3,  // [3:3] is the sub-list for extension extendee
 	0,  // [0:3] is the sub-list for field type_name
@@ -992,7 +1155,7 @@ func file_service_ns_record_proto_init() {
 			}
 		}
 		file_service_ns_record_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateNSRecordRequest); i {
+			switch v := v.(*CreateNSRecordsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1004,7 +1167,7 @@ func file_service_ns_record_proto_init() {
 			}
 		}
 		file_service_ns_record_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteNSRecordRequest); i {
+			switch v := v.(*CreateNSRecordsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1016,7 +1179,7 @@ func file_service_ns_record_proto_init() {
 			}
 		}
 		file_service_ns_record_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CountAllEnabledNSRecordsRequest); i {
+			switch v := v.(*UpdateNSRecordRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1028,7 +1191,7 @@ func file_service_ns_record_proto_init() {
 			}
 		}
 		file_service_ns_record_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListEnabledNSRecordsRequest); i {
+			switch v := v.(*DeleteNSRecordRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1040,7 +1203,7 @@ func file_service_ns_record_proto_init() {
 			}
 		}
 		file_service_ns_record_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListEnabledNSRecordsResponse); i {
+			switch v := v.(*CountAllNSRecordsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1052,7 +1215,7 @@ func file_service_ns_record_proto_init() {
 			}
 		}
 		file_service_ns_record_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindEnabledNSRecordRequest); i {
+			switch v := v.(*ListNSRecordsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1064,7 +1227,7 @@ func file_service_ns_record_proto_init() {
 			}
 		}
 		file_service_ns_record_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindEnabledNSRecordResponse); i {
+			switch v := v.(*ListNSRecordsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1076,7 +1239,7 @@ func file_service_ns_record_proto_init() {
 			}
 		}
 		file_service_ns_record_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListNSRecordsAfterVersionRequest); i {
+			switch v := v.(*FindNSRecordRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1088,6 +1251,30 @@ func file_service_ns_record_proto_init() {
 			}
 		}
 		file_service_ns_record_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindNSRecordResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_record_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListNSRecordsAfterVersionRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_record_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListNSRecordsAfterVersionResponse); i {
 			case 0:
 				return &v.state
@@ -1106,7 +1293,7 @@ func file_service_ns_record_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_ns_record_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -1134,16 +1321,18 @@ const _ = grpc.SupportPackageIsVersion6
 type NSRecordServiceClient interface {
 	// 创建记录
 	CreateNSRecord(ctx context.Context, in *CreateNSRecordRequest, opts ...grpc.CallOption) (*CreateNSRecordResponse, error)
+	// 批量创建记录
+	CreateNSRecords(ctx context.Context, in *CreateNSRecordsRequest, opts ...grpc.CallOption) (*CreateNSRecordsResponse, error)
 	// 修改记录
 	UpdateNSRecord(ctx context.Context, in *UpdateNSRecordRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 删除记录
 	DeleteNSRecord(ctx context.Context, in *DeleteNSRecordRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 计算记录数量
-	CountAllEnabledNSRecords(ctx context.Context, in *CountAllEnabledNSRecordsRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
+	CountAllNSRecords(ctx context.Context, in *CountAllNSRecordsRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 读取单页记录
-	ListEnabledNSRecords(ctx context.Context, in *ListEnabledNSRecordsRequest, opts ...grpc.CallOption) (*ListEnabledNSRecordsResponse, error)
+	ListNSRecords(ctx context.Context, in *ListNSRecordsRequest, opts ...grpc.CallOption) (*ListNSRecordsResponse, error)
 	// 查询单个记录信息
-	FindEnabledNSRecord(ctx context.Context, in *FindEnabledNSRecordRequest, opts ...grpc.CallOption) (*FindEnabledNSRecordResponse, error)
+	FindNSRecord(ctx context.Context, in *FindNSRecordRequest, opts ...grpc.CallOption) (*FindNSRecordResponse, error)
 	// 根据版本列出一组记录
 	ListNSRecordsAfterVersion(ctx context.Context, in *ListNSRecordsAfterVersionRequest, opts ...grpc.CallOption) (*ListNSRecordsAfterVersionResponse, error)
 }
@@ -1159,6 +1348,15 @@ func NewNSRecordServiceClient(cc grpc.ClientConnInterface) NSRecordServiceClient
 func (c *nSRecordServiceClient) CreateNSRecord(ctx context.Context, in *CreateNSRecordRequest, opts ...grpc.CallOption) (*CreateNSRecordResponse, error) {
 	out := new(CreateNSRecordResponse)
 	err := c.cc.Invoke(ctx, "/pb.NSRecordService/createNSRecord", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSRecordServiceClient) CreateNSRecords(ctx context.Context, in *CreateNSRecordsRequest, opts ...grpc.CallOption) (*CreateNSRecordsResponse, error) {
+	out := new(CreateNSRecordsResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSRecordService/createNSRecords", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1183,27 +1381,27 @@ func (c *nSRecordServiceClient) DeleteNSRecord(ctx context.Context, in *DeleteNS
 	return out, nil
 }
 
-func (c *nSRecordServiceClient) CountAllEnabledNSRecords(ctx context.Context, in *CountAllEnabledNSRecordsRequest, opts ...grpc.CallOption) (*RPCCountResponse, error) {
+func (c *nSRecordServiceClient) CountAllNSRecords(ctx context.Context, in *CountAllNSRecordsRequest, opts ...grpc.CallOption) (*RPCCountResponse, error) {
 	out := new(RPCCountResponse)
-	err := c.cc.Invoke(ctx, "/pb.NSRecordService/countAllEnabledNSRecords", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.NSRecordService/countAllNSRecords", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *nSRecordServiceClient) ListEnabledNSRecords(ctx context.Context, in *ListEnabledNSRecordsRequest, opts ...grpc.CallOption) (*ListEnabledNSRecordsResponse, error) {
-	out := new(ListEnabledNSRecordsResponse)
-	err := c.cc.Invoke(ctx, "/pb.NSRecordService/listEnabledNSRecords", in, out, opts...)
+func (c *nSRecordServiceClient) ListNSRecords(ctx context.Context, in *ListNSRecordsRequest, opts ...grpc.CallOption) (*ListNSRecordsResponse, error) {
+	out := new(ListNSRecordsResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSRecordService/listNSRecords", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *nSRecordServiceClient) FindEnabledNSRecord(ctx context.Context, in *FindEnabledNSRecordRequest, opts ...grpc.CallOption) (*FindEnabledNSRecordResponse, error) {
-	out := new(FindEnabledNSRecordResponse)
-	err := c.cc.Invoke(ctx, "/pb.NSRecordService/findEnabledNSRecord", in, out, opts...)
+func (c *nSRecordServiceClient) FindNSRecord(ctx context.Context, in *FindNSRecordRequest, opts ...grpc.CallOption) (*FindNSRecordResponse, error) {
+	out := new(FindNSRecordResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSRecordService/findNSRecord", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1223,16 +1421,18 @@ func (c *nSRecordServiceClient) ListNSRecordsAfterVersion(ctx context.Context, i
 type NSRecordServiceServer interface {
 	// 创建记录
 	CreateNSRecord(context.Context, *CreateNSRecordRequest) (*CreateNSRecordResponse, error)
+	// 批量创建记录
+	CreateNSRecords(context.Context, *CreateNSRecordsRequest) (*CreateNSRecordsResponse, error)
 	// 修改记录
 	UpdateNSRecord(context.Context, *UpdateNSRecordRequest) (*RPCSuccess, error)
 	// 删除记录
 	DeleteNSRecord(context.Context, *DeleteNSRecordRequest) (*RPCSuccess, error)
 	// 计算记录数量
-	CountAllEnabledNSRecords(context.Context, *CountAllEnabledNSRecordsRequest) (*RPCCountResponse, error)
+	CountAllNSRecords(context.Context, *CountAllNSRecordsRequest) (*RPCCountResponse, error)
 	// 读取单页记录
-	ListEnabledNSRecords(context.Context, *ListEnabledNSRecordsRequest) (*ListEnabledNSRecordsResponse, error)
+	ListNSRecords(context.Context, *ListNSRecordsRequest) (*ListNSRecordsResponse, error)
 	// 查询单个记录信息
-	FindEnabledNSRecord(context.Context, *FindEnabledNSRecordRequest) (*FindEnabledNSRecordResponse, error)
+	FindNSRecord(context.Context, *FindNSRecordRequest) (*FindNSRecordResponse, error)
 	// 根据版本列出一组记录
 	ListNSRecordsAfterVersion(context.Context, *ListNSRecordsAfterVersionRequest) (*ListNSRecordsAfterVersionResponse, error)
 }
@@ -1244,20 +1444,23 @@ type UnimplementedNSRecordServiceServer struct {
 func (*UnimplementedNSRecordServiceServer) CreateNSRecord(context.Context, *CreateNSRecordRequest) (*CreateNSRecordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateNSRecord not implemented")
 }
+func (*UnimplementedNSRecordServiceServer) CreateNSRecords(context.Context, *CreateNSRecordsRequest) (*CreateNSRecordsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateNSRecords not implemented")
+}
 func (*UnimplementedNSRecordServiceServer) UpdateNSRecord(context.Context, *UpdateNSRecordRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateNSRecord not implemented")
 }
 func (*UnimplementedNSRecordServiceServer) DeleteNSRecord(context.Context, *DeleteNSRecordRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNSRecord not implemented")
 }
-func (*UnimplementedNSRecordServiceServer) CountAllEnabledNSRecords(context.Context, *CountAllEnabledNSRecordsRequest) (*RPCCountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CountAllEnabledNSRecords not implemented")
+func (*UnimplementedNSRecordServiceServer) CountAllNSRecords(context.Context, *CountAllNSRecordsRequest) (*RPCCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountAllNSRecords not implemented")
 }
-func (*UnimplementedNSRecordServiceServer) ListEnabledNSRecords(context.Context, *ListEnabledNSRecordsRequest) (*ListEnabledNSRecordsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListEnabledNSRecords not implemented")
+func (*UnimplementedNSRecordServiceServer) ListNSRecords(context.Context, *ListNSRecordsRequest) (*ListNSRecordsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListNSRecords not implemented")
 }
-func (*UnimplementedNSRecordServiceServer) FindEnabledNSRecord(context.Context, *FindEnabledNSRecordRequest) (*FindEnabledNSRecordResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledNSRecord not implemented")
+func (*UnimplementedNSRecordServiceServer) FindNSRecord(context.Context, *FindNSRecordRequest) (*FindNSRecordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindNSRecord not implemented")
 }
 func (*UnimplementedNSRecordServiceServer) ListNSRecordsAfterVersion(context.Context, *ListNSRecordsAfterVersionRequest) (*ListNSRecordsAfterVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListNSRecordsAfterVersion not implemented")
@@ -1281,6 +1484,24 @@ func _NSRecordService_CreateNSRecord_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NSRecordServiceServer).CreateNSRecord(ctx, req.(*CreateNSRecordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSRecordService_CreateNSRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateNSRecordsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSRecordServiceServer).CreateNSRecords(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSRecordService/CreateNSRecords",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSRecordServiceServer).CreateNSRecords(ctx, req.(*CreateNSRecordsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1321,56 +1542,56 @@ func _NSRecordService_DeleteNSRecord_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NSRecordService_CountAllEnabledNSRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CountAllEnabledNSRecordsRequest)
+func _NSRecordService_CountAllNSRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountAllNSRecordsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NSRecordServiceServer).CountAllEnabledNSRecords(ctx, in)
+		return srv.(NSRecordServiceServer).CountAllNSRecords(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.NSRecordService/CountAllEnabledNSRecords",
+		FullMethod: "/pb.NSRecordService/CountAllNSRecords",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NSRecordServiceServer).CountAllEnabledNSRecords(ctx, req.(*CountAllEnabledNSRecordsRequest))
+		return srv.(NSRecordServiceServer).CountAllNSRecords(ctx, req.(*CountAllNSRecordsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NSRecordService_ListEnabledNSRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListEnabledNSRecordsRequest)
+func _NSRecordService_ListNSRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListNSRecordsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NSRecordServiceServer).ListEnabledNSRecords(ctx, in)
+		return srv.(NSRecordServiceServer).ListNSRecords(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.NSRecordService/ListEnabledNSRecords",
+		FullMethod: "/pb.NSRecordService/ListNSRecords",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NSRecordServiceServer).ListEnabledNSRecords(ctx, req.(*ListEnabledNSRecordsRequest))
+		return srv.(NSRecordServiceServer).ListNSRecords(ctx, req.(*ListNSRecordsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NSRecordService_FindEnabledNSRecord_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindEnabledNSRecordRequest)
+func _NSRecordService_FindNSRecord_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindNSRecordRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NSRecordServiceServer).FindEnabledNSRecord(ctx, in)
+		return srv.(NSRecordServiceServer).FindNSRecord(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.NSRecordService/FindEnabledNSRecord",
+		FullMethod: "/pb.NSRecordService/FindNSRecord",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NSRecordServiceServer).FindEnabledNSRecord(ctx, req.(*FindEnabledNSRecordRequest))
+		return srv.(NSRecordServiceServer).FindNSRecord(ctx, req.(*FindNSRecordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1402,6 +1623,10 @@ var _NSRecordService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _NSRecordService_CreateNSRecord_Handler,
 		},
 		{
+			MethodName: "createNSRecords",
+			Handler:    _NSRecordService_CreateNSRecords_Handler,
+		},
+		{
 			MethodName: "updateNSRecord",
 			Handler:    _NSRecordService_UpdateNSRecord_Handler,
 		},
@@ -1410,16 +1635,16 @@ var _NSRecordService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _NSRecordService_DeleteNSRecord_Handler,
 		},
 		{
-			MethodName: "countAllEnabledNSRecords",
-			Handler:    _NSRecordService_CountAllEnabledNSRecords_Handler,
+			MethodName: "countAllNSRecords",
+			Handler:    _NSRecordService_CountAllNSRecords_Handler,
 		},
 		{
-			MethodName: "listEnabledNSRecords",
-			Handler:    _NSRecordService_ListEnabledNSRecords_Handler,
+			MethodName: "listNSRecords",
+			Handler:    _NSRecordService_ListNSRecords_Handler,
 		},
 		{
-			MethodName: "findEnabledNSRecord",
-			Handler:    _NSRecordService_FindEnabledNSRecord_Handler,
+			MethodName: "findNSRecord",
+			Handler:    _NSRecordService_FindNSRecord_Handler,
 		},
 		{
 			MethodName: "listNSRecordsAfterVersion",

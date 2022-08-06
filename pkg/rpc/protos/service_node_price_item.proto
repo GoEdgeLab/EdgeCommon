@@ -21,7 +21,7 @@ service NodePriceItemService {
 	rpc findAllEnabledNodePriceItems (FindAllEnabledNodePriceItemsRequest) returns (FindAllEnabledNodePriceItemsResponse);
 
 	// 查找所有启用的区域价格
-	rpc findAllEnabledAndOnNodePriceItems (FindAllEnabledAndOnNodePriceItemsRequest) returns (FindAllEnabledAndOnNodePriceItemsResponse);
+	rpc findAllAvailableNodePriceItems (FindAllAvailableNodePriceItemsRequest) returns (FindAllAvailableNodePriceItemsResponse);
 
 	// 查找单个区域信息
 	rpc findEnabledNodePriceItem (FindEnabledNodePriceItemRequest) returns (FindEnabledNodePriceItemResponse);
@@ -63,11 +63,11 @@ message FindAllEnabledNodePriceItemsResponse {
 }
 
 // 查找所有启用的区域价格
-message FindAllEnabledAndOnNodePriceItemsRequest {
+message FindAllAvailableNodePriceItemsRequest {
 	string type = 1;
 }
 
-message FindAllEnabledAndOnNodePriceItemsResponse {
+message FindAllAvailableNodePriceItemsResponse {
 	repeated NodePriceItem NodePriceItems = 1;
 }
 

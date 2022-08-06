@@ -1,0 +1,84 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_domain_group.proto";
+import "models/rpc_messages.proto";
+
+// 域名分组服务
+service NSDomainGroupService {
+	// 创建分组
+	rpc createNSDomainGroup(CreateNSDomainGroupRequest) returns (CreateNSDomainGroupResponse);
+
+	// 修改分组
+	rpc updateNSDomainGroup(UpdateNSDomainGroupRequest) returns (RPCSuccess);
+
+	// 删除分组
+	rpc deleteNSDomainGroup(DeleteNSDomainGroupRequest) returns (RPCSuccess);
+
+	// 查询所有分组
+	rpc findAllNSDomainGroups(FindAllNSDomainGroupsRequest) returns (FindAllNSDomainGroupsResponse);
+
+	// 查询可用分组数量
+	rpc countAllAvailableNSDomainGroups(CountAllAvailableNSDomainGroupsRequest) returns (RPCCountResponse);
+
+	// 查询所有启用分组
+	rpc findAllAvailableNSDomainGroups(FindAllAvailableNSDomainGroupsRequest) returns (FindAllAvailableNSDomainGroupsResponse);
+
+	// 查找单个分组
+	rpc findNSDomainGroup(FindNSDomainGroupRequest) returns (FindNSDomainGroupResponse);
+}
+
+// 创建分组
+message CreateNSDomainGroupRequest {
+	string name = 1;
+}
+
+message CreateNSDomainGroupResponse {
+	int64 nsDomainGroupId = 1;
+}
+
+// 修改分组
+message UpdateNSDomainGroupRequest {
+	int64 nsDomainGroupId = 1;
+	string name = 2;
+	bool isOn = 3;
+}
+
+// 删除分组
+message DeleteNSDomainGroupRequest {
+	int64 nsDomainGroupId = 1;
+}
+
+// 查询所有分组
+message FindAllNSDomainGroupsRequest {
+	int64 userId = 1;
+}
+
+message FindAllNSDomainGroupsResponse {
+	repeated NSDomainGroup nsDomainGroups = 1;
+}
+
+// 查询可用分组数量
+message CountAllAvailableNSDomainGroupsRequest {
+	int64 userId = 1;
+}
+
+// 查询所有启用分组
+message FindAllAvailableNSDomainGroupsRequest {
+	int64 userId = 1;
+}
+
+message FindAllAvailableNSDomainGroupsResponse {
+	repeated NSDomainGroup nsDomainGroups = 1;
+}
+
+// 查找单个分组
+message FindNSDomainGroupRequest {
+	int64 nsDomainGroupId = 1;
+}
+
+message FindNSDomainGroupResponse {
+	NSDomainGroup nsDomainGroup = 1;
+}

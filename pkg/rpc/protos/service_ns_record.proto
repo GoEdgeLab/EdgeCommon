@@ -11,6 +11,9 @@ service NSRecordService {
 	// 创建记录
 	rpc createNSRecord (CreateNSRecordRequest) returns (CreateNSRecordResponse);
 
+	// 批量创建记录
+	rpc createNSRecords(CreateNSRecordsRequest) returns (CreateNSRecordsResponse);
+
 	// 修改记录
 	rpc updateNSRecord (UpdateNSRecordRequest) returns (RPCSuccess);
 
@@ -18,13 +21,13 @@ service NSRecordService {
 	rpc deleteNSRecord (DeleteNSRecordRequest) returns (RPCSuccess);
 
 	// 计算记录数量
-	rpc countAllEnabledNSRecords (CountAllEnabledNSRecordsRequest) returns (RPCCountResponse);
+	rpc countAllNSRecords (CountAllNSRecordsRequest) returns (RPCCountResponse);
 
 	// 读取单页记录
-	rpc listEnabledNSRecords (ListEnabledNSRecordsRequest) returns (ListEnabledNSRecordsResponse);
+	rpc listNSRecords (ListNSRecordsRequest) returns (ListNSRecordsResponse);
 
 	// 查询单个记录信息
-	rpc findEnabledNSRecord (FindEnabledNSRecordRequest) returns (FindEnabledNSRecordResponse);
+	rpc findNSRecord (FindNSRecordRequest) returns (FindNSRecordResponse);
 
 	// 根据版本列出一组记录
 	rpc listNSRecordsAfterVersion (ListNSRecordsAfterVersionRequest) returns (ListNSRecordsAfterVersionResponse);
@@ -46,6 +49,21 @@ message CreateNSRecordResponse {
 	int64 nsRecordId = 1;
 }
 
+// 批量创建记录
+message CreateNSRecordsRequest {
+	int64 nsDomainId = 1;
+	string description = 2;
+	repeated string names = 3;
+	string type = 4;
+	string value = 5;
+	int32 ttl = 6;
+	repeated string nsRouteCodes = 7; // 路线代号
+}
+
+message CreateNSRecordsResponse {
+	repeated int64 nsRecordIds = 1;
+}
+
 // 修改记录
 message UpdateNSRecordRequest {
 	int64 nsRecordId = 1;
@@ -65,7 +83,7 @@ message DeleteNSRecordRequest {
 }
 
 // 计算记录数量
-message CountAllEnabledNSRecordsRequest {
+message CountAllNSRecordsRequest {
 	int64 nsDomainId = 1;
 	string type = 2;
 	int64 nsRouteId = 3 [deprecated = true]; // 使用nsRouteCode代替
@@ -74,7 +92,7 @@ message CountAllEnabledNSRecordsRequest {
 }
 
 // 读取单页记录
-message ListEnabledNSRecordsRequest {
+message ListNSRecordsRequest {
 	int64 nsDomainId = 1;
 	string type = 2;
 	int64 nsRouteId = 3 [deprecated = true]; // 使用nsRouteCode代替
@@ -84,16 +102,16 @@ message ListEnabledNSRecordsRequest {
 	int64 size = 6;
 }
 
-message ListEnabledNSRecordsResponse {
+message ListNSRecordsResponse {
 	repeated NSRecord nsRecords = 1;
 }
 
 // 查询单个记录信息
-message FindEnabledNSRecordRequest {
+message FindNSRecordRequest {
 	int64 nsRecordId = 1;
 }
 
-message FindEnabledNSRecordResponse {
+message FindNSRecordResponse {
 	NSRecord nsRecord = 1;
 }
 

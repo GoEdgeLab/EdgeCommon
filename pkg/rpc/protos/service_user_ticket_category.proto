@@ -21,7 +21,7 @@ service UserTicketCategoryService {
 	rpc findAllUserTicketCategories(FindAllUserTicketCategoriesRequest) returns (FindAllUserTicketCategoriesResponse);
 
 	// 查找所有启用中的分类
-	rpc findAllOnUserTicketCategories(FindAllOnUserTicketCategoriesRequest) returns (FindAllOnUserTicketCategoriesResponse);
+	rpc findAllAvailableUserTicketCategories(FindAllAvailableUserTicketCategoriesRequest) returns (FindAllAvailableUserTicketCategoriesResponse);
 
 	// 查询单个分类
 	rpc findUserTicketCategory(FindUserTicketCategoryRequest) returns (FindUserTicketCategoryResponse);
@@ -58,11 +58,11 @@ message FindAllUserTicketCategoriesResponse {
 }
 
 // 查找所有启用中的分类
-message FindAllOnUserTicketCategoriesRequest {
+message FindAllAvailableUserTicketCategoriesRequest {
 
 }
 
-message FindAllOnUserTicketCategoriesResponse {
+message FindAllAvailableUserTicketCategoriesResponse {
 	repeated UserTicketCategory userTicketCategories = 1;
 }
 

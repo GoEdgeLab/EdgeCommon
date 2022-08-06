@@ -11,16 +11,16 @@ import "models/model_node_login.proto";
 // 域名服务器节点服务
 service NSNodeService {
 	// 根据集群查找所有节点
-	rpc findAllEnabledNSNodesWithNSClusterId (FindAllEnabledNSNodesWithNSClusterIdRequest) returns (FindAllEnabledNSNodesWithNSClusterIdResponse);
+	rpc findAllNSNodesWithNSClusterId (FindAllNSNodesWithNSClusterIdRequest) returns (FindAllNSNodesWithNSClusterIdResponse);
 
 	// 所有可用的节点数量
-	rpc countAllEnabledNSNodes (CountAllEnabledNSNodesRequest) returns (RPCCountResponse);
+	rpc countAllNSNodes (CountAllNSNodesRequest) returns (RPCCountResponse);
 
 	// 计算匹配的节点数量
-	rpc countAllEnabledNSNodesMatch (CountAllEnabledNSNodesMatchRequest) returns (RPCCountResponse);
+	rpc countAllNSNodesMatch (CountAllNSNodesMatchRequest) returns (RPCCountResponse);
 
 	// 列出单页节点
-	rpc listEnabledNSNodesMatch (ListEnabledNSNodesMatchRequest) returns (ListEnabledNSNodesMatchResponse);
+	rpc listNSNodesMatch (ListNSNodesMatchRequest) returns (ListNSNodesMatchResponse);
 
 	// 计算需要升级的节点数量
 	rpc countAllUpgradeNSNodesWithNSClusterId (CountAllUpgradeNSNodesWithNSClusterIdRequest) returns (RPCCountResponse);
@@ -32,7 +32,7 @@ service NSNodeService {
 	rpc deleteNSNode (DeleteNSNodeRequest) returns (RPCSuccess);
 
 	// 获取单个节点信息
-	rpc findEnabledNSNode (FindEnabledNSNodeRequest) returns (FindEnabledNSNodeResponse);
+	rpc findNSNode (FindNSNodeRequest) returns (FindNSNodeResponse);
 
 	// 修改节点
 	rpc updateNSNode (UpdateNSNodeRequest) returns (RPCSuccess);
@@ -78,21 +78,21 @@ service NSNodeService {
 }
 
 // 根据集群查找所有节点
-message FindAllEnabledNSNodesWithNSClusterIdRequest {
+message FindAllNSNodesWithNSClusterIdRequest {
 	int64 nsClusterId = 1;
 }
 
-message FindAllEnabledNSNodesWithNSClusterIdResponse {
+message FindAllNSNodesWithNSClusterIdResponse {
 	repeated NSNode nsNodes = 1;
 }
 
 // 所有可用的节点数量
-message CountAllEnabledNSNodesRequest {
+message CountAllNSNodesRequest {
 
 }
 
 // 计算匹配的节点数量
-message CountAllEnabledNSNodesMatchRequest {
+message CountAllNSNodesMatchRequest {
 	int64 nsClusterId = 1;
 	int32 installState = 2;
 	int32 activeState = 3;
@@ -102,7 +102,7 @@ message CountAllEnabledNSNodesMatchRequest {
 }
 
 // 列出单页节点
-message ListEnabledNSNodesMatchRequest {
+message ListNSNodesMatchRequest {
 	int64 offset = 1;
 	int64 size = 2;
 	int64 nsClusterId = 3;
@@ -113,7 +113,7 @@ message ListEnabledNSNodesMatchRequest {
 	//int64 nodeRegionId = 8;
 }
 
-message ListEnabledNSNodesMatchResponse {
+message ListNSNodesMatchResponse {
 	repeated NSNode nsNodes = 1;
 }
 
@@ -139,11 +139,11 @@ message DeleteNSNodeRequest {
 }
 
 // 获取单个节点信息
-message FindEnabledNSNodeRequest {
+message FindNSNodeRequest {
 	int64 nsNodeId = 1;
 }
 
-message FindEnabledNSNodeResponse {
+message FindNSNodeResponse {
 	NSNode nsNode = 1;
 }
 

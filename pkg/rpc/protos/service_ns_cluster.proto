@@ -24,16 +24,16 @@ service NSClusterService {
 	rpc deleteNSCluster (DeleteNSCluster) returns (RPCSuccess);
 
 	// 查找单个可用集群信息
-	rpc findEnabledNSCluster (FindEnabledNSClusterRequest) returns (FindEnabledNSClusterResponse);
+	rpc findNSCluster (FindNSClusterRequest) returns (FindNSClusterResponse);
 
 	// 计算所有可用集群的数量
-	rpc countAllEnabledNSClusters (CountAllEnabledNSClustersRequest) returns (RPCCountResponse);
+	rpc countAllNSClusters (CountAllNSClustersRequest) returns (RPCCountResponse);
 
 	// 列出单页可用集群
-	rpc listEnabledNSClusters (ListEnabledNSClustersRequest) returns (ListEnabledNSClustersResponse);
+	rpc listNSClusters (ListNSClustersRequest) returns (ListNSClustersResponse);
 
 	// 查找所有可用集群
-	rpc findAllEnabledNSClusters (FindAllEnabledNSClustersRequest) returns (FindAllEnabledNSClustersResponse);
+	rpc findAllNSClusters (FindAllNSClustersRequest) returns (FindAllNSClustersResponse);
 
 	// 设置递归DNS配置
 	rpc updateNSClusterRecursionConfig(UpdateNSClusterRecursionConfigRequest) returns (RPCSuccess);
@@ -101,34 +101,34 @@ message DeleteNSCluster {
 }
 
 // 查找单个可用集群信息
-message FindEnabledNSClusterRequest {
+message FindNSClusterRequest {
 	int64 nsClusterId = 1;
 }
 
-message FindEnabledNSClusterResponse {
+message FindNSClusterResponse {
 	NSCluster nsCluster = 1;
 }
 
 // 计算所有可用集群的数量
-message CountAllEnabledNSClustersRequest {
+message CountAllNSClustersRequest {
 }
 
 // 列出单页可用集群
-message ListEnabledNSClustersRequest {
+message ListNSClustersRequest {
 	int64 offset = 1;
 	int64 size = 2;
 }
 
-message ListEnabledNSClustersResponse {
+message ListNSClustersResponse {
 	repeated NSCluster nsClusters = 1;
 }
 
 // 查找所有可用集群
-message FindAllEnabledNSClustersRequest {
+message FindAllNSClustersRequest {
 
 }
 
-message FindAllEnabledNSClustersResponse {
+message FindAllNSClustersResponse {
 	repeated NSCluster nsClusters = 1;
 }
 

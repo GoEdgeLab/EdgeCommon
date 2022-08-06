@@ -8,8 +8,11 @@ import "models/rpc_messages.proto";
 
 // 域名相关服务
 service NSDomainService {
-	// 创建域名
+	// 创建单个域名
 	rpc createNSDomain (CreateNSDomainRequest) returns (CreateNSDomainResponse);
+
+	// 批量创建域名
+	rpc createNSDomains(CreateNSDomainsRequest) returns (CreateNSDomainsResponse);
 
 	// 修改域名
 	rpc updateNSDomain (UpdateNSDomainRequest) returns (RPCSuccess);
@@ -18,33 +21,49 @@ service NSDomainService {
 	rpc deleteNSDomain (DeleteNSDomainRequest) returns (RPCSuccess);
 
 	// 查找单个域名
-	rpc findEnabledNSDomain (FindEnabledNSDomainRequest) returns (FindEnabledNSDomainResponse);
+	rpc findNSDomain (FindNSDomainRequest) returns (FindNSDomainResponse);
 
 	// 计算域名数量
-	rpc countAllEnabledNSDomains (CountAllEnabledNSDomainsRequest) returns (RPCCountResponse);
+	rpc countAllNSDomains (CountAllNSDomainsRequest) returns (RPCCountResponse);
 
 	// 列出单页域名
-	rpc listEnabledNSDomains (ListEnabledNSDomainsRequest) returns (ListEnabledNSDomainsResponse);
+	rpc listNSDomains (ListNSDomainsRequest) returns (ListNSDomainsResponse);
 
 	// 根据版本列出一组域名
 	rpc listNSDomainsAfterVersion (ListNSDomainsAfterVersionRequest) returns (ListNSDomainsAfterVersionResponse);
 
 	// 查找TSIG配置
-	rpc findEnabledNSDomainTSIG (FindEnabledNSDomainTSIGRequest) returns (FindEnabledNSDomainTSIGResponse);
+	rpc findNSDomainTSIG (FindNSDomainTSIGRequest) returns (FindNSDomainTSIGResponse);
 
 	// 修改TSIG配置
 	rpc updateNSDomainTSIG (UpdateNSDomainTSIGRequest) returns (RPCSuccess);
+
+	// 检查一组域名是否存在
+	rpc existNSDomains(ExistNSDomainsRequest) returns (ExistNSDomainsResponse);
 }
 
-// 创建域名
+// 创建单个域名
 message CreateNSDomainRequest {
-	int64 nsClusterId = 1;
-	int64 userId = 2;
-	string name = 3;
+	int64 nsClusterId = 1; // 所属集群
+	int64 userId = 2; // 所属用户
+	string name = 3; // 域名
+	repeated int64 nsDomainGroupIds = 4; // 域名分组ID
 }
 
 message CreateNSDomainResponse {
 	int64 nsDomainId = 1;
+}
+
+// 批量创建域名
+message CreateNSDomainsRequest {
+	int64 nsClusterId = 1; // 所属集群
+	int64 userId = 2; // 所属用户
+	repeated string names = 3; // 一组域名
+	repeated int64 nsDomainGroupIds = 4; // 域名分组ID
+}
+
+message CreateNSDomainsResponse {
+	repeated int64 nsDomainIds = 1;
 }
 
 // 修改域名
@@ -53,6 +72,7 @@ message UpdateNSDomainRequest {
 	int64 nsDomainId = 1;
 	int64 nsClusterId = 2;
 	int64 userId = 3;
+	repeated int64 nsDomainGroupIds = 5; // 域名分组ID
 	bool isOn = 4;
 }
 
@@ -62,31 +82,33 @@ message DeleteNSDomainRequest {
 }
 
 // 查找单个域名
-message FindEnabledNSDomainRequest {
+message FindNSDomainRequest {
 	int64 nsDomainId = 1;
 }
 
-message FindEnabledNSDomainResponse {
+message FindNSDomainResponse {
 	NSDomain nsDomain = 1;
 }
 
 // 计算域名数量
-message CountAllEnabledNSDomainsRequest {
+message CountAllNSDomainsRequest {
 	int64 userId = 1;
 	int64 nsClusterId = 2;
 	string keyword = 3;
+	int64 nsDomainGroupId = 4;
 }
 
 // 列出单页域名
-message ListEnabledNSDomainsRequest {
+message ListNSDomainsRequest {
 	int64 userId = 1;
 	int64 nsClusterId = 2;
 	string keyword = 3;
+	int64 nsDomainGroupId = 6;
 	int64 offset = 4;
 	int64 size = 5;
 }
 
-message ListEnabledNSDomainsResponse {
+message ListNSDomainsResponse {
 	repeated NSDomain nsDomains = 1;
 }
 
@@ -101,11 +123,11 @@ message ListNSDomainsAfterVersionResponse {
 }
 
 // 查找TSIG配置
-message FindEnabledNSDomainTSIGRequest {
+message FindNSDomainTSIGRequest {
 	int64 nsDomainId = 1;
 }
 
-message FindEnabledNSDomainTSIGResponse {
+message FindNSDomainTSIGResponse {
 	bytes tsigJSON = 1;
 }
 
@@ -113,4 +135,14 @@ message FindEnabledNSDomainTSIGResponse {
 message UpdateNSDomainTSIGRequest {
 	int64 nsDomainId = 1;
 	bytes tsigJSON = 2;
+}
+
+// 检查一组域名是否存在
+message ExistNSDomainsRequest {
+	repeated string names = 1;
+	int64 userId = 2;
+}
+
+message ExistNSDomainsResponse {
+	repeated string existingNames = 1;
 }

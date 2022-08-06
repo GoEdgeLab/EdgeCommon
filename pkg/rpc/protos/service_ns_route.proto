@@ -18,10 +18,10 @@ service NSRouteService {
 	rpc deleteNSRoute (DeleteNSRouteRequest) returns (RPCSuccess);
 
 	// 获取单个路线信息
-	rpc findEnabledNSRoute (FindEnabledNSRouteRequest) returns (FindEnabledNSRouteResponse);
+	rpc findNSRoute (FindNSRouteRequest) returns (FindNSRouteResponse);
 
 	// 读取所有线路
-	rpc findAllEnabledNSRoutes (FindAllEnabledNSRoutesRequest) returns (FindAllEnabledNSRoutesResponse);
+	rpc findAllNSRoutes (FindAllNSRoutesRequest) returns (FindAllNSRoutesResponse);
 
 	// 设置线路排序
 	rpc updateNSRouteOrders (UpdateNSRouteOrdersRequest) returns (RPCSuccess);
@@ -56,22 +56,22 @@ message DeleteNSRouteRequest {
 }
 
 // 获取单个路线信息
-message FindEnabledNSRouteRequest {
+message FindNSRouteRequest {
 	int64 nsRouteId = 1;
 }
 
-message FindEnabledNSRouteResponse {
+message FindNSRouteResponse {
 	NSRoute nsRoute = 1;
 }
 
 // 读取所有线路
-message FindAllEnabledNSRoutesRequest {
+message FindAllNSRoutesRequest {
 	int64 nsClusterId = 1;
 	int64 nsDomainId = 2;
 	int64 userId = 3;
 }
 
-message FindAllEnabledNSRoutesResponse {
+message FindAllNSRoutesResponse {
 	repeated NSRoute nsRoutes = 1;
 }
 

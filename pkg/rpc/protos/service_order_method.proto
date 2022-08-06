@@ -27,7 +27,7 @@ service OrderMethodService {
 	rpc findAllEnabledOrderMethods(FindAllEnabledOrderMethodsRequest) returns (FindAllEnabledOrderMethodsResponse);
 
 	// 查找所有已启用的支付方式
-	rpc findAllEnabledAndOnOrderMethods(FindAllEnabledAndOnOrderMethodsRequest) returns (FindAllEnabledAndOnOrderMethodsResponse);
+	rpc findAllAvailableOrderMethods(FindAllAvailableOrderMethodsRequest) returns (FindAllAvailableOrderMethodsResponse);
 }
 
 // 创建支付方式
@@ -85,10 +85,10 @@ message FindAllEnabledOrderMethodsResponse {
 }
 
 // 查找所有已启用的支付方式
-message FindAllEnabledAndOnOrderMethodsRequest {
+message FindAllAvailableOrderMethodsRequest {
 
 }
 
-message FindAllEnabledAndOnOrderMethodsResponse {
+message FindAllAvailableOrderMethodsResponse {
 	repeated OrderMethod orderMethods = 1;
 }

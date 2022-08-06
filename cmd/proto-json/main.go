@@ -69,6 +69,23 @@ func readComments(data []byte) string {
 	return string(bytes.TrimSpace(bytes.Join(comments, []byte{'\n'})))
 }
 
+func removeDuplicates(s []string) []string {
+	if len(s) == 0 {
+		return s
+	}
+	var m = map[string]bool{}
+	var result = []string{}
+	for _, item := range s {
+		_, ok := m[item]
+		if ok {
+			continue
+		}
+		result = append(result, item)
+		m[item] = true
+	}
+	return result
+}
+
 // 生成JSON格式API列表
 func main() {
 	var quiet = false
@@ -128,9 +145,23 @@ func main() {
 					roles = append(roles, "dns")
 				} else if strings.Contains(methodSource, ".ValidateMonitorNode(") {
 					roles = append(roles, "monitor")
+				} else if strings.Contains(methodSource, "rpcutils.UserTypeDNS") {
+					roles = append(roles, "dns")
+				} else if strings.Contains(methodSource, "rpcutils.UserTypeUser") {
+					roles = append(roles, "user")
+				} else if strings.Contains(methodSource, "rpcutils.UserTypeNode") {
+					roles = append(roles, "node")
+				} else if strings.Contains(methodSource, "rpcutils.UserTypeMonitor") {
+					roles = append(roles, "monitor")
+				} else if strings.Contains(methodSource, "rpcutils.UserTypeReport") {
+					roles = append(roles, "report")
+				} else if strings.Contains(methodSource, "rpcutils.UserTypeCluster") {
+					roles = append(roles, "cluster")
+				} else if strings.Contains(methodSource, "rpcutils.UserTypeAdmin") {
+					roles = append(roles, "admin")
 				}
 
-				methodRolesMap[strings.ToLower(methodName)] = roles
+				methodRolesMap[strings.ToLower(methodName)] = removeDuplicates(roles)
 			}
 		}
 	}

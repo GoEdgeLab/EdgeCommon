@@ -29,15 +29,16 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-// 创建域名
+// 创建单个域名
 type CreateNSDomainRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NsClusterId int64  `protobuf:"varint,1,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
-	UserId      int64  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`
-	Name        string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	NsClusterId      int64   `protobuf:"varint,1,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`                  // 所属集群
+	UserId           int64   `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`                            // 所属用户
+	Name             string  `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`                                 // 域名
+	NsDomainGroupIds []int64 `protobuf:"varint,4,rep,packed,name=nsDomainGroupIds,proto3" json:"nsDomainGroupIds,omitempty"` // 域名分组ID
 }
 
 func (x *CreateNSDomainRequest) Reset() {
@@ -93,6 +94,13 @@ func (x *CreateNSDomainRequest) GetName() string {
 	return ""
 }
 
+func (x *CreateNSDomainRequest) GetNsDomainGroupIds() []int64 {
+	if x != nil {
+		return x.NsDomainGroupIds
+	}
+	return nil
+}
+
 type CreateNSDomainResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -140,6 +148,125 @@ func (x *CreateNSDomainResponse) GetNsDomainId() int64 {
 	return 0
 }
 
+// 批量创建域名
+type CreateNSDomainsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsClusterId      int64    `protobuf:"varint,1,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`                  // 所属集群
+	UserId           int64    `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`                            // 所属用户
+	Names            []string `protobuf:"bytes,3,rep,name=names,proto3" json:"names,omitempty"`                               // 一组域名
+	NsDomainGroupIds []int64  `protobuf:"varint,4,rep,packed,name=nsDomainGroupIds,proto3" json:"nsDomainGroupIds,omitempty"` // 域名分组ID
+}
+
+func (x *CreateNSDomainsRequest) Reset() {
+	*x = CreateNSDomainsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_domain_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateNSDomainsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateNSDomainsRequest) ProtoMessage() {}
+
+func (x *CreateNSDomainsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_domain_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateNSDomainsRequest.ProtoReflect.Descriptor instead.
+func (*CreateNSDomainsRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CreateNSDomainsRequest) GetNsClusterId() int64 {
+	if x != nil {
+		return x.NsClusterId
+	}
+	return 0
+}
+
+func (x *CreateNSDomainsRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *CreateNSDomainsRequest) GetNames() []string {
+	if x != nil {
+		return x.Names
+	}
+	return nil
+}
+
+func (x *CreateNSDomainsRequest) GetNsDomainGroupIds() []int64 {
+	if x != nil {
+		return x.NsDomainGroupIds
+	}
+	return nil
+}
+
+type CreateNSDomainsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsDomainIds []int64 `protobuf:"varint,1,rep,packed,name=nsDomainIds,proto3" json:"nsDomainIds,omitempty"`
+}
+
+func (x *CreateNSDomainsResponse) Reset() {
+	*x = CreateNSDomainsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_domain_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateNSDomainsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateNSDomainsResponse) ProtoMessage() {}
+
+func (x *CreateNSDomainsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_domain_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateNSDomainsResponse.ProtoReflect.Descriptor instead.
+func (*CreateNSDomainsResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CreateNSDomainsResponse) GetNsDomainIds() []int64 {
+	if x != nil {
+		return x.NsDomainIds
+	}
+	return nil
+}
+
 // 修改域名
 // 注意：名称不能修改
 type UpdateNSDomainRequest struct {
@@ -147,16 +274,17 @@ type UpdateNSDomainRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NsDomainId  int64 `protobuf:"varint,1,opt,name=nsDomainId,proto3" json:"nsDomainId,omitempty"`
-	NsClusterId int64 `protobuf:"varint,2,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
-	UserId      int64 `protobuf:"varint,3,opt,name=userId,proto3" json:"userId,omitempty"`
-	IsOn        bool  `protobuf:"varint,4,opt,name=isOn,proto3" json:"isOn,omitempty"`
+	NsDomainId       int64   `protobuf:"varint,1,opt,name=nsDomainId,proto3" json:"nsDomainId,omitempty"`
+	NsClusterId      int64   `protobuf:"varint,2,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
+	UserId           int64   `protobuf:"varint,3,opt,name=userId,proto3" json:"userId,omitempty"`
+	NsDomainGroupIds []int64 `protobuf:"varint,5,rep,packed,name=nsDomainGroupIds,proto3" json:"nsDomainGroupIds,omitempty"` // 域名分组ID
+	IsOn             bool    `protobuf:"varint,4,opt,name=isOn,proto3" json:"isOn,omitempty"`
 }
 
 func (x *UpdateNSDomainRequest) Reset() {
 	*x = UpdateNSDomainRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_domain_proto_msgTypes[2]
+		mi := &file_service_ns_domain_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -169,7 +297,7 @@ func (x *UpdateNSDomainRequest) String() string {
 func (*UpdateNSDomainRequest) ProtoMessage() {}
 
 func (x *UpdateNSDomainRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_domain_proto_msgTypes[2]
+	mi := &file_service_ns_domain_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -182,7 +310,7 @@ func (x *UpdateNSDomainRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateNSDomainRequest.ProtoReflect.Descriptor instead.
 func (*UpdateNSDomainRequest) Descriptor() ([]byte, []int) {
-	return file_service_ns_domain_proto_rawDescGZIP(), []int{2}
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *UpdateNSDomainRequest) GetNsDomainId() int64 {
@@ -206,6 +334,13 @@ func (x *UpdateNSDomainRequest) GetUserId() int64 {
 	return 0
 }
 
+func (x *UpdateNSDomainRequest) GetNsDomainGroupIds() []int64 {
+	if x != nil {
+		return x.NsDomainGroupIds
+	}
+	return nil
+}
+
 func (x *UpdateNSDomainRequest) GetIsOn() bool {
 	if x != nil {
 		return x.IsOn
@@ -225,7 +360,7 @@ type DeleteNSDomainRequest struct {
 func (x *DeleteNSDomainRequest) Reset() {
 	*x = DeleteNSDomainRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_domain_proto_msgTypes[3]
+		mi := &file_service_ns_domain_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -238,7 +373,7 @@ func (x *DeleteNSDomainRequest) String() string {
 func (*DeleteNSDomainRequest) ProtoMessage() {}
 
 func (x *DeleteNSDomainRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_domain_proto_msgTypes[3]
+	mi := &file_service_ns_domain_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -251,7 +386,7 @@ func (x *DeleteNSDomainRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteNSDomainRequest.ProtoReflect.Descriptor instead.
 func (*DeleteNSDomainRequest) Descriptor() ([]byte, []int) {
-	return file_service_ns_domain_proto_rawDescGZIP(), []int{3}
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *DeleteNSDomainRequest) GetNsDomainId() int64 {
@@ -262,7 +397,7 @@ func (x *DeleteNSDomainRequest) GetNsDomainId() int64 {
 }
 
 // 查找单个域名
-type FindEnabledNSDomainRequest struct {
+type FindNSDomainRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -270,105 +405,8 @@ type FindEnabledNSDomainRequest struct {
 	NsDomainId int64 `protobuf:"varint,1,opt,name=nsDomainId,proto3" json:"nsDomainId,omitempty"`
 }
 
-func (x *FindEnabledNSDomainRequest) Reset() {
-	*x = FindEnabledNSDomainRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_domain_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *FindEnabledNSDomainRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FindEnabledNSDomainRequest) ProtoMessage() {}
-
-func (x *FindEnabledNSDomainRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_domain_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FindEnabledNSDomainRequest.ProtoReflect.Descriptor instead.
-func (*FindEnabledNSDomainRequest) Descriptor() ([]byte, []int) {
-	return file_service_ns_domain_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *FindEnabledNSDomainRequest) GetNsDomainId() int64 {
-	if x != nil {
-		return x.NsDomainId
-	}
-	return 0
-}
-
-type FindEnabledNSDomainResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	NsDomain *NSDomain `protobuf:"bytes,1,opt,name=nsDomain,proto3" json:"nsDomain,omitempty"`
-}
-
-func (x *FindEnabledNSDomainResponse) Reset() {
-	*x = FindEnabledNSDomainResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_domain_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *FindEnabledNSDomainResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FindEnabledNSDomainResponse) ProtoMessage() {}
-
-func (x *FindEnabledNSDomainResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_domain_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FindEnabledNSDomainResponse.ProtoReflect.Descriptor instead.
-func (*FindEnabledNSDomainResponse) Descriptor() ([]byte, []int) {
-	return file_service_ns_domain_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *FindEnabledNSDomainResponse) GetNsDomain() *NSDomain {
-	if x != nil {
-		return x.NsDomain
-	}
-	return nil
-}
-
-// 计算域名数量
-type CountAllEnabledNSDomainsRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	UserId      int64  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
-	NsClusterId int64  `protobuf:"varint,2,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
-	Keyword     string `protobuf:"bytes,3,opt,name=keyword,proto3" json:"keyword,omitempty"`
-}
-
-func (x *CountAllEnabledNSDomainsRequest) Reset() {
-	*x = CountAllEnabledNSDomainsRequest{}
+func (x *FindNSDomainRequest) Reset() {
+	*x = FindNSDomainRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_ns_domain_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -376,13 +414,13 @@ func (x *CountAllEnabledNSDomainsRequest) Reset() {
 	}
 }
 
-func (x *CountAllEnabledNSDomainsRequest) String() string {
+func (x *FindNSDomainRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CountAllEnabledNSDomainsRequest) ProtoMessage() {}
+func (*FindNSDomainRequest) ProtoMessage() {}
 
-func (x *CountAllEnabledNSDomainsRequest) ProtoReflect() protoreflect.Message {
+func (x *FindNSDomainRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_service_ns_domain_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -394,47 +432,28 @@ func (x *CountAllEnabledNSDomainsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CountAllEnabledNSDomainsRequest.ProtoReflect.Descriptor instead.
-func (*CountAllEnabledNSDomainsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use FindNSDomainRequest.ProtoReflect.Descriptor instead.
+func (*FindNSDomainRequest) Descriptor() ([]byte, []int) {
 	return file_service_ns_domain_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *CountAllEnabledNSDomainsRequest) GetUserId() int64 {
+func (x *FindNSDomainRequest) GetNsDomainId() int64 {
 	if x != nil {
-		return x.UserId
+		return x.NsDomainId
 	}
 	return 0
 }
 
-func (x *CountAllEnabledNSDomainsRequest) GetNsClusterId() int64 {
-	if x != nil {
-		return x.NsClusterId
-	}
-	return 0
-}
-
-func (x *CountAllEnabledNSDomainsRequest) GetKeyword() string {
-	if x != nil {
-		return x.Keyword
-	}
-	return ""
-}
-
-// 列出单页域名
-type ListEnabledNSDomainsRequest struct {
+type FindNSDomainResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId      int64  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
-	NsClusterId int64  `protobuf:"varint,2,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
-	Keyword     string `protobuf:"bytes,3,opt,name=keyword,proto3" json:"keyword,omitempty"`
-	Offset      int64  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
-	Size        int64  `protobuf:"varint,5,opt,name=size,proto3" json:"size,omitempty"`
+	NsDomain *NSDomain `protobuf:"bytes,1,opt,name=nsDomain,proto3" json:"nsDomain,omitempty"`
 }
 
-func (x *ListEnabledNSDomainsRequest) Reset() {
-	*x = ListEnabledNSDomainsRequest{}
+func (x *FindNSDomainResponse) Reset() {
+	*x = FindNSDomainResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_ns_domain_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -442,13 +461,13 @@ func (x *ListEnabledNSDomainsRequest) Reset() {
 	}
 }
 
-func (x *ListEnabledNSDomainsRequest) String() string {
+func (x *FindNSDomainResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListEnabledNSDomainsRequest) ProtoMessage() {}
+func (*FindNSDomainResponse) ProtoMessage() {}
 
-func (x *ListEnabledNSDomainsRequest) ProtoReflect() protoreflect.Message {
+func (x *FindNSDomainResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_service_ns_domain_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -460,56 +479,32 @@ func (x *ListEnabledNSDomainsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListEnabledNSDomainsRequest.ProtoReflect.Descriptor instead.
-func (*ListEnabledNSDomainsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use FindNSDomainResponse.ProtoReflect.Descriptor instead.
+func (*FindNSDomainResponse) Descriptor() ([]byte, []int) {
 	return file_service_ns_domain_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *ListEnabledNSDomainsRequest) GetUserId() int64 {
+func (x *FindNSDomainResponse) GetNsDomain() *NSDomain {
 	if x != nil {
-		return x.UserId
+		return x.NsDomain
 	}
-	return 0
+	return nil
 }
 
-func (x *ListEnabledNSDomainsRequest) GetNsClusterId() int64 {
-	if x != nil {
-		return x.NsClusterId
-	}
-	return 0
-}
-
-func (x *ListEnabledNSDomainsRequest) GetKeyword() string {
-	if x != nil {
-		return x.Keyword
-	}
-	return ""
-}
-
-func (x *ListEnabledNSDomainsRequest) GetOffset() int64 {
-	if x != nil {
-		return x.Offset
-	}
-	return 0
-}
-
-func (x *ListEnabledNSDomainsRequest) GetSize() int64 {
-	if x != nil {
-		return x.Size
-	}
-	return 0
-}
-
-type ListEnabledNSDomainsResponse struct {
+// 计算域名数量
+type CountAllNSDomainsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NsDomains []*NSDomain `protobuf:"bytes,1,rep,name=nsDomains,proto3" json:"nsDomains,omitempty"`
+	UserId          int64  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	NsClusterId     int64  `protobuf:"varint,2,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
+	Keyword         string `protobuf:"bytes,3,opt,name=keyword,proto3" json:"keyword,omitempty"`
+	NsDomainGroupId int64  `protobuf:"varint,4,opt,name=nsDomainGroupId,proto3" json:"nsDomainGroupId,omitempty"`
 }
 
-func (x *ListEnabledNSDomainsResponse) Reset() {
-	*x = ListEnabledNSDomainsResponse{}
+func (x *CountAllNSDomainsRequest) Reset() {
+	*x = CountAllNSDomainsRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_service_ns_domain_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -517,13 +512,13 @@ func (x *ListEnabledNSDomainsResponse) Reset() {
 	}
 }
 
-func (x *ListEnabledNSDomainsResponse) String() string {
+func (x *CountAllNSDomainsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListEnabledNSDomainsResponse) ProtoMessage() {}
+func (*CountAllNSDomainsRequest) ProtoMessage() {}
 
-func (x *ListEnabledNSDomainsResponse) ProtoReflect() protoreflect.Message {
+func (x *CountAllNSDomainsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_service_ns_domain_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -535,12 +530,168 @@ func (x *ListEnabledNSDomainsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListEnabledNSDomainsResponse.ProtoReflect.Descriptor instead.
-func (*ListEnabledNSDomainsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CountAllNSDomainsRequest.ProtoReflect.Descriptor instead.
+func (*CountAllNSDomainsRequest) Descriptor() ([]byte, []int) {
 	return file_service_ns_domain_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *ListEnabledNSDomainsResponse) GetNsDomains() []*NSDomain {
+func (x *CountAllNSDomainsRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *CountAllNSDomainsRequest) GetNsClusterId() int64 {
+	if x != nil {
+		return x.NsClusterId
+	}
+	return 0
+}
+
+func (x *CountAllNSDomainsRequest) GetKeyword() string {
+	if x != nil {
+		return x.Keyword
+	}
+	return ""
+}
+
+func (x *CountAllNSDomainsRequest) GetNsDomainGroupId() int64 {
+	if x != nil {
+		return x.NsDomainGroupId
+	}
+	return 0
+}
+
+// 列出单页域名
+type ListNSDomainsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId          int64  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	NsClusterId     int64  `protobuf:"varint,2,opt,name=nsClusterId,proto3" json:"nsClusterId,omitempty"`
+	Keyword         string `protobuf:"bytes,3,opt,name=keyword,proto3" json:"keyword,omitempty"`
+	NsDomainGroupId int64  `protobuf:"varint,6,opt,name=nsDomainGroupId,proto3" json:"nsDomainGroupId,omitempty"`
+	Offset          int64  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
+	Size            int64  `protobuf:"varint,5,opt,name=size,proto3" json:"size,omitempty"`
+}
+
+func (x *ListNSDomainsRequest) Reset() {
+	*x = ListNSDomainsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_domain_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListNSDomainsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListNSDomainsRequest) ProtoMessage() {}
+
+func (x *ListNSDomainsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_domain_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListNSDomainsRequest.ProtoReflect.Descriptor instead.
+func (*ListNSDomainsRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ListNSDomainsRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *ListNSDomainsRequest) GetNsClusterId() int64 {
+	if x != nil {
+		return x.NsClusterId
+	}
+	return 0
+}
+
+func (x *ListNSDomainsRequest) GetKeyword() string {
+	if x != nil {
+		return x.Keyword
+	}
+	return ""
+}
+
+func (x *ListNSDomainsRequest) GetNsDomainGroupId() int64 {
+	if x != nil {
+		return x.NsDomainGroupId
+	}
+	return 0
+}
+
+func (x *ListNSDomainsRequest) GetOffset() int64 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *ListNSDomainsRequest) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+type ListNSDomainsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsDomains []*NSDomain `protobuf:"bytes,1,rep,name=nsDomains,proto3" json:"nsDomains,omitempty"`
+}
+
+func (x *ListNSDomainsResponse) Reset() {
+	*x = ListNSDomainsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_domain_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListNSDomainsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListNSDomainsResponse) ProtoMessage() {}
+
+func (x *ListNSDomainsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_domain_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListNSDomainsResponse.ProtoReflect.Descriptor instead.
+func (*ListNSDomainsResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ListNSDomainsResponse) GetNsDomains() []*NSDomain {
 	if x != nil {
 		return x.NsDomains
 	}
@@ -560,7 +711,7 @@ type ListNSDomainsAfterVersionRequest struct {
 func (x *ListNSDomainsAfterVersionRequest) Reset() {
 	*x = ListNSDomainsAfterVersionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_domain_proto_msgTypes[9]
+		mi := &file_service_ns_domain_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -573,7 +724,7 @@ func (x *ListNSDomainsAfterVersionRequest) String() string {
 func (*ListNSDomainsAfterVersionRequest) ProtoMessage() {}
 
 func (x *ListNSDomainsAfterVersionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_domain_proto_msgTypes[9]
+	mi := &file_service_ns_domain_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -586,7 +737,7 @@ func (x *ListNSDomainsAfterVersionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNSDomainsAfterVersionRequest.ProtoReflect.Descriptor instead.
 func (*ListNSDomainsAfterVersionRequest) Descriptor() ([]byte, []int) {
-	return file_service_ns_domain_proto_rawDescGZIP(), []int{9}
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListNSDomainsAfterVersionRequest) GetVersion() int64 {
@@ -614,7 +765,7 @@ type ListNSDomainsAfterVersionResponse struct {
 func (x *ListNSDomainsAfterVersionResponse) Reset() {
 	*x = ListNSDomainsAfterVersionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_domain_proto_msgTypes[10]
+		mi := &file_service_ns_domain_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -627,7 +778,7 @@ func (x *ListNSDomainsAfterVersionResponse) String() string {
 func (*ListNSDomainsAfterVersionResponse) ProtoMessage() {}
 
 func (x *ListNSDomainsAfterVersionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_domain_proto_msgTypes[10]
+	mi := &file_service_ns_domain_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -640,7 +791,7 @@ func (x *ListNSDomainsAfterVersionResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ListNSDomainsAfterVersionResponse.ProtoReflect.Descriptor instead.
 func (*ListNSDomainsAfterVersionResponse) Descriptor() ([]byte, []int) {
-	return file_service_ns_domain_proto_rawDescGZIP(), []int{10}
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListNSDomainsAfterVersionResponse) GetNsDomains() []*NSDomain {
@@ -651,7 +802,7 @@ func (x *ListNSDomainsAfterVersionResponse) GetNsDomains() []*NSDomain {
 }
 
 // 查找TSIG配置
-type FindEnabledNSDomainTSIGRequest struct {
+type FindNSDomainTSIGRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -659,23 +810,23 @@ type FindEnabledNSDomainTSIGRequest struct {
 	NsDomainId int64 `protobuf:"varint,1,opt,name=nsDomainId,proto3" json:"nsDomainId,omitempty"`
 }
 
-func (x *FindEnabledNSDomainTSIGRequest) Reset() {
-	*x = FindEnabledNSDomainTSIGRequest{}
+func (x *FindNSDomainTSIGRequest) Reset() {
+	*x = FindNSDomainTSIGRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_domain_proto_msgTypes[11]
+		mi := &file_service_ns_domain_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *FindEnabledNSDomainTSIGRequest) String() string {
+func (x *FindNSDomainTSIGRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*FindEnabledNSDomainTSIGRequest) ProtoMessage() {}
+func (*FindNSDomainTSIGRequest) ProtoMessage() {}
 
-func (x *FindEnabledNSDomainTSIGRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_domain_proto_msgTypes[11]
+func (x *FindNSDomainTSIGRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_domain_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -686,19 +837,19 @@ func (x *FindEnabledNSDomainTSIGRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use FindEnabledNSDomainTSIGRequest.ProtoReflect.Descriptor instead.
-func (*FindEnabledNSDomainTSIGRequest) Descriptor() ([]byte, []int) {
-	return file_service_ns_domain_proto_rawDescGZIP(), []int{11}
+// Deprecated: Use FindNSDomainTSIGRequest.ProtoReflect.Descriptor instead.
+func (*FindNSDomainTSIGRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *FindEnabledNSDomainTSIGRequest) GetNsDomainId() int64 {
+func (x *FindNSDomainTSIGRequest) GetNsDomainId() int64 {
 	if x != nil {
 		return x.NsDomainId
 	}
 	return 0
 }
 
-type FindEnabledNSDomainTSIGResponse struct {
+type FindNSDomainTSIGResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -706,23 +857,23 @@ type FindEnabledNSDomainTSIGResponse struct {
 	TsigJSON []byte `protobuf:"bytes,1,opt,name=tsigJSON,proto3" json:"tsigJSON,omitempty"`
 }
 
-func (x *FindEnabledNSDomainTSIGResponse) Reset() {
-	*x = FindEnabledNSDomainTSIGResponse{}
+func (x *FindNSDomainTSIGResponse) Reset() {
+	*x = FindNSDomainTSIGResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_domain_proto_msgTypes[12]
+		mi := &file_service_ns_domain_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
 }
 
-func (x *FindEnabledNSDomainTSIGResponse) String() string {
+func (x *FindNSDomainTSIGResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*FindEnabledNSDomainTSIGResponse) ProtoMessage() {}
+func (*FindNSDomainTSIGResponse) ProtoMessage() {}
 
-func (x *FindEnabledNSDomainTSIGResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_domain_proto_msgTypes[12]
+func (x *FindNSDomainTSIGResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_domain_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -733,12 +884,12 @@ func (x *FindEnabledNSDomainTSIGResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use FindEnabledNSDomainTSIGResponse.ProtoReflect.Descriptor instead.
-func (*FindEnabledNSDomainTSIGResponse) Descriptor() ([]byte, []int) {
-	return file_service_ns_domain_proto_rawDescGZIP(), []int{12}
+// Deprecated: Use FindNSDomainTSIGResponse.ProtoReflect.Descriptor instead.
+func (*FindNSDomainTSIGResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *FindEnabledNSDomainTSIGResponse) GetTsigJSON() []byte {
+func (x *FindNSDomainTSIGResponse) GetTsigJSON() []byte {
 	if x != nil {
 		return x.TsigJSON
 	}
@@ -758,7 +909,7 @@ type UpdateNSDomainTSIGRequest struct {
 func (x *UpdateNSDomainTSIGRequest) Reset() {
 	*x = UpdateNSDomainTSIGRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ns_domain_proto_msgTypes[13]
+		mi := &file_service_ns_domain_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -771,7 +922,7 @@ func (x *UpdateNSDomainTSIGRequest) String() string {
 func (*UpdateNSDomainTSIGRequest) ProtoMessage() {}
 
 func (x *UpdateNSDomainTSIGRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ns_domain_proto_msgTypes[13]
+	mi := &file_service_ns_domain_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -784,7 +935,7 @@ func (x *UpdateNSDomainTSIGRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateNSDomainTSIGRequest.ProtoReflect.Descriptor instead.
 func (*UpdateNSDomainTSIGRequest) Descriptor() ([]byte, []int) {
-	return file_service_ns_domain_proto_rawDescGZIP(), []int{13}
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *UpdateNSDomainTSIGRequest) GetNsDomainId() int64 {
@@ -801,6 +952,109 @@ func (x *UpdateNSDomainTSIGRequest) GetTsigJSON() []byte {
 	return nil
 }
 
+// 检查一组域名是否存在
+type ExistNSDomainsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Names  []string `protobuf:"bytes,1,rep,name=names,proto3" json:"names,omitempty"`
+	UserId int64    `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`
+}
+
+func (x *ExistNSDomainsRequest) Reset() {
+	*x = ExistNSDomainsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_domain_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ExistNSDomainsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExistNSDomainsRequest) ProtoMessage() {}
+
+func (x *ExistNSDomainsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_domain_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExistNSDomainsRequest.ProtoReflect.Descriptor instead.
+func (*ExistNSDomainsRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *ExistNSDomainsRequest) GetNames() []string {
+	if x != nil {
+		return x.Names
+	}
+	return nil
+}
+
+func (x *ExistNSDomainsRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type ExistNSDomainsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ExistingNames []string `protobuf:"bytes,1,rep,name=existingNames,proto3" json:"existingNames,omitempty"`
+}
+
+func (x *ExistNSDomainsResponse) Reset() {
+	*x = ExistNSDomainsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_domain_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ExistNSDomainsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExistNSDomainsResponse) ProtoMessage() {}
+
+func (x *ExistNSDomainsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_domain_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExistNSDomainsResponse.ProtoReflect.Descriptor instead.
+func (*ExistNSDomainsResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_domain_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *ExistNSDomainsResponse) GetExistingNames() []string {
+	if x != nil {
+		return x.ExistingNames
+	}
+	return nil
+}
+
 var File_service_ns_domain_proto protoreflect.FileDescriptor
 
 var file_service_ns_domain_proto_rawDesc = []byte{
@@ -809,131 +1063,165 @@ var file_service_ns_domain_proto_rawDesc = []byte{
 	0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x6e, 0x73, 0x5f, 0x64,
 	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x6d, 0x6f, 0x64,
 	0x65, 0x6c, 0x73, 0x2f, 0x72, 0x70, 0x63, 0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x65, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x91, 0x01, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x2a,
+	0x0a, 0x10, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49,
+	0x64, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x03, 0x52, 0x10, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x73, 0x22, 0x38, 0x0a, 0x16, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x49, 0x64, 0x22, 0x94, 0x01, 0x0a, 0x16, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e,
+	0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
 	0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
 	0x64, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d,
-	0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x38, 0x0a,
-	0x16, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d,
-	0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44,
-	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x85, 0x01, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49,
-	0x64, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
-	0x72, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x03, 0x20,
-	0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x69,
-	0x73, 0x4f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x22,
-	0x37, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69,
-	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f,
-	0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73,
-	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x3c, 0x0a, 0x1a, 0x46, 0x69, 0x6e, 0x64,
-	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61,
-	0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44, 0x6f,
-	0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x47, 0x0a, 0x1b, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e,
-	0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x28, 0x0a, 0x08, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69,
-	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x44,
-	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x08, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x22,
-	0x75, 0x0a, 0x1f, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c,
-	0x65, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x6e, 0x61, 0x6d,
+	0x65, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x09, 0x52, 0x05, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x12,
+	0x2a, 0x0a, 0x10, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x47, 0x72, 0x6f, 0x75, 0x70,
+	0x49, 0x64, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x03, 0x52, 0x10, 0x6e, 0x73, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x73, 0x22, 0x3b, 0x0a, 0x17, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x49, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x03, 0x52, 0x0b, 0x6e, 0x73, 0x44,
+	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x73, 0x22, 0xb1, 0x01, 0x0a, 0x15, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x49, 0x64, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49,
+	0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x2a, 0x0a, 0x10,
+	0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x73,
+	0x18, 0x05, 0x20, 0x03, 0x28, 0x03, 0x52, 0x10, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x73, 0x4f, 0x6e,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x22, 0x37, 0x0a, 0x15,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x35, 0x0a, 0x13, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x44,
+	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a,
+	0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x40, 0x0a, 0x14,
+	0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x28, 0x0a, 0x08, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x44, 0x6f,
+	0x6d, 0x61, 0x69, 0x6e, 0x52, 0x08, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x22, 0x98,
+	0x01, 0x0a, 0x18, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x4e, 0x53, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x75,
+	0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65,
+	0x72, 0x49, 0x64, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x12,
+	0x28, 0x0a, 0x0f, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x47, 0x72, 0x6f, 0x75, 0x70,
+	0x49, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0f, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x22, 0xc0, 0x01, 0x0a, 0x14, 0x4c, 0x69,
+	0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
 	0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73,
 	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52,
 	0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07,
 	0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6b,
-	0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x9d, 0x01, 0x0a, 0x1b, 0x4c, 0x69, 0x73, 0x74, 0x45,
-	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x20,
-	0x0a, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x03, 0x52, 0x0b, 0x6e, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64,
-	0x12, 0x18, 0x0a, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66,
-	0x66, 0x73, 0x65, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73,
-	0x65, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x03,
-	0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x22, 0x4a, 0x0a, 0x1c, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e,
-	0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x09, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61,
-	0x69, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x4e,
-	0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x09, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69,
-	0x6e, 0x73, 0x22, 0x50, 0x0a, 0x20, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61,
-	0x69, 0x6e, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f,
-	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
-	0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04,
-	0x73, 0x69, 0x7a, 0x65, 0x22, 0x4f, 0x0a, 0x21, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f,
-	0x6d, 0x61, 0x69, 0x6e, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f,
-	0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x09, 0x6e, 0x73, 0x44,
-	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70,
-	0x62, 0x2e, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x09, 0x6e, 0x73, 0x44, 0x6f,
-	0x6d, 0x61, 0x69, 0x6e, 0x73, 0x22, 0x40, 0x0a, 0x1e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61,
-	0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54, 0x53, 0x49, 0x47,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d,
-	0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44,
-	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x3d, 0x0a, 0x1f, 0x46, 0x69, 0x6e, 0x64, 0x45,
-	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54, 0x53,
-	0x49, 0x47, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x74, 0x73,
-	0x69, 0x67, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x08, 0x74, 0x73,
-	0x69, 0x67, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x57, 0x0a, 0x19, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54, 0x53, 0x49, 0x47, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69,
-	0x6e, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x74, 0x73, 0x69, 0x67, 0x4a, 0x53, 0x4f, 0x4e, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x08, 0x74, 0x73, 0x69, 0x67, 0x4a, 0x53, 0x4f, 0x4e, 0x32,
-	0xf1, 0x05, 0x0a, 0x0f, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x53, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x12, 0x47, 0x0a, 0x0e, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44,
-	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74,
-	0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f,
-	0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x0e,
-	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x19,
-	0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61,
-	0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52,
-	0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x3b, 0x0a, 0x0e, 0x64, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x19, 0x2e, 0x70, 0x62,
-	0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53,
-	0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x56, 0x0a, 0x13, 0x66, 0x69, 0x6e, 0x64, 0x45, 0x6e,
-	0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x1e, 0x2e,
-	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53,
-	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e,
-	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53,
-	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x55,
-	0x0a, 0x18, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
-	0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e,
-	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e,
-	0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x59, 0x0a, 0x14, 0x6c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61,
-	0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x12, 0x1f, 0x2e,
-	0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53,
-	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20,
-	0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e,
+	0x65, 0x79, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x28, 0x0a, 0x0f, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x0f, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64,
+	0x12, 0x16, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65,
+	0x18, 0x05, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x22, 0x43, 0x0a, 0x15,
+	0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x09, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x09, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x73, 0x22, 0x50, 0x0a, 0x20, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12,
+	0x12, 0x0a, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x73,
+	0x69, 0x7a, 0x65, 0x22, 0x4f, 0x0a, 0x21, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x09, 0x6e, 0x73, 0x44, 0x6f,
+	0x6d, 0x61, 0x69, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62,
+	0x2e, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x09, 0x6e, 0x73, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x73, 0x22, 0x39, 0x0a, 0x17, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x44, 0x6f,
+	0x6d, 0x61, 0x69, 0x6e, 0x54, 0x53, 0x49, 0x47, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22,
+	0x36, 0x0a, 0x18, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54,
+	0x53, 0x49, 0x47, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x74,
+	0x73, 0x69, 0x67, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x08, 0x74,
+	0x73, 0x69, 0x67, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x57, 0x0a, 0x19, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54, 0x53, 0x49, 0x47, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x74, 0x73, 0x69, 0x67, 0x4a, 0x53, 0x4f, 0x4e,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x08, 0x74, 0x73, 0x69, 0x67, 0x4a, 0x53, 0x4f, 0x4e,
+	0x22, 0x45, 0x0a, 0x15, 0x45, 0x78, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6e, 0x61, 0x6d,
+	0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x05, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x12,
+	0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52,
+	0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x3e, 0x0a, 0x16, 0x45, 0x78, 0x69, 0x73, 0x74,
+	0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x24, 0x0a, 0x0d, 0x65, 0x78, 0x69, 0x73, 0x74, 0x69, 0x6e, 0x67, 0x4e, 0x61, 0x6d,
+	0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0d, 0x65, 0x78, 0x69, 0x73, 0x74, 0x69,
+	0x6e, 0x67, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x32, 0xb9, 0x06, 0x0a, 0x0f, 0x4e, 0x53, 0x44, 0x6f,
+	0x6d, 0x61, 0x69, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x47, 0x0a, 0x0e, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x19, 0x2e,
+	0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4a, 0x0a, 0x0f, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x12, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e,
 	0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x68, 0x0a, 0x19, 0x6c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
-	0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x24, 0x2e,
-	0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73,
-	0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44,
-	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69,
-	0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x62, 0x0a, 0x17, 0x66, 0x69,
-	0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69,
-	0x6e, 0x54, 0x53, 0x49, 0x47, 0x12, 0x22, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45,
-	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54, 0x53,
-	0x49, 0x47, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x46,
-	0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61,
-	0x69, 0x6e, 0x54, 0x53, 0x49, 0x47, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x43,
-	0x0a, 0x12, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
-	0x54, 0x53, 0x49, 0x47, 0x12, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54, 0x53, 0x49, 0x47, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63,
-	0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x12, 0x3b, 0x0a, 0x0e, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x12, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e,
+	0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x3b, 0x0a,
+	0x0e, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12,
+	0x19, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e,
+	0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x41, 0x0a, 0x0c, 0x66, 0x69,
+	0x6e, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x17, 0x2e, 0x70, 0x62, 0x2e,
+	0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x44,
+	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x47, 0x0a,
+	0x11, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x73, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c,
+	0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0d, 0x6c, 0x69, 0x73, 0x74, 0x4e, 0x53,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73,
+	0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x68, 0x0a, 0x19,
+	0x6c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x41, 0x66, 0x74,
+	0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x41, 0x66, 0x74, 0x65,
+	0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x25, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4d, 0x0a, 0x10, 0x66, 0x69, 0x6e, 0x64, 0x4e, 0x53,
+	0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54, 0x53, 0x49, 0x47, 0x12, 0x1b, 0x2e, 0x70, 0x62, 0x2e,
+	0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54, 0x53, 0x49, 0x47,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e,
+	0x64, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54, 0x53, 0x49, 0x47, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x43, 0x0a, 0x12, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e,
+	0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54, 0x53, 0x49, 0x47, 0x12, 0x1d, 0x2e, 0x70, 0x62,
+	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54,
+	0x53, 0x49, 0x47, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e,
+	0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x47, 0x0a, 0x0e, 0x65, 0x78,
+	0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x12, 0x19, 0x2e, 0x70,
+	0x62, 0x2e, 0x45, 0x78, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x45, 0x78, 0x69,
+	0x73, 0x74, 0x4e, 0x53, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x33,
 }
 
@@ -949,50 +1237,58 @@ func file_service_ns_domain_proto_rawDescGZIP() []byte {
 	return file_service_ns_domain_proto_rawDescData
 }
 
-var file_service_ns_domain_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_service_ns_domain_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_service_ns_domain_proto_goTypes = []interface{}{
 	(*CreateNSDomainRequest)(nil),             // 0: pb.CreateNSDomainRequest
 	(*CreateNSDomainResponse)(nil),            // 1: pb.CreateNSDomainResponse
-	(*UpdateNSDomainRequest)(nil),             // 2: pb.UpdateNSDomainRequest
-	(*DeleteNSDomainRequest)(nil),             // 3: pb.DeleteNSDomainRequest
-	(*FindEnabledNSDomainRequest)(nil),        // 4: pb.FindEnabledNSDomainRequest
-	(*FindEnabledNSDomainResponse)(nil),       // 5: pb.FindEnabledNSDomainResponse
-	(*CountAllEnabledNSDomainsRequest)(nil),   // 6: pb.CountAllEnabledNSDomainsRequest
-	(*ListEnabledNSDomainsRequest)(nil),       // 7: pb.ListEnabledNSDomainsRequest
-	(*ListEnabledNSDomainsResponse)(nil),      // 8: pb.ListEnabledNSDomainsResponse
-	(*ListNSDomainsAfterVersionRequest)(nil),  // 9: pb.ListNSDomainsAfterVersionRequest
-	(*ListNSDomainsAfterVersionResponse)(nil), // 10: pb.ListNSDomainsAfterVersionResponse
-	(*FindEnabledNSDomainTSIGRequest)(nil),    // 11: pb.FindEnabledNSDomainTSIGRequest
-	(*FindEnabledNSDomainTSIGResponse)(nil),   // 12: pb.FindEnabledNSDomainTSIGResponse
-	(*UpdateNSDomainTSIGRequest)(nil),         // 13: pb.UpdateNSDomainTSIGRequest
-	(*NSDomain)(nil),                          // 14: pb.NSDomain
-	(*RPCSuccess)(nil),                        // 15: pb.RPCSuccess
-	(*RPCCountResponse)(nil),                  // 16: pb.RPCCountResponse
+	(*CreateNSDomainsRequest)(nil),            // 2: pb.CreateNSDomainsRequest
+	(*CreateNSDomainsResponse)(nil),           // 3: pb.CreateNSDomainsResponse
+	(*UpdateNSDomainRequest)(nil),             // 4: pb.UpdateNSDomainRequest
+	(*DeleteNSDomainRequest)(nil),             // 5: pb.DeleteNSDomainRequest
+	(*FindNSDomainRequest)(nil),               // 6: pb.FindNSDomainRequest
+	(*FindNSDomainResponse)(nil),              // 7: pb.FindNSDomainResponse
+	(*CountAllNSDomainsRequest)(nil),          // 8: pb.CountAllNSDomainsRequest
+	(*ListNSDomainsRequest)(nil),              // 9: pb.ListNSDomainsRequest
+	(*ListNSDomainsResponse)(nil),             // 10: pb.ListNSDomainsResponse
+	(*ListNSDomainsAfterVersionRequest)(nil),  // 11: pb.ListNSDomainsAfterVersionRequest
+	(*ListNSDomainsAfterVersionResponse)(nil), // 12: pb.ListNSDomainsAfterVersionResponse
+	(*FindNSDomainTSIGRequest)(nil),           // 13: pb.FindNSDomainTSIGRequest
+	(*FindNSDomainTSIGResponse)(nil),          // 14: pb.FindNSDomainTSIGResponse
+	(*UpdateNSDomainTSIGRequest)(nil),         // 15: pb.UpdateNSDomainTSIGRequest
+	(*ExistNSDomainsRequest)(nil),             // 16: pb.ExistNSDomainsRequest
+	(*ExistNSDomainsResponse)(nil),            // 17: pb.ExistNSDomainsResponse
+	(*NSDomain)(nil),                          // 18: pb.NSDomain
+	(*RPCSuccess)(nil),                        // 19: pb.RPCSuccess
+	(*RPCCountResponse)(nil),                  // 20: pb.RPCCountResponse
 }
 var file_service_ns_domain_proto_depIdxs = []int32{
-	14, // 0: pb.FindEnabledNSDomainResponse.nsDomain:type_name -> pb.NSDomain
-	14, // 1: pb.ListEnabledNSDomainsResponse.nsDomains:type_name -> pb.NSDomain
-	14, // 2: pb.ListNSDomainsAfterVersionResponse.nsDomains:type_name -> pb.NSDomain
+	18, // 0: pb.FindNSDomainResponse.nsDomain:type_name -> pb.NSDomain
+	18, // 1: pb.ListNSDomainsResponse.nsDomains:type_name -> pb.NSDomain
+	18, // 2: pb.ListNSDomainsAfterVersionResponse.nsDomains:type_name -> pb.NSDomain
 	0,  // 3: pb.NSDomainService.createNSDomain:input_type -> pb.CreateNSDomainRequest
-	2,  // 4: pb.NSDomainService.updateNSDomain:input_type -> pb.UpdateNSDomainRequest
-	3,  // 5: pb.NSDomainService.deleteNSDomain:input_type -> pb.DeleteNSDomainRequest
-	4,  // 6: pb.NSDomainService.findEnabledNSDomain:input_type -> pb.FindEnabledNSDomainRequest
-	6,  // 7: pb.NSDomainService.countAllEnabledNSDomains:input_type -> pb.CountAllEnabledNSDomainsRequest
-	7,  // 8: pb.NSDomainService.listEnabledNSDomains:input_type -> pb.ListEnabledNSDomainsRequest
-	9,  // 9: pb.NSDomainService.listNSDomainsAfterVersion:input_type -> pb.ListNSDomainsAfterVersionRequest
-	11, // 10: pb.NSDomainService.findEnabledNSDomainTSIG:input_type -> pb.FindEnabledNSDomainTSIGRequest
-	13, // 11: pb.NSDomainService.updateNSDomainTSIG:input_type -> pb.UpdateNSDomainTSIGRequest
-	1,  // 12: pb.NSDomainService.createNSDomain:output_type -> pb.CreateNSDomainResponse
-	15, // 13: pb.NSDomainService.updateNSDomain:output_type -> pb.RPCSuccess
-	15, // 14: pb.NSDomainService.deleteNSDomain:output_type -> pb.RPCSuccess
-	5,  // 15: pb.NSDomainService.findEnabledNSDomain:output_type -> pb.FindEnabledNSDomainResponse
-	16, // 16: pb.NSDomainService.countAllEnabledNSDomains:output_type -> pb.RPCCountResponse
-	8,  // 17: pb.NSDomainService.listEnabledNSDomains:output_type -> pb.ListEnabledNSDomainsResponse
-	10, // 18: pb.NSDomainService.listNSDomainsAfterVersion:output_type -> pb.ListNSDomainsAfterVersionResponse
-	12, // 19: pb.NSDomainService.findEnabledNSDomainTSIG:output_type -> pb.FindEnabledNSDomainTSIGResponse
-	15, // 20: pb.NSDomainService.updateNSDomainTSIG:output_type -> pb.RPCSuccess
-	12, // [12:21] is the sub-list for method output_type
-	3,  // [3:12] is the sub-list for method input_type
+	2,  // 4: pb.NSDomainService.createNSDomains:input_type -> pb.CreateNSDomainsRequest
+	4,  // 5: pb.NSDomainService.updateNSDomain:input_type -> pb.UpdateNSDomainRequest
+	5,  // 6: pb.NSDomainService.deleteNSDomain:input_type -> pb.DeleteNSDomainRequest
+	6,  // 7: pb.NSDomainService.findNSDomain:input_type -> pb.FindNSDomainRequest
+	8,  // 8: pb.NSDomainService.countAllNSDomains:input_type -> pb.CountAllNSDomainsRequest
+	9,  // 9: pb.NSDomainService.listNSDomains:input_type -> pb.ListNSDomainsRequest
+	11, // 10: pb.NSDomainService.listNSDomainsAfterVersion:input_type -> pb.ListNSDomainsAfterVersionRequest
+	13, // 11: pb.NSDomainService.findNSDomainTSIG:input_type -> pb.FindNSDomainTSIGRequest
+	15, // 12: pb.NSDomainService.updateNSDomainTSIG:input_type -> pb.UpdateNSDomainTSIGRequest
+	16, // 13: pb.NSDomainService.existNSDomains:input_type -> pb.ExistNSDomainsRequest
+	1,  // 14: pb.NSDomainService.createNSDomain:output_type -> pb.CreateNSDomainResponse
+	3,  // 15: pb.NSDomainService.createNSDomains:output_type -> pb.CreateNSDomainsResponse
+	19, // 16: pb.NSDomainService.updateNSDomain:output_type -> pb.RPCSuccess
+	19, // 17: pb.NSDomainService.deleteNSDomain:output_type -> pb.RPCSuccess
+	7,  // 18: pb.NSDomainService.findNSDomain:output_type -> pb.FindNSDomainResponse
+	20, // 19: pb.NSDomainService.countAllNSDomains:output_type -> pb.RPCCountResponse
+	10, // 20: pb.NSDomainService.listNSDomains:output_type -> pb.ListNSDomainsResponse
+	12, // 21: pb.NSDomainService.listNSDomainsAfterVersion:output_type -> pb.ListNSDomainsAfterVersionResponse
+	14, // 22: pb.NSDomainService.findNSDomainTSIG:output_type -> pb.FindNSDomainTSIGResponse
+	19, // 23: pb.NSDomainService.updateNSDomainTSIG:output_type -> pb.RPCSuccess
+	17, // 24: pb.NSDomainService.existNSDomains:output_type -> pb.ExistNSDomainsResponse
+	14, // [14:25] is the sub-list for method output_type
+	3,  // [3:14] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
 	3,  // [3:3] is the sub-list for extension extendee
 	0,  // [0:3] is the sub-list for field type_name
@@ -1031,7 +1327,7 @@ func file_service_ns_domain_proto_init() {
 			}
 		}
 		file_service_ns_domain_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateNSDomainRequest); i {
+			switch v := v.(*CreateNSDomainsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1043,7 +1339,7 @@ func file_service_ns_domain_proto_init() {
 			}
 		}
 		file_service_ns_domain_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteNSDomainRequest); i {
+			switch v := v.(*CreateNSDomainsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1055,7 +1351,7 @@ func file_service_ns_domain_proto_init() {
 			}
 		}
 		file_service_ns_domain_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindEnabledNSDomainRequest); i {
+			switch v := v.(*UpdateNSDomainRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1067,7 +1363,7 @@ func file_service_ns_domain_proto_init() {
 			}
 		}
 		file_service_ns_domain_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindEnabledNSDomainResponse); i {
+			switch v := v.(*DeleteNSDomainRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1079,7 +1375,7 @@ func file_service_ns_domain_proto_init() {
 			}
 		}
 		file_service_ns_domain_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CountAllEnabledNSDomainsRequest); i {
+			switch v := v.(*FindNSDomainRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1091,7 +1387,7 @@ func file_service_ns_domain_proto_init() {
 			}
 		}
 		file_service_ns_domain_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListEnabledNSDomainsRequest); i {
+			switch v := v.(*FindNSDomainResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1103,7 +1399,7 @@ func file_service_ns_domain_proto_init() {
 			}
 		}
 		file_service_ns_domain_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListEnabledNSDomainsResponse); i {
+			switch v := v.(*CountAllNSDomainsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1115,7 +1411,7 @@ func file_service_ns_domain_proto_init() {
 			}
 		}
 		file_service_ns_domain_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListNSDomainsAfterVersionRequest); i {
+			switch v := v.(*ListNSDomainsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1127,7 +1423,7 @@ func file_service_ns_domain_proto_init() {
 			}
 		}
 		file_service_ns_domain_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListNSDomainsAfterVersionResponse); i {
+			switch v := v.(*ListNSDomainsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1139,7 +1435,7 @@ func file_service_ns_domain_proto_init() {
 			}
 		}
 		file_service_ns_domain_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindEnabledNSDomainTSIGRequest); i {
+			switch v := v.(*ListNSDomainsAfterVersionRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1151,7 +1447,7 @@ func file_service_ns_domain_proto_init() {
 			}
 		}
 		file_service_ns_domain_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindEnabledNSDomainTSIGResponse); i {
+			switch v := v.(*ListNSDomainsAfterVersionResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1163,7 +1459,55 @@ func file_service_ns_domain_proto_init() {
 			}
 		}
 		file_service_ns_domain_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindNSDomainTSIGRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_domain_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindNSDomainTSIGResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_domain_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateNSDomainTSIGRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_domain_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ExistNSDomainsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_domain_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ExistNSDomainsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1181,7 +1525,7 @@ func file_service_ns_domain_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_ns_domain_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   14,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -1207,24 +1551,28 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type NSDomainServiceClient interface {
-	// 创建域名
+	// 创建单个域名
 	CreateNSDomain(ctx context.Context, in *CreateNSDomainRequest, opts ...grpc.CallOption) (*CreateNSDomainResponse, error)
+	// 批量创建域名
+	CreateNSDomains(ctx context.Context, in *CreateNSDomainsRequest, opts ...grpc.CallOption) (*CreateNSDomainsResponse, error)
 	// 修改域名
 	UpdateNSDomain(ctx context.Context, in *UpdateNSDomainRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 删除域名
 	DeleteNSDomain(ctx context.Context, in *DeleteNSDomainRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 查找单个域名
-	FindEnabledNSDomain(ctx context.Context, in *FindEnabledNSDomainRequest, opts ...grpc.CallOption) (*FindEnabledNSDomainResponse, error)
+	FindNSDomain(ctx context.Context, in *FindNSDomainRequest, opts ...grpc.CallOption) (*FindNSDomainResponse, error)
 	// 计算域名数量
-	CountAllEnabledNSDomains(ctx context.Context, in *CountAllEnabledNSDomainsRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
+	CountAllNSDomains(ctx context.Context, in *CountAllNSDomainsRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 列出单页域名
-	ListEnabledNSDomains(ctx context.Context, in *ListEnabledNSDomainsRequest, opts ...grpc.CallOption) (*ListEnabledNSDomainsResponse, error)
+	ListNSDomains(ctx context.Context, in *ListNSDomainsRequest, opts ...grpc.CallOption) (*ListNSDomainsResponse, error)
 	// 根据版本列出一组域名
 	ListNSDomainsAfterVersion(ctx context.Context, in *ListNSDomainsAfterVersionRequest, opts ...grpc.CallOption) (*ListNSDomainsAfterVersionResponse, error)
 	// 查找TSIG配置
-	FindEnabledNSDomainTSIG(ctx context.Context, in *FindEnabledNSDomainTSIGRequest, opts ...grpc.CallOption) (*FindEnabledNSDomainTSIGResponse, error)
+	FindNSDomainTSIG(ctx context.Context, in *FindNSDomainTSIGRequest, opts ...grpc.CallOption) (*FindNSDomainTSIGResponse, error)
 	// 修改TSIG配置
 	UpdateNSDomainTSIG(ctx context.Context, in *UpdateNSDomainTSIGRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 检查一组域名是否存在
+	ExistNSDomains(ctx context.Context, in *ExistNSDomainsRequest, opts ...grpc.CallOption) (*ExistNSDomainsResponse, error)
 }
 
 type nSDomainServiceClient struct {
@@ -1238,6 +1586,15 @@ func NewNSDomainServiceClient(cc grpc.ClientConnInterface) NSDomainServiceClient
 func (c *nSDomainServiceClient) CreateNSDomain(ctx context.Context, in *CreateNSDomainRequest, opts ...grpc.CallOption) (*CreateNSDomainResponse, error) {
 	out := new(CreateNSDomainResponse)
 	err := c.cc.Invoke(ctx, "/pb.NSDomainService/createNSDomain", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSDomainServiceClient) CreateNSDomains(ctx context.Context, in *CreateNSDomainsRequest, opts ...grpc.CallOption) (*CreateNSDomainsResponse, error) {
+	out := new(CreateNSDomainsResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSDomainService/createNSDomains", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1262,27 +1619,27 @@ func (c *nSDomainServiceClient) DeleteNSDomain(ctx context.Context, in *DeleteNS
 	return out, nil
 }
 
-func (c *nSDomainServiceClient) FindEnabledNSDomain(ctx context.Context, in *FindEnabledNSDomainRequest, opts ...grpc.CallOption) (*FindEnabledNSDomainResponse, error) {
-	out := new(FindEnabledNSDomainResponse)
-	err := c.cc.Invoke(ctx, "/pb.NSDomainService/findEnabledNSDomain", in, out, opts...)
+func (c *nSDomainServiceClient) FindNSDomain(ctx context.Context, in *FindNSDomainRequest, opts ...grpc.CallOption) (*FindNSDomainResponse, error) {
+	out := new(FindNSDomainResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSDomainService/findNSDomain", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *nSDomainServiceClient) CountAllEnabledNSDomains(ctx context.Context, in *CountAllEnabledNSDomainsRequest, opts ...grpc.CallOption) (*RPCCountResponse, error) {
+func (c *nSDomainServiceClient) CountAllNSDomains(ctx context.Context, in *CountAllNSDomainsRequest, opts ...grpc.CallOption) (*RPCCountResponse, error) {
 	out := new(RPCCountResponse)
-	err := c.cc.Invoke(ctx, "/pb.NSDomainService/countAllEnabledNSDomains", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.NSDomainService/countAllNSDomains", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *nSDomainServiceClient) ListEnabledNSDomains(ctx context.Context, in *ListEnabledNSDomainsRequest, opts ...grpc.CallOption) (*ListEnabledNSDomainsResponse, error) {
-	out := new(ListEnabledNSDomainsResponse)
-	err := c.cc.Invoke(ctx, "/pb.NSDomainService/listEnabledNSDomains", in, out, opts...)
+func (c *nSDomainServiceClient) ListNSDomains(ctx context.Context, in *ListNSDomainsRequest, opts ...grpc.CallOption) (*ListNSDomainsResponse, error) {
+	out := new(ListNSDomainsResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSDomainService/listNSDomains", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1298,9 +1655,9 @@ func (c *nSDomainServiceClient) ListNSDomainsAfterVersion(ctx context.Context, i
 	return out, nil
 }
 
-func (c *nSDomainServiceClient) FindEnabledNSDomainTSIG(ctx context.Context, in *FindEnabledNSDomainTSIGRequest, opts ...grpc.CallOption) (*FindEnabledNSDomainTSIGResponse, error) {
-	out := new(FindEnabledNSDomainTSIGResponse)
-	err := c.cc.Invoke(ctx, "/pb.NSDomainService/findEnabledNSDomainTSIG", in, out, opts...)
+func (c *nSDomainServiceClient) FindNSDomainTSIG(ctx context.Context, in *FindNSDomainTSIGRequest, opts ...grpc.CallOption) (*FindNSDomainTSIGResponse, error) {
+	out := new(FindNSDomainTSIGResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSDomainService/findNSDomainTSIG", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1316,26 +1673,39 @@ func (c *nSDomainServiceClient) UpdateNSDomainTSIG(ctx context.Context, in *Upda
 	return out, nil
 }
 
+func (c *nSDomainServiceClient) ExistNSDomains(ctx context.Context, in *ExistNSDomainsRequest, opts ...grpc.CallOption) (*ExistNSDomainsResponse, error) {
+	out := new(ExistNSDomainsResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSDomainService/existNSDomains", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NSDomainServiceServer is the server API for NSDomainService service.
 type NSDomainServiceServer interface {
-	// 创建域名
+	// 创建单个域名
 	CreateNSDomain(context.Context, *CreateNSDomainRequest) (*CreateNSDomainResponse, error)
+	// 批量创建域名
+	CreateNSDomains(context.Context, *CreateNSDomainsRequest) (*CreateNSDomainsResponse, error)
 	// 修改域名
 	UpdateNSDomain(context.Context, *UpdateNSDomainRequest) (*RPCSuccess, error)
 	// 删除域名
 	DeleteNSDomain(context.Context, *DeleteNSDomainRequest) (*RPCSuccess, error)
 	// 查找单个域名
-	FindEnabledNSDomain(context.Context, *FindEnabledNSDomainRequest) (*FindEnabledNSDomainResponse, error)
+	FindNSDomain(context.Context, *FindNSDomainRequest) (*FindNSDomainResponse, error)
 	// 计算域名数量
-	CountAllEnabledNSDomains(context.Context, *CountAllEnabledNSDomainsRequest) (*RPCCountResponse, error)
+	CountAllNSDomains(context.Context, *CountAllNSDomainsRequest) (*RPCCountResponse, error)
 	// 列出单页域名
-	ListEnabledNSDomains(context.Context, *ListEnabledNSDomainsRequest) (*ListEnabledNSDomainsResponse, error)
+	ListNSDomains(context.Context, *ListNSDomainsRequest) (*ListNSDomainsResponse, error)
 	// 根据版本列出一组域名
 	ListNSDomainsAfterVersion(context.Context, *ListNSDomainsAfterVersionRequest) (*ListNSDomainsAfterVersionResponse, error)
 	// 查找TSIG配置
-	FindEnabledNSDomainTSIG(context.Context, *FindEnabledNSDomainTSIGRequest) (*FindEnabledNSDomainTSIGResponse, error)
+	FindNSDomainTSIG(context.Context, *FindNSDomainTSIGRequest) (*FindNSDomainTSIGResponse, error)
 	// 修改TSIG配置
 	UpdateNSDomainTSIG(context.Context, *UpdateNSDomainTSIGRequest) (*RPCSuccess, error)
+	// 检查一组域名是否存在
+	ExistNSDomains(context.Context, *ExistNSDomainsRequest) (*ExistNSDomainsResponse, error)
 }
 
 // UnimplementedNSDomainServiceServer can be embedded to have forward compatible implementations.
@@ -1345,29 +1715,35 @@ type UnimplementedNSDomainServiceServer struct {
 func (*UnimplementedNSDomainServiceServer) CreateNSDomain(context.Context, *CreateNSDomainRequest) (*CreateNSDomainResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateNSDomain not implemented")
 }
+func (*UnimplementedNSDomainServiceServer) CreateNSDomains(context.Context, *CreateNSDomainsRequest) (*CreateNSDomainsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateNSDomains not implemented")
+}
 func (*UnimplementedNSDomainServiceServer) UpdateNSDomain(context.Context, *UpdateNSDomainRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateNSDomain not implemented")
 }
 func (*UnimplementedNSDomainServiceServer) DeleteNSDomain(context.Context, *DeleteNSDomainRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNSDomain not implemented")
 }
-func (*UnimplementedNSDomainServiceServer) FindEnabledNSDomain(context.Context, *FindEnabledNSDomainRequest) (*FindEnabledNSDomainResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledNSDomain not implemented")
+func (*UnimplementedNSDomainServiceServer) FindNSDomain(context.Context, *FindNSDomainRequest) (*FindNSDomainResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindNSDomain not implemented")
 }
-func (*UnimplementedNSDomainServiceServer) CountAllEnabledNSDomains(context.Context, *CountAllEnabledNSDomainsRequest) (*RPCCountResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CountAllEnabledNSDomains not implemented")
+func (*UnimplementedNSDomainServiceServer) CountAllNSDomains(context.Context, *CountAllNSDomainsRequest) (*RPCCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountAllNSDomains not implemented")
 }
-func (*UnimplementedNSDomainServiceServer) ListEnabledNSDomains(context.Context, *ListEnabledNSDomainsRequest) (*ListEnabledNSDomainsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListEnabledNSDomains not implemented")
+func (*UnimplementedNSDomainServiceServer) ListNSDomains(context.Context, *ListNSDomainsRequest) (*ListNSDomainsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListNSDomains not implemented")
 }
 func (*UnimplementedNSDomainServiceServer) ListNSDomainsAfterVersion(context.Context, *ListNSDomainsAfterVersionRequest) (*ListNSDomainsAfterVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListNSDomainsAfterVersion not implemented")
 }
-func (*UnimplementedNSDomainServiceServer) FindEnabledNSDomainTSIG(context.Context, *FindEnabledNSDomainTSIGRequest) (*FindEnabledNSDomainTSIGResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledNSDomainTSIG not implemented")
+func (*UnimplementedNSDomainServiceServer) FindNSDomainTSIG(context.Context, *FindNSDomainTSIGRequest) (*FindNSDomainTSIGResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindNSDomainTSIG not implemented")
 }
 func (*UnimplementedNSDomainServiceServer) UpdateNSDomainTSIG(context.Context, *UpdateNSDomainTSIGRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateNSDomainTSIG not implemented")
+}
+func (*UnimplementedNSDomainServiceServer) ExistNSDomains(context.Context, *ExistNSDomainsRequest) (*ExistNSDomainsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExistNSDomains not implemented")
 }
 
 func RegisterNSDomainServiceServer(s *grpc.Server, srv NSDomainServiceServer) {
@@ -1388,6 +1764,24 @@ func _NSDomainService_CreateNSDomain_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NSDomainServiceServer).CreateNSDomain(ctx, req.(*CreateNSDomainRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSDomainService_CreateNSDomains_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateNSDomainsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSDomainServiceServer).CreateNSDomains(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSDomainService/CreateNSDomains",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSDomainServiceServer).CreateNSDomains(ctx, req.(*CreateNSDomainsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1428,56 +1822,56 @@ func _NSDomainService_DeleteNSDomain_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NSDomainService_FindEnabledNSDomain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindEnabledNSDomainRequest)
+func _NSDomainService_FindNSDomain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindNSDomainRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NSDomainServiceServer).FindEnabledNSDomain(ctx, in)
+		return srv.(NSDomainServiceServer).FindNSDomain(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.NSDomainService/FindEnabledNSDomain",
+		FullMethod: "/pb.NSDomainService/FindNSDomain",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NSDomainServiceServer).FindEnabledNSDomain(ctx, req.(*FindEnabledNSDomainRequest))
+		return srv.(NSDomainServiceServer).FindNSDomain(ctx, req.(*FindNSDomainRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NSDomainService_CountAllEnabledNSDomains_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CountAllEnabledNSDomainsRequest)
+func _NSDomainService_CountAllNSDomains_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountAllNSDomainsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NSDomainServiceServer).CountAllEnabledNSDomains(ctx, in)
+		return srv.(NSDomainServiceServer).CountAllNSDomains(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.NSDomainService/CountAllEnabledNSDomains",
+		FullMethod: "/pb.NSDomainService/CountAllNSDomains",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NSDomainServiceServer).CountAllEnabledNSDomains(ctx, req.(*CountAllEnabledNSDomainsRequest))
+		return srv.(NSDomainServiceServer).CountAllNSDomains(ctx, req.(*CountAllNSDomainsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NSDomainService_ListEnabledNSDomains_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListEnabledNSDomainsRequest)
+func _NSDomainService_ListNSDomains_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListNSDomainsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NSDomainServiceServer).ListEnabledNSDomains(ctx, in)
+		return srv.(NSDomainServiceServer).ListNSDomains(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.NSDomainService/ListEnabledNSDomains",
+		FullMethod: "/pb.NSDomainService/ListNSDomains",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NSDomainServiceServer).ListEnabledNSDomains(ctx, req.(*ListEnabledNSDomainsRequest))
+		return srv.(NSDomainServiceServer).ListNSDomains(ctx, req.(*ListNSDomainsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1500,20 +1894,20 @@ func _NSDomainService_ListNSDomainsAfterVersion_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NSDomainService_FindEnabledNSDomainTSIG_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindEnabledNSDomainTSIGRequest)
+func _NSDomainService_FindNSDomainTSIG_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindNSDomainTSIGRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NSDomainServiceServer).FindEnabledNSDomainTSIG(ctx, in)
+		return srv.(NSDomainServiceServer).FindNSDomainTSIG(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.NSDomainService/FindEnabledNSDomainTSIG",
+		FullMethod: "/pb.NSDomainService/FindNSDomainTSIG",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NSDomainServiceServer).FindEnabledNSDomainTSIG(ctx, req.(*FindEnabledNSDomainTSIGRequest))
+		return srv.(NSDomainServiceServer).FindNSDomainTSIG(ctx, req.(*FindNSDomainTSIGRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1536,6 +1930,24 @@ func _NSDomainService_UpdateNSDomainTSIG_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NSDomainService_ExistNSDomains_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExistNSDomainsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSDomainServiceServer).ExistNSDomains(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSDomainService/ExistNSDomains",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSDomainServiceServer).ExistNSDomains(ctx, req.(*ExistNSDomainsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _NSDomainService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.NSDomainService",
 	HandlerType: (*NSDomainServiceServer)(nil),
@@ -1543,6 +1955,10 @@ var _NSDomainService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "createNSDomain",
 			Handler:    _NSDomainService_CreateNSDomain_Handler,
+		},
+		{
+			MethodName: "createNSDomains",
+			Handler:    _NSDomainService_CreateNSDomains_Handler,
 		},
 		{
 			MethodName: "updateNSDomain",
@@ -1553,28 +1969,32 @@ var _NSDomainService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _NSDomainService_DeleteNSDomain_Handler,
 		},
 		{
-			MethodName: "findEnabledNSDomain",
-			Handler:    _NSDomainService_FindEnabledNSDomain_Handler,
+			MethodName: "findNSDomain",
+			Handler:    _NSDomainService_FindNSDomain_Handler,
 		},
 		{
-			MethodName: "countAllEnabledNSDomains",
-			Handler:    _NSDomainService_CountAllEnabledNSDomains_Handler,
+			MethodName: "countAllNSDomains",
+			Handler:    _NSDomainService_CountAllNSDomains_Handler,
 		},
 		{
-			MethodName: "listEnabledNSDomains",
-			Handler:    _NSDomainService_ListEnabledNSDomains_Handler,
+			MethodName: "listNSDomains",
+			Handler:    _NSDomainService_ListNSDomains_Handler,
 		},
 		{
 			MethodName: "listNSDomainsAfterVersion",
 			Handler:    _NSDomainService_ListNSDomainsAfterVersion_Handler,
 		},
 		{
-			MethodName: "findEnabledNSDomainTSIG",
-			Handler:    _NSDomainService_FindEnabledNSDomainTSIG_Handler,
+			MethodName: "findNSDomainTSIG",
+			Handler:    _NSDomainService_FindNSDomainTSIG_Handler,
 		},
 		{
 			MethodName: "updateNSDomainTSIG",
 			Handler:    _NSDomainService_UpdateNSDomainTSIG_Handler,
+		},
+		{
+			MethodName: "existNSDomains",
+			Handler:    _NSDomainService_ExistNSDomains_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
