@@ -10,10 +10,10 @@ import "models/model_http_access_log.proto";
 // 访问日志策略服务
 service HTTPAccessLogPolicyService {
 	// 计算访问日志策略数量
-	rpc countAllEnabledHTTPAccessLogPolicies (CountAllEnabledHTTPAccessLogPoliciesRequest) returns (RPCCountResponse);
+	rpc countAllHTTPAccessLogPolicies (CountAllHTTPAccessLogPoliciesRequest) returns (RPCCountResponse);
 
 	// 列出单页访问日志策略
-	rpc listEnabledHTTPAccessLogPolicies (ListEnabledHTTPAccessLogPoliciesRequest) returns (ListEnabledHTTPAccessLogPoliciesResponse);
+	rpc listHTTPAccessLogPolicies (ListHTTPAccessLogPoliciesRequest) returns (ListHTTPAccessLogPoliciesResponse);
 
 	// 创建访问日志策略
 	rpc createHTTPAccessLogPolicy (CreateHTTPAccessLogPolicyRequest) returns (CreateHTTPAccessLogPolicyResponse);
@@ -22,7 +22,7 @@ service HTTPAccessLogPolicyService {
 	rpc updateHTTPAccessLogPolicy (UpdateHTTPAccessLogPolicyRequest) returns (RPCSuccess);
 
 	// 查找单个访问日志策略
-	rpc findEnabledHTTPAccessLogPolicy (FindEnabledHTTPAccessLogPolicyRequest) returns (FindEnabledHTTPAccessLogPolicyResponse);
+	rpc findHTTPAccessLogPolicy (FindHTTPAccessLogPolicyRequest) returns (FindHTTPAccessLogPolicyResponse);
 
 	// 删除访问日志策略
 	rpc deleteHTTPAccessLogPolicy (DeleteHTTPAccessLogPolicyRequest) returns (RPCSuccess);
@@ -32,17 +32,17 @@ service HTTPAccessLogPolicyService {
 }
 
 // 计算访问日志策略数量
-message CountAllEnabledHTTPAccessLogPoliciesRequest {
+message CountAllHTTPAccessLogPoliciesRequest {
 
 }
 
 // 列出单页访问日志策略
-message ListEnabledHTTPAccessLogPoliciesRequest {
+message ListHTTPAccessLogPoliciesRequest {
 	int64 offset = 1;
 	int64 size = 2;
 }
 
-message ListEnabledHTTPAccessLogPoliciesResponse {
+message ListHTTPAccessLogPoliciesResponse {
 	repeated HTTPAccessLogPolicy httpAccessLogPolicies = 1;
 }
 
@@ -72,11 +72,11 @@ message UpdateHTTPAccessLogPolicyRequest {
 }
 
 // 查找单个访问日志策略
-message FindEnabledHTTPAccessLogPolicyRequest {
+message FindHTTPAccessLogPolicyRequest {
 	int64 httpAccessLogPolicyId = 1;
 }
 
-message FindEnabledHTTPAccessLogPolicyResponse {
+message FindHTTPAccessLogPolicyResponse {
 	HTTPAccessLogPolicy httpAccessLogPolicy = 1;
 }
 
