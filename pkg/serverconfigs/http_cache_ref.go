@@ -26,6 +26,8 @@ type HTTPCacheRef struct {
 	EnableRequestCachePragma       bool     `yaml:"enableRequestCachePragma" json:"enableRequestCachePragma"` // 是否支持客户端的Pragma: no-cache
 	AllowChunkedEncoding           bool     `yaml:"allowChunkedEncoding" json:"allowChunkedEncoding"`         // 是否允许分片内容
 	AllowPartialContent            bool     `yaml:"allowPartialContent" json:"allowPartialContent"`           // 支持分段内容缓存
+	EnableIfNoneMatch              bool     `yaml:"enableIfNoneMatch" json:"enableIfNoneMatch"`
+	EnableIfModifiedSince          bool     `yaml:"enableIfModifiedSince" json:"enableIfModifiedSince"`
 
 	Conds *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"` // 请求条件
 
