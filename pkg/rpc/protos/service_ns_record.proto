@@ -14,6 +14,21 @@ service NSRecordService {
 	// 批量创建记录
 	rpc createNSRecords(CreateNSRecordsRequest) returns (CreateNSRecordsResponse);
 
+	// 为一组域名批量创建记录
+	rpc createNSRecordsWithDomainNames(CreateNSRecordsWithDomainNamesRequest) returns (RPCSuccess);
+
+	// 批量修改一组域名的一组记录
+	rpc updateNSRecordsWithDomainNames(UpdateNSRecordsWithDomainNamesRequest) returns (RPCSuccess);
+
+	// 批量删除一组域名的一组记录
+	rpc deleteNSRecordsWithDomainNames(DeleteNSRecordsWithDomainNamesRequest) returns (RPCSuccess);
+
+	// 批量一组域名的一组记录启用状态
+	rpc updateNSRecordsIsOnWithDomainNames(UpdateNSRecordsIsOnWithDomainNamesRequest) returns (RPCSuccess);
+
+	// 导入域名解析
+	rpc importNSRecords(ImportNSRecordsRequest) returns (RPCSuccess);
+
 	// 修改记录
 	rpc updateNSRecord (UpdateNSRecordRequest) returns (RPCSuccess);
 
@@ -62,6 +77,59 @@ message CreateNSRecordsRequest {
 
 message CreateNSRecordsResponse {
 	repeated int64 nsRecordIds = 1;
+}
+
+// 为一组域名批量创建记录
+message CreateNSRecordsWithDomainNamesRequest {
+	repeated string nsDomainNames = 1;
+	bytes recordsJSON = 2;
+	bool removeOld = 3;
+	bool removeAll = 4;
+}
+
+// 批量修改一组域名的一组记录
+message UpdateNSRecordsWithDomainNamesRequest {
+	repeated string nsDomainNames = 1;
+	string searchName = 2;
+	string searchValue = 3;
+	string searchType = 4;
+	repeated string searchNSRouteCodes = 5;
+	string newName = 6;
+	string newValue = 7;
+	string newType = 8;
+	repeated string newNSRouteCodes = 9;
+}
+
+// 批量删除一组域名的一组记录
+message DeleteNSRecordsWithDomainNamesRequest {
+	repeated string nsDomainNames = 1;
+	string searchName = 2;
+	string searchValue = 3;
+	string searchType = 4;
+	repeated string searchNSRouteCodes = 5;
+}
+
+// 批量一组域名的一组记录启用状态
+message UpdateNSRecordsIsOnWithDomainNamesRequest {
+	repeated string nsDomainNames = 1;
+	string searchName = 2;
+	string searchValue = 3;
+	string searchType = 4;
+	repeated string searchNSRouteCodes = 5;
+	bool isOn = 6;
+}
+
+// 导入域名解析
+message ImportNSRecordsRequest {
+	repeated Record nsRecords = 1;
+
+	message Record {
+		string nsDomainName = 1;
+		string name = 2;
+		string type = 3;
+		string value = 4;
+		int32 ttl = 5;
+	}
 }
 
 // 修改记录

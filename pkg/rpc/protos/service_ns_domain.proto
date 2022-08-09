@@ -20,6 +20,9 @@ service NSDomainService {
 	// 删除域名
 	rpc deleteNSDomain (DeleteNSDomainRequest) returns (RPCSuccess);
 
+	// 批量删除域名
+	rpc deleteNSDomains(DeleteNSDomainsRequest) returns (RPCSuccess);
+
 	// 查找单个域名
 	rpc findNSDomain (FindNSDomainRequest) returns (FindNSDomainResponse);
 
@@ -79,6 +82,11 @@ message UpdateNSDomainRequest {
 // 删除域名
 message DeleteNSDomainRequest {
 	int64 nsDomainId = 1;
+}
+
+// 批量删除域名
+message DeleteNSDomainsRequest {
+	repeated string names = 1;
 }
 
 // 查找单个域名
