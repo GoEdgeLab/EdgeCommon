@@ -1,0 +1,34 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message IPLibraryFile {
+	int64 id = 1;
+	int64 fileId = 2;
+	bool isFinished = 3;
+	int64 createdAt = 4;
+	repeated string countryNames = 5;
+	repeated Province provinces = 6;
+	repeated City cities = 7;
+	repeated Town towns = 8;
+	repeated string providerNames = 9;
+
+	message Province {
+		string countryName = 1;
+		string provinceName = 2;
+	}
+
+	message City {
+		string countryName = 1;
+		string provinceName = 2;
+		string cityName = 3;
+	}
+
+	message Town {
+		string countryName = 1;
+		string provinceName = 2;
+		string cityName = 3;
+		string townName = 4;
+	}
+}

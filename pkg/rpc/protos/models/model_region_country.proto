@@ -8,4 +8,7 @@ message RegionCountry {
 	string name = 2;
 	repeated string codes = 3;
 	repeated string pinyin = 4;
+	string customName = 5;
+	repeated string customCodes = 6;
+	string displayName = 7;
 }

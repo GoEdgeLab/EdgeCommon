@@ -10,6 +10,9 @@ message RegionCity {
 	string name = 2;
 	repeated string codes = 3;
 	int64 regionProvinceId = 4;
+	string customName = 5;
+	repeated string customCodes = 6;
+	string displayName = 7;
 
 	RegionProvince regionProvince = 30;
 }

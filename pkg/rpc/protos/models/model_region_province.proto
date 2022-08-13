@@ -7,4 +7,8 @@ message RegionProvince {
 	int64 id = 1;
 	string name = 2;
 	repeated string codes = 3;
+	int64 regionCountryId = 4;
+	string customName = 5;
+	repeated string customCodes = 6;
+	string displayName = 7;
 }

@@ -4,14 +4,28 @@ option go_package = "./pb";
 package pb;
 
 import "models/model_region_province.proto";
+import "models/rpc_messages.proto";
 
 // 省份相关服务
 service RegionProvinceService {
 	// 查找所有省份
-	rpc findAllEnabledRegionProvincesWithCountryId (FindAllEnabledRegionProvincesWithCountryIdRequest) returns (FindAllEnabledRegionProvincesWithCountryIdResponse);
+	rpc findAllEnabledRegionProvincesWithCountryId (FindAllEnabledRegionProvincesWithCountryIdRequest) returns (FindAllEnabledRegionProvincesWithCountryIdResponse) {
+		option deprecated = true;
+	};
 
 	// 查找单个省份信息
-	rpc findEnabledRegionProvince (FindEnabledRegionProvinceRequest) returns (FindEnabledRegionProvinceResponse);
+	rpc findEnabledRegionProvince (FindEnabledRegionProvinceRequest) returns (FindEnabledRegionProvinceResponse) {
+		option deprecated = true;
+	};
+
+	// 查找所有省份
+	rpc findAllRegionProvincesWithRegionCountryId (FindAllRegionProvincesWithRegionCountryIdRequest) returns (FindAllRegionProvincesWithRegionCountryIdResponse);
+
+	// 查找单个省份信息
+	rpc findRegionProvince (FindRegionProvinceRequest) returns (FindRegionProvinceResponse);
+
+	// 修改国家/地区定制信息
+	rpc updateRegionProvinceCustom(UpdateRegionProvinceCustomRequest) returns (RPCSuccess);
 }
 
 // 查找所有省份
@@ -30,4 +44,29 @@ message FindEnabledRegionProvinceRequest {
 
 message FindEnabledRegionProvinceResponse {
 	RegionProvince regionProvince = 1;
+}
+
+// 查找所有省份
+message FindAllRegionProvincesWithRegionCountryIdRequest {
+	int64 regionCountryId = 1;
+}
+
+message FindAllRegionProvincesWithRegionCountryIdResponse {
+	repeated RegionProvince regionProvinces = 1;
+}
+
+// 查找单个省份信息
+message FindRegionProvinceRequest {
+	int64 regionProvinceId = 1;
+}
+
+message FindRegionProvinceResponse {
+	RegionProvince regionProvince = 1;
+}
+
+// 修改省份定制信息
+message UpdateRegionProvinceCustomRequest {
+	int64 regionProvinceId = 1;
+	string customName = 2;
+	repeated string customCodes = 3;
 }

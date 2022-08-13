@@ -4,17 +4,31 @@ option go_package = "./pb";
 package pb;
 
 import "models/model_region_country.proto";
+import "models/rpc_messages.proto";
 
 // 国家相关服务
 service RegionCountryService {
-	// 查找所有的国家列表
-	rpc findAllEnabledRegionCountries (FindAllEnabledRegionCountriesRequest) returns (FindAllEnabledRegionCountriesResponse);
+	// 查找所有的国家/地区列表
+	rpc findAllEnabledRegionCountries (FindAllEnabledRegionCountriesRequest) returns (FindAllEnabledRegionCountriesResponse) {
+		option deprecated = true;
+	};
 
-	// 查找单个国家信息
-	rpc findEnabledRegionCountry (FindEnabledRegionCountryRequest) returns (FindEnabledRegionCountryResponse);
+	// 查找单个国家/地区信息
+	rpc findEnabledRegionCountry (FindEnabledRegionCountryRequest) returns (FindEnabledRegionCountryResponse) {
+		option deprecated = true;
+	};
+
+	// 查找所有的国家/地区列表
+	rpc findAllRegionCountries (FindAllRegionCountriesRequest) returns (FindAllRegionCountriesResponse);
+
+	// 查找单个国家/地区信息
+	rpc findRegionCountry (FindRegionCountryRequest) returns (FindRegionCountryResponse);
+
+	// 修改国家/地区定制信息
+	rpc updateRegionCountryCustom(UpdateRegionCountryCustomRequest) returns (RPCSuccess);
 }
 
-// 查找所有的国家列表
+// 查找所有的国家/地区列表
 message FindAllEnabledRegionCountriesRequest {
 
 }
@@ -23,11 +37,36 @@ message FindAllEnabledRegionCountriesResponse {
 	repeated RegionCountry regionCountries = 1;
 }
 
-// 查找单个国家信息
+// 查找单个国家/地区信息
 message FindEnabledRegionCountryRequest {
 	int64 regionCountryId = 1;
 }
 
 message FindEnabledRegionCountryResponse {
 	RegionCountry regionCountry = 1;
+}
+
+// 查找所有的国家/地区列表
+message FindAllRegionCountriesRequest {
+
+}
+
+message FindAllRegionCountriesResponse {
+	repeated RegionCountry regionCountries = 1;
+}
+
+// 查找单个国家/地区信息
+message FindRegionCountryRequest {
+	int64 regionCountryId = 1;
+}
+
+message FindRegionCountryResponse {
+	RegionCountry regionCountry = 1;
+}
+
+// 修改国家/地区定制信息
+message UpdateRegionCountryCustomRequest {
+	int64 regionCountryId = 1;
+	string customName = 2;
+	repeated string customCodes = 3;
 }

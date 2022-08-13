@@ -4,14 +4,31 @@ option go_package = "./pb";
 package pb;
 
 import "models/model_region_city.proto";
+import "models/rpc_messages.proto";
 
 // 城市相关服务
 service RegionCityService {
 	// 查找所有城市
-	rpc findAllEnabledRegionCities (FindAllEnabledRegionCitiesRequest) returns (FindAllEnabledRegionCitiesResponse);
+	rpc findAllEnabledRegionCities (FindAllEnabledRegionCitiesRequest) returns (FindAllEnabledRegionCitiesResponse) {
+		option deprecated = true;
+	};
 
 	// 查找单个城市信息
-	rpc findEnabledRegionCity (FindEnabledRegionCityRequest) returns (FindEnabledRegionCityResponse);
+	rpc findEnabledRegionCity (FindEnabledRegionCityRequest) returns (FindEnabledRegionCityResponse) {
+		option deprecated = true;
+	};
+
+	// 查找所有城市
+	rpc findAllRegionCities (FindAllRegionCitiesRequest) returns (FindAllRegionCitiesResponse);
+
+	// 查找某个省份的所有城市
+	rpc findAllRegionCitiesWithRegionProvinceId(FindAllRegionCitiesWithRegionProvinceIdRequest) returns (FindAllRegionCitiesWithRegionProvinceIdResponse);
+
+	// 查找单个城市信息
+	rpc findRegionCity (FindRegionCityRequest) returns (FindRegionCityResponse);
+
+	// 修改城市定制信息
+	rpc updateRegionCityCustom(UpdateRegionCityCustomRequest) returns (RPCSuccess);
 }
 
 // 查找所有城市
@@ -30,4 +47,38 @@ message FindEnabledRegionCityRequest {
 
 message FindEnabledRegionCityResponse {
 	RegionCity regionCity = 1;
+}
+
+// 查找所有城市
+message FindAllRegionCitiesRequest {
+	bool includeRegionProvince = 1;
+}
+
+message FindAllRegionCitiesResponse {
+	repeated RegionCity regionCities = 1;
+}
+
+// 查找某个省份的所有城市
+message FindAllRegionCitiesWithRegionProvinceIdRequest {
+	int64 regionProvinceId = 1;
+}
+
+message FindAllRegionCitiesWithRegionProvinceIdResponse {
+	repeated RegionCity regionCities = 1;
+}
+
+// 查找单个城市信息
+message FindRegionCityRequest {
+	int64 regionCityId = 1;
+}
+
+message FindRegionCityResponse {
+	RegionCity regionCity = 1;
+}
+
+// 修改城市定制信息
+message UpdateRegionCityCustomRequest {
+	int64 regionCityId = 1;
+	string customName = 2;
+	repeated string customCodes = 3;
 }

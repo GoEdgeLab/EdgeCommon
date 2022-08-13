@@ -7,4 +7,7 @@ message RegionProvider {
 	int64 id = 1;
 	string name = 2;
 	repeated string codes = 3;
+	string customName = 4;
+	repeated string customCodes = 5;
+	string displayName = 6;
 }

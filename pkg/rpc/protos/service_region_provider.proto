@@ -4,14 +4,28 @@ option go_package = "./pb";
 package pb;
 
 import "models/model_region_provider.proto";
+import "models/rpc_messages.proto";
 
 // ISP相关服务
 service RegionProviderService {
 	// 查找所有ISP
-	rpc findAllEnabledRegionProviders (FindAllEnabledRegionProvidersRequest) returns (FindAllEnabledRegionProvidersResponse);
+	rpc findAllEnabledRegionProviders (FindAllEnabledRegionProvidersRequest) returns (FindAllEnabledRegionProvidersResponse) {
+		option deprecated = true;
+	};
 
 	// 查找单个ISP信息
-	rpc findEnabledRegionProvider (FindEnabledRegionProviderRequest) returns (FindEnabledRegionProviderResponse);
+	rpc findEnabledRegionProvider (FindEnabledRegionProviderRequest) returns (FindEnabledRegionProviderResponse) {
+		option deprecated = true;
+	};
+
+	// 查找所有ISP
+	rpc findAllRegionProviders (FindAllRegionProvidersRequest) returns (FindAllRegionProvidersResponse);
+
+	// 查找单个ISP信息
+	rpc findRegionProvider (FindRegionProviderRequest) returns (FindRegionProviderResponse);
+
+	// 修改ISP定制信息
+	rpc updateRegionProviderCustom(UpdateRegionProviderCustomRequest) returns (RPCSuccess);
 }
 
 // 查找所有ISP
@@ -30,4 +44,29 @@ message FindEnabledRegionProviderRequest {
 
 message FindEnabledRegionProviderResponse {
 	RegionProvider regionProvider = 1;
+}
+
+// 查找所有ISP
+message FindAllRegionProvidersRequest {
+
+}
+
+message FindAllRegionProvidersResponse {
+	repeated RegionProvider regionProviders = 1;
+}
+
+// 查找单个ISP信息
+message FindRegionProviderRequest {
+	int64 regionProviderId = 1;
+}
+
+message FindRegionProviderResponse {
+	RegionProvider regionProvider = 1;
+}
+
+// 修改ISP定制信息
+message UpdateRegionProviderCustomRequest {
+	int64 regionProviderId = 1;
+	string customName = 2;
+	repeated string customCodes = 3;
 }
