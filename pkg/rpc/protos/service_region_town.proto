@@ -1,0 +1,56 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_region_town.proto";
+import "models/rpc_messages.proto";
+
+// 区县相关服务
+service RegionTownService {
+	// 查找所有区县
+	rpc findAllRegionTowns (FindAllRegionTownsRequest) returns (FindAllRegionTownsResponse);
+
+	// 查找某个城市的所有区县
+	rpc findAllRegionTownsWithRegionCityId(FindAllRegionTownsWithRegionCityIdRequest) returns (FindAllRegionTownsWithRegionCityIdResponse);
+
+	// 查找单个区县信息
+	rpc findRegionTown (FindRegionTownRequest) returns (FindRegionTownResponse);
+
+	// 修改区县定制信息
+	rpc updateRegionTownCustom(UpdateRegionTownCustomRequest) returns (RPCSuccess);
+}
+
+// 查找所有区县
+message FindAllRegionTownsRequest {
+	bool includeRegionCity = 1;
+}
+
+message FindAllRegionTownsResponse {
+	repeated RegionTown regionTowns = 1;
+}
+
+// 查找某个城市的所有区县
+message FindAllRegionTownsWithRegionCityIdRequest {
+	int64 regionCityId = 1;
+}
+
+message FindAllRegionTownsWithRegionCityIdResponse {
+	repeated RegionTown regionTowns = 1;
+}
+
+// 查找单个区县信息
+message FindRegionTownRequest {
+	int64 regionTownId = 1;
+}
+
+message FindRegionTownResponse {
+	RegionTown regionTown = 1;
+}
+
+// 修改区县定制信息
+message UpdateRegionTownCustomRequest {
+	int64 regionTownId = 1;
+	string customName = 2;
+	repeated string customCodes = 3;
+}

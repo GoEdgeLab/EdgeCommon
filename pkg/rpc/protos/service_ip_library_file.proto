@@ -8,6 +8,7 @@ import "models/model_ip_library_file.proto";
 import "models/model_region_country.proto";
 import "models/model_region_province.proto";
 import "models/model_region_city.proto";
+import "models/model_region_town.proto";
 import "models/model_region_provider.proto";
 
 
@@ -30,6 +31,9 @@ service IPLibraryFileService {
 
 	// 检查城市/市
 	rpc checkCitiesWithIPLibraryFileId(CheckCitiesWithIPLibraryFileIdRequest) returns (CheckCitiesWithIPLibraryFileIdResponse);
+
+	// 检查区县
+	rpc checkTownsWithIPLibraryFileId(CheckTownsWithIPLibraryFileIdRequest) returns (CheckTownsWithIPLibraryFileIdResponse);
 
 	// 检查ISP运营商
 	rpc checkProvidersWithIPLibraryFileId(CheckProvidersWithIPLibraryFileIdRequest) returns (CheckProvidersWithIPLibraryFileIdResponse);
@@ -101,7 +105,6 @@ message CheckProvincesWithIPLibraryFileIdResponse {
 	}
 }
 
-
 // 检查城市/市
 message CheckCitiesWithIPLibraryFileIdRequest{
 	int64 ipLibraryFileId = 1;
@@ -115,6 +118,23 @@ message CheckCitiesWithIPLibraryFileIdResponse {
 		string provinceName = 2;
 		string cityName = 3;
 		repeated RegionCity similarCities = 4;
+	}
+}
+
+// 检查区县
+message CheckTownsWithIPLibraryFileIdRequest {
+	int64 ipLibraryFileId = 1;
+}
+
+message CheckTownsWithIPLibraryFileIdResponse {
+	repeated MissingTown missingTowns = 1;
+
+	message MissingTown {
+		string countryName = 1;
+		string provinceName = 2;
+		string cityName = 3;
+		string townName = 4;
+		repeated RegionTown similarTowns = 5;
 	}
 }
 

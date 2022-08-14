@@ -57,6 +57,7 @@ func (this *Reader) load(reader io.Reader) error {
 					if err != nil {
 						return err
 					}
+					meta.Init()
 					this.meta = meta
 
 					left, err := this.parse(dataBuf)
@@ -132,6 +133,7 @@ func (this *Reader) Lookup(ip net.IP) *QueryResult {
 
 	return &QueryResult{
 		item: resultItem,
+		meta: this.meta,
 	}
 }
 

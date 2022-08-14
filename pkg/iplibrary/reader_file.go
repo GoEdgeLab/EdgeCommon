@@ -36,6 +36,10 @@ func NewFileReader(path string) (*FileReader, error) {
 	}, nil
 }
 
+func (this *FileReader) Meta() *Meta {
+	return this.rawReader.meta
+}
+
 func (this *FileReader) Lookup(ip net.IP) *QueryResult {
 	return this.rawReader.Lookup(ip)
 }

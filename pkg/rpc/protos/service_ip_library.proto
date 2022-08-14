@@ -9,25 +9,39 @@ import "models/model_ip_library.proto";
 // IP库
 service IPLibraryService {
 	// 创建IP库
-	rpc createIPLibrary (CreateIPLibraryRequest) returns (CreateIPLibraryResponse);
+	rpc createIPLibrary (CreateIPLibraryRequest) returns (CreateIPLibraryResponse) {
+		option deprecated = true;
+	};
 
 	// 查找最新的IP库
-	rpc findLatestIPLibraryWithType (FindLatestIPLibraryWithTypeRequest) returns (FindLatestIPLibraryWithTypeResponse);
+	rpc findLatestIPLibraryWithType (FindLatestIPLibraryWithTypeRequest) returns (FindLatestIPLibraryWithTypeResponse) {
+		option deprecated = true;
+	};
 
 	// 查找单个IP库
-	rpc findEnabledIPLibrary (FindEnabledIPLibraryRequest) returns (FindEnabledIPLibraryResponse);
+	rpc findEnabledIPLibrary (FindEnabledIPLibraryRequest) returns (FindEnabledIPLibraryResponse) {
+		option deprecated = true;
+	};
 
 	// 列出某个类型的所有IP库
-	rpc findAllEnabledIPLibrariesWithType (FindAllEnabledIPLibrariesWithTypeRequest) returns (FindAllEnabledIPLibrariesWithTypeResponse);
+	rpc findAllEnabledIPLibrariesWithType (FindAllEnabledIPLibrariesWithTypeRequest) returns (FindAllEnabledIPLibrariesWithTypeResponse) {
+		option deprecated = true;
+	};
 
 	// 删除IP库
-	rpc deleteIPLibrary (DeleteIPLibraryRequest) returns (RPCSuccess);
+	rpc deleteIPLibrary (DeleteIPLibraryRequest) returns (RPCSuccess) {
+		option deprecated = true;
+	};
 
 	// 查询某个IP信息
-	rpc lookupIPRegion (LookupIPRegionRequest) returns (LookupIPRegionResponse);
+	rpc lookupIPRegion (LookupIPRegionRequest) returns (LookupIPRegionResponse) {
+		option deprecated = true;
+	};
 
 	// 查询一组IP信息
-	rpc lookupIPRegions (LookupIPRegionsRequest) returns (LookupIPRegionsResponse);
+	rpc lookupIPRegions (LookupIPRegionsRequest) returns (LookupIPRegionsResponse) {
+		option deprecated = true;
+	};
 }
 
 // 创建IP库
