@@ -169,14 +169,15 @@ func (this *Reader) parse(data []byte) (left []byte, err error) {
 				return nil, errors.New("invalid ip version '" + string(line) + "'")
 			}
 
+			var ipFrom uint64
+			var ipTo uint64
 			if len(pieces[2]) == 0 {
 				pieces[2] = pieces[1]
-			}
-
-			var ipFrom = types.Uint64(pieces[1])
-			var ipTo = types.Uint64(pieces[2])
-			if ipFrom > ipTo {
-				ipFrom, ipTo = ipTo, ipFrom
+				ipFrom = types.Uint64(pieces[1])
+				ipTo = types.Uint64(pieces[2])
+			} else {
+				ipFrom = types.Uint64(pieces[1])
+				ipTo = types.Uint64(pieces[2]) + ipFrom
 			}
 
 			if version == "4" {

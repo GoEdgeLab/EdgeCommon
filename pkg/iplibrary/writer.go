@@ -96,13 +96,20 @@ func (this *Writer) Write(ipFrom string, ipTo string, countryId int64, provinceI
 	}
 
 	// 1
-	pieces = append(pieces, types.String(configutils.IP2Long(fromIP)))
+	var fromIPLong = configutils.IP2Long(fromIP)
+	var toIPLong = configutils.IP2Long(toIP)
+
+	if toIPLong < fromIPLong {
+		fromIPLong, toIPLong = toIPLong, fromIPLong
+	}
+
+	pieces = append(pieces, types.String(fromIPLong))
 	if ipFrom == ipTo {
 		// 2
 		pieces = append(pieces, "")
 	} else {
 		// 2
-		pieces = append(pieces, types.String(configutils.IP2Long(toIP)))
+		pieces = append(pieces, types.String(toIPLong-fromIPLong))
 	}
 
 	// 3
