@@ -545,7 +545,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				{
 					Code: HTTPFirewallActionBlock,
 					Options: maps.Map{
-						"timeout": 600,
+						"timeout": 1800,
 					},
 				},
 			}
@@ -603,7 +603,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				{
 					Code: HTTPFirewallActionBlock,
 					Options: maps.Map{
-						"timeout": 600,
+						"timeout": 1800,
 					},
 				},
 			}
@@ -662,7 +662,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				{
 					Code: HTTPFirewallActionBlock,
 					Options: maps.Map{
-						"timeout": 600,
+						"timeout": 1800,
 					},
 				},
 			}

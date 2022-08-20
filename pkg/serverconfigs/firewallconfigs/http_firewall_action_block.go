@@ -17,6 +17,6 @@ func DefaultHTTPFirewallBlockAction() *HTTPFirewallBlockAction {
 	return &HTTPFirewallBlockAction{
 		StatusCode: http.StatusForbidden,
 		Body:       "Blocked By WAF",
-		Timeout:    60,
+		Timeout:    300,
 	}
 }

@@ -15,7 +15,7 @@ func DefaultSYNFloodConfig() *SYNFloodConfig {
 	return &SYNFloodConfig{
 		IsOn:           true,
 		MinAttempts:    10,
-		TimeoutSeconds: 600,
+		TimeoutSeconds: 1800,
 		IgnoreLocal:    true,
 	}
 }
