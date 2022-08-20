@@ -10,9 +10,47 @@ import "models/rpc_messages.proto";
 service NSRecordHourlyStatService {
 	// 上传统计
 	rpc uploadNSRecordHourlyStats (UploadNSRecordHourlyStatsRequest) returns (RPCSuccess);
+
+	// 获取单个记录单个小时的统计
+	rpc findNSRecordHourlyStat(FindNSRecordHourlyStatRequest) returns (FindNSRecordHourlyStatResponse);
+
+	// 获取单个记录24小时内的统计
+	rpc findLatestNSRecordsHourlyStats(FindLatestNSRecordsHourlyStatsRequest) returns (FindLatestNSRecordsHourlyStatsResponse);
+
+	// 批量获取一组记录的统计
+	rpc findNSRecordHourlyStatWithRecordIds(FindNSRecordHourlyStatWithRecordIdsRequest) returns (FindNSRecordHourlyStatWithRecordIdsResponse);
 }
 
 // 上传统计
 message UploadNSRecordHourlyStatsRequest {
 	repeated NSRecordHourlyStat stats = 1;
+}
+
+// 获取单个记录单个小时的统计
+message FindNSRecordHourlyStatRequest {
+	int64 nsRecordId = 1; // 记录ID
+	string hour = 2; // YYYYMMDDHH
+}
+
+message FindNSRecordHourlyStatResponse {
+	NSRecordHourlyStat nsRecordHourlyStat = 1;
+}
+
+// 获取单个记录24小时内的统计
+message FindLatestNSRecordsHourlyStatsRequest {
+	int64 nsRecordId = 1; // 记录ID
+}
+
+message FindLatestNSRecordsHourlyStatsResponse {
+	repeated NSRecordHourlyStat nsRecordHourlyStats = 2;
+}
+
+// 批量获取一组记录的统计
+message FindNSRecordHourlyStatWithRecordIdsRequest {
+	repeated int64 nsRecordIds = 1;
+	string hour = 2;
+}
+
+message FindNSRecordHourlyStatWithRecordIdsResponse {
+	repeated NSRecordHourlyStat nsRecordHourlyStats = 1;
 }

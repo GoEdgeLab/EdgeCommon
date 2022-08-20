@@ -77,6 +77,307 @@ func (x *UploadNSRecordHourlyStatsRequest) GetStats() []*NSRecordHourlyStat {
 	return nil
 }
 
+// 获取单个记录单个小时的统计
+type FindNSRecordHourlyStatRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsRecordId int64  `protobuf:"varint,1,opt,name=nsRecordId,proto3" json:"nsRecordId,omitempty"` // 记录ID
+	Hour       string `protobuf:"bytes,2,opt,name=hour,proto3" json:"hour,omitempty"`              // YYYYMMDDHH
+}
+
+func (x *FindNSRecordHourlyStatRequest) Reset() {
+	*x = FindNSRecordHourlyStatRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_record_hourly_stat_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindNSRecordHourlyStatRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindNSRecordHourlyStatRequest) ProtoMessage() {}
+
+func (x *FindNSRecordHourlyStatRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_record_hourly_stat_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindNSRecordHourlyStatRequest.ProtoReflect.Descriptor instead.
+func (*FindNSRecordHourlyStatRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_record_hourly_stat_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *FindNSRecordHourlyStatRequest) GetNsRecordId() int64 {
+	if x != nil {
+		return x.NsRecordId
+	}
+	return 0
+}
+
+func (x *FindNSRecordHourlyStatRequest) GetHour() string {
+	if x != nil {
+		return x.Hour
+	}
+	return ""
+}
+
+type FindNSRecordHourlyStatResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsRecordHourlyStat *NSRecordHourlyStat `protobuf:"bytes,1,opt,name=nsRecordHourlyStat,proto3" json:"nsRecordHourlyStat,omitempty"`
+}
+
+func (x *FindNSRecordHourlyStatResponse) Reset() {
+	*x = FindNSRecordHourlyStatResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_record_hourly_stat_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindNSRecordHourlyStatResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindNSRecordHourlyStatResponse) ProtoMessage() {}
+
+func (x *FindNSRecordHourlyStatResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_record_hourly_stat_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindNSRecordHourlyStatResponse.ProtoReflect.Descriptor instead.
+func (*FindNSRecordHourlyStatResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_record_hourly_stat_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *FindNSRecordHourlyStatResponse) GetNsRecordHourlyStat() *NSRecordHourlyStat {
+	if x != nil {
+		return x.NsRecordHourlyStat
+	}
+	return nil
+}
+
+// 获取单个记录24小时内的统计
+type FindLatestNSRecordsHourlyStatsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsRecordId int64 `protobuf:"varint,1,opt,name=nsRecordId,proto3" json:"nsRecordId,omitempty"` // 记录ID
+}
+
+func (x *FindLatestNSRecordsHourlyStatsRequest) Reset() {
+	*x = FindLatestNSRecordsHourlyStatsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_record_hourly_stat_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindLatestNSRecordsHourlyStatsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindLatestNSRecordsHourlyStatsRequest) ProtoMessage() {}
+
+func (x *FindLatestNSRecordsHourlyStatsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_record_hourly_stat_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindLatestNSRecordsHourlyStatsRequest.ProtoReflect.Descriptor instead.
+func (*FindLatestNSRecordsHourlyStatsRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_record_hourly_stat_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *FindLatestNSRecordsHourlyStatsRequest) GetNsRecordId() int64 {
+	if x != nil {
+		return x.NsRecordId
+	}
+	return 0
+}
+
+type FindLatestNSRecordsHourlyStatsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsRecordHourlyStats []*NSRecordHourlyStat `protobuf:"bytes,2,rep,name=nsRecordHourlyStats,proto3" json:"nsRecordHourlyStats,omitempty"`
+}
+
+func (x *FindLatestNSRecordsHourlyStatsResponse) Reset() {
+	*x = FindLatestNSRecordsHourlyStatsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_record_hourly_stat_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindLatestNSRecordsHourlyStatsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindLatestNSRecordsHourlyStatsResponse) ProtoMessage() {}
+
+func (x *FindLatestNSRecordsHourlyStatsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_record_hourly_stat_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindLatestNSRecordsHourlyStatsResponse.ProtoReflect.Descriptor instead.
+func (*FindLatestNSRecordsHourlyStatsResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_record_hourly_stat_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *FindLatestNSRecordsHourlyStatsResponse) GetNsRecordHourlyStats() []*NSRecordHourlyStat {
+	if x != nil {
+		return x.NsRecordHourlyStats
+	}
+	return nil
+}
+
+// 批量获取一组记录的统计
+type FindNSRecordHourlyStatWithRecordIdsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsRecordIds []int64 `protobuf:"varint,1,rep,packed,name=nsRecordIds,proto3" json:"nsRecordIds,omitempty"`
+	Hour        string  `protobuf:"bytes,2,opt,name=hour,proto3" json:"hour,omitempty"`
+}
+
+func (x *FindNSRecordHourlyStatWithRecordIdsRequest) Reset() {
+	*x = FindNSRecordHourlyStatWithRecordIdsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_record_hourly_stat_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindNSRecordHourlyStatWithRecordIdsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindNSRecordHourlyStatWithRecordIdsRequest) ProtoMessage() {}
+
+func (x *FindNSRecordHourlyStatWithRecordIdsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_record_hourly_stat_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindNSRecordHourlyStatWithRecordIdsRequest.ProtoReflect.Descriptor instead.
+func (*FindNSRecordHourlyStatWithRecordIdsRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_record_hourly_stat_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *FindNSRecordHourlyStatWithRecordIdsRequest) GetNsRecordIds() []int64 {
+	if x != nil {
+		return x.NsRecordIds
+	}
+	return nil
+}
+
+func (x *FindNSRecordHourlyStatWithRecordIdsRequest) GetHour() string {
+	if x != nil {
+		return x.Hour
+	}
+	return ""
+}
+
+type FindNSRecordHourlyStatWithRecordIdsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsRecordHourlyStats []*NSRecordHourlyStat `protobuf:"bytes,1,rep,name=nsRecordHourlyStats,proto3" json:"nsRecordHourlyStats,omitempty"`
+}
+
+func (x *FindNSRecordHourlyStatWithRecordIdsResponse) Reset() {
+	*x = FindNSRecordHourlyStatWithRecordIdsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_record_hourly_stat_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindNSRecordHourlyStatWithRecordIdsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindNSRecordHourlyStatWithRecordIdsResponse) ProtoMessage() {}
+
+func (x *FindNSRecordHourlyStatWithRecordIdsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_record_hourly_stat_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindNSRecordHourlyStatWithRecordIdsResponse.ProtoReflect.Descriptor instead.
+func (*FindNSRecordHourlyStatWithRecordIdsResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_record_hourly_stat_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *FindNSRecordHourlyStatWithRecordIdsResponse) GetNsRecordHourlyStats() []*NSRecordHourlyStat {
+	if x != nil {
+		return x.NsRecordHourlyStats
+	}
+	return nil
+}
+
 var File_service_ns_record_hourly_stat_proto protoreflect.FileDescriptor
 
 var file_service_ns_record_hourly_stat_proto_rawDesc = []byte{
@@ -92,14 +393,74 @@ var file_service_ns_record_hourly_stat_proto_rawDesc = []byte{
 	0x73, 0x74, 0x12, 0x2c, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
 	0x0b, 0x32, 0x16, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48,
 	0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x73,
-	0x32, 0x6e, 0x0a, 0x19, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72,
-	0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x51, 0x0a,
-	0x19, 0x75, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48,
-	0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e,
-	0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f,
-	0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73,
-	0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x22, 0x53, 0x0a, 0x1d, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64,
+	0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x49, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x49,
+	0x64, 0x12, 0x12, 0x0a, 0x04, 0x68, 0x6f, 0x75, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x68, 0x6f, 0x75, 0x72, 0x22, 0x68, 0x0a, 0x1e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52,
+	0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x46, 0x0a, 0x12, 0x6e, 0x73, 0x52, 0x65, 0x63,
+	0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72,
+	0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x52, 0x12, 0x6e, 0x73, 0x52,
+	0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x22,
+	0x47, 0x0a, 0x25, 0x46, 0x69, 0x6e, 0x64, 0x4c, 0x61, 0x74, 0x65, 0x73, 0x74, 0x4e, 0x53, 0x52,
+	0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x73, 0x52, 0x65,
+	0x63, 0x6f, 0x72, 0x64, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x6e, 0x73,
+	0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x49, 0x64, 0x22, 0x72, 0x0a, 0x26, 0x46, 0x69, 0x6e, 0x64,
+	0x4c, 0x61, 0x74, 0x65, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x48,
+	0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x48, 0x0a, 0x13, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f,
+	0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x16, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75,
+	0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x52, 0x13, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72,
+	0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x22, 0x62, 0x0a, 0x2a,
+	0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72,
+	0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x57, 0x69, 0x74, 0x68, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64,
+	0x49, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x6e, 0x73,
+	0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x49, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x03, 0x52,
+	0x0b, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x49, 0x64, 0x73, 0x12, 0x12, 0x0a, 0x04,
+	0x68, 0x6f, 0x75, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x68, 0x6f, 0x75, 0x72,
+	0x22, 0x77, 0x0a, 0x2b, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64,
+	0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x57, 0x69, 0x74, 0x68, 0x52, 0x65,
+	0x63, 0x6f, 0x72, 0x64, 0x49, 0x64, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x48, 0x0a, 0x13, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c,
+	0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x70,
+	0x62, 0x2e, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79,
+	0x53, 0x74, 0x61, 0x74, 0x52, 0x13, 0x6e, 0x73, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f,
+	0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x32, 0xd1, 0x03, 0x0a, 0x19, 0x4e, 0x53,
+	0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74,
+	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x51, 0x0a, 0x19, 0x75, 0x70, 0x6c, 0x6f, 0x61,
+	0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53,
+	0x74, 0x61, 0x74, 0x73, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64,
+	0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74,
+	0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e,
+	0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x5f, 0x0a, 0x16, 0x66, 0x69,
+	0x6e, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79,
+	0x53, 0x74, 0x61, 0x74, 0x12, 0x21, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53,
+	0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e,
+	0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53,
+	0x74, 0x61, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x77, 0x0a, 0x1e, 0x66,
+	0x69, 0x6e, 0x64, 0x4c, 0x61, 0x74, 0x65, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72,
+	0x64, 0x73, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x29, 0x2e,
+	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4c, 0x61, 0x74, 0x65, 0x73, 0x74, 0x4e, 0x53, 0x52,
+	0x65, 0x63, 0x6f, 0x72, 0x64, 0x73, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
+	0x6e, 0x64, 0x4c, 0x61, 0x74, 0x65, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64,
+	0x73, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x86, 0x01, 0x0a, 0x23, 0x66, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52,
+	0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x57,
+	0x69, 0x74, 0x68, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x49, 0x64, 0x73, 0x12, 0x2e, 0x2e, 0x70,
+	0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f,
+	0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x57, 0x69, 0x74, 0x68, 0x52, 0x65, 0x63, 0x6f,
+	0x72, 0x64, 0x49, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2f, 0x2e, 0x70,
+	0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x48, 0x6f,
+	0x75, 0x72, 0x6c, 0x79, 0x53, 0x74, 0x61, 0x74, 0x57, 0x69, 0x74, 0x68, 0x52, 0x65, 0x63, 0x6f,
+	0x72, 0x64, 0x49, 0x64, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a,
+	0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -114,21 +475,36 @@ func file_service_ns_record_hourly_stat_proto_rawDescGZIP() []byte {
 	return file_service_ns_record_hourly_stat_proto_rawDescData
 }
 
-var file_service_ns_record_hourly_stat_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_service_ns_record_hourly_stat_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_service_ns_record_hourly_stat_proto_goTypes = []interface{}{
-	(*UploadNSRecordHourlyStatsRequest)(nil), // 0: pb.UploadNSRecordHourlyStatsRequest
-	(*NSRecordHourlyStat)(nil),               // 1: pb.NSRecordHourlyStat
-	(*RPCSuccess)(nil),                       // 2: pb.RPCSuccess
+	(*UploadNSRecordHourlyStatsRequest)(nil),            // 0: pb.UploadNSRecordHourlyStatsRequest
+	(*FindNSRecordHourlyStatRequest)(nil),               // 1: pb.FindNSRecordHourlyStatRequest
+	(*FindNSRecordHourlyStatResponse)(nil),              // 2: pb.FindNSRecordHourlyStatResponse
+	(*FindLatestNSRecordsHourlyStatsRequest)(nil),       // 3: pb.FindLatestNSRecordsHourlyStatsRequest
+	(*FindLatestNSRecordsHourlyStatsResponse)(nil),      // 4: pb.FindLatestNSRecordsHourlyStatsResponse
+	(*FindNSRecordHourlyStatWithRecordIdsRequest)(nil),  // 5: pb.FindNSRecordHourlyStatWithRecordIdsRequest
+	(*FindNSRecordHourlyStatWithRecordIdsResponse)(nil), // 6: pb.FindNSRecordHourlyStatWithRecordIdsResponse
+	(*NSRecordHourlyStat)(nil),                          // 7: pb.NSRecordHourlyStat
+	(*RPCSuccess)(nil),                                  // 8: pb.RPCSuccess
 }
 var file_service_ns_record_hourly_stat_proto_depIdxs = []int32{
-	1, // 0: pb.UploadNSRecordHourlyStatsRequest.stats:type_name -> pb.NSRecordHourlyStat
-	0, // 1: pb.NSRecordHourlyStatService.uploadNSRecordHourlyStats:input_type -> pb.UploadNSRecordHourlyStatsRequest
-	2, // 2: pb.NSRecordHourlyStatService.uploadNSRecordHourlyStats:output_type -> pb.RPCSuccess
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	7, // 0: pb.UploadNSRecordHourlyStatsRequest.stats:type_name -> pb.NSRecordHourlyStat
+	7, // 1: pb.FindNSRecordHourlyStatResponse.nsRecordHourlyStat:type_name -> pb.NSRecordHourlyStat
+	7, // 2: pb.FindLatestNSRecordsHourlyStatsResponse.nsRecordHourlyStats:type_name -> pb.NSRecordHourlyStat
+	7, // 3: pb.FindNSRecordHourlyStatWithRecordIdsResponse.nsRecordHourlyStats:type_name -> pb.NSRecordHourlyStat
+	0, // 4: pb.NSRecordHourlyStatService.uploadNSRecordHourlyStats:input_type -> pb.UploadNSRecordHourlyStatsRequest
+	1, // 5: pb.NSRecordHourlyStatService.findNSRecordHourlyStat:input_type -> pb.FindNSRecordHourlyStatRequest
+	3, // 6: pb.NSRecordHourlyStatService.findLatestNSRecordsHourlyStats:input_type -> pb.FindLatestNSRecordsHourlyStatsRequest
+	5, // 7: pb.NSRecordHourlyStatService.findNSRecordHourlyStatWithRecordIds:input_type -> pb.FindNSRecordHourlyStatWithRecordIdsRequest
+	8, // 8: pb.NSRecordHourlyStatService.uploadNSRecordHourlyStats:output_type -> pb.RPCSuccess
+	2, // 9: pb.NSRecordHourlyStatService.findNSRecordHourlyStat:output_type -> pb.FindNSRecordHourlyStatResponse
+	4, // 10: pb.NSRecordHourlyStatService.findLatestNSRecordsHourlyStats:output_type -> pb.FindLatestNSRecordsHourlyStatsResponse
+	6, // 11: pb.NSRecordHourlyStatService.findNSRecordHourlyStatWithRecordIds:output_type -> pb.FindNSRecordHourlyStatWithRecordIdsResponse
+	8, // [8:12] is the sub-list for method output_type
+	4, // [4:8] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_service_ns_record_hourly_stat_proto_init() }
@@ -151,6 +527,78 @@ func file_service_ns_record_hourly_stat_proto_init() {
 				return nil
 			}
 		}
+		file_service_ns_record_hourly_stat_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindNSRecordHourlyStatRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_record_hourly_stat_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindNSRecordHourlyStatResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_record_hourly_stat_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindLatestNSRecordsHourlyStatsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_record_hourly_stat_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindLatestNSRecordsHourlyStatsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_record_hourly_stat_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindNSRecordHourlyStatWithRecordIdsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_record_hourly_stat_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindNSRecordHourlyStatWithRecordIdsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -158,7 +606,7 @@ func file_service_ns_record_hourly_stat_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_ns_record_hourly_stat_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -186,6 +634,12 @@ const _ = grpc.SupportPackageIsVersion6
 type NSRecordHourlyStatServiceClient interface {
 	// 上传统计
 	UploadNSRecordHourlyStats(ctx context.Context, in *UploadNSRecordHourlyStatsRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 获取单个记录单个小时的统计
+	FindNSRecordHourlyStat(ctx context.Context, in *FindNSRecordHourlyStatRequest, opts ...grpc.CallOption) (*FindNSRecordHourlyStatResponse, error)
+	// 获取单个记录24小时内的统计
+	FindLatestNSRecordsHourlyStats(ctx context.Context, in *FindLatestNSRecordsHourlyStatsRequest, opts ...grpc.CallOption) (*FindLatestNSRecordsHourlyStatsResponse, error)
+	// 批量获取一组记录的统计
+	FindNSRecordHourlyStatWithRecordIds(ctx context.Context, in *FindNSRecordHourlyStatWithRecordIdsRequest, opts ...grpc.CallOption) (*FindNSRecordHourlyStatWithRecordIdsResponse, error)
 }
 
 type nSRecordHourlyStatServiceClient struct {
@@ -205,10 +659,43 @@ func (c *nSRecordHourlyStatServiceClient) UploadNSRecordHourlyStats(ctx context.
 	return out, nil
 }
 
+func (c *nSRecordHourlyStatServiceClient) FindNSRecordHourlyStat(ctx context.Context, in *FindNSRecordHourlyStatRequest, opts ...grpc.CallOption) (*FindNSRecordHourlyStatResponse, error) {
+	out := new(FindNSRecordHourlyStatResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSRecordHourlyStatService/findNSRecordHourlyStat", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSRecordHourlyStatServiceClient) FindLatestNSRecordsHourlyStats(ctx context.Context, in *FindLatestNSRecordsHourlyStatsRequest, opts ...grpc.CallOption) (*FindLatestNSRecordsHourlyStatsResponse, error) {
+	out := new(FindLatestNSRecordsHourlyStatsResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSRecordHourlyStatService/findLatestNSRecordsHourlyStats", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSRecordHourlyStatServiceClient) FindNSRecordHourlyStatWithRecordIds(ctx context.Context, in *FindNSRecordHourlyStatWithRecordIdsRequest, opts ...grpc.CallOption) (*FindNSRecordHourlyStatWithRecordIdsResponse, error) {
+	out := new(FindNSRecordHourlyStatWithRecordIdsResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSRecordHourlyStatService/findNSRecordHourlyStatWithRecordIds", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NSRecordHourlyStatServiceServer is the server API for NSRecordHourlyStatService service.
 type NSRecordHourlyStatServiceServer interface {
 	// 上传统计
 	UploadNSRecordHourlyStats(context.Context, *UploadNSRecordHourlyStatsRequest) (*RPCSuccess, error)
+	// 获取单个记录单个小时的统计
+	FindNSRecordHourlyStat(context.Context, *FindNSRecordHourlyStatRequest) (*FindNSRecordHourlyStatResponse, error)
+	// 获取单个记录24小时内的统计
+	FindLatestNSRecordsHourlyStats(context.Context, *FindLatestNSRecordsHourlyStatsRequest) (*FindLatestNSRecordsHourlyStatsResponse, error)
+	// 批量获取一组记录的统计
+	FindNSRecordHourlyStatWithRecordIds(context.Context, *FindNSRecordHourlyStatWithRecordIdsRequest) (*FindNSRecordHourlyStatWithRecordIdsResponse, error)
 }
 
 // UnimplementedNSRecordHourlyStatServiceServer can be embedded to have forward compatible implementations.
@@ -217,6 +704,15 @@ type UnimplementedNSRecordHourlyStatServiceServer struct {
 
 func (*UnimplementedNSRecordHourlyStatServiceServer) UploadNSRecordHourlyStats(context.Context, *UploadNSRecordHourlyStatsRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UploadNSRecordHourlyStats not implemented")
+}
+func (*UnimplementedNSRecordHourlyStatServiceServer) FindNSRecordHourlyStat(context.Context, *FindNSRecordHourlyStatRequest) (*FindNSRecordHourlyStatResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindNSRecordHourlyStat not implemented")
+}
+func (*UnimplementedNSRecordHourlyStatServiceServer) FindLatestNSRecordsHourlyStats(context.Context, *FindLatestNSRecordsHourlyStatsRequest) (*FindLatestNSRecordsHourlyStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindLatestNSRecordsHourlyStats not implemented")
+}
+func (*UnimplementedNSRecordHourlyStatServiceServer) FindNSRecordHourlyStatWithRecordIds(context.Context, *FindNSRecordHourlyStatWithRecordIdsRequest) (*FindNSRecordHourlyStatWithRecordIdsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindNSRecordHourlyStatWithRecordIds not implemented")
 }
 
 func RegisterNSRecordHourlyStatServiceServer(s *grpc.Server, srv NSRecordHourlyStatServiceServer) {
@@ -241,6 +737,60 @@ func _NSRecordHourlyStatService_UploadNSRecordHourlyStats_Handler(srv interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NSRecordHourlyStatService_FindNSRecordHourlyStat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindNSRecordHourlyStatRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSRecordHourlyStatServiceServer).FindNSRecordHourlyStat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSRecordHourlyStatService/FindNSRecordHourlyStat",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSRecordHourlyStatServiceServer).FindNSRecordHourlyStat(ctx, req.(*FindNSRecordHourlyStatRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSRecordHourlyStatService_FindLatestNSRecordsHourlyStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindLatestNSRecordsHourlyStatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSRecordHourlyStatServiceServer).FindLatestNSRecordsHourlyStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSRecordHourlyStatService/FindLatestNSRecordsHourlyStats",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSRecordHourlyStatServiceServer).FindLatestNSRecordsHourlyStats(ctx, req.(*FindLatestNSRecordsHourlyStatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSRecordHourlyStatService_FindNSRecordHourlyStatWithRecordIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindNSRecordHourlyStatWithRecordIdsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSRecordHourlyStatServiceServer).FindNSRecordHourlyStatWithRecordIds(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSRecordHourlyStatService/FindNSRecordHourlyStatWithRecordIds",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSRecordHourlyStatServiceServer).FindNSRecordHourlyStatWithRecordIds(ctx, req.(*FindNSRecordHourlyStatWithRecordIdsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _NSRecordHourlyStatService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.NSRecordHourlyStatService",
 	HandlerType: (*NSRecordHourlyStatServiceServer)(nil),
@@ -248,6 +798,18 @@ var _NSRecordHourlyStatService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "uploadNSRecordHourlyStats",
 			Handler:    _NSRecordHourlyStatService_UploadNSRecordHourlyStats_Handler,
+		},
+		{
+			MethodName: "findNSRecordHourlyStat",
+			Handler:    _NSRecordHourlyStatService_FindNSRecordHourlyStat_Handler,
+		},
+		{
+			MethodName: "findLatestNSRecordsHourlyStats",
+			Handler:    _NSRecordHourlyStatService_FindLatestNSRecordsHourlyStats_Handler,
+		},
+		{
+			MethodName: "findNSRecordHourlyStatWithRecordIds",
+			Handler:    _NSRecordHourlyStatService_FindNSRecordHourlyStatWithRecordIds_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

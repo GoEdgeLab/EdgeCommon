@@ -11,4 +11,5 @@ message NSRecordHourlyStat {
 	int64 bytes = 5;
 	int64 countRequests = 6;
 	int64 createdAt = 7;
+	string hour = 8;
 }
