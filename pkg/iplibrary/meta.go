@@ -3,31 +3,31 @@
 package iplibrary
 
 type Country struct {
-	Id    int64    `json:"id"`
+	Id    uint32   `json:"id"`
 	Name  string   `json:"name"`
 	Codes []string `json:"codes"`
 }
 
 type Province struct {
-	Id    int64    `json:"id"`
+	Id    uint32   `json:"id"`
 	Name  string   `json:"name"`
 	Codes []string `json:"codes"`
 }
 
 type City struct {
-	Id    int64    `json:"id"`
+	Id    uint32   `json:"id"`
 	Name  string   `json:"name"`
 	Codes []string `json:"codes"`
 }
 
 type Town struct {
-	Id    int64    `json:"id"`
+	Id    uint32   `json:"id"`
 	Name  string   `json:"name"`
 	Codes []string `json:"codes"`
 }
 
 type Provider struct {
-	Id    int64    `json:"id"`
+	Id    uint32   `json:"id"`
 	Name  string   `json:"name"`
 	Codes []string `json:"codes"`
 }
@@ -42,19 +42,19 @@ type Meta struct {
 	Providers []*Provider `json:"providers"`
 	CreatedAt int64       `json:"createdAt"`
 
-	countryMap  map[int64]*Country  // id => *Country
-	provinceMap map[int64]*Province // id => *Province
-	cityMap     map[int64]*City     // id => *City
-	townMap     map[int64]*Town     // id => *Town
-	providerMap map[int64]*Provider // id => *Provider
+	countryMap  map[uint32]*Country  // id => *Country
+	provinceMap map[uint32]*Province // id => *Province
+	cityMap     map[uint32]*City     // id => *City
+	townMap     map[uint32]*Town     // id => *Town
+	providerMap map[uint32]*Provider // id => *Provider
 }
 
 func (this *Meta) Init() {
-	this.countryMap = map[int64]*Country{}
-	this.provinceMap = map[int64]*Province{}
-	this.cityMap = map[int64]*City{}
-	this.townMap = map[int64]*Town{}
-	this.providerMap = map[int64]*Provider{}
+	this.countryMap = map[uint32]*Country{}
+	this.provinceMap = map[uint32]*Province{}
+	this.cityMap = map[uint32]*City{}
+	this.townMap = map[uint32]*Town{}
+	this.providerMap = map[uint32]*Provider{}
 
 	for _, country := range this.Countries {
 		this.countryMap[country.Id] = country
@@ -73,22 +73,22 @@ func (this *Meta) Init() {
 	}
 }
 
-func (this *Meta) CountryWithId(countryId int64) *Country {
+func (this *Meta) CountryWithId(countryId uint32) *Country {
 	return this.countryMap[countryId]
 }
 
-func (this *Meta) ProvinceWithId(provinceId int64) *Province {
+func (this *Meta) ProvinceWithId(provinceId uint32) *Province {
 	return this.provinceMap[provinceId]
 }
 
-func (this *Meta) CityWithId(cityId int64) *City {
+func (this *Meta) CityWithId(cityId uint32) *City {
 	return this.cityMap[cityId]
 }
 
-func (this *Meta) TownWithId(townId int64) *Town {
+func (this *Meta) TownWithId(townId uint32) *Town {
 	return this.townMap[townId]
 }
 
-func (this *Meta) ProviderWithId(providerId int64) *Provider {
+func (this *Meta) ProviderWithId(providerId uint32) *Provider {
 	return this.providerMap[providerId]
 }

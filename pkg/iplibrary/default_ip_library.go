@@ -6,9 +6,7 @@ import (
 	"bytes"
 	"compress/gzip"
 	_ "embed"
-	"github.com/iwind/TeaGo/logs"
 	"net"
-	"os"
 )
 
 //go:embed internal-ip-library.db
@@ -16,16 +14,8 @@ var ipLibraryData []byte
 
 var library = NewIPLibrary()
 
-func init() {
-	var args = os.Args
-	if len(args) > 1 && args[1] == "daemon" {
-		return
-	}
-
-	err := library.Init()
-	if err != nil {
-		logs.Println("IP_LIBRARY", "initialized failed: "+err.Error())
-	}
+func Init() error {
+	return library.Init()
 }
 
 func Lookup(ip net.IP) *QueryResult {
@@ -45,6 +35,9 @@ func NewIPLibrary() *IPLibrary {
 }
 
 func (this *IPLibrary) Init() error {
+	if len(ipLibraryData) == 0 || this.reader != nil {
+		return nil
+	}
 	var reader = bytes.NewReader(ipLibraryData)
 	gzipReader, err := gzip.NewReader(reader)
 	if err != nil {
@@ -59,6 +52,7 @@ func (this *IPLibrary) Init() error {
 		return err
 	}
 	this.reader = libReader
+
 	return nil
 }
 

@@ -3,17 +3,37 @@
 package iplibrary_test
 
 import (
+	"fmt"
 	"github.com/TeaOSLab/EdgeCommon/pkg/iplibrary"
 	"net"
+	"runtime"
+	"runtime/debug"
 	"testing"
+	"time"
 )
 
 func TestIPLibrary_Lookup(t *testing.T) {
+	var stat1 = &runtime.MemStats{}
+	runtime.ReadMemStats(stat1)
+
 	var lib = iplibrary.NewIPLibrary()
+
+	var before = time.Now()
+
 	err := lib.Init()
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	var costMs = time.Since(before).Seconds() * 1000
+	runtime.GC()
+	debug.FreeOSMemory()
+
+	var stat2 = &runtime.MemStats{}
+	runtime.ReadMemStats(stat2)
+
+	t.Log((stat2.Alloc-stat1.Alloc)/1024/1024, "M", fmt.Sprintf("%.2f", costMs), "ms")
+
 	for _, ip := range []string{
 		"127.0.0.1",
 		"8.8.8.8",

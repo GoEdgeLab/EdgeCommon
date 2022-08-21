@@ -2,12 +2,26 @@
 
 package iplibrary
 
+import (
+	"bytes"
+	"encoding/binary"
+)
+
 type ipItem struct {
-	ipFrom     uint64
-	ipTo       uint64
-	countryId  int64
-	provinceId int64
-	cityId     int64
-	townId     int64
-	providerId int64
+	CountryId  uint32
+	ProvinceId uint32
+	CityId     uint32
+	TownId     uint32
+	ProviderId uint32
+	IPFrom     uint64
+	IPTo       uint64
+}
+
+func (this *ipItem) AsBinary() ([]byte, error) {
+	var buf = &bytes.Buffer{}
+	err := binary.Write(buf, binary.BigEndian, this)
+	if err != nil {
+		return nil, err
+	}
+	return buf.Bytes(), nil
 }

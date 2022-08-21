@@ -77,10 +77,10 @@ func (this *Reader) load(reader io.Reader) error {
 	}
 
 	sort.Slice(this.ipV4Items, func(i, j int) bool {
-		var from0 = this.ipV4Items[i].ipFrom
-		var to0 = this.ipV4Items[i].ipTo
-		var from1 = this.ipV4Items[j].ipFrom
-		var to1 = this.ipV4Items[j].ipTo
+		var from0 = this.ipV4Items[i].IPFrom
+		var to0 = this.ipV4Items[i].IPTo
+		var from1 = this.ipV4Items[j].IPFrom
+		var to1 = this.ipV4Items[j].IPTo
 		if from0 == from1 {
 			return to0 < to1
 		}
@@ -88,10 +88,10 @@ func (this *Reader) load(reader io.Reader) error {
 	})
 
 	sort.Slice(this.ipV6Items, func(i, j int) bool {
-		var from0 = this.ipV6Items[i].ipFrom
-		var to0 = this.ipV6Items[i].ipTo
-		var from1 = this.ipV6Items[j].ipFrom
-		var to1 = this.ipV6Items[j].ipTo
+		var from0 = this.ipV6Items[i].IPFrom
+		var to0 = this.ipV6Items[i].IPTo
+		var from1 = this.ipV6Items[j].IPFrom
+		var to1 = this.ipV6Items[j].IPTo
 		if from0 == from1 {
 			return to0 < to1
 		}
@@ -112,8 +112,8 @@ func (this *Reader) Lookup(ip net.IP) *QueryResult {
 	if isV4 {
 		sort.Search(len(this.ipV4Items), func(i int) bool {
 			var item = this.ipV4Items[i]
-			if item.ipFrom <= ipLong {
-				if item.ipTo >= ipLong {
+			if item.IPFrom <= ipLong {
+				if item.IPTo >= ipLong {
 					resultItem = item
 					return false
 				}
@@ -124,8 +124,8 @@ func (this *Reader) Lookup(ip net.IP) *QueryResult {
 	} else {
 		sort.Search(len(this.ipV6Items), func(i int) bool {
 			var item = this.ipV6Items[i]
-			if item.ipFrom <= ipLong {
-				if item.ipTo >= ipLong {
+			if item.IPFrom <= ipLong {
+				if item.IPTo >= ipLong {
 					resultItem = item
 					return false
 				}
@@ -188,23 +188,23 @@ func (this *Reader) parse(data []byte) (left []byte, err error) {
 
 			if version == "4" {
 				this.ipV4Items = append(this.ipV4Items, &ipItem{
-					ipFrom:     ipFrom,
-					ipTo:       ipTo,
-					countryId:  types.Int64(pieces[3]),
-					provinceId: types.Int64(pieces[4]),
-					cityId:     types.Int64(pieces[5]),
-					townId:     types.Int64(pieces[6]),
-					providerId: types.Int64(pieces[7]),
+					IPFrom:     ipFrom,
+					IPTo:       ipTo,
+					CountryId:  types.Uint32(pieces[3]),
+					ProvinceId: types.Uint32(pieces[4]),
+					CityId:     types.Uint32(pieces[5]),
+					TownId:     types.Uint32(pieces[6]),
+					ProviderId: types.Uint32(pieces[7]),
 				})
 			} else {
 				this.ipV6Items = append(this.ipV6Items, &ipItem{
-					ipFrom:     ipFrom,
-					ipTo:       ipTo,
-					countryId:  types.Int64(pieces[3]),
-					provinceId: types.Int64(pieces[4]),
-					cityId:     types.Int64(pieces[5]),
-					townId:     types.Int64(pieces[6]),
-					providerId: types.Int64(pieces[7]),
+					IPFrom:     ipFrom,
+					IPTo:       ipTo,
+					CountryId:  types.Uint32(pieces[3]),
+					ProvinceId: types.Uint32(pieces[4]),
+					CityId:     types.Uint32(pieces[5]),
+					TownId:     types.Uint32(pieces[6]),
+					ProviderId: types.Uint32(pieces[7]),
 				})
 			}
 
