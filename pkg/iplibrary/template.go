@@ -57,7 +57,7 @@ func (this *Template) Extract(text string, emptyValues []string) (values map[str
 			continue
 		}
 		var v = matches[index]
-		if name != "ipFrom" && name != "ipTo" && (v == "0" || v == "无" || lists.ContainsString(emptyValues, v)) {
+		if name != "ipFrom" && name != "ipTo" && (v == "0" || v == "无" || v == "空" || lists.ContainsString(emptyValues, v)) {
 			v = ""
 		}
 		values[name] = v

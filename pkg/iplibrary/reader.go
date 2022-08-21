@@ -102,6 +102,10 @@ func (this *Reader) load(reader io.Reader) error {
 }
 
 func (this *Reader) Lookup(ip net.IP) *QueryResult {
+	if ip == nil {
+		return &QueryResult{}
+	}
+
 	var ipLong = configutils.IP2Long(ip)
 	var isV4 = configutils.IsIPv4(ip)
 	var resultItem *ipItem

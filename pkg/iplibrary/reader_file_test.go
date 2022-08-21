@@ -11,7 +11,7 @@ import (
 )
 
 func TestNewFileReader(t *testing.T) {
-	reader, err := iplibrary.NewFileReader("./ip.db")
+	reader, err := iplibrary.NewFileReader("./ip")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -37,6 +37,7 @@ func TestNewFileReader(t *testing.T) {
 				"townName":     result.TownName(),
 				"providerId":   result.ProviderId(),
 				"providerName": result.ProviderName(),
+				"summary":      result.Summary(),
 			}
 			dataJSON, err := json.MarshalIndent(data, "", "  ")
 			if err != nil {

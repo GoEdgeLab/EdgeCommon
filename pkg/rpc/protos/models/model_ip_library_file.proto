@@ -5,14 +5,19 @@ package pb;
 
 message IPLibraryFile {
 	int64 id = 1;
-	int64 fileId = 2;
-	bool isFinished = 3;
-	int64 createdAt = 4;
-	repeated string countryNames = 5;
-	repeated Province provinces = 6;
-	repeated City cities = 7;
-	repeated Town towns = 8;
-	repeated string providerNames = 9;
+	string name = 2;
+	int64 fileId = 3;
+	string template = 4;
+	repeated string emptyValues = 5;
+	int64 generatedFileId = 6;
+	int64 generatedAt = 7;
+	bool isFinished = 8;
+	int64 createdAt = 9;
+	repeated string countryNames = 10;
+	repeated Province provinces = 11;
+	repeated City cities = 12;
+	repeated Town towns = 13;
+	repeated string providerNames = 14;
 
 	message Province {
 		string countryName = 1;

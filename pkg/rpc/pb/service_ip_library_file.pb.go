@@ -29,6 +29,92 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+// 查找所有已完成的IP库文件
+type FindAllFinishedIPLibraryFilesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *FindAllFinishedIPLibraryFilesRequest) Reset() {
+	*x = FindAllFinishedIPLibraryFilesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ip_library_file_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllFinishedIPLibraryFilesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllFinishedIPLibraryFilesRequest) ProtoMessage() {}
+
+func (x *FindAllFinishedIPLibraryFilesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ip_library_file_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllFinishedIPLibraryFilesRequest.ProtoReflect.Descriptor instead.
+func (*FindAllFinishedIPLibraryFilesRequest) Descriptor() ([]byte, []int) {
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{0}
+}
+
+type FindAllFinishedIPLibraryFilesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IpLibraryFiles []*IPLibraryFile `protobuf:"bytes,1,rep,name=ipLibraryFiles,proto3" json:"ipLibraryFiles,omitempty"`
+}
+
+func (x *FindAllFinishedIPLibraryFilesResponse) Reset() {
+	*x = FindAllFinishedIPLibraryFilesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ip_library_file_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllFinishedIPLibraryFilesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllFinishedIPLibraryFilesResponse) ProtoMessage() {}
+
+func (x *FindAllFinishedIPLibraryFilesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ip_library_file_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllFinishedIPLibraryFilesResponse.ProtoReflect.Descriptor instead.
+func (*FindAllFinishedIPLibraryFilesResponse) Descriptor() ([]byte, []int) {
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *FindAllFinishedIPLibraryFilesResponse) GetIpLibraryFiles() []*IPLibraryFile {
+	if x != nil {
+		return x.IpLibraryFiles
+	}
+	return nil
+}
+
 // 查找所有未完成的IP库文件
 type FindAllUnfinishedIPLibraryFilesRequest struct {
 	state         protoimpl.MessageState
@@ -39,7 +125,7 @@ type FindAllUnfinishedIPLibraryFilesRequest struct {
 func (x *FindAllUnfinishedIPLibraryFilesRequest) Reset() {
 	*x = FindAllUnfinishedIPLibraryFilesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[0]
+		mi := &file_service_ip_library_file_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -52,7 +138,7 @@ func (x *FindAllUnfinishedIPLibraryFilesRequest) String() string {
 func (*FindAllUnfinishedIPLibraryFilesRequest) ProtoMessage() {}
 
 func (x *FindAllUnfinishedIPLibraryFilesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[0]
+	mi := &file_service_ip_library_file_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -65,7 +151,7 @@ func (x *FindAllUnfinishedIPLibraryFilesRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use FindAllUnfinishedIPLibraryFilesRequest.ProtoReflect.Descriptor instead.
 func (*FindAllUnfinishedIPLibraryFilesRequest) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{0}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{2}
 }
 
 type FindAllUnfinishedIPLibraryFilesResponse struct {
@@ -79,7 +165,7 @@ type FindAllUnfinishedIPLibraryFilesResponse struct {
 func (x *FindAllUnfinishedIPLibraryFilesResponse) Reset() {
 	*x = FindAllUnfinishedIPLibraryFilesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[1]
+		mi := &file_service_ip_library_file_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -92,7 +178,7 @@ func (x *FindAllUnfinishedIPLibraryFilesResponse) String() string {
 func (*FindAllUnfinishedIPLibraryFilesResponse) ProtoMessage() {}
 
 func (x *FindAllUnfinishedIPLibraryFilesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[1]
+	mi := &file_service_ip_library_file_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -105,7 +191,7 @@ func (x *FindAllUnfinishedIPLibraryFilesResponse) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use FindAllUnfinishedIPLibraryFilesResponse.ProtoReflect.Descriptor instead.
 func (*FindAllUnfinishedIPLibraryFilesResponse) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{1}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *FindAllUnfinishedIPLibraryFilesResponse) GetIpLibraryFiles() []*IPLibraryFile {
@@ -127,7 +213,7 @@ type FindIPLibraryFileRequest struct {
 func (x *FindIPLibraryFileRequest) Reset() {
 	*x = FindIPLibraryFileRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[2]
+		mi := &file_service_ip_library_file_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -140,7 +226,7 @@ func (x *FindIPLibraryFileRequest) String() string {
 func (*FindIPLibraryFileRequest) ProtoMessage() {}
 
 func (x *FindIPLibraryFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[2]
+	mi := &file_service_ip_library_file_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -153,7 +239,7 @@ func (x *FindIPLibraryFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindIPLibraryFileRequest.ProtoReflect.Descriptor instead.
 func (*FindIPLibraryFileRequest) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{2}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *FindIPLibraryFileRequest) GetIpLibraryFileId() int64 {
@@ -174,7 +260,7 @@ type FindIPLibraryFileResponse struct {
 func (x *FindIPLibraryFileResponse) Reset() {
 	*x = FindIPLibraryFileResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[3]
+		mi := &file_service_ip_library_file_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -187,7 +273,7 @@ func (x *FindIPLibraryFileResponse) String() string {
 func (*FindIPLibraryFileResponse) ProtoMessage() {}
 
 func (x *FindIPLibraryFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[3]
+	mi := &file_service_ip_library_file_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -200,7 +286,7 @@ func (x *FindIPLibraryFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindIPLibraryFileResponse.ProtoReflect.Descriptor instead.
 func (*FindIPLibraryFileResponse) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{3}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *FindIPLibraryFileResponse) GetIpLibraryFile() *IPLibraryFile {
@@ -216,20 +302,21 @@ type CreateIPLibraryFileRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Template      string   `protobuf:"bytes,1,opt,name=template,proto3" json:"template,omitempty"`
-	EmptyValues   []string `protobuf:"bytes,2,rep,name=emptyValues,proto3" json:"emptyValues,omitempty"`
-	FileId        int64    `protobuf:"varint,3,opt,name=fileId,proto3" json:"fileId,omitempty"`
-	CountriesJSON []byte   `protobuf:"bytes,4,opt,name=countriesJSON,proto3" json:"countriesJSON,omitempty"`
-	ProvincesJSON []byte   `protobuf:"bytes,5,opt,name=provincesJSON,proto3" json:"provincesJSON,omitempty"`
-	CitiesJSON    []byte   `protobuf:"bytes,6,opt,name=citiesJSON,proto3" json:"citiesJSON,omitempty"`
-	TownsJSON     []byte   `protobuf:"bytes,7,opt,name=townsJSON,proto3" json:"townsJSON,omitempty"`
-	ProvidersJSON []byte   `protobuf:"bytes,8,opt,name=providersJSON,proto3" json:"providersJSON,omitempty"`
+	Name          string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Template      string   `protobuf:"bytes,2,opt,name=template,proto3" json:"template,omitempty"`
+	EmptyValues   []string `protobuf:"bytes,3,rep,name=emptyValues,proto3" json:"emptyValues,omitempty"`
+	FileId        int64    `protobuf:"varint,4,opt,name=fileId,proto3" json:"fileId,omitempty"`
+	CountriesJSON []byte   `protobuf:"bytes,5,opt,name=countriesJSON,proto3" json:"countriesJSON,omitempty"`
+	ProvincesJSON []byte   `protobuf:"bytes,6,opt,name=provincesJSON,proto3" json:"provincesJSON,omitempty"`
+	CitiesJSON    []byte   `protobuf:"bytes,7,opt,name=citiesJSON,proto3" json:"citiesJSON,omitempty"`
+	TownsJSON     []byte   `protobuf:"bytes,8,opt,name=townsJSON,proto3" json:"townsJSON,omitempty"`
+	ProvidersJSON []byte   `protobuf:"bytes,9,opt,name=providersJSON,proto3" json:"providersJSON,omitempty"`
 }
 
 func (x *CreateIPLibraryFileRequest) Reset() {
 	*x = CreateIPLibraryFileRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[4]
+		mi := &file_service_ip_library_file_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -242,7 +329,7 @@ func (x *CreateIPLibraryFileRequest) String() string {
 func (*CreateIPLibraryFileRequest) ProtoMessage() {}
 
 func (x *CreateIPLibraryFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[4]
+	mi := &file_service_ip_library_file_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -255,7 +342,14 @@ func (x *CreateIPLibraryFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateIPLibraryFileRequest.ProtoReflect.Descriptor instead.
 func (*CreateIPLibraryFileRequest) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{4}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *CreateIPLibraryFileRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
 }
 
 func (x *CreateIPLibraryFileRequest) GetTemplate() string {
@@ -325,7 +419,7 @@ type CreateIPLibraryFileResponse struct {
 func (x *CreateIPLibraryFileResponse) Reset() {
 	*x = CreateIPLibraryFileResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[5]
+		mi := &file_service_ip_library_file_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -338,7 +432,7 @@ func (x *CreateIPLibraryFileResponse) String() string {
 func (*CreateIPLibraryFileResponse) ProtoMessage() {}
 
 func (x *CreateIPLibraryFileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[5]
+	mi := &file_service_ip_library_file_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -351,7 +445,7 @@ func (x *CreateIPLibraryFileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateIPLibraryFileResponse.ProtoReflect.Descriptor instead.
 func (*CreateIPLibraryFileResponse) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{5}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *CreateIPLibraryFileResponse) GetIpLibraryFileId() int64 {
@@ -373,7 +467,7 @@ type CheckCountriesWithIPLibraryFileIdRequest struct {
 func (x *CheckCountriesWithIPLibraryFileIdRequest) Reset() {
 	*x = CheckCountriesWithIPLibraryFileIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[6]
+		mi := &file_service_ip_library_file_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -386,7 +480,7 @@ func (x *CheckCountriesWithIPLibraryFileIdRequest) String() string {
 func (*CheckCountriesWithIPLibraryFileIdRequest) ProtoMessage() {}
 
 func (x *CheckCountriesWithIPLibraryFileIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[6]
+	mi := &file_service_ip_library_file_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -399,7 +493,7 @@ func (x *CheckCountriesWithIPLibraryFileIdRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use CheckCountriesWithIPLibraryFileIdRequest.ProtoReflect.Descriptor instead.
 func (*CheckCountriesWithIPLibraryFileIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{6}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CheckCountriesWithIPLibraryFileIdRequest) GetIpLibraryFileId() int64 {
@@ -420,7 +514,7 @@ type CheckCountriesWithIPLibraryFileIdResponse struct {
 func (x *CheckCountriesWithIPLibraryFileIdResponse) Reset() {
 	*x = CheckCountriesWithIPLibraryFileIdResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[7]
+		mi := &file_service_ip_library_file_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -433,7 +527,7 @@ func (x *CheckCountriesWithIPLibraryFileIdResponse) String() string {
 func (*CheckCountriesWithIPLibraryFileIdResponse) ProtoMessage() {}
 
 func (x *CheckCountriesWithIPLibraryFileIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[7]
+	mi := &file_service_ip_library_file_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -446,7 +540,7 @@ func (x *CheckCountriesWithIPLibraryFileIdResponse) ProtoReflect() protoreflect.
 
 // Deprecated: Use CheckCountriesWithIPLibraryFileIdResponse.ProtoReflect.Descriptor instead.
 func (*CheckCountriesWithIPLibraryFileIdResponse) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{7}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *CheckCountriesWithIPLibraryFileIdResponse) GetMissingCountries() []*CheckCountriesWithIPLibraryFileIdResponse_MissingCountry {
@@ -468,7 +562,7 @@ type CheckProvincesWithIPLibraryFileIdRequest struct {
 func (x *CheckProvincesWithIPLibraryFileIdRequest) Reset() {
 	*x = CheckProvincesWithIPLibraryFileIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[8]
+		mi := &file_service_ip_library_file_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -481,7 +575,7 @@ func (x *CheckProvincesWithIPLibraryFileIdRequest) String() string {
 func (*CheckProvincesWithIPLibraryFileIdRequest) ProtoMessage() {}
 
 func (x *CheckProvincesWithIPLibraryFileIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[8]
+	mi := &file_service_ip_library_file_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -494,7 +588,7 @@ func (x *CheckProvincesWithIPLibraryFileIdRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use CheckProvincesWithIPLibraryFileIdRequest.ProtoReflect.Descriptor instead.
 func (*CheckProvincesWithIPLibraryFileIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{8}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CheckProvincesWithIPLibraryFileIdRequest) GetIpLibraryFileId() int64 {
@@ -515,7 +609,7 @@ type CheckProvincesWithIPLibraryFileIdResponse struct {
 func (x *CheckProvincesWithIPLibraryFileIdResponse) Reset() {
 	*x = CheckProvincesWithIPLibraryFileIdResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[9]
+		mi := &file_service_ip_library_file_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -528,7 +622,7 @@ func (x *CheckProvincesWithIPLibraryFileIdResponse) String() string {
 func (*CheckProvincesWithIPLibraryFileIdResponse) ProtoMessage() {}
 
 func (x *CheckProvincesWithIPLibraryFileIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[9]
+	mi := &file_service_ip_library_file_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -541,7 +635,7 @@ func (x *CheckProvincesWithIPLibraryFileIdResponse) ProtoReflect() protoreflect.
 
 // Deprecated: Use CheckProvincesWithIPLibraryFileIdResponse.ProtoReflect.Descriptor instead.
 func (*CheckProvincesWithIPLibraryFileIdResponse) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{9}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CheckProvincesWithIPLibraryFileIdResponse) GetMissingProvinces() []*CheckProvincesWithIPLibraryFileIdResponse_MissingProvince {
@@ -563,7 +657,7 @@ type CheckCitiesWithIPLibraryFileIdRequest struct {
 func (x *CheckCitiesWithIPLibraryFileIdRequest) Reset() {
 	*x = CheckCitiesWithIPLibraryFileIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[10]
+		mi := &file_service_ip_library_file_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -576,7 +670,7 @@ func (x *CheckCitiesWithIPLibraryFileIdRequest) String() string {
 func (*CheckCitiesWithIPLibraryFileIdRequest) ProtoMessage() {}
 
 func (x *CheckCitiesWithIPLibraryFileIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[10]
+	mi := &file_service_ip_library_file_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -589,7 +683,7 @@ func (x *CheckCitiesWithIPLibraryFileIdRequest) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use CheckCitiesWithIPLibraryFileIdRequest.ProtoReflect.Descriptor instead.
 func (*CheckCitiesWithIPLibraryFileIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{10}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CheckCitiesWithIPLibraryFileIdRequest) GetIpLibraryFileId() int64 {
@@ -610,7 +704,7 @@ type CheckCitiesWithIPLibraryFileIdResponse struct {
 func (x *CheckCitiesWithIPLibraryFileIdResponse) Reset() {
 	*x = CheckCitiesWithIPLibraryFileIdResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[11]
+		mi := &file_service_ip_library_file_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -623,7 +717,7 @@ func (x *CheckCitiesWithIPLibraryFileIdResponse) String() string {
 func (*CheckCitiesWithIPLibraryFileIdResponse) ProtoMessage() {}
 
 func (x *CheckCitiesWithIPLibraryFileIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[11]
+	mi := &file_service_ip_library_file_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -636,7 +730,7 @@ func (x *CheckCitiesWithIPLibraryFileIdResponse) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use CheckCitiesWithIPLibraryFileIdResponse.ProtoReflect.Descriptor instead.
 func (*CheckCitiesWithIPLibraryFileIdResponse) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{11}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CheckCitiesWithIPLibraryFileIdResponse) GetMissingCities() []*CheckCitiesWithIPLibraryFileIdResponse_MissingCity {
@@ -658,7 +752,7 @@ type CheckTownsWithIPLibraryFileIdRequest struct {
 func (x *CheckTownsWithIPLibraryFileIdRequest) Reset() {
 	*x = CheckTownsWithIPLibraryFileIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[12]
+		mi := &file_service_ip_library_file_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -671,7 +765,7 @@ func (x *CheckTownsWithIPLibraryFileIdRequest) String() string {
 func (*CheckTownsWithIPLibraryFileIdRequest) ProtoMessage() {}
 
 func (x *CheckTownsWithIPLibraryFileIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[12]
+	mi := &file_service_ip_library_file_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -684,7 +778,7 @@ func (x *CheckTownsWithIPLibraryFileIdRequest) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use CheckTownsWithIPLibraryFileIdRequest.ProtoReflect.Descriptor instead.
 func (*CheckTownsWithIPLibraryFileIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{12}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *CheckTownsWithIPLibraryFileIdRequest) GetIpLibraryFileId() int64 {
@@ -705,7 +799,7 @@ type CheckTownsWithIPLibraryFileIdResponse struct {
 func (x *CheckTownsWithIPLibraryFileIdResponse) Reset() {
 	*x = CheckTownsWithIPLibraryFileIdResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[13]
+		mi := &file_service_ip_library_file_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -718,7 +812,7 @@ func (x *CheckTownsWithIPLibraryFileIdResponse) String() string {
 func (*CheckTownsWithIPLibraryFileIdResponse) ProtoMessage() {}
 
 func (x *CheckTownsWithIPLibraryFileIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[13]
+	mi := &file_service_ip_library_file_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -731,7 +825,7 @@ func (x *CheckTownsWithIPLibraryFileIdResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use CheckTownsWithIPLibraryFileIdResponse.ProtoReflect.Descriptor instead.
 func (*CheckTownsWithIPLibraryFileIdResponse) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{13}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *CheckTownsWithIPLibraryFileIdResponse) GetMissingTowns() []*CheckTownsWithIPLibraryFileIdResponse_MissingTown {
@@ -753,7 +847,7 @@ type CheckProvidersWithIPLibraryFileIdRequest struct {
 func (x *CheckProvidersWithIPLibraryFileIdRequest) Reset() {
 	*x = CheckProvidersWithIPLibraryFileIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[14]
+		mi := &file_service_ip_library_file_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -766,7 +860,7 @@ func (x *CheckProvidersWithIPLibraryFileIdRequest) String() string {
 func (*CheckProvidersWithIPLibraryFileIdRequest) ProtoMessage() {}
 
 func (x *CheckProvidersWithIPLibraryFileIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[14]
+	mi := &file_service_ip_library_file_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -779,7 +873,7 @@ func (x *CheckProvidersWithIPLibraryFileIdRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use CheckProvidersWithIPLibraryFileIdRequest.ProtoReflect.Descriptor instead.
 func (*CheckProvidersWithIPLibraryFileIdRequest) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{14}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *CheckProvidersWithIPLibraryFileIdRequest) GetIpLibraryFileId() int64 {
@@ -800,7 +894,7 @@ type CheckProvidersWithIPLibraryFileIdResponse struct {
 func (x *CheckProvidersWithIPLibraryFileIdResponse) Reset() {
 	*x = CheckProvidersWithIPLibraryFileIdResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[15]
+		mi := &file_service_ip_library_file_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -813,7 +907,7 @@ func (x *CheckProvidersWithIPLibraryFileIdResponse) String() string {
 func (*CheckProvidersWithIPLibraryFileIdResponse) ProtoMessage() {}
 
 func (x *CheckProvidersWithIPLibraryFileIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[15]
+	mi := &file_service_ip_library_file_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -826,7 +920,7 @@ func (x *CheckProvidersWithIPLibraryFileIdResponse) ProtoReflect() protoreflect.
 
 // Deprecated: Use CheckProvidersWithIPLibraryFileIdResponse.ProtoReflect.Descriptor instead.
 func (*CheckProvidersWithIPLibraryFileIdResponse) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{15}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *CheckProvidersWithIPLibraryFileIdResponse) GetMissingProviders() []*CheckProvidersWithIPLibraryFileIdResponse_MissingProvider {
@@ -848,7 +942,7 @@ type GenerateIPLibraryFileRequest struct {
 func (x *GenerateIPLibraryFileRequest) Reset() {
 	*x = GenerateIPLibraryFileRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[16]
+		mi := &file_service_ip_library_file_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -861,7 +955,7 @@ func (x *GenerateIPLibraryFileRequest) String() string {
 func (*GenerateIPLibraryFileRequest) ProtoMessage() {}
 
 func (x *GenerateIPLibraryFileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[16]
+	mi := &file_service_ip_library_file_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -874,10 +968,106 @@ func (x *GenerateIPLibraryFileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateIPLibraryFileRequest.ProtoReflect.Descriptor instead.
 func (*GenerateIPLibraryFileRequest) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{16}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GenerateIPLibraryFileRequest) GetIpLibraryFileId() int64 {
+	if x != nil {
+		return x.IpLibraryFileId
+	}
+	return 0
+}
+
+// 设置某个IP库为已完成
+type UpdateIPLibraryFileFinishedRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IpLibraryFileId int64 `protobuf:"varint,1,opt,name=ipLibraryFileId,proto3" json:"ipLibraryFileId,omitempty"`
+}
+
+func (x *UpdateIPLibraryFileFinishedRequest) Reset() {
+	*x = UpdateIPLibraryFileFinishedRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ip_library_file_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateIPLibraryFileFinishedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateIPLibraryFileFinishedRequest) ProtoMessage() {}
+
+func (x *UpdateIPLibraryFileFinishedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ip_library_file_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateIPLibraryFileFinishedRequest.ProtoReflect.Descriptor instead.
+func (*UpdateIPLibraryFileFinishedRequest) Descriptor() ([]byte, []int) {
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *UpdateIPLibraryFileFinishedRequest) GetIpLibraryFileId() int64 {
+	if x != nil {
+		return x.IpLibraryFileId
+	}
+	return 0
+}
+
+// 删除IP库文件
+type DeleteIPLibraryFileRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IpLibraryFileId int64 `protobuf:"varint,1,opt,name=ipLibraryFileId,proto3" json:"ipLibraryFileId,omitempty"`
+}
+
+func (x *DeleteIPLibraryFileRequest) Reset() {
+	*x = DeleteIPLibraryFileRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ip_library_file_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteIPLibraryFileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteIPLibraryFileRequest) ProtoMessage() {}
+
+func (x *DeleteIPLibraryFileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ip_library_file_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteIPLibraryFileRequest.ProtoReflect.Descriptor instead.
+func (*DeleteIPLibraryFileRequest) Descriptor() ([]byte, []int) {
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *DeleteIPLibraryFileRequest) GetIpLibraryFileId() int64 {
 	if x != nil {
 		return x.IpLibraryFileId
 	}
@@ -896,7 +1086,7 @@ type CheckCountriesWithIPLibraryFileIdResponse_MissingCountry struct {
 func (x *CheckCountriesWithIPLibraryFileIdResponse_MissingCountry) Reset() {
 	*x = CheckCountriesWithIPLibraryFileIdResponse_MissingCountry{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[17]
+		mi := &file_service_ip_library_file_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -909,7 +1099,7 @@ func (x *CheckCountriesWithIPLibraryFileIdResponse_MissingCountry) String() stri
 func (*CheckCountriesWithIPLibraryFileIdResponse_MissingCountry) ProtoMessage() {}
 
 func (x *CheckCountriesWithIPLibraryFileIdResponse_MissingCountry) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[17]
+	mi := &file_service_ip_library_file_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -922,7 +1112,7 @@ func (x *CheckCountriesWithIPLibraryFileIdResponse_MissingCountry) ProtoReflect(
 
 // Deprecated: Use CheckCountriesWithIPLibraryFileIdResponse_MissingCountry.ProtoReflect.Descriptor instead.
 func (*CheckCountriesWithIPLibraryFileIdResponse_MissingCountry) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{7, 0}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{9, 0}
 }
 
 func (x *CheckCountriesWithIPLibraryFileIdResponse_MissingCountry) GetCountryName() string {
@@ -952,7 +1142,7 @@ type CheckProvincesWithIPLibraryFileIdResponse_MissingProvince struct {
 func (x *CheckProvincesWithIPLibraryFileIdResponse_MissingProvince) Reset() {
 	*x = CheckProvincesWithIPLibraryFileIdResponse_MissingProvince{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[18]
+		mi := &file_service_ip_library_file_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -965,7 +1155,7 @@ func (x *CheckProvincesWithIPLibraryFileIdResponse_MissingProvince) String() str
 func (*CheckProvincesWithIPLibraryFileIdResponse_MissingProvince) ProtoMessage() {}
 
 func (x *CheckProvincesWithIPLibraryFileIdResponse_MissingProvince) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[18]
+	mi := &file_service_ip_library_file_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -978,7 +1168,7 @@ func (x *CheckProvincesWithIPLibraryFileIdResponse_MissingProvince) ProtoReflect
 
 // Deprecated: Use CheckProvincesWithIPLibraryFileIdResponse_MissingProvince.ProtoReflect.Descriptor instead.
 func (*CheckProvincesWithIPLibraryFileIdResponse_MissingProvince) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{9, 0}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{11, 0}
 }
 
 func (x *CheckProvincesWithIPLibraryFileIdResponse_MissingProvince) GetCountryName() string {
@@ -1016,7 +1206,7 @@ type CheckCitiesWithIPLibraryFileIdResponse_MissingCity struct {
 func (x *CheckCitiesWithIPLibraryFileIdResponse_MissingCity) Reset() {
 	*x = CheckCitiesWithIPLibraryFileIdResponse_MissingCity{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[19]
+		mi := &file_service_ip_library_file_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1029,7 +1219,7 @@ func (x *CheckCitiesWithIPLibraryFileIdResponse_MissingCity) String() string {
 func (*CheckCitiesWithIPLibraryFileIdResponse_MissingCity) ProtoMessage() {}
 
 func (x *CheckCitiesWithIPLibraryFileIdResponse_MissingCity) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[19]
+	mi := &file_service_ip_library_file_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1042,7 +1232,7 @@ func (x *CheckCitiesWithIPLibraryFileIdResponse_MissingCity) ProtoReflect() prot
 
 // Deprecated: Use CheckCitiesWithIPLibraryFileIdResponse_MissingCity.ProtoReflect.Descriptor instead.
 func (*CheckCitiesWithIPLibraryFileIdResponse_MissingCity) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{11, 0}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{13, 0}
 }
 
 func (x *CheckCitiesWithIPLibraryFileIdResponse_MissingCity) GetCountryName() string {
@@ -1088,7 +1278,7 @@ type CheckTownsWithIPLibraryFileIdResponse_MissingTown struct {
 func (x *CheckTownsWithIPLibraryFileIdResponse_MissingTown) Reset() {
 	*x = CheckTownsWithIPLibraryFileIdResponse_MissingTown{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[20]
+		mi := &file_service_ip_library_file_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1101,7 +1291,7 @@ func (x *CheckTownsWithIPLibraryFileIdResponse_MissingTown) String() string {
 func (*CheckTownsWithIPLibraryFileIdResponse_MissingTown) ProtoMessage() {}
 
 func (x *CheckTownsWithIPLibraryFileIdResponse_MissingTown) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[20]
+	mi := &file_service_ip_library_file_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1114,7 +1304,7 @@ func (x *CheckTownsWithIPLibraryFileIdResponse_MissingTown) ProtoReflect() proto
 
 // Deprecated: Use CheckTownsWithIPLibraryFileIdResponse_MissingTown.ProtoReflect.Descriptor instead.
 func (*CheckTownsWithIPLibraryFileIdResponse_MissingTown) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{13, 0}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{15, 0}
 }
 
 func (x *CheckTownsWithIPLibraryFileIdResponse_MissingTown) GetCountryName() string {
@@ -1164,7 +1354,7 @@ type CheckProvidersWithIPLibraryFileIdResponse_MissingProvider struct {
 func (x *CheckProvidersWithIPLibraryFileIdResponse_MissingProvider) Reset() {
 	*x = CheckProvidersWithIPLibraryFileIdResponse_MissingProvider{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_ip_library_file_proto_msgTypes[21]
+		mi := &file_service_ip_library_file_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1177,7 +1367,7 @@ func (x *CheckProvidersWithIPLibraryFileIdResponse_MissingProvider) String() str
 func (*CheckProvidersWithIPLibraryFileIdResponse_MissingProvider) ProtoMessage() {}
 
 func (x *CheckProvidersWithIPLibraryFileIdResponse_MissingProvider) ProtoReflect() protoreflect.Message {
-	mi := &file_service_ip_library_file_proto_msgTypes[21]
+	mi := &file_service_ip_library_file_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1190,7 +1380,7 @@ func (x *CheckProvidersWithIPLibraryFileIdResponse_MissingProvider) ProtoReflect
 
 // Deprecated: Use CheckProvidersWithIPLibraryFileIdResponse_MissingProvider.ProtoReflect.Descriptor instead.
 func (*CheckProvidersWithIPLibraryFileIdResponse_MissingProvider) Descriptor() ([]byte, []int) {
-	return file_service_ip_library_file_proto_rawDescGZIP(), []int{15, 0}
+	return file_service_ip_library_file_proto_rawDescGZIP(), []int{17, 0}
 }
 
 func (x *CheckProvidersWithIPLibraryFileIdResponse_MissingProvider) GetProviderName() string {
@@ -1226,43 +1416,53 @@ var file_service_ip_library_file_proto_rawDesc = []byte{
 	0x73, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x5f, 0x74,
 	0x6f, 0x77, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x22, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
 	0x73, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x72, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x5f, 0x70,
-	0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x28, 0x0a,
-	0x26, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x55, 0x6e, 0x66, 0x69, 0x6e, 0x69, 0x73, 0x68,
-	0x65, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x64, 0x0a, 0x27, 0x46, 0x69, 0x6e, 0x64, 0x41,
-	0x6c, 0x6c, 0x55, 0x6e, 0x66, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x49, 0x50, 0x4c, 0x69,
-	0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x39, 0x0a, 0x0e, 0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46,
-	0x69, 0x6c, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x70, 0x62, 0x2e,
-	0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x0e, 0x69,
-	0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x22, 0x44, 0x0a,
-	0x18, 0x46, 0x69, 0x6e, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69,
-	0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x28, 0x0a, 0x0f, 0x69, 0x70, 0x4c,
-	0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x03, 0x52, 0x0f, 0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c,
-	0x65, 0x49, 0x64, 0x22, 0x54, 0x0a, 0x19, 0x46, 0x69, 0x6e, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62,
-	0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x37, 0x0a, 0x0d, 0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c,
-	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x70, 0x62, 0x2e, 0x49, 0x50, 0x4c,
-	0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x0d, 0x69, 0x70, 0x4c, 0x69,
-	0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x22, 0xa2, 0x02, 0x0a, 0x1a, 0x43, 0x72,
-	0x65, 0x61, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c,
-	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x74, 0x65, 0x6d, 0x70,
-	0x6c, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x74, 0x65, 0x6d, 0x70,
+	0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x26, 0x0a,
+	0x24, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64,
+	0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x62, 0x0a, 0x25, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c,
+	0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
+	0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39,
+	0x0a, 0x0e, 0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x70, 0x62, 0x2e, 0x49, 0x50, 0x4c, 0x69,
+	0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x0e, 0x69, 0x70, 0x4c, 0x69, 0x62,
+	0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x22, 0x28, 0x0a, 0x26, 0x46, 0x69, 0x6e,
+	0x64, 0x41, 0x6c, 0x6c, 0x55, 0x6e, 0x66, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x49, 0x50,
+	0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x22, 0x64, 0x0a, 0x27, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x55, 0x6e,
+	0x66, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
+	0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39,
+	0x0a, 0x0e, 0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x70, 0x62, 0x2e, 0x49, 0x50, 0x4c, 0x69,
+	0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x0e, 0x69, 0x70, 0x4c, 0x69, 0x62,
+	0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x22, 0x44, 0x0a, 0x18, 0x46, 0x69, 0x6e,
+	0x64, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x28, 0x0a, 0x0f, 0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61,
+	0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0f,
+	0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x22,
+	0x54, 0x0a, 0x19, 0x46, 0x69, 0x6e, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79,
+	0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x37, 0x0a, 0x0d,
+	0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x70, 0x62, 0x2e, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61,
+	0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x0d, 0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
+	0x79, 0x46, 0x69, 0x6c, 0x65, 0x22, 0xb6, 0x02, 0x0a, 0x1a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x74, 0x65, 0x6d, 0x70,
+	0x6c, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x74, 0x65, 0x6d, 0x70,
 	0x6c, 0x61, 0x74, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x65, 0x6d, 0x70, 0x74, 0x79, 0x56, 0x61, 0x6c,
-	0x75, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b, 0x65, 0x6d, 0x70, 0x74, 0x79,
+	0x75, 0x65, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b, 0x65, 0x6d, 0x70, 0x74, 0x79,
 	0x56, 0x61, 0x6c, 0x75, 0x65, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x66, 0x69, 0x6c, 0x65, 0x49, 0x64,
-	0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x24,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x24,
 	0x0a, 0x0d, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18,
-	0x04, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0d, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73,
+	0x05, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0d, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73,
 	0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x24, 0x0a, 0x0d, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x6e, 0x63, 0x65,
-	0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0d, 0x70, 0x72, 0x6f,
+	0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0d, 0x70, 0x72, 0x6f,
 	0x76, 0x69, 0x6e, 0x63, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x1e, 0x0a, 0x0a, 0x63, 0x69,
-	0x74, 0x69, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0a,
+	0x74, 0x69, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x0a,
 	0x63, 0x69, 0x74, 0x69, 0x65, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x6f,
-	0x77, 0x6e, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x09, 0x74,
+	0x77, 0x6e, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x09, 0x74,
 	0x6f, 0x77, 0x6e, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x12, 0x24, 0x0a, 0x0d, 0x70, 0x72, 0x6f, 0x76,
-	0x69, 0x64, 0x65, 0x72, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0c, 0x52,
+	0x69, 0x64, 0x65, 0x72, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0c, 0x52,
 	0x0d, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x73, 0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x47,
 	0x0a, 0x1b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
 	0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x28, 0x0a,
@@ -1391,72 +1591,99 @@ var file_service_ip_library_file_proto_rawDesc = []byte{
 	0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71,
 	0x75, 0x65, 0x73, 0x74, 0x12, 0x28, 0x0a, 0x0f, 0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
 	0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0f, 0x69,
-	0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x32, 0xff,
-	0x07, 0x0a, 0x14, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x7a, 0x0a, 0x1f, 0x66, 0x69, 0x6e, 0x64, 0x41,
-	0x6c, 0x6c, 0x55, 0x6e, 0x66, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x49, 0x50, 0x4c, 0x69,
-	0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x12, 0x2a, 0x2e, 0x70, 0x62, 0x2e,
-	0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x55, 0x6e, 0x66, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65,
-	0x64, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
-	0x41, 0x6c, 0x6c, 0x55, 0x6e, 0x66, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x49, 0x50, 0x4c,
-	0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x11, 0x66, 0x69, 0x6e, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62,
-	0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
-	0x6e, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
-	0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x13, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x49,
-	0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x1e, 0x2e, 0x70,
-	0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
-	0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x70,
-	0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
-	0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x80, 0x01,
-	0x0a, 0x21, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73,
-	0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c,
-	0x65, 0x49, 0x64, 0x12, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x43, 0x6f,
-	0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62,
-	0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x2d, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x43, 0x6f, 0x75, 0x6e,
+	0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x22, 0x4e,
+	0x0a, 0x22, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
+	0x79, 0x46, 0x69, 0x6c, 0x65, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x28, 0x0a, 0x0f, 0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
+	0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0f, 0x69,
+	0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x22, 0x46,
+	0x0a, 0x1a, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
+	0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x28, 0x0a, 0x0f,
+	0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0f, 0x69, 0x70, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79,
+	0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x32, 0x93, 0x0a, 0x0a, 0x14, 0x49, 0x50, 0x4c, 0x69, 0x62,
+	0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
+	0x74, 0x0a, 0x1d, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68,
+	0x65, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73,
+	0x12, 0x28, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x46, 0x69, 0x6e,
+	0x69, 0x73, 0x68, 0x65, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69,
+	0x6c, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x70, 0x62, 0x2e,
+	0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x49,
+	0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x7a, 0x0a, 0x1f, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c,
+	0x55, 0x6e, 0x66, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72,
+	0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x12, 0x2a, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
+	0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x55, 0x6e, 0x66, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x49,
+	0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c,
+	0x6c, 0x55, 0x6e, 0x66, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62,
+	0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x50, 0x0a, 0x11, 0x66, 0x69, 0x6e, 0x64, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61,
+	0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
+	0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x49, 0x50,
+	0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x13, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x49, 0x50, 0x4c,
+	0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x1e, 0x2e, 0x70, 0x62, 0x2e,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46,
+	0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x70, 0x62, 0x2e,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46,
+	0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x80, 0x01, 0x0a, 0x21,
+	0x63, 0x68, 0x65, 0x63, 0x6b, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x57, 0x69,
+	0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49,
+	0x64, 0x12, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x43, 0x6f, 0x75, 0x6e,
 	0x74, 0x72, 0x69, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61,
+	0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x2d, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x72,
+	0x69, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79,
+	0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x80,
+	0x01, 0x0a, 0x21, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x6e, 0x63, 0x65,
+	0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69,
+	0x6c, 0x65, 0x49, 0x64, 0x12, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x50,
+	0x72, 0x6f, 0x76, 0x69, 0x6e, 0x63, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69,
+	0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x2d, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x50, 0x72, 0x6f,
+	0x76, 0x69, 0x6e, 0x63, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72,
+	0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x77, 0x0a, 0x1e, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x43, 0x69, 0x74, 0x69, 0x65, 0x73,
+	0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c,
+	0x65, 0x49, 0x64, 0x12, 0x29, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x43, 0x69,
+	0x74, 0x69, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
+	0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a,
+	0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x43, 0x69, 0x74, 0x69, 0x65, 0x73, 0x57,
+	0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65,
+	0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x74, 0x0a, 0x1d, 0x63, 0x68,
+	0x65, 0x63, 0x6b, 0x54, 0x6f, 0x77, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69,
+	0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x28, 0x2e, 0x70, 0x62,
+	0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x54, 0x6f, 0x77, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49,
+	0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b,
+	0x54, 0x6f, 0x77, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61,
 	0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x80, 0x01, 0x0a, 0x21, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x6e,
-	0x63, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79,
+	0x12, 0x80, 0x01, 0x0a, 0x21, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64,
+	0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79,
 	0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63,
-	0x6b, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x6e, 0x63, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50,
+	0x6b, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50,
 	0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x71,
 	0x75, 0x65, 0x73, 0x74, 0x1a, 0x2d, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x50,
-	0x72, 0x6f, 0x76, 0x69, 0x6e, 0x63, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69,
+	0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69,
 	0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x77, 0x0a, 0x1e, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x43, 0x69, 0x74, 0x69,
-	0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46,
-	0x69, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x29, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b,
-	0x43, 0x69, 0x74, 0x69, 0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72,
-	0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x2a, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x43, 0x69, 0x74, 0x69, 0x65,
-	0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69,
-	0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x74, 0x0a, 0x1d,
-	0x63, 0x68, 0x65, 0x63, 0x6b, 0x54, 0x6f, 0x77, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50,
-	0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x28, 0x2e,
-	0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x54, 0x6f, 0x77, 0x6e, 0x73, 0x57, 0x69, 0x74,
-	0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65,
-	0x63, 0x6b, 0x54, 0x6f, 0x77, 0x6e, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62,
-	0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x80, 0x01, 0x0a, 0x21, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x50, 0x72, 0x6f, 0x76,
-	0x69, 0x64, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61,
-	0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68,
-	0x65, 0x63, 0x6b, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68,
-	0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2d, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x68, 0x65, 0x63,
-	0x6b, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x49, 0x50,
-	0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x49, 0x0a, 0x15, 0x67, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74,
-	0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x20,
-	0x2e, 0x70, 0x62, 0x2e, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69,
-	0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73,
-	0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6e, 0x73, 0x65, 0x12, 0x49, 0x0a, 0x15, 0x67, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x49,
+	0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x20, 0x2e, 0x70,
+	0x62, 0x2e, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72,
+	0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e,
+	0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x55,
+	0x0a, 0x1b, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
+	0x79, 0x46, 0x69, 0x6c, 0x65, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x12, 0x26, 0x2e,
+	0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61,
+	0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x45, 0x0a, 0x13, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x49,
+	0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x1e, 0x2e, 0x70,
+	0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x49, 0x50, 0x4c, 0x69, 0x62, 0x72, 0x61, 0x72,
+	0x79, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70,
+	0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04,
+	0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1471,74 +1698,85 @@ func file_service_ip_library_file_proto_rawDescGZIP() []byte {
 	return file_service_ip_library_file_proto_rawDescData
 }
 
-var file_service_ip_library_file_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_service_ip_library_file_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_service_ip_library_file_proto_goTypes = []interface{}{
-	(*FindAllUnfinishedIPLibraryFilesRequest)(nil),                    // 0: pb.FindAllUnfinishedIPLibraryFilesRequest
-	(*FindAllUnfinishedIPLibraryFilesResponse)(nil),                   // 1: pb.FindAllUnfinishedIPLibraryFilesResponse
-	(*FindIPLibraryFileRequest)(nil),                                  // 2: pb.FindIPLibraryFileRequest
-	(*FindIPLibraryFileResponse)(nil),                                 // 3: pb.FindIPLibraryFileResponse
-	(*CreateIPLibraryFileRequest)(nil),                                // 4: pb.CreateIPLibraryFileRequest
-	(*CreateIPLibraryFileResponse)(nil),                               // 5: pb.CreateIPLibraryFileResponse
-	(*CheckCountriesWithIPLibraryFileIdRequest)(nil),                  // 6: pb.CheckCountriesWithIPLibraryFileIdRequest
-	(*CheckCountriesWithIPLibraryFileIdResponse)(nil),                 // 7: pb.CheckCountriesWithIPLibraryFileIdResponse
-	(*CheckProvincesWithIPLibraryFileIdRequest)(nil),                  // 8: pb.CheckProvincesWithIPLibraryFileIdRequest
-	(*CheckProvincesWithIPLibraryFileIdResponse)(nil),                 // 9: pb.CheckProvincesWithIPLibraryFileIdResponse
-	(*CheckCitiesWithIPLibraryFileIdRequest)(nil),                     // 10: pb.CheckCitiesWithIPLibraryFileIdRequest
-	(*CheckCitiesWithIPLibraryFileIdResponse)(nil),                    // 11: pb.CheckCitiesWithIPLibraryFileIdResponse
-	(*CheckTownsWithIPLibraryFileIdRequest)(nil),                      // 12: pb.CheckTownsWithIPLibraryFileIdRequest
-	(*CheckTownsWithIPLibraryFileIdResponse)(nil),                     // 13: pb.CheckTownsWithIPLibraryFileIdResponse
-	(*CheckProvidersWithIPLibraryFileIdRequest)(nil),                  // 14: pb.CheckProvidersWithIPLibraryFileIdRequest
-	(*CheckProvidersWithIPLibraryFileIdResponse)(nil),                 // 15: pb.CheckProvidersWithIPLibraryFileIdResponse
-	(*GenerateIPLibraryFileRequest)(nil),                              // 16: pb.GenerateIPLibraryFileRequest
-	(*CheckCountriesWithIPLibraryFileIdResponse_MissingCountry)(nil),  // 17: pb.CheckCountriesWithIPLibraryFileIdResponse.MissingCountry
-	(*CheckProvincesWithIPLibraryFileIdResponse_MissingProvince)(nil), // 18: pb.CheckProvincesWithIPLibraryFileIdResponse.MissingProvince
-	(*CheckCitiesWithIPLibraryFileIdResponse_MissingCity)(nil),        // 19: pb.CheckCitiesWithIPLibraryFileIdResponse.MissingCity
-	(*CheckTownsWithIPLibraryFileIdResponse_MissingTown)(nil),         // 20: pb.CheckTownsWithIPLibraryFileIdResponse.MissingTown
-	(*CheckProvidersWithIPLibraryFileIdResponse_MissingProvider)(nil), // 21: pb.CheckProvidersWithIPLibraryFileIdResponse.MissingProvider
-	(*IPLibraryFile)(nil),                                             // 22: pb.IPLibraryFile
-	(*RegionCountry)(nil),                                             // 23: pb.RegionCountry
-	(*RegionProvince)(nil),                                            // 24: pb.RegionProvince
-	(*RegionCity)(nil),                                                // 25: pb.RegionCity
-	(*RegionTown)(nil),                                                // 26: pb.RegionTown
-	(*RegionProvider)(nil),                                            // 27: pb.RegionProvider
-	(*RPCSuccess)(nil),                                                // 28: pb.RPCSuccess
+	(*FindAllFinishedIPLibraryFilesRequest)(nil),                      // 0: pb.FindAllFinishedIPLibraryFilesRequest
+	(*FindAllFinishedIPLibraryFilesResponse)(nil),                     // 1: pb.FindAllFinishedIPLibraryFilesResponse
+	(*FindAllUnfinishedIPLibraryFilesRequest)(nil),                    // 2: pb.FindAllUnfinishedIPLibraryFilesRequest
+	(*FindAllUnfinishedIPLibraryFilesResponse)(nil),                   // 3: pb.FindAllUnfinishedIPLibraryFilesResponse
+	(*FindIPLibraryFileRequest)(nil),                                  // 4: pb.FindIPLibraryFileRequest
+	(*FindIPLibraryFileResponse)(nil),                                 // 5: pb.FindIPLibraryFileResponse
+	(*CreateIPLibraryFileRequest)(nil),                                // 6: pb.CreateIPLibraryFileRequest
+	(*CreateIPLibraryFileResponse)(nil),                               // 7: pb.CreateIPLibraryFileResponse
+	(*CheckCountriesWithIPLibraryFileIdRequest)(nil),                  // 8: pb.CheckCountriesWithIPLibraryFileIdRequest
+	(*CheckCountriesWithIPLibraryFileIdResponse)(nil),                 // 9: pb.CheckCountriesWithIPLibraryFileIdResponse
+	(*CheckProvincesWithIPLibraryFileIdRequest)(nil),                  // 10: pb.CheckProvincesWithIPLibraryFileIdRequest
+	(*CheckProvincesWithIPLibraryFileIdResponse)(nil),                 // 11: pb.CheckProvincesWithIPLibraryFileIdResponse
+	(*CheckCitiesWithIPLibraryFileIdRequest)(nil),                     // 12: pb.CheckCitiesWithIPLibraryFileIdRequest
+	(*CheckCitiesWithIPLibraryFileIdResponse)(nil),                    // 13: pb.CheckCitiesWithIPLibraryFileIdResponse
+	(*CheckTownsWithIPLibraryFileIdRequest)(nil),                      // 14: pb.CheckTownsWithIPLibraryFileIdRequest
+	(*CheckTownsWithIPLibraryFileIdResponse)(nil),                     // 15: pb.CheckTownsWithIPLibraryFileIdResponse
+	(*CheckProvidersWithIPLibraryFileIdRequest)(nil),                  // 16: pb.CheckProvidersWithIPLibraryFileIdRequest
+	(*CheckProvidersWithIPLibraryFileIdResponse)(nil),                 // 17: pb.CheckProvidersWithIPLibraryFileIdResponse
+	(*GenerateIPLibraryFileRequest)(nil),                              // 18: pb.GenerateIPLibraryFileRequest
+	(*UpdateIPLibraryFileFinishedRequest)(nil),                        // 19: pb.UpdateIPLibraryFileFinishedRequest
+	(*DeleteIPLibraryFileRequest)(nil),                                // 20: pb.DeleteIPLibraryFileRequest
+	(*CheckCountriesWithIPLibraryFileIdResponse_MissingCountry)(nil),  // 21: pb.CheckCountriesWithIPLibraryFileIdResponse.MissingCountry
+	(*CheckProvincesWithIPLibraryFileIdResponse_MissingProvince)(nil), // 22: pb.CheckProvincesWithIPLibraryFileIdResponse.MissingProvince
+	(*CheckCitiesWithIPLibraryFileIdResponse_MissingCity)(nil),        // 23: pb.CheckCitiesWithIPLibraryFileIdResponse.MissingCity
+	(*CheckTownsWithIPLibraryFileIdResponse_MissingTown)(nil),         // 24: pb.CheckTownsWithIPLibraryFileIdResponse.MissingTown
+	(*CheckProvidersWithIPLibraryFileIdResponse_MissingProvider)(nil), // 25: pb.CheckProvidersWithIPLibraryFileIdResponse.MissingProvider
+	(*IPLibraryFile)(nil),                                             // 26: pb.IPLibraryFile
+	(*RegionCountry)(nil),                                             // 27: pb.RegionCountry
+	(*RegionProvince)(nil),                                            // 28: pb.RegionProvince
+	(*RegionCity)(nil),                                                // 29: pb.RegionCity
+	(*RegionTown)(nil),                                                // 30: pb.RegionTown
+	(*RegionProvider)(nil),                                            // 31: pb.RegionProvider
+	(*RPCSuccess)(nil),                                                // 32: pb.RPCSuccess
 }
 var file_service_ip_library_file_proto_depIdxs = []int32{
-	22, // 0: pb.FindAllUnfinishedIPLibraryFilesResponse.ipLibraryFiles:type_name -> pb.IPLibraryFile
-	22, // 1: pb.FindIPLibraryFileResponse.ipLibraryFile:type_name -> pb.IPLibraryFile
-	17, // 2: pb.CheckCountriesWithIPLibraryFileIdResponse.missingCountries:type_name -> pb.CheckCountriesWithIPLibraryFileIdResponse.MissingCountry
-	18, // 3: pb.CheckProvincesWithIPLibraryFileIdResponse.missingProvinces:type_name -> pb.CheckProvincesWithIPLibraryFileIdResponse.MissingProvince
-	19, // 4: pb.CheckCitiesWithIPLibraryFileIdResponse.missingCities:type_name -> pb.CheckCitiesWithIPLibraryFileIdResponse.MissingCity
-	20, // 5: pb.CheckTownsWithIPLibraryFileIdResponse.missingTowns:type_name -> pb.CheckTownsWithIPLibraryFileIdResponse.MissingTown
-	21, // 6: pb.CheckProvidersWithIPLibraryFileIdResponse.missingProviders:type_name -> pb.CheckProvidersWithIPLibraryFileIdResponse.MissingProvider
-	23, // 7: pb.CheckCountriesWithIPLibraryFileIdResponse.MissingCountry.similarCountries:type_name -> pb.RegionCountry
-	24, // 8: pb.CheckProvincesWithIPLibraryFileIdResponse.MissingProvince.similarProvinces:type_name -> pb.RegionProvince
-	25, // 9: pb.CheckCitiesWithIPLibraryFileIdResponse.MissingCity.similarCities:type_name -> pb.RegionCity
-	26, // 10: pb.CheckTownsWithIPLibraryFileIdResponse.MissingTown.similarTowns:type_name -> pb.RegionTown
-	27, // 11: pb.CheckProvidersWithIPLibraryFileIdResponse.MissingProvider.similarProviders:type_name -> pb.RegionProvider
-	0,  // 12: pb.IPLibraryFileService.findAllUnfinishedIPLibraryFiles:input_type -> pb.FindAllUnfinishedIPLibraryFilesRequest
-	2,  // 13: pb.IPLibraryFileService.findIPLibraryFile:input_type -> pb.FindIPLibraryFileRequest
-	4,  // 14: pb.IPLibraryFileService.createIPLibraryFile:input_type -> pb.CreateIPLibraryFileRequest
-	6,  // 15: pb.IPLibraryFileService.checkCountriesWithIPLibraryFileId:input_type -> pb.CheckCountriesWithIPLibraryFileIdRequest
-	8,  // 16: pb.IPLibraryFileService.checkProvincesWithIPLibraryFileId:input_type -> pb.CheckProvincesWithIPLibraryFileIdRequest
-	10, // 17: pb.IPLibraryFileService.checkCitiesWithIPLibraryFileId:input_type -> pb.CheckCitiesWithIPLibraryFileIdRequest
-	12, // 18: pb.IPLibraryFileService.checkTownsWithIPLibraryFileId:input_type -> pb.CheckTownsWithIPLibraryFileIdRequest
-	14, // 19: pb.IPLibraryFileService.checkProvidersWithIPLibraryFileId:input_type -> pb.CheckProvidersWithIPLibraryFileIdRequest
-	16, // 20: pb.IPLibraryFileService.generateIPLibraryFile:input_type -> pb.GenerateIPLibraryFileRequest
-	1,  // 21: pb.IPLibraryFileService.findAllUnfinishedIPLibraryFiles:output_type -> pb.FindAllUnfinishedIPLibraryFilesResponse
-	3,  // 22: pb.IPLibraryFileService.findIPLibraryFile:output_type -> pb.FindIPLibraryFileResponse
-	5,  // 23: pb.IPLibraryFileService.createIPLibraryFile:output_type -> pb.CreateIPLibraryFileResponse
-	7,  // 24: pb.IPLibraryFileService.checkCountriesWithIPLibraryFileId:output_type -> pb.CheckCountriesWithIPLibraryFileIdResponse
-	9,  // 25: pb.IPLibraryFileService.checkProvincesWithIPLibraryFileId:output_type -> pb.CheckProvincesWithIPLibraryFileIdResponse
-	11, // 26: pb.IPLibraryFileService.checkCitiesWithIPLibraryFileId:output_type -> pb.CheckCitiesWithIPLibraryFileIdResponse
-	13, // 27: pb.IPLibraryFileService.checkTownsWithIPLibraryFileId:output_type -> pb.CheckTownsWithIPLibraryFileIdResponse
-	15, // 28: pb.IPLibraryFileService.checkProvidersWithIPLibraryFileId:output_type -> pb.CheckProvidersWithIPLibraryFileIdResponse
-	28, // 29: pb.IPLibraryFileService.generateIPLibraryFile:output_type -> pb.RPCSuccess
-	21, // [21:30] is the sub-list for method output_type
-	12, // [12:21] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	26, // 0: pb.FindAllFinishedIPLibraryFilesResponse.ipLibraryFiles:type_name -> pb.IPLibraryFile
+	26, // 1: pb.FindAllUnfinishedIPLibraryFilesResponse.ipLibraryFiles:type_name -> pb.IPLibraryFile
+	26, // 2: pb.FindIPLibraryFileResponse.ipLibraryFile:type_name -> pb.IPLibraryFile
+	21, // 3: pb.CheckCountriesWithIPLibraryFileIdResponse.missingCountries:type_name -> pb.CheckCountriesWithIPLibraryFileIdResponse.MissingCountry
+	22, // 4: pb.CheckProvincesWithIPLibraryFileIdResponse.missingProvinces:type_name -> pb.CheckProvincesWithIPLibraryFileIdResponse.MissingProvince
+	23, // 5: pb.CheckCitiesWithIPLibraryFileIdResponse.missingCities:type_name -> pb.CheckCitiesWithIPLibraryFileIdResponse.MissingCity
+	24, // 6: pb.CheckTownsWithIPLibraryFileIdResponse.missingTowns:type_name -> pb.CheckTownsWithIPLibraryFileIdResponse.MissingTown
+	25, // 7: pb.CheckProvidersWithIPLibraryFileIdResponse.missingProviders:type_name -> pb.CheckProvidersWithIPLibraryFileIdResponse.MissingProvider
+	27, // 8: pb.CheckCountriesWithIPLibraryFileIdResponse.MissingCountry.similarCountries:type_name -> pb.RegionCountry
+	28, // 9: pb.CheckProvincesWithIPLibraryFileIdResponse.MissingProvince.similarProvinces:type_name -> pb.RegionProvince
+	29, // 10: pb.CheckCitiesWithIPLibraryFileIdResponse.MissingCity.similarCities:type_name -> pb.RegionCity
+	30, // 11: pb.CheckTownsWithIPLibraryFileIdResponse.MissingTown.similarTowns:type_name -> pb.RegionTown
+	31, // 12: pb.CheckProvidersWithIPLibraryFileIdResponse.MissingProvider.similarProviders:type_name -> pb.RegionProvider
+	0,  // 13: pb.IPLibraryFileService.findAllFinishedIPLibraryFiles:input_type -> pb.FindAllFinishedIPLibraryFilesRequest
+	2,  // 14: pb.IPLibraryFileService.findAllUnfinishedIPLibraryFiles:input_type -> pb.FindAllUnfinishedIPLibraryFilesRequest
+	4,  // 15: pb.IPLibraryFileService.findIPLibraryFile:input_type -> pb.FindIPLibraryFileRequest
+	6,  // 16: pb.IPLibraryFileService.createIPLibraryFile:input_type -> pb.CreateIPLibraryFileRequest
+	8,  // 17: pb.IPLibraryFileService.checkCountriesWithIPLibraryFileId:input_type -> pb.CheckCountriesWithIPLibraryFileIdRequest
+	10, // 18: pb.IPLibraryFileService.checkProvincesWithIPLibraryFileId:input_type -> pb.CheckProvincesWithIPLibraryFileIdRequest
+	12, // 19: pb.IPLibraryFileService.checkCitiesWithIPLibraryFileId:input_type -> pb.CheckCitiesWithIPLibraryFileIdRequest
+	14, // 20: pb.IPLibraryFileService.checkTownsWithIPLibraryFileId:input_type -> pb.CheckTownsWithIPLibraryFileIdRequest
+	16, // 21: pb.IPLibraryFileService.checkProvidersWithIPLibraryFileId:input_type -> pb.CheckProvidersWithIPLibraryFileIdRequest
+	18, // 22: pb.IPLibraryFileService.generateIPLibraryFile:input_type -> pb.GenerateIPLibraryFileRequest
+	19, // 23: pb.IPLibraryFileService.updateIPLibraryFileFinished:input_type -> pb.UpdateIPLibraryFileFinishedRequest
+	20, // 24: pb.IPLibraryFileService.deleteIPLibraryFile:input_type -> pb.DeleteIPLibraryFileRequest
+	1,  // 25: pb.IPLibraryFileService.findAllFinishedIPLibraryFiles:output_type -> pb.FindAllFinishedIPLibraryFilesResponse
+	3,  // 26: pb.IPLibraryFileService.findAllUnfinishedIPLibraryFiles:output_type -> pb.FindAllUnfinishedIPLibraryFilesResponse
+	5,  // 27: pb.IPLibraryFileService.findIPLibraryFile:output_type -> pb.FindIPLibraryFileResponse
+	7,  // 28: pb.IPLibraryFileService.createIPLibraryFile:output_type -> pb.CreateIPLibraryFileResponse
+	9,  // 29: pb.IPLibraryFileService.checkCountriesWithIPLibraryFileId:output_type -> pb.CheckCountriesWithIPLibraryFileIdResponse
+	11, // 30: pb.IPLibraryFileService.checkProvincesWithIPLibraryFileId:output_type -> pb.CheckProvincesWithIPLibraryFileIdResponse
+	13, // 31: pb.IPLibraryFileService.checkCitiesWithIPLibraryFileId:output_type -> pb.CheckCitiesWithIPLibraryFileIdResponse
+	15, // 32: pb.IPLibraryFileService.checkTownsWithIPLibraryFileId:output_type -> pb.CheckTownsWithIPLibraryFileIdResponse
+	17, // 33: pb.IPLibraryFileService.checkProvidersWithIPLibraryFileId:output_type -> pb.CheckProvidersWithIPLibraryFileIdResponse
+	32, // 34: pb.IPLibraryFileService.generateIPLibraryFile:output_type -> pb.RPCSuccess
+	32, // 35: pb.IPLibraryFileService.updateIPLibraryFileFinished:output_type -> pb.RPCSuccess
+	32, // 36: pb.IPLibraryFileService.deleteIPLibraryFile:output_type -> pb.RPCSuccess
+	25, // [25:37] is the sub-list for method output_type
+	13, // [13:25] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_service_ip_library_file_proto_init() }
@@ -1555,7 +1793,7 @@ func file_service_ip_library_file_proto_init() {
 	file_models_model_region_provider_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_service_ip_library_file_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindAllUnfinishedIPLibraryFilesRequest); i {
+			switch v := v.(*FindAllFinishedIPLibraryFilesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1567,7 +1805,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindAllUnfinishedIPLibraryFilesResponse); i {
+			switch v := v.(*FindAllFinishedIPLibraryFilesResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1579,7 +1817,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindIPLibraryFileRequest); i {
+			switch v := v.(*FindAllUnfinishedIPLibraryFilesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1591,7 +1829,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindIPLibraryFileResponse); i {
+			switch v := v.(*FindAllUnfinishedIPLibraryFilesResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1603,7 +1841,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateIPLibraryFileRequest); i {
+			switch v := v.(*FindIPLibraryFileRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1615,7 +1853,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateIPLibraryFileResponse); i {
+			switch v := v.(*FindIPLibraryFileResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1627,7 +1865,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckCountriesWithIPLibraryFileIdRequest); i {
+			switch v := v.(*CreateIPLibraryFileRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1639,7 +1877,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckCountriesWithIPLibraryFileIdResponse); i {
+			switch v := v.(*CreateIPLibraryFileResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1651,7 +1889,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckProvincesWithIPLibraryFileIdRequest); i {
+			switch v := v.(*CheckCountriesWithIPLibraryFileIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1663,7 +1901,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckProvincesWithIPLibraryFileIdResponse); i {
+			switch v := v.(*CheckCountriesWithIPLibraryFileIdResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1675,7 +1913,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckCitiesWithIPLibraryFileIdRequest); i {
+			switch v := v.(*CheckProvincesWithIPLibraryFileIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1687,7 +1925,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckCitiesWithIPLibraryFileIdResponse); i {
+			switch v := v.(*CheckProvincesWithIPLibraryFileIdResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1699,7 +1937,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckTownsWithIPLibraryFileIdRequest); i {
+			switch v := v.(*CheckCitiesWithIPLibraryFileIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1711,7 +1949,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckTownsWithIPLibraryFileIdResponse); i {
+			switch v := v.(*CheckCitiesWithIPLibraryFileIdResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1723,7 +1961,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckProvidersWithIPLibraryFileIdRequest); i {
+			switch v := v.(*CheckTownsWithIPLibraryFileIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1735,7 +1973,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckProvidersWithIPLibraryFileIdResponse); i {
+			switch v := v.(*CheckTownsWithIPLibraryFileIdResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1747,7 +1985,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GenerateIPLibraryFileRequest); i {
+			switch v := v.(*CheckProvidersWithIPLibraryFileIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1759,7 +1997,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckCountriesWithIPLibraryFileIdResponse_MissingCountry); i {
+			switch v := v.(*CheckProvidersWithIPLibraryFileIdResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1771,7 +2009,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckProvincesWithIPLibraryFileIdResponse_MissingProvince); i {
+			switch v := v.(*GenerateIPLibraryFileRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1783,7 +2021,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckCitiesWithIPLibraryFileIdResponse_MissingCity); i {
+			switch v := v.(*UpdateIPLibraryFileFinishedRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1795,7 +2033,7 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckTownsWithIPLibraryFileIdResponse_MissingTown); i {
+			switch v := v.(*DeleteIPLibraryFileRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1807,6 +2045,54 @@ func file_service_ip_library_file_proto_init() {
 			}
 		}
 		file_service_ip_library_file_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CheckCountriesWithIPLibraryFileIdResponse_MissingCountry); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ip_library_file_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CheckProvincesWithIPLibraryFileIdResponse_MissingProvince); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ip_library_file_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CheckCitiesWithIPLibraryFileIdResponse_MissingCity); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ip_library_file_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CheckTownsWithIPLibraryFileIdResponse_MissingTown); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ip_library_file_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CheckProvidersWithIPLibraryFileIdResponse_MissingProvider); i {
 			case 0:
 				return &v.state
@@ -1825,7 +2111,7 @@ func file_service_ip_library_file_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_ip_library_file_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   22,
+			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -1851,6 +2137,8 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type IPLibraryFileServiceClient interface {
+	// 查找所有已完成的IP库文件
+	FindAllFinishedIPLibraryFiles(ctx context.Context, in *FindAllFinishedIPLibraryFilesRequest, opts ...grpc.CallOption) (*FindAllFinishedIPLibraryFilesResponse, error)
 	// 查找所有未完成的IP库文件
 	FindAllUnfinishedIPLibraryFiles(ctx context.Context, in *FindAllUnfinishedIPLibraryFilesRequest, opts ...grpc.CallOption) (*FindAllUnfinishedIPLibraryFilesResponse, error)
 	// 查找单个IP库文件
@@ -1869,6 +2157,10 @@ type IPLibraryFileServiceClient interface {
 	CheckProvidersWithIPLibraryFileId(ctx context.Context, in *CheckProvidersWithIPLibraryFileIdRequest, opts ...grpc.CallOption) (*CheckProvidersWithIPLibraryFileIdResponse, error)
 	// 生成IP库文件
 	GenerateIPLibraryFile(ctx context.Context, in *GenerateIPLibraryFileRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 设置某个IP库为已完成
+	UpdateIPLibraryFileFinished(ctx context.Context, in *UpdateIPLibraryFileFinishedRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 删除IP库文件
+	DeleteIPLibraryFile(ctx context.Context, in *DeleteIPLibraryFileRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
 
 type iPLibraryFileServiceClient struct {
@@ -1877,6 +2169,15 @@ type iPLibraryFileServiceClient struct {
 
 func NewIPLibraryFileServiceClient(cc grpc.ClientConnInterface) IPLibraryFileServiceClient {
 	return &iPLibraryFileServiceClient{cc}
+}
+
+func (c *iPLibraryFileServiceClient) FindAllFinishedIPLibraryFiles(ctx context.Context, in *FindAllFinishedIPLibraryFilesRequest, opts ...grpc.CallOption) (*FindAllFinishedIPLibraryFilesResponse, error) {
+	out := new(FindAllFinishedIPLibraryFilesResponse)
+	err := c.cc.Invoke(ctx, "/pb.IPLibraryFileService/findAllFinishedIPLibraryFiles", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *iPLibraryFileServiceClient) FindAllUnfinishedIPLibraryFiles(ctx context.Context, in *FindAllUnfinishedIPLibraryFilesRequest, opts ...grpc.CallOption) (*FindAllUnfinishedIPLibraryFilesResponse, error) {
@@ -1960,8 +2261,28 @@ func (c *iPLibraryFileServiceClient) GenerateIPLibraryFile(ctx context.Context, 
 	return out, nil
 }
 
+func (c *iPLibraryFileServiceClient) UpdateIPLibraryFileFinished(ctx context.Context, in *UpdateIPLibraryFileFinishedRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.IPLibraryFileService/updateIPLibraryFileFinished", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *iPLibraryFileServiceClient) DeleteIPLibraryFile(ctx context.Context, in *DeleteIPLibraryFileRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, "/pb.IPLibraryFileService/deleteIPLibraryFile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IPLibraryFileServiceServer is the server API for IPLibraryFileService service.
 type IPLibraryFileServiceServer interface {
+	// 查找所有已完成的IP库文件
+	FindAllFinishedIPLibraryFiles(context.Context, *FindAllFinishedIPLibraryFilesRequest) (*FindAllFinishedIPLibraryFilesResponse, error)
 	// 查找所有未完成的IP库文件
 	FindAllUnfinishedIPLibraryFiles(context.Context, *FindAllUnfinishedIPLibraryFilesRequest) (*FindAllUnfinishedIPLibraryFilesResponse, error)
 	// 查找单个IP库文件
@@ -1980,12 +2301,19 @@ type IPLibraryFileServiceServer interface {
 	CheckProvidersWithIPLibraryFileId(context.Context, *CheckProvidersWithIPLibraryFileIdRequest) (*CheckProvidersWithIPLibraryFileIdResponse, error)
 	// 生成IP库文件
 	GenerateIPLibraryFile(context.Context, *GenerateIPLibraryFileRequest) (*RPCSuccess, error)
+	// 设置某个IP库为已完成
+	UpdateIPLibraryFileFinished(context.Context, *UpdateIPLibraryFileFinishedRequest) (*RPCSuccess, error)
+	// 删除IP库文件
+	DeleteIPLibraryFile(context.Context, *DeleteIPLibraryFileRequest) (*RPCSuccess, error)
 }
 
 // UnimplementedIPLibraryFileServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedIPLibraryFileServiceServer struct {
 }
 
+func (*UnimplementedIPLibraryFileServiceServer) FindAllFinishedIPLibraryFiles(context.Context, *FindAllFinishedIPLibraryFilesRequest) (*FindAllFinishedIPLibraryFilesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllFinishedIPLibraryFiles not implemented")
+}
 func (*UnimplementedIPLibraryFileServiceServer) FindAllUnfinishedIPLibraryFiles(context.Context, *FindAllUnfinishedIPLibraryFilesRequest) (*FindAllUnfinishedIPLibraryFilesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllUnfinishedIPLibraryFiles not implemented")
 }
@@ -2013,9 +2341,33 @@ func (*UnimplementedIPLibraryFileServiceServer) CheckProvidersWithIPLibraryFileI
 func (*UnimplementedIPLibraryFileServiceServer) GenerateIPLibraryFile(context.Context, *GenerateIPLibraryFileRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateIPLibraryFile not implemented")
 }
+func (*UnimplementedIPLibraryFileServiceServer) UpdateIPLibraryFileFinished(context.Context, *UpdateIPLibraryFileFinishedRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateIPLibraryFileFinished not implemented")
+}
+func (*UnimplementedIPLibraryFileServiceServer) DeleteIPLibraryFile(context.Context, *DeleteIPLibraryFileRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteIPLibraryFile not implemented")
+}
 
 func RegisterIPLibraryFileServiceServer(s *grpc.Server, srv IPLibraryFileServiceServer) {
 	s.RegisterService(&_IPLibraryFileService_serviceDesc, srv)
+}
+
+func _IPLibraryFileService_FindAllFinishedIPLibraryFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllFinishedIPLibraryFilesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IPLibraryFileServiceServer).FindAllFinishedIPLibraryFiles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.IPLibraryFileService/FindAllFinishedIPLibraryFiles",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IPLibraryFileServiceServer).FindAllFinishedIPLibraryFiles(ctx, req.(*FindAllFinishedIPLibraryFilesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _IPLibraryFileService_FindAllUnfinishedIPLibraryFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -2180,10 +2532,50 @@ func _IPLibraryFileService_GenerateIPLibraryFile_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IPLibraryFileService_UpdateIPLibraryFileFinished_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateIPLibraryFileFinishedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IPLibraryFileServiceServer).UpdateIPLibraryFileFinished(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.IPLibraryFileService/UpdateIPLibraryFileFinished",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IPLibraryFileServiceServer).UpdateIPLibraryFileFinished(ctx, req.(*UpdateIPLibraryFileFinishedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IPLibraryFileService_DeleteIPLibraryFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteIPLibraryFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IPLibraryFileServiceServer).DeleteIPLibraryFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.IPLibraryFileService/DeleteIPLibraryFile",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IPLibraryFileServiceServer).DeleteIPLibraryFile(ctx, req.(*DeleteIPLibraryFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _IPLibraryFileService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.IPLibraryFileService",
 	HandlerType: (*IPLibraryFileServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "findAllFinishedIPLibraryFiles",
+			Handler:    _IPLibraryFileService_FindAllFinishedIPLibraryFiles_Handler,
+		},
 		{
 			MethodName: "findAllUnfinishedIPLibraryFiles",
 			Handler:    _IPLibraryFileService_FindAllUnfinishedIPLibraryFiles_Handler,
@@ -2219,6 +2611,14 @@ var _IPLibraryFileService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "generateIPLibraryFile",
 			Handler:    _IPLibraryFileService_GenerateIPLibraryFile_Handler,
+		},
+		{
+			MethodName: "updateIPLibraryFileFinished",
+			Handler:    _IPLibraryFileService_UpdateIPLibraryFileFinished_Handler,
+		},
+		{
+			MethodName: "deleteIPLibraryFile",
+			Handler:    _IPLibraryFileService_DeleteIPLibraryFile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

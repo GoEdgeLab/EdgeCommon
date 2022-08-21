@@ -30,6 +30,7 @@ type MethodInfo struct {
 	Code                string   `json:"code"`
 	Doc                 string   `json:"doc"`
 	Roles               []string `json:"roles"`
+	IsDeprecated        bool     `json:"isDeprecated"`
 }
 
 type MessageInfo struct {
@@ -197,7 +198,7 @@ func main() {
 						// 先将rpc代码替换成临时代码
 						var methodCodeMap = map[string][]byte{} // code => method
 						var methodIndex = 0
-						var methodReg = regexp.MustCompile(`rpc\s+(\w+)\s*\(\s*(\w+)\s*\)\s*returns\s*\(\s*(\w+)\s*\)\s*;`)
+						var methodReg = regexp.MustCompile(`(?s)rpc\s+(\w+)\s*\(\s*(\w+)\s*\)\s*returns\s*\(\s*(\w+)\s*\)\s*(\{.+})?\s*;`)
 						data = methodReg.ReplaceAllFunc(data, func(methodData []byte) []byte {
 							methodIndex++
 							var code = "METHOD" + types.String(methodIndex)
@@ -236,6 +237,7 @@ func main() {
 									Name:                string(methodPieces[1]),
 									RequestMessageName:  string(methodPieces[2]),
 									ResponseMessageName: string(methodPieces[3]),
+									IsDeprecated:        strings.Contains(string(methodPieces[4]), "deprecated"),
 									Code:                string(methodData),
 									Doc:                 readComments(serviceData[:methodCodePosition[0]]),
 									Roles:               roles,

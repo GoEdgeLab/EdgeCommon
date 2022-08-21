@@ -34,14 +34,10 @@ service IPLibraryService {
 	};
 
 	// 查询某个IP信息
-	rpc lookupIPRegion (LookupIPRegionRequest) returns (LookupIPRegionResponse) {
-		option deprecated = true;
-	};
+	rpc lookupIPRegion (LookupIPRegionRequest) returns (LookupIPRegionResponse);
 
 	// 查询一组IP信息
-	rpc lookupIPRegions (LookupIPRegionsRequest) returns (LookupIPRegionsResponse) {
-		option deprecated = true;
-	};
+	rpc lookupIPRegions (LookupIPRegionsRequest) returns (LookupIPRegionsResponse);
 }
 
 // 创建IP库

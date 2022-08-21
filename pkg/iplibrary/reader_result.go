@@ -2,6 +2,11 @@
 
 package iplibrary
 
+import (
+	"github.com/iwind/TeaGo/lists"
+	"strings"
+)
+
 type QueryResult struct {
 	item *ipItem
 	meta *Meta
@@ -19,6 +24,9 @@ func (this *QueryResult) CountryId() int64 {
 }
 
 func (this *QueryResult) CountryName() string {
+	if this.item == nil {
+		return ""
+	}
 	if this.item.countryId > 0 {
 		var country = this.meta.CountryWithId(this.item.countryId)
 		if country != nil {
@@ -26,6 +34,19 @@ func (this *QueryResult) CountryName() string {
 		}
 	}
 	return ""
+}
+
+func (this *QueryResult) CountryCodes() []string {
+	if this.item == nil {
+		return nil
+	}
+	if this.item.countryId > 0 {
+		var country = this.meta.CountryWithId(this.item.countryId)
+		if country != nil {
+			return country.Codes
+		}
+	}
+	return nil
 }
 
 func (this *QueryResult) ProvinceId() int64 {
@@ -36,6 +57,9 @@ func (this *QueryResult) ProvinceId() int64 {
 }
 
 func (this *QueryResult) ProvinceName() string {
+	if this.item == nil {
+		return ""
+	}
 	if this.item.provinceId > 0 {
 		var province = this.meta.ProvinceWithId(this.item.provinceId)
 		if province != nil {
@@ -43,6 +67,19 @@ func (this *QueryResult) ProvinceName() string {
 		}
 	}
 	return ""
+}
+
+func (this *QueryResult) ProvinceCodes() []string {
+	if this.item == nil {
+		return nil
+	}
+	if this.item.provinceId > 0 {
+		var province = this.meta.ProvinceWithId(this.item.provinceId)
+		if province != nil {
+			return province.Codes
+		}
+	}
+	return nil
 }
 
 func (this *QueryResult) CityId() int64 {
@@ -53,6 +90,9 @@ func (this *QueryResult) CityId() int64 {
 }
 
 func (this *QueryResult) CityName() string {
+	if this.item == nil {
+		return ""
+	}
 	if this.item.cityId > 0 {
 		var city = this.meta.CityWithId(this.item.cityId)
 		if city != nil {
@@ -70,6 +110,9 @@ func (this *QueryResult) TownId() int64 {
 }
 
 func (this *QueryResult) TownName() string {
+	if this.item == nil {
+		return ""
+	}
 	if this.item.townId > 0 {
 		var town = this.meta.TownWithId(this.item.townId)
 		if town != nil {
@@ -87,6 +130,9 @@ func (this *QueryResult) ProviderId() int64 {
 }
 
 func (this *QueryResult) ProviderName() string {
+	if this.item == nil {
+		return ""
+	}
 	if this.item.providerId > 0 {
 		var provider = this.meta.ProviderWithId(this.item.providerId)
 		if provider != nil {
@@ -94,4 +140,52 @@ func (this *QueryResult) ProviderName() string {
 		}
 	}
 	return ""
+}
+
+func (this *QueryResult) ProviderCodes() []string {
+	if this.item == nil {
+		return nil
+	}
+	if this.item.providerId > 0 {
+		var provider = this.meta.ProviderWithId(this.item.providerId)
+		if provider != nil {
+			return provider.Codes
+		}
+	}
+	return nil
+}
+
+func (this *QueryResult) Summary() string {
+	if this.item == nil {
+		return ""
+	}
+
+	var pieces = []string{}
+	var countryName = this.CountryName()
+	var provinceName = this.ProvinceName()
+	var cityName = this.CityName()
+	var townName = this.TownName()
+	var providerName = this.ProviderName()
+
+	if len(countryName) > 0 {
+		pieces = append(pieces, countryName)
+	}
+	if len(provinceName) > 0 && !lists.ContainsString(pieces, provinceName) {
+		pieces = append(pieces, provinceName)
+	}
+	if len(cityName) > 0 && !lists.ContainsString(pieces, cityName) && !lists.ContainsString(pieces, strings.TrimSuffix(cityName, "市")) {
+		pieces = append(pieces, cityName)
+	}
+	if len(townName) > 0 && !lists.ContainsString(pieces, townName) && !lists.ContainsString(pieces, strings.TrimSuffix(townName, "县")) {
+		pieces = append(pieces, cityName)
+	}
+
+	if len(providerName) > 0 && !lists.ContainsString(pieces, providerName) {
+		if len(pieces) > 0 {
+			pieces = append(pieces, "|")
+		}
+		pieces = append(pieces, providerName)
+	}
+
+	return strings.Join(pieces, " ")
 }

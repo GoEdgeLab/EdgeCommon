@@ -11,9 +11,11 @@ import "models/model_region_city.proto";
 import "models/model_region_town.proto";
 import "models/model_region_provider.proto";
 
-
 // IP库文件管理
 service IPLibraryFileService {
+	// 查找所有已完成的IP库文件
+	rpc findAllFinishedIPLibraryFiles(FindAllFinishedIPLibraryFilesRequest) returns (FindAllFinishedIPLibraryFilesResponse);
+
 	// 查找所有未完成的IP库文件
 	rpc findAllUnfinishedIPLibraryFiles(FindAllUnfinishedIPLibraryFilesRequest) returns (FindAllUnfinishedIPLibraryFilesResponse);
 
@@ -40,6 +42,21 @@ service IPLibraryFileService {
 
 	// 生成IP库文件
 	rpc generateIPLibraryFile(GenerateIPLibraryFileRequest) returns (RPCSuccess);
+
+	// 设置某个IP库为已完成
+	rpc updateIPLibraryFileFinished(UpdateIPLibraryFileFinishedRequest) returns (RPCSuccess);
+
+	// 删除IP库文件
+	rpc deleteIPLibraryFile(DeleteIPLibraryFileRequest) returns (RPCSuccess);
+}
+
+// 查找所有已完成的IP库文件
+message FindAllFinishedIPLibraryFilesRequest {
+
+}
+
+message FindAllFinishedIPLibraryFilesResponse {
+	repeated IPLibraryFile ipLibraryFiles = 1;
 }
 
 // 查找所有未完成的IP库文件
@@ -62,14 +79,15 @@ message FindIPLibraryFileResponse {
 
 // 创建IP库文件
 message CreateIPLibraryFileRequest {
-	string template = 1;
-	repeated string emptyValues = 2;
-	int64 fileId = 3;
-	bytes countriesJSON = 4;
-	bytes provincesJSON = 5;
-	bytes citiesJSON = 6;
-	bytes townsJSON = 7;
-	bytes providersJSON = 8;
+	string name = 1;
+	string template = 2;
+	repeated string emptyValues = 3;
+	int64 fileId = 4;
+	bytes countriesJSON = 5;
+	bytes provincesJSON = 6;
+	bytes citiesJSON = 7;
+	bytes townsJSON = 8;
+	bytes providersJSON = 9;
 }
 
 message CreateIPLibraryFileResponse {
@@ -154,5 +172,15 @@ message CheckProvidersWithIPLibraryFileIdResponse {
 
 // 生成IP库文件
 message GenerateIPLibraryFileRequest {
+	int64 ipLibraryFileId = 1;
+}
+
+// 设置某个IP库为已完成
+message UpdateIPLibraryFileFinishedRequest {
+	int64 ipLibraryFileId = 1;
+}
+
+// 删除IP库文件
+message DeleteIPLibraryFileRequest {
 	int64 ipLibraryFileId = 1;
 }

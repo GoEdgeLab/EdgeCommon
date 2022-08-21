@@ -10,7 +10,7 @@ import (
 )
 
 func TestNewFileWriter(t *testing.T) {
-	writer, err := iplibrary.NewFileWriter("./ip.db", &iplibrary.Meta{
+	writer, err := iplibrary.NewFileWriter("./internal-ip-library.db", &iplibrary.Meta{
 		Author: "GoEdge",
 	})
 	if err != nil {

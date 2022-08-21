@@ -6,7 +6,7 @@ package pb;
 import "models/model_region_country.proto";
 import "models/rpc_messages.proto";
 
-// 国家相关服务
+// 国家/地区相关服务
 service RegionCountryService {
 	// 查找所有的国家/地区列表
 	rpc findAllEnabledRegionCountries (FindAllEnabledRegionCountriesRequest) returns (FindAllEnabledRegionCountriesResponse) {
