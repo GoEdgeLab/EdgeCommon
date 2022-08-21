@@ -8,6 +8,7 @@ import (
 	_ "embed"
 	"github.com/iwind/TeaGo/logs"
 	"net"
+	"os"
 )
 
 //go:embed internal-ip-library.db
@@ -16,6 +17,11 @@ var ipLibraryData []byte
 var library = NewIPLibrary()
 
 func init() {
+	var args = os.Args
+	if len(args) > 1 && args[1] == "daemon" {
+		return
+	}
+
 	err := library.Init()
 	if err != nil {
 		logs.Println("IP_LIBRARY", "initialized failed: "+err.Error())
