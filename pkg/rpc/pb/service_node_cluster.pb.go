@@ -3469,7 +3469,7 @@ func (x *FindNodeClusterDDoSProtectionResponse) GetDdosProtectionJSON() []byte {
 	return nil
 }
 
-// 修改集群的DDOS设置
+// 修改集群的DDoS设置
 type UpdateNodeClusterDDoSProtectionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

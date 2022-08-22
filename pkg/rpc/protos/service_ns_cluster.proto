@@ -61,6 +61,12 @@ service NSClusterService {
 
 	// 计算使用某个SSL证书的集群数量
 	rpc countAllNSClustersWithSSLCertId (CountAllNSClustersWithSSLCertIdRequest) returns (RPCCountResponse);
+
+	// 获取NS集群的DDoS设置
+	rpc findNSClusterDDoSProtection(FindNSClusterDDoSProtectionRequest) returns (FindNSClusterDDoSProtectionResponse);
+
+	// 修改NS集群的DDoS设置
+	rpc updateNSClusterDDoSProtection(UpdateNSClusterDDoSProtectionRequest) returns (RPCSuccess);
 }
 
 // 创建集群
@@ -195,4 +201,19 @@ message UpdateNSClusterUDPRequest {
 // 计算使用某个SSL证书的集群数量
 message CountAllNSClustersWithSSLCertIdRequest {
 	int64 sslCertId = 1;
+}
+
+// 获取集群的DDoS设置
+message FindNSClusterDDoSProtectionRequest {
+	int64 nsClusterId = 1;
+}
+
+message FindNSClusterDDoSProtectionResponse {
+	bytes ddosProtectionJSON = 1;
+}
+
+// 修改集群的DDoS设置
+message UpdateNSClusterDDoSProtectionRequest {
+	int64 nsClusterId = 1;
+	bytes ddosProtectionJSON = 2;
 }

@@ -3868,7 +3868,7 @@ func (x *FindNodeDDoSProtectionResponse) GetDdosProtectionJSON() []byte {
 	return nil
 }
 
-// 修改节点的DDOS设置
+// 修改节点的DDoS设置
 type UpdateNodeDDoSProtectionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

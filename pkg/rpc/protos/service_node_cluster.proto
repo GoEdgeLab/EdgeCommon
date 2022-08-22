@@ -493,7 +493,7 @@ message FindNodeClusterDDoSProtectionResponse {
 	bytes ddosProtectionJSON = 1;
 }
 
-// 修改集群的DDOS设置
+// 修改集群的DDoS设置
 message UpdateNodeClusterDDoSProtectionRequest {
 	int64 nodeClusterId = 1;
 	bytes ddosProtectionJSON = 2;

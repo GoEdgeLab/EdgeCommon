@@ -19,6 +19,7 @@ message NSNode {
 	string installDir = 9;
 	bool isUp = 8;
 	bool isActive = 10;
+	repeated int64 connectedAPINodeIds = 11;
 
 	NSCluster nsCluster = 32;
 	NodeLogin nodeLogin = 33;

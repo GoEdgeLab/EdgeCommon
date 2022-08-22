@@ -555,7 +555,7 @@ message FindNodeDDoSProtectionResponse {
 	bytes ddosProtectionJSON = 1;
 }
 
-// 修改节点的DDOS设置
+// 修改节点的DDoS设置
 message UpdateNodeDDoSProtectionRequest {
 	int64 nodeId = 1;
 	bytes ddosProtectionJSON = 2;

@@ -10,74 +10,80 @@ import "models/model_node_login.proto";
 
 // 域名服务器节点服务
 service NSNodeService {
-	// 根据集群查找所有节点
+	// 根据集群查找所有NS节点
 	rpc findAllNSNodesWithNSClusterId (FindAllNSNodesWithNSClusterIdRequest) returns (FindAllNSNodesWithNSClusterIdResponse);
 
-	// 所有可用的节点数量
+	// 所有可用的NS节点数量
 	rpc countAllNSNodes (CountAllNSNodesRequest) returns (RPCCountResponse);
 
-	// 计算匹配的节点数量
+	// 计算匹配的NS节点数量
 	rpc countAllNSNodesMatch (CountAllNSNodesMatchRequest) returns (RPCCountResponse);
 
-	// 列出单页节点
+	// 列出单页NS节点
 	rpc listNSNodesMatch (ListNSNodesMatchRequest) returns (ListNSNodesMatchResponse);
 
-	// 计算需要升级的节点数量
+	// 计算需要升级的NS节点数量
 	rpc countAllUpgradeNSNodesWithNSClusterId (CountAllUpgradeNSNodesWithNSClusterIdRequest) returns (RPCCountResponse);
 
-	// 创建节点
+	// 创建NS节点
 	rpc createNSNode (CreateNSNodeRequest) returns (CreateNSNodeResponse);
 
-	// 删除节点
+	// 删除NS节点
 	rpc deleteNSNode (DeleteNSNodeRequest) returns (RPCSuccess);
 
-	// 获取单个节点信息
+	// 获取单个NS节点信息
 	rpc findNSNode (FindNSNodeRequest) returns (FindNSNodeResponse);
 
-	// 修改节点
+	// 修改NS节点
 	rpc updateNSNode (UpdateNSNodeRequest) returns (RPCSuccess);
 
-	// 安装节点
+	// 安装NS节点
 	rpc installNSNode (InstallNSNodeRequest) returns (InstallNSNodeResponse);
 
-	// 读取节点安装状态
+	// 读取NS节点安装状态
 	rpc findNSNodeInstallStatus (FindNSNodeInstallStatusRequest) returns (FindNSNodeInstallStatusResponse);
 
-	// 修改节点安装状态
+	// 修改NS节点安装状态
 	rpc updateNSNodeIsInstalled (UpdateNSNodeIsInstalledRequest) returns (RPCSuccess);
 
-	// 更新节点状态
+	// 更新NS节点状态
 	rpc updateNSNodeStatus (UpdateNSNodeStatusRequest) returns (RPCSuccess);
 
-	// 获取当前节点信息
+	// 获取当前NS节点信息
 	rpc findCurrentNSNodeConfig (FindCurrentNSNodeConfigRequest) returns (FindCurrentNSNodeConfigResponse);
 
-	// 检查新版本
+	// 检查NS节点新版本
 	rpc checkNSNodeLatestVersion (CheckNSNodeLatestVersionRequest) returns (CheckNSNodeLatestVersionResponse);
 
-	// 下载最新DNS节点安装文件
+	// 下载最新NS节点安装文件
 	rpc downloadNSNodeInstallationFile (DownloadNSNodeInstallationFileRequest) returns (DownloadNSNodeInstallationFileResponse);
 
-	// 节点stream
+	// NS节点stream
 	rpc nsNodeStream (stream NSNodeStreamMessage) returns (stream NSNodeStreamMessage);
 
-	// 向节点发送命令
+	// 向NS节点发送命令
 	rpc sendCommandToNSNode (NSNodeStreamMessage) returns (NSNodeStreamMessage);
 
-	// 更改节点连接的API节点信息
+	// 更改NS节点连接的API节点信息
 	rpc updateNSNodeConnectedAPINodes (UpdateNSNodeConnectedAPINodesRequest) returns (RPCSuccess);
 
-	// 修改节点登录信息
+	// 修改NS节点登录信息
 	rpc updateNSNodeLogin (UpdateNSNodeLoginRequest) returns (RPCSuccess);
 
-	// 启动节点
+	// 启动NS节点
 	rpc startNSNode (StartNSNodeRequest) returns (StartNSNodeResponse);
 
-	// 停止节点
+	// 停止NS节点
 	rpc stopNSNode (StopNSNodeRequest) returns (StopNSNodeResponse);
+
+	// 获取NS节点的DDoS设置
+	rpc findNSNodeDDoSProtection(FindNSNodeDDoSProtectionRequest) returns (FindNSNodeDDoSProtectionResponse);
+
+	// 修改NS节点的DDoS设置
+	rpc updateNSNodeDDoSProtection(UpdateNSNodeDDoSProtectionRequest) returns (RPCSuccess);
 }
 
-// 根据集群查找所有节点
+// 根据集群查找所有NS节点
 message FindAllNSNodesWithNSClusterIdRequest {
 	int64 nsClusterId = 1;
 }
@@ -86,12 +92,12 @@ message FindAllNSNodesWithNSClusterIdResponse {
 	repeated NSNode nsNodes = 1;
 }
 
-// 所有可用的节点数量
+// 所有可用的NS节点数量
 message CountAllNSNodesRequest {
 
 }
 
-// 计算匹配的节点数量
+// 计算匹配的NS节点数量
 message CountAllNSNodesMatchRequest {
 	int64 nsClusterId = 1;
 	int32 installState = 2;
@@ -101,7 +107,7 @@ message CountAllNSNodesMatchRequest {
 	//int64 nodeRegionId = 6;
 }
 
-// 列出单页节点
+// 列出单页NS节点
 message ListNSNodesMatchRequest {
 	int64 offset = 1;
 	int64 size = 2;
@@ -117,12 +123,12 @@ message ListNSNodesMatchResponse {
 	repeated NSNode nsNodes = 1;
 }
 
-// 计算需要升级的节点数量
+// 计算需要升级的NS节点数量
 message CountAllUpgradeNSNodesWithNSClusterIdRequest {
 	int64 nsClusterId = 1;
 }
 
-// 创建节点
+// 创建NS节点
 message CreateNSNodeRequest {
 	string name = 1;
 	int64 nodeClusterId = 2;
@@ -133,12 +139,12 @@ message CreateNSNodeResponse {
 	int64 nsNodeId = 1;
 }
 
-// 删除节点
+// 删除NS节点
 message DeleteNSNodeRequest {
 	int64 nsNodeId = 1;
 }
 
-// 获取单个节点信息
+// 获取单个NS节点信息
 message FindNSNodeRequest {
 	int64 nsNodeId = 1;
 }
@@ -147,7 +153,7 @@ message FindNSNodeResponse {
 	NSNode nsNode = 1;
 }
 
-// 修改节点
+// 修改NS节点
 message UpdateNSNodeRequest {
 	int64 nsNodeId = 1;
 	string name = 2;
@@ -156,7 +162,7 @@ message UpdateNSNodeRequest {
 	bool isOn = 6;
 }
 
-// 安装节点
+// 安装NS节点
 message InstallNSNodeRequest {
 	int64 nsNodeId = 1;
 }
@@ -165,7 +171,7 @@ message InstallNSNodeResponse {
 
 }
 
-// 读取节点安装状态
+// 读取NS节点安装状态
 message FindNSNodeInstallStatusRequest {
 	int64 nsNodeId = 1;
 }
@@ -174,19 +180,19 @@ message FindNSNodeInstallStatusResponse {
 	NodeInstallStatus installStatus = 1;
 }
 
-// 修改节点安装状态
+// 修改NS节点安装状态
 message UpdateNSNodeIsInstalledRequest {
 	int64 nsNodeId = 1;
 	bool isInstalled = 2;
 }
 
-// 更新节点状态
+// 更新NS节点状态
 message UpdateNSNodeStatusRequest {
 	int64 nodeId = 1;
 	bytes statusJSON = 2;
 }
 
-// 获取当前节点信息
+// 获取当前NS节点信息
 message FindCurrentNSNodeConfigRequest {
 
 }
@@ -195,7 +201,7 @@ message FindCurrentNSNodeConfigResponse {
 	bytes nsNodeJSON = 1;
 }
 
-// 检查新版本
+// 检查NS节点新版本
 message CheckNSNodeLatestVersionRequest {
 	string os = 1;
 	string arch = 2;
@@ -207,7 +213,7 @@ message CheckNSNodeLatestVersionResponse {
 	string newVersion = 2;
 }
 
-// 下载最新DNS节点安装文件
+// 下载最新NS节点安装文件
 message DownloadNSNodeInstallationFileRequest {
 	string os = 1;
 	string arch = 2;
@@ -222,7 +228,7 @@ message DownloadNSNodeInstallationFileResponse {
 	string filename = 5;
 }
 
-// 节点stream
+// NS节点stream
 message NSNodeStreamMessage {
 	int64 nsNodeId = 1;
 	int64 requestId = 2;
@@ -233,18 +239,18 @@ message NSNodeStreamMessage {
 	string message = 7;
 }
 
-// 更改节点连接的API节点信息
+// 更改NS节点连接的API节点信息
 message UpdateNSNodeConnectedAPINodesRequest {
 	repeated int64 apiNodeIds = 1;
 }
 
-// 修改节点登录信息
+// 修改NS节点登录信息
 message UpdateNSNodeLoginRequest {
 	int64 nsNodeId = 1;
 	NodeLogin nodeLogin = 2;
 }
 
-// 启动节点
+// 启动NS节点
 message StartNSNodeRequest {
 	int64 nsNodeId = 1;
 }
@@ -254,7 +260,7 @@ message StartNSNodeResponse {
 	string error = 2;
 }
 
-// 停止节点
+// 停止NS节点
 message StopNSNodeRequest {
 	int64 nsNodeId = 1;
 }
@@ -263,3 +269,19 @@ message StopNSNodeResponse {
 	bool isOk = 1;
 	string error = 2;
 }
+
+// 获取NS节点的DDoS设置
+message FindNSNodeDDoSProtectionRequest {
+	int64 nsNodeId = 1;
+}
+
+message FindNSNodeDDoSProtectionResponse {
+	bytes ddosProtectionJSON = 1;
+}
+
+// 修改NS节点的DDoS设置
+message UpdateNSNodeDDoSProtectionRequest {
+	int64 nsNodeId = 1;
+	bytes ddosProtectionJSON = 2;
+}
+
