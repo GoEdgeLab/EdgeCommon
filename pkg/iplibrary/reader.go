@@ -17,12 +17,16 @@ import (
 type Reader struct {
 	meta *Meta
 
+	regionMap map[string]*ipRegion
+
 	ipV4Items []*ipItem
 	ipV6Items []*ipItem
 }
 
 func NewReader(reader io.Reader) (*Reader, error) {
-	var libReader = &Reader{}
+	var libReader = &Reader{
+		regionMap: map[string]*ipRegion{},
+	}
 	err := libReader.load(reader)
 	if err != nil {
 		return nil, err
@@ -186,25 +190,36 @@ func (this *Reader) parse(data []byte) (left []byte, err error) {
 				ipTo = types.Uint64(pieces[2]) + ipFrom
 			}
 
+			var countryId = types.Uint32(pieces[3])
+			var provinceId = types.Uint32(pieces[4])
+			var cityId = types.Uint32(pieces[5])
+			var townId = types.Uint32(pieces[6])
+			var providerId = types.Uint32(pieces[7])
+			var hash = HashRegion(countryId, provinceId, cityId, townId, providerId)
+
+			region, ok := this.regionMap[hash]
+			if !ok {
+				region = &ipRegion{
+					CountryId:  countryId,
+					ProvinceId: provinceId,
+					CityId:     cityId,
+					TownId:     townId,
+					ProviderId: providerId,
+				}
+				this.regionMap[hash] = region
+			}
+
 			if version == "4" {
 				this.ipV4Items = append(this.ipV4Items, &ipItem{
-					IPFrom:     ipFrom,
-					IPTo:       ipTo,
-					CountryId:  types.Uint32(pieces[3]),
-					ProvinceId: types.Uint32(pieces[4]),
-					CityId:     types.Uint32(pieces[5]),
-					TownId:     types.Uint32(pieces[6]),
-					ProviderId: types.Uint32(pieces[7]),
+					IPFrom: ipFrom,
+					IPTo:   ipTo,
+					Region: region,
 				})
 			} else {
 				this.ipV6Items = append(this.ipV6Items, &ipItem{
-					IPFrom:     ipFrom,
-					IPTo:       ipTo,
-					CountryId:  types.Uint32(pieces[3]),
-					ProvinceId: types.Uint32(pieces[4]),
-					CityId:     types.Uint32(pieces[5]),
-					TownId:     types.Uint32(pieces[6]),
-					ProviderId: types.Uint32(pieces[7]),
+					IPFrom: ipFrom,
+					IPTo:   ipTo,
+					Region: region,
 				})
 			}
 

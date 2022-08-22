@@ -12,6 +12,15 @@ import (
 	"time"
 )
 
+func TestIPLibrary_Init(t *testing.T) {
+	var lib = iplibrary.NewIPLibrary()
+
+	err := lib.Init()
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestIPLibrary_Lookup(t *testing.T) {
 	var stat1 = &runtime.MemStats{}
 	runtime.ReadMemStats(stat1)

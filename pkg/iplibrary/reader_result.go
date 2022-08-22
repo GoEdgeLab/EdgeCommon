@@ -18,7 +18,7 @@ func (this *QueryResult) IsOk() bool {
 
 func (this *QueryResult) CountryId() int64 {
 	if this.item != nil {
-		return int64(this.item.CountryId)
+		return int64(this.item.Region.CountryId)
 	}
 	return 0
 }
@@ -27,8 +27,8 @@ func (this *QueryResult) CountryName() string {
 	if this.item == nil {
 		return ""
 	}
-	if this.item.CountryId > 0 {
-		var country = this.meta.CountryWithId(this.item.CountryId)
+	if this.item.Region.CountryId > 0 {
+		var country = this.meta.CountryWithId(this.item.Region.CountryId)
 		if country != nil {
 			return country.Name
 		}
@@ -40,8 +40,8 @@ func (this *QueryResult) CountryCodes() []string {
 	if this.item == nil {
 		return nil
 	}
-	if this.item.CountryId > 0 {
-		var country = this.meta.CountryWithId(this.item.CountryId)
+	if this.item.Region.CountryId > 0 {
+		var country = this.meta.CountryWithId(this.item.Region.CountryId)
 		if country != nil {
 			return country.Codes
 		}
@@ -51,7 +51,7 @@ func (this *QueryResult) CountryCodes() []string {
 
 func (this *QueryResult) ProvinceId() int64 {
 	if this.item != nil {
-		return int64(this.item.ProvinceId)
+		return int64(this.item.Region.ProvinceId)
 	}
 	return 0
 }
@@ -60,8 +60,8 @@ func (this *QueryResult) ProvinceName() string {
 	if this.item == nil {
 		return ""
 	}
-	if this.item.ProvinceId > 0 {
-		var province = this.meta.ProvinceWithId(this.item.ProvinceId)
+	if this.item.Region.ProvinceId > 0 {
+		var province = this.meta.ProvinceWithId(this.item.Region.ProvinceId)
 		if province != nil {
 			return province.Name
 		}
@@ -73,8 +73,8 @@ func (this *QueryResult) ProvinceCodes() []string {
 	if this.item == nil {
 		return nil
 	}
-	if this.item.ProvinceId > 0 {
-		var province = this.meta.ProvinceWithId(this.item.ProvinceId)
+	if this.item.Region.ProvinceId > 0 {
+		var province = this.meta.ProvinceWithId(this.item.Region.ProvinceId)
 		if province != nil {
 			return province.Codes
 		}
@@ -84,7 +84,7 @@ func (this *QueryResult) ProvinceCodes() []string {
 
 func (this *QueryResult) CityId() int64 {
 	if this.item != nil {
-		return int64(this.item.CityId)
+		return int64(this.item.Region.CityId)
 	}
 	return 0
 }
@@ -93,8 +93,8 @@ func (this *QueryResult) CityName() string {
 	if this.item == nil {
 		return ""
 	}
-	if this.item.CityId > 0 {
-		var city = this.meta.CityWithId(this.item.CityId)
+	if this.item.Region.CityId > 0 {
+		var city = this.meta.CityWithId(this.item.Region.CityId)
 		if city != nil {
 			return city.Name
 		}
@@ -104,7 +104,7 @@ func (this *QueryResult) CityName() string {
 
 func (this *QueryResult) TownId() int64 {
 	if this.item != nil {
-		return int64(this.item.TownId)
+		return int64(this.item.Region.TownId)
 	}
 	return 0
 }
@@ -113,8 +113,8 @@ func (this *QueryResult) TownName() string {
 	if this.item == nil {
 		return ""
 	}
-	if this.item.TownId > 0 {
-		var town = this.meta.TownWithId(this.item.TownId)
+	if this.item.Region.TownId > 0 {
+		var town = this.meta.TownWithId(this.item.Region.TownId)
 		if town != nil {
 			return town.Name
 		}
@@ -124,7 +124,7 @@ func (this *QueryResult) TownName() string {
 
 func (this *QueryResult) ProviderId() int64 {
 	if this.item != nil {
-		return int64(this.item.ProviderId)
+		return int64(this.item.Region.ProviderId)
 	}
 	return 0
 }
@@ -133,8 +133,8 @@ func (this *QueryResult) ProviderName() string {
 	if this.item == nil {
 		return ""
 	}
-	if this.item.ProviderId > 0 {
-		var provider = this.meta.ProviderWithId(this.item.ProviderId)
+	if this.item.Region.ProviderId > 0 {
+		var provider = this.meta.ProviderWithId(this.item.Region.ProviderId)
 		if provider != nil {
 			return provider.Name
 		}
@@ -146,8 +146,8 @@ func (this *QueryResult) ProviderCodes() []string {
 	if this.item == nil {
 		return nil
 	}
-	if this.item.ProviderId > 0 {
-		var provider = this.meta.ProviderWithId(this.item.ProviderId)
+	if this.item.Region.ProviderId > 0 {
+		var provider = this.meta.ProviderWithId(this.item.Region.ProviderId)
 		if provider != nil {
 			return provider.Codes
 		}

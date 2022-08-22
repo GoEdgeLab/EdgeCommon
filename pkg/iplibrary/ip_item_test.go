@@ -12,11 +12,6 @@ func TestIpItem_AsBinary(t *testing.T) {
 	var item = &ipItem{
 		IPFrom:     123456789,
 		IPTo:       123456790,
-		CountryId:  1,
-		ProvinceId: 2,
-		CityId:     3,
-		TownId:     4,
-		ProviderId: 5,
 	}
 	b, err := item.AsBinary()
 	if err != nil {
