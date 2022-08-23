@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"github.com/iwind/TeaGo/Tea"
 	_ "github.com/iwind/TeaGo/bootstrap"
+	"github.com/iwind/TeaGo/logs"
 	"github.com/iwind/TeaGo/types"
 	"os"
 	"path/filepath"
@@ -96,85 +97,101 @@ func main() {
 	var methodRolesMap = map[string][]string{} // method => roles
 	{
 		var rootDir = filepath.Clean(Tea.Root + "/../../EdgeAPI/internal/rpc/services")
-		files, err := filepath.Glob(rootDir + "/service_*.go")
+		entries, err := os.ReadDir(rootDir)
 		if err != nil {
-			fmt.Println("[ERROR]list service implementation files failed: " + err.Error())
+			logs.Println("[ERROR]read api services from '" + rootDir + "' failed: " + err.Error())
 			return
 		}
 
-		var methodNameReg = regexp.MustCompile(`func\s*\(\w+\s+\*\s*(\w+Service)\)\s*(\w+)\s*\(`) // $1: serviceName, $2 methodName
-		for _, file := range files {
-			data, err := os.ReadFile(file)
+		var rootDirs = []string{rootDir}
+
+		for _, entry := range entries {
+			if entry.IsDir() {
+				rootDirs = append(rootDirs, rootDir+string(os.PathSeparator)+entry.Name())
+			}
+		}
+
+		for _, rootDir := range rootDirs {
+			files, err := filepath.Glob(rootDir + "/service_*.go")
 			if err != nil {
-				fmt.Println("[ERROR]read file '" + file + "' failed: " + err.Error())
+				fmt.Println("[ERROR]list service implementation files failed: " + err.Error())
 				return
 			}
-			var sourceCode = string(data)
 
-			var locList = methodNameReg.FindAllStringIndex(sourceCode, -1)
-			for index, loc := range locList {
-				var methodSource = ""
-				if index == len(locList)-1 { // last one
-					methodSource = sourceCode[loc[0]:]
-				} else {
-					methodSource = sourceCode[loc[0]:locList[index+1][0]]
+			var methodNameReg = regexp.MustCompile(`func\s*\(\w+\s+\*\s*(\w+Service)\)\s*(\w+)\s*\(`) // $1: serviceName, $2 methodName
+			for _, file := range files {
+				data, err := os.ReadFile(file)
+				if err != nil {
+					fmt.Println("[ERROR]read file '" + file + "' failed: " + err.Error())
+					return
 				}
+				var sourceCode = string(data)
 
-				// 方法名
-				var submatch = methodNameReg.FindStringSubmatch(methodSource)
-				if len(submatch) == 0 {
-					continue
-				}
-				var serviceName = submatch[1]
-				if serviceName == "BaseService" {
-					continue
-				}
-				var methodName = submatch[2]
-				if methodName[0] < 'A' || methodName[0] > 'Z' {
-					continue
-				}
-				var roles = []string{}
-				if strings.Contains(methodSource, ".ValidateNode(") {
-					roles = append(roles, "node")
-				}
-				if strings.Contains(methodSource, ".ValidateUserNode(") {
-					roles = append(roles, "user")
-				}
-				if strings.Contains(methodSource, ".ValidateAdmin(") {
-					roles = append(roles, "admin")
-				}
-				if strings.Contains(methodSource, ".ValidateAdminAndUser(") {
-					roles = append(roles, "admin", "user")
-				}
-				if strings.Contains(methodSource, ".ValidateNSNode(") {
-					roles = append(roles, "dns")
-				}
-				if strings.Contains(methodSource, ".ValidateMonitorNode(") {
-					roles = append(roles, "monitor")
-				}
-				if strings.Contains(methodSource, "rpcutils.UserTypeDNS") {
-					roles = append(roles, "dns")
-				}
-				if strings.Contains(methodSource, "rpcutils.UserTypeUser") {
-					roles = append(roles, "user")
-				}
-				if strings.Contains(methodSource, "rpcutils.UserTypeNode") {
-					roles = append(roles, "node")
-				}
-				if strings.Contains(methodSource, "rpcutils.UserTypeMonitor") {
-					roles = append(roles, "monitor")
-				}
-				if strings.Contains(methodSource, "rpcutils.UserTypeReport") {
-					roles = append(roles, "report")
-				}
-				if strings.Contains(methodSource, "rpcutils.UserTypeCluster") {
-					roles = append(roles, "cluster")
-				}
-				if strings.Contains(methodSource, "rpcutils.UserTypeAdmin") {
-					roles = append(roles, "admin")
-				}
+				var locList = methodNameReg.FindAllStringIndex(sourceCode, -1)
+				for index, loc := range locList {
+					var methodSource = ""
+					if index == len(locList)-1 { // last one
+						methodSource = sourceCode[loc[0]:]
+					} else {
+						methodSource = sourceCode[loc[0]:locList[index+1][0]]
+					}
 
-				methodRolesMap[strings.ToLower(methodName)] = removeDuplicates(roles)
+					// 方法名
+					var submatch = methodNameReg.FindStringSubmatch(methodSource)
+					if len(submatch) == 0 {
+						continue
+					}
+					var serviceName = submatch[1]
+					if serviceName == "BaseService" {
+						continue
+					}
+					var methodName = submatch[2]
+					if methodName[0] < 'A' || methodName[0] > 'Z' {
+						continue
+					}
+					var roles = []string{}
+					if strings.Contains(methodSource, ".ValidateNode(") {
+						roles = append(roles, "node")
+					}
+					if strings.Contains(methodSource, ".ValidateUserNode(") {
+						roles = append(roles, "user")
+					}
+					if strings.Contains(methodSource, ".ValidateAdmin(") {
+						roles = append(roles, "admin")
+					}
+					if strings.Contains(methodSource, ".ValidateAdminAndUser(") {
+						roles = append(roles, "admin", "user")
+					}
+					if strings.Contains(methodSource, ".ValidateNSNode(") {
+						roles = append(roles, "dns")
+					}
+					if strings.Contains(methodSource, ".ValidateMonitorNode(") {
+						roles = append(roles, "monitor")
+					}
+					if strings.Contains(methodSource, "rpcutils.UserTypeDNS") {
+						roles = append(roles, "dns")
+					}
+					if strings.Contains(methodSource, "rpcutils.UserTypeUser") {
+						roles = append(roles, "user")
+					}
+					if strings.Contains(methodSource, "rpcutils.UserTypeNode") {
+						roles = append(roles, "node")
+					}
+					if strings.Contains(methodSource, "rpcutils.UserTypeMonitor") {
+						roles = append(roles, "monitor")
+					}
+					if strings.Contains(methodSource, "rpcutils.UserTypeReport") {
+						roles = append(roles, "report")
+					}
+					if strings.Contains(methodSource, "rpcutils.UserTypeCluster") {
+						roles = append(roles, "cluster")
+					}
+					if strings.Contains(methodSource, "rpcutils.UserTypeAdmin") {
+						roles = append(roles, "admin")
+					}
+
+					methodRolesMap[strings.ToLower(methodName)] = removeDuplicates(roles)
+				}
 			}
 		}
 	}
