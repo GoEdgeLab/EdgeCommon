@@ -136,29 +136,41 @@ func main() {
 				var roles = []string{}
 				if strings.Contains(methodSource, ".ValidateNode(") {
 					roles = append(roles, "node")
-				} else if strings.Contains(methodSource, ".ValidateUserNode(") {
+				}
+				if strings.Contains(methodSource, ".ValidateUserNode(") {
 					roles = append(roles, "user")
-				} else if strings.Contains(methodSource, ".ValidateAdmin(") {
+				}
+				if strings.Contains(methodSource, ".ValidateAdmin(") {
 					roles = append(roles, "admin")
-				} else if strings.Contains(methodSource, ".ValidateAdminAndUser(") {
+				}
+				if strings.Contains(methodSource, ".ValidateAdminAndUser(") {
 					roles = append(roles, "admin", "user")
-				} else if strings.Contains(methodSource, ".ValidateNSNode(") {
+				}
+				if strings.Contains(methodSource, ".ValidateNSNode(") {
 					roles = append(roles, "dns")
-				} else if strings.Contains(methodSource, ".ValidateMonitorNode(") {
+				}
+				if strings.Contains(methodSource, ".ValidateMonitorNode(") {
 					roles = append(roles, "monitor")
-				} else if strings.Contains(methodSource, "rpcutils.UserTypeDNS") {
+				}
+				if strings.Contains(methodSource, "rpcutils.UserTypeDNS") {
 					roles = append(roles, "dns")
-				} else if strings.Contains(methodSource, "rpcutils.UserTypeUser") {
+				}
+				if strings.Contains(methodSource, "rpcutils.UserTypeUser") {
 					roles = append(roles, "user")
-				} else if strings.Contains(methodSource, "rpcutils.UserTypeNode") {
+				}
+				if strings.Contains(methodSource, "rpcutils.UserTypeNode") {
 					roles = append(roles, "node")
-				} else if strings.Contains(methodSource, "rpcutils.UserTypeMonitor") {
+				}
+				if strings.Contains(methodSource, "rpcutils.UserTypeMonitor") {
 					roles = append(roles, "monitor")
-				} else if strings.Contains(methodSource, "rpcutils.UserTypeReport") {
+				}
+				if strings.Contains(methodSource, "rpcutils.UserTypeReport") {
 					roles = append(roles, "report")
-				} else if strings.Contains(methodSource, "rpcutils.UserTypeCluster") {
+				}
+				if strings.Contains(methodSource, "rpcutils.UserTypeCluster") {
 					roles = append(roles, "cluster")
-				} else if strings.Contains(methodSource, "rpcutils.UserTypeAdmin") {
+				}
+				if strings.Contains(methodSource, "rpcutils.UserTypeAdmin") {
 					roles = append(roles, "admin")
 				}
 
