@@ -1,0 +1,77 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ip_library_artifact.proto";
+import "models/rpc_messages.proto";
+
+// IP库制品
+service IPLibraryArtifactService {
+	// 创建制品
+	rpc createIPLibraryArtifact(CreateIPLibraryArtifactRequest) returns (CreateIPLibraryArtifactResponse);
+
+	// 使用/取消使用制品
+	rpc updateIPLibraryArtifactIsPublic(UpdateIPLibraryArtifactIsPublicRequest) returns (RPCSuccess);
+
+	// 查询所有制品
+	rpc findAllIPLibraryArtifacts(FindAllIPLibraryArtifactsRequest) returns (FindAllIPLibraryArtifactsResponse);
+
+	// 查找单个制品信息
+	rpc findIPLibraryArtifact(FindIPLibraryArtifactRequest) returns (FindIPLibraryArtifactResponse);
+
+	// 查找当前正在使用的制品
+	rpc findPublicIPLibraryArtifact(FindPublicIPLibraryArtifactRequest) returns (FindPublicIPLibraryArtifactResponse);
+
+	// 删除制品
+	rpc deleteIPLibraryArtifact(DeleteIPLibraryArtifactRequest) returns (RPCSuccess);
+}
+
+// 创建制品
+message CreateIPLibraryArtifactRequest {
+	int64 fileId = 1;
+	bytes metaJSON = 2;
+	string name = 3;
+}
+
+message CreateIPLibraryArtifactResponse {
+	int64 ipLibraryArtifactId = 1;
+}
+
+// 使用/取消使用制品
+message UpdateIPLibraryArtifactIsPublicRequest {
+	int64 ipLibraryArtifactId = 1;
+	bool isPublic = 2;
+}
+
+// 查询所有制品
+message FindAllIPLibraryArtifactsRequest {
+
+}
+
+message FindAllIPLibraryArtifactsResponse {
+	repeated IPLibraryArtifact ipLibraryArtifacts = 1;
+}
+
+// 查找单个制品信息
+message FindIPLibraryArtifactRequest {
+	int64 ipLibraryArtifactId = 1;
+}
+
+message FindIPLibraryArtifactResponse {
+	IPLibraryArtifact ipLibraryArtifact = 1;
+}
+
+// 查找当前正在使用的制品
+message FindPublicIPLibraryArtifactRequest {
+
+}
+
+message FindPublicIPLibraryArtifactResponse {
+	IPLibraryArtifact ipLibraryArtifact = 1;
+}
+
+// 删除制品
+message DeleteIPLibraryArtifactRequest {
+	int64 ipLibraryArtifactId = 1;
+}

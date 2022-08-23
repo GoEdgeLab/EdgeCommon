@@ -4,6 +4,8 @@ package iplibrary
 
 import (
 	"compress/gzip"
+	"errors"
+	"io"
 	"net"
 	"os"
 )
@@ -21,9 +23,13 @@ func NewFileReader(path string) (*FileReader, error) {
 		_ = fp.Close()
 	}()
 
-	gzReader, err := gzip.NewReader(fp)
+	return NewFileDataReader(fp)
+}
+
+func NewFileDataReader(dataReader io.Reader) (*FileReader, error) {
+	gzReader, err := gzip.NewReader(dataReader)
 	if err != nil {
-		return nil, err
+		return nil, errors.New("create gzip reader failed: " + err.Error())
 	}
 
 	reader, err := NewReader(gzReader)
@@ -42,4 +48,8 @@ func (this *FileReader) Meta() *Meta {
 
 func (this *FileReader) Lookup(ip net.IP) *QueryResult {
 	return this.rawReader.Lookup(ip)
+}
+
+func (this *FileReader) RawReader() *Reader {
+	return this.rawReader
 }

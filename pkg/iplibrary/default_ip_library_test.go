@@ -15,7 +15,7 @@ import (
 func TestIPLibrary_Init(t *testing.T) {
 	var lib = iplibrary.NewIPLibrary()
 
-	err := lib.Init()
+	err := lib.InitFromData(iplibrary.DefaultIPLibraryData())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -29,7 +29,7 @@ func TestIPLibrary_Lookup(t *testing.T) {
 
 	var before = time.Now()
 
-	err := lib.Init()
+	err := lib.InitFromData(iplibrary.DefaultIPLibraryData())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -59,7 +59,7 @@ func TestIPLibrary_Lookup(t *testing.T) {
 
 func TestIPLibrary_LookupIP(t *testing.T) {
 	var lib = iplibrary.NewIPLibrary()
-	err := lib.Init()
+	err := lib.InitFromData(iplibrary.DefaultIPLibraryData())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -78,7 +78,7 @@ func TestIPLibrary_LookupIP(t *testing.T) {
 
 func BenchmarkIPLibrary_Lookup(b *testing.B) {
 	var lib = iplibrary.NewIPLibrary()
-	err := lib.Init()
+	err := lib.InitFromData(iplibrary.DefaultIPLibraryData())
 	if err != nil {
 		b.Fatal(err)
 	}

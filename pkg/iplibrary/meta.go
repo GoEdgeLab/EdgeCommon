@@ -34,6 +34,7 @@ type Provider struct {
 
 type Meta struct {
 	Version   int         `json:"version"` // IP库版本
+	Code      string      `json:"code"`    // 代号，用来区分不同的IP库
 	Author    string      `json:"author"`
 	Countries []*Country  `json:"countries"`
 	Provinces []*Province `json:"provinces"`

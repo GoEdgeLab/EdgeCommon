@@ -12,18 +12,23 @@ import (
 //go:embed internal-ip-library.db
 var ipLibraryData []byte
 
-var library = NewIPLibrary()
+var defaultLibrary = NewIPLibrary()
 
-func Init() error {
-	return library.Init()
+func DefaultIPLibraryData() []byte {
+	return ipLibraryData
+}
+
+func InitDefault() error {
+	defaultLibrary.reader = nil
+	return defaultLibrary.InitFromData(ipLibraryData)
 }
 
 func Lookup(ip net.IP) *QueryResult {
-	return library.Lookup(ip)
+	return defaultLibrary.Lookup(ip)
 }
 
 func LookupIP(ip string) *QueryResult {
-	return library.LookupIP(ip)
+	return defaultLibrary.LookupIP(ip)
 }
 
 type IPLibrary struct {
@@ -34,11 +39,15 @@ func NewIPLibrary() *IPLibrary {
 	return &IPLibrary{}
 }
 
-func (this *IPLibrary) Init() error {
-	if len(ipLibraryData) == 0 || this.reader != nil {
+func NewIPLibraryWithReader(reader *Reader) *IPLibrary {
+	return &IPLibrary{reader: reader}
+}
+
+func (this *IPLibrary) InitFromData(data []byte) error {
+	if len(data) == 0 || this.reader != nil {
 		return nil
 	}
-	var reader = bytes.NewReader(ipLibraryData)
+	var reader = bytes.NewReader(data)
 	gzipReader, err := gzip.NewReader(reader)
 	if err != nil {
 		return err
