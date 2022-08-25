@@ -20,7 +20,7 @@ var AllActions = []*HTTPFirewallActionDefinition{
 	{
 		Name:        "JS Cookie验证",
 		Code:        HTTPFirewallActionJavascriptCookie,
-		Description: "通过Javascript在网页中设置Cookie来验证请求。",
+		Description: "首次访问网站时通过Javascript设置Cookie来验证请求。",
 		Category:    HTTPFirewallActionCategoryVerify,
 	},
 	{
