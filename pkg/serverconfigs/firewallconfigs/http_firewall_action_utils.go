@@ -12,6 +12,30 @@ var AllActions = []*HTTPFirewallActionDefinition{
 		Category:    HTTPFirewallActionCategoryBlock,
 	},
 	{
+		Name:        "Captcha验证码",
+		Code:        HTTPFirewallActionCaptcha,
+		Description: "在浏览器使用验证码来验证客户端。",
+		Category:    HTTPFirewallActionCategoryVerify,
+	},
+	{
+		Name:        "JS Cookie验证",
+		Code:        HTTPFirewallActionJavascriptCookie,
+		Description: "通过Javascript在网页中设置Cookie来验证请求。",
+		Category:    HTTPFirewallActionCategoryVerify,
+	},
+	{
+		Name:        "记录IP",
+		Code:        HTTPFirewallActionRecordIP,
+		Description: "将此IP记录到某个IP名单中。",
+		Category:    HTTPFirewallActionCategoryBlock,
+	},
+	{
+		Name:        "显示网页",
+		Code:        HTTPFirewallActionPage,
+		Description: "在网页中显示提示文字。",
+		Category:    HTTPFirewallActionCategoryBlock,
+	},
+	{
 		Name:        "允许通过",
 		Code:        HTTPFirewallActionAllow,
 		Description: "允许正常通过，不记录到日志。",
@@ -24,15 +48,15 @@ var AllActions = []*HTTPFirewallActionDefinition{
 		Category:    HTTPFirewallActionCategoryAllow,
 	},
 	{
-		Name:        "Captcha验证码",
-		Code:        HTTPFirewallActionCaptcha,
-		Description: "在浏览器使用验证码来验证客户端。",
-		Category:    HTTPFirewallActionCategoryVerify,
+		Name:        "标签",
+		Code:        HTTPFirewallActionTag,
+		Description: "为匹配的请求打上标签。",
+		Category:    HTTPFirewallActionCategoryAllow,
 	},
 	{
 		Name:        "告警",
 		Code:        HTTPFirewallActionNotify,
-		Description: "向集群的消息接收人发送消息通知（企业版）。",
+		Description: "向集群的消息接收人发送消息通知（商业版）。",
 		Category:    HTTPFirewallActionCategoryVerify,
 	},
 	{
@@ -46,24 +70,6 @@ var AllActions = []*HTTPFirewallActionDefinition{
 		Code:        HTTPFirewallActionPost307,
 		Description: "通过307重定向POST请求验证客户端真实性。",
 		Category:    HTTPFirewallActionCategoryVerify,
-	},
-	{
-		Name:        "记录IP",
-		Code:        HTTPFirewallActionRecordIP,
-		Description: "将此IP记录到某个IP名单中。",
-		Category:    HTTPFirewallActionCategoryBlock,
-	},
-	{
-		Name:        "标签",
-		Code:        HTTPFirewallActionTag,
-		Description: "为匹配的请求打上标签。",
-		Category:    HTTPFirewallActionCategoryAllow,
-	},
-	{
-		Name:        "显示网页",
-		Code:        HTTPFirewallActionPage,
-		Description: "在网页中显示提示文字。",
-		Category:    HTTPFirewallActionCategoryBlock,
 	},
 	{
 		Name:     "跳到下一个规则分组",
