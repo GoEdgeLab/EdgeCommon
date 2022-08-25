@@ -241,6 +241,7 @@ message UpdateNodeRequest {
 	int64 nodeGroupId = 7;
 	int64 nodeRegionId = 10;
 	int32 level = 14;
+	repeated string lnAddrs = 15; // Ln节点访问地址
 }
 
 // 获取单个节点信息
