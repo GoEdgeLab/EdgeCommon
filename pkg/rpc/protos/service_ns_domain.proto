@@ -87,6 +87,7 @@ message DeleteNSDomainRequest {
 // 批量删除域名
 message DeleteNSDomainsRequest {
 	repeated string names = 1;
+	int64 userId = 2; // 域名所属用户ID
 }
 
 // 查找单个域名

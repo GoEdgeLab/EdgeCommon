@@ -85,6 +85,7 @@ message CreateNSRecordsWithDomainNamesRequest {
 	bytes recordsJSON = 2;
 	bool removeOld = 3;
 	bool removeAll = 4;
+	int64 userId = 5;
 }
 
 // 批量修改一组域名的一组记录
@@ -98,6 +99,7 @@ message UpdateNSRecordsWithDomainNamesRequest {
 	string newValue = 7;
 	string newType = 8;
 	repeated string newNSRouteCodes = 9;
+	int64 userId = 10;
 }
 
 // 批量删除一组域名的一组记录
@@ -107,6 +109,7 @@ message DeleteNSRecordsWithDomainNamesRequest {
 	string searchValue = 3;
 	string searchType = 4;
 	repeated string searchNSRouteCodes = 5;
+	int64 userId = 6;
 }
 
 // 批量一组域名的一组记录启用状态
@@ -117,11 +120,13 @@ message UpdateNSRecordsIsOnWithDomainNamesRequest {
 	string searchType = 4;
 	repeated string searchNSRouteCodes = 5;
 	bool isOn = 6;
+	int64 userId = 7;
 }
 
 // 导入域名解析
 message ImportNSRecordsRequest {
 	repeated Record nsRecords = 1;
+	int64 userId = 2;
 
 	message Record {
 		string nsDomainName = 1;
