@@ -295,7 +295,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 		{
 			set := &HTTPFirewallRuleSet{}
-			set.IsOn = true
+			set.IsOn = false
 			set.Name = "SQL注释"
 			set.Code = "7002"
 			set.Connector = HTTPFirewallRuleConnectorOr
