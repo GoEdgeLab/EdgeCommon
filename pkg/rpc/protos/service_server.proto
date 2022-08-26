@@ -16,7 +16,7 @@ service ServerService {
 
 	// 修改服务基本信息
 	rpc updateServerBasic (UpdateServerBasicRequest) returns (RPCSuccess);
-	
+
 	// 修改服务所在分组
 	rpc updateServerGroupIds(UpdateServerGroupIdsRequest) returns (RPCSuccess);
 
@@ -60,7 +60,13 @@ service ServerService {
 	rpc updateServerDNS(UpdateServerDNSRequest) returns (RPCSuccess);
 
 	// 重新生成CNAME
-	rpc regenerateServerCNAME(RegenerateServerCNAMERequest) returns (RPCSuccess);
+	rpc regenerateServerDNSName(RegenerateServerDNSNameRequest) returns (RPCSuccess);
+
+	// 修改服务的CNAME
+	rpc updateServerDNSName(UpdateServerDNSNameRequest) returns (RPCSuccess);
+
+	// 使用CNAME查找服务
+	rpc findServerIdWithDNSName(FindServerIdWithDNSNameRequest) returns (FindServerIdWithDNSNameResponse);
 
 	// 计算匹配的服务数量
 	rpc countAllEnabledServersMatch (CountAllEnabledServersMatchRequest) returns (RPCCountResponse);
@@ -283,7 +289,23 @@ message UpdateServerDNSRequest {
 }
 
 // 重新生成CNAME
-message RegenerateServerCNAMERequest {
+message RegenerateServerDNSNameRequest {
+	int64 serverId = 1;
+}
+
+// 修改服务的CNAME
+message UpdateServerDNSNameRequest {
+	int64 serverId = 1;
+	string dnsName = 2;
+}
+
+// 使用CNAME查找服务
+message FindServerIdWithDNSNameRequest {
+	int64 nodeClusterId = 1;
+	string dnsName = 2;
+}
+
+message FindServerIdWithDNSNameResponse {
 	int64 serverId = 1;
 }
 
