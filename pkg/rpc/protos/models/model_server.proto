@@ -39,8 +39,11 @@ message Server {
 	int64 webId = 15;
 	bytes reverseProxyJSON = 16;
 
+	string bandwidthTime = 26;
+	int64 bandwidthBytes = 27;
+
 	NodeCluster nodeCluster = 30;
 	repeated ServerGroup serverGroups = 31;
 	User user = 32;
-	ServerDailyStat latestServerDailyStat = 33;
+	ServerDailyStat latestServerDailyStat = 33 [deprecated = true];
 }
