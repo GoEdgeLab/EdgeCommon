@@ -16,6 +16,7 @@ const (
 	UserFeatureCodeServerUAM           UserFeatureCode = "server.uam"
 	UserFeatureCodeServerWebP          UserFeatureCode = "server.webp"
 	UserFeatureCodeFinance             UserFeatureCode = "finance"
+	UserFeatureCodeServerACME          UserFeatureCode = "server.acme"
 )
 
 // UserFeature 用户功能
@@ -66,6 +67,11 @@ func FindAllUserFeatures() []*UserFeature {
 			Name:        "自定义UDP负载均衡端口",
 			Code:        "server.udp.port",
 			Description: "用户可以自定义UDP端口",
+		},
+		{
+			Name:        "申请免费证书",
+			Code:        UserFeatureCodeServerACME,
+			Description: "用户可以申请ACME免费证书",
 		},
 		{
 			Name:        "开启WAF",
