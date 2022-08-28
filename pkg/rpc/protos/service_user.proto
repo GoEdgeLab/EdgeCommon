@@ -52,8 +52,11 @@ service UserService {
 	// 获取用户所在的集群ID
 	rpc findUserNodeClusterId (FindUserNodeClusterIdRequest) returns (FindUserNodeClusterIdResponse);
 
-	// 设置用户能使用的功能
+	// 设置单个用户能使用的功能
 	rpc updateUserFeatures (UpdateUserFeaturesRequest) returns (RPCSuccess);
+
+	// 设置所有用户能使用的功能
+	rpc updateAllUsersFeatures(UpdateAllUsersFeaturesRequest) returns (RPCSuccess);
 
 	// 获取用户所有的功能列表
 	rpc findUserFeatures (FindUserFeaturesRequest) returns (FindUserFeaturesResponse);
@@ -220,10 +223,16 @@ message FindUserNodeClusterIdResponse {
 	int64 nodeClusterId = 1;
 }
 
-// 设置用户能使用的功能
+// 设置单个用户能使用的功能
 message UpdateUserFeaturesRequest {
 	int64 userId = 1;
 	repeated string featureCodes = 2;
+}
+
+// 设置所有用户能使用的功能
+message UpdateAllUsersFeaturesRequest {
+	repeated string featureCodes = 1;
+	bool overwrite = 2;
 }
 
 // 获取用户所有的功能列表
