@@ -13,6 +13,12 @@ service ServerBandwidthStatService {
 
 	// 获取服务的峰值带宽
 	rpc findServerBandwidthStats(FindServerBandwidthStatsRequest) returns (FindServerBandwidthStatsResponse);
+
+	// 获取最近N小时峰值带宽
+	rpc findHourlyServerBandwidthStats(FindHourlyServerBandwidthStatsRequest) returns (FindHourlyServerBandwidthStatsResponse);
+
+	// 获取最近N天峰值带宽
+	rpc findDailyServerBandwidthStats(FindDailyServerBandwidthStatsRequest) returns (FindDailyServerBandwidthStatsResponse);
 }
 
 // 上传带宽统计
@@ -29,4 +35,35 @@ message FindServerBandwidthStatsRequest {
 
 message FindServerBandwidthStatsResponse {
 	repeated ServerBandwidthStat serverBandwidthStats = 1;
+}
+
+// 获取最近N小时峰值带宽
+message FindHourlyServerBandwidthStatsRequest {
+	int64 serverId = 1;
+	int32 hours = 2;
+}
+
+message FindHourlyServerBandwidthStatsResponse {
+	repeated Stat stats = 1;
+
+	message Stat {
+		string day = 1;
+		int32 hour = 2;
+		int64 bytes = 3;
+	}
+}
+
+// 获取最近N天峰值带宽
+message FindDailyServerBandwidthStatsRequest {
+	int64 serverId = 1;
+	int32 days = 2;
+}
+
+message FindDailyServerBandwidthStatsResponse {
+	repeated Stat stats = 1;
+
+	message Stat {
+		string day = 1;
+		int64 bytes = 3;
+	}
 }

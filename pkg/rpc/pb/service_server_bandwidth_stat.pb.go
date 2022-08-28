@@ -188,6 +188,330 @@ func (x *FindServerBandwidthStatsResponse) GetServerBandwidthStats() []*ServerBa
 	return nil
 }
 
+// 获取最近N小时峰值带宽
+type FindHourlyServerBandwidthStatsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Hours    int32 `protobuf:"varint,2,opt,name=hours,proto3" json:"hours,omitempty"`
+}
+
+func (x *FindHourlyServerBandwidthStatsRequest) Reset() {
+	*x = FindHourlyServerBandwidthStatsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_bandwidth_stat_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindHourlyServerBandwidthStatsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindHourlyServerBandwidthStatsRequest) ProtoMessage() {}
+
+func (x *FindHourlyServerBandwidthStatsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_bandwidth_stat_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindHourlyServerBandwidthStatsRequest.ProtoReflect.Descriptor instead.
+func (*FindHourlyServerBandwidthStatsRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_bandwidth_stat_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *FindHourlyServerBandwidthStatsRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *FindHourlyServerBandwidthStatsRequest) GetHours() int32 {
+	if x != nil {
+		return x.Hours
+	}
+	return 0
+}
+
+type FindHourlyServerBandwidthStatsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Stats []*FindHourlyServerBandwidthStatsResponse_Stat `protobuf:"bytes,1,rep,name=stats,proto3" json:"stats,omitempty"`
+}
+
+func (x *FindHourlyServerBandwidthStatsResponse) Reset() {
+	*x = FindHourlyServerBandwidthStatsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_bandwidth_stat_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindHourlyServerBandwidthStatsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindHourlyServerBandwidthStatsResponse) ProtoMessage() {}
+
+func (x *FindHourlyServerBandwidthStatsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_bandwidth_stat_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindHourlyServerBandwidthStatsResponse.ProtoReflect.Descriptor instead.
+func (*FindHourlyServerBandwidthStatsResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_bandwidth_stat_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *FindHourlyServerBandwidthStatsResponse) GetStats() []*FindHourlyServerBandwidthStatsResponse_Stat {
+	if x != nil {
+		return x.Stats
+	}
+	return nil
+}
+
+// 获取最近N天峰值带宽
+type FindDailyServerBandwidthStatsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Days     int32 `protobuf:"varint,2,opt,name=days,proto3" json:"days,omitempty"`
+}
+
+func (x *FindDailyServerBandwidthStatsRequest) Reset() {
+	*x = FindDailyServerBandwidthStatsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_bandwidth_stat_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindDailyServerBandwidthStatsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindDailyServerBandwidthStatsRequest) ProtoMessage() {}
+
+func (x *FindDailyServerBandwidthStatsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_bandwidth_stat_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindDailyServerBandwidthStatsRequest.ProtoReflect.Descriptor instead.
+func (*FindDailyServerBandwidthStatsRequest) Descriptor() ([]byte, []int) {
+	return file_service_server_bandwidth_stat_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *FindDailyServerBandwidthStatsRequest) GetServerId() int64 {
+	if x != nil {
+		return x.ServerId
+	}
+	return 0
+}
+
+func (x *FindDailyServerBandwidthStatsRequest) GetDays() int32 {
+	if x != nil {
+		return x.Days
+	}
+	return 0
+}
+
+type FindDailyServerBandwidthStatsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Stats []*FindDailyServerBandwidthStatsResponse_Stat `protobuf:"bytes,1,rep,name=stats,proto3" json:"stats,omitempty"`
+}
+
+func (x *FindDailyServerBandwidthStatsResponse) Reset() {
+	*x = FindDailyServerBandwidthStatsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_bandwidth_stat_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindDailyServerBandwidthStatsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindDailyServerBandwidthStatsResponse) ProtoMessage() {}
+
+func (x *FindDailyServerBandwidthStatsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_bandwidth_stat_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindDailyServerBandwidthStatsResponse.ProtoReflect.Descriptor instead.
+func (*FindDailyServerBandwidthStatsResponse) Descriptor() ([]byte, []int) {
+	return file_service_server_bandwidth_stat_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *FindDailyServerBandwidthStatsResponse) GetStats() []*FindDailyServerBandwidthStatsResponse_Stat {
+	if x != nil {
+		return x.Stats
+	}
+	return nil
+}
+
+type FindHourlyServerBandwidthStatsResponse_Stat struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Day   string `protobuf:"bytes,1,opt,name=day,proto3" json:"day,omitempty"`
+	Hour  int32  `protobuf:"varint,2,opt,name=hour,proto3" json:"hour,omitempty"`
+	Bytes int64  `protobuf:"varint,3,opt,name=bytes,proto3" json:"bytes,omitempty"`
+}
+
+func (x *FindHourlyServerBandwidthStatsResponse_Stat) Reset() {
+	*x = FindHourlyServerBandwidthStatsResponse_Stat{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_bandwidth_stat_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindHourlyServerBandwidthStatsResponse_Stat) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindHourlyServerBandwidthStatsResponse_Stat) ProtoMessage() {}
+
+func (x *FindHourlyServerBandwidthStatsResponse_Stat) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_bandwidth_stat_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindHourlyServerBandwidthStatsResponse_Stat.ProtoReflect.Descriptor instead.
+func (*FindHourlyServerBandwidthStatsResponse_Stat) Descriptor() ([]byte, []int) {
+	return file_service_server_bandwidth_stat_proto_rawDescGZIP(), []int{4, 0}
+}
+
+func (x *FindHourlyServerBandwidthStatsResponse_Stat) GetDay() string {
+	if x != nil {
+		return x.Day
+	}
+	return ""
+}
+
+func (x *FindHourlyServerBandwidthStatsResponse_Stat) GetHour() int32 {
+	if x != nil {
+		return x.Hour
+	}
+	return 0
+}
+
+func (x *FindHourlyServerBandwidthStatsResponse_Stat) GetBytes() int64 {
+	if x != nil {
+		return x.Bytes
+	}
+	return 0
+}
+
+type FindDailyServerBandwidthStatsResponse_Stat struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Day   string `protobuf:"bytes,1,opt,name=day,proto3" json:"day,omitempty"`
+	Bytes int64  `protobuf:"varint,3,opt,name=bytes,proto3" json:"bytes,omitempty"`
+}
+
+func (x *FindDailyServerBandwidthStatsResponse_Stat) Reset() {
+	*x = FindDailyServerBandwidthStatsResponse_Stat{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_server_bandwidth_stat_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindDailyServerBandwidthStatsResponse_Stat) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindDailyServerBandwidthStatsResponse_Stat) ProtoMessage() {}
+
+func (x *FindDailyServerBandwidthStatsResponse_Stat) ProtoReflect() protoreflect.Message {
+	mi := &file_service_server_bandwidth_stat_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindDailyServerBandwidthStatsResponse_Stat.ProtoReflect.Descriptor instead.
+func (*FindDailyServerBandwidthStatsResponse_Stat) Descriptor() ([]byte, []int) {
+	return file_service_server_bandwidth_stat_proto_rawDescGZIP(), []int{6, 0}
+}
+
+func (x *FindDailyServerBandwidthStatsResponse_Stat) GetDay() string {
+	if x != nil {
+		return x.Day
+	}
+	return ""
+}
+
+func (x *FindDailyServerBandwidthStatsResponse_Stat) GetBytes() int64 {
+	if x != nil {
+		return x.Bytes
+	}
+	return 0
+}
+
 var File_service_server_bandwidth_stat_proto protoreflect.FileDescriptor
 
 var file_service_server_bandwidth_stat_proto_rawDesc = []byte{
@@ -218,22 +542,69 @@ var file_service_server_bandwidth_stat_proto_rawDesc = []byte{
 	0x61, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x70, 0x62, 0x2e, 0x53,
 	0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74,
 	0x61, 0x74, 0x52, 0x14, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69,
-	0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x32, 0xd8, 0x01, 0x0a, 0x1a, 0x53, 0x65, 0x72,
+	0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x22, 0x59, 0x0a, 0x25, 0x46, 0x69, 0x6e, 0x64,
+	0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64,
+	0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x14, 0x0a,
+	0x05, 0x68, 0x6f, 0x75, 0x72, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x68, 0x6f,
+	0x75, 0x72, 0x73, 0x22, 0xb3, 0x01, 0x0a, 0x26, 0x46, 0x69, 0x6e, 0x64, 0x48, 0x6f, 0x75, 0x72,
+	0x6c, 0x79, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74,
+	0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x45,
+	0x0a, 0x05, 0x73, 0x74, 0x61, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2f, 0x2e,
+	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x65, 0x72,
 	0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x53, 0x0a, 0x1a, 0x75, 0x70, 0x6c, 0x6f, 0x61,
-	0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68,
-	0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61,
-	0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68,
-	0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70,
-	0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x65, 0x0a, 0x18,
-	0x66, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69,
-	0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
-	0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74,
-	0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e,
-	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e,
-	0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x52, 0x05,
+	0x73, 0x74, 0x61, 0x74, 0x73, 0x1a, 0x42, 0x0a, 0x04, 0x53, 0x74, 0x61, 0x74, 0x12, 0x10, 0x0a,
+	0x03, 0x64, 0x61, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x64, 0x61, 0x79, 0x12,
+	0x12, 0x0a, 0x04, 0x68, 0x6f, 0x75, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x68,
+	0x6f, 0x75, 0x72, 0x12, 0x14, 0x0a, 0x05, 0x62, 0x79, 0x74, 0x65, 0x73, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x05, 0x62, 0x79, 0x74, 0x65, 0x73, 0x22, 0x56, 0x0a, 0x24, 0x46, 0x69, 0x6e,
+	0x64, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64,
+	0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x12, 0x0a,
+	0x04, 0x64, 0x61, 0x79, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x64, 0x61, 0x79,
+	0x73, 0x22, 0x9d, 0x01, 0x0a, 0x25, 0x46, 0x69, 0x6e, 0x64, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74,
+	0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x05, 0x73,
+	0x74, 0x61, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2e, 0x2e, 0x70, 0x62, 0x2e,
+	0x46, 0x69, 0x6e, 0x64, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42,
+	0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74,
+	0x73, 0x1a, 0x2e, 0x0a, 0x04, 0x53, 0x74, 0x61, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x64, 0x61, 0x79,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x64, 0x61, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x62,
+	0x79, 0x74, 0x65, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x62, 0x79, 0x74, 0x65,
+	0x73, 0x32, 0xc7, 0x03, 0x0a, 0x1a, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64,
+	0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x12, 0x53, 0x0a, 0x1a, 0x75, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x25,
+	0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x65, 0x0a, 0x18, 0x66, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74,
+	0x73, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53,
+	0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x77, 0x0a, 0x1e,
+	0x66, 0x69, 0x6e, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x29,
+	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61,
+	0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x70, 0x62, 0x2e, 0x46,
+	0x69, 0x6e, 0x64, 0x48, 0x6f, 0x75, 0x72, 0x6c, 0x79, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42,
+	0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x74, 0x0a, 0x1d, 0x66, 0x69, 0x6e, 0x64, 0x44, 0x61, 0x69,
+	0x6c, 0x79, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74,
+	0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x12, 0x28, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
+	0x44, 0x61, 0x69, 0x6c, 0x79, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77,
+	0x69, 0x64, 0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x29, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x44, 0x61, 0x69, 0x6c, 0x79, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x53, 0x74,
+	0x61, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e,
+	0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -248,26 +619,38 @@ func file_service_server_bandwidth_stat_proto_rawDescGZIP() []byte {
 	return file_service_server_bandwidth_stat_proto_rawDescData
 }
 
-var file_service_server_bandwidth_stat_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_service_server_bandwidth_stat_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_service_server_bandwidth_stat_proto_goTypes = []interface{}{
-	(*UploadServerBandwidthStatsRequest)(nil), // 0: pb.UploadServerBandwidthStatsRequest
-	(*FindServerBandwidthStatsRequest)(nil),   // 1: pb.FindServerBandwidthStatsRequest
-	(*FindServerBandwidthStatsResponse)(nil),  // 2: pb.FindServerBandwidthStatsResponse
-	(*ServerBandwidthStat)(nil),               // 3: pb.ServerBandwidthStat
-	(*RPCSuccess)(nil),                        // 4: pb.RPCSuccess
+	(*UploadServerBandwidthStatsRequest)(nil),           // 0: pb.UploadServerBandwidthStatsRequest
+	(*FindServerBandwidthStatsRequest)(nil),             // 1: pb.FindServerBandwidthStatsRequest
+	(*FindServerBandwidthStatsResponse)(nil),            // 2: pb.FindServerBandwidthStatsResponse
+	(*FindHourlyServerBandwidthStatsRequest)(nil),       // 3: pb.FindHourlyServerBandwidthStatsRequest
+	(*FindHourlyServerBandwidthStatsResponse)(nil),      // 4: pb.FindHourlyServerBandwidthStatsResponse
+	(*FindDailyServerBandwidthStatsRequest)(nil),        // 5: pb.FindDailyServerBandwidthStatsRequest
+	(*FindDailyServerBandwidthStatsResponse)(nil),       // 6: pb.FindDailyServerBandwidthStatsResponse
+	(*FindHourlyServerBandwidthStatsResponse_Stat)(nil), // 7: pb.FindHourlyServerBandwidthStatsResponse.Stat
+	(*FindDailyServerBandwidthStatsResponse_Stat)(nil),  // 8: pb.FindDailyServerBandwidthStatsResponse.Stat
+	(*ServerBandwidthStat)(nil),                         // 9: pb.ServerBandwidthStat
+	(*RPCSuccess)(nil),                                  // 10: pb.RPCSuccess
 }
 var file_service_server_bandwidth_stat_proto_depIdxs = []int32{
-	3, // 0: pb.UploadServerBandwidthStatsRequest.serverBandwidthStats:type_name -> pb.ServerBandwidthStat
-	3, // 1: pb.FindServerBandwidthStatsResponse.serverBandwidthStats:type_name -> pb.ServerBandwidthStat
-	0, // 2: pb.ServerBandwidthStatService.uploadServerBandwidthStats:input_type -> pb.UploadServerBandwidthStatsRequest
-	1, // 3: pb.ServerBandwidthStatService.findServerBandwidthStats:input_type -> pb.FindServerBandwidthStatsRequest
-	4, // 4: pb.ServerBandwidthStatService.uploadServerBandwidthStats:output_type -> pb.RPCSuccess
-	2, // 5: pb.ServerBandwidthStatService.findServerBandwidthStats:output_type -> pb.FindServerBandwidthStatsResponse
-	4, // [4:6] is the sub-list for method output_type
-	2, // [2:4] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	9,  // 0: pb.UploadServerBandwidthStatsRequest.serverBandwidthStats:type_name -> pb.ServerBandwidthStat
+	9,  // 1: pb.FindServerBandwidthStatsResponse.serverBandwidthStats:type_name -> pb.ServerBandwidthStat
+	7,  // 2: pb.FindHourlyServerBandwidthStatsResponse.stats:type_name -> pb.FindHourlyServerBandwidthStatsResponse.Stat
+	8,  // 3: pb.FindDailyServerBandwidthStatsResponse.stats:type_name -> pb.FindDailyServerBandwidthStatsResponse.Stat
+	0,  // 4: pb.ServerBandwidthStatService.uploadServerBandwidthStats:input_type -> pb.UploadServerBandwidthStatsRequest
+	1,  // 5: pb.ServerBandwidthStatService.findServerBandwidthStats:input_type -> pb.FindServerBandwidthStatsRequest
+	3,  // 6: pb.ServerBandwidthStatService.findHourlyServerBandwidthStats:input_type -> pb.FindHourlyServerBandwidthStatsRequest
+	5,  // 7: pb.ServerBandwidthStatService.findDailyServerBandwidthStats:input_type -> pb.FindDailyServerBandwidthStatsRequest
+	10, // 8: pb.ServerBandwidthStatService.uploadServerBandwidthStats:output_type -> pb.RPCSuccess
+	2,  // 9: pb.ServerBandwidthStatService.findServerBandwidthStats:output_type -> pb.FindServerBandwidthStatsResponse
+	4,  // 10: pb.ServerBandwidthStatService.findHourlyServerBandwidthStats:output_type -> pb.FindHourlyServerBandwidthStatsResponse
+	6,  // 11: pb.ServerBandwidthStatService.findDailyServerBandwidthStats:output_type -> pb.FindDailyServerBandwidthStatsResponse
+	8,  // [8:12] is the sub-list for method output_type
+	4,  // [4:8] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_service_server_bandwidth_stat_proto_init() }
@@ -314,6 +697,78 @@ func file_service_server_bandwidth_stat_proto_init() {
 				return nil
 			}
 		}
+		file_service_server_bandwidth_stat_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindHourlyServerBandwidthStatsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_bandwidth_stat_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindHourlyServerBandwidthStatsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_bandwidth_stat_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindDailyServerBandwidthStatsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_bandwidth_stat_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindDailyServerBandwidthStatsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_bandwidth_stat_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindHourlyServerBandwidthStatsResponse_Stat); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_server_bandwidth_stat_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindDailyServerBandwidthStatsResponse_Stat); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -321,7 +776,7 @@ func file_service_server_bandwidth_stat_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_server_bandwidth_stat_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -351,6 +806,10 @@ type ServerBandwidthStatServiceClient interface {
 	UploadServerBandwidthStats(ctx context.Context, in *UploadServerBandwidthStatsRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 获取服务的峰值带宽
 	FindServerBandwidthStats(ctx context.Context, in *FindServerBandwidthStatsRequest, opts ...grpc.CallOption) (*FindServerBandwidthStatsResponse, error)
+	// 获取最近N小时峰值带宽
+	FindHourlyServerBandwidthStats(ctx context.Context, in *FindHourlyServerBandwidthStatsRequest, opts ...grpc.CallOption) (*FindHourlyServerBandwidthStatsResponse, error)
+	// 获取最近N天峰值带宽
+	FindDailyServerBandwidthStats(ctx context.Context, in *FindDailyServerBandwidthStatsRequest, opts ...grpc.CallOption) (*FindDailyServerBandwidthStatsResponse, error)
 }
 
 type serverBandwidthStatServiceClient struct {
@@ -379,12 +838,34 @@ func (c *serverBandwidthStatServiceClient) FindServerBandwidthStats(ctx context.
 	return out, nil
 }
 
+func (c *serverBandwidthStatServiceClient) FindHourlyServerBandwidthStats(ctx context.Context, in *FindHourlyServerBandwidthStatsRequest, opts ...grpc.CallOption) (*FindHourlyServerBandwidthStatsResponse, error) {
+	out := new(FindHourlyServerBandwidthStatsResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerBandwidthStatService/findHourlyServerBandwidthStats", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverBandwidthStatServiceClient) FindDailyServerBandwidthStats(ctx context.Context, in *FindDailyServerBandwidthStatsRequest, opts ...grpc.CallOption) (*FindDailyServerBandwidthStatsResponse, error) {
+	out := new(FindDailyServerBandwidthStatsResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServerBandwidthStatService/findDailyServerBandwidthStats", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServerBandwidthStatServiceServer is the server API for ServerBandwidthStatService service.
 type ServerBandwidthStatServiceServer interface {
 	// 上传带宽统计
 	UploadServerBandwidthStats(context.Context, *UploadServerBandwidthStatsRequest) (*RPCSuccess, error)
 	// 获取服务的峰值带宽
 	FindServerBandwidthStats(context.Context, *FindServerBandwidthStatsRequest) (*FindServerBandwidthStatsResponse, error)
+	// 获取最近N小时峰值带宽
+	FindHourlyServerBandwidthStats(context.Context, *FindHourlyServerBandwidthStatsRequest) (*FindHourlyServerBandwidthStatsResponse, error)
+	// 获取最近N天峰值带宽
+	FindDailyServerBandwidthStats(context.Context, *FindDailyServerBandwidthStatsRequest) (*FindDailyServerBandwidthStatsResponse, error)
 }
 
 // UnimplementedServerBandwidthStatServiceServer can be embedded to have forward compatible implementations.
@@ -396,6 +877,12 @@ func (*UnimplementedServerBandwidthStatServiceServer) UploadServerBandwidthStats
 }
 func (*UnimplementedServerBandwidthStatServiceServer) FindServerBandwidthStats(context.Context, *FindServerBandwidthStatsRequest) (*FindServerBandwidthStatsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindServerBandwidthStats not implemented")
+}
+func (*UnimplementedServerBandwidthStatServiceServer) FindHourlyServerBandwidthStats(context.Context, *FindHourlyServerBandwidthStatsRequest) (*FindHourlyServerBandwidthStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindHourlyServerBandwidthStats not implemented")
+}
+func (*UnimplementedServerBandwidthStatServiceServer) FindDailyServerBandwidthStats(context.Context, *FindDailyServerBandwidthStatsRequest) (*FindDailyServerBandwidthStatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindDailyServerBandwidthStats not implemented")
 }
 
 func RegisterServerBandwidthStatServiceServer(s *grpc.Server, srv ServerBandwidthStatServiceServer) {
@@ -438,6 +925,42 @@ func _ServerBandwidthStatService_FindServerBandwidthStats_Handler(srv interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServerBandwidthStatService_FindHourlyServerBandwidthStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindHourlyServerBandwidthStatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerBandwidthStatServiceServer).FindHourlyServerBandwidthStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerBandwidthStatService/FindHourlyServerBandwidthStats",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerBandwidthStatServiceServer).FindHourlyServerBandwidthStats(ctx, req.(*FindHourlyServerBandwidthStatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerBandwidthStatService_FindDailyServerBandwidthStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindDailyServerBandwidthStatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerBandwidthStatServiceServer).FindDailyServerBandwidthStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServerBandwidthStatService/FindDailyServerBandwidthStats",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerBandwidthStatServiceServer).FindDailyServerBandwidthStats(ctx, req.(*FindDailyServerBandwidthStatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _ServerBandwidthStatService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.ServerBandwidthStatService",
 	HandlerType: (*ServerBandwidthStatServiceServer)(nil),
@@ -449,6 +972,14 @@ var _ServerBandwidthStatService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findServerBandwidthStats",
 			Handler:    _ServerBandwidthStatService_FindServerBandwidthStats_Handler,
+		},
+		{
+			MethodName: "findHourlyServerBandwidthStats",
+			Handler:    _ServerBandwidthStatService_FindHourlyServerBandwidthStats_Handler,
+		},
+		{
+			MethodName: "findDailyServerBandwidthStats",
+			Handler:    _ServerBandwidthStatService_FindDailyServerBandwidthStats_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
