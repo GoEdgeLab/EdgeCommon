@@ -24,7 +24,7 @@ func TestHTTPAuthRequestMethod_Filter(t *testing.T) {
 	}
 	req.Header.Set("Hello", "World")
 	req.Header.Set("User-Agent", "GoEdge/1.0")
-	b, err := method.Filter(req, func(subReq *http.Request) (status int, err error) {
+	b, uri, uriChanged, err := method.Filter(req, func(subReq *http.Request) (status int, err error) {
 		return
 	}, func(s string) string {
 		return s
@@ -32,7 +32,7 @@ func TestHTTPAuthRequestMethod_Filter(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	t.Log("result:", b)
+	t.Log("result:", b, uri, uriChanged)
 }
 
 func TestHTTPAuthRequestMethod_Filter_Path(t *testing.T) {
@@ -50,7 +50,7 @@ func TestHTTPAuthRequestMethod_Filter_Path(t *testing.T) {
 	}
 	req.Header.Set("Hello", "World")
 	req.Header.Set("User-Agent", "GoEdge/1.0")
-	b, err := method.Filter(req, func(subReq *http.Request) (status int, err error) {
+	b, uri, uriChanged, err := method.Filter(req, func(subReq *http.Request) (status int, err error) {
 		status = rands.Int(200, 400)
 		t.Log("execute sub request:", subReq.URL, status)
 		return
@@ -60,5 +60,5 @@ func TestHTTPAuthRequestMethod_Filter_Path(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	t.Log("result:", b)
+	t.Log("result:", b, uri, uriChanged)
 }

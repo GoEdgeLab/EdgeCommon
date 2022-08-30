@@ -11,7 +11,7 @@ import (
 )
 
 func TestHTTPAuthBasicMethodUser_Validate(t *testing.T) {
-	a := assert.NewAssertion(t)
+	var a = assert.NewAssertion(t)
 
 	{
 		user := &HTTPAuthBasicMethodUser{
@@ -37,8 +37,7 @@ func TestHTTPAuthBasicMethodUser_Validate(t *testing.T) {
 }
 
 func TestHTTPAuthBasicMethod_Filter(t *testing.T) {
-
-	method := &HTTPAuthBasicMethod{}
+	var method = &HTTPAuthBasicMethod{}
 	err := method.Init(map[string]interface{}{
 		"users": []maps.Map{
 			{

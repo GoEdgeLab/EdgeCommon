@@ -3,7 +3,6 @@
 package serverconfigs
 
 import (
-	"errors"
 	"net/http"
 )
 
@@ -18,31 +17,19 @@ type HTTPAuthPolicy struct {
 	method HTTPAuthMethodInterface
 }
 
-// Init 初始化
-func (this *HTTPAuthPolicy) Init() error {
-	switch this.Type {
-	case HTTPAuthTypeBasicAuth:
-		this.method = NewHTTPAuthBasicMethod()
-	case HTTPAuthTypeSubRequest:
-		this.method = NewHTTPAuthSubRequestMethod()
-	}
-
+// MatchRequest 检查是否匹配请求
+func (this *HTTPAuthPolicy) MatchRequest(req *http.Request) bool {
 	if this.method == nil {
-		return errors.New("unknown auth method '" + this.Type + "'")
+		return false
 	}
-	err := this.method.Init(this.Params)
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return this.method.MatchRequest(req)
 }
 
 // Filter 过滤
-func (this *HTTPAuthPolicy) Filter(req *http.Request, subReqFunc func(subReq *http.Request) (status int, err error), formatter func(string) string) (bool, error) {
+func (this *HTTPAuthPolicy) Filter(req *http.Request, subReqFunc func(subReq *http.Request) (status int, err error), formatter func(string) string) (ok bool, newURI string, uriChanged bool, err error) {
 	if this.method == nil {
 		// 如果设置正确的方法，我们直接允许请求
-		return true, nil
+		return true, "", false, nil
 	}
 	return this.method.Filter(req, subReqFunc, formatter)
 }

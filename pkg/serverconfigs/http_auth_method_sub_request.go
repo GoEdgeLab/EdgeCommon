@@ -21,6 +21,8 @@ var httpAuthSubRequestHTTPClient = &http.Client{
 
 // HTTPAuthSubRequestMethod 使用URL认证
 type HTTPAuthSubRequestMethod struct {
+	HTTPAuthBaseMethod
+
 	URL    string `json:"url"`
 	Method string `json:"method"`
 
@@ -34,7 +36,7 @@ func NewHTTPAuthSubRequestMethod() *HTTPAuthSubRequestMethod {
 }
 
 // Init 初始化
-func (this *HTTPAuthSubRequestMethod) Init(params map[string]interface{}) error {
+func (this *HTTPAuthSubRequestMethod) Init(params map[string]any) error {
 	paramsJSON, err := json.Marshal(params)
 	if err != nil {
 		return err
@@ -58,7 +60,7 @@ func (this *HTTPAuthSubRequestMethod) Init(params map[string]interface{}) error 
 }
 
 // Filter 过滤
-func (this *HTTPAuthSubRequestMethod) Filter(req *http.Request, doSubReq func(subReq *http.Request) (status int, err error), formatter func(string) string) (bool, error) {
+func (this *HTTPAuthSubRequestMethod) Filter(req *http.Request, doSubReq func(subReq *http.Request) (status int, err error), formatter func(string) string) (ok bool, newURI string, uriChanged bool, err error) {
 	var method = this.Method
 	if len(method) == 0 {
 		method = req.Method
@@ -78,7 +80,7 @@ func (this *HTTPAuthSubRequestMethod) Filter(req *http.Request, doSubReq func(su
 	}
 	newReq, err := http.NewRequest(method, url, nil)
 	if err != nil {
-		return false, err
+		return false, "", false, err
 	}
 	for k, v := range req.Header {
 		if k != "Connection" {
@@ -89,20 +91,20 @@ func (this *HTTPAuthSubRequestMethod) Filter(req *http.Request, doSubReq func(su
 	if !this.isFullURL {
 		status, err := doSubReq(newReq)
 		if err != nil {
-			return false, err
+			return false, "", false, err
 		}
-		return status >= 200 && status < 300, nil
+		return status >= 200 && status < 300, "", false, nil
 	}
 
 	// TODO 需要将Header和StatusCode、ResponseBody输出到客户端
 	newReq.Header.Set("Referer", scheme+"://"+host+req.URL.RequestURI())
 	resp, err := httpAuthSubRequestHTTPClient.Do(newReq)
 	if err != nil {
-		return false, err
+		return false, "", false, err
 	}
 	defer func() {
 		_ = resp.Body.Close()
 	}()
 
-	return resp.StatusCode >= 200 && resp.StatusCode < 300, nil
+	return resp.StatusCode >= 200 && resp.StatusCode < 300, "", false, nil
 }
