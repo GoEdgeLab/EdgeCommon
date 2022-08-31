@@ -7,11 +7,14 @@ type TCPConfig struct {
 	IsOn                bool  `json:"isOn"`
 	MaxConnections      int32 `json:"maxConnections"`
 	MaxConnectionsPerIP int32 `json:"maxConnectionsPerIP"`
-	NewConnectionsRate  int32 `json:"newConnectionsRate"`
 
-	// 自动加入黑名单连接速率
-	DenyNewConnectionsRate        int32 `json:"denyNewConnectionsRate"`
-	DenyNewConnectionsRateTimeout int32 `json:"denyNewConnectionsRateTimeout"`
+	// 分钟级速率
+	NewConnectionsMinutelyRate             int32 `json:"newConnectionsRate"`             // 分钟
+	NewConnectionsMinutelyRateBlockTimeout int32 `json:"newConnectionsRateBlockTimeout"` // 拦截时间
+
+	// 秒级速率
+	NewConnectionsSecondlyRate             int32 `json:"newConnectionsSecondlyRate"`
+	NewConnectionsSecondlyRateBlockTimeout int32 `json:"newConnectionsSecondlyRateBlockTimeout"`
 
 	AllowIPList []*IPConfig   `json:"allowIPList"`
 	Ports       []*PortConfig `json:"ports"`
