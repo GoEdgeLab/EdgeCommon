@@ -29,7 +29,8 @@ type HTTPCacheRef struct {
 	EnableIfNoneMatch              bool     `yaml:"enableIfNoneMatch" json:"enableIfNoneMatch"`
 	EnableIfModifiedSince          bool     `yaml:"enableIfModifiedSince" json:"enableIfModifiedSince"`
 
-	Conds *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"` // 请求条件
+	Conds      *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"`           // 复杂请求条件组合
+	SimpleCond *shared.HTTPRequestCond        `yaml:"simpleCond" json:"simpleCond"` // 简单条件
 
 	CachePolicy *HTTPCachePolicy `yaml:"cachePolicy" json:"cachePolicy"`
 
@@ -64,6 +65,13 @@ func (this *HTTPCacheRef) Init() error {
 	// conds
 	if this.Conds != nil {
 		err := this.Conds.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	if this.SimpleCond != nil {
+		err := this.SimpleCond.Init()
 		if err != nil {
 			return err
 		}
