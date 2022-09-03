@@ -171,6 +171,14 @@ message ListNSRecordsRequest {
 	int64 nsRouteId = 3 [deprecated = true]; // 使用nsRouteCode代替
 	string nsRouteCode = 7;
 	string keyword = 4;
+
+	bool nameAsc = 8;
+	bool nameDesc = 9;
+	bool typeAsc = 10;
+	bool typeDesc = 11;
+	bool ttlAsc = 12;
+	bool ttlDesc = 13;
+
 	int64 offset = 5;
 	int64 size = 6;
 }
