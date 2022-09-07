@@ -6,7 +6,11 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/firewallconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
+	"golang.org/x/net/idna"
+	"regexp"
 )
+
+var normalServerNameReg = regexp.MustCompile(`^[a-zA-Z0-9.-]+$`)
 
 type ServerConfig struct {
 	Id               int64               `yaml:"id" json:"id"`                             // ID
@@ -341,6 +345,14 @@ func (this *ServerConfig) AllStrictNames() []string {
 		if len(name) > 0 {
 			if !configutils.IsFuzzyDomain(name) {
 				result = append(result, name)
+
+				// unicode domain
+				if !normalServerNameReg.MatchString(name) {
+					asciiName, err := idna.ToASCII(name)
+					if err == nil && len(asciiName) > 0 {
+						result = append(result, asciiName)
+					}
+				}
 			}
 		}
 	}
@@ -349,12 +361,28 @@ func (this *ServerConfig) AllStrictNames() []string {
 		if len(name) > 0 {
 			if !configutils.IsFuzzyDomain(name) {
 				result = append(result, name)
+
+				// unicode domain
+				if !normalServerNameReg.MatchString(name) {
+					asciiName, err := idna.ToASCII(name)
+					if err == nil && len(asciiName) > 0 {
+						result = append(result, asciiName)
+					}
+				}
 			}
 		}
 		for _, name := range serverName.SubNames {
 			if len(name) > 0 {
 				if !configutils.IsFuzzyDomain(name) {
 					result = append(result, name)
+
+					// unicode domain
+					if !normalServerNameReg.MatchString(name) {
+						asciiName, err := idna.ToASCII(name)
+						if err == nil && len(asciiName) > 0 {
+							result = append(result, asciiName)
+						}
+					}
 				}
 			}
 		}
