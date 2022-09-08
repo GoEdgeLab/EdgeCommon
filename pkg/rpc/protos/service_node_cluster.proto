@@ -152,6 +152,7 @@ message CreateNodeClusterRequest {
 	string installDir = 3;
 	int64 dnsDomainId = 4;
 	string dnsName = 5;
+	int32 dnsTTL = 9;
 	int64 httpCachePolicyId = 6;
 	int64 httpFirewallPolicyId = 7;
 	bytes systemServicesJSON = 8; // 系统服务设置
