@@ -55,6 +55,9 @@ service NSNodeService {
 	// 检查NS节点新版本
 	rpc checkNSNodeLatestVersion (CheckNSNodeLatestVersionRequest) returns (CheckNSNodeLatestVersionResponse);
 
+	// 获取NS节点最新版本
+	rpc findLatestNSNodeVersion (FindLatestNSNodeVersionRequest) returns (FindLatestNSNodeVersionResponse);
+
 	// 下载最新NS节点安装文件
 	rpc downloadNSNodeInstallationFile (DownloadNSNodeInstallationFileRequest) returns (DownloadNSNodeInstallationFileResponse);
 
@@ -211,6 +214,15 @@ message CheckNSNodeLatestVersionRequest {
 message CheckNSNodeLatestVersionResponse {
 	bool hasNewVersion = 1;
 	string newVersion = 2;
+}
+
+// 取得最新的版本号
+message FindLatestNSNodeVersionRequest {
+
+}
+
+message FindLatestNSNodeVersionResponse {
+	string version = 1;
 }
 
 // 下载最新NS节点安装文件
