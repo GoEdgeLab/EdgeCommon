@@ -26,6 +26,9 @@ service NSDomainService {
 	// 查找单个域名
 	rpc findNSDomain (FindNSDomainRequest) returns (FindNSDomainResponse);
 
+	// 根据域名名称查找域名
+	rpc findNSDomainWithName(FindNSDomainWithNameRequest) returns (FindNSDomainWithNameResponse);
+
 	// 计算域名数量
 	rpc countAllNSDomains (CountAllNSDomainsRequest) returns (RPCCountResponse);
 
@@ -92,10 +95,19 @@ message DeleteNSDomainsRequest {
 
 // 查找单个域名
 message FindNSDomainRequest {
-	int64 nsDomainId = 1;
+	int64 nsDomainId = 1; // 域名ID
 }
 
 message FindNSDomainResponse {
+	NSDomain nsDomain = 1;
+}
+
+// 根据域名名称查找域名
+message FindNSDomainWithNameRequest {
+	string name = 1;
+}
+
+message FindNSDomainWithNameResponse {
 	NSDomain nsDomain = 1;
 }
 

@@ -8,29 +8,38 @@ import "models/rpc_messages.proto";
 
 // 线路相关服务
 service NSRouteService {
-	// 创建线路
+	// 创建自定义线路
 	rpc createNSRoute (CreateNSRouteRequest) returns (CreateNSRouteResponse);
 
-	// 修改线路
+	// 修改自定义线路
 	rpc updateNSRoute (UpdateNSRouteRequest) returns (RPCSuccess);
 
-	// 删除线路
+	// 删除自定义线路
 	rpc deleteNSRoute (DeleteNSRouteRequest) returns (RPCSuccess);
 
-	// 获取单个路线信息
+	// 获取单个自定义路线信息
 	rpc findNSRoute (FindNSRouteRequest) returns (FindNSRouteResponse);
 
-	// 读取所有线路
+	// 读取所有自定义线路
 	rpc findAllNSRoutes (FindAllNSRoutesRequest) returns (FindAllNSRoutesResponse);
 
-	// 设置线路排序
+	// 设置自定义线路排序
 	rpc updateNSRouteOrders (UpdateNSRouteOrdersRequest) returns (RPCSuccess);
 
-	// 根据版本列出一组线路
+	// 根据版本列出一组自定义线路
 	rpc listNSRoutesAfterVersion (ListNSRoutesAfterVersionRequest) returns (ListNSRoutesAfterVersionResponse);
+
+	// 查找默认的世界区域线路
+	rpc findAllDefaultWorldRegionRoutes(FindAllDefaultWorldRegionRoutesRequest) returns (FindAllDefaultWorldRegionRoutesResponse);
+
+	// 查找默认的中国省份线路
+	rpc findAllDefaultChinaProvinceRoutes(FindAllDefaultChinaProvinceRoutesRequest) returns (FindAllDefaultChinaProvinceRoutesResponse);
+
+	// 查找默认的ISP线路
+	rpc findAllDefaultISPRoutes(FindAllDefaultISPRoutesRequest) returns (FindAllDefaultISPRoutesResponse);
 }
 
-// 创建线路
+// 创建自定义线路
 message CreateNSRouteRequest {
 	int64 nsClusterId = 1;
 	int64 nsDomainId = 2;
@@ -43,19 +52,19 @@ message CreateNSRouteResponse {
 	int64 nsRouteId = 1;
 }
 
-// 修改线路
+// 修改自定义线路
 message UpdateNSRouteRequest {
 	int64 nsRouteId = 1;
 	string name = 2;
 	bytes rangesJSON = 3;
 }
 
-// 删除线路
+// 删除自定义线路
 message DeleteNSRouteRequest {
 	int64 nsRouteId = 1;
 }
 
-// 获取单个路线信息
+// 获取单个自定义路线信息
 message FindNSRouteRequest {
 	int64 nsRouteId = 1;
 }
@@ -64,7 +73,7 @@ message FindNSRouteResponse {
 	NSRoute nsRoute = 1;
 }
 
-// 读取所有线路
+// 读取所有自定义线路
 message FindAllNSRoutesRequest {
 	int64 nsClusterId = 1;
 	int64 nsDomainId = 2;
@@ -75,17 +84,44 @@ message FindAllNSRoutesResponse {
 	repeated NSRoute nsRoutes = 1;
 }
 
-// 设置线路排序
+// 设置自定义线路排序
 message UpdateNSRouteOrdersRequest {
 	repeated int64 nsRouteIds = 1;
 }
 
-// 根据版本列出一组线路
+// 根据版本列出一组自定义线路
 message ListNSRoutesAfterVersionRequest {
 	int64 version = 1;
 	int64 size = 2;
 }
 
 message ListNSRoutesAfterVersionResponse {
+	repeated NSRoute nsRoutes = 1;
+}
+
+// 查找默认的世界区域线路
+message FindAllDefaultWorldRegionRoutesRequest {
+
+}
+
+message FindAllDefaultWorldRegionRoutesResponse {
+	repeated NSRoute nsRoutes = 1;
+}
+
+// 查找默认的中国省份线路
+message FindAllDefaultChinaProvinceRoutesRequest {
+
+}
+
+message FindAllDefaultChinaProvinceRoutesResponse {
+	repeated NSRoute nsRoutes = 1;
+}
+
+// 查找默认的ISP线路
+message FindAllDefaultISPRoutesRequest {
+
+}
+
+message FindAllDefaultISPRoutesResponse {
 	repeated NSRoute nsRoutes = 1;
 }

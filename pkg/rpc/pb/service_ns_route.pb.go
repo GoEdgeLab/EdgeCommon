@@ -29,7 +29,7 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-// 创建线路
+// 创建自定义线路
 type CreateNSRouteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -156,7 +156,7 @@ func (x *CreateNSRouteResponse) GetNsRouteId() int64 {
 	return 0
 }
 
-// 修改线路
+// 修改自定义线路
 type UpdateNSRouteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -220,7 +220,7 @@ func (x *UpdateNSRouteRequest) GetRangesJSON() []byte {
 	return nil
 }
 
-// 删除线路
+// 删除自定义线路
 type DeleteNSRouteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -268,7 +268,7 @@ func (x *DeleteNSRouteRequest) GetNsRouteId() int64 {
 	return 0
 }
 
-// 获取单个路线信息
+// 获取单个自定义路线信息
 type FindNSRouteRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -363,7 +363,7 @@ func (x *FindNSRouteResponse) GetNsRoute() *NSRoute {
 	return nil
 }
 
-// 读取所有线路
+// 读取所有自定义线路
 type FindAllNSRoutesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -474,7 +474,7 @@ func (x *FindAllNSRoutesResponse) GetNsRoutes() []*NSRoute {
 	return nil
 }
 
-// 设置线路排序
+// 设置自定义线路排序
 type UpdateNSRouteOrdersRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -522,7 +522,7 @@ func (x *UpdateNSRouteOrdersRequest) GetNsRouteIds() []int64 {
 	return nil
 }
 
-// 根据版本列出一组线路
+// 根据版本列出一组自定义线路
 type ListNSRoutesAfterVersionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -625,6 +625,264 @@ func (x *ListNSRoutesAfterVersionResponse) GetNsRoutes() []*NSRoute {
 	return nil
 }
 
+// 查找默认的世界区域线路
+type FindAllDefaultWorldRegionRoutesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *FindAllDefaultWorldRegionRoutesRequest) Reset() {
+	*x = FindAllDefaultWorldRegionRoutesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_route_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllDefaultWorldRegionRoutesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllDefaultWorldRegionRoutesRequest) ProtoMessage() {}
+
+func (x *FindAllDefaultWorldRegionRoutesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_route_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllDefaultWorldRegionRoutesRequest.ProtoReflect.Descriptor instead.
+func (*FindAllDefaultWorldRegionRoutesRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_route_proto_rawDescGZIP(), []int{11}
+}
+
+type FindAllDefaultWorldRegionRoutesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsRoutes []*NSRoute `protobuf:"bytes,1,rep,name=nsRoutes,proto3" json:"nsRoutes,omitempty"`
+}
+
+func (x *FindAllDefaultWorldRegionRoutesResponse) Reset() {
+	*x = FindAllDefaultWorldRegionRoutesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_route_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllDefaultWorldRegionRoutesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllDefaultWorldRegionRoutesResponse) ProtoMessage() {}
+
+func (x *FindAllDefaultWorldRegionRoutesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_route_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllDefaultWorldRegionRoutesResponse.ProtoReflect.Descriptor instead.
+func (*FindAllDefaultWorldRegionRoutesResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_route_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *FindAllDefaultWorldRegionRoutesResponse) GetNsRoutes() []*NSRoute {
+	if x != nil {
+		return x.NsRoutes
+	}
+	return nil
+}
+
+// 查找默认的中国省份线路
+type FindAllDefaultChinaProvinceRoutesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *FindAllDefaultChinaProvinceRoutesRequest) Reset() {
+	*x = FindAllDefaultChinaProvinceRoutesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_route_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllDefaultChinaProvinceRoutesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllDefaultChinaProvinceRoutesRequest) ProtoMessage() {}
+
+func (x *FindAllDefaultChinaProvinceRoutesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_route_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllDefaultChinaProvinceRoutesRequest.ProtoReflect.Descriptor instead.
+func (*FindAllDefaultChinaProvinceRoutesRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_route_proto_rawDescGZIP(), []int{13}
+}
+
+type FindAllDefaultChinaProvinceRoutesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsRoutes []*NSRoute `protobuf:"bytes,1,rep,name=nsRoutes,proto3" json:"nsRoutes,omitempty"`
+}
+
+func (x *FindAllDefaultChinaProvinceRoutesResponse) Reset() {
+	*x = FindAllDefaultChinaProvinceRoutesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_route_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllDefaultChinaProvinceRoutesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllDefaultChinaProvinceRoutesResponse) ProtoMessage() {}
+
+func (x *FindAllDefaultChinaProvinceRoutesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_route_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllDefaultChinaProvinceRoutesResponse.ProtoReflect.Descriptor instead.
+func (*FindAllDefaultChinaProvinceRoutesResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_route_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *FindAllDefaultChinaProvinceRoutesResponse) GetNsRoutes() []*NSRoute {
+	if x != nil {
+		return x.NsRoutes
+	}
+	return nil
+}
+
+// 查找默认的ISP线路
+type FindAllDefaultISPRoutesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *FindAllDefaultISPRoutesRequest) Reset() {
+	*x = FindAllDefaultISPRoutesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_route_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllDefaultISPRoutesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllDefaultISPRoutesRequest) ProtoMessage() {}
+
+func (x *FindAllDefaultISPRoutesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_route_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllDefaultISPRoutesRequest.ProtoReflect.Descriptor instead.
+func (*FindAllDefaultISPRoutesRequest) Descriptor() ([]byte, []int) {
+	return file_service_ns_route_proto_rawDescGZIP(), []int{15}
+}
+
+type FindAllDefaultISPRoutesResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NsRoutes []*NSRoute `protobuf:"bytes,1,rep,name=nsRoutes,proto3" json:"nsRoutes,omitempty"`
+}
+
+func (x *FindAllDefaultISPRoutesResponse) Reset() {
+	*x = FindAllDefaultISPRoutesResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_ns_route_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllDefaultISPRoutesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllDefaultISPRoutesResponse) ProtoMessage() {}
+
+func (x *FindAllDefaultISPRoutesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_ns_route_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllDefaultISPRoutesResponse.ProtoReflect.Descriptor instead.
+func (*FindAllDefaultISPRoutesResponse) Descriptor() ([]byte, []int) {
+	return file_service_ns_route_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *FindAllDefaultISPRoutesResponse) GetNsRoutes() []*NSRoute {
+	if x != nil {
+		return x.NsRoutes
+	}
+	return nil
+}
+
 var File_service_ns_route_proto protoreflect.FileDescriptor
 
 var file_service_ns_route_proto_rawDesc = []byte{
@@ -689,41 +947,86 @@ var file_service_ns_route_proto_rawDesc = []byte{
 	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
 	0x27, 0x0a, 0x08, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
 	0x0b, 0x32, 0x0b, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x52, 0x08,
-	0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x32, 0x86, 0x04, 0x0a, 0x0e, 0x4e, 0x53, 0x52,
-	0x6f, 0x75, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x44, 0x0a, 0x0d, 0x63,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x12, 0x18, 0x2e, 0x70,
-	0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61,
-	0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x39, 0x0a, 0x0d, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75,
-	0x74, 0x65, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53,
-	0x52, 0x6f, 0x75, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70,
-	0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x39, 0x0a, 0x0d,
-	0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x12, 0x18, 0x2e,
-	0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43,
-	0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x3e, 0x0a, 0x0b, 0x66, 0x69, 0x6e, 0x64, 0x4e,
-	0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x12, 0x16, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
-	0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17,
-	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4a, 0x0a, 0x0f, 0x66, 0x69, 0x6e, 0x64, 0x41,
-	0x6c, 0x6c, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x12, 0x1a, 0x2e, 0x70, 0x62, 0x2e,
-	0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
-	0x41, 0x6c, 0x6c, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x45, 0x0a, 0x13, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52,
-	0x6f, 0x75, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x12, 0x1e, 0x2e, 0x70, 0x62, 0x2e,
-	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x4f, 0x72, 0x64,
-	0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e,
-	0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x65, 0x0a, 0x18, 0x6c, 0x69,
-	0x73, 0x74, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56,
-	0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74,
+	0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x22, 0x28, 0x0a, 0x26, 0x46, 0x69, 0x6e, 0x64,
+	0x41, 0x6c, 0x6c, 0x44, 0x65, 0x66, 0x61, 0x75, 0x6c, 0x74, 0x57, 0x6f, 0x72, 0x6c, 0x64, 0x52,
+	0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x22, 0x52, 0x0a, 0x27, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44, 0x65, 0x66,
+	0x61, 0x75, 0x6c, 0x74, 0x57, 0x6f, 0x72, 0x6c, 0x64, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52,
+	0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x27, 0x0a,
+	0x08, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x0b, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x52, 0x08, 0x6e, 0x73,
+	0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x22, 0x2a, 0x0a, 0x28, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c,
+	0x6c, 0x44, 0x65, 0x66, 0x61, 0x75, 0x6c, 0x74, 0x43, 0x68, 0x69, 0x6e, 0x61, 0x50, 0x72, 0x6f,
+	0x76, 0x69, 0x6e, 0x63, 0x65, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x22, 0x54, 0x0a, 0x29, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44, 0x65, 0x66,
+	0x61, 0x75, 0x6c, 0x74, 0x43, 0x68, 0x69, 0x6e, 0x61, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x6e, 0x63,
+	0x65, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x27, 0x0a, 0x08, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x0b, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x52, 0x08,
+	0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x22, 0x20, 0x0a, 0x1e, 0x46, 0x69, 0x6e, 0x64,
+	0x41, 0x6c, 0x6c, 0x44, 0x65, 0x66, 0x61, 0x75, 0x6c, 0x74, 0x49, 0x53, 0x50, 0x52, 0x6f, 0x75,
+	0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x4a, 0x0a, 0x1f, 0x46, 0x69,
+	0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44, 0x65, 0x66, 0x61, 0x75, 0x6c, 0x74, 0x49, 0x53, 0x50, 0x52,
+	0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x27, 0x0a,
+	0x08, 0x6e, 0x73, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x0b, 0x2e, 0x70, 0x62, 0x2e, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x52, 0x08, 0x6e, 0x73,
+	0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x32, 0xe9, 0x06, 0x0a, 0x0e, 0x4e, 0x53, 0x52, 0x6f, 0x75,
+	0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x44, 0x0a, 0x0d, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x39, 0x0a, 0x0d, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65,
+	0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f,
+	0x75, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e,
+	0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x39, 0x0a, 0x0d, 0x64, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x12, 0x18, 0x2e, 0x70, 0x62,
+	0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x3e, 0x0a, 0x0b, 0x66, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52,
+	0x6f, 0x75, 0x74, 0x65, 0x12, 0x16, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53,
+	0x52, 0x6f, 0x75, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x70,
+	0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4a, 0x0a, 0x0f, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c,
+	0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x12, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
+	0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c,
+	0x6c, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x45, 0x0a, 0x13, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75,
+	0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x12, 0x1e, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50,
+	0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x65, 0x0a, 0x18, 0x6c, 0x69, 0x73, 0x74,
 	0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72,
-	0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x70, 0x62,
-	0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x41, 0x66, 0x74,
-	0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x73, 0x69, 0x6f, 0x6e, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4e, 0x53,
+	0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72, 0x56, 0x65, 0x72, 0x73, 0x69,
+	0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x4e, 0x53, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x41, 0x66, 0x74, 0x65, 0x72,
+	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x7a, 0x0a, 0x1f, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44, 0x65, 0x66, 0x61, 0x75, 0x6c,
+	0x74, 0x57, 0x6f, 0x72, 0x6c, 0x64, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x6f, 0x75, 0x74,
+	0x65, 0x73, 0x12, 0x2a, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44,
+	0x65, 0x66, 0x61, 0x75, 0x6c, 0x74, 0x57, 0x6f, 0x72, 0x6c, 0x64, 0x52, 0x65, 0x67, 0x69, 0x6f,
+	0x6e, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b,
+	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44, 0x65, 0x66, 0x61, 0x75,
+	0x6c, 0x74, 0x57, 0x6f, 0x72, 0x6c, 0x64, 0x52, 0x65, 0x67, 0x69, 0x6f, 0x6e, 0x52, 0x6f, 0x75,
+	0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x80, 0x01, 0x0a, 0x21,
+	0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44, 0x65, 0x66, 0x61, 0x75, 0x6c, 0x74, 0x43, 0x68,
+	0x69, 0x6e, 0x61, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x6e, 0x63, 0x65, 0x52, 0x6f, 0x75, 0x74, 0x65,
+	0x73, 0x12, 0x2c, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44, 0x65,
+	0x66, 0x61, 0x75, 0x6c, 0x74, 0x43, 0x68, 0x69, 0x6e, 0x61, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x6e,
+	0x63, 0x65, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x2d, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44, 0x65, 0x66, 0x61,
+	0x75, 0x6c, 0x74, 0x43, 0x68, 0x69, 0x6e, 0x61, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x6e, 0x63, 0x65,
+	0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x62,
+	0x0a, 0x17, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44, 0x65, 0x66, 0x61, 0x75, 0x6c, 0x74,
+	0x49, 0x53, 0x50, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x12, 0x22, 0x2e, 0x70, 0x62, 0x2e, 0x46,
+	0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44, 0x65, 0x66, 0x61, 0x75, 0x6c, 0x74, 0x49, 0x53, 0x50,
+	0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e,
+	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x44, 0x65, 0x66, 0x61, 0x75, 0x6c,
+	0x74, 0x49, 0x53, 0x50, 0x52, 0x6f, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -738,45 +1041,60 @@ func file_service_ns_route_proto_rawDescGZIP() []byte {
 	return file_service_ns_route_proto_rawDescData
 }
 
-var file_service_ns_route_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_service_ns_route_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_service_ns_route_proto_goTypes = []interface{}{
-	(*CreateNSRouteRequest)(nil),             // 0: pb.CreateNSRouteRequest
-	(*CreateNSRouteResponse)(nil),            // 1: pb.CreateNSRouteResponse
-	(*UpdateNSRouteRequest)(nil),             // 2: pb.UpdateNSRouteRequest
-	(*DeleteNSRouteRequest)(nil),             // 3: pb.DeleteNSRouteRequest
-	(*FindNSRouteRequest)(nil),               // 4: pb.FindNSRouteRequest
-	(*FindNSRouteResponse)(nil),              // 5: pb.FindNSRouteResponse
-	(*FindAllNSRoutesRequest)(nil),           // 6: pb.FindAllNSRoutesRequest
-	(*FindAllNSRoutesResponse)(nil),          // 7: pb.FindAllNSRoutesResponse
-	(*UpdateNSRouteOrdersRequest)(nil),       // 8: pb.UpdateNSRouteOrdersRequest
-	(*ListNSRoutesAfterVersionRequest)(nil),  // 9: pb.ListNSRoutesAfterVersionRequest
-	(*ListNSRoutesAfterVersionResponse)(nil), // 10: pb.ListNSRoutesAfterVersionResponse
-	(*NSRoute)(nil),                          // 11: pb.NSRoute
-	(*RPCSuccess)(nil),                       // 12: pb.RPCSuccess
+	(*CreateNSRouteRequest)(nil),                      // 0: pb.CreateNSRouteRequest
+	(*CreateNSRouteResponse)(nil),                     // 1: pb.CreateNSRouteResponse
+	(*UpdateNSRouteRequest)(nil),                      // 2: pb.UpdateNSRouteRequest
+	(*DeleteNSRouteRequest)(nil),                      // 3: pb.DeleteNSRouteRequest
+	(*FindNSRouteRequest)(nil),                        // 4: pb.FindNSRouteRequest
+	(*FindNSRouteResponse)(nil),                       // 5: pb.FindNSRouteResponse
+	(*FindAllNSRoutesRequest)(nil),                    // 6: pb.FindAllNSRoutesRequest
+	(*FindAllNSRoutesResponse)(nil),                   // 7: pb.FindAllNSRoutesResponse
+	(*UpdateNSRouteOrdersRequest)(nil),                // 8: pb.UpdateNSRouteOrdersRequest
+	(*ListNSRoutesAfterVersionRequest)(nil),           // 9: pb.ListNSRoutesAfterVersionRequest
+	(*ListNSRoutesAfterVersionResponse)(nil),          // 10: pb.ListNSRoutesAfterVersionResponse
+	(*FindAllDefaultWorldRegionRoutesRequest)(nil),    // 11: pb.FindAllDefaultWorldRegionRoutesRequest
+	(*FindAllDefaultWorldRegionRoutesResponse)(nil),   // 12: pb.FindAllDefaultWorldRegionRoutesResponse
+	(*FindAllDefaultChinaProvinceRoutesRequest)(nil),  // 13: pb.FindAllDefaultChinaProvinceRoutesRequest
+	(*FindAllDefaultChinaProvinceRoutesResponse)(nil), // 14: pb.FindAllDefaultChinaProvinceRoutesResponse
+	(*FindAllDefaultISPRoutesRequest)(nil),            // 15: pb.FindAllDefaultISPRoutesRequest
+	(*FindAllDefaultISPRoutesResponse)(nil),           // 16: pb.FindAllDefaultISPRoutesResponse
+	(*NSRoute)(nil),                                   // 17: pb.NSRoute
+	(*RPCSuccess)(nil),                                // 18: pb.RPCSuccess
 }
 var file_service_ns_route_proto_depIdxs = []int32{
-	11, // 0: pb.FindNSRouteResponse.nsRoute:type_name -> pb.NSRoute
-	11, // 1: pb.FindAllNSRoutesResponse.nsRoutes:type_name -> pb.NSRoute
-	11, // 2: pb.ListNSRoutesAfterVersionResponse.nsRoutes:type_name -> pb.NSRoute
-	0,  // 3: pb.NSRouteService.createNSRoute:input_type -> pb.CreateNSRouteRequest
-	2,  // 4: pb.NSRouteService.updateNSRoute:input_type -> pb.UpdateNSRouteRequest
-	3,  // 5: pb.NSRouteService.deleteNSRoute:input_type -> pb.DeleteNSRouteRequest
-	4,  // 6: pb.NSRouteService.findNSRoute:input_type -> pb.FindNSRouteRequest
-	6,  // 7: pb.NSRouteService.findAllNSRoutes:input_type -> pb.FindAllNSRoutesRequest
-	8,  // 8: pb.NSRouteService.updateNSRouteOrders:input_type -> pb.UpdateNSRouteOrdersRequest
-	9,  // 9: pb.NSRouteService.listNSRoutesAfterVersion:input_type -> pb.ListNSRoutesAfterVersionRequest
-	1,  // 10: pb.NSRouteService.createNSRoute:output_type -> pb.CreateNSRouteResponse
-	12, // 11: pb.NSRouteService.updateNSRoute:output_type -> pb.RPCSuccess
-	12, // 12: pb.NSRouteService.deleteNSRoute:output_type -> pb.RPCSuccess
-	5,  // 13: pb.NSRouteService.findNSRoute:output_type -> pb.FindNSRouteResponse
-	7,  // 14: pb.NSRouteService.findAllNSRoutes:output_type -> pb.FindAllNSRoutesResponse
-	12, // 15: pb.NSRouteService.updateNSRouteOrders:output_type -> pb.RPCSuccess
-	10, // 16: pb.NSRouteService.listNSRoutesAfterVersion:output_type -> pb.ListNSRoutesAfterVersionResponse
-	10, // [10:17] is the sub-list for method output_type
-	3,  // [3:10] is the sub-list for method input_type
-	3,  // [3:3] is the sub-list for extension type_name
-	3,  // [3:3] is the sub-list for extension extendee
-	0,  // [0:3] is the sub-list for field type_name
+	17, // 0: pb.FindNSRouteResponse.nsRoute:type_name -> pb.NSRoute
+	17, // 1: pb.FindAllNSRoutesResponse.nsRoutes:type_name -> pb.NSRoute
+	17, // 2: pb.ListNSRoutesAfterVersionResponse.nsRoutes:type_name -> pb.NSRoute
+	17, // 3: pb.FindAllDefaultWorldRegionRoutesResponse.nsRoutes:type_name -> pb.NSRoute
+	17, // 4: pb.FindAllDefaultChinaProvinceRoutesResponse.nsRoutes:type_name -> pb.NSRoute
+	17, // 5: pb.FindAllDefaultISPRoutesResponse.nsRoutes:type_name -> pb.NSRoute
+	0,  // 6: pb.NSRouteService.createNSRoute:input_type -> pb.CreateNSRouteRequest
+	2,  // 7: pb.NSRouteService.updateNSRoute:input_type -> pb.UpdateNSRouteRequest
+	3,  // 8: pb.NSRouteService.deleteNSRoute:input_type -> pb.DeleteNSRouteRequest
+	4,  // 9: pb.NSRouteService.findNSRoute:input_type -> pb.FindNSRouteRequest
+	6,  // 10: pb.NSRouteService.findAllNSRoutes:input_type -> pb.FindAllNSRoutesRequest
+	8,  // 11: pb.NSRouteService.updateNSRouteOrders:input_type -> pb.UpdateNSRouteOrdersRequest
+	9,  // 12: pb.NSRouteService.listNSRoutesAfterVersion:input_type -> pb.ListNSRoutesAfterVersionRequest
+	11, // 13: pb.NSRouteService.findAllDefaultWorldRegionRoutes:input_type -> pb.FindAllDefaultWorldRegionRoutesRequest
+	13, // 14: pb.NSRouteService.findAllDefaultChinaProvinceRoutes:input_type -> pb.FindAllDefaultChinaProvinceRoutesRequest
+	15, // 15: pb.NSRouteService.findAllDefaultISPRoutes:input_type -> pb.FindAllDefaultISPRoutesRequest
+	1,  // 16: pb.NSRouteService.createNSRoute:output_type -> pb.CreateNSRouteResponse
+	18, // 17: pb.NSRouteService.updateNSRoute:output_type -> pb.RPCSuccess
+	18, // 18: pb.NSRouteService.deleteNSRoute:output_type -> pb.RPCSuccess
+	5,  // 19: pb.NSRouteService.findNSRoute:output_type -> pb.FindNSRouteResponse
+	7,  // 20: pb.NSRouteService.findAllNSRoutes:output_type -> pb.FindAllNSRoutesResponse
+	18, // 21: pb.NSRouteService.updateNSRouteOrders:output_type -> pb.RPCSuccess
+	10, // 22: pb.NSRouteService.listNSRoutesAfterVersion:output_type -> pb.ListNSRoutesAfterVersionResponse
+	12, // 23: pb.NSRouteService.findAllDefaultWorldRegionRoutes:output_type -> pb.FindAllDefaultWorldRegionRoutesResponse
+	14, // 24: pb.NSRouteService.findAllDefaultChinaProvinceRoutes:output_type -> pb.FindAllDefaultChinaProvinceRoutesResponse
+	16, // 25: pb.NSRouteService.findAllDefaultISPRoutes:output_type -> pb.FindAllDefaultISPRoutesResponse
+	16, // [16:26] is the sub-list for method output_type
+	6,  // [6:16] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_service_ns_route_proto_init() }
@@ -919,6 +1237,78 @@ func file_service_ns_route_proto_init() {
 				return nil
 			}
 		}
+		file_service_ns_route_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllDefaultWorldRegionRoutesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_route_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllDefaultWorldRegionRoutesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_route_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllDefaultChinaProvinceRoutesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_route_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllDefaultChinaProvinceRoutesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_route_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllDefaultISPRoutesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_ns_route_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindAllDefaultISPRoutesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -926,7 +1316,7 @@ func file_service_ns_route_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_ns_route_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -952,20 +1342,26 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type NSRouteServiceClient interface {
-	// 创建线路
+	// 创建自定义线路
 	CreateNSRoute(ctx context.Context, in *CreateNSRouteRequest, opts ...grpc.CallOption) (*CreateNSRouteResponse, error)
-	// 修改线路
+	// 修改自定义线路
 	UpdateNSRoute(ctx context.Context, in *UpdateNSRouteRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
-	// 删除线路
+	// 删除自定义线路
 	DeleteNSRoute(ctx context.Context, in *DeleteNSRouteRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
-	// 获取单个路线信息
+	// 获取单个自定义路线信息
 	FindNSRoute(ctx context.Context, in *FindNSRouteRequest, opts ...grpc.CallOption) (*FindNSRouteResponse, error)
-	// 读取所有线路
+	// 读取所有自定义线路
 	FindAllNSRoutes(ctx context.Context, in *FindAllNSRoutesRequest, opts ...grpc.CallOption) (*FindAllNSRoutesResponse, error)
-	// 设置线路排序
+	// 设置自定义线路排序
 	UpdateNSRouteOrders(ctx context.Context, in *UpdateNSRouteOrdersRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
-	// 根据版本列出一组线路
+	// 根据版本列出一组自定义线路
 	ListNSRoutesAfterVersion(ctx context.Context, in *ListNSRoutesAfterVersionRequest, opts ...grpc.CallOption) (*ListNSRoutesAfterVersionResponse, error)
+	// 查找默认的世界区域线路
+	FindAllDefaultWorldRegionRoutes(ctx context.Context, in *FindAllDefaultWorldRegionRoutesRequest, opts ...grpc.CallOption) (*FindAllDefaultWorldRegionRoutesResponse, error)
+	// 查找默认的中国省份线路
+	FindAllDefaultChinaProvinceRoutes(ctx context.Context, in *FindAllDefaultChinaProvinceRoutesRequest, opts ...grpc.CallOption) (*FindAllDefaultChinaProvinceRoutesResponse, error)
+	// 查找默认的ISP线路
+	FindAllDefaultISPRoutes(ctx context.Context, in *FindAllDefaultISPRoutesRequest, opts ...grpc.CallOption) (*FindAllDefaultISPRoutesResponse, error)
 }
 
 type nSRouteServiceClient struct {
@@ -1039,22 +1435,55 @@ func (c *nSRouteServiceClient) ListNSRoutesAfterVersion(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *nSRouteServiceClient) FindAllDefaultWorldRegionRoutes(ctx context.Context, in *FindAllDefaultWorldRegionRoutesRequest, opts ...grpc.CallOption) (*FindAllDefaultWorldRegionRoutesResponse, error) {
+	out := new(FindAllDefaultWorldRegionRoutesResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSRouteService/findAllDefaultWorldRegionRoutes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSRouteServiceClient) FindAllDefaultChinaProvinceRoutes(ctx context.Context, in *FindAllDefaultChinaProvinceRoutesRequest, opts ...grpc.CallOption) (*FindAllDefaultChinaProvinceRoutesResponse, error) {
+	out := new(FindAllDefaultChinaProvinceRoutesResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSRouteService/findAllDefaultChinaProvinceRoutes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nSRouteServiceClient) FindAllDefaultISPRoutes(ctx context.Context, in *FindAllDefaultISPRoutesRequest, opts ...grpc.CallOption) (*FindAllDefaultISPRoutesResponse, error) {
+	out := new(FindAllDefaultISPRoutesResponse)
+	err := c.cc.Invoke(ctx, "/pb.NSRouteService/findAllDefaultISPRoutes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NSRouteServiceServer is the server API for NSRouteService service.
 type NSRouteServiceServer interface {
-	// 创建线路
+	// 创建自定义线路
 	CreateNSRoute(context.Context, *CreateNSRouteRequest) (*CreateNSRouteResponse, error)
-	// 修改线路
+	// 修改自定义线路
 	UpdateNSRoute(context.Context, *UpdateNSRouteRequest) (*RPCSuccess, error)
-	// 删除线路
+	// 删除自定义线路
 	DeleteNSRoute(context.Context, *DeleteNSRouteRequest) (*RPCSuccess, error)
-	// 获取单个路线信息
+	// 获取单个自定义路线信息
 	FindNSRoute(context.Context, *FindNSRouteRequest) (*FindNSRouteResponse, error)
-	// 读取所有线路
+	// 读取所有自定义线路
 	FindAllNSRoutes(context.Context, *FindAllNSRoutesRequest) (*FindAllNSRoutesResponse, error)
-	// 设置线路排序
+	// 设置自定义线路排序
 	UpdateNSRouteOrders(context.Context, *UpdateNSRouteOrdersRequest) (*RPCSuccess, error)
-	// 根据版本列出一组线路
+	// 根据版本列出一组自定义线路
 	ListNSRoutesAfterVersion(context.Context, *ListNSRoutesAfterVersionRequest) (*ListNSRoutesAfterVersionResponse, error)
+	// 查找默认的世界区域线路
+	FindAllDefaultWorldRegionRoutes(context.Context, *FindAllDefaultWorldRegionRoutesRequest) (*FindAllDefaultWorldRegionRoutesResponse, error)
+	// 查找默认的中国省份线路
+	FindAllDefaultChinaProvinceRoutes(context.Context, *FindAllDefaultChinaProvinceRoutesRequest) (*FindAllDefaultChinaProvinceRoutesResponse, error)
+	// 查找默认的ISP线路
+	FindAllDefaultISPRoutes(context.Context, *FindAllDefaultISPRoutesRequest) (*FindAllDefaultISPRoutesResponse, error)
 }
 
 // UnimplementedNSRouteServiceServer can be embedded to have forward compatible implementations.
@@ -1081,6 +1510,15 @@ func (*UnimplementedNSRouteServiceServer) UpdateNSRouteOrders(context.Context, *
 }
 func (*UnimplementedNSRouteServiceServer) ListNSRoutesAfterVersion(context.Context, *ListNSRoutesAfterVersionRequest) (*ListNSRoutesAfterVersionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListNSRoutesAfterVersion not implemented")
+}
+func (*UnimplementedNSRouteServiceServer) FindAllDefaultWorldRegionRoutes(context.Context, *FindAllDefaultWorldRegionRoutesRequest) (*FindAllDefaultWorldRegionRoutesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllDefaultWorldRegionRoutes not implemented")
+}
+func (*UnimplementedNSRouteServiceServer) FindAllDefaultChinaProvinceRoutes(context.Context, *FindAllDefaultChinaProvinceRoutesRequest) (*FindAllDefaultChinaProvinceRoutesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllDefaultChinaProvinceRoutes not implemented")
+}
+func (*UnimplementedNSRouteServiceServer) FindAllDefaultISPRoutes(context.Context, *FindAllDefaultISPRoutesRequest) (*FindAllDefaultISPRoutesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllDefaultISPRoutes not implemented")
 }
 
 func RegisterNSRouteServiceServer(s *grpc.Server, srv NSRouteServiceServer) {
@@ -1213,6 +1651,60 @@ func _NSRouteService_ListNSRoutesAfterVersion_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NSRouteService_FindAllDefaultWorldRegionRoutes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllDefaultWorldRegionRoutesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSRouteServiceServer).FindAllDefaultWorldRegionRoutes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSRouteService/FindAllDefaultWorldRegionRoutes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSRouteServiceServer).FindAllDefaultWorldRegionRoutes(ctx, req.(*FindAllDefaultWorldRegionRoutesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSRouteService_FindAllDefaultChinaProvinceRoutes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllDefaultChinaProvinceRoutesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSRouteServiceServer).FindAllDefaultChinaProvinceRoutes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSRouteService/FindAllDefaultChinaProvinceRoutes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSRouteServiceServer).FindAllDefaultChinaProvinceRoutes(ctx, req.(*FindAllDefaultChinaProvinceRoutesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NSRouteService_FindAllDefaultISPRoutes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllDefaultISPRoutesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NSRouteServiceServer).FindAllDefaultISPRoutes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NSRouteService/FindAllDefaultISPRoutes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NSRouteServiceServer).FindAllDefaultISPRoutes(ctx, req.(*FindAllDefaultISPRoutesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _NSRouteService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.NSRouteService",
 	HandlerType: (*NSRouteServiceServer)(nil),
@@ -1244,6 +1736,18 @@ var _NSRouteService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "listNSRoutesAfterVersion",
 			Handler:    _NSRouteService_ListNSRoutesAfterVersion_Handler,
+		},
+		{
+			MethodName: "findAllDefaultWorldRegionRoutes",
+			Handler:    _NSRouteService_FindAllDefaultWorldRegionRoutes_Handler,
+		},
+		{
+			MethodName: "findAllDefaultChinaProvinceRoutes",
+			Handler:    _NSRouteService_FindAllDefaultChinaProvinceRoutes_Handler,
+		},
+		{
+			MethodName: "findAllDefaultISPRoutes",
+			Handler:    _NSRouteService_FindAllDefaultISPRoutes_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
