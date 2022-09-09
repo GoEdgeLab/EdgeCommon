@@ -17,6 +17,7 @@ message NSDomain {
 	int64 version = 6;
 	bytes tsigJSON = 7;
 	repeated int64 nsDomainGroupIds = 8;
+	string status = 9;
 
 	NSCluster nsCluster = 30;
 	User user = 31;

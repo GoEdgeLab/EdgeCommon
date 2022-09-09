@@ -17,6 +17,9 @@ service NSDomainService {
 	// 修改域名
 	rpc updateNSDomain (UpdateNSDomainRequest) returns (RPCSuccess);
 
+	// 修改域名状态
+	rpc updateNSDomainStatus(UpdateNSDomainStatusRequest) returns (RPCSuccess);
+
 	// 删除域名
 	rpc deleteNSDomain (DeleteNSDomainRequest) returns (RPCSuccess);
 
@@ -73,13 +76,19 @@ message CreateNSDomainsResponse {
 }
 
 // 修改域名
-// 注意：名称不能修改
+// 注意：名称不允许修改
 message UpdateNSDomainRequest {
 	int64 nsDomainId = 1;
 	int64 nsClusterId = 2;
 	int64 userId = 3;
 	repeated int64 nsDomainGroupIds = 5; // 域名分组ID
 	bool isOn = 4;
+}
+
+// 修改域名状态
+message UpdateNSDomainStatusRequest {
+	int64 nsDomainId = 1;
+	string status = 2;
 }
 
 // 删除域名
