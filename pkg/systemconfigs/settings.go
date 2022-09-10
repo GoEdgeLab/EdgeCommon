@@ -20,6 +20,7 @@ const (
 	SettingCodeUserOrderConfig    SettingCode = "userOrderConfig"    // 用户订单设置
 
 	SettingCodeNSAccessLogSetting SettingCode = "nsAccessLogSetting" // NS相关全局配置
+	SettingCodeNSUserConfig       SettingCode = "nsUserConfig"       // NS用户相关设置
 	SettingCodeNSNodeMonitor      SettingCode = "nsNodeMonitor"      // 监控NS节点状态
 
 	SettingCodeReportNodeGlobalSetting SettingCode = "reportNodeGlobalSetting" // 区域监控节点全局配置

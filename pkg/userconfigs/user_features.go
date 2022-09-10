@@ -17,6 +17,7 @@ const (
 	UserFeatureCodeServerWebP          UserFeatureCode = "server.webp"
 	UserFeatureCodeFinance             UserFeatureCode = "finance"
 	UserFeatureCodeServerACME          UserFeatureCode = "server.acme"
+	UserFeatureCodeNS                  UserFeatureCode = "ns" // NS域名解析，注意不同于DNS
 )
 
 // UserFeature 用户功能
@@ -102,6 +103,11 @@ func FindAllUserFeatures() []*UserFeature {
 			Name:        "套餐",
 			Code:        UserFeatureCodePlan,
 			Description: "用户可以购买和管理套餐",
+		},
+		{
+			Name:        "NS域名解析",
+			Code:        UserFeatureCodeNS,
+			Description: "用户可以管理GoEdge智能DNS域名解析",
 		},
 	}
 }

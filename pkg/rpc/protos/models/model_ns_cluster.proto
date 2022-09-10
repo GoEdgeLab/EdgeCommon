@@ -12,4 +12,5 @@ message NSCluster {
 	bytes tcpJSON = 5;
 	bytes tlsJSON = 6;
 	bytes udpJSON = 7;
+	repeated string hosts = 8;
 }

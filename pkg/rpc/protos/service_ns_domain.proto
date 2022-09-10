@@ -47,8 +47,17 @@ service NSDomainService {
 	// 修改TSIG配置
 	rpc updateNSDomainTSIG (UpdateNSDomainTSIGRequest) returns (RPCSuccess);
 
-	// 检查一组域名是否存在
+	// 检查一组域名是否在用户账户中存在
 	rpc existNSDomains(ExistNSDomainsRequest) returns (ExistNSDomainsResponse);
+
+	// 检查一组域名是否已通过验证
+	rpc existVerifiedNSDomains(ExistVerifiedNSDomainsRequest) returns (ExistVerifiedNSDomainsResponse);
+
+	// 获取域名验证信息
+	rpc findNSDomainVerifyingInfo(FindNSDomainVerifyingInfoRequest) returns (FindNSDomainVerifyingInfoResponse);
+
+	// 验证域名信息
+	rpc verifyNSDomain(VerifyNSDomainRequest) returns (VerifyNSDomainResponse);
 }
 
 // 创建单个域名
@@ -167,7 +176,7 @@ message UpdateNSDomainTSIGRequest {
 	bytes tsigJSON = 2;
 }
 
-// 检查一组域名是否存在
+// 检查一组域名是否在用户账户中存在
 message ExistNSDomainsRequest {
 	repeated string names = 1;
 	int64 userId = 2;
@@ -175,4 +184,35 @@ message ExistNSDomainsRequest {
 
 message ExistNSDomainsResponse {
 	repeated string existingNames = 1;
+}
+
+// 检查一组域名是否已通过验证
+message ExistVerifiedNSDomainsRequest {
+	repeated string names = 1;
+}
+
+message ExistVerifiedNSDomainsResponse {
+	repeated string existingNames = 1;
+}
+
+// 获取域名验证信息
+message FindNSDomainVerifyingInfoRequest {
+	int64 nsDomainId = 1;
+}
+
+message FindNSDomainVerifyingInfoResponse {
+	string txt = 1;
+	int64 expiresAt = 2;
+	string status = 3;
+}
+
+// 验证域名信息
+message VerifyNSDomainRequest {
+	int64 nsDomainId = 1;
+}
+
+message VerifyNSDomainResponse {
+	bool isOk = 1; // 是否成功
+	string errorCode = 2; // 错误代码
+	string errorMessage = 3; // 错误消息
 }
