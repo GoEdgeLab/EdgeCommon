@@ -135,6 +135,7 @@ message CountAllNSDomainsRequest {
 	int64 nsClusterId = 2;
 	string keyword = 3;
 	int64 nsDomainGroupId = 4;
+	string status = 5;
 }
 
 // 列出单页域名
