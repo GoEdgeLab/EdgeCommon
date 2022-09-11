@@ -2,7 +2,7 @@
 
 package dnsconfigs
 
-// TSIGConfig 配置
-type TSIGConfig struct {
+// NSTSIGConfig 配置
+type NSTSIGConfig struct {
 	IsOn bool `yaml:"isOn" json:"isOn"`
 }

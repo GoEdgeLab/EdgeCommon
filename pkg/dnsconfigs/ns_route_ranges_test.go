@@ -8,12 +8,12 @@ import (
 	"testing"
 )
 
-func TestRouteRangeIPRange_Contains(t *testing.T) {
+func TestNSRouteRangeIPRange_Contains(t *testing.T) {
 	var a = assert.NewAssertion(t)
 
 	// ipv4
 	{
-		var r = &RouteRangeIPRange{
+		var r = &NSRouteRangeIPRange{
 			IPFrom: "192.168.1.100",
 			IPTo:   "192.168.3.200",
 		}
@@ -31,7 +31,7 @@ func TestRouteRangeIPRange_Contains(t *testing.T) {
 	// ipv6
 	{
 		var prefix = "1:2:3:4:5:6"
-		var r = &RouteRangeIPRange{
+		var r = &NSRouteRangeIPRange{
 			IPFrom: prefix + ":1:8",
 			IPTo:   prefix + ":5:10",
 		}
@@ -48,7 +48,7 @@ func TestRouteRangeIPRange_Contains(t *testing.T) {
 	}
 
 	{
-		var r = &RouteRangeCIDR{
+		var r = &NSRouteRangeCIDR{
 			CIDR: "192.168.2.1/24",
 		}
 		err := r.Init()
@@ -65,7 +65,7 @@ func TestRouteRangeIPRange_Contains(t *testing.T) {
 
 	// reverse ipv4
 	{
-		var r = &RouteRangeIPRange{
+		var r = &NSRouteRangeIPRange{
 			IPFrom: "192.168.1.100",
 			IPTo:   "192.168.3.200",
 		}
@@ -81,7 +81,7 @@ func TestRouteRangeIPRange_Contains(t *testing.T) {
 
 	// reverse cidr
 	{
-		var r = &RouteRangeCIDR{
+		var r = &NSRouteRangeCIDR{
 			CIDR: "192.168.2.1/24",
 		}
 		err := r.Init()

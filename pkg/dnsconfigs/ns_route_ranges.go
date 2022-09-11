@@ -11,38 +11,38 @@ import (
 	"net"
 )
 
-type RouteRangeType = string
+type NSRouteRangeType = string
 
 const (
-	RouteRangeTypeIP     RouteRangeType = "ipRange" // IP范围
-	RouteRangeTypeCIDR   RouteRangeType = "cidr"    // CIDR
-	RouteRangeTypeRegion RouteRangeType = "region"  // 区域
+	NSRouteRangeTypeIP     NSRouteRangeType = "ipRange" // IP范围
+	NSRouteRangeTypeCIDR   NSRouteRangeType = "cidr"    // CIDR
+	NSRouteRangeTypeRegion NSRouteRangeType = "region"  // 区域
 )
 
-func AllRouteRangeTypes() []*shared.Definition {
+func AllNSRouteRangeTypes() []*shared.Definition {
 	return []*shared.Definition{
 		{
 			Name: "IP范围",
-			Code: RouteRangeTypeIP,
+			Code: NSRouteRangeTypeIP,
 		},
 		{
 			Name: "CIDR",
-			Code: RouteRangeTypeCIDR,
+			Code: NSRouteRangeTypeCIDR,
 		},
 		{
 			Name: "区域",
-			Code: RouteRangeTypeRegion,
+			Code: NSRouteRangeTypeRegion,
 		},
 	}
 }
 
-// RouteRegionResolver 解析IP接口
-type RouteRegionResolver interface {
+// NSRouteRegionResolver 解析IP接口
+type NSRouteRegionResolver interface {
 	Resolve(ip net.IP) (countryId int64, provinceId int64, cityId int64, providerId int64)
 }
 
-// RouteRangeInterface 线路范围接口
-type RouteRangeInterface interface {
+// NSRouteRangeInterface 线路范围接口
+type NSRouteRangeInterface interface {
 	// Init 初始化
 	Init() error
 
@@ -50,30 +50,30 @@ type RouteRangeInterface interface {
 	Contains(ip net.IP) bool
 
 	// SetRegionResolver 设置IP解析接口
-	SetRegionResolver(resolver RouteRegionResolver)
+	SetRegionResolver(resolver NSRouteRegionResolver)
 
 	// IsExcluding 是否为排除
 	IsExcluding() bool
 }
 
-type BaseRouteRange struct {
+type NSBaseRouteRange struct {
 	IsReverse bool `json:"isReverse"`
 
-	routeRegionResolver RouteRegionResolver
+	routeRegionResolver NSRouteRegionResolver
 }
 
-func (this *BaseRouteRange) SetRegionResolver(resolver RouteRegionResolver) {
+func (this *NSBaseRouteRange) SetRegionResolver(resolver NSRouteRegionResolver) {
 	this.routeRegionResolver = resolver
 }
 
-func (this *BaseRouteRange) IsExcluding() bool {
+func (this *NSBaseRouteRange) IsExcluding() bool {
 	return this.IsReverse
 }
 
-// RouteRangeIPRange IP范围配置
+// NSRouteRangeIPRange IP范围配置
 // IPv4和IPv6不能混用
-type RouteRangeIPRange struct {
-	BaseRouteRange
+type NSRouteRangeIPRange struct {
+	NSBaseRouteRange
 
 	IPFrom string `json:"ipFrom"`
 	IPTo   string `json:"ipTo"`
@@ -84,7 +84,7 @@ type RouteRangeIPRange struct {
 	ipVersion int // 4|6
 }
 
-func (this *RouteRangeIPRange) Init() error {
+func (this *NSRouteRangeIPRange) Init() error {
 	var ipFrom = net.ParseIP(this.IPFrom)
 	var ipTo = net.ParseIP(this.IPTo)
 	if ipFrom == nil {
@@ -111,7 +111,7 @@ func (this *RouteRangeIPRange) Init() error {
 	return nil
 }
 
-func (this *RouteRangeIPRange) Contains(netIP net.IP) bool {
+func (this *NSRouteRangeIPRange) Contains(netIP net.IP) bool {
 	if len(netIP) == 0 {
 		return false
 	}
@@ -125,16 +125,16 @@ func (this *RouteRangeIPRange) Contains(netIP net.IP) bool {
 	return ipLong >= this.ipFromLong && ipLong <= this.ipToLong
 }
 
-// RouteRangeCIDR CIDR范围配置
-type RouteRangeCIDR struct {
-	BaseRouteRange
+// NSRouteRangeCIDR CIDR范围配置
+type NSRouteRangeCIDR struct {
+	NSBaseRouteRange
 
 	CIDR string `json:"cidr"`
 
 	cidr *net.IPNet
 }
 
-func (this *RouteRangeCIDR) Init() error {
+func (this *NSRouteRangeCIDR) Init() error {
 	_, ipNet, err := net.ParseCIDR(this.CIDR)
 	if err != nil {
 		return errors.New("parse cidr failed: " + err.Error())
@@ -145,7 +145,7 @@ func (this *RouteRangeCIDR) Init() error {
 	return nil
 }
 
-func (this *RouteRangeCIDR) Contains(netIP net.IP) bool {
+func (this *NSRouteRangeCIDR) Contains(netIP net.IP) bool {
 	if netIP == nil {
 		return false
 	}
@@ -157,19 +157,19 @@ func (this *RouteRangeCIDR) Contains(netIP net.IP) bool {
 	return this.cidr.Contains(netIP)
 }
 
-// RouteRangeRegion 区域范围
+// NSRouteRangeRegion 区域范围
 // country:ID, province:ID, city:ID, isp:ID
-type RouteRangeRegion struct {
-	BaseRouteRange
+type NSRouteRangeRegion struct {
+	NSBaseRouteRange
 
 	Regions []*routeRegion `json:"regions"`
 }
 
-func (this *RouteRangeRegion) Init() error {
+func (this *NSRouteRangeRegion) Init() error {
 	return nil
 }
 
-func (this *RouteRangeRegion) Contains(netIP net.IP) bool {
+func (this *NSRouteRangeRegion) Contains(netIP net.IP) bool {
 	if this.routeRegionResolver == nil {
 		return false
 	}
@@ -217,8 +217,8 @@ type routeRegion struct {
 	Name string `json:"name"`
 }
 
-// InitRangesFromJSON 从JSON中初始化线路范围
-func InitRangesFromJSON(rangesJSON []byte) (ranges []RouteRangeInterface, err error) {
+// InitNSRangesFromJSON 从JSON中初始化线路范围
+func InitNSRangesFromJSON(rangesJSON []byte) (ranges []NSRouteRangeInterface, err error) {
 	if len(rangesJSON) == 0 {
 		return
 	}
@@ -235,15 +235,15 @@ func InitRangesFromJSON(rangesJSON []byte) (ranges []RouteRangeInterface, err er
 			return nil, err
 		}
 
-		var r RouteRangeInterface
+		var r NSRouteRangeInterface
 
 		switch rangeType {
-		case RouteRangeTypeIP:
-			r = &RouteRangeIPRange{}
-		case RouteRangeTypeCIDR:
-			r = &RouteRangeCIDR{}
-		case RouteRangeTypeRegion:
-			r = &RouteRangeRegion{}
+		case NSRouteRangeTypeIP:
+			r = &NSRouteRangeIPRange{}
+		case NSRouteRangeTypeCIDR:
+			r = &NSRouteRangeCIDR{}
+		case NSRouteRangeTypeRegion:
+			r = &NSRouteRangeRegion{}
 		default:
 			return nil, errors.New("invalid route line type '" + rangeType + "'")
 		}

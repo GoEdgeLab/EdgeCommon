@@ -14,7 +14,7 @@ type NSNodeConfig struct {
 	Secret          string                        `yaml:"secret" json:"secret"`
 	ClusterId       int64                         `yaml:"clusterId" json:"clusterId"`
 	AccessLogRef    *NSAccessLogRef               `yaml:"accessLogRef" json:"accessLogRef"`
-	RecursionConfig *RecursionConfig              `yaml:"recursionConfig" json:"recursionConfig"`
+	RecursionConfig *NSRecursionConfig            `yaml:"recursionConfig" json:"recursionConfig"`
 	DDoSProtection  *ddosconfigs.ProtectionConfig `yaml:"ddosProtection" json:"ddosProtection"`
 	AllowedIPs      []string                      `yaml:"allowedIPs" json:"allowedIPs"`
 
