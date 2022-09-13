@@ -4,11 +4,15 @@ option go_package = "./pb";
 package pb;
 
 import "models/model_node_value.proto";
+import "models/model_ns_user_plan.proto";
 
 // 域名服务
 service NSService {
 	// 组合看板数据
 	rpc composeNSBoard (ComposeNSBoardRequest) returns (ComposeNSBoardResponse);
+
+	// 组合用户看板数据
+	rpc composeNSUserBoard(ComposeNSUserBoardRequest) returns (ComposeNSUserBoardResponse);
 }
 
 // 组合看板数据
@@ -50,6 +54,27 @@ message ComposeNSBoardResponse {
 		int64 countRequests = 4;
 		int64 bytes = 5;
 	}
+
+	message DomainStat {
+		int64 nsDomainId = 1;
+		string nsDomainName = 2;
+		int64 countRequests = 3;
+		int64 bytes = 4;
+	}
+}
+
+// 组合用户看板数据
+message ComposeNSUserBoardRequest {
+	int64 userId = 1;
+}
+
+message ComposeNSUserBoardResponse {
+	int64 countNSDomains = 1;
+	int64 countNSRecords = 2;
+	int64 countNSRoutes = 3;
+
+	NSUserPlan nsUserPlan = 30;
+	repeated DomainStat topNSDomainStats = 31;
 
 	message DomainStat {
 		int64 nsDomainId = 1;

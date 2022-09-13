@@ -15,9 +15,7 @@ const (
 	UserFeatureCodeServerWAF           UserFeatureCode = "server.waf"
 	UserFeatureCodeServerUAM           UserFeatureCode = "server.uam"
 	UserFeatureCodeServerWebP          UserFeatureCode = "server.webp"
-	UserFeatureCodeFinance             UserFeatureCode = "finance"
 	UserFeatureCodeServerACME          UserFeatureCode = "server.acme"
-	UserFeatureCodeNS                  UserFeatureCode = "ns" // NS域名解析，注意不同于DNS
 )
 
 // UserFeature 用户功能
@@ -95,19 +93,9 @@ func FindAllUserFeatures() []*UserFeature {
 			Description: "用户可以开启WebP自动转换功能",
 		},
 		{
-			Name:        "费用账单",
-			Code:        UserFeatureCodeFinance,
-			Description: "开启费用账单相关功能",
-		},
-		{
 			Name:        "套餐",
 			Code:        UserFeatureCodePlan,
 			Description: "用户可以购买和管理套餐",
-		},
-		{
-			Name:        "NS域名解析",
-			Code:        UserFeatureCodeNS,
-			Description: "用户可以管理GoEdge智能DNS域名解析",
 		},
 	}
 }
