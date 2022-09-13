@@ -38,6 +38,9 @@ service NSRecordService {
 	// 计算记录数量
 	rpc countAllNSRecords (CountAllNSRecordsRequest) returns (RPCCountResponse);
 
+	// 查询相同记录名的记录数
+	rpc countAllNSRecordsWithName (CountAllNSRecordsWithNameRequest) returns (RPCCountResponse);
+
 	// 读取单页记录
 	rpc listNSRecords (ListNSRecordsRequest) returns (ListNSRecordsResponse);
 
@@ -165,6 +168,13 @@ message CountAllNSRecordsRequest {
 	int64 nsRouteId = 3 [deprecated = true]; // 使用nsRouteCode代替
 	string nsRouteCode = 5;
 	string keyword = 4;
+}
+
+// 查询相同记录名的记录数
+message CountAllNSRecordsWithNameRequest {
+	int64 nsDomainId = 1;
+	string name = 2;
+	string type = 3;
 }
 
 // 读取单页记录

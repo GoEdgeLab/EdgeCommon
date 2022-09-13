@@ -1,0 +1,89 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_user_plan.proto";
+import "models/rpc_messages.proto";
+
+// 用户DNS套餐服务
+service NSUserPlanService {
+	// 创建用户套餐
+	rpc createNSUserPlan(CreateNSUserPlanRequest) returns (CreateNSUserPlanResponse);
+
+	// 修改用户套餐
+	rpc updateNSUserPlan(UpdateNSUserPlanRequest) returns (RPCSuccess);
+
+	// 删除用户套餐
+	rpc deleteNSUserPlan(DeleteNSUserPlanRequest) returns (RPCSuccess);
+
+	// 读取用户套餐
+	rpc findNSUserPlan(FindNSUserPlanRequest) returns (FindNSUserPlanResponse);
+
+	// 计算用户套餐数量
+	rpc countNSUserPlans(CountNSUserPlansRequest) returns (RPCCountResponse);
+
+	// 列出单页套餐
+	rpc listNSUserPlans(ListNSUserPlansRequest) returns (ListNSUserPlansResponse);
+}
+
+// 创建用户套餐
+message CreateNSUserPlanRequest {
+	int64 userId = 1;
+	int64 nsPlanId = 2;
+	string dayFrom = 3; // YYYYMMDD
+	string dayTo = 4; // YYYYMMDD
+	string periodUnit = 5; // yearly|monthly
+}
+
+message CreateNSUserPlanResponse {
+	int64 nsUserPlanId = 1;
+}
+
+// 修改用户套餐
+message UpdateNSUserPlanRequest {
+	int64 nsUserPlanId = 1;
+	int64 nsPlanId = 2;
+	string dayFrom = 3; // YYYYMMDD
+	string dayTo = 4; // YYYYMMDD
+	string periodUnit = 5; // yearly|monthly
+}
+
+// 删除用户套餐
+message DeleteNSUserPlanRequest{
+	int64 nsUserPlanId = 1;
+}
+
+// 读取用户套餐
+message FindNSUserPlanRequest {
+	int64 userId = 1;  // 和 nsUserPlanId 二选一
+	int64 nsUserPlanId = 2;
+}
+
+message FindNSUserPlanResponse {
+	NSUserPlan nsUserPlan = 1;
+}
+
+// 计算用户套餐数量
+message CountNSUserPlansRequest{
+	int64 userId = 1;
+	int64 nsPlanId = 2;
+	string periodUnit = 3;
+	bool isExpired = 4;
+	int32 expireDays = 5;
+}
+
+// 列出单页套餐
+message ListNSUserPlansRequest {
+	int64 userId = 1;
+	int64 nsPlanId = 2;
+	string periodUnit = 3;
+	bool isExpired = 4;
+	int32 expireDays = 5;
+	int64 offset = 6;
+	int64 size = 7;
+}
+
+message ListNSUserPlansResponse {
+	repeated NSUserPlan nsUserPlans = 1;
+}

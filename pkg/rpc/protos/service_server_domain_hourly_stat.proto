@@ -3,7 +3,7 @@ option go_package = "./pb";
 
 package pb;
 
-import "models/server_domain_hourly_stat.proto";
+import "models/model_server_domain_hourly_stat.proto";
 
 // 服务域名按小时统计服务
 service ServerDomainHourlyStatService {

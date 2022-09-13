@@ -1,0 +1,90 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_plan.proto";
+import "models/rpc_messages.proto";
+
+// DNS套餐服务
+service NSPlanService {
+	// 创建DNS套餐
+	rpc createNSPlan(CreateNSPlanRequest) returns (CreateNSPlanResponse);
+
+	// 修改DNS套餐
+	rpc updateNSPlan(UpdateNSPlanRequest) returns (RPCSuccess);
+
+	// 修改DNS套餐顺序
+	rpc sortNSPlanOrders(SortNSPlansRequest) returns (RPCSuccess);
+
+	// 查找所有DNS套餐
+	rpc findAllNSPlans(FindAllNSPlansRequest) returns (FindAllNSPlansResponse);
+
+	// 查找所有可用DNS套餐
+	rpc findAllEnabledNSPlans(FindAllEnabledNSPlansRequest) returns (FindAllEnabledNSPlansResponse);
+
+	// 查找DNS套餐
+	rpc findNSPlan(FindNSPlanRequest) returns (FindNSPlanResponse);
+
+	// 删除DNS套餐
+	rpc deleteNSPlan(DeleteNSPlanRequest) returns (RPCSuccess);
+}
+
+// 创建DNS套餐
+message CreateNSPlanRequest {
+	string name = 1;
+	float monthlyPrice = 2;
+	float yearlyPrice = 3;
+	bytes configJSON = 4;
+}
+
+message CreateNSPlanResponse {
+	int64 nsPlanId = 1;
+}
+
+// 修改DNS套餐
+message UpdateNSPlanRequest {
+	int64 nsPlanId = 1;
+	string name = 2;
+	bool isOn = 3;
+	float monthlyPrice = 4;
+	float yearlyPrice = 5;
+	bytes configJSON = 6;
+}
+
+// 修改DNS套餐顺序
+message SortNSPlansRequest {
+	repeated int64 nsPlanIds = 1;
+}
+
+// 查找所有DNS套餐
+message FindAllNSPlansRequest {
+
+}
+
+message FindAllNSPlansResponse {
+	repeated NSPlan nsPlans = 1;
+}
+
+// 查找所有可用DNS套餐
+message FindAllEnabledNSPlansRequest {
+
+}
+
+message FindAllEnabledNSPlansResponse {
+	repeated NSPlan nsPlans = 1;
+}
+
+// 查找DNS套餐
+message FindNSPlanRequest {
+	int64 nsPlanId = 1;
+}
+
+message FindNSPlanResponse {
+	NSPlan nsPlan = 1;
+}
+
+// 删除DNS套餐
+message DeleteNSPlanRequest {
+	int64 nsPlanId = 1;
+}

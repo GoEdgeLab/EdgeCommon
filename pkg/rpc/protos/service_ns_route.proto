@@ -20,6 +20,9 @@ service NSRouteService {
 	// 获取单个自定义路线信息
 	rpc findNSRoute (FindNSRouteRequest) returns (FindNSRouteResponse);
 
+	// 查询自定义线路数量
+	rpc countAllNSRoutes(CountAllNSRoutesRequest) returns (RPCCountResponse);
+
 	// 读取所有自定义线路
 	rpc findAllNSRoutes (FindAllNSRoutesRequest) returns (FindAllNSRoutesResponse);
 
@@ -71,6 +74,13 @@ message FindNSRouteRequest {
 
 message FindNSRouteResponse {
 	NSRoute nsRoute = 1;
+}
+
+// 查询自定义线路数量
+message CountAllNSRoutesRequest {
+	int64 nsClusterId = 1;
+	int64 nsDomainId = 2;
+	int64 userId = 3;
 }
 
 // 读取所有自定义线路

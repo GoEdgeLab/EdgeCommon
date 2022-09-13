@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+message NSPlan {
+	int64 id = 1;
+	string name = 2;
+	bool isOn = 3;
+	float monthlyPrice = 4;
+	float yearlyPrice = 5;
+	bytes configJSON = 6;
+}

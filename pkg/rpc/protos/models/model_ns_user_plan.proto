@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_plan.proto";
+import "models/model_user.proto";
+
+message NSUserPlan {
+	int64 id = 1;
+	int64 nsPlanId = 2;
+	int64 userId = 3;
+	string dayFrom = 4;
+	string dayTo = 5;
+	string periodUnit = 6;
+
+	NSPlan nsPlan = 30;
+	User user = 31;
+}
