@@ -20,4 +20,5 @@ message NodeCluster {
 	int32 nodeMaxThreads = 14;
 	bool autoOpenPorts = 16;
 	bool isPinned = 17;
+	bytes clockJSON = 18;
 }

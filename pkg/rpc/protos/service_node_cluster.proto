@@ -170,8 +170,8 @@ message UpdateNodeClusterRequest {
 	string installDir = 4;
 	string timeZone = 5;
 	int32 nodeMaxThreads = 6;
-
 	bool autoOpenPorts = 8;
+	bytes clockJSON = 9;
 }
 
 // 删除集群

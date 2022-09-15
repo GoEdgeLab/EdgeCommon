@@ -63,8 +63,9 @@ type NodeConfig struct {
 	TOA                  *TOAConfig                              `yaml:"toa" json:"toa"`
 	SystemServices       map[string]maps.Map                     `yaml:"systemServices" json:"systemServices"` // 系统服务配置 type => params
 	FirewallActions      []*firewallconfigs.FirewallActionConfig `yaml:"firewallActions" json:"firewallActions"`
-	TimeZone             string                                  `yaml:"timeZone" json:"timeZone"`
-	AutoOpenPorts        bool                                    `yaml:"autoOpenPorts" json:"autoOpenPorts"`
+	TimeZone             string                                  `yaml:"timeZone" json:"timeZone"`           // 自动设置时区
+	AutoOpenPorts        bool                                    `yaml:"autoOpenPorts" json:"autoOpenPorts"` // 自动开放所需端口
+	Clock                *ClockConfig                            `yaml:"clock" json:"clock"`                 // 时钟配置
 
 	// 指标
 	MetricItems []*serverconfigs.MetricItemConfig `yaml:"metricItems" json:"metricItems"`
