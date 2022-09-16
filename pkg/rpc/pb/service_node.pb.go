@@ -3932,6 +3932,101 @@ func (x *UpdateNodeDDoSProtectionRequest) GetDdosProtectionJSON() []byte {
 	return nil
 }
 
+// 取得节点的服务全局配置
+type FindNodeGlobalServerConfigRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NodeId int64 `protobuf:"varint,1,opt,name=nodeId,proto3" json:"nodeId,omitempty"`
+}
+
+func (x *FindNodeGlobalServerConfigRequest) Reset() {
+	*x = FindNodeGlobalServerConfigRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_proto_msgTypes[68]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindNodeGlobalServerConfigRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindNodeGlobalServerConfigRequest) ProtoMessage() {}
+
+func (x *FindNodeGlobalServerConfigRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_proto_msgTypes[68]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindNodeGlobalServerConfigRequest.ProtoReflect.Descriptor instead.
+func (*FindNodeGlobalServerConfigRequest) Descriptor() ([]byte, []int) {
+	return file_service_node_proto_rawDescGZIP(), []int{68}
+}
+
+func (x *FindNodeGlobalServerConfigRequest) GetNodeId() int64 {
+	if x != nil {
+		return x.NodeId
+	}
+	return 0
+}
+
+type FindNodeGlobalServerConfigResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	GlobalServerConfigJSON []byte `protobuf:"bytes,1,opt,name=globalServerConfigJSON,proto3" json:"globalServerConfigJSON,omitempty"`
+}
+
+func (x *FindNodeGlobalServerConfigResponse) Reset() {
+	*x = FindNodeGlobalServerConfigResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_node_proto_msgTypes[69]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindNodeGlobalServerConfigResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindNodeGlobalServerConfigResponse) ProtoMessage() {}
+
+func (x *FindNodeGlobalServerConfigResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_node_proto_msgTypes[69]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindNodeGlobalServerConfigResponse.ProtoReflect.Descriptor instead.
+func (*FindNodeGlobalServerConfigResponse) Descriptor() ([]byte, []int) {
+	return file_service_node_proto_rawDescGZIP(), []int{69}
+}
+
+func (x *FindNodeGlobalServerConfigResponse) GetGlobalServerConfigJSON() []byte {
+	if x != nil {
+		return x.GlobalServerConfigJSON
+	}
+	return nil
+}
+
 // 取得节点的配置概要信息
 type FindEnabledNodeConfigInfoRequest struct {
 	state         protoimpl.MessageState
@@ -3944,7 +4039,7 @@ type FindEnabledNodeConfigInfoRequest struct {
 func (x *FindEnabledNodeConfigInfoRequest) Reset() {
 	*x = FindEnabledNodeConfigInfoRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_proto_msgTypes[68]
+		mi := &file_service_node_proto_msgTypes[70]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3957,7 +4052,7 @@ func (x *FindEnabledNodeConfigInfoRequest) String() string {
 func (*FindEnabledNodeConfigInfoRequest) ProtoMessage() {}
 
 func (x *FindEnabledNodeConfigInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_proto_msgTypes[68]
+	mi := &file_service_node_proto_msgTypes[70]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3970,7 +4065,7 @@ func (x *FindEnabledNodeConfigInfoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindEnabledNodeConfigInfoRequest.ProtoReflect.Descriptor instead.
 func (*FindEnabledNodeConfigInfoRequest) Descriptor() ([]byte, []int) {
-	return file_service_node_proto_rawDescGZIP(), []int{68}
+	return file_service_node_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *FindEnabledNodeConfigInfoRequest) GetNodeId() int64 {
@@ -3996,7 +4091,7 @@ type FindEnabledNodeConfigInfoResponse struct {
 func (x *FindEnabledNodeConfigInfoResponse) Reset() {
 	*x = FindEnabledNodeConfigInfoResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_proto_msgTypes[69]
+		mi := &file_service_node_proto_msgTypes[71]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -4009,7 +4104,7 @@ func (x *FindEnabledNodeConfigInfoResponse) String() string {
 func (*FindEnabledNodeConfigInfoResponse) ProtoMessage() {}
 
 func (x *FindEnabledNodeConfigInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_proto_msgTypes[69]
+	mi := &file_service_node_proto_msgTypes[71]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4022,7 +4117,7 @@ func (x *FindEnabledNodeConfigInfoResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use FindEnabledNodeConfigInfoResponse.ProtoReflect.Descriptor instead.
 func (*FindEnabledNodeConfigInfoResponse) Descriptor() ([]byte, []int) {
-	return file_service_node_proto_rawDescGZIP(), []int{69}
+	return file_service_node_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *FindEnabledNodeConfigInfoResponse) GetHasDNSInfo() bool {
@@ -4065,101 +4160,6 @@ func (x *FindEnabledNodeConfigInfoResponse) GetHasDDoSProtection() bool {
 		return x.HasDDoSProtection
 	}
 	return false
-}
-
-// 取得节点的服务全局配置
-type FindNodeGlobalServerConfigRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	NodeId int64 `protobuf:"varint,1,opt,name=nodeId,proto3" json:"nodeId,omitempty"`
-}
-
-func (x *FindNodeGlobalServerConfigRequest) Reset() {
-	*x = FindNodeGlobalServerConfigRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_proto_msgTypes[70]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *FindNodeGlobalServerConfigRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FindNodeGlobalServerConfigRequest) ProtoMessage() {}
-
-func (x *FindNodeGlobalServerConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_proto_msgTypes[70]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FindNodeGlobalServerConfigRequest.ProtoReflect.Descriptor instead.
-func (*FindNodeGlobalServerConfigRequest) Descriptor() ([]byte, []int) {
-	return file_service_node_proto_rawDescGZIP(), []int{70}
-}
-
-func (x *FindNodeGlobalServerConfigRequest) GetNodeId() int64 {
-	if x != nil {
-		return x.NodeId
-	}
-	return 0
-}
-
-type FindNodeGlobalServerConfigResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	GlobalServerConfigJSON []byte `protobuf:"bytes,1,opt,name=globalServerConfigJSON,proto3" json:"globalServerConfigJSON,omitempty"`
-}
-
-func (x *FindNodeGlobalServerConfigResponse) Reset() {
-	*x = FindNodeGlobalServerConfigResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_service_node_proto_msgTypes[71]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *FindNodeGlobalServerConfigResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FindNodeGlobalServerConfigResponse) ProtoMessage() {}
-
-func (x *FindNodeGlobalServerConfigResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_node_proto_msgTypes[71]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FindNodeGlobalServerConfigResponse.ProtoReflect.Descriptor instead.
-func (*FindNodeGlobalServerConfigResponse) Descriptor() ([]byte, []int) {
-	return file_service_node_proto_rawDescGZIP(), []int{71}
-}
-
-func (x *FindNodeGlobalServerConfigResponse) GetGlobalServerConfigJSON() []byte {
-	if x != nil {
-		return x.GlobalServerConfigJSON
-	}
-	return nil
 }
 
 type FindAllUpgradeNodesWithNodeClusterIdResponse_NodeUpgrade struct {
@@ -4703,27 +4703,7 @@ var file_service_node_proto_rawDesc = []byte{
 	0x64, 0x65, 0x49, 0x64, 0x12, 0x2e, 0x0a, 0x12, 0x64, 0x64, 0x6f, 0x73, 0x50, 0x72, 0x6f, 0x74,
 	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x4a, 0x53, 0x4f, 0x4e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c,
 	0x52, 0x12, 0x64, 0x64, 0x6f, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e,
-	0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x3a, 0x0a, 0x20, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62,
-	0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x49, 0x6e, 0x66,
-	0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64, 0x65,
-	0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x64,
-	0x22, 0x81, 0x02, 0x0a, 0x21, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
-	0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x68, 0x61, 0x73, 0x44, 0x4e, 0x53,
-	0x49, 0x6e, 0x66, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0a, 0x68, 0x61, 0x73, 0x44,
-	0x4e, 0x53, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x22, 0x0a, 0x0c, 0x68, 0x61, 0x73, 0x43, 0x61, 0x63,
-	0x68, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0c, 0x68, 0x61,
-	0x73, 0x43, 0x61, 0x63, 0x68, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x24, 0x0a, 0x0d, 0x68, 0x61,
-	0x73, 0x54, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28,
-	0x08, 0x52, 0x0d, 0x68, 0x61, 0x73, 0x54, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x73,
-	0x12, 0x16, 0x0a, 0x06, 0x68, 0x61, 0x73, 0x53, 0x53, 0x48, 0x18, 0x04, 0x20, 0x01, 0x28, 0x08,
-	0x52, 0x06, 0x68, 0x61, 0x73, 0x53, 0x53, 0x48, 0x12, 0x2c, 0x0a, 0x11, 0x68, 0x61, 0x73, 0x53,
-	0x79, 0x73, 0x74, 0x65, 0x6d, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x73, 0x18, 0x05, 0x20,
-	0x01, 0x28, 0x08, 0x52, 0x11, 0x68, 0x61, 0x73, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x53, 0x65,
-	0x74, 0x74, 0x69, 0x6e, 0x67, 0x73, 0x12, 0x2c, 0x0a, 0x11, 0x68, 0x61, 0x73, 0x44, 0x44, 0x6f,
-	0x53, 0x50, 0x72, 0x6f, 0x74, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28,
-	0x08, 0x52, 0x11, 0x68, 0x61, 0x73, 0x44, 0x44, 0x6f, 0x53, 0x50, 0x72, 0x6f, 0x74, 0x65, 0x63,
-	0x74, 0x69, 0x6f, 0x6e, 0x22, 0x3b, 0x0a, 0x21, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x6f, 0x64, 0x65,
+	0x4a, 0x53, 0x4f, 0x4e, 0x22, 0x3b, 0x0a, 0x21, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x6f, 0x64, 0x65,
 	0x47, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x43, 0x6f, 0x6e, 0x66,
 	0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64,
 	0x65, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49,
@@ -4732,7 +4712,27 @@ var file_service_node_proto_rawDesc = []byte{
 	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x16, 0x67, 0x6c, 0x6f, 0x62, 0x61,
 	0x6c, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x4a, 0x53, 0x4f,
 	0x4e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x16, 0x67, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x53,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x4a, 0x53, 0x4f, 0x4e, 0x32,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x4a, 0x53, 0x4f, 0x4e, 0x22,
+	0x3a, 0x0a, 0x20, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f,
+	0x64, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x64, 0x22, 0x81, 0x02, 0x0a, 0x21,
+	0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43,
+	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x68, 0x61, 0x73, 0x44, 0x4e, 0x53, 0x49, 0x6e, 0x66, 0x6f, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0a, 0x68, 0x61, 0x73, 0x44, 0x4e, 0x53, 0x49, 0x6e, 0x66,
+	0x6f, 0x12, 0x22, 0x0a, 0x0c, 0x68, 0x61, 0x73, 0x43, 0x61, 0x63, 0x68, 0x65, 0x49, 0x6e, 0x66,
+	0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0c, 0x68, 0x61, 0x73, 0x43, 0x61, 0x63, 0x68,
+	0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x24, 0x0a, 0x0d, 0x68, 0x61, 0x73, 0x54, 0x68, 0x72, 0x65,
+	0x73, 0x68, 0x6f, 0x6c, 0x64, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0d, 0x68, 0x61,
+	0x73, 0x54, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x68,
+	0x61, 0x73, 0x53, 0x53, 0x48, 0x18, 0x04, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x68, 0x61, 0x73,
+	0x53, 0x53, 0x48, 0x12, 0x2c, 0x0a, 0x11, 0x68, 0x61, 0x73, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d,
+	0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x08, 0x52, 0x11,
+	0x68, 0x61, 0x73, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67,
+	0x73, 0x12, 0x2c, 0x0a, 0x11, 0x68, 0x61, 0x73, 0x44, 0x44, 0x6f, 0x53, 0x50, 0x72, 0x6f, 0x74,
+	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x08, 0x52, 0x11, 0x68, 0x61,
+	0x73, 0x44, 0x44, 0x6f, 0x53, 0x50, 0x72, 0x6f, 0x74, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x32,
 	0xe0, 0x20, 0x0a, 0x0b, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
 	0x3b, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x12, 0x15, 0x2e,
 	0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71,
@@ -4981,20 +4981,20 @@ var file_service_node_proto_rawDesc = []byte{
 	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x23, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61,
 	0x74, 0x65, 0x4e, 0x6f, 0x64, 0x65, 0x44, 0x44, 0x6f, 0x53, 0x50, 0x72, 0x6f, 0x74, 0x65, 0x63,
 	0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62,
-	0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x68, 0x0a, 0x19, 0x66,
-	0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6f,
-	0x6e, 0x66, 0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
-	0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6f, 0x6e,
-	0x66, 0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25,
-	0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e,
-	0x6f, 0x64, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6b, 0x0a, 0x1a, 0x66, 0x69, 0x6e, 0x64, 0x4e, 0x6f, 0x64,
-	0x65, 0x47, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x43, 0x6f, 0x6e,
-	0x66, 0x69, 0x67, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x6f, 0x64,
-	0x65, 0x47, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x43, 0x6f, 0x6e,
-	0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x70, 0x62, 0x2e,
-	0x46, 0x69, 0x6e, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x47, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x53, 0x65,
-	0x72, 0x76, 0x65, 0x72, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x6b, 0x0a, 0x1a, 0x66,
+	0x69, 0x6e, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x47, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x46,
+	0x69, 0x6e, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x47, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x26, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x47, 0x6c,
+	0x6f, 0x62, 0x61, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x68, 0x0a, 0x19, 0x66, 0x69, 0x6e, 0x64,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69,
+	0x67, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45,
+	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x70, 0x62,
+	0x2e, 0x46, 0x69, 0x6e, 0x64, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4e, 0x6f, 0x64, 0x65,
+	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x33,
 }
@@ -5081,10 +5081,10 @@ var file_service_node_proto_goTypes = []interface{}{
 	(*FindNodeDDoSProtectionRequest)(nil),                            // 65: pb.FindNodeDDoSProtectionRequest
 	(*FindNodeDDoSProtectionResponse)(nil),                           // 66: pb.FindNodeDDoSProtectionResponse
 	(*UpdateNodeDDoSProtectionRequest)(nil),                          // 67: pb.UpdateNodeDDoSProtectionRequest
-	(*FindEnabledNodeConfigInfoRequest)(nil),                         // 68: pb.FindEnabledNodeConfigInfoRequest
-	(*FindEnabledNodeConfigInfoResponse)(nil),                        // 69: pb.FindEnabledNodeConfigInfoResponse
-	(*FindNodeGlobalServerConfigRequest)(nil),                        // 70: pb.FindNodeGlobalServerConfigRequest
-	(*FindNodeGlobalServerConfigResponse)(nil),                       // 71: pb.FindNodeGlobalServerConfigResponse
+	(*FindNodeGlobalServerConfigRequest)(nil),                        // 68: pb.FindNodeGlobalServerConfigRequest
+	(*FindNodeGlobalServerConfigResponse)(nil),                       // 69: pb.FindNodeGlobalServerConfigResponse
+	(*FindEnabledNodeConfigInfoRequest)(nil),                         // 70: pb.FindEnabledNodeConfigInfoRequest
+	(*FindEnabledNodeConfigInfoResponse)(nil),                        // 71: pb.FindEnabledNodeConfigInfoResponse
 	(*FindAllUpgradeNodesWithNodeClusterIdResponse_NodeUpgrade)(nil), // 72: pb.FindAllUpgradeNodesWithNodeClusterIdResponse.NodeUpgrade
 	(*NodeLogin)(nil),                                                // 73: pb.NodeLogin
 	(*Node)(nil),                                                     // 74: pb.Node
@@ -5158,8 +5158,8 @@ var file_service_node_proto_depIdxs = []int32{
 	64, // 59: pb.NodeService.updateNodeDNSResolver:input_type -> pb.UpdateNodeDNSResolverRequest
 	65, // 60: pb.NodeService.findNodeDDoSProtection:input_type -> pb.FindNodeDDoSProtectionRequest
 	67, // 61: pb.NodeService.updateNodeDDoSProtection:input_type -> pb.UpdateNodeDDoSProtectionRequest
-	68, // 62: pb.NodeService.findEnabledNodeConfigInfo:input_type -> pb.FindEnabledNodeConfigInfoRequest
-	70, // 63: pb.NodeService.findNodeGlobalServerConfig:input_type -> pb.FindNodeGlobalServerConfigRequest
+	68, // 62: pb.NodeService.findNodeGlobalServerConfig:input_type -> pb.FindNodeGlobalServerConfigRequest
+	70, // 63: pb.NodeService.findEnabledNodeConfigInfo:input_type -> pb.FindEnabledNodeConfigInfoRequest
 	1,  // 64: pb.NodeService.createNode:output_type -> pb.CreateNodeResponse
 	3,  // 65: pb.NodeService.registerClusterNode:output_type -> pb.RegisterClusterNodeResponse
 	79, // 66: pb.NodeService.countAllEnabledNodes:output_type -> pb.RPCCountResponse
@@ -5205,8 +5205,8 @@ var file_service_node_proto_depIdxs = []int32{
 	80, // 106: pb.NodeService.updateNodeDNSResolver:output_type -> pb.RPCSuccess
 	66, // 107: pb.NodeService.findNodeDDoSProtection:output_type -> pb.FindNodeDDoSProtectionResponse
 	80, // 108: pb.NodeService.updateNodeDDoSProtection:output_type -> pb.RPCSuccess
-	69, // 109: pb.NodeService.findEnabledNodeConfigInfo:output_type -> pb.FindEnabledNodeConfigInfoResponse
-	71, // 110: pb.NodeService.findNodeGlobalServerConfig:output_type -> pb.FindNodeGlobalServerConfigResponse
+	69, // 109: pb.NodeService.findNodeGlobalServerConfig:output_type -> pb.FindNodeGlobalServerConfigResponse
+	71, // 110: pb.NodeService.findEnabledNodeConfigInfo:output_type -> pb.FindEnabledNodeConfigInfoResponse
 	64, // [64:111] is the sub-list for method output_type
 	17, // [17:64] is the sub-list for method input_type
 	17, // [17:17] is the sub-list for extension type_name
@@ -6043,30 +6043,6 @@ func file_service_node_proto_init() {
 			}
 		}
 		file_service_node_proto_msgTypes[68].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindEnabledNodeConfigInfoRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_service_node_proto_msgTypes[69].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindEnabledNodeConfigInfoResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_service_node_proto_msgTypes[70].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FindNodeGlobalServerConfigRequest); i {
 			case 0:
 				return &v.state
@@ -6078,8 +6054,32 @@ func file_service_node_proto_init() {
 				return nil
 			}
 		}
-		file_service_node_proto_msgTypes[71].Exporter = func(v interface{}, i int) interface{} {
+		file_service_node_proto_msgTypes[69].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FindNodeGlobalServerConfigResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_proto_msgTypes[70].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledNodeConfigInfoRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_node_proto_msgTypes[71].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindEnabledNodeConfigInfoResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -6225,10 +6225,10 @@ type NodeServiceClient interface {
 	FindNodeDDoSProtection(ctx context.Context, in *FindNodeDDoSProtectionRequest, opts ...grpc.CallOption) (*FindNodeDDoSProtectionResponse, error)
 	// 修改节点的DDoS设置
 	UpdateNodeDDoSProtection(ctx context.Context, in *UpdateNodeDDoSProtectionRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
-	// 取得节点的配置概要信息
-	FindEnabledNodeConfigInfo(ctx context.Context, in *FindEnabledNodeConfigInfoRequest, opts ...grpc.CallOption) (*FindEnabledNodeConfigInfoResponse, error)
 	// 取得节点的服务全局配置
 	FindNodeGlobalServerConfig(ctx context.Context, in *FindNodeGlobalServerConfigRequest, opts ...grpc.CallOption) (*FindNodeGlobalServerConfigResponse, error)
+	// 取得节点的配置概要信息
+	FindEnabledNodeConfigInfo(ctx context.Context, in *FindEnabledNodeConfigInfoRequest, opts ...grpc.CallOption) (*FindEnabledNodeConfigInfoResponse, error)
 }
 
 type nodeServiceClient struct {
@@ -6666,18 +6666,18 @@ func (c *nodeServiceClient) UpdateNodeDDoSProtection(ctx context.Context, in *Up
 	return out, nil
 }
 
-func (c *nodeServiceClient) FindEnabledNodeConfigInfo(ctx context.Context, in *FindEnabledNodeConfigInfoRequest, opts ...grpc.CallOption) (*FindEnabledNodeConfigInfoResponse, error) {
-	out := new(FindEnabledNodeConfigInfoResponse)
-	err := c.cc.Invoke(ctx, "/pb.NodeService/findEnabledNodeConfigInfo", in, out, opts...)
+func (c *nodeServiceClient) FindNodeGlobalServerConfig(ctx context.Context, in *FindNodeGlobalServerConfigRequest, opts ...grpc.CallOption) (*FindNodeGlobalServerConfigResponse, error) {
+	out := new(FindNodeGlobalServerConfigResponse)
+	err := c.cc.Invoke(ctx, "/pb.NodeService/findNodeGlobalServerConfig", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *nodeServiceClient) FindNodeGlobalServerConfig(ctx context.Context, in *FindNodeGlobalServerConfigRequest, opts ...grpc.CallOption) (*FindNodeGlobalServerConfigResponse, error) {
-	out := new(FindNodeGlobalServerConfigResponse)
-	err := c.cc.Invoke(ctx, "/pb.NodeService/findNodeGlobalServerConfig", in, out, opts...)
+func (c *nodeServiceClient) FindEnabledNodeConfigInfo(ctx context.Context, in *FindEnabledNodeConfigInfoRequest, opts ...grpc.CallOption) (*FindEnabledNodeConfigInfoResponse, error) {
+	out := new(FindEnabledNodeConfigInfoResponse)
+	err := c.cc.Invoke(ctx, "/pb.NodeService/findEnabledNodeConfigInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -6776,10 +6776,10 @@ type NodeServiceServer interface {
 	FindNodeDDoSProtection(context.Context, *FindNodeDDoSProtectionRequest) (*FindNodeDDoSProtectionResponse, error)
 	// 修改节点的DDoS设置
 	UpdateNodeDDoSProtection(context.Context, *UpdateNodeDDoSProtectionRequest) (*RPCSuccess, error)
-	// 取得节点的配置概要信息
-	FindEnabledNodeConfigInfo(context.Context, *FindEnabledNodeConfigInfoRequest) (*FindEnabledNodeConfigInfoResponse, error)
 	// 取得节点的服务全局配置
 	FindNodeGlobalServerConfig(context.Context, *FindNodeGlobalServerConfigRequest) (*FindNodeGlobalServerConfigResponse, error)
+	// 取得节点的配置概要信息
+	FindEnabledNodeConfigInfo(context.Context, *FindEnabledNodeConfigInfoRequest) (*FindEnabledNodeConfigInfoResponse, error)
 }
 
 // UnimplementedNodeServiceServer can be embedded to have forward compatible implementations.
@@ -6921,11 +6921,11 @@ func (*UnimplementedNodeServiceServer) FindNodeDDoSProtection(context.Context, *
 func (*UnimplementedNodeServiceServer) UpdateNodeDDoSProtection(context.Context, *UpdateNodeDDoSProtectionRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateNodeDDoSProtection not implemented")
 }
-func (*UnimplementedNodeServiceServer) FindEnabledNodeConfigInfo(context.Context, *FindEnabledNodeConfigInfoRequest) (*FindEnabledNodeConfigInfoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledNodeConfigInfo not implemented")
-}
 func (*UnimplementedNodeServiceServer) FindNodeGlobalServerConfig(context.Context, *FindNodeGlobalServerConfigRequest) (*FindNodeGlobalServerConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindNodeGlobalServerConfig not implemented")
+}
+func (*UnimplementedNodeServiceServer) FindEnabledNodeConfigInfo(context.Context, *FindEnabledNodeConfigInfoRequest) (*FindEnabledNodeConfigInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledNodeConfigInfo not implemented")
 }
 
 func RegisterNodeServiceServer(s *grpc.Server, srv NodeServiceServer) {
@@ -7750,24 +7750,6 @@ func _NodeService_UpdateNodeDDoSProtection_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NodeService_FindEnabledNodeConfigInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindEnabledNodeConfigInfoRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NodeServiceServer).FindEnabledNodeConfigInfo(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.NodeService/FindEnabledNodeConfigInfo",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NodeServiceServer).FindEnabledNodeConfigInfo(ctx, req.(*FindEnabledNodeConfigInfoRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _NodeService_FindNodeGlobalServerConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FindNodeGlobalServerConfigRequest)
 	if err := dec(in); err != nil {
@@ -7782,6 +7764,24 @@ func _NodeService_FindNodeGlobalServerConfig_Handler(srv interface{}, ctx contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NodeServiceServer).FindNodeGlobalServerConfig(ctx, req.(*FindNodeGlobalServerConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeService_FindEnabledNodeConfigInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindEnabledNodeConfigInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeServiceServer).FindEnabledNodeConfigInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.NodeService/FindEnabledNodeConfigInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeServiceServer).FindEnabledNodeConfigInfo(ctx, req.(*FindEnabledNodeConfigInfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -7967,12 +7967,12 @@ var _NodeService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _NodeService_UpdateNodeDDoSProtection_Handler,
 		},
 		{
-			MethodName: "findEnabledNodeConfigInfo",
-			Handler:    _NodeService_FindEnabledNodeConfigInfo_Handler,
-		},
-		{
 			MethodName: "findNodeGlobalServerConfig",
 			Handler:    _NodeService_FindNodeGlobalServerConfig_Handler,
+		},
+		{
+			MethodName: "findEnabledNodeConfigInfo",
+			Handler:    _NodeService_FindEnabledNodeConfigInfo_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

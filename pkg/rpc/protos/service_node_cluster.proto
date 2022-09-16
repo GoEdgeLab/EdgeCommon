@@ -162,6 +162,7 @@ message CreateNodeClusterRequest {
 	int64 httpCachePolicyId = 6;
 	int64 httpFirewallPolicyId = 7;
 	bytes systemServicesJSON = 8; // 系统服务设置
+	bytes globalServerConfigJSON = 10; // 服务全局设置
 }
 
 message CreateNodeClusterResponse {
