@@ -147,6 +147,9 @@ service NodeService {
 	// 修改节点的DDoS设置
 	rpc updateNodeDDoSProtection(UpdateNodeDDoSProtectionRequest) returns (RPCSuccess);
 
+	// 取得节点的服务全局配置
+	rpc findNodeGlobalServerConfig(FindNodeGlobalServerConfigRequest) returns (FindNodeGlobalServerConfigResponse);
+
 	// 取得节点的配置概要信息
 	rpc findEnabledNodeConfigInfo (FindEnabledNodeConfigInfoRequest) returns (FindEnabledNodeConfigInfoResponse);
 }
@@ -560,6 +563,15 @@ message FindNodeDDoSProtectionResponse {
 message UpdateNodeDDoSProtectionRequest {
 	int64 nodeId = 1;
 	bytes ddosProtectionJSON = 2;
+}
+
+// 取得节点的服务全局配置
+message FindNodeGlobalServerConfigRequest {
+	int64 nodeId = 1;
+}
+
+message FindNodeGlobalServerConfigResponse {
+	bytes globalServerConfigJSON = 1;
 }
 
 // 取得节点的配置概要信息

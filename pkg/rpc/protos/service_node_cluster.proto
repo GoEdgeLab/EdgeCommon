@@ -134,6 +134,12 @@ service NodeClusterService {
 
 	// 修改集群的DDoS设置
 	rpc updateNodeClusterDDoSProtection(UpdateNodeClusterDDoSProtectionRequest) returns (RPCSuccess);
+
+	// 获取集群的全局服务设置
+	rpc findNodeClusterGlobalServerConfig(FindNodeClusterGlobalServerConfigRequest) returns (FindNodeClusterGlobalServerConfigResponse);
+
+	// 修改集群的全局服务设置
+	rpc updateNodeClusterGlobalServerConfig(UpdateNodeClusterGlobalServerConfigRequest) returns (RPCSuccess);
 }
 
 // 获取所有集群的信息
@@ -500,4 +506,19 @@ message FindNodeClusterDDoSProtectionResponse {
 message UpdateNodeClusterDDoSProtectionRequest {
 	int64 nodeClusterId = 1;
 	bytes ddosProtectionJSON = 2;
+}
+
+// 获取集群的全局服务设置
+message FindNodeClusterGlobalServerConfigRequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindNodeClusterGlobalServerConfigResponse {
+	bytes globalServerConfigJSON = 1;
+}
+
+// 修改集群的全局服务设置
+message UpdateNodeClusterGlobalServerConfigRequest {
+	int64 nodeClusterId = 1;
+	bytes globalServerConfigJSON = 2;
 }

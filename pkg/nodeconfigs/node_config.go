@@ -54,8 +54,9 @@ type NodeConfig struct {
 	ParentNodes map[int64][]*ParentNodeConfig `yaml:"parentNodes" json:"parentNodes"` // clusterId => []*ParentNodeConfig
 
 	// 全局配置
-	GlobalConfig  *serverconfigs.GlobalConfig `yaml:"globalConfig" json:"globalConfig"` // 全局配置
-	ProductConfig *ProductConfig              `yaml:"productConfig" json:"productConfig"`
+	GlobalConfig       *serverconfigs.GlobalConfig       `yaml:"globalConfig" json:"globalConfig"`             // 全局配置
+	GlobalServerConfig *serverconfigs.GlobalServerConfig `yaml:"globalServerConfig" json:"globalServerConfig"` // 服务全局配置，用来替代 GlobalConfig
+	ProductConfig      *ProductConfig                    `yaml:"productConfig" json:"productConfig"`
 
 	// 集群统一配置
 	HTTPFirewallPolicies []*firewallconfigs.HTTPFirewallPolicy   `yaml:"httpFirewallPolicies" json:"httpFirewallPolicies"`
@@ -119,7 +120,7 @@ func SharedNodeConfig() (*NodeConfig, error) {
 		return &NodeConfig{}, err
 	}
 
-	config := &NodeConfig{}
+	var config = &NodeConfig{}
 	err = json.Unmarshal(data, &config)
 	if err != nil {
 		return &NodeConfig{}, err
@@ -327,6 +328,14 @@ func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 	// dns resolver
 	if this.DNSResolver != nil {
 		err = this.DNSResolver.Init()
+		if err != nil {
+			return
+		}
+	}
+
+	// 全局服务设置
+	if this.GlobalServerConfig != nil {
+		err = this.GlobalServerConfig.Init()
 		if err != nil {
 			return
 		}
