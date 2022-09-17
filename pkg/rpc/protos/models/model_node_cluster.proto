@@ -21,4 +21,5 @@ message NodeCluster {
 	bool autoOpenPorts = 16;
 	bool isPinned = 17;
 	bytes clockJSON = 18;
+	bool autoRemoteStart = 19;
 }

@@ -179,6 +179,7 @@ message UpdateNodeClusterRequest {
 	int32 nodeMaxThreads = 6;
 	bool autoOpenPorts = 8;
 	bytes clockJSON = 9;
+	bool autoRemoteStart = 10;
 }
 
 // 删除集群

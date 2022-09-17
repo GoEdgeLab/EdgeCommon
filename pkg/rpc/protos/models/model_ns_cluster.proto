@@ -13,4 +13,5 @@ message NSCluster {
 	bytes tlsJSON = 6;
 	bytes udpJSON = 7;
 	repeated string hosts = 8;
+	bool autoRemoteStart = 9;
 }
