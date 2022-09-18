@@ -22,19 +22,22 @@ service DNSDomainService {
 	rpc recoverDNSDomain (RecoverDNSDomainRequest) returns (RPCSuccess);
 
 	// 查询单个域名完整信息
-	rpc findEnabledDNSDomain (FindEnabledDNSDomainRequest) returns (FindEnabledDNSDomainResponse);
+	rpc findDNSDomain (FindDNSDomainRequest) returns (FindDNSDomainResponse);
 
 	// 查询单个域名基础信息
-	rpc findEnabledBasicDNSDomain (FindEnabledBasicDNSDomainRequest) returns (FindEnabledBasicDNSDomainResponse);
+	rpc findBasicDNSDomain (FindBasicDNSDomainRequest) returns (FindBasicDNSDomainResponse);
 
 	// 计算服务商下的域名数量
-	rpc countAllEnabledDNSDomainsWithDNSProviderId (CountAllEnabledDNSDomainsWithDNSProviderIdRequest) returns (RPCCountResponse);
+	rpc countAllDNSDomainsWithDNSProviderId (CountAllDNSDomainsWithDNSProviderIdRequest) returns (RPCCountResponse);
 
 	// 列出服务商下的所有域名
-	rpc findAllEnabledDNSDomainsWithDNSProviderId (FindAllEnabledDNSDomainsWithDNSProviderIdRequest) returns (FindAllEnabledDNSDomainsWithDNSProviderIdResponse);
+	rpc findAllDNSDomainsWithDNSProviderId (FindAllDNSDomainsWithDNSProviderIdRequest) returns (FindAllDNSDomainsWithDNSProviderIdResponse);
 
 	// 列出服务商下的所有域名基本信息
-	rpc findAllEnabledBasicDNSDomainsWithDNSProviderId (FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest) returns (FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse);
+	rpc findAllBasicDNSDomainsWithDNSProviderId (FindAllBasicDNSDomainsWithDNSProviderIdRequest) returns (FindAllBasicDNSDomainsWithDNSProviderIdResponse);
+
+	// 列出服务商下的单页域名信息
+	rpc listBasicDNSDomainsWithDNSProviderId (ListBasicDNSDomainsWithDNSProviderIdRequest) returns (ListDNSDomainsWithDNSProviderIdResponse);
 
 	// 同步域名解析
 	rpc syncDNSDomainData (SyncDNSDomainDataRequest) returns (SyncDNSDomainDataResponse);
@@ -80,43 +83,58 @@ message RecoverDNSDomainRequest {
 }
 
 // 查询单个域名信息
-message FindEnabledDNSDomainRequest {
+message FindDNSDomainRequest {
 	int64 dnsDomainId = 1;
 }
 
-message FindEnabledDNSDomainResponse {
+message FindDNSDomainResponse {
 	DNSDomain dnsDomain = 1;
 }
 
 // 查询单个域名的基础信息
-message FindEnabledBasicDNSDomainRequest {
+message FindBasicDNSDomainRequest {
 	int64 dnsDomainId = 1;
 }
 
-message FindEnabledBasicDNSDomainResponse {
+message FindBasicDNSDomainResponse {
 	DNSDomain dnsDomain = 1;
 }
 
 // 计算服务商下的域名数量
-message CountAllEnabledDNSDomainsWithDNSProviderIdRequest {
+message CountAllDNSDomainsWithDNSProviderIdRequest {
 	int64 dnsProviderId = 1;
+	bool isDeleted = 2;
+	bool isDown = 3;
 }
 
 // 列出服务商下的所有域名
-message FindAllEnabledDNSDomainsWithDNSProviderIdRequest {
+message FindAllDNSDomainsWithDNSProviderIdRequest {
 	int64 dnsProviderId = 1;
 }
 
-message FindAllEnabledDNSDomainsWithDNSProviderIdResponse {
+message FindAllDNSDomainsWithDNSProviderIdResponse {
 	repeated DNSDomain dnsDomains = 1;
 }
 
 // 列出服务商下的所有域名基本信息
-message FindAllEnabledBasicDNSDomainsWithDNSProviderIdRequest {
+message FindAllBasicDNSDomainsWithDNSProviderIdRequest {
 	int64 dnsProviderId = 1;
 }
 
-message FindAllEnabledBasicDNSDomainsWithDNSProviderIdResponse {
+message FindAllBasicDNSDomainsWithDNSProviderIdResponse {
+	repeated DNSDomain dnsDomains = 1;
+}
+
+// 列出服务商下的单页域名信息
+message ListBasicDNSDomainsWithDNSProviderIdRequest {
+	int64 dnsProviderId = 1;
+	bool isDeleted = 2;
+	bool isDown = 3;
+	int64 offset = 4;
+	int64 size = 5;
+}
+
+message ListDNSDomainsWithDNSProviderIdResponse {
 	repeated DNSDomain dnsDomains = 1;
 }
 
