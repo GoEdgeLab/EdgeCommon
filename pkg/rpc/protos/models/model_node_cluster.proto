@@ -22,4 +22,5 @@ message NodeCluster {
 	bool isPinned = 17;
 	bytes clockJSON = 18;
 	bool autoRemoteStart = 19;
+	bool autoInstallNftables = 20;
 }

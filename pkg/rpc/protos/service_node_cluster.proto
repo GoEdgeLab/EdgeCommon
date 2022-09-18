@@ -163,6 +163,7 @@ message CreateNodeClusterRequest {
 	int64 httpFirewallPolicyId = 7;
 	bytes systemServicesJSON = 8; // 系统服务设置
 	bytes globalServerConfigJSON = 10; // 服务全局设置
+	bool autoInstallNftables = 11; // 自动安装nftables
 }
 
 message CreateNodeClusterResponse {
@@ -180,6 +181,7 @@ message UpdateNodeClusterRequest {
 	bool autoOpenPorts = 8;
 	bytes clockJSON = 9;
 	bool autoRemoteStart = 10;
+	bool autoInstallNftables = 11;
 }
 
 // 删除集群

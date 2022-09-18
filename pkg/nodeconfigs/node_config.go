@@ -62,11 +62,12 @@ type NodeConfig struct {
 	HTTPFirewallPolicies []*firewallconfigs.HTTPFirewallPolicy   `yaml:"httpFirewallPolicies" json:"httpFirewallPolicies"`
 	HTTPCachePolicies    []*serverconfigs.HTTPCachePolicy        `yaml:"httpCachePolicies" json:"httpCachePolicies"`
 	TOA                  *TOAConfig                              `yaml:"toa" json:"toa"`
-	SystemServices       map[string]maps.Map                     `yaml:"systemServices" json:"systemServices"` // 系统服务配置 type => params
-	FirewallActions      []*firewallconfigs.FirewallActionConfig `yaml:"firewallActions" json:"firewallActions"`
-	TimeZone             string                                  `yaml:"timeZone" json:"timeZone"`           // 自动设置时区
-	AutoOpenPorts        bool                                    `yaml:"autoOpenPorts" json:"autoOpenPorts"` // 自动开放所需端口
-	Clock                *ClockConfig                            `yaml:"clock" json:"clock"`                 // 时钟配置
+	SystemServices       map[string]maps.Map                     `yaml:"systemServices" json:"systemServices"`           // 系统服务配置 type => params
+	FirewallActions      []*firewallconfigs.FirewallActionConfig `yaml:"firewallActions" json:"firewallActions"`         // 防火墙动作
+	TimeZone             string                                  `yaml:"timeZone" json:"timeZone"`                       // 自动设置时区
+	AutoOpenPorts        bool                                    `yaml:"autoOpenPorts" json:"autoOpenPorts"`             // 自动开放所需端口
+	Clock                *ClockConfig                            `yaml:"clock" json:"clock"`                             // 时钟配置
+	AutoInstallNftables  bool                                    `yaml:"autoInstallNftables" json:"autoInstallNftables"` // 自动安装nftables
 
 	// 指标
 	MetricItems []*serverconfigs.MetricItemConfig `yaml:"metricItems" json:"metricItems"`
