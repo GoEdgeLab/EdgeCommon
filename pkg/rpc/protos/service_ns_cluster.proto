@@ -90,6 +90,7 @@ message UpdateNSClusterRequest {
 	bool isOn = 3;
 	repeated string hosts = 4;
 	bool autoRemoteStart = 5;
+	string timeZone = 6;
 }
 
 // 查找集群访问日志配置

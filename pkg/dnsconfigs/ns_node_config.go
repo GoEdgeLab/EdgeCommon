@@ -17,6 +17,7 @@ type NSNodeConfig struct {
 	RecursionConfig *NSRecursionConfig            `yaml:"recursionConfig" json:"recursionConfig"`
 	DDoSProtection  *ddosconfigs.ProtectionConfig `yaml:"ddosProtection" json:"ddosProtection"`
 	AllowedIPs      []string                      `yaml:"allowedIPs" json:"allowedIPs"`
+	TimeZone        string                        `yaml:"timeZone" json:"timeZone"` // 自动设置时区
 
 	TCP *serverconfigs.TCPProtocolConfig `yaml:"tcp" json:"tcp"` // TCP配置
 	TLS *serverconfigs.TLSProtocolConfig `yaml:"tls" json:"tls"` // TLS配置

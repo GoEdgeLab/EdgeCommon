@@ -14,4 +14,5 @@ message NSCluster {
 	bytes udpJSON = 7;
 	repeated string hosts = 8;
 	bool autoRemoteStart = 9;
+	string timeZone = 10;
 }
