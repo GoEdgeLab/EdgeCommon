@@ -68,6 +68,9 @@ service NSClusterService {
 	// 修改NS集群的DDoS设置
 	rpc updateNSClusterDDoSProtection(UpdateNSClusterDDoSProtectionRequest) returns (RPCSuccess);
 
+	// 查找NS集群的主机地址
+	rpc findNSClusterHosts(FindNSClusterHostsRequest) returns (FindNSClusterHostsResponse);
+
 	// 查找用户可以使用的主机地址
 	rpc findAvailableNSHostsForUser(FindAvailableNSHostsForUserRequest) returns (FindAvailableNSHostsForUserResponse);
 }
@@ -223,6 +226,15 @@ message FindNSClusterDDoSProtectionResponse {
 message UpdateNSClusterDDoSProtectionRequest {
 	int64 nsClusterId = 1;
 	bytes ddosProtectionJSON = 2;
+}
+
+// 查找NS集群的主机地址
+message FindNSClusterHostsRequest {
+	int64 nsClusterId = 1;
+}
+
+message FindNSClusterHostsResponse {
+	repeated string hosts = 1;
 }
 
 // 查找用户可以使用的主机地址
