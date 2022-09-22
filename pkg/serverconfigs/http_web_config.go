@@ -40,6 +40,7 @@ type HTTPWebConfig struct {
 
 	HostRedirects []*HTTPHostRedirectConfig `yaml:"hostRedirects" json:"hostRedirects"` // 主机跳转
 	Auth          *HTTPAuthConfig           `yaml:"auth" json:"auth"`                   // 认证配置
+	Referers      *ReferersConfig           `yaml:"referers" json:"referers"`           // 防盗链设置
 
 	RemoteAddr   *HTTPRemoteAddrConfig `yaml:"remoteAddr" json:"remoteAddr"`     // 客户端IP获取方式
 	MergeSlashes bool                  `yaml:"mergeSlashes" json:"mergeSlashes"` // 是否合并路径中的斜杠（/）

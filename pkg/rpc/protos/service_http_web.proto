@@ -100,6 +100,12 @@ service HTTPWebService {
 
 	// 查找UAM设置
 	rpc findHTTPWebUAM(FindHTTPWebUAMRequest) returns (FindHTTPWebUAMResponse);
+
+	// 修改防盗链设置
+	rpc updateHTTPWebReferers(UpdateHTTPWebReferersRequest) returns (RPCSuccess);
+
+	// 查找防盗链设置
+	rpc findHTTPWebReferers(FindHTTPWebReferersRequest) returns (FindHTTPWebReferersResponse);
 }
 
 // 创建Web配置
@@ -307,4 +313,19 @@ message FindHTTPWebUAMRequest {
 
 message FindHTTPWebUAMResponse {
 	bytes uamJSON = 1;
+}
+
+// 修改防盗链设置
+message UpdateHTTPWebReferersRequest {
+	int64 httpWebId = 1;
+	bytes referersJSON = 2;
+}
+
+// 查找防盗链设置
+message FindHTTPWebReferersRequest {
+	int64 httpWebId = 1;
+}
+
+message FindHTTPWebReferersResponse {
+	bytes referersJSON = 1;
 }

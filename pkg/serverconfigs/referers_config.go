@@ -1,0 +1,37 @@
+// Copyright 2022 Liuxiangchao iwind.liu@gmail.com. All rights reserved. Official site: https://goedge.cn .
+
+package serverconfigs
+
+import "github.com/TeaOSLab/EdgeCommon/pkg/configutils"
+
+// ReferersConfig 防盗链设置
+type ReferersConfig struct {
+	IsPrior         bool     `yaml:"isPrior" json:"isPrior"`
+	IsOn            bool     `yaml:"isOn" json:"isOn"`
+	AllowEmpty      bool     `yaml:"allowEmpty" json:"allowEmpty"`           // 来源域名允许为空
+	AllowSameDomain bool     `yaml:"allowSameDomain" json:"allowSameDomain"` // 允许来源域名和当前访问的域名一致，相当于在站内访问
+	AllowDomains    []string `yaml:"allowDomains" json:"allowDomains"`       // 允许的来源域名列表
+}
+
+func (this *ReferersConfig) Init() error {
+	return nil
+}
+
+func (this *ReferersConfig) MatchDomain(requestDomain string, refererDomain string) bool {
+	if len(refererDomain) == 0 {
+		if this.AllowEmpty {
+			return true
+		}
+		return false
+	}
+
+	if this.AllowSameDomain && requestDomain == refererDomain {
+		return true
+	}
+
+	if len(this.AllowDomains) == 0 {
+		return false
+	}
+
+	return configutils.MatchDomains(this.AllowDomains, refererDomain)
+}
