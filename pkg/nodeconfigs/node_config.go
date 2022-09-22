@@ -172,6 +172,11 @@ func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 
 	// servers
 	for _, server := range this.Servers {
+		// 避免在运行时重新初始化
+		if server.IsInitialized() {
+			continue
+		}
+
 		// 初始化
 		errs := server.Init()
 		if len(errs) > 0 {

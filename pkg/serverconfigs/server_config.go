@@ -62,6 +62,8 @@ type ServerConfig struct {
 	// UAM
 	UAM *UAMConfig `yaml:"uam" json:"uam"`
 
+	isInitialized bool
+
 	isOk bool
 
 	planId int64
@@ -79,6 +81,11 @@ func NewServerConfig() *ServerConfig {
 }
 
 func (this *ServerConfig) Init() (results []error) {
+	if this.isInitialized {
+		return
+	}
+	this.isInitialized = true
+
 	// 分解Group
 	if this.Group != nil && this.Group.IsOn {
 		// reverse proxy
@@ -264,6 +271,10 @@ func (this *ServerConfig) Init() (results []error) {
 	this.isOk = true
 
 	return nil
+}
+
+func (this *ServerConfig) IsInitialized() bool {
+	return this.isInitialized
 }
 
 // IsOk 配置是否正确
