@@ -15,4 +15,5 @@ message NSCluster {
 	repeated string hosts = 8;
 	bool autoRemoteStart = 9;
 	string timeZone = 10;
+	bytes answerJSON = 11;
 }

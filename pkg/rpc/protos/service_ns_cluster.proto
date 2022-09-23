@@ -73,6 +73,12 @@ service NSClusterService {
 
 	// 查找用户可以使用的主机地址
 	rpc findAvailableNSHostsForUser(FindAvailableNSHostsForUserRequest) returns (FindAvailableNSHostsForUserResponse);
+
+	// 查找应答模式
+	rpc findNSClusterAnswerConfig(FindNSClusterAnswerConfigRequest) returns (FindNSClusterAnswerConfigResponse);
+
+	// 设置应答模式
+	rpc updateNSClusterAnswerConfig(UpdateNSClusterAnswerConfigRequest) returns (RPCSuccess);
 }
 
 // 创建集群
@@ -244,4 +250,19 @@ message FindAvailableNSHostsForUserRequest {
 
 message FindAvailableNSHostsForUserResponse {
 	repeated string hosts = 1;
+}
+
+// 查找应答模式
+message FindNSClusterAnswerConfigRequest {
+	int64 nsClusterId = 1;
+}
+
+message FindNSClusterAnswerConfigResponse {
+	bytes answerJSON = 1;
+}
+
+// 设置应答模式
+message UpdateNSClusterAnswerConfigRequest {
+	int64 nsClusterId = 1;
+	bytes answerJSON = 2;
 }
