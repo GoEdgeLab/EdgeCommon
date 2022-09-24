@@ -79,6 +79,12 @@ service NSClusterService {
 
 	// 设置应答模式
 	rpc updateNSClusterAnswerConfig(UpdateNSClusterAnswerConfigRequest) returns (RPCSuccess);
+
+	// 查找SOA配置
+	rpc findNSClusterSOAConfig(FindNSClusterSOAConfigRequest) returns (FindNSClusterSOAConfigResponse);
+
+	// 设置SOA配置
+	rpc updateNSClusterSOAConfig(UpdateNSClusterSOAConfigRequest) returns (RPCSuccess);
 }
 
 // 创建集群
@@ -86,6 +92,8 @@ message CreateNSClusterRequest {
 	string name = 1;
 	bytes accessLogJSON = 2;
 	repeated string hosts = 3;
+	bytes soaJSON = 4;
+	string email = 5;
 }
 
 message CreateNSClusterResponse {
@@ -98,6 +106,7 @@ message UpdateNSClusterRequest {
 	string name = 2;
 	bool isOn = 3;
 	repeated string hosts = 4;
+	string email = 8;
 	bool autoRemoteStart = 5;
 	string timeZone = 6;
 }
@@ -265,4 +274,19 @@ message FindNSClusterAnswerConfigResponse {
 message UpdateNSClusterAnswerConfigRequest {
 	int64 nsClusterId = 1;
 	bytes answerJSON = 2;
+}
+
+// 查找SOA配置
+message FindNSClusterSOAConfigRequest {
+	int64 nsClusterId = 1;
+}
+
+message FindNSClusterSOAConfigResponse {
+	bytes soaJSON = 1;
+}
+
+// 设置SOA配置
+message UpdateNSClusterSOAConfigRequest {
+	int64 nsClusterId = 1;
+	bytes soaJSON = 2;
 }
