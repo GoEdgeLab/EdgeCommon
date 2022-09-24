@@ -14,8 +14,11 @@ service ServerDailyStatService {
 	// 按小时读取统计数据
 	rpc findLatestServerHourlyStats (FindLatestServerHourlyStatsRequest) returns (FindLatestServerHourlyStatsResponse);
 
-	// 按分钟读取统计数据
+	// 按分钟读取统计数据，并返回秒级平均流量
 	rpc findLatestServerMinutelyStats (FindLatestServerMinutelyStatsRequest) returns (FindLatestServerMinutelyStatsResponse);
+
+	// 读取某天的5分钟间隔流量
+	rpc findServer5MinutelyStatsWithDay(FindServer5MinutelyStatsWithDayRequest) returns (FindServer5MinutelyStatsWithDayResponse);
 
 	// 按日读取统计数据
 	rpc findLatestServerDailyStats (FindLatestServerDailyStatsRequest) returns (FindLatestServerDailyStatsResponse);
@@ -81,6 +84,26 @@ message FindLatestServerMinutelyStatsResponse {
 		int64 cachedBytes = 3;
 		int64 countRequests = 4;
 		int64 countCachedRequests = 5;
+	}
+}
+
+// 读取某天的5分钟间隔流量
+message FindServer5MinutelyStatsWithDayRequest {
+	int64 serverId = 1;
+	string day = 2; // YYYYMMDD
+}
+
+message FindServer5MinutelyStatsWithDayResponse {
+	repeated Stat stats = 1;
+
+	message Stat {
+		string day = 1;
+		string timeFrom = 2;
+		string timeTo = 3;
+		int64 bytes = 4;
+		int64 cachedBytes = 5;
+		int64 countRequests = 6;
+		int64 countCachedRequests = 7;
 	}
 }
 
