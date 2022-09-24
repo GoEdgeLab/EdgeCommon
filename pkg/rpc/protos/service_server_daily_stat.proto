@@ -54,7 +54,7 @@ message UploadServerDailyStatsRequest {
 // 按小时读取统计数据
 message FindLatestServerHourlyStatsRequest {
 	int64 serverId = 1;
-	int32 hours = 2;
+	int32 hours = 2; // 小时数
 }
 
 message FindLatestServerHourlyStatsResponse {
@@ -72,7 +72,7 @@ message FindLatestServerHourlyStatsResponse {
 // 按分钟读取统计数据
 message FindLatestServerMinutelyStatsRequest {
 	int64 serverId = 1;
-	int32 minutes = 2;
+	int32 minutes = 2; // 分钟数
 }
 
 message FindLatestServerMinutelyStatsResponse {
@@ -90,7 +90,9 @@ message FindLatestServerMinutelyStatsResponse {
 // 读取某天的5分钟间隔流量
 message FindServer5MinutelyStatsWithDayRequest {
 	int64 serverId = 1;
-	string day = 2; // YYYYMMDD
+	string day = 2; // 必需，格式：YYYYMMDD
+	string timeFrom = 3; // 可选，开始时间，格式：HHIISS，比如 130000
+	string timeTo = 4; // 可选，结束时间，格式：HHIISS，比如 130459
 }
 
 message FindServer5MinutelyStatsWithDayResponse {
@@ -110,7 +112,7 @@ message FindServer5MinutelyStatsWithDayResponse {
 // 按日读取统计数据
 message FindLatestServerDailyStatsRequest {
 	int64 serverId = 1;
-	int32 days = 2;
+	int32 days = 2; // 天数
 }
 
 message FindLatestServerDailyStatsResponse {
