@@ -300,7 +300,7 @@ type FindServer5MinutelyStatsWithDayRequest struct {
 	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
 	Day      string `protobuf:"bytes,2,opt,name=day,proto3" json:"day,omitempty"`           // 必需，格式：YYYYMMDD
 	TimeFrom string `protobuf:"bytes,3,opt,name=timeFrom,proto3" json:"timeFrom,omitempty"` // 可选，开始时间，格式：HHIISS，比如 130000
-	TimeTo   string `protobuf:"bytes,4,opt,name=timeTo,proto3" json:"timeTo,omitempty"`     // 可选，结束时间，格式：HHIISS，比如 130059
+	TimeTo   string `protobuf:"bytes,4,opt,name=timeTo,proto3" json:"timeTo,omitempty"`     // 可选，结束时间，格式：HHIISS，比如 130459
 }
 
 func (x *FindServer5MinutelyStatsWithDayRequest) Reset() {

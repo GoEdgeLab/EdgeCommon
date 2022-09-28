@@ -32,10 +32,16 @@ service OrderMethodService {
 
 // 创建支付方式
 message CreateOrderMethodRequest {
-	string name = 1;
-	string code = 2;
-	string description = 3;
-	string url = 4;
+	string name = 1; // 支付名称
+	string code = 2; // 支付代号
+	string description = 3; // 支付描述
+
+	string url = 4; // 自定义支付URL
+
+	string parentCode = 5; // 使用预设支付方式代号
+	bytes paramsJSON = 6; // 预设支付方式参数
+
+	string clientType = 7;
 }
 
 message CreateOrderMethodResponse {
@@ -43,13 +49,19 @@ message CreateOrderMethodResponse {
 }
 
 // 修改支付方式
+// 不允许修改父级支付方式
 message UpdateOrderMethodRequest {
 	int64 orderMethodId = 1;
 	string name = 2;
 	string code = 3;
 	string description = 4;
+
 	string url = 5;
+
+	bytes paramsJSON = 7; // 预设支付方式参数
+
 	bool isOn = 6;
+	string clientType = 8;
 }
 
 // 删除支付方式

@@ -9,7 +9,13 @@ message OrderMethod {
 	string name = 2;
 	string code = 3;
 	string description = 4;
-	string url = 5;
 	string secret = 6;
 	bool isOn = 7;
+
+	string url = 5;
+
+	string parentCode = 8;
+	bytes params = 9;
+
+	string clientType = 10;
 }

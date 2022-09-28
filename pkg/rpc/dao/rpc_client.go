@@ -47,5 +47,4 @@ type RPCClient interface {
 	ACMETaskRPC() pb.ACMETaskServiceClient
 	UserRPC() pb.UserServiceClient
 	UserBillRPC() pb.UserBillServiceClient
-	UserNodeRPC() pb.UserNodeServiceClient
 }

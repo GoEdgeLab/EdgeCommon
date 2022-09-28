@@ -37,6 +37,9 @@ service UserNodeService {
 
 	// 计算使用某个SSL证书的用户节点数量
 	rpc countAllEnabledUserNodesWithSSLCertId (CountAllEnabledUserNodesWithSSLCertIdRequest) returns (RPCCountResponse);
+
+	// 获取用户节点访问地址
+	rpc findUserNodeAccessAddr(FindUserNodeAccessAddrRequest) returns (FindUserNodeAccessAddrResponse);
 }
 
 // 创建用户节点
@@ -120,4 +123,13 @@ message UpdateUserNodeStatusRequest {
 // 计算使用某个SSL证书的用户节点数量
 message CountAllEnabledUserNodesWithSSLCertIdRequest {
 	int64 sslCertId = 1;
+}
+
+// 获取用户节点访问地址
+message FindUserNodeAccessAddrRequest {
+
+}
+
+message FindUserNodeAccessAddrResponse {
+	string accessAddr = 1;
 }
