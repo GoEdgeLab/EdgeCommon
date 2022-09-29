@@ -42,6 +42,7 @@ message CreateOrderMethodRequest {
 	bytes paramsJSON = 6; // 预设支付方式参数
 
 	string clientType = 7;
+	string qrcodeTitle = 8;
 }
 
 message CreateOrderMethodResponse {
@@ -62,6 +63,7 @@ message UpdateOrderMethodRequest {
 
 	bool isOn = 6;
 	string clientType = 8;
+	string qrcodeTitle = 9;
 }
 
 // 删除支付方式

@@ -18,4 +18,5 @@ message OrderMethod {
 	bytes params = 9;
 
 	string clientType = 10;
+	string qrcodeTitle = 11;
 }

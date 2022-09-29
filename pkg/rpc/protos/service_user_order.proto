@@ -25,6 +25,9 @@ service UserOrderService {
 
 	// 列出单页订单
 	rpc listEnabledUserOrders(ListEnabledUserOrdersRequest) returns (ListEnabledUserOrdersResponse);
+
+	// 订单支付通知
+	rpc notifyUserOrderPayment(NotifyUserOrderPaymentRequest) returns (RPCSuccess);
 }
 
 // 创建订单
@@ -76,4 +79,10 @@ message ListEnabledUserOrdersRequest {
 
 message ListEnabledUserOrdersResponse {
 	repeated UserOrder userOrders = 1;
+}
+
+// 订单支付通知
+message NotifyUserOrderPaymentRequest {
+	string payMethod = 1;
+	bytes formData = 2;
 }
