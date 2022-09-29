@@ -35,6 +35,7 @@ message CreateUserOrderRequest {
 	string type = 1;
 	string orderMethodCode = 2;
 	float amount = 3;
+	bytes paramsJSON = 4;
 }
 
 message CreateUserOrderResponse {

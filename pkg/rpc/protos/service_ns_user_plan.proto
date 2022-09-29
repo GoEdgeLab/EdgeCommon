@@ -25,6 +25,9 @@ service NSUserPlanService {
 
 	// 列出单页套餐
 	rpc listNSUserPlans(ListNSUserPlansRequest) returns (ListNSUserPlansResponse);
+
+	// 使用余额购买用户套餐
+	rpc buyNSUserPlan(BuyNSUserPlanRequest) returns (BuyNSUserPlanResponse);
 }
 
 // 创建用户套餐
@@ -86,4 +89,16 @@ message ListNSUserPlansRequest {
 
 message ListNSUserPlansResponse {
 	repeated NSUserPlan nsUserPlans = 1;
+}
+
+
+// 使用余额购买用户套餐
+message BuyNSUserPlanRequest{
+	int64 userId = 1;
+	int64 planId = 2;
+	string period = 3;
+}
+
+message BuyNSUserPlanResponse {
+	int64 userPlanId = 1;
 }
