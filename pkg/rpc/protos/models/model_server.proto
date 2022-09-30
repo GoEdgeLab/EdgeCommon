@@ -25,6 +25,7 @@ message Server {
 	// 配置相关
 	bytes config = 17;
 	bytes serverNamesJSON = 8;
+	int32 countServerNames = 28;
 	bool isAuditing = 20;
 	int64 auditingAt = 25;
 	bytes auditingServerNamesJSON = 21;

@@ -331,6 +331,7 @@ message ListEnabledServersMatchRequest {
 	string protocolFamily = 8;
 	bool trafficOutAsc = 9;
 	bool trafficOutDesc = 10;
+	bool ignoreServerNames = 11;
 }
 
 message ListEnabledServersMatchResponse {
