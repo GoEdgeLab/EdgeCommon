@@ -119,6 +119,9 @@ service ServerService {
 	// 查找一个用户下的所有域名列表
 	rpc findAllEnabledServerNamesWithUserId (FindAllEnabledServerNamesWithUserIdRequest) returns (FindAllEnabledServerNamesWithUserIdResponse);
 
+	// 查找一个用户下的所有服务
+	rpc findAllUserServers(FindAllUserServersRequest) returns (FindAllUserServersResponse);
+
 	// 查找用户服务基本信息
 	rpc findEnabledUserServerBasic (FindEnabledUserServerBasicRequest) returns (FindEnabledUserServerBasicResponse);
 
@@ -460,6 +463,15 @@ message FindAllEnabledServerNamesWithUserIdRequest {
 
 message FindAllEnabledServerNamesWithUserIdResponse {
 	repeated string serverNames = 1;
+}
+
+// 查找一个用户下的所有服务
+message FindAllUserServersRequest {
+	int64 userId = 1;
+}
+
+message FindAllUserServersResponse {
+	repeated Server servers = 1; // 只返回一些简要信息
 }
 
 // 查找用户服务基本信息

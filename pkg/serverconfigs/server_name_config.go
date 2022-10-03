@@ -49,6 +49,14 @@ func (this *ServerNameConfig) FirstName() string {
 	return ""
 }
 
+// Count 计算域名数量
+func (this *ServerNameConfig) Count() int {
+	if len(this.SubNames) > 0 {
+		return len(this.SubNames)
+	}
+	return 1
+}
+
 // NormalizeServerNames 格式化一组域名
 func NormalizeServerNames(serverNames []*ServerNameConfig) {
 	for _, serverName := range serverNames {

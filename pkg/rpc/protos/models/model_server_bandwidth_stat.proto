@@ -11,4 +11,5 @@ message ServerBandwidthStat {
 	string day = 4;
 	string timeAt = 5;
 	int64 bytes = 6;
+	int64 bits = 7;
 }

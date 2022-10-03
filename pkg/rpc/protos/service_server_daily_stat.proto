@@ -20,8 +20,11 @@ service ServerDailyStatService {
 	// 读取某天的5分钟间隔流量
 	rpc findServer5MinutelyStatsWithDay(FindServer5MinutelyStatsWithDayRequest) returns (FindServer5MinutelyStatsWithDayResponse);
 
-	// 按日读取统计数据
+	// 读取最近N日的统计数据
 	rpc findLatestServerDailyStats (FindLatestServerDailyStatsRequest) returns (FindLatestServerDailyStatsResponse);
+
+	// 读取日期段内的流量数据
+	rpc findServerDailyStatsBetweenDays (FindServerDailyStatsBetweenDaysRequest) returns (FindServerDailyStatsBetweenDaysResponse);
 
 	// 查找单个服务当前时刻（N分钟内）统计数据
 	rpc sumCurrentServerDailyStats(SumCurrentServerDailyStatsRequest) returns (SumCurrentServerDailyStatsResponse);
@@ -109,7 +112,7 @@ message FindServer5MinutelyStatsWithDayResponse {
 	}
 }
 
-// 按日读取统计数据
+// 读取最近N日的统计数据
 message FindLatestServerDailyStatsRequest {
 	int64 serverId = 1;
 	int32 days = 2; // 天数
@@ -127,6 +130,29 @@ message FindLatestServerDailyStatsResponse {
 	}
 }
 
+// 读取日期段内的流量数据
+message FindServerDailyStatsBetweenDaysRequest {
+	int64 userId = 1; // 用户ID，和服务ID二选一
+	int64 serverId = 2; // 服务ID，和用户ID二选一
+	string dayFrom = 3; // 开始日期 YYYYMMDD
+	string dayTo = 4; // 结束日期 YYYYMMDD
+}
+
+message FindServerDailyStatsBetweenDaysResponse {
+	repeated Stat stats = 1;
+
+	message Stat {
+		string day = 1;
+		string timeFrom = 2;
+		string timeTo = 3;
+		string timeAt = 4;
+		int64 bytes = 5;
+		int64 cachedBytes = 6;
+		int64 countRequests = 7;
+		int64 countCachedRequests = 8;
+	}
+}
+
 // 查找单个服务当前时刻（N分钟内）统计数据
 message SumCurrentServerDailyStatsRequest {
 	int64 serverId = 1;
@@ -138,8 +164,12 @@ message SumCurrentServerDailyStatsResponse {
 
 // 计算单个服务的日统计
 message SumServerDailyStatsRequest {
+	int64 userId = 3;
 	int64 serverId = 1;
 	string day = 2; // YYYYMMDD
+
+	string dayFrom = 4; // day 和 dayFrom+dayTo 二选一， YYYYMMDD
+	string dayTo = 5; // day 和 dayFrom+dayTo 二选一，YYYYMMDD
 }
 
 message SumServerDailyStatsResponse {

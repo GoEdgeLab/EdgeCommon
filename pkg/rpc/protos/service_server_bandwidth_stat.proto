@@ -19,6 +19,9 @@ service ServerBandwidthStatService {
 
 	// 获取最近N天峰值带宽
 	rpc findDailyServerBandwidthStats(FindDailyServerBandwidthStatsRequest) returns (FindDailyServerBandwidthStatsResponse);
+
+	// 读取日期段内的带宽数据
+	rpc findDailyServerBandwidthStatsBetweenDays (FindDailyServerBandwidthStatsBetweenDaysRequest) returns (FindDailyServerBandwidthStatsBetweenDaysResponse);
 }
 
 // 上传带宽统计
@@ -50,6 +53,7 @@ message FindHourlyServerBandwidthStatsResponse {
 		string day = 1;
 		int32 hour = 2;
 		int64 bytes = 3;
+		int64 bits = 4;
 	}
 }
 
@@ -65,5 +69,27 @@ message FindDailyServerBandwidthStatsResponse {
 	message Stat {
 		string day = 1;
 		int64 bytes = 3;
+		int64 bits = 4;
+	}
+}
+
+// 读取日期段内的带宽数据
+message FindDailyServerBandwidthStatsBetweenDaysRequest {
+	int64 userId = 1; // 用户ID，和服务ID二选一
+	int64 serverId = 2; // 服务ID，和用户ID二选一
+	string dayFrom = 3; // 开始日期 YYYYMMDD
+	string dayTo = 4; // 结束日期 YYYYMMDD
+	int32 percentile = 5; // 可选项，百分位（nth）带宽位置，0-100之间
+}
+
+message FindDailyServerBandwidthStatsBetweenDaysResponse {
+	repeated Stat stats = 1;
+	Stat nthStat = 2;
+
+	message Stat {
+		string day = 1;
+		string timeAt = 2;
+		int64 bytes = 3; // 字节/秒
+		int64 bits = 4; // 比特/秒
 	}
 }

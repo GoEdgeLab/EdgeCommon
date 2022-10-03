@@ -7,7 +7,6 @@ import "models/model_node_cluster.proto";
 import "models/model_server_group.proto";
 import "models/model_user.proto";
 import "models/model_server_name_auditing_result.proto";
-import "models/model_server_daily_stat.proto";
 
 message Server {
 	int64 id = 1;
@@ -25,6 +24,7 @@ message Server {
 	// 配置相关
 	bytes config = 17;
 	bytes serverNamesJSON = 8;
+	string firstServerName = 33;
 	int32 countServerNames = 28;
 	bool isAuditing = 20;
 	int64 auditingAt = 25;
@@ -46,5 +46,4 @@ message Server {
 	NodeCluster nodeCluster = 30;
 	repeated ServerGroup serverGroups = 31;
 	User user = 32;
-	ServerDailyStat latestServerDailyStat = 33 [deprecated = true];
 }
