@@ -13,15 +13,6 @@ const (
 	SettingCodeAccessLogQueue        SettingCode = "accessLogQueue"      // 访问日志队列
 	SettingCodeCheckUpdates          SettingCode = "checkUpdates"        // 检查自动更新配置
 
-	SettingCodeUserUIConfig       SettingCode = "userUIConfig"       // 用户界面配置
-	SettingCodeUserRegisterConfig SettingCode = "userRegisterConfig" // 用户注册配置
 	SettingCodeUserServerConfig   SettingCode = "userServerConfig"   // 用户服务设置
-	SettingCodeUserFinanceConfig  SettingCode = "userFinanceConfig"  // 用户财务设置
-	SettingCodeUserOrderConfig    SettingCode = "userOrderConfig"    // 用户订单设置
-
-	SettingCodeNSAccessLogSetting SettingCode = "nsAccessLogSetting" // NS相关全局配置
-	SettingCodeNSUserConfig       SettingCode = "nsUserConfig"       // NS用户相关设置
-	SettingCodeNSNodeMonitor      SettingCode = "nsNodeMonitor"      // 监控NS节点状态
-
-	SettingCodeReportNodeGlobalSetting SettingCode = "reportNodeGlobalSetting" // 区域监控节点全局配置
+	SettingCodeUserRegisterConfig SettingCode = "userRegisterConfig" // 用户注册配置
 )

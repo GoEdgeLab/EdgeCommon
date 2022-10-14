@@ -80,6 +80,7 @@ message FindDailyServerBandwidthStatsBetweenDaysRequest {
 	string dayFrom = 3; // 开始日期 YYYYMMDD
 	string dayTo = 4; // 结束日期 YYYYMMDD
 	int32 percentile = 5; // 可选项，百分位（nth）带宽位置，0-100之间
+	int64 regionId = 6; // 区域ID，可选项（目前只有用户整体统计支持区域ID）
 }
 
 message FindDailyServerBandwidthStatsBetweenDaysResponse {

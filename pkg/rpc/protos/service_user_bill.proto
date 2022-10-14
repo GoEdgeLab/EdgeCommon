@@ -30,6 +30,7 @@ service UserBillService {
 // 手工生成账单
 message GenerateAllUserBillsRequest {
 	string month = 1;
+	string day = 2;
 }
 
 // 计算所有账单数量

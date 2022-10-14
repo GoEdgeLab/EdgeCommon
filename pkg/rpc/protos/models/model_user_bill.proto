@@ -17,4 +17,7 @@ message UserBill {
 	int64 paidAt = 9;
 	string code = 10;
 	bool canPay = 11;
+	string dayFrom = 12;
+	string dayTo = 13;
+	string pricePeriod = 14;
 }

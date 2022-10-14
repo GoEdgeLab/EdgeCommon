@@ -1,0 +1,23 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 价格相关服务
+service PriceService {
+	// 计算费用
+	rpc calculatePrice(CalculatePriceRequest) returns (CalculatePriceResponse);
+}
+
+// 计算费用
+message CalculatePriceRequest {
+	string priceType = 1;
+	float trafficGB = 2;
+	float bandwidthMB = 3;
+	int64 regionId = 4;
+}
+
+message CalculatePriceResponse {
+	float amount = 1;
+	bool hasRegionPrice = 2;
+}

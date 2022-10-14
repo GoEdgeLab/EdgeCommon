@@ -12,7 +12,6 @@ type RPCClient interface {
 	SysSettingRPC() pb.SysSettingServiceClient
 	NodeClusterRPC() pb.NodeClusterServiceClient
 	NodeRegionRPC() pb.NodeRegionServiceClient
-	NodePriceItemRPC() pb.NodePriceItemServiceClient
 	ServerRPC() pb.ServerServiceClient
 	ServerGroupRPC() pb.ServerGroupServiceClient
 	OriginRPC() pb.OriginServiceClient
