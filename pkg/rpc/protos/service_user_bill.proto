@@ -56,7 +56,8 @@ message ListUserBillsResponse {
 
 // 查找账单信息
 message FindUserBillRequest {
-	int64 userBillId = 1;
+	int64 userBillId = 1; // ID，和单号二选一
+	string code = 2; // 单号
 }
 
 message FindUserBillResponse {
