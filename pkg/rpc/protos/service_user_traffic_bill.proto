@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_user_traffic_bill.proto";
+
+// 用户流量带宽子账单服务
+service UserTrafficBillService {
+	// 列出某个账单下的流量带宽子账单
+	rpc findUserTrafficBills(FindUserTrafficBillsRequest) returns (FindUserTrafficBillsResponse);
+}
+
+// 列出某个账单下的流量带宽子账单
+message FindUserTrafficBillsRequest {
+	int64 userBillId = 1;
+}
+
+message FindUserTrafficBillsResponse {
+	repeated UserTrafficBill userTrafficBills = 1;
+}

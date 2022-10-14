@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_node_region.proto";
+
+// 用户流量带宽子账单
+message UserTrafficBill {
+	int64 id = 1;
+	int64 billId = 2;
+	int64 nodeRegionId = 3;
+	float amount = 4;
+	float bandwidthMB = 5;
+	int32 bandwidthPercentile = 6;
+	float trafficGB = 7;
+	float pricePerUnit = 8;
+	string priceType = 9;
+
+	NodeRegion nodeRegion = 30;
+}

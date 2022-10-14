@@ -12,5 +12,5 @@ message ServerBandwidthStat {
 	string timeAt = 5;
 	int64 bytes = 6;
 	int64 bits = 7;
-	int64 regionId = 8;
+	int64 nodeRegionId = 8;
 }

@@ -14,10 +14,10 @@ message CalculatePriceRequest {
 	string priceType = 1;
 	float trafficGB = 2;
 	float bandwidthMB = 3;
-	int64 regionId = 4;
+	int64 nodeRegionId = 4;
 }
 
 message CalculatePriceResponse {
 	float amount = 1;
-	bool hasRegionPrice = 2;
+	bool hasNodeRegionPrice = 2;
 }

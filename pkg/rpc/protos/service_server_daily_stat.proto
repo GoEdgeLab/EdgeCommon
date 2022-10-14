@@ -115,7 +115,7 @@ message FindServer5MinutelyStatsWithDayResponse {
 // 读取最近N日的统计数据
 message FindLatestServerDailyStatsRequest {
 	int64 serverId = 1;
-	int64 regionId = 3; // 区域ID，可选
+	int64 nodeRegionId = 3; // 区域ID，可选
 	int32 days = 2; // 天数
 }
 
@@ -137,7 +137,7 @@ message FindServerDailyStatsBetweenDaysRequest {
 	int64 serverId = 2; // 服务ID，和用户ID二选一
 	string dayFrom = 3; // 开始日期 YYYYMMDD
 	string dayTo = 4; // 结束日期 YYYYMMDD
-	int64 regionId = 5; // 区域ID
+	int64 nodeRegionId = 5; // 区域ID
 }
 
 message FindServerDailyStatsBetweenDaysResponse {
@@ -168,7 +168,7 @@ message SumCurrentServerDailyStatsResponse {
 message SumServerDailyStatsRequest {
 	int64 userId = 3;
 	int64 serverId = 1;
-	int64 regionId = 6;
+	int64 nodeRegionId = 6;
 
 	string day = 2; // YYYYMMDD
 
