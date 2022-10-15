@@ -69,6 +69,15 @@ service UserService {
 
 	// 根据用户名检查是否需要输入OTP
 	rpc checkUserOTPWithUsername (CheckUserOTPWithUsernameRequest) returns (CheckUserOTPWithUsernameResponse);
+
+	// 读取用户计费信息
+	rpc findUserPriceInfo(FindUserPriceInfoRequest) returns (FindUserPriceInfoResponse);
+
+	// 修改用户计费方式
+	rpc updateUserPriceType(UpdateUserPriceTypeRequest) returns (RPCSuccess);
+
+	// 修改用户计费周期
+	rpc updateUserPricePeriod(UpdateUserPricePeriodRequest) returns (RPCSuccess);
 }
 
 // 创建用户
@@ -293,4 +302,26 @@ message CheckUserOTPWithUsernameRequest {
 
 message CheckUserOTPWithUsernameResponse {
 	bool requireOTP = 1;
+}
+
+// 读取用户计费信息
+message FindUserPriceInfoRequest {
+	int64 userId = 1;
+}
+
+message FindUserPriceInfoResponse {
+	string priceType = 1;
+	string pricePeriod = 2;
+}
+
+// 修改用户计费方式
+message UpdateUserPriceTypeRequest {
+	int64 userId = 1;
+	string priceType = 2;
+}
+
+// 修改用户计费周期
+message UpdateUserPricePeriodRequest {
+	int64 userId = 1;
+	string pricePeriod = 2;
 }
