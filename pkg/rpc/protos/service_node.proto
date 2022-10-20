@@ -8,6 +8,8 @@ import "models/model_node_login.proto";
 import "models/model_node_install_status.proto";
 import "models/model_dns_route.proto";
 import "models/model_size_capacity.proto";
+import "models/model_node_cluster.proto";
+import "models/model_node_region.proto";
 import "models/rpc_messages.proto";
 
 // 边缘节点管理服务
@@ -152,6 +154,15 @@ service NodeService {
 
 	// 取得节点的配置概要信息
 	rpc findEnabledNodeConfigInfo (FindEnabledNodeConfigInfoRequest) returns (FindEnabledNodeConfigInfoResponse);
+
+	// 查找节点区域信息数量
+	rpc countAllNodeRegionInfo(CountAllNodeRegionInfoRequest) returns (RPCCountResponse);
+
+	// 列出单页节点区域信息
+	rpc listNodeRegionInfo(ListNodeRegionInfoRequest) returns (ListNodeRegionInfoResponse);
+
+	// 修改节点区域信息
+	rpc updateNodeRegionInfo(UpdateNodeRegionInfoRequest) returns (RPCSuccess);
 }
 
 // 创建节点
@@ -586,4 +597,34 @@ message FindEnabledNodeConfigInfoResponse {
 	bool  hasSSH = 4;
 	bool  hasSystemSettings = 5;
 	bool hasDDoSProtection = 6;
+}
+
+// 查找节点区域信息数量
+message CountAllNodeRegionInfoRequest {
+	int64 nodeRegionId = 1; // 区域ID，可选
+}
+
+// 列出单页节点区域信息
+message ListNodeRegionInfoRequest {
+	int64 nodeRegionId = 1; // 区域ID，可选
+	int64 offset = 2;
+	int64 size =3;
+}
+
+message ListNodeRegionInfoResponse {
+	repeated Info infoList = 1;
+
+	message Info {
+		int64 id = 1;
+		string name = 2;
+
+		NodeRegion nodeRegion = 10;
+		NodeCluster nodeCluster = 11;
+	}
+}
+
+// 修改节点区域信息
+message UpdateNodeRegionInfoRequest {
+	int64 nodeId = 1;
+	int64 nodeRegionId = 2;
 }
