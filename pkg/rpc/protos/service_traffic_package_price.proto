@@ -1,0 +1,69 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_traffic_package_price.proto";
+import "models/rpc_messages.proto";
+
+// 流量包价格服务
+service TrafficPackagePriceService {
+	// 设置流量包价格
+	rpc updateTrafficPackagePrice(UpdateTrafficPackagePriceRequest) returns (RPCSuccess);
+
+	// 获取单个流量包具体价格
+	rpc findTrafficPackagePrice(FindTrafficPackagePriceRequest) returns (FindTrafficPackagePriceResponse);
+
+	// 计算流量包价格项数量
+	rpc countTrafficPackagePrices(CountTrafficPackagePricesRequest) returns (RPCCountResponse);
+
+	// 查找流量包价格
+	rpc findTrafficPackagePrices(FindTrafficPackagePricesRequest) returns (FindTrafficPackagePricesResponse);
+
+	// 查找所有流量包价格
+	rpc findAllTrafficPackagePrices(FindAllTrafficPackagePricesRequest) returns (FindAllTrafficPackagePricesResponse);
+}
+
+// 设置流量包价格
+message UpdateTrafficPackagePriceRequest {
+	int64 trafficPackageId = 1;
+	int64 nodeRegionId = 2;
+	int64 trafficPackagePeriodId = 3;
+	float price = 4;
+}
+
+// 获取单个流量包具体价格
+message FindTrafficPackagePriceRequest {
+	int64 trafficPackageId = 1;
+	int64 nodeRegionId = 2;
+	int64 trafficPackagePeriodId = 3;
+	int32 count = 4;
+}
+
+message FindTrafficPackagePriceResponse {
+	float price = 1; // 单价
+	float amount = 2; // 总价
+}
+
+// 计算流量包价格项数量
+message CountTrafficPackagePricesRequest {
+	int64 trafficPackageId = 1;
+}
+
+// 查找流量包价格
+message FindTrafficPackagePricesRequest {
+	int64 trafficPackageId = 1;
+}
+
+message FindTrafficPackagePricesResponse {
+	repeated TrafficPackagePrice trafficPackagePrices = 1;
+}
+
+// 查找所有流量包价格
+message FindAllTrafficPackagePricesRequest {
+
+}
+
+message FindAllTrafficPackagePricesResponse {
+	repeated TrafficPackagePrice trafficPackagePrices = 1;
+}

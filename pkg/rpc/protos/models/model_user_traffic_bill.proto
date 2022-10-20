@@ -14,8 +14,10 @@ message UserTrafficBill {
 	float bandwidthMB = 5;
 	int32 bandwidthPercentile = 6;
 	float trafficGB = 7;
-	float pricePerUnit = 8;
-	string priceType = 9;
+	float trafficPackageGB = 8;
+	repeated int64 userTrafficPackageIds = 9;
+	float pricePerUnit = 10;
+	string priceType = 11;
 
 	NodeRegion nodeRegion = 30;
 }

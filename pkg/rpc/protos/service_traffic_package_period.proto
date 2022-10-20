@@ -1,0 +1,76 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_traffic_package_period.proto";
+import "models/rpc_messages.proto";
+
+// 流量包有效期服务
+service TrafficPackagePeriodService {
+	// 创建有效期
+	rpc createTrafficPackagePeriod(CreateTrafficPackagePeriodRequest) returns (CreateTrafficPackagePeriodResponse);
+
+	// 修改有效期
+	rpc updateTrafficPackagePeriod(UpdateTrafficPackagePeriodRequest) returns (RPCSuccess);
+
+	// 删除有效期
+	rpc deleteTrafficPackagePeriod(DeleteTrafficPackagePeriodRequest) returns (RPCSuccess);
+
+	// 查找有效期
+	rpc findTrafficPackagePeriod(FindTrafficPackagePeriodRequest) returns (FindTrafficPackagePeriodResponse);
+
+	// 列出所有有效期
+	rpc findAllTrafficPackagePeriods(FindAllTrafficPackagePeriodsRequest) returns (FindAllTrafficPackagePeriodsResponse);
+
+	// 列出所有可用有效期
+	rpc findAllAvailableTrafficPackagePeriods(FindAllAvailableTrafficPackagePeriodsRequest) returns (FindAllAvailableTrafficPackagePeriodsResponse);
+}
+
+// 创建有效期
+message CreateTrafficPackagePeriodRequest {
+	int32 count = 1;
+	string unit = 2; // month | year
+}
+
+message CreateTrafficPackagePeriodResponse {
+	int64 trafficPackagePeriodId = 1;
+}
+
+// 修改有效期
+message UpdateTrafficPackagePeriodRequest {
+	int64 trafficPackagePeriodId = 1;
+	bool isOn = 2;
+}
+
+// 删除有效期
+message DeleteTrafficPackagePeriodRequest {
+	int64 trafficPackagePeriodId = 1;
+}
+
+// 查找有效期
+message FindTrafficPackagePeriodRequest {
+	int64 trafficPackagePeriodId = 1;
+}
+
+message FindTrafficPackagePeriodResponse {
+	TrafficPackagePeriod trafficPackagePeriod = 1;
+}
+
+// 列出所有有效期
+message FindAllTrafficPackagePeriodsRequest {
+
+}
+
+message FindAllTrafficPackagePeriodsResponse {
+	repeated TrafficPackagePeriod trafficPackagePeriods = 1;
+}
+
+// 列出所有可用有效期
+message FindAllAvailableTrafficPackagePeriodsRequest {
+
+}
+
+message FindAllAvailableTrafficPackagePeriodsResponse {
+	repeated TrafficPackagePeriod trafficPackagePeriods = 1;
+}

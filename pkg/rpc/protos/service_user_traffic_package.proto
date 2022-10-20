@@ -1,0 +1,82 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_user_traffic_package.proto";
+import "models/rpc_messages.proto";
+
+// 用户流量包服务
+service UserTrafficPackageService {
+	// 创建用户流量包
+	rpc createUserTrafficPackage(CreateUserTrafficPackageRequest) returns (CreateUserTrafficPackageResponse);
+
+	// 购买用户流量包
+	rpc buyUserTrafficPackage(BuyUserTrafficPackageRequest) returns (BuyUserTrafficPackageResponse);
+
+	// 查询当前流量包数量
+	rpc countUserTrafficPackages(CountUserTrafficPackagesRequest) returns (RPCCountResponse);
+
+	// 列出单页流量包
+	rpc listUserTrafficPackages(ListUserTrafficPackagesRequest) returns (ListUserTrafficPackagesResponse);
+
+	// 删除流量包
+	rpc deleteUserTrafficPackage(DeleteUserTrafficPackageRequest) returns (RPCSuccess);
+}
+
+// 创建用户流量包
+message CreateUserTrafficPackageRequest {
+	int64 userId = 1;
+	int64 trafficPackageId = 2;
+	int64 nodeRegionId = 3;
+	int64 trafficPackagePeriodId = 4;
+	int32 count = 5;
+}
+
+message CreateUserTrafficPackageResponse {
+	repeated int64 userTrafficPackageIds = 1;
+}
+
+// 购买用户流量包
+message BuyUserTrafficPackageRequest {
+	int64 userId = 1;
+	int64 trafficPackageId = 2;
+	int64 nodeRegionId = 3;
+	int64 trafficPackagePeriodId = 4;
+	int32 count = 5;
+}
+
+message BuyUserTrafficPackageResponse {
+	repeated int64 userTrafficPackageIds = 1;
+}
+
+// 查询当前流量包数量
+message CountUserTrafficPackagesRequest {
+	int64 trafficPackageId = 1;
+	int64 userId = 2;
+	int64 nodeRegionId = 3;
+	int64 trafficPackagePeriodId = 4;
+	string expiresDay = 5;
+	bool availableOnly = 6; // 是否只查询有效的流量包
+}
+
+// 列出单页流量包
+message ListUserTrafficPackagesRequest {
+	int64 trafficPackageId = 1;
+	int64 userId = 2;
+	int64 nodeRegionId = 3;
+	int64 trafficPackagePeriodId = 4;
+	string expiresDay = 5;
+	bool availableOnly = 6; // 是否只查询有效的流量包
+	int64 offset = 7;
+	int64 size = 8;
+}
+
+message ListUserTrafficPackagesResponse {
+	repeated UserTrafficPackage userTrafficPackages = 1;
+}
+
+// 删除流量包
+message DeleteUserTrafficPackageRequest {
+	int64 userTrafficPackageId = 1;
+}

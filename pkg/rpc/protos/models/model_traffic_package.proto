@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 流量包
+message TrafficPackage {
+	int64 id = 1;
+	int32 size = 2;
+	string unit = 3;
+	int64 bytes = 4;
+	bool isOn = 5;
+}

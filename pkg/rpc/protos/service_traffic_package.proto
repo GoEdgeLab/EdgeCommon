@@ -1,0 +1,76 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_traffic_package.proto";
+import "models/rpc_messages.proto";
+
+// 流量包服务
+service TrafficPackageService {
+	// 创建流量包
+	rpc createTrafficPackage(CreateTrafficPackageRequest) returns (CreateTrafficPackageResponse);
+
+	// 修改流量包
+	rpc updateTrafficPackage(UpdateTrafficPackageRequest) returns (RPCSuccess);
+
+	// 删除流量包
+	rpc deleteTrafficPackage(DeleteTrafficPackageRequest) returns (RPCSuccess);
+
+	// 查找流量包
+	rpc findTrafficPackage(FindTrafficPackageRequest) returns (FindTrafficPackageResponse);
+
+	// 查找所有流量包
+	rpc findAllTrafficPackages(FindAllTrafficPackagesRequest) returns (FindAllTrafficPackagesResponse);
+
+	// 查找所有可用流量包
+	rpc findAllAvailableTrafficPackages(FindAllAvailableTrafficPackagesRequest) returns (FindAllAvailableTrafficPackagesResponse);
+}
+
+// 创建流量包
+message CreateTrafficPackageRequest {
+	int32 size = 1; // 流量包尺寸
+	string unit = 2; // 单位：gb, tb, pb
+}
+
+message CreateTrafficPackageResponse {
+	int64 trafficPackageId = 1;
+}
+
+// 修改流量包
+message UpdateTrafficPackageRequest {
+	int64 trafficPackageId = 1;
+	bool isOn = 2;
+}
+
+// 删除流量包
+message DeleteTrafficPackageRequest {
+	int64 trafficPackageId = 1;
+}
+
+// 查找流量包
+message FindTrafficPackageRequest {
+	int64 trafficPackageId = 1;
+}
+
+message FindTrafficPackageResponse {
+	TrafficPackage trafficPackage = 1;
+}
+
+// 查找所有流量包
+message FindAllTrafficPackagesRequest {
+
+}
+
+message FindAllTrafficPackagesResponse {
+	repeated TrafficPackage trafficPackages = 1;
+}
+
+// 查找所有可用流量包
+message FindAllAvailableTrafficPackagesRequest {
+
+}
+
+message FindAllAvailableTrafficPackagesResponse {
+	repeated TrafficPackage trafficPackages = 1;
+}
