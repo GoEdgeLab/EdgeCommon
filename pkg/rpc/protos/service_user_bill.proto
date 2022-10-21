@@ -35,9 +35,12 @@ message GenerateAllUserBillsRequest {
 
 // 计算所有账单数量
 message CountAllUserBillsRequest {
-	int32 paidFlag = 1; // 0|1|-1
-	int64 userId = 2;
-	string month = 3;
+	int32 paidFlag = 1; // 可选，0|1|-1
+	int64 userId = 2; // 可选，用户ID
+	string month = 3; // 可选，月份
+	bool trafficRelated = 4; // 可选，是否为流量带宽相关
+	int32 minDailyBillDays = 5; // 可选，按日计费账单生成最小天数
+	int32 minMonthlyBillDays = 6; // 可选，按月计费账单生成最小天数
 }
 
 // 列出单页账单

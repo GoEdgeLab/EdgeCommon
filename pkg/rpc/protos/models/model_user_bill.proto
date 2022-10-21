@@ -20,4 +20,5 @@ message UserBill {
 	string dayFrom = 12;
 	string dayTo = 13;
 	string pricePeriod = 14;
+	bool isOverdue = 15; // 是否已逾期
 }
