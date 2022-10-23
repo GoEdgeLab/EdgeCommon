@@ -83,7 +83,7 @@ service UserService {
 	rpc checkUserServersState(CheckUserServersStateRequest) returns (CheckUserServersStateResponse);
 
 	// 更新用户服务可用状态
-	rpc renewUserServersState(RenewUserServersStateRequest) returns (RPCSuccess);
+	rpc renewUserServersState(RenewUserServersStateRequest) returns (RenewUserServersStateResponse);
 }
 
 // 创建用户
@@ -344,4 +344,8 @@ message CheckUserServersStateResponse {
 // 更新用户服务可用状态
 message RenewUserServersStateRequest {
 	int64 userId = 1;
+}
+
+message RenewUserServersStateResponse {
+	bool isEnabled = 1;
 }
