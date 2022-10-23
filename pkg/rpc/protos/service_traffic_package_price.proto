@@ -29,7 +29,7 @@ message UpdateTrafficPackagePriceRequest {
 	int64 trafficPackageId = 1;
 	int64 nodeRegionId = 2;
 	int64 trafficPackagePeriodId = 3;
-	float price = 4;
+	double price = 4;
 }
 
 // 获取单个流量包具体价格
@@ -41,8 +41,8 @@ message FindTrafficPackagePriceRequest {
 }
 
 message FindTrafficPackagePriceResponse {
-	float price = 1; // 单价
-	float amount = 2; // 总价
+	double price = 1; // 单价
+	double amount = 2; // 总价
 }
 
 // 计算流量包价格项数量

@@ -122,6 +122,9 @@ service ServerService {
 	// 查找一个用户下的所有服务
 	rpc findAllUserServers(FindAllUserServersRequest) returns (FindAllUserServersResponse);
 
+	// 查找某个用户下的服务配置
+	rpc composeAllUserServersConfig(ComposeAllUserServersConfigRequest) returns (ComposeAllUserServersConfigResponse);
+
 	// 查找用户服务基本信息
 	rpc findEnabledUserServerBasic (FindEnabledUserServerBasicRequest) returns (FindEnabledUserServerBasicResponse);
 
@@ -472,6 +475,15 @@ message FindAllUserServersRequest {
 
 message FindAllUserServersResponse {
 	repeated Server servers = 1; // 只返回一些简要信息
+}
+
+// 查找某个用户下的服务配置
+message ComposeAllUserServersConfigRequest {
+	int64 userId = 1;
+}
+
+message ComposeAllUserServersConfigResponse {
+	bytes serversConfigJSON = 1; // [server config1, server config2, ...]
 }
 
 // 查找用户服务基本信息

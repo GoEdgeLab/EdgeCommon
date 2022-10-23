@@ -61,7 +61,7 @@ message FindEnabledUserAccountResponse {
 // 修改用户账户
 message UpdateUserAccountRequest {
 	int64 userAccountId = 1;
-	float delta = 2;
+	double delta = 2;
 	string eventType = 3;
 	string description = 4;
 	bytes paramsJSON = 5;

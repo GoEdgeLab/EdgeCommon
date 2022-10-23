@@ -13,7 +13,7 @@ message Plan {
 	string priceType = 7;
 	bytes trafficPriceJSON = 8;
 	bytes bandwidthPriceJSON = 12;
-	float monthlyPrice = 9;
-	float seasonallyPrice = 10;
-	float yearlyPrice = 11;
+	double monthlyPrice = 9;
+	double seasonallyPrice = 10;
+	double yearlyPrice = 11;
 }

@@ -78,5 +78,5 @@ message SumUserUnpaidBillsRequest {
 }
 
 message SumUserUnpaidBillsResponse {
-	float amount = 1;
+	double amount = 1;
 }

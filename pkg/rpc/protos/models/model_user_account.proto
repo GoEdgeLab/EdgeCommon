@@ -8,8 +8,8 @@ import "models/model_user.proto";
 message UserAccount {
 	int64 id = 1;
 	int64 userId = 2;
-	float total = 3;
-	float totalFrozen = 4;
+	double total = 3;
+	double totalFrozen = 4;
 
 	User user = 30;
 }

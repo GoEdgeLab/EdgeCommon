@@ -12,12 +12,12 @@ service PriceService {
 // 计算费用
 message CalculatePriceRequest {
 	string priceType = 1;
-	float trafficGB = 2;
-	float bandwidthMB = 3;
+	double trafficGB = 2;
+	double bandwidthMB = 3;
 	int64 nodeRegionId = 4;
 }
 
 message CalculatePriceResponse {
-	float amount = 1;
+	double amount = 1;
 	bool hasNodeRegionPrice = 2;
 }

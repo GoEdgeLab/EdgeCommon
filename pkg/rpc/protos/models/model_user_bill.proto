@@ -11,7 +11,7 @@ message UserBill {
 	string type = 3;
 	string typeName = 4;
 	string description = 5;
-	float amount = 6;
+	double amount = 6;
 	string month = 7;
 	bool isPaid = 8;
 	int64 paidAt = 9;

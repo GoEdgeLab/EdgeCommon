@@ -10,10 +10,10 @@ message UserAccountLog {
 	int64 id = 1;
 	int64 userId = 2;
 	int64 userAccountId = 3;
-	float delta = 4;
-	float deltaFrozen = 5;
-	float total = 6;
-	float totalFrozen = 7;
+	double delta = 4;
+	double deltaFrozen = 5;
+	double total = 6;
+	double totalFrozen = 7;
 	string eventType = 8;
 	string description = 9;
 	int64 createdAt = 10;

@@ -10,13 +10,13 @@ message UserTrafficBill {
 	int64 id = 1;
 	int64 billId = 2;
 	int64 nodeRegionId = 3;
-	float amount = 4;
-	float bandwidthMB = 5;
+	double amount = 4;
+	double bandwidthMB = 5;
 	int32 bandwidthPercentile = 6;
-	float trafficGB = 7;
-	float trafficPackageGB = 8;
+	double trafficGB = 7;
+	double trafficPackageGB = 8;
 	repeated int64 userTrafficPackageIds = 9;
-	float pricePerUnit = 10;
+	double pricePerUnit = 10;
 	string priceType = 11;
 
 	NodeRegion nodeRegion = 30;
