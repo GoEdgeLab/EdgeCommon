@@ -11,6 +11,7 @@ type ReferersConfig struct {
 	AllowEmpty      bool     `yaml:"allowEmpty" json:"allowEmpty"`           // 来源域名允许为空
 	AllowSameDomain bool     `yaml:"allowSameDomain" json:"allowSameDomain"` // 允许来源域名和当前访问的域名一致，相当于在站内访问
 	AllowDomains    []string `yaml:"allowDomains" json:"allowDomains"`       // 允许的来源域名列表
+	DenyDomains     []string `yaml:"denyDomains" json:"denyDomains"`         // 禁止的来源域名列表
 }
 
 func (this *ReferersConfig) Init() error {
@@ -30,8 +31,18 @@ func (this *ReferersConfig) MatchDomain(requestDomain string, refererDomain stri
 	}
 
 	if len(this.AllowDomains) == 0 {
+		if len(this.DenyDomains) > 0 {
+			return !configutils.MatchDomains(this.DenyDomains, refererDomain)
+		}
 		return false
 	}
 
-	return configutils.MatchDomains(this.AllowDomains, refererDomain)
+	if configutils.MatchDomains(this.AllowDomains, refererDomain) {
+		if len(this.DenyDomains) > 0 && configutils.MatchDomains(this.DenyDomains, refererDomain) {
+			return false
+		}
+		return true
+	}
+
+	return false
 }
