@@ -18,9 +18,13 @@ type GlobalServerConfig struct {
 		DomainMismatchAction *DomainMismatchAction `yaml:"domainMismatchAction" json:"domainMismatchAction"` // 不匹配时采取的动作
 	} `yaml:"httpAll" json:"httpAll"`
 
+	HTTPAccessLog struct {
+		CommonRequestHeadersOnly bool `yaml:"commonRequestHeadersOnly" json:"commonRequestHeadersOnly"` // 只保留通用Header
+	} `yaml:"httpAccessLog" json:"httpAccessLog"` // 访问日志配置
+
 	Log struct {
 		RecordServerError bool `yaml:"recordServerError" json:"recordServerError"` // 记录服务错误到运行日志
-	} `yaml:"log" json:"log"`
+	} `yaml:"log" json:"log"` // 运行日志配置
 }
 
 func (this *GlobalServerConfig) Init() error {
