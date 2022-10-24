@@ -96,6 +96,8 @@ var HTTPCommonRequestHeaders2 = []string{
 	"Want-Digest",
 }
 
+var AllHTTPCommonRequestHeaders = append(append([]string{}, HTTPCommonRequestHeaders...), HTTPCommonRequestHeaders2...)
+
 var HTTPCommonResponseHeaders = []string{
 	"Accept-CH",
 	"Access-Control-Allow-Origin",
@@ -181,15 +183,12 @@ var HTTPCommonResponseHeaders2 = []string{
 	"X-DNS-Prefetch-Control",
 }
 
+var AllHTTPCommonResponseHeaders = append(append([]string{}, HTTPCommonResponseHeaders...), HTTPCommonResponseHeaders2...)
+
 var allRequestHeaderMap = map[string]struct{}{}
 
 func init() {
-	for _, headerName := range HTTPCommonRequestHeaders {
-		allRequestHeaderMap[headerName] = struct{}{}
-		allRequestHeaderMap[strings.ToLower(headerName)] = struct{}{}
-		allRequestHeaderMap[http.CanonicalHeaderKey(headerName)] = struct{}{}
-	}
-	for _, headerName := range HTTPCommonRequestHeaders2 {
+	for _, headerName := range AllHTTPCommonRequestHeaders {
 		allRequestHeaderMap[headerName] = struct{}{}
 		allRequestHeaderMap[strings.ToLower(headerName)] = struct{}{}
 		allRequestHeaderMap[http.CanonicalHeaderKey(headerName)] = struct{}{}
