@@ -35,9 +35,9 @@ type CreateHTTPCacheTaskRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Type    string   `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
-	KeyType string   `protobuf:"bytes,2,opt,name=keyType,proto3" json:"keyType,omitempty"`
-	Keys    []string `protobuf:"bytes,3,rep,name=keys,proto3" json:"keys,omitempty"`
+	Type    string   `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`       // 类型：清理：purge，预热：fetch
+	KeyType string   `protobuf:"bytes,2,opt,name=keyType,proto3" json:"keyType,omitempty"` // Key类型：单个URL：key，目录：prefix；预热的时候只能为 key
+	Keys    []string `protobuf:"bytes,3,rep,name=keys,proto3" json:"keys,omitempty"`       // 要清理的Key
 }
 
 func (x *CreateHTTPCacheTaskRequest) Reset() {
