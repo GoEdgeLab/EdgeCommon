@@ -47,7 +47,8 @@ type NodeConfig struct {
 	MaxCacheDiskCapacity   *shared.SizeCapacity          `yaml:"maxCacheDiskCapacity" json:"maxCacheDiskCapacity"`     // 文件缓存容量
 	MaxCacheMemoryCapacity *shared.SizeCapacity          `yaml:"maxCacheMemoryCapacity" json:"maxCacheMemoryCapacity"` // 内容缓存容量
 	MaxThreads             int                           `yaml:"maxThreads" json:"maxThreads"`                         // 最大线程数
-	DDoSProtection         *ddosconfigs.ProtectionConfig `yaml:"ddosProtection" json:"ddosProtection"`
+	DDoSProtection         *ddosconfigs.ProtectionConfig `yaml:"ddosProtection" json:"ddosProtection"`                 // DDoS防护
+	EnableIPLists          bool                          `yaml:"enableIPLists" json:"enableIPLists"`                   // 启用IP名单
 
 	// 级别
 	Level       int32                         `yaml:"level" json:"level"`
