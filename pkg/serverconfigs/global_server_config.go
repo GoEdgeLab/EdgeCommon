@@ -4,6 +4,9 @@ package serverconfigs
 
 func DefaultGlobalServerConfig() *GlobalServerConfig {
 	var config = &GlobalServerConfig{}
+	config.HTTPAccessLog.EnableRequestHeaders = true
+	config.HTTPAccessLog.EnableResponseHeaders = true
+	config.HTTPAccessLog.EnableCookies = true
 	config.Log.RecordServerError = false
 	return config
 }
@@ -19,7 +22,10 @@ type GlobalServerConfig struct {
 	} `yaml:"httpAll" json:"httpAll"`
 
 	HTTPAccessLog struct {
+		EnableRequestHeaders     bool `yaml:"enableRequestHeaders" json:"enableRequestHeaders"`         // 记录请求Header
 		CommonRequestHeadersOnly bool `yaml:"commonRequestHeadersOnly" json:"commonRequestHeadersOnly"` // 只保留通用Header
+		EnableResponseHeaders    bool `yaml:"enableResponseHeaders" json:"enableResponseHeaders"`       // 记录响应Header
+		EnableCookies            bool `yaml:"enableCookies" json:"enableCookies"`                       // 记录Cookie
 	} `yaml:"httpAccessLog" json:"httpAccessLog"` // 访问日志配置
 
 	Log struct {
