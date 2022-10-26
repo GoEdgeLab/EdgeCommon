@@ -182,6 +182,7 @@ message UpdateNodeClusterRequest {
 	bytes clockJSON = 9;
 	bool autoRemoteStart = 10;
 	bool autoInstallNftables = 11;
+	bytes sshParamsJSON = 12;
 }
 
 // 删除集群

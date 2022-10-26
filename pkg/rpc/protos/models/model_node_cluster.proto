@@ -23,4 +23,5 @@ message NodeCluster {
 	bytes clockJSON = 18;
 	bool autoRemoteStart = 19;
 	bool autoInstallNftables = 20;
+	bytes sshParamsJSON = 21;
 }
