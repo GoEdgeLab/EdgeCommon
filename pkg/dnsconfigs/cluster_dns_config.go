@@ -10,3 +10,10 @@ type ClusterDNSConfig struct {
 	NodesAutoSync   bool `yaml:"nodesAutoSync" json:"nodesAutoSync"`     // 是否自动同步节点状态
 	ServersAutoSync bool `yaml:"serversAutoSync" json:"serversAutoSync"` // 是否自动同步服务状态
 }
+
+func DefaultClusterDNSConfig() *ClusterDNSConfig {
+	return &ClusterDNSConfig{
+		CNAMEAsDomain:    true,
+		IncludingLnNodes: true,
+	}
+}
