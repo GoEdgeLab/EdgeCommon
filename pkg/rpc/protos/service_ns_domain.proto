@@ -122,7 +122,8 @@ message FindNSDomainResponse {
 
 // 根据域名名称查找域名
 message FindNSDomainWithNameRequest {
-	string name = 1;
+	int64 userId = 2; // 用户ID，只有管理员才能指定用户
+	string name = 1; // 域名
 }
 
 message FindNSDomainWithNameResponse {
