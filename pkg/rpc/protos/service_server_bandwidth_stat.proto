@@ -48,6 +48,8 @@ message FindHourlyServerBandwidthStatsRequest {
 
 message FindHourlyServerBandwidthStatsResponse {
 	repeated Stat stats = 1;
+	int32 percentile = 2; // 百分位
+	Stat nthStat = 3; // 百分位统计数据
 
 	message Stat {
 		string day = 1;
@@ -65,6 +67,8 @@ message FindDailyServerBandwidthStatsRequest {
 
 message FindDailyServerBandwidthStatsResponse {
 	repeated Stat stats = 1;
+	int32 percentile = 2; // 百分位
+	Stat nthStat = 3; // 百分位统计数据
 
 	message Stat {
 		string day = 1;

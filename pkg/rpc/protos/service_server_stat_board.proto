@@ -145,8 +145,10 @@ message ComposeServerStatBoardResponse {
 	int64 monthlyPeekBandwidthBytes = 3; // 当月带宽峰值
 	int64 lastMonthlyPeekBandwidthBytes = 4; // 上个月带宽峰值
 
+	int32 bandwidthPercentile = 7;
 	repeated ServerBandwidthStat minutelyBandwidthStats = 1; // 分钟级的带宽统计
-	repeated ServerBandwidthStat dailyBandwidthStats = 6; // 按天的带宽统计
+	ServerBandwidthStat minutelyNthBandwidthStat = 8;
+
 	repeated DailyTrafficStat dailyTrafficStats = 30;
 	repeated HourlyTrafficStat hourlyTrafficStats = 31;
 	repeated NodeStat topNodeStats = 32;
