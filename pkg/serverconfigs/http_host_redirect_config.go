@@ -39,10 +39,11 @@ type HTTPHostRedirectConfig struct {
 	beforeURLRegexp *regexp.Regexp
 
 	// 域名跳转
-	DomainsAll        bool     `yaml:"domainAll" json:"domainsAll"`                // 所有域名都跳转
-	DomainsBefore     []string `yaml:"domainsBefore" json:"domainsBefore"`         // 指定跳转之前的域名
-	DomainAfter       string   `yaml:"domainAfter" json:"domainAfter"`             // 跳转之后的域名
-	DomainAfterScheme string   `yaml:"domainAfterScheme" json:"domainAfterScheme"` // 跳转之后的协议
+	DomainsAll              bool     `yaml:"domainAll" json:"domainsAll"`                            // 所有域名都跳转
+	DomainsBefore           []string `yaml:"domainsBefore" json:"domainsBefore"`                     // 指定跳转之前的域名
+	DomainBeforeIgnorePorts bool     `yaml:"domainBeforeIgnorePorts" json:"domainBeforeIgnorePorts"` // 忽略跳转前端口
+	DomainAfter             string   `yaml:"domainAfter" json:"domainAfter"`                         // 跳转之后的域名
+	DomainAfterScheme       string   `yaml:"domainAfterScheme" json:"domainAfterScheme"`             // 跳转之后的协议
 	//DomainRegexp  bool     `yaml:"domainRegexp" json:"domainRegexp"` // 使用正则匹配域名 TODO 暂时不实现
 	//DomainKeepPort bool `yaml:"domainKeepPort" json:"domainKeepPort"` // 是否保持端口 TODO 暂时不实现
 	//DomainNewPort int `yaml:"domainNewPort" json:"domainNewPort"` // 是否使用新端口 TODO 暂时不实现
