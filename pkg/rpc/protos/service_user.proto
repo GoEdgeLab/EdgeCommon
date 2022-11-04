@@ -217,6 +217,8 @@ message ComposeUserDashboardResponse {
 	int64 dailyPeekBandwidthBytes = 5;
 	repeated DailyTrafficStat dailyTrafficStats = 6;
 	repeated DailyPeekBandwidthStat dailyPeekBandwidthStats = 7;
+	int32 bandwidthPercentile = 8; // 带宽百分位
+	int64 bandwidthPercentileBits = 9; // 带宽百分位上的比特数
 
 	message DailyTrafficStat {
 		string day = 1;

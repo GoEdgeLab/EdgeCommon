@@ -609,7 +609,7 @@ type FindNSDomainWithNameRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId int64  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"` // 用户ID
+	UserId int64  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"` // 用户ID，只有管理员才能指定用户
 	Name   string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`      // 域名
 }
 
