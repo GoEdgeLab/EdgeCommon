@@ -64,6 +64,8 @@ message CreateNSRecordRequest {
 	int32 ttl = 6;
 	repeated int64 nsRouteIds = 7 [deprecated = true];
 	repeated string nsRouteCodes = 8; // 路线代号
+
+	int32 mxPriority = 9; // mx优先级
 }
 
 message CreateNSRecordResponse {
@@ -79,6 +81,8 @@ message CreateNSRecordsRequest {
 	string value = 5;
 	int32 ttl = 6;
 	repeated string nsRouteCodes = 7; // 路线代号
+
+	int32 mxPriority = 8; // mx优先级
 }
 
 message CreateNSRecordsResponse {
@@ -140,6 +144,7 @@ message ImportNSRecordsRequest {
 		string type = 3;
 		string value = 4;
 		int32 ttl = 5;
+		int32 mxPriority = 6; // MX优先级
 	}
 }
 
@@ -154,6 +159,8 @@ message UpdateNSRecordRequest {
 	repeated int64 nsRouteIds = 7 [deprecated = true];
 	bool isOn = 8;
 	repeated string nsRouteCodes = 9; // 路线代号
+
+	int32 mxPriority = 10; // mx优先级
 }
 
 // 删除记录
