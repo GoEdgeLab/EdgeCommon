@@ -38,7 +38,7 @@ service NodeTaskService {
 
 // 获取单节点同步任务
 message FindNodeTasksRequest {
-
+	int64 version = 1; // 上一次执行的版本
 }
 
 message FindNodeTasksResponse {
