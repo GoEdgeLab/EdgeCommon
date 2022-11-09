@@ -50,8 +50,8 @@ func MatchDomain(pattern string, domain string) (isMatched bool) {
 	}
 
 	// 其他匹配
-	patternPieces := strings.Split(pattern, ".")
-	domainPieces := strings.Split(domain, ".")
+	var patternPieces = strings.Split(pattern, ".")
+	var domainPieces = strings.Split(domain, ".")
 	if len(patternPieces) != len(domainPieces) {
 		return
 	}
@@ -59,6 +59,15 @@ func MatchDomain(pattern string, domain string) (isMatched bool) {
 	for index, patternPiece := range patternPieces {
 		if patternPiece == "" || patternPiece == "*" || patternPiece == domainPieces[index] {
 			continue
+		}
+		if strings.HasSuffix(patternPiece, ":*") {
+			var portIndex = strings.LastIndex(patternPiece, ":*")
+			if portIndex >= 0 {
+				var prefix = patternPiece[:portIndex]
+				if strings.HasPrefix(domainPieces[index], prefix+":") {
+					continue
+				}
+			}
 		}
 		isMatched = false
 		break
