@@ -199,13 +199,14 @@ message ExistVerifiedNSDomainsResponse {
 
 // 获取域名验证信息
 message FindNSDomainVerifyingInfoRequest {
-	int64 nsDomainId = 1;
+	int64 nsDomainId = 1; // 要验证的域名ID
 }
 
 message FindNSDomainVerifyingInfoResponse {
-	string txt = 1;
-	int64 expiresAt = 2;
-	string status = 3;
+	bool requireTXT = 4; // 是否需要TXT验证，如果不需要（值false），则表示用户不需要手动设置TXT，此时 txt 字段内容可能为空
+	string txt = 1; // TXT记录
+	int64 expiresAt = 2; // TXT过期时间
+	string status = 3; // 当前状态
 }
 
 // 验证域名信息
