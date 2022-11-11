@@ -1,0 +1,69 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_formal_client_system.proto";
+
+// 操作系统信息库服务
+service FormalClientSystemService {
+	// 创建操作系统信息
+	rpc createFormalClientSystem(CreateFormalClientSystemRequest) returns (CreateFormalClientSystemResponse);
+
+	// 计算操作系统信息数量
+	rpc countFormalClientSystems(CountFormalClientSystemsRequest) returns (RPCCountResponse);
+
+	// 列出单页操作系统信息
+	rpc listFormalClientSystems(ListFormalClientSystemsRequest) returns (ListFormalClientSystemsResponse);
+
+	// 修改操作系统信息
+	rpc updateFormalClientSystem(UpdateFormalClientSystemRequest) returns (RPCSuccess);
+
+	// 通过dataId查询操作系统信息
+	rpc findFormalClientSystemWithDataId(FindFormalClientSystemWithDataIdRequest) returns (FindFormalClientSystemWithDataIdResponse);
+}
+
+// 创建操作系统信息
+message CreateFormalClientSystemRequest {
+	string name = 1;
+	repeated string codes = 2;
+	string dataId = 3;
+}
+
+message CreateFormalClientSystemResponse {
+	int64 formalClientSystemId = 1;
+}
+
+// 计算操作系统信息数量
+message CountFormalClientSystemsRequest {
+	string keyword = 1; // 可选
+}
+
+// 列出单页操作系统信息
+message ListFormalClientSystemsRequest {
+	string keyword = 1; // 可选
+	int64 offset = 2;
+	int64 size = 3;
+}
+
+message ListFormalClientSystemsResponse {
+	repeated FormalClientSystem formalClientSystems = 1;
+}
+
+// 修改操作系统信息
+message UpdateFormalClientSystemRequest {
+	int64 formalClientSystemId = 1;
+	string name = 2;
+	repeated string codes = 3;
+	string dataId = 4;
+}
+
+// 通过dataId查询操作系统信息
+message FindFormalClientSystemWithDataIdRequest {
+	string dataId = 1;
+}
+
+message FindFormalClientSystemWithDataIdResponse {
+	FormalClientSystem formalClientSystem = 1;
+}
