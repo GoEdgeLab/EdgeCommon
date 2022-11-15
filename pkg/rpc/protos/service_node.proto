@@ -535,10 +535,11 @@ message UpdateNodeSystemRequest {
 
 // 修改节点缓存设置
 message UpdateNodeCacheRequest {
-	int64 nodeId = 1;
-	SizeCapacity maxCacheDiskCapacity = 2;
-	SizeCapacity maxCacheMemoryCapacity = 3;
-	string cacheDiskDir = 4;
+	int64 nodeId = 1; // 节点ID
+	SizeCapacity maxCacheDiskCapacity = 2; // 磁盘容量限制
+	SizeCapacity maxCacheMemoryCapacity = 3; // 内存容量限制
+	string cacheDiskDir = 4; // 磁盘缓存目录
+	bytes cacheDiskSubDirsJSON = 5; // 磁盘缓存子目录
 }
 
 // 读取节点级别信息

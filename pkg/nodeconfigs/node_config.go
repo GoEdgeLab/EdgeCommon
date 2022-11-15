@@ -42,9 +42,13 @@ type NodeConfig struct {
 	OCSPVersion  int64                         `yaml:"ocspVersion" json:"ocspVersion"`
 
 	// 性能
-	MaxCPU                 int32                         `yaml:"maxCPU" json:"maxCPU"`
-	CacheDiskDir           string                        `yaml:"cacheDiskDir" json:"cacheDiskDir"`                     // 文件缓存目录
-	MaxCacheDiskCapacity   *shared.SizeCapacity          `yaml:"maxCacheDiskCapacity" json:"maxCacheDiskCapacity"`     // 文件缓存容量
+	MaxCPU int32 `yaml:"maxCPU" json:"maxCPU"`
+
+	CacheDiskDir         string               `yaml:"cacheDiskDir" json:"cacheDiskDir"`                 // 文件缓存目录
+	MaxCacheDiskCapacity *shared.SizeCapacity `yaml:"maxCacheDiskCapacity" json:"maxCacheDiskCapacity"` // 文件缓存容量
+
+	CacheDiskSubDirs []*serverconfigs.CacheDir `yaml:"cacheDiskSubDirs" json:"cacheDiskSubDirs"` // 其余缓存目录
+
 	MaxCacheMemoryCapacity *shared.SizeCapacity          `yaml:"maxCacheMemoryCapacity" json:"maxCacheMemoryCapacity"` // 内容缓存容量
 	MaxThreads             int                           `yaml:"maxThreads" json:"maxThreads"`                         // 最大线程数
 	DDoSProtection         *ddosconfigs.ProtectionConfig `yaml:"ddosProtection" json:"ddosProtection"`                 // DDoS防护

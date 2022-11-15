@@ -82,7 +82,7 @@ func (this *HTTPCachePolicy) IsSame(anotherPolicy *HTTPCachePolicy) bool {
 }
 
 // UpdateDiskDir 修改文件路径
-func (this *HTTPCachePolicy) UpdateDiskDir(dir string) {
+func (this *HTTPCachePolicy) UpdateDiskDir(dir string, subDirs []*CacheDir) {
 	if this.Type == CachePolicyStorageFile {
 		oldOptionsJSON, err := json.Marshal(this.Options)
 		if err != nil {
@@ -95,20 +95,19 @@ func (this *HTTPCachePolicy) UpdateDiskDir(dir string) {
 			return
 		}
 
-		if options.Dir != dir {
-			options.Dir = dir
+		options.Dir = dir
+		options.SubDirs = subDirs
 
-			newOptionsJSON, err := json.Marshal(options)
-			if err != nil {
-				return
-			}
-
-			var newOptionsMap = map[string]interface{}{}
-			err = json.Unmarshal(newOptionsJSON, &newOptionsMap)
-			if err != nil {
-				return
-			}
-			this.Options = newOptionsMap
+		newOptionsJSON, err := json.Marshal(options)
+		if err != nil {
+			return
 		}
+
+		var newOptionsMap = map[string]any{}
+		err = json.Unmarshal(newOptionsJSON, &newOptionsMap)
+		if err != nil {
+			return
+		}
+		this.Options = newOptionsMap
 	}
 }

@@ -32,6 +32,7 @@ message Node {
 	SizeCapacity maxCacheDiskCapacity = 17;
 	SizeCapacity maxCacheMemoryCapacity = 18;
 	string cacheDiskDir = 19;
+	bytes cacheDiskSubDirsJSON = 23;
 	int32 level = 20;
 	repeated string lnAddrs = 21; // Ln访问地址
 	bool enableIPLists = 22;
