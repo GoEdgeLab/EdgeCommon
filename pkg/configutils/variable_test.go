@@ -55,11 +55,13 @@ func BenchmarkParseVariables(b *testing.B) {
 
 	b.ResetTimer()
 
-	for i := 0; i < b.N; i++ {
-		_ = ParseVariables("hello, ${name}, ${age}, ${gender}, ${home}, world", func(s string) string {
-			return "Lu"
-		})
-	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			_ = ParseVariables("hello, ${name}, ${age}, ${gender}, ${home}, world", func(s string) string {
+				return "Lu"
+			})
+		}
+	})
 }
 
 func BenchmarkParseVariablesFromHolders(b *testing.B) {
