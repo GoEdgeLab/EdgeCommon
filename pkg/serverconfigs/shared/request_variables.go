@@ -25,6 +25,7 @@ func DefaultRequestVariables() []maps.Map {
 		{"code": "${msec}", "name": "带有毫秒的时间", "description": "比如1531756823.054"},
 		{"code": "${timestamp}", "name": "unix时间戳，单位为秒", "description": ""},
 		{"code": "${host}", "name": "主机名", "description": ""},
+		{"code": "${cname}", "name": "当前网站的CNAME", "description": "比如38b48e4f.goedge.cn"},
 		{"code": "${serverName}", "name": "接收请求的服务器名", "description": ""},
 		{"code": "${serverPort}", "name": "接收请求的服务器端口", "description": ""},
 		{"code": "${referer}", "name": "请求来源URL", "description": ""},
