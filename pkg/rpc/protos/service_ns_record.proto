@@ -50,6 +50,10 @@ service NSRecordService {
 	// 使用名称和类型查询单个记录信息
 	rpc findNSRecordWithNameAndType(FindNSRecordWithNameAndTypeRequest) returns (FindNSRecordWithNameAndTypeResponse);
 
+	// 使用名称和类型查询多个记录信息
+	rpc findNSRecordsWithNameAndType(FindNSRecordsWithNameAndTypeRequest) returns (FindNSRecordsWithNameAndTypeResponse);
+
+
 	// 根据版本列出一组记录
 	rpc listNSRecordsAfterVersion (ListNSRecordsAfterVersionRequest) returns (ListNSRecordsAfterVersionResponse);
 }
@@ -225,6 +229,17 @@ message FindNSRecordWithNameAndTypeRequest {
 
 message FindNSRecordWithNameAndTypeResponse {
 	NSRecord nsRecord = 1;
+}
+
+// 使用名称和类型查询多个记录信息
+message FindNSRecordsWithNameAndTypeRequest {
+	int64 nsDomainId = 1;
+	string name = 2;
+	string type = 3;
+}
+
+message FindNSRecordsWithNameAndTypeResponse {
+	repeated NSRecord nsRecords = 1;
 }
 
 // 根据版本列出一组记录
