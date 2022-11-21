@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// Ping服务
+// 用来测试连接是否可用
+service PingService {
+	// 发起Ping
+	rpc ping(PingRequest) returns (PingResponse);
+}
+
+// 发起Ping
+message PingRequest {
+
+}
+
+message PingResponse {
+
+}

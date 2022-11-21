@@ -42,7 +42,8 @@ type NodeConfig struct {
 	OCSPVersion  int64                         `yaml:"ocspVersion" json:"ocspVersion"`
 
 	// 性能
-	MaxCPU int32 `yaml:"maxCPU" json:"maxCPU"`
+	MaxCPU       int32                                 `yaml:"maxCPU" json:"maxCPU"`
+	APINodeAddrs []*serverconfigs.NetworkAddressConfig `yaml:"apiNodeAddrs" json:"apiNodeAddrs"`
 
 	CacheDiskDir         string               `yaml:"cacheDiskDir" json:"cacheDiskDir"`                 // 文件缓存目录
 	MaxCacheDiskCapacity *shared.SizeCapacity `yaml:"maxCacheDiskCapacity" json:"maxCacheDiskCapacity"` // 文件缓存容量

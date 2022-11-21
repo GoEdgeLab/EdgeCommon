@@ -163,6 +163,12 @@ service NodeService {
 
 	// 修改节点区域信息
 	rpc updateNodeRegionInfo(UpdateNodeRegionInfoRequest) returns (RPCSuccess);
+
+	// 查找单个节点的API相关配置
+	rpc findNodeAPIConfig(FindNodeAPIConfigRequest) returns (FindNodeAPIConfigResponse);
+
+	// 修改某个节点的API相关配置
+	rpc updateNodeAPIConfig(UpdateNodeAPIConfigRequest) returns (RPCSuccess);
 }
 
 // 创建节点
@@ -632,4 +638,19 @@ message ListNodeRegionInfoResponse {
 message UpdateNodeRegionInfoRequest {
 	int64 nodeId = 1;
 	int64 nodeRegionId = 2;
+}
+
+// 查找单个节点的API相关配置
+message FindNodeAPIConfigRequest {
+	int64 nodeId = 1;
+}
+
+message FindNodeAPIConfigResponse {
+	bytes apiNodeAddrsJSON = 1;
+}
+
+// 修改某个节点的API相关配置
+message UpdateNodeAPIConfigRequest {
+	int64 nodeId = 1;
+	bytes apiNodeAddrsJSON = 2;
 }
