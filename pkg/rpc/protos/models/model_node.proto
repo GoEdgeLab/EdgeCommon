@@ -36,6 +36,7 @@ message Node {
 	int32 level = 20;
 	repeated string lnAddrs = 21; // Ln访问地址
 	bool enableIPLists = 22;
+	bytes apiNodeAddrsJSON = 24;
 
 	NodeCluster nodeCluster = 32; // 主集群
 	NodeLogin nodeLogin = 33;

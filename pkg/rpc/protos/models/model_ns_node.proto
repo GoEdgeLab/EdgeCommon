@@ -20,6 +20,7 @@ message NSNode {
 	bool isUp = 8;
 	bool isActive = 10;
 	repeated int64 connectedAPINodeIds = 11;
+	bytes apiNodeAddrsJSON = 12;
 
 	NSCluster nsCluster = 32;
 	NodeLogin nodeLogin = 33;

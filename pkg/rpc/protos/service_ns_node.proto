@@ -84,6 +84,12 @@ service NSNodeService {
 
 	// 修改NS节点的DDoS设置
 	rpc updateNSNodeDDoSProtection(UpdateNSNodeDDoSProtectionRequest) returns (RPCSuccess);
+
+	// 查找单个节点的API相关配置
+	rpc findNSNodeAPIConfig(FindNSNodeAPIConfigRequest) returns (FindNSNodeAPIConfigResponse);
+
+	// 修改某个节点的API相关配置
+	rpc updateNSNodeAPIConfig(UpdateNSNodeAPIConfigRequest) returns (RPCSuccess);
 }
 
 // 根据集群查找所有NS节点
@@ -297,3 +303,17 @@ message UpdateNSNodeDDoSProtectionRequest {
 	bytes ddosProtectionJSON = 2;
 }
 
+// 查找单个节点的API相关配置
+message FindNSNodeAPIConfigRequest {
+	int64 nsNodeId = 1;
+}
+
+message FindNSNodeAPIConfigResponse {
+	bytes apiNodeAddrsJSON = 1;
+}
+
+// 修改某个节点的API相关配置
+message UpdateNSNodeAPIConfigRequest {
+	int64 nsNodeId = 1;
+	bytes apiNodeAddrsJSON = 2;
+}

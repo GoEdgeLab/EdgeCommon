@@ -353,6 +353,16 @@ func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 		}
 	}
 
+	// api node addrs
+	if len(this.APINodeAddrs) > 0 {
+		for _, addr := range this.APINodeAddrs {
+			err := addr.Init()
+			if err != nil {
+				return err, nil
+			}
+		}
+	}
+
 	return
 }
 
