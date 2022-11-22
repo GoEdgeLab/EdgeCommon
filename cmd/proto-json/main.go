@@ -154,7 +154,18 @@ func main() {
 						roles = append(roles, "node")
 					}
 					if strings.Contains(methodSource, ".ValidateUserNode(") {
-						roles = append(roles, "user")
+						var hasRoles = false
+						var wordIndex = strings.Index(methodSource, ".ValidateUserNode(")
+						if wordIndex > 0 {
+							if len(methodSource[wordIndex:]) > 100 {
+								if strings.Contains(methodSource[wordIndex:wordIndex+100], ".ValidateUserNode(ctx, false)") {
+									hasRoles = true
+								}
+							}
+							if !hasRoles {
+								roles = append(roles, "user")
+							}
+						}
 					}
 					if strings.Contains(methodSource, ".ValidateAdmin(") {
 						roles = append(roles, "admin")
