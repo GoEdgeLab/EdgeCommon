@@ -24,8 +24,10 @@ type NodeStatus struct {
 	Load1m                float64 `json:"load1m"`
 	Load5m                float64 `json:"load5m"`
 	Load15m               float64 `json:"load15m"`
-	ConnectionCount       int     `json:"connectionCount"` // 连接数
-	ExePath               string  `json:"exePath"`         // 可执行文件路径
+	ConnectionCount       int     `json:"connectionCount"`   // 连接数
+	ExePath               string  `json:"exePath"`           // 可执行文件路径
+	APISuccessPercent     float64 `json:"apiSuccessPercent"` // API成功比例
+	APIAvgCostSeconds     float64 `json:"apiAvgCostSeconds"` // API平均耗时
 
 	TrafficInBytes  uint64 `json:"trafficInBytes"`
 	TrafficOutBytes uint64 `json:"trafficOutBytes"`
