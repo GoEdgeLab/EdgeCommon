@@ -14,6 +14,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strings"
 )
 
@@ -111,12 +112,18 @@ func main() {
 			}
 		}
 
+		// 排序以保证输出内容的稳定性
+		sort.Strings(rootDirs)
+
 		for _, rootDir := range rootDirs {
 			files, err := filepath.Glob(rootDir + "/service_*.go")
 			if err != nil {
 				fmt.Println("[ERROR]list service implementation files failed: " + err.Error())
 				return
 			}
+
+			// 排序以保证输出内容的稳定性
+			sort.Strings(files)
 
 			var methodNameReg = regexp.MustCompile(`func\s*\(\w+\s+\*\s*(\w+Service)\)\s*(\w+)\s*\(`) // $1: serviceName, $2 methodName
 			for _, file := range files {
@@ -233,6 +240,9 @@ func main() {
 					fmt.Println("[ERROR]list proto files failed: " + err.Error())
 					return
 				}
+
+				// 排序以保持稳定性
+				sort.Strings(files)
 
 				for _, path := range files {
 					func(path string) {
@@ -385,6 +395,9 @@ func main() {
 					return
 				}
 
+				// 排序以保持稳定性
+				sort.Strings(files)
+
 				for _, path := range files {
 					func(path string) {
 						var name = strings.TrimSuffix(filepath.Base(path), ".md")
@@ -403,6 +416,11 @@ func main() {
 			}(dir)
 		}
 	}
+
+	// 对消息进行排序，以保持稳定性
+	sort.Slice(messages, func(i, j int) bool {
+		return messages[i].Name < messages[j].Name
+	})
 
 	var rpcList = &RPCList{
 		Services: services,
