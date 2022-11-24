@@ -1,0 +1,72 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ns_route_category.proto";
+import "models/rpc_messages.proto";
+
+// 线路分类服务
+service NSRouteCategoryService {
+	// 创建线路分类
+	rpc createNSRouteCategory(CreateNSRouteCategoryRequest) returns (CreateNSRouteCategoryResponse);
+
+	// 修改线路分类
+	rpc updateNSRouteCategory(UpdateNSRouteCategoryRequest) returns (RPCSuccess);
+
+	// 删除线路分类
+	rpc deleteNSRouteCategory(DeleteNSRouteCategoryRequest) returns (RPCSuccess);
+
+	// 列出所有线路分类
+	rpc findAllNSRouteCategories(FindAllNSRouteCategoriesRequest) returns (FindAllNSRouteCategoriesResponse);
+
+	// 对线路分类进行排序
+	rpc updateNSRouteCategoryOrders(UpdateNSRouteCategoryOrders) returns (RPCSuccess);
+
+	// 查找单个线路分类
+	rpc findNSRouteCategory(FindNSRouteCategoryRequest) returns (FindNSRouteCategoryResponse);
+}
+
+// 创建线路分类
+message CreateNSRouteCategoryRequest {
+	string name = 1;
+}
+
+message CreateNSRouteCategoryResponse {
+	int64 nsRouteCategoryId = 1;
+}
+
+// 修改线路分类
+message UpdateNSRouteCategoryRequest {
+	int64 nsRouteCategoryId = 1;
+	string name = 2;
+	bool isOn = 3;
+}
+
+// 删除线路分类
+message DeleteNSRouteCategoryRequest {
+	int64 nsRouteCategoryId = 1;
+}
+
+// 列出所有线路分类
+message FindAllNSRouteCategoriesRequest {
+
+}
+
+message FindAllNSRouteCategoriesResponse {
+	repeated NSRouteCategory nsRouteCategories = 1;
+}
+
+// 对线路分类进行排序
+message UpdateNSRouteCategoryOrders {
+	repeated int64 nsRouteCategoryIds = 1;
+}
+
+// 查找单个线路分类
+message FindNSRouteCategoryRequest {
+	int64 nsRouteCategoryId = 1;
+}
+
+message FindNSRouteCategoryResponse {
+	NSRouteCategory nsRouteCategory = 1;
+}

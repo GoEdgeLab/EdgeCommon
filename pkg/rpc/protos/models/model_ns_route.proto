@@ -5,6 +5,7 @@ package pb;
 
 import "models/model_ns_cluster.proto";
 import "models/model_ns_domain.proto";
+import "models/model_ns_route_category.proto";
 
 // 线路
 message NSRoute {
@@ -13,10 +14,12 @@ message NSRoute {
 	string name = 3;
 	bytes rangesJSON = 4;
 	bool isDeleted = 5;
-	int64 order = 6;
+	int32 order = 6;
 	int64 version = 7;
 	string code = 8;
+	bool isPublic = 9;
 
 	NSCluster nsCluster = 30;
 	NSDomain nsDomain = 31;
+	NSRouteCategory nsRouteCategory = 32;
 }

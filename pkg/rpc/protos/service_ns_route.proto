@@ -26,6 +26,10 @@ service NSRouteService {
 	// 读取所有自定义线路
 	rpc findAllNSRoutes (FindAllNSRoutesRequest) returns (FindAllNSRoutesResponse);
 
+	// 读取所有公用的自定义线路
+	// 目前只允许读取系统管理员设置的公用自定义线路
+	rpc findAllPublicNSRoutes (FindAllPublicRoutesRequest) returns (FindAllPublicRoutesResponse);
+
 	// 设置自定义线路排序
 	rpc updateNSRouteOrders (UpdateNSRouteOrdersRequest) returns (RPCSuccess);
 
@@ -49,6 +53,8 @@ message CreateNSRouteRequest {
 	int64 userId = 3;
 	string name = 4;
 	bytes rangesJSON = 5;
+	bool isPublic = 6;
+	int64 nsRouteCategoryId = 7;
 }
 
 message CreateNSRouteResponse {
@@ -60,6 +66,9 @@ message UpdateNSRouteRequest {
 	int64 nsRouteId = 1;
 	string name = 2;
 	bytes rangesJSON = 3;
+	bool isPublic = 4;
+	int64 nsRouteCategoryId = 5;
+	bool isOn = 6;
 }
 
 // 删除自定义线路
@@ -85,12 +94,22 @@ message CountAllNSRoutesRequest {
 
 // 读取所有自定义线路
 message FindAllNSRoutesRequest {
-	int64 nsClusterId = 1;
-	int64 nsDomainId = 2;
-	int64 userId = 3;
+	int64 nsClusterId = 1; // 集群ID
+	int64 nsDomainId = 2; // 域名ID
+	int64 userId = 3; // 用户ID
+	int64 nsRouteCategoryId = 4; // 线路分类ID
 }
 
 message FindAllNSRoutesResponse {
+	repeated NSRoute nsRoutes = 1;
+}
+
+// 读取所有公用的自定义线路
+message FindAllPublicRoutesRequest {
+
+}
+
+message FindAllPublicRoutesResponse {
 	repeated NSRoute nsRoutes = 1;
 }
 
