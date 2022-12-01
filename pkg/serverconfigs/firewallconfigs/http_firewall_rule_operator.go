@@ -114,7 +114,7 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 	{
 		Name:            "包含字符串",
 		Code:            HTTPFirewallRuleOperatorContains,
-		Description:     "包含某个字符串",
+		Description:     "包含某个字符串，比如Hello World包含了World",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 	},
 	{
@@ -126,13 +126,13 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 	{
 		Name:            "包含前缀",
 		Code:            HTTPFirewallRuleOperatorPrefix,
-		Description:     "包含某个前缀",
+		Description:     "包含字符串前缀部分，比如/hello前缀会匹配/hello, /hello/world等",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 	},
 	{
 		Name:            "包含后缀",
 		Code:            HTTPFirewallRuleOperatorSuffix,
-		Description:     "包含某个后缀",
+		Description:     "包含字符串后缀部分，比如/hello后缀会匹配/hello, /hi/hello等",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 	},
 	{
