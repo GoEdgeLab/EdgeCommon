@@ -6962,6 +6962,15 @@
           "isDeprecated": false
         },
         {
+          "name": "findVerifiedNSDomainOnCluster",
+          "requestMessageName": "FindVerifiedNSDomainOnClusterRequest",
+          "responseMessageName": "FindVerifiedNSDomainOnClusterResponse",
+          "code": "rpc findVerifiedNSDomainOnCluster(FindVerifiedNSDomainOnClusterRequest) returns (FindVerifiedNSDomainOnClusterResponse);",
+          "doc": "根据域名名称查找集群中的已验证域名",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
           "name": "countAllNSDomains",
           "requestMessageName": "CountAllNSDomainsRequest",
           "responseMessageName": "RPCCountResponse",
@@ -17811,6 +17820,16 @@
     {
       "name": "FindUserTrafficBillsResponse",
       "code": "message FindUserTrafficBillsResponse {\n\trepeated UserTrafficBill userTrafficBills = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindVerifiedNSDomainOnClusterRequest",
+      "code": "message FindVerifiedNSDomainOnClusterRequest {\n\tint64 nsClusterId = 1; // 集群ID\n\tstring name = 2; // 域名\n}",
+      "doc": "根据域名名称查找集群中的已验证域名"
+    },
+    {
+      "name": "FindVerifiedNSDomainOnClusterResponse",
+      "code": "message FindVerifiedNSDomainOnClusterResponse {\n\tNSDomain nsDomain = 1;\n}",
       "doc": ""
     },
     {

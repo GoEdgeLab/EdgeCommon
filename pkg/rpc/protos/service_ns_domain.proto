@@ -32,6 +32,9 @@ service NSDomainService {
 	// 根据域名名称查找域名
 	rpc findNSDomainWithName(FindNSDomainWithNameRequest) returns (FindNSDomainWithNameResponse);
 
+	// 根据域名名称查找集群中的已验证域名
+	rpc findVerifiedNSDomainOnCluster(FindVerifiedNSDomainOnClusterRequest) returns (FindVerifiedNSDomainOnClusterResponse);
+
 	// 计算域名数量
 	rpc countAllNSDomains (CountAllNSDomainsRequest) returns (RPCCountResponse);
 
@@ -127,6 +130,16 @@ message FindNSDomainWithNameRequest {
 }
 
 message FindNSDomainWithNameResponse {
+	NSDomain nsDomain = 1;
+}
+
+// 根据域名名称查找集群中的已验证域名
+message FindVerifiedNSDomainOnClusterRequest {
+	int64 nsClusterId = 1; // 集群ID
+	string name = 2; // 域名
+}
+
+message FindVerifiedNSDomainOnClusterResponse {
 	NSDomain nsDomain = 1;
 }
 
