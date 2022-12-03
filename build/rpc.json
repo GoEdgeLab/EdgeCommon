@@ -6967,7 +6967,9 @@
           "responseMessageName": "FindVerifiedNSDomainOnClusterResponse",
           "code": "rpc findVerifiedNSDomainOnCluster(FindVerifiedNSDomainOnClusterRequest) returns (FindVerifiedNSDomainOnClusterResponse);",
           "doc": "根据域名名称查找集群中的已验证域名",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         },
         {
@@ -13719,7 +13721,7 @@
     },
     {
       "name": "CreateNSRouteRequest",
-      "code": "message CreateNSRouteRequest {\n\tint64 nsClusterId = 1;\n\tint64 nsDomainId = 2;\n\tint64 userId = 3;\n\tstring name = 4;\n\tbytes rangesJSON = 5;\n\tbool isPublic = 6;\n\tint64 nsRouteCategoryId = 7;\n}",
+      "code": "message CreateNSRouteRequest {\n\tint64 nsClusterId = 1;\n\tint64 nsDomainId = 2;\n\tint64 userId = 3;\n\tstring name = 4;\n\tbytes rangesJSON = 5;\n\tbool isPublic = 6; // 是否公用\n\tint64 nsRouteCategoryId = 7; // 分类ID\n\tint32 priority = 8; // 优先级\n}",
       "doc": "创建自定义线路"
     },
     {
@@ -18849,7 +18851,7 @@
     },
     {
       "name": "NSDomain",
-      "code": "message NSDomain {\n\tint64 id = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tint64 createdAt = 4;\n\tbool isDeleted = 5;\n\tint64 version = 6;\n\tbytes tsigJSON = 7;\n\trepeated int64 nsDomainGroupIds = 8;\n\tstring status = 9;\n\n\tNSCluster nsCluster = 30;\n\tUser user = 31;\n\trepeated NSDomainGroup nsDomainGroups = 32;\n}",
+      "code": "message NSDomain {\n\tint64 id = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tint64 createdAt = 4;\n\tbool isDeleted = 5;\n\tint64 version = 6;\n\tbytes tsigJSON = 7;\n\trepeated int64 nsDomainGroupIds = 8;\n\tstring status = 9;\n\tint64 userId = 10; // 用户ID\n\n\tNSCluster nsCluster = 30;\n\tUser user = 31;\n\trepeated NSDomainGroup nsDomainGroups = 32;\n}",
       "doc": "DNS域名"
     },
     {
@@ -18894,7 +18896,7 @@
     },
     {
       "name": "NSRoute",
-      "code": "message NSRoute {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tbytes rangesJSON = 4;\n\tbool isDeleted = 5;\n\tint32 order = 6;\n\tint64 version = 7;\n\tstring code = 8;\n\tbool isPublic = 9;\n\n\tNSCluster nsCluster = 30;\n\tNSDomain nsDomain = 31;\n\tNSRouteCategory nsRouteCategory = 32;\n}",
+      "code": "message NSRoute {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tbytes rangesJSON = 4;\n\tbool isDeleted = 5;\n\tint32 order = 6;\n\tint64 version = 7;\n\tstring code = 8;\n\tbool isPublic = 9;\n\tint32 priority = 10; // 优先级\n\tint64 userId = 11; // 所属用户ID\n\n\tNSCluster nsCluster = 30;\n\tNSDomain nsDomain = 31;\n\tNSRouteCategory nsRouteCategory = 32;\n}",
       "doc": "线路"
     },
     {
@@ -20079,7 +20081,7 @@
     },
     {
       "name": "UpdateNSRouteRequest",
-      "code": "message UpdateNSRouteRequest {\n\tint64 nsRouteId = 1;\n\tstring name = 2;\n\tbytes rangesJSON = 3;\n\tbool isPublic = 4;\n\tint64 nsRouteCategoryId = 5;\n\tbool isOn = 6;\n}",
+      "code": "message UpdateNSRouteRequest {\n\tint64 nsRouteId = 1;\n\tstring name = 2;\n\tbytes rangesJSON = 3;\n\tbool isPublic = 4; // 是否公用\n\tint64 nsRouteCategoryId = 5; // 分类ID\n\tint32 priority = 7; // 优先级\n\tbool isOn = 6;\n}",
       "doc": "修改自定义线路"
     },
     {

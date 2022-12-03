@@ -18,6 +18,8 @@ message NSRoute {
 	int64 version = 7;
 	string code = 8;
 	bool isPublic = 9;
+	int32 priority = 10; // 优先级
+	int64 userId = 11; // 所属用户ID
 
 	NSCluster nsCluster = 30;
 	NSDomain nsDomain = 31;

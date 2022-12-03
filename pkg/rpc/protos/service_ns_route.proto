@@ -53,8 +53,9 @@ message CreateNSRouteRequest {
 	int64 userId = 3;
 	string name = 4;
 	bytes rangesJSON = 5;
-	bool isPublic = 6;
-	int64 nsRouteCategoryId = 7;
+	bool isPublic = 6; // 是否公用
+	int64 nsRouteCategoryId = 7; // 分类ID
+	int32 priority = 8; // 优先级
 }
 
 message CreateNSRouteResponse {
@@ -66,8 +67,9 @@ message UpdateNSRouteRequest {
 	int64 nsRouteId = 1;
 	string name = 2;
 	bytes rangesJSON = 3;
-	bool isPublic = 4;
-	int64 nsRouteCategoryId = 5;
+	bool isPublic = 4; // 是否公用
+	int64 nsRouteCategoryId = 5; // 分类ID
+	int32 priority = 7; // 优先级
 	bool isOn = 6;
 }
 
