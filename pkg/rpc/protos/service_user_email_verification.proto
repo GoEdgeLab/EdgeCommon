@@ -1,0 +1,45 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_user_email_verification.proto";
+
+// 用户电子邮箱认证服务
+service UserEmailVerificationService {
+	// 认证邮箱
+	rpc verifyUserEmail(VerifyUserEmailRequest) returns (VerifyUserEmailResponse);
+
+	// 发送邮箱认证
+	rpc sendUserEmailVerification(SendUserEmailVerificationRequest) returns (RPCSuccess);
+
+	// 查找用户正在等待激活的认证
+	rpc findLatestUserEmailVerification(FindLatestUserEmailVerificationRequest) returns (FindLatestUserEmailVerificationResponse);
+}
+
+// 认证邮箱
+message VerifyUserEmailRequest {
+	string code = 1; // 激活码
+}
+
+message VerifyUserEmailResponse {
+	int64 userId = 1; // 邮箱对应的用户ID
+	string email = 2; // 邮箱地址
+	string errorCode = 3; // 错误代号，如果为空，说明没有错误
+	string errorMessage = 4; // 错误信息
+}
+
+// 发送邮箱认证
+message SendUserEmailVerificationRequest {
+	string email = 1; // 待验证邮箱
+}
+
+// 查找用户正在等待激活的认证
+message FindLatestUserEmailVerificationRequest {
+
+}
+
+message FindLatestUserEmailVerificationResponse {
+	UserEmailVerification userEmailVerification = 1;
+}

@@ -13,6 +13,9 @@ service MessageMediaService {
 
 	// 设置所有支持的媒介
 	rpc updateMessageMedias (UpdateMessageMediasRequest) returns (RPCSuccess);
+
+	// 发送媒介信息
+	rpc sendMediaMessage(SendMediaMessageRequest) returns (RPCSuccess);
 }
 
 // 获取所有支持的媒介
@@ -27,4 +30,13 @@ message FindAllMessageMediasResponse {
 // 设置所有支持的媒介
 message UpdateMessageMediasRequest {
 	repeated MessageMedia messageMedias = 2;
+}
+
+// 发送媒介信息
+message SendMediaMessageRequest {
+	string mediaType = 1; // 媒介类型
+	bytes optionsJSON = 2; // 媒介参数
+	string user = 3; // 接收用户
+	string subject = 4; // 标题
+	string body = 5; // 内容
 }

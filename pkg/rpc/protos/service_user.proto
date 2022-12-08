@@ -14,7 +14,7 @@ service UserService {
 	rpc createUser (CreateUserRequest) returns (CreateUserResponse);
 
 	// 注册用户
-	rpc registerUser(RegisterUserRequest) returns (RPCSuccess);
+	rpc registerUser(RegisterUserRequest) returns (RegisterUserResponse);
 
 	// 审核用户
 	rpc verifyUser(VerifyUserRequest) returns (RPCSuccess);
@@ -84,6 +84,9 @@ service UserService {
 
 	// 更新用户服务可用状态
 	rpc renewUserServersState(RenewUserServersStateRequest) returns (RenewUserServersStateResponse);
+
+	// 检查邮箱是否已被使用
+	rpc checkUserEmailIsUsing(CheckUserEmailIsUsingRequest) returns (CheckUserEmailIsUsingResponse);
 }
 
 // 创建用户
@@ -112,6 +115,11 @@ message RegisterUserRequest {
 	string fullname = 5;
 	string ip = 6;
 	string source = 7;
+}
+
+message RegisterUserResponse {
+	int64 userId = 1;
+	bool requireEmailVerification = 2; // 是否需要激活邮件
 }
 
 // 审核用户
@@ -350,4 +358,13 @@ message RenewUserServersStateRequest {
 
 message RenewUserServersStateResponse {
 	bool isEnabled = 1;
+}
+
+// 检查邮箱是否已被验证
+message CheckUserEmailIsUsingRequest {
+	string email = 1;
+}
+
+message CheckUserEmailIsUsingResponse {
+	bool isUsing = 1; // 是否已被使用
 }

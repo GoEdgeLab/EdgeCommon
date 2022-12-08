@@ -14,6 +14,7 @@ pkg/
   userconfigs - 用户相关配置
   
   configutils/ - 配置公共函数等
+  iplibrary/ - IP库
   errors/  - 错误处理
   rpc/  - RPC通讯
      protos/   RPC数据和接口定义

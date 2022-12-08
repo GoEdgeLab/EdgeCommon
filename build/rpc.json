@@ -3720,6 +3720,17 @@
             "monitor"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "sendMediaMessage",
+          "requestMessageName": "SendMediaMessageRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc sendMediaMessage(SendMediaMessageRequest) returns (RPCSuccess);",
+          "doc": "发送媒介信息",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_message_media.proto",
@@ -10954,10 +10965,12 @@
         {
           "name": "registerUser",
           "requestMessageName": "RegisterUserRequest",
-          "responseMessageName": "RPCSuccess",
-          "code": "rpc registerUser(RegisterUserRequest) returns (RPCSuccess);",
+          "responseMessageName": "RegisterUserResponse",
+          "code": "rpc registerUser(RegisterUserRequest) returns (RegisterUserResponse);",
           "doc": "注册用户",
-          "roles": [],
+          "roles": [
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -11211,6 +11224,15 @@
           "roles": [
             "admin"
           ],
+          "isDeprecated": false
+        },
+        {
+          "name": "checkUserEmailIsUsing",
+          "requestMessageName": "CheckUserEmailIsUsingRequest",
+          "responseMessageName": "CheckUserEmailIsUsingResponse",
+          "code": "rpc checkUserEmailIsUsing(CheckUserEmailIsUsingRequest) returns (CheckUserEmailIsUsingResponse);",
+          "doc": "检查邮箱是否已被使用",
+          "roles": [],
           "isDeprecated": false
         }
       ],
@@ -11485,6 +11507,40 @@
       ],
       "filename": "service_user_bill.proto",
       "doc": "账单相关服务"
+    },
+    {
+      "name": "UserEmailVerificationService",
+      "methods": [
+        {
+          "name": "verifyUserEmail",
+          "requestMessageName": "VerifyUserEmailRequest",
+          "responseMessageName": "VerifyUserEmailResponse",
+          "code": "rpc verifyUserEmail(VerifyUserEmailRequest) returns (VerifyUserEmailResponse);",
+          "doc": "认证邮箱",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "sendUserEmailVerification",
+          "requestMessageName": "SendUserEmailVerificationRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc sendUserEmailVerification(SendUserEmailVerificationRequest) returns (RPCSuccess);",
+          "doc": "发送邮箱认证",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "findLatestUserEmailVerification",
+          "requestMessageName": "FindLatestUserEmailVerificationRequest",
+          "responseMessageName": "FindLatestUserEmailVerificationResponse",
+          "code": "rpc findLatestUserEmailVerification(FindLatestUserEmailVerificationRequest) returns (FindLatestUserEmailVerificationResponse);",
+          "doc": "查找用户正在等待激活的认证",
+          "roles": [],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_user_email_verification.proto",
+      "doc": "用户电子邮箱认证服务"
     },
     {
       "name": "UserIdentityService",
@@ -12507,6 +12563,16 @@
     {
       "name": "CheckTownsWithIPLibraryFileIdResponse",
       "code": "message CheckTownsWithIPLibraryFileIdResponse {\n\trepeated MissingTown missingTowns = 1;\n\n\n\tmessage MissingTown {\n\t\tstring countryName = 1;\n\t\tstring provinceName = 2;\n\t\tstring cityName = 3;\n\t\tstring townName = 4;\n\t\trepeated RegionTown similarTowns = 5;\n\t}\n}",
+      "doc": ""
+    },
+    {
+      "name": "CheckUserEmailIsUsingRequest",
+      "code": "message CheckUserEmailIsUsingRequest {\n\tstring email = 1;\n}",
+      "doc": "检查邮箱是否已被验证"
+    },
+    {
+      "name": "CheckUserEmailIsUsingResponse",
+      "code": "message CheckUserEmailIsUsingResponse {\n\tbool isUsing = 1; // 是否已被使用\n}",
       "doc": ""
     },
     {
@@ -17030,6 +17096,16 @@
       "doc": ""
     },
     {
+      "name": "FindLatestUserEmailVerificationRequest",
+      "code": "message FindLatestUserEmailVerificationRequest {\n\n}",
+      "doc": "查找用户正在等待激活的认证"
+    },
+    {
+      "name": "FindLatestUserEmailVerificationResponse",
+      "code": "message FindLatestUserEmailVerificationResponse {\n\tUserEmailVerification userEmailVerification = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "FindNSAccessLogRequest",
       "code": "message FindNSAccessLogRequest {\n\tstring requestId = 1;\n}",
       "doc": "查找单个日志"
@@ -19160,6 +19236,11 @@
       "doc": "注册用户"
     },
     {
+      "name": "RegisterUserResponse",
+      "code": "message RegisterUserResponse {\n\tint64 userId = 1;\n\tbool requireEmailVerification = 2; // 是否需要激活邮件\n}",
+      "doc": ""
+    },
+    {
       "name": "RejectUserIdentityRequest",
       "code": "message RejectUserIdentityRequest {\n\tint64 userIdentityId = 1;\n\tstring reason = 2;\n}",
       "doc": "拒绝用户实名认证信息"
@@ -19253,6 +19334,16 @@
       "name": "Script",
       "code": "message Script {\n\tint64 id = 1;\n\tint64 userId = 2;\n\tbool isOn = 3;\n\tstring name = 4;\n\tstring filename = 5;\n\tstring code = 6;\n\tint64 updatedAt = 7;\n}",
       "doc": ""
+    },
+    {
+      "name": "SendMediaMessageRequest",
+      "code": "message SendMediaMessageRequest {\n\tstring mediaType = 1; // 媒介类型\n\tbytes optionsJSON = 2; // 媒介参数\n\tstring user = 3; // 接收用户\n\tstring subject = 4; // 标题\n\tstring body = 5; // 内容\n}",
+      "doc": "发送媒介信息"
+    },
+    {
+      "name": "SendUserEmailVerificationRequest",
+      "code": "message SendUserEmailVerificationRequest {\n\tstring email = 1; // 待验证邮箱\n}",
+      "doc": "发送邮箱认证"
     },
     {
       "name": "Server",
@@ -20631,7 +20722,7 @@
     },
     {
       "name": "User",
-      "code": "message User {\n\tint64 id = 1;\n\tstring username = 2;\n\tstring fullname = 3;\n\tstring mobile = 4;\n\tstring tel = 5;\n\tstring email = 6;\n\tstring remark = 7;\n\tbool isOn = 8;\n\tint64 createdAt = 9;\n\tstring registeredIP = 12;\n\tbool isVerified = 13;\n\tbool isRejected = 14;\n\tstring rejectReason = 15;\n\tbool isDeleted = 16;\n\tbool isIndividualIdentified = 17;\n\tbool isEnterpriseIdentified = 18;\n\n\tLogin otpLogin = 19; // OTP认证\n\n\tNodeCluster nodeCluster = 10;\n\trepeated UserFeature features = 11;\n}",
+      "code": "message User {\n\tint64 id = 1;\n\tstring username = 2;\n\tstring fullname = 3;\n\tstring mobile = 4;\n\tstring tel = 5;\n\tstring email = 6;\n\tstring verifiedEmail = 20;\n\tstring remark = 7;\n\tbool isOn = 8;\n\tint64 createdAt = 9;\n\tstring registeredIP = 12;\n\tbool isVerified = 13;\n\tbool isRejected = 14;\n\tstring rejectReason = 15;\n\tbool isDeleted = 16;\n\tbool isIndividualIdentified = 17;\n\tbool isEnterpriseIdentified = 18;\n\n\tLogin otpLogin = 19; // OTP认证\n\n\tNodeCluster nodeCluster = 10;\n\trepeated UserFeature features = 11;\n}",
       "doc": ""
     },
     {
@@ -20663,6 +20754,11 @@
       "name": "UserBill",
       "code": "message UserBill {\n\tint64 id = 1;\n\tUser user = 2;\n\tstring type = 3;\n\tstring typeName = 4;\n\tstring description = 5;\n\tdouble amount = 6;\n\tstring month = 7;\n\tbool isPaid = 8;\n\tint64 paidAt = 9;\n\tstring code = 10;\n\tbool canPay = 11;\n\tstring dayFrom = 12;\n\tstring dayTo = 13;\n\tstring pricePeriod = 14;\n\tbool isOverdue = 15; // 是否已逾期\n}",
       "doc": ""
+    },
+    {
+      "name": "UserEmailVerification",
+      "code": "message UserEmailVerification {\n\tint64 id = 1;\n\tstring email = 2; // Email\n\tint64 userId = 3; // 用户ID\n\tstring code = 4; // 代号\n\tint64 createdAt = 5; // 创建时间\n\tbool isSent = 6; // 已发送\n\tbool isVerified = 7; // 已激活\n\tint64 expiresAt = 8; // 过期时间，动态计算而来\n}",
+      "doc": "电子邮箱认证"
     },
     {
       "name": "UserFeature",
@@ -20732,6 +20828,16 @@
     {
       "name": "VerifyNSDomainResponse",
       "code": "message VerifyNSDomainResponse {\n\tbool isOk = 1; // 是否成功\n\tstring errorCode = 2; // 错误代码\n\tstring errorMessage = 3; // 错误消息\n}",
+      "doc": ""
+    },
+    {
+      "name": "VerifyUserEmailRequest",
+      "code": "message VerifyUserEmailRequest {\n\tstring code = 1; // 激活码\n}",
+      "doc": "认证邮箱"
+    },
+    {
+      "name": "VerifyUserEmailResponse",
+      "code": "message VerifyUserEmailResponse {\n\tint64 userId = 1; // 邮箱对应的用户ID\n\tstring email = 2; // 邮箱地址\n\tstring errorCode = 3; // 错误代号，如果为空，说明没有错误\n\tstring errorMessage = 4; // 错误信息\n}",
       "doc": ""
     },
     {
