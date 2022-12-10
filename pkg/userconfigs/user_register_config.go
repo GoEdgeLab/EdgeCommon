@@ -3,7 +3,8 @@
 package userconfigs
 
 const (
-	EmailVerificationDefaultLife = 86400 * 2 // 2 days
+	EmailVerificationDefaultLife  = 86400 * 2 // 2 days
+	EmailResetPasswordDefaultLife = 3600      // 1 hour
 )
 
 type UserRegisterConfig struct {
@@ -21,6 +22,14 @@ type UserRegisterConfig struct {
 		CanLogin   bool   `yaml:"canLogin" json:"canLogin"`     // 是否可以使用激活的邮箱登录
 		Life       int32  `yaml:"life" json:"life"`             // 有效期
 	} `yaml:"emailVerification" json:"emailVerification"`
+
+	// 通过邮件找回密码设置
+	EmailResetPassword struct {
+		IsOn    bool   `yaml:"isOn" json:"isOn"`       // 是否启用
+		Subject string `yaml:"subject" json:"subject"` // 标题
+		Body    string `yaml:"body" json:"body"`       // 内容
+		Life    int32  `yaml:"life" json:"life"`       // 有效期
+	} `yaml:"emailResetPassword" json:"emailResetPassword"`
 
 	// CDN
 	CDNIsOn   bool     `json:"cdnIsOn"`                    // 是否开启CDN服务
@@ -46,7 +55,7 @@ func DefaultUserRegisterConfig() *UserRegisterConfig {
 		RequireVerification: false,
 	}
 
-	// 激活相关
+	// 邮箱激活相关
 	config.EmailVerification.CanLogin = true
 	config.EmailVerification.ShowNotice = true
 	config.EmailVerification.Subject = "【${product.name}】Email地址激活"
@@ -55,6 +64,16 @@ func DefaultUserRegisterConfig() *UserRegisterConfig {
 <p>如果上面内容不是链接形式，请将该地址手工粘贴到浏览器地址栏再访问。</p>
 <p></p>
 <p>此致</p>
+<p>${product.name} 管理团队</p>
+<p><a href="${url.home}" target="_blank">${url.home}</a></p>
+`
+
+	// 通过邮件重置密码相关
+	config.EmailResetPassword.IsOn = true
+	config.EmailResetPassword.Subject = "【${product.name}】找回密码"
+	config.EmailResetPassword.Body = `<p>你正在使用 ${product.name} 提供的找回密码功能，你需要将以下的数字验证码输入到找回密码页面中：</p>
+<p><strong>验证码：${code}</strong></p>
+<p></p>
 <p>${product.name} 管理团队</p>
 <p><a href="${url.home}" target="_blank">${url.home}</a></p>
 `

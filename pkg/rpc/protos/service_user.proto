@@ -86,7 +86,10 @@ service UserService {
 	rpc renewUserServersState(RenewUserServersStateRequest) returns (RenewUserServersStateResponse);
 
 	// 检查邮箱是否已被使用
-	rpc checkUserEmailIsUsing(CheckUserEmailIsUsingRequest) returns (CheckUserEmailIsUsingResponse);
+	rpc checkUserEmail(CheckUserEmailRequest) returns (CheckUserEmailResponse);
+
+	// 根据用户名查询用户绑定的邮箱
+	rpc findUserVerifiedEmailWithUsername(FindUserVerifiedEmailWithUsernameRequest) returns (FindUserVerifiedEmailWithUsernameResponse);
 }
 
 // 创建用户
@@ -361,10 +364,19 @@ message RenewUserServersStateResponse {
 }
 
 // 检查邮箱是否已被验证
-message CheckUserEmailIsUsingRequest {
-	string email = 1;
+message CheckUserEmailRequest {
+	string email = 1; // 邮箱地址
 }
 
-message CheckUserEmailIsUsingResponse {
-	bool isUsing = 1; // 是否已被使用
+message CheckUserEmailResponse {
+	bool exists = 1; // 是否已被使用
+}
+
+// 根据用户名查询用户绑定的邮箱
+message FindUserVerifiedEmailWithUsernameRequest {
+	string username = 1; // 用户名
+}
+
+message FindUserVerifiedEmailWithUsernameResponse {
+	string email = 1; // 已绑定邮箱地址
 }

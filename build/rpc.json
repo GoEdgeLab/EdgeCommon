@@ -11227,11 +11227,20 @@
           "isDeprecated": false
         },
         {
-          "name": "checkUserEmailIsUsing",
-          "requestMessageName": "CheckUserEmailIsUsingRequest",
-          "responseMessageName": "CheckUserEmailIsUsingResponse",
-          "code": "rpc checkUserEmailIsUsing(CheckUserEmailIsUsingRequest) returns (CheckUserEmailIsUsingResponse);",
+          "name": "checkUserEmail",
+          "requestMessageName": "CheckUserEmailRequest",
+          "responseMessageName": "CheckUserEmailResponse",
+          "code": "rpc checkUserEmail(CheckUserEmailRequest) returns (CheckUserEmailResponse);",
           "doc": "检查邮箱是否已被使用",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "findUserVerifiedEmailWithUsername",
+          "requestMessageName": "FindUserVerifiedEmailWithUsernameRequest",
+          "responseMessageName": "FindUserVerifiedEmailWithUsernameResponse",
+          "code": "rpc findUserVerifiedEmailWithUsername(FindUserVerifiedEmailWithUsernameRequest) returns (FindUserVerifiedEmailWithUsernameResponse);",
+          "doc": "根据用户名查询用户绑定的邮箱",
           "roles": [],
           "isDeprecated": false
         }
@@ -12257,6 +12266,31 @@
       ],
       "filename": "service_user_traffic_package.proto",
       "doc": "用户流量包服务"
+    },
+    {
+      "name": "UserVerifyCodeService",
+      "methods": [
+        {
+          "name": "sendUserVerifyCode",
+          "requestMessageName": "SendUserVerifyCodeRequest",
+          "responseMessageName": "SendUserVerifyCodeResponse",
+          "code": "rpc sendUserVerifyCode(SendUserVerifyCodeRequest) returns (SendUserVerifyCodeResponse);",
+          "doc": "发送重置密码验证码",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "validateUserVerifyCode",
+          "requestMessageName": "ValidateUserVerifyCodeRequest",
+          "responseMessageName": "ValidateUserVerifyCodeResponse",
+          "code": "rpc validateUserVerifyCode(ValidateUserVerifyCodeRequest) returns (ValidateUserVerifyCodeResponse);",
+          "doc": "校验验证码",
+          "roles": [],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_user_verify_code.proto",
+      "doc": "用户验证码服务"
     }
   ],
   "messages": [
@@ -12566,13 +12600,13 @@
       "doc": ""
     },
     {
-      "name": "CheckUserEmailIsUsingRequest",
-      "code": "message CheckUserEmailIsUsingRequest {\n\tstring email = 1;\n}",
+      "name": "CheckUserEmailRequest",
+      "code": "message CheckUserEmailRequest {\n\tstring email = 1; // 邮箱地址\n}",
       "doc": "检查邮箱是否已被验证"
     },
     {
-      "name": "CheckUserEmailIsUsingResponse",
-      "code": "message CheckUserEmailIsUsingResponse {\n\tbool isUsing = 1; // 是否已被使用\n}",
+      "name": "CheckUserEmailResponse",
+      "code": "message CheckUserEmailResponse {\n\tbool exists = 1; // 是否已被使用\n}",
       "doc": ""
     },
     {
@@ -17901,6 +17935,16 @@
       "doc": ""
     },
     {
+      "name": "FindUserVerifiedEmailWithUsernameRequest",
+      "code": "message FindUserVerifiedEmailWithUsernameRequest {\n\tstring username = 1; // 用户名\n}",
+      "doc": "根据用户名查询用户绑定的邮箱"
+    },
+    {
+      "name": "FindUserVerifiedEmailWithUsernameResponse",
+      "code": "message FindUserVerifiedEmailWithUsernameResponse {\n\tstring email = 1; // 已绑定邮箱地址\n}",
+      "doc": ""
+    },
+    {
       "name": "FindVerifiedNSDomainOnClusterRequest",
       "code": "message FindVerifiedNSDomainOnClusterRequest {\n\tint64 nsClusterId = 1; // 集群ID\n\tstring name = 2; // 域名\n}",
       "doc": "根据域名名称查找集群中的已验证域名"
@@ -19344,6 +19388,16 @@
       "name": "SendUserEmailVerificationRequest",
       "code": "message SendUserEmailVerificationRequest {\n\tstring email = 1; // 待验证邮箱\n}",
       "doc": "发送邮箱认证"
+    },
+    {
+      "name": "SendUserVerifyCodeRequest",
+      "code": "message SendUserVerifyCodeRequest {\n\tstring type = 1; // 类型：重置密码（resetPassword）\n\tstring email = 2; // 已验证邮箱地址\n\tstring mobile = 3; // 已验证手机号\n}",
+      "doc": "发送重置密码验证码"
+    },
+    {
+      "name": "SendUserVerifyCodeResponse",
+      "code": "message SendUserVerifyCodeResponse {\n\tint32 codeLength = 1; // 验证码长度\n}",
+      "doc": ""
     },
     {
       "name": "Server",
@@ -20818,6 +20872,16 @@
     {
       "name": "ValidateHTTPCacheTaskKeysResponse",
       "code": "message ValidateHTTPCacheTaskKeysResponse {\n\trepeated FailKey failKeys = 1;\n\n\n\tmessage FailKey {\n\t\tstring key = 1;\n\t\tstring reasonCode = 2;\n\t}\n}",
+      "doc": ""
+    },
+    {
+      "name": "ValidateUserVerifyCodeRequest",
+      "code": "message ValidateUserVerifyCodeRequest {\n\tstring type = 1; // 类型：重置密码（resetPassword）\n\tstring email = 2; // 已验证邮箱地址\n\tstring mobile = 3; // 已验证手机号\n\tstring code = 4; // 验证码\n\n\t// 找回密码\n\tstring newPassword = 10; // 新密码\n}",
+      "doc": "校验验证码"
+    },
+    {
+      "name": "ValidateUserVerifyCodeResponse",
+      "code": "message ValidateUserVerifyCodeResponse {\n\tbool isOk = 1; // 是否成功\n\tstring errorCode = 2; // 错误代号\n\tstring errorMessage = 3; // 错误消息\n}",
       "doc": ""
     },
     {

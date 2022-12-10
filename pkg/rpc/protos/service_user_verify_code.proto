@@ -1,0 +1,41 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 用户验证码服务
+service UserVerifyCodeService {
+	// 发送重置密码验证码
+	rpc sendUserVerifyCode(SendUserVerifyCodeRequest) returns (SendUserVerifyCodeResponse);
+
+	// 校验验证码
+	rpc validateUserVerifyCode(ValidateUserVerifyCodeRequest) returns (ValidateUserVerifyCodeResponse);
+}
+
+// 发送重置密码验证码
+message SendUserVerifyCodeRequest {
+	string type = 1; // 类型：重置密码（resetPassword）
+	string email = 2; // 已验证邮箱地址
+	string mobile = 3; // 已验证手机号
+}
+
+message SendUserVerifyCodeResponse {
+	int32 codeLength = 1; // 验证码长度
+}
+
+// 校验验证码
+message ValidateUserVerifyCodeRequest {
+	string type = 1; // 类型：重置密码（resetPassword）
+	string email = 2; // 已验证邮箱地址
+	string mobile = 3; // 已验证手机号
+	string code = 4; // 验证码
+
+	// 找回密码
+	string newPassword = 10; // 新密码
+}
+
+message ValidateUserVerifyCodeResponse {
+	bool isOk = 1; // 是否成功
+	string errorCode = 2; // 错误代号
+	string errorMessage = 3; // 错误消息
+}
