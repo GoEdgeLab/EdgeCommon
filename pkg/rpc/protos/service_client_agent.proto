@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_client_agent.proto";
+
+// Agent服务
+service ClientAgentService {
+	// 查找所有Agent
+	rpc findAllClientAgents(FindAllClientAgentsRequest) returns (FindAllClientAgentsResponse);
+}
+
+// 查找所有Agent
+message FindAllClientAgentsRequest {
+}
+
+message FindAllClientAgentsResponse {
+	repeated ClientAgent clientAgents = 1;
+}

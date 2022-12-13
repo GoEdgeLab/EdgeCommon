@@ -716,6 +716,53 @@
       "doc": "API令牌服务"
     },
     {
+      "name": "ClientAgentService",
+      "methods": [
+        {
+          "name": "findAllClientAgents",
+          "requestMessageName": "FindAllClientAgentsRequest",
+          "responseMessageName": "FindAllClientAgentsResponse",
+          "code": "rpc findAllClientAgents(FindAllClientAgentsRequest) returns (FindAllClientAgentsResponse);",
+          "doc": "查找所有Agent",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_client_agent.proto",
+      "doc": "Agent服务"
+    },
+    {
+      "name": "ClientAgentIPService",
+      "methods": [
+        {
+          "name": "createClientAgentIPs",
+          "requestMessageName": "CreateClientAgentIPsRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc createClientAgentIPs(CreateClientAgentIPsRequest) returns (RPCSuccess);",
+          "doc": "创建一组IP",
+          "roles": [
+            "dns"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "listClientAgentIPsAfterId",
+          "requestMessageName": "ListClientAgentIPsAfterIdRequest",
+          "responseMessageName": "ListClientAgentIPsAfterIdResponse",
+          "code": "rpc listClientAgentIPsAfterId(ListClientAgentIPsAfterIdRequest) returns (ListClientAgentIPsAfterIdResponse);",
+          "doc": "查询最新的IP",
+          "roles": [
+            "dns"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_client_agent_ip.proto",
+      "doc": "Agent IP服务"
+    },
+    {
       "name": "DBService",
       "methods": [
         {
@@ -8088,6 +8135,15 @@
             "user"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findAllAgentNSRoutes",
+          "requestMessageName": "FindAllAgentNSRoutesRequest",
+          "responseMessageName": "FindAllAgentNSRoutesResponse",
+          "code": "rpc findAllAgentNSRoutes(FindAllAgentNSRoutesRequest) returns (FindAllAgentNSRoutesResponse);",
+          "doc": "查找默认的搜索引擎线路",
+          "roles": [],
+          "isDeprecated": false
         }
       ],
       "filename": "service_ns_route.proto",
@@ -12660,6 +12716,16 @@
       "doc": "清理"
     },
     {
+      "name": "ClientAgent",
+      "code": "message ClientAgent {\n\tint64 id = 1;\n\tstring name = 2;\n\tstring code = 3;\n\tstring description = 4;\n\tint64 countIPs = 5;\n}",
+      "doc": ""
+    },
+    {
+      "name": "ClientAgentIP",
+      "code": "message ClientAgentIP {\n\tint64 id = 1;\n\tstring ip = 2;\n\tstring ptr = 3;\n\n\tClientAgent clientAgent = 30;\n}",
+      "doc": ""
+    },
+    {
       "name": "ClientBrowser",
       "code": "message ClientBrowser {\n\tint64 id = 1;\n\tstring name = 2;\n}",
       "doc": ""
@@ -13323,6 +13389,11 @@
       "name": "CreateAdminResponse",
       "code": "message CreateAdminResponse {\n\tint64 adminId = 1;\n}",
       "doc": ""
+    },
+    {
+      "name": "CreateClientAgentIPsRequest",
+      "code": "message CreateClientAgentIPsRequest {\n\trepeated AgentIPInfo agentIPs = 1;\n\n\n\tmessage AgentIPInfo {\n\t\tstring agentCode = 1;\n\t\tstring ip = 2;\n\t\tstring ptr = 3;\n\t}\n}",
+      "doc": "创建一组IP"
     },
     {
       "name": "CreateDBNodeRequest",
@@ -14900,6 +14971,16 @@
       "doc": ""
     },
     {
+      "name": "FindAllAgentNSRoutesRequest",
+      "code": "message FindAllAgentNSRoutesRequest {\n\n}",
+      "doc": "查找默认的搜索引擎线路"
+    },
+    {
+      "name": "FindAllAgentNSRoutesResponse",
+      "code": "message FindAllAgentNSRoutesResponse{\n\trepeated NSRoute nsRoutes = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "FindAllAvailableNSDomainGroupsRequest",
       "code": "message FindAllAvailableNSDomainGroupsRequest {\n\tint64 userId = 1;\n}",
       "doc": "查询所有启用分组"
@@ -14977,6 +15058,11 @@
     {
       "name": "FindAllBasicDNSDomainsWithDNSProviderIdResponse",
       "code": "message FindAllBasicDNSDomainsWithDNSProviderIdResponse {\n\trepeated DNSDomain dnsDomains = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAllClientAgentsResponse",
+      "code": "message FindAllClientAgentsResponse {\n\trepeated ClientAgent clientAgents = 1;\n}",
       "doc": ""
     },
     {
@@ -18160,6 +18246,16 @@
       "doc": "列出服务商下的单页域名信息"
     },
     {
+      "name": "ListClientAgentIPsAfterIdRequest",
+      "code": "message ListClientAgentIPsAfterIdRequest {\n\tint64 id = 1;\n\tint64 size = 2;\n}",
+      "doc": "查询最新的IP"
+    },
+    {
+      "name": "ListClientAgentIPsAfterIdResponse",
+      "code": "message ListClientAgentIPsAfterIdResponse {\n\trepeated ClientAgentIP clientAgentIPs = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "ListDNSDomainsWithDNSProviderIdResponse",
       "code": "message ListDNSDomainsWithDNSProviderIdResponse {\n\trepeated DNSDomain dnsDomains = 1;\n}",
       "doc": ""
@@ -18966,7 +19062,7 @@
     },
     {
       "name": "NSCluster",
-      "code": "message NSCluster {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring installDir = 4;\n\tbytes tcpJSON = 5;\n\tbytes tlsJSON = 6;\n\tbytes udpJSON = 7;\n\trepeated string hosts = 8;\n\tbytes soaJSON = 12;\n\tstring email = 13;\n\tbool autoRemoteStart = 9;\n\tstring timeZone = 10;\n\tbytes answerJSON = 11;\n}",
+      "code": "message NSCluster {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring installDir = 4;\n\tbytes tcpJSON = 5;\n\tbytes tlsJSON = 6;\n\tbytes udpJSON = 7;\n\trepeated string hosts = 8;\n\tbytes soaJSON = 12;\n\tstring email = 13;\n\tbool autoRemoteStart = 9;\n\tstring timeZone = 10;\n\tbytes answerJSON = 11;\n\tbool detectAgents = 14;\n}",
       "doc": "域名服务集群"
     },
     {
@@ -20106,7 +20202,7 @@
     },
     {
       "name": "UpdateNSClusterRequest",
-      "code": "message UpdateNSClusterRequest {\n\tint64 nsClusterId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\trepeated string hosts = 4;\n\tstring email = 8;\n\tbool autoRemoteStart = 5;\n\tstring timeZone = 6;\n}",
+      "code": "message UpdateNSClusterRequest {\n\tint64 nsClusterId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\trepeated string hosts = 4;\n\tstring email = 8;\n\tbool autoRemoteStart = 5;\n\tstring timeZone = 6;\n\tbool detectAgents = 7;\n}",
       "doc": "修改集群"
     },
     {

@@ -1,0 +1,37 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/rpc_messages.proto";
+import "models/model_client_agent_ip.proto";
+
+// Agent IP服务
+service ClientAgentIPService {
+	// 创建一组IP
+	rpc createClientAgentIPs(CreateClientAgentIPsRequest) returns (RPCSuccess);
+
+	// 查询最新的IP
+	rpc listClientAgentIPsAfterId(ListClientAgentIPsAfterIdRequest) returns (ListClientAgentIPsAfterIdResponse);
+}
+
+// 创建一组IP
+message CreateClientAgentIPsRequest {
+	repeated AgentIPInfo agentIPs = 1;
+
+	message AgentIPInfo {
+		string agentCode = 1;
+		string ip = 2;
+		string ptr = 3;
+	}
+}
+
+// 查询最新的IP
+message ListClientAgentIPsAfterIdRequest {
+	int64 id = 1;
+	int64 size = 2;
+}
+
+message ListClientAgentIPsAfterIdResponse {
+	repeated ClientAgentIP clientAgentIPs = 1;
+}

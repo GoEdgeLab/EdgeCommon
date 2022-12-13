@@ -18,4 +18,5 @@ message NSCluster {
 	bool autoRemoteStart = 9;
 	string timeZone = 10;
 	bytes answerJSON = 11;
+	bool detectAgents = 14;
 }

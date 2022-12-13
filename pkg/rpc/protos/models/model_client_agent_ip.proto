@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_client_agent.proto";
+
+message ClientAgentIP {
+	int64 id = 1;
+	string ip = 2;
+	string ptr = 3;
+
+	ClientAgent clientAgent = 30;
+}

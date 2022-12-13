@@ -109,6 +109,7 @@ message UpdateNSClusterRequest {
 	string email = 8;
 	bool autoRemoteStart = 5;
 	string timeZone = 6;
+	bool detectAgents = 7;
 }
 
 // 查找集群访问日志配置

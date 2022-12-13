@@ -44,6 +44,9 @@ service NSRouteService {
 
 	// 查找默认的ISP线路
 	rpc findAllDefaultISPRoutes(FindAllDefaultISPRoutesRequest) returns (FindAllDefaultISPRoutesResponse);
+
+	// 查找默认的搜索引擎线路
+	rpc findAllAgentNSRoutes(FindAllAgentNSRoutesRequest) returns (FindAllAgentNSRoutesResponse);
 }
 
 // 创建自定义线路
@@ -154,5 +157,14 @@ message FindAllDefaultISPRoutesRequest {
 }
 
 message FindAllDefaultISPRoutesResponse {
+	repeated NSRoute nsRoutes = 1;
+}
+
+// 查找默认的搜索引擎线路
+message FindAllAgentNSRoutesRequest {
+
+}
+
+message FindAllAgentNSRoutesResponse{
 	repeated NSRoute nsRoutes = 1;
 }
