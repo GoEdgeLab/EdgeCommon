@@ -743,7 +743,8 @@
           "code": "rpc createClientAgentIPs(CreateClientAgentIPsRequest) returns (RPCSuccess);",
           "doc": "创建一组IP",
           "roles": [
-            "dns"
+            "dns",
+            "admin"
           ],
           "isDeprecated": false
         },
@@ -754,7 +755,8 @@
           "code": "rpc listClientAgentIPsAfterId(ListClientAgentIPsAfterIdRequest) returns (ListClientAgentIPsAfterIdResponse);",
           "doc": "查询最新的IP",
           "roles": [
-            "dns"
+            "dns",
+            "admin"
           ],
           "isDeprecated": false
         }
@@ -8142,7 +8144,10 @@
           "responseMessageName": "FindAllAgentNSRoutesResponse",
           "code": "rpc findAllAgentNSRoutes(FindAllAgentNSRoutesRequest) returns (FindAllAgentNSRoutesResponse);",
           "doc": "查找默认的搜索引擎线路",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         }
       ],
@@ -13857,7 +13862,7 @@
     },
     {
       "name": "CreateNSRecordRequest",
-      "code": "message CreateNSRecordRequest {\n\tint64 nsDomainId = 1;\n\tstring description = 2;\n\tstring name = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 ttl = 6;\n\trepeated int64 nsRouteIds = 7 [deprecated = true];\n\trepeated string nsRouteCodes = 8; // 路线代号\n\n\tint32 mxPriority = 9; // mx优先级\n}",
+      "code": "message CreateNSRecordRequest {\n\tint64 nsDomainId = 1;\n\tstring description = 2;\n\tstring name = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 ttl = 6;\n\trepeated int64 nsRouteIds = 7 [deprecated = true];\n\trepeated string nsRouteCodes = 8; // 路线代号\n\n\tint32 mxPriority = 9; // mx优先级\n\n\tint32 srvPriority = 10; // SRV优先级\n\tint32 srvWeight = 11; // SRV权重\n\tint32 srvPort = 12; // SRV端口\n\n\tint32 caaFlag = 13; // CAA Flag\n\tstring caaTag = 14; // CAA TAG\n}",
       "doc": "创建记录"
     },
     {
@@ -13867,7 +13872,7 @@
     },
     {
       "name": "CreateNSRecordsRequest",
-      "code": "message CreateNSRecordsRequest {\n\tint64 nsDomainId = 1;\n\tstring description = 2;\n\trepeated string names = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 ttl = 6;\n\trepeated string nsRouteCodes = 7; // 路线代号\n\n\tint32 mxPriority = 8; // mx优先级\n}",
+      "code": "message CreateNSRecordsRequest {\n\tint64 nsDomainId = 1;\n\tstring description = 2;\n\trepeated string names = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 ttl = 6;\n\trepeated string nsRouteCodes = 7; // 路线代号\n\n\tint32 mxPriority = 8; // mx优先级\n\n\tint32 srvPriority = 9; // SRV优先级\n\tint32 srvWeight = 10; // SRV权重\n\tint32 srvPort = 11; // SRV端口\n\n\tint32 caaFlag = 12; // CAA Flag\n\tstring caaTag = 13; // CAA TAG\n}",
       "doc": "批量创建记录"
     },
     {
@@ -18192,7 +18197,7 @@
     },
     {
       "name": "ImportNSRecordsRequest",
-      "code": "message ImportNSRecordsRequest {\n\trepeated Record nsRecords = 1;\n\tint64 userId = 2;\n\n\n\tmessage Record {\n\t\tstring nsDomainName = 1;\n\t\tstring name = 2;\n\t\tstring type = 3;\n\t\tstring value = 4;\n\t\tint32 ttl = 5;\n\t\tint32 mxPriority = 6; // MX优先级\n\t}\n}",
+      "code": "message ImportNSRecordsRequest {\n\trepeated Record nsRecords = 1;\n\tint64 userId = 2;\n\n\n\tmessage Record {\n\t\tstring nsDomainName = 1;\n\t\tstring name = 2;\n\t\tstring type = 3;\n\t\tstring value = 4;\n\t\tint32 ttl = 5;\n\t\tint32 mxPriority = 6; // MX优先级\n\n\t\tint32 srvPriority = 7; // SRV优先级\n\t\tint32 srvWeight = 8; // SRV权重\n\t\tint32 srvPort = 9; // SRV端口\n\n\t\tint32 caaFlag = 10; // CAA Flag\n\t\tstring caaTag = 11; // CAA TAG\n\t}\n}",
       "doc": "导入域名解析"
     },
     {
@@ -19102,7 +19107,7 @@
     },
     {
       "name": "NSRecord",
-      "code": "message NSRecord {\n\tint64 id = 1;\n\tstring description = 2;\n\tstring name = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 mxPriority = 12; // mx优先级\n\tint32 ttl = 6;\n\tint32 weight = 7;\n\tint64 createdAt = 8;\n\tbool isDeleted = 9;\n\tint64 version = 10;\n\tbool isOn = 11;\n\n\tNSDomain nsDomain = 30;\n\trepeated NSRoute nsRoutes = 31;\n}",
+      "code": "message NSRecord {\n\tint64 id = 1;\n\tstring description = 2;\n\tstring name = 3;\n\tstring type = 4;\n\tstring value = 5;\n\n\tint32 mxPriority = 12; // mx优先级\n\n\tint32 srvPriority = 13; // SRV优先级\n\tint32 srvWeight = 14; // SRV权重\n\tint32 srvPort = 15; // SRV端口\n\n\tint32 caaFlag = 16; // CAA Flag\n\tstring caaTag = 17; // CAA TAG\n\n\tint32 ttl = 6;\n\tint32 weight = 7;\n\tint64 createdAt = 8;\n\tbool isDeleted = 9;\n\tint64 version = 10;\n\tbool isOn = 11;\n\n\tNSDomain nsDomain = 30;\n\trepeated NSRoute nsRoutes = 31;\n}",
       "doc": "域名记录"
     },
     {
@@ -20292,7 +20297,7 @@
     },
     {
       "name": "UpdateNSRecordRequest",
-      "code": "message UpdateNSRecordRequest {\n\tint64 nsRecordId = 1;\n\tstring description = 2;\n\tstring name = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 ttl = 6;\n\trepeated int64 nsRouteIds = 7 [deprecated = true];\n\tbool isOn = 8;\n\trepeated string nsRouteCodes = 9; // 路线代号\n\n\tint32 mxPriority = 10; // mx优先级\n}",
+      "code": "message UpdateNSRecordRequest {\n\tint64 nsRecordId = 1;\n\tstring description = 2;\n\tstring name = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 ttl = 6;\n\trepeated int64 nsRouteIds = 7 [deprecated = true];\n\tbool isOn = 8;\n\trepeated string nsRouteCodes = 9; // 路线代号\n\n\tint32 mxPriority = 10; // mx优先级\n\n\tint32 srvPriority = 11; // SRV优先级\n\tint32 srvWeight = 12; // SRV权重\n\tint32 srvPort = 13; // SRV端口\n\n\tint32 caaFlag = 14; // CAA Flag\n\tstring caaTag = 15; // CAA TAG\n}",
       "doc": "修改记录"
     },
     {

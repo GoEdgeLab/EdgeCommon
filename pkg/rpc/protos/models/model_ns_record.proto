@@ -13,7 +13,16 @@ message NSRecord {
 	string name = 3;
 	string type = 4;
 	string value = 5;
+
 	int32 mxPriority = 12; // mx优先级
+
+	int32 srvPriority = 13; // SRV优先级
+	int32 srvWeight = 14; // SRV权重
+	int32 srvPort = 15; // SRV端口
+
+	int32 caaFlag = 16; // CAA Flag
+	string caaTag = 17; // CAA TAG
+
 	int32 ttl = 6;
 	int32 weight = 7;
 	int64 createdAt = 8;

@@ -53,7 +53,6 @@ service NSRecordService {
 	// 使用名称和类型查询多个记录信息
 	rpc findNSRecordsWithNameAndType(FindNSRecordsWithNameAndTypeRequest) returns (FindNSRecordsWithNameAndTypeResponse);
 
-
 	// 根据版本列出一组记录
 	rpc listNSRecordsAfterVersion (ListNSRecordsAfterVersionRequest) returns (ListNSRecordsAfterVersionResponse);
 }
@@ -70,6 +69,13 @@ message CreateNSRecordRequest {
 	repeated string nsRouteCodes = 8; // 路线代号
 
 	int32 mxPriority = 9; // mx优先级
+
+	int32 srvPriority = 10; // SRV优先级
+	int32 srvWeight = 11; // SRV权重
+	int32 srvPort = 12; // SRV端口
+
+	int32 caaFlag = 13; // CAA Flag
+	string caaTag = 14; // CAA TAG
 }
 
 message CreateNSRecordResponse {
@@ -87,6 +93,13 @@ message CreateNSRecordsRequest {
 	repeated string nsRouteCodes = 7; // 路线代号
 
 	int32 mxPriority = 8; // mx优先级
+
+	int32 srvPriority = 9; // SRV优先级
+	int32 srvWeight = 10; // SRV权重
+	int32 srvPort = 11; // SRV端口
+
+	int32 caaFlag = 12; // CAA Flag
+	string caaTag = 13; // CAA TAG
 }
 
 message CreateNSRecordsResponse {
@@ -149,6 +162,13 @@ message ImportNSRecordsRequest {
 		string value = 4;
 		int32 ttl = 5;
 		int32 mxPriority = 6; // MX优先级
+
+		int32 srvPriority = 7; // SRV优先级
+		int32 srvWeight = 8; // SRV权重
+		int32 srvPort = 9; // SRV端口
+
+		int32 caaFlag = 10; // CAA Flag
+		string caaTag = 11; // CAA TAG
 	}
 }
 
@@ -165,6 +185,13 @@ message UpdateNSRecordRequest {
 	repeated string nsRouteCodes = 9; // 路线代号
 
 	int32 mxPriority = 10; // mx优先级
+
+	int32 srvPriority = 11; // SRV优先级
+	int32 srvWeight = 12; // SRV权重
+	int32 srvPort = 13; // SRV端口
+
+	int32 caaFlag = 14; // CAA Flag
+	string caaTag = 15; // CAA TAG
 }
 
 // 删除记录
