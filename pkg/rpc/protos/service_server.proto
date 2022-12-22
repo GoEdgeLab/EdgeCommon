@@ -166,6 +166,9 @@ service ServerService {
 
 	// 查找服务UAM设置
 	rpc findEnabledServerUAM(FindEnabledServerUAMRequest) returns (FindEnabledServerUAMResponse);
+
+	// 修改服务所属用户
+	rpc updateServerUser(UpdateServerUserRequest) returns (RPCSuccess);
 }
 
 // 创建服务
@@ -650,4 +653,10 @@ message FindEnabledServerUAMRequest {
 
 message FindEnabledServerUAMResponse {
 	bytes uamJSON = 1;
+}
+
+// 修改服务所属用户
+message UpdateServerUserRequest {
+	int64 serverId = 1;
+	int64 userId = 2;
 }

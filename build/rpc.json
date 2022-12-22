@@ -9915,6 +9915,15 @@
             "user"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "updateServerUser",
+          "requestMessageName": "UpdateServerUserRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateServerUser(UpdateServerUserRequest) returns (RPCSuccess);",
+          "doc": "修改服务所属用户",
+          "roles": [],
+          "isDeprecated": false
         }
       ],
       "filename": "service_server.proto",
@@ -20744,6 +20753,11 @@
       "name": "UpdateServerUserPlanRequest",
       "code": "message UpdateServerUserPlanRequest {\n\tint64 serverId = 1;\n\tint64 userPlanId = 2;\n}",
       "doc": "修改服务套餐"
+    },
+    {
+      "name": "UpdateServerUserRequest",
+      "code": "message UpdateServerUserRequest {\n\tint64 serverId = 1;\n\tint64 userId = 2;\n}",
+      "doc": "修改服务所属用户"
     },
     {
       "name": "UpdateServerWebRequest",
