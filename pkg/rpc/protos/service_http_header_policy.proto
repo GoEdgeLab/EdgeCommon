@@ -27,15 +27,18 @@ service HTTPHeaderPolicyService {
 
 	// 修改删除的Headers
 	rpc updateHTTPHeaderPolicyDeletingHeaders (UpdateHTTPHeaderPolicyDeletingHeadersRequest) returns (RPCSuccess);
+
+	// 修改策略CORS设置
+	rpc updateHTTPHeaderPolicyCORS(UpdateHTTPHeaderPolicyCORSRequest) returns (RPCSuccess);
 }
 
 // 查找策略
 message FindEnabledHTTPHeaderPolicyConfigRequest {
-	int64 headerPolicyId = 1;
+	int64 httpHeaderPolicyId = 1;
 }
 
 message FindEnabledHTTPHeaderPolicyConfigResponse {
-	bytes headerPolicyJSON = 1;
+	bytes httpHeaderPolicyJSON = 1;
 }
 
 // 创建策略
@@ -44,35 +47,41 @@ message CreateHTTPHeaderPolicyRequest {
 }
 
 message CreateHTTPHeaderPolicyResponse {
-	int64 headerPolicyId = 1;
+	int64 httpHeaderPolicyId = 1;
 }
 
 // 修改AddHeaders
 message UpdateHTTPHeaderPolicyAddingHeadersRequest {
-	int64 headerPolicyId = 1;
+	int64 httpHeaderPolicyId = 1;
 	bytes headersJSON = 2;
 }
 
 // 修改SetHeaders
 message UpdateHTTPHeaderPolicySettingHeadersRequest {
-	int64 headerPolicyId = 1;
+	int64 httpHeaderPolicyId = 1;
 	bytes headersJSON = 2;
 }
 
 // 修改AddTrailers
 message UpdateHTTPHeaderPolicyAddingTrailersRequest {
-	int64 headerPolicyId = 1;
+	int64 httpHeaderPolicyId = 1;
 	bytes headersJSON = 2;
 }
 
 // 修改ReplaceHeaders
 message UpdateHTTPHeaderPolicyReplacingHeadersRequest {
-	int64 headerPolicyId = 1;
+	int64 httpHeaderPolicyId = 1;
 	bytes headersJSON = 2;
 }
 
 // 修改删除的Headers
 message UpdateHTTPHeaderPolicyDeletingHeadersRequest {
-	int64 headerPolicyId = 1;
+	int64 httpHeaderPolicyId = 1;
 	repeated string headerNames = 2;
+}
+
+// 修改策略CORS设置
+message UpdateHTTPHeaderPolicyCORSRequest {
+	int64 httpHeaderPolicyId = 1;
+	bytes corsJSON = 2;
 }

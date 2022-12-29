@@ -14,6 +14,7 @@ type HTTPHeaderPolicy struct {
 	DeleteHeaders []string            `yaml:"deleteHeaders" json:"deleteHeaders"` // 删除的Header
 
 	Expires *HTTPExpireHeaderConfig `yaml:"expires" json:"expires"` // TODO
+	CORS    *HTTPCORSHeaderConfig   `yaml:"cors" json:"cors"`
 
 	setHeaderNames  []string
 	deleteHeaderMap map[string]bool // header => bool
@@ -34,6 +35,14 @@ func (this *HTTPHeaderPolicy) Init() error {
 	this.deleteHeaderMap = map[string]bool{}
 	for _, header := range this.DeleteHeaders {
 		this.deleteHeaderMap[strings.ToUpper(header)] = true
+	}
+
+	// cors
+	if this.CORS != nil {
+		err := this.CORS.Init()
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil

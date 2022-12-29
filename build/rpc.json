@@ -744,6 +744,7 @@
           "doc": "创建一组IP",
           "roles": [
             "dns",
+            "node",
             "admin"
           ],
           "isDeprecated": false
@@ -756,6 +757,7 @@
           "doc": "查询最新的IP",
           "roles": [
             "dns",
+            "node",
             "admin"
           ],
           "isDeprecated": false
@@ -2436,6 +2438,18 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateHTTPHeaderPolicyDeletingHeaders (UpdateHTTPHeaderPolicyDeletingHeadersRequest) returns (RPCSuccess);",
           "doc": "修改删除的Headers",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateHTTPHeaderPolicyCORS",
+          "requestMessageName": "UpdateHTTPHeaderPolicyCORSRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateHTTPHeaderPolicyCORS(UpdateHTTPHeaderPolicyCORSRequest) returns (RPCSuccess);",
+          "doc": "修改策略CORS设置",
           "roles": [
             "admin",
             "user"
@@ -9922,7 +9936,9 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerUser(UpdateServerUserRequest) returns (RPCSuccess);",
           "doc": "修改服务所属用户",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         }
       ],
@@ -13586,7 +13602,7 @@
     },
     {
       "name": "CreateHTTPHeaderPolicyResponse",
-      "code": "message CreateHTTPHeaderPolicyResponse {\n\tint64 headerPolicyId = 1;\n}",
+      "code": "message CreateHTTPHeaderPolicyResponse {\n\tint64 httpHeaderPolicyId = 1;\n}",
       "doc": ""
     },
     {
@@ -16331,12 +16347,12 @@
     },
     {
       "name": "FindEnabledHTTPHeaderPolicyConfigRequest",
-      "code": "message FindEnabledHTTPHeaderPolicyConfigRequest {\n\tint64 headerPolicyId = 1;\n}",
+      "code": "message FindEnabledHTTPHeaderPolicyConfigRequest {\n\tint64 httpHeaderPolicyId = 1;\n}",
       "doc": "查找策略"
     },
     {
       "name": "FindEnabledHTTPHeaderPolicyConfigResponse",
-      "code": "message FindEnabledHTTPHeaderPolicyConfigResponse {\n\tbytes headerPolicyJSON = 1;\n}",
+      "code": "message FindEnabledHTTPHeaderPolicyConfigResponse {\n\tbytes httpHeaderPolicyJSON = 1;\n}",
       "doc": ""
     },
     {
@@ -19926,27 +19942,32 @@
     },
     {
       "name": "UpdateHTTPHeaderPolicyAddingHeadersRequest",
-      "code": "message UpdateHTTPHeaderPolicyAddingHeadersRequest {\n\tint64 headerPolicyId = 1;\n\tbytes headersJSON = 2;\n}",
+      "code": "message UpdateHTTPHeaderPolicyAddingHeadersRequest {\n\tint64 httpHeaderPolicyId = 1;\n\tbytes headersJSON = 2;\n}",
       "doc": "修改AddHeaders"
     },
     {
       "name": "UpdateHTTPHeaderPolicyAddingTrailersRequest",
-      "code": "message UpdateHTTPHeaderPolicyAddingTrailersRequest {\n\tint64 headerPolicyId = 1;\n\tbytes headersJSON = 2;\n}",
+      "code": "message UpdateHTTPHeaderPolicyAddingTrailersRequest {\n\tint64 httpHeaderPolicyId = 1;\n\tbytes headersJSON = 2;\n}",
       "doc": "修改AddTrailers"
     },
     {
+      "name": "UpdateHTTPHeaderPolicyCORSRequest",
+      "code": "message UpdateHTTPHeaderPolicyCORSRequest {\n\tint64 httpHeaderPolicyId = 1;\n\tbytes corsJSON = 2;\n}",
+      "doc": "修改策略CORS设置"
+    },
+    {
       "name": "UpdateHTTPHeaderPolicyDeletingHeadersRequest",
-      "code": "message UpdateHTTPHeaderPolicyDeletingHeadersRequest {\n\tint64 headerPolicyId = 1;\n\trepeated string headerNames = 2;\n}",
+      "code": "message UpdateHTTPHeaderPolicyDeletingHeadersRequest {\n\tint64 httpHeaderPolicyId = 1;\n\trepeated string headerNames = 2;\n}",
       "doc": "修改删除的Headers"
     },
     {
       "name": "UpdateHTTPHeaderPolicyReplacingHeadersRequest",
-      "code": "message UpdateHTTPHeaderPolicyReplacingHeadersRequest {\n\tint64 headerPolicyId = 1;\n\tbytes headersJSON = 2;\n}",
+      "code": "message UpdateHTTPHeaderPolicyReplacingHeadersRequest {\n\tint64 httpHeaderPolicyId = 1;\n\tbytes headersJSON = 2;\n}",
       "doc": "修改ReplaceHeaders"
     },
     {
       "name": "UpdateHTTPHeaderPolicySettingHeadersRequest",
-      "code": "message UpdateHTTPHeaderPolicySettingHeadersRequest {\n\tint64 headerPolicyId = 1;\n\tbytes headersJSON = 2;\n}",
+      "code": "message UpdateHTTPHeaderPolicySettingHeadersRequest {\n\tint64 httpHeaderPolicyId = 1;\n\tbytes headersJSON = 2;\n}",
       "doc": "修改SetHeaders"
     },
     {
