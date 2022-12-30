@@ -29,6 +29,7 @@ type HTTPWebConfig struct {
 	RewriteRules       []*HTTPRewriteRule                  `yaml:"rewriteRules" json:"rewriteRules"`             // 重写规则
 	FastcgiRef         *HTTPFastcgiRef                     `yaml:"fastcgiRef" json:"fastcgiRef"`                 // Fastcgi引用
 	FastcgiList        []*HTTPFastcgiConfig                `yaml:"fastcgiList" json:"fastcgiList"`               // Fastcgi配置
+	UserAgent          *UserAgentConfig                    `yaml:"userAgent" json:"userAgent"`                   // UserAgent配置
 
 	RequestHeaderPolicyRef  *shared.HTTPHeaderPolicyRef `yaml:"requestHeaderPolicyRef" json:"requestHeaderPolicyRef"`   // 请求Header
 	RequestHeaderPolicy     *shared.HTTPHeaderPolicy    `yaml:"requestHeaderPolicy" json:"requestHeaderPolicy"`         // 请求Header策略
@@ -278,6 +279,14 @@ func (this *HTTPWebConfig) Init() error {
 	// uam
 	if this.UAM != nil {
 		err := this.UAM.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// user agent
+	if this.UserAgent != nil {
+		err := this.UserAgent.Init()
 		if err != nil {
 			return err
 		}

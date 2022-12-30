@@ -3013,6 +3013,24 @@
             "user"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "updateHTTPWebUserAgent",
+          "requestMessageName": "UpdateHTTPWebUserAgentRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateHTTPWebUserAgent(UpdateHTTPWebUserAgentRequest) returns (RPCSuccess);",
+          "doc": "修改UserAgent设置",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "findHTTPWebUserAgent",
+          "requestMessageName": "FindHTTPWebUserAgentRequest",
+          "responseMessageName": "FindHTTPWebUserAgentResponse",
+          "code": "rpc findHTTPWebUserAgent(FindHTTPWebUserAgentRequest) returns (FindHTTPWebUserAgentResponse);",
+          "doc": "查找UserAgent设置",
+          "roles": [],
+          "isDeprecated": false
         }
       ],
       "filename": "service_http_web.proto",
@@ -17126,6 +17144,16 @@
       "doc": ""
     },
     {
+      "name": "FindHTTPWebUserAgentRequest",
+      "code": "message FindHTTPWebUserAgentRequest {\n\tint64 httpWebId = 1;\n}",
+      "doc": "查找UserAgent设置"
+    },
+    {
+      "name": "FindHTTPWebUserAgentResponse",
+      "code": "message FindHTTPWebUserAgentResponse {\n\tbytes userAgentJSON = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "FindHourlyServerBandwidthStatsRequest",
       "code": "message FindHourlyServerBandwidthStatsRequest {\n\tint64 serverId = 1;\n\tint32 hours = 2;\n}",
       "doc": "获取最近N小时峰值带宽"
@@ -20109,6 +20137,11 @@
       "name": "UpdateHTTPWebUAMRequest",
       "code": "message UpdateHTTPWebUAMRequest {\n\tint64 httpWebId = 1;\n\tbytes uamJSON = 2;\n}",
       "doc": "修改服务UAM设置"
+    },
+    {
+      "name": "UpdateHTTPWebUserAgentRequest",
+      "code": "message UpdateHTTPWebUserAgentRequest {\n\tint64 httpWebId = 1;\n\tbytes userAgentJSON = 2;\n}",
+      "doc": "修改防盗链设置"
     },
     {
       "name": "UpdateHTTPWebWebPRequest",

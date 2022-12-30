@@ -106,6 +106,12 @@ service HTTPWebService {
 
 	// 查找防盗链设置
 	rpc findHTTPWebReferers(FindHTTPWebReferersRequest) returns (FindHTTPWebReferersResponse);
+
+	// 修改UserAgent设置
+	rpc updateHTTPWebUserAgent(UpdateHTTPWebUserAgentRequest) returns (RPCSuccess);
+
+	// 查找UserAgent设置
+	rpc findHTTPWebUserAgent(FindHTTPWebUserAgentRequest) returns (FindHTTPWebUserAgentResponse);
 }
 
 // 创建Web配置
@@ -328,4 +334,19 @@ message FindHTTPWebReferersRequest {
 
 message FindHTTPWebReferersResponse {
 	bytes referersJSON = 1;
+}
+
+// 修改防盗链设置
+message UpdateHTTPWebUserAgentRequest {
+	int64 httpWebId = 1;
+	bytes userAgentJSON = 2;
+}
+
+// 查找UserAgent设置
+message FindHTTPWebUserAgentRequest {
+	int64 httpWebId = 1;
+}
+
+message FindHTTPWebUserAgentResponse {
+	bytes userAgentJSON = 1;
 }
