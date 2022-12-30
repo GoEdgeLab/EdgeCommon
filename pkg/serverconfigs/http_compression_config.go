@@ -33,11 +33,12 @@ type HTTPCompressionConfig struct {
 	Deflate *HTTPDeflateCompressionConfig `yaml:"deflate" json:"deflate"`
 	Brotli  *HTTPBrotliCompressionConfig  `yaml:"brotli" json:"brotli"`
 
-	MinLength  *shared.SizeCapacity           `yaml:"minLength" json:"minLength"`   // 最小压缩对象比如4m, 24k
-	MaxLength  *shared.SizeCapacity           `yaml:"maxLength" json:"maxLength"`   // 最大压缩对象
-	MimeTypes  []string                       `yaml:"mimeTypes" json:"mimeTypes"`   // 支持的MimeType，支持image/*这样的通配符使用
-	Extensions []string                       `yaml:"extensions" json:"extensions"` // 文件扩展名，包含点符号，不区分大小写
-	Conds      *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"`           // 匹配条件
+	MinLength            *shared.SizeCapacity           `yaml:"minLength" json:"minLength"`                       // 最小压缩对象比如4m, 24k
+	MaxLength            *shared.SizeCapacity           `yaml:"maxLength" json:"maxLength"`                       // 最大压缩对象
+	MimeTypes            []string                       `yaml:"mimeTypes" json:"mimeTypes"`                       // 支持的MimeType，支持image/*这样的通配符使用
+	Extensions           []string                       `yaml:"extensions" json:"extensions"`                     // 文件扩展名，包含点符号，不区分大小写
+	Conds                *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"`                               // 匹配条件
+	EnablePartialContent bool                           `yaml:"enablePartialContent" json:"enablePartialContent"` // 支持PartialContent压缩
 
 	minLength     int64
 	maxLength     int64
