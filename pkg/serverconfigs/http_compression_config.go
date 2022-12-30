@@ -37,13 +37,15 @@ type HTTPCompressionConfig struct {
 	MaxLength            *shared.SizeCapacity           `yaml:"maxLength" json:"maxLength"`                       // 最大压缩对象
 	MimeTypes            []string                       `yaml:"mimeTypes" json:"mimeTypes"`                       // 支持的MimeType，支持image/*这样的通配符使用
 	Extensions           []string                       `yaml:"extensions" json:"extensions"`                     // 文件扩展名，包含点符号，不区分大小写
+	ExceptExtensions     []string                       `yaml:"exceptExtensions" json:"exceptExtensions"`         // 例外扩展名
 	Conds                *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"`                               // 匹配条件
 	EnablePartialContent bool                           `yaml:"enablePartialContent" json:"enablePartialContent"` // 支持PartialContent压缩
 
-	minLength     int64
-	maxLength     int64
-	mimeTypeRules []*shared.MimeTypeRule
-	extensions    []string
+	minLength        int64
+	maxLength        int64
+	mimeTypeRules    []*shared.MimeTypeRule
+	extensions       []string
+	exceptExtensions []string
 
 	types []HTTPCompressionType
 
@@ -87,6 +89,15 @@ func (this *HTTPCompressionConfig) Init() error {
 			ext = "." + ext
 		}
 		this.extensions = append(this.extensions, ext)
+	}
+
+	this.exceptExtensions = []string{}
+	for _, ext := range this.ExceptExtensions {
+		ext = strings.ToLower(ext)
+		if len(ext) > 0 && ext[0] != '.' {
+			ext = "." + ext
+		}
+		this.exceptExtensions = append(this.exceptExtensions, ext)
 	}
 
 	if this.Gzip != nil {
@@ -172,6 +183,17 @@ func (this *HTTPCompressionConfig) MatchResponse(mimeType string, contentLength 
 	// max length
 	if this.maxLength > 0 && contentLength > this.maxLength {
 		return false
+	}
+
+	// except extensions
+	if len(this.exceptExtensions) > 0 {
+		if len(requestExt) > 0 {
+			for _, ext := range this.exceptExtensions {
+				if ext == requestExt {
+					return false
+				}
+			}
+		}
 	}
 
 	// extensions
