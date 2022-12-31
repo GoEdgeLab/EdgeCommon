@@ -50,7 +50,8 @@ message UpdateSSLPolicyRequest {
 
 // 查找Policy
 message FindEnabledSSLPolicyConfigRequest {
-	int64 sslPolicyId = 1;
+	int64 sslPolicyId = 1; // SSL策略ID
+	bool ignoreData = 2; // 忽略证书内容数据
 }
 
 message FindEnabledSSLPolicyConfigResponse {

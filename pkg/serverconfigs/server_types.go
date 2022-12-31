@@ -24,12 +24,7 @@ func AllServerTypes() []maps.Map {
 			"description": "可以通过CDN边缘节点分发源站内容。",
 		},
 		{
-			"name":        "HTTP Web服务",
-			"code":        ServerTypeHTTPWeb,
-			"description": "普通的HTTP Web服务，可以用来访问边缘节点上的静态文件内容。",
-		},
-		{
-			"name":        "TCP反向代理",
+			"name":        "TCP负载均衡",
 			"code":        ServerTypeTCPProxy,
 			"description": "通过反向代理访问源站TCP服务",
 		},
@@ -38,9 +33,14 @@ func AllServerTypes() []maps.Map {
 			"code": ServerTypeUnixProxy,
 		},**/
 		{
-			"name":        "UDP反向代理",
+			"name":        "UDP负载均衡",
 			"code":        ServerTypeUDPProxy,
 			"description": "通过反向代理访问源站UDP服务",
+		},
+		{
+			"name":        "HTTP Web服务",
+			"code":        ServerTypeHTTPWeb,
+			"description": "普通的HTTP Web服务，可以用来访问边缘节点上的静态文件内容。",
 		},
 	}
 }

@@ -354,7 +354,8 @@ message DeleteServerRequest {
 
 // 查找单个服务
 message FindEnabledServerRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 服务ID
+	bool ignoreSSLCertData = 2; // 忽略SSL证书数据
 }
 
 message FindEnabledServerResponse {

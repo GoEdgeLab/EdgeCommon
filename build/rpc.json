@@ -3020,7 +3020,10 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateHTTPWebUserAgent(UpdateHTTPWebUserAgentRequest) returns (RPCSuccess);",
           "doc": "修改UserAgent设置",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -3029,7 +3032,10 @@
           "responseMessageName": "FindHTTPWebUserAgentResponse",
           "code": "rpc findHTTPWebUserAgent(FindHTTPWebUserAgentRequest) returns (FindHTTPWebUserAgentResponse);",
           "doc": "查找UserAgent设置",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         }
       ],
@@ -16845,7 +16851,7 @@
     },
     {
       "name": "FindEnabledSSLPolicyConfigRequest",
-      "code": "message FindEnabledSSLPolicyConfigRequest {\n\tint64 sslPolicyId = 1;\n}",
+      "code": "message FindEnabledSSLPolicyConfigRequest {\n\tint64 sslPolicyId = 1; // SSL策略ID\n\tbool ignoreData = 2; // 忽略证书内容数据\n}",
       "doc": "查找Policy"
     },
     {
@@ -16905,7 +16911,7 @@
     },
     {
       "name": "FindEnabledServerRequest",
-      "code": "message FindEnabledServerRequest {\n\tint64 serverId = 1;\n}",
+      "code": "message FindEnabledServerRequest {\n\tint64 serverId = 1; // 服务ID\n\tbool ignoreSSLCertData = 2; // 忽略SSL证书数据\n}",
       "doc": "查找单个服务"
     },
     {
