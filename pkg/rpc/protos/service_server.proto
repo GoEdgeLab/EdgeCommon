@@ -340,7 +340,8 @@ message ListEnabledServersMatchRequest {
 	string protocolFamily = 8;
 	bool trafficOutAsc = 9;
 	bool trafficOutDesc = 10;
-	bool ignoreServerNames = 11;
+	bool ignoreServerNames = 11; // 忽略域名
+	bool ignoreSSLCerts = 12; // 忽略证书
 }
 
 message ListEnabledServersMatchResponse {

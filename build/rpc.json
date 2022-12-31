@@ -18536,7 +18536,7 @@
     },
     {
       "name": "ListEnabledServersMatchRequest",
-      "code": "message ListEnabledServersMatchRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n\tint64 serverGroupId = 3;  // 服务分组ID，如果为-1表示查找未分组\n\tstring keyword = 4;\n\tint64 userId = 5;\n\tint64 nodeClusterId = 6;\n\tint32 auditingFlag = 7;\n\tstring protocolFamily = 8;\n\tbool trafficOutAsc = 9;\n\tbool trafficOutDesc = 10;\n\tbool ignoreServerNames = 11;\n}",
+      "code": "message ListEnabledServersMatchRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n\tint64 serverGroupId = 3;  // 服务分组ID，如果为-1表示查找未分组\n\tstring keyword = 4;\n\tint64 userId = 5;\n\tint64 nodeClusterId = 6;\n\tint32 auditingFlag = 7;\n\tstring protocolFamily = 8;\n\tbool trafficOutAsc = 9;\n\tbool trafficOutDesc = 10;\n\tbool ignoreServerNames = 11; // 忽略域名\n\tbool ignoreSSLCerts = 12; // 忽略证书\n}",
       "doc": "列出单页服务"
     },
     {
