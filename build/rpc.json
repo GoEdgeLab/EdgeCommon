@@ -16911,7 +16911,7 @@
     },
     {
       "name": "FindEnabledServerRequest",
-      "code": "message FindEnabledServerRequest {\n\tint64 serverId = 1; // 服务ID\n\tbool ignoreSSLCertData = 2; // 忽略SSL证书数据\n}",
+      "code": "message FindEnabledServerRequest {\n\tint64 serverId = 1; // 服务ID\n\tbool ignoreSSLCerts = 2; // 忽略SSL证书数据\n}",
       "doc": "查找单个服务"
     },
     {
