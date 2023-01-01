@@ -8,6 +8,7 @@ func DefaultGlobalServerConfig() *GlobalServerConfig {
 	config.HTTPAccessLog.EnableResponseHeaders = true
 	config.HTTPAccessLog.EnableCookies = true
 	config.Log.RecordServerError = false
+	config.Performance.AutoWriteTimeout = true
 	return config
 }
 
@@ -27,6 +28,11 @@ type GlobalServerConfig struct {
 		EnableResponseHeaders    bool `yaml:"enableResponseHeaders" json:"enableResponseHeaders"`       // 记录响应Header
 		EnableCookies            bool `yaml:"enableCookies" json:"enableCookies"`                       // 记录Cookie
 	} `yaml:"httpAccessLog" json:"httpAccessLog"` // 访问日志配置
+
+	Performance struct {
+		Debug            bool `yaml:"debug" json:"debug"`                       // Debug模式
+		AutoWriteTimeout bool `yaml:"autoWriteTimeout" json:"autoWriteTimeout"` // 是否自动写超时
+	} `yaml:"performance" json:"performance"` // 性能
 
 	Log struct {
 		RecordServerError bool `yaml:"recordServerError" json:"recordServerError"` // 记录服务错误到运行日志
