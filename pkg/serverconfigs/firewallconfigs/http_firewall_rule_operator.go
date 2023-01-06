@@ -44,10 +44,10 @@ const (
 )
 
 type RuleOperatorDefinition struct {
-	Name            string
-	Code            string
-	Description     string
-	CaseInsensitive HTTPFirewallRuleCaseInsensitive // default caseInsensitive setting
+	Name            string                          `json:"name"`
+	Code            string                          `json:"code"`
+	Description     string                          `json:"description"`
+	CaseInsensitive HTTPFirewallRuleCaseInsensitive `json:"caseInsensitive"` // default caseInsensitive setting
 }
 
 var AllRuleOperators = []*RuleOperatorDefinition{
@@ -204,13 +204,13 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 	{
 		Name:            "IP范围",
 		Code:            HTTPFirewallRuleOperatorIPRange,
-		Description:     "IP在某个范围之内，范围格式可以是英文逗号分隔的<code-label>开始IP,结束IP</code-label>，比如<code-label>192.168.1.100,192.168.2.200</code-label>，或者CIDR格式的ip/bits，比如<code-label>192.168.2.1/24</code-label>",
+		Description:     "IP在某个范围之内，范围格式可以是英文逗号分隔的<code-label>开始IP,结束IP</code-label>，比如<code-label>192.168.1.100,192.168.2.200</code-label>；或者CIDR格式的ip/bits，比如<code-label>192.168.2.1/24</code-label>；或者单个IP。可以填写多行，每行一个IP范围。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 	},
 	{
 		Name:            "不在IP范围",
 		Code:            HTTPFirewallRuleOperatorNotIPRange,
-		Description:     "IP不在某个范围之内，范围格式可以是英文逗号分隔的<code-label>开始IP,结束IP</code-label>，比如<code-label>192.168.1.100,192.168.2.200</code-label>，或者CIDR格式的ip/bits，比如<code-label>192.168.2.1/24</code-label>",
+		Description:     "IP不在某个范围之内，范围格式可以是英文逗号分隔的<code-label>开始IP,结束IP</code-label>，比如<code-label>192.168.1.100,192.168.2.200</code-label>；或者CIDR格式的ip/bits，比如<code-label>192.168.2.1/24</code-label>；或者单个IP。可以填写多行，每行一个IP范围。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 	},
 	{
