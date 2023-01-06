@@ -18,6 +18,8 @@ const (
 	HTTPFirewallRuleOperatorNotContains  HTTPFirewallRuleOperator = "not contains"
 	HTTPFirewallRuleOperatorPrefix       HTTPFirewallRuleOperator = "prefix"
 	HTTPFirewallRuleOperatorSuffix       HTTPFirewallRuleOperator = "suffix"
+	HTTPFirewallRuleOperatorContainsAny  HTTPFirewallRuleOperator = "containsAny"
+	HTTPFirewallRuleOperatorContainsAll  HTTPFirewallRuleOperator = "containsAll"
 	HTTPFirewallRuleOperatorHasKey       HTTPFirewallRuleOperator = "has key" // has key in slice or map
 	HTTPFirewallRuleOperatorVersionGt    HTTPFirewallRuleOperator = "version gt"
 	HTTPFirewallRuleOperatorVersionLt    HTTPFirewallRuleOperator = "version lt"
@@ -133,6 +135,18 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 		Name:            "包含后缀",
 		Code:            HTTPFirewallRuleOperatorSuffix,
 		Description:     "包含字符串后缀部分，比如/hello后缀会匹配/hello, /hi/hello等",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+	},
+	{
+		Name:            "包含任一字符串",
+		Code:            HTTPFirewallRuleOperatorContainsAny,
+		Description:     "包含字符串列表中的任意一个，比如/hello/world包含/hello和/hi中的/hello，每行一个字符串",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+	},
+	{
+		Name:            "包含所有字符串",
+		Code:            HTTPFirewallRuleOperatorContainsAll,
+		Description:     "包含字符串列表中的所有字符串，比如/hello/world必须包含/hello和/world，每行一个字符串",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 	},
 	{
