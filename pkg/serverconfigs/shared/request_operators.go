@@ -193,7 +193,7 @@ func AllRequestOperators() []maps.Map {
 		{
 			"name":        "IP范围",
 			"op":          RequestCondOperatorIPRange,
-			"description": "IP在某个范围之内，范围格式可以是英文逗号分隔的ip1,ip2，或者CIDR格式的ip/bits",
+			"description": "IP在某个范围之内，范围格式可以是英文逗号分隔的<code-label>开始IP,结束IP</code-label>，比如<code-label>192.168.1.100,192.168.2.200</code-label>，或者CIDR格式的ip/bits，比如<code-label>192.168.2.1/24</code-label>",
 		},
 		{
 			"name":        "IP取模10",

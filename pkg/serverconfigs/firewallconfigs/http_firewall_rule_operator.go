@@ -54,37 +54,37 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 	{
 		Name:            "数值大于",
 		Code:            HTTPFirewallRuleOperatorGt,
-		Description:     "使用数值对比大于",
+		Description:     "使用数值对比大于，对比值需要是一个数字",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "数值大于等于",
 		Code:            HTTPFirewallRuleOperatorGte,
-		Description:     "使用数值对比大于等于",
+		Description:     "使用数值对比大于等于，对比值需要是一个数字",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "数值小于",
 		Code:            HTTPFirewallRuleOperatorLt,
-		Description:     "使用数值对比小于",
+		Description:     "使用数值对比小于，对比值需要是一个数字",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "数值小于等于",
 		Code:            HTTPFirewallRuleOperatorLte,
-		Description:     "使用数值对比小于等于",
+		Description:     "使用数值对比小于等于，对比值需要是一个数字",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "数值等于",
 		Code:            HTTPFirewallRuleOperatorEq,
-		Description:     "使用数值对比等于",
+		Description:     "使用数值对比等于，对比值需要是一个数字",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "数值不等于",
 		Code:            HTTPFirewallRuleOperatorNeq,
-		Description:     "使用数值对比不等于",
+		Description:     "使用数值对比不等于，对比值需要是一个数字",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
@@ -120,7 +120,7 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 	{
 		Name:            "不包含字符串",
 		Code:            HTTPFirewallRuleOperatorNotContains,
-		Description:     "不包含某个字符串",
+		Description:     "不包含某个字符串，比如Hello字符串中不包含Hi",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 	},
 	{
@@ -204,13 +204,13 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 	{
 		Name:            "IP范围",
 		Code:            HTTPFirewallRuleOperatorIPRange,
-		Description:     "IP在某个范围之内，范围格式可以是英文逗号分隔的ip1,ip2，或者CIDR格式的ip/bits",
+		Description:     "IP在某个范围之内，范围格式可以是英文逗号分隔的<code-label>开始IP,结束IP</code-label>，比如<code-label>192.168.1.100,192.168.2.200</code-label>，或者CIDR格式的ip/bits，比如<code-label>192.168.2.1/24</code-label>",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 	},
 	{
 		Name:            "不在IP范围",
 		Code:            HTTPFirewallRuleOperatorNotIPRange,
-		Description:     "IP不在某个范围之内，范围格式可以是英文逗号分隔的ip1,ip2，或者CIDR格式的ip/bits",
+		Description:     "IP不在某个范围之内，范围格式可以是英文逗号分隔的<code-label>开始IP,结束IP</code-label>，比如<code-label>192.168.1.100,192.168.2.200</code-label>，或者CIDR格式的ip/bits，比如<code-label>192.168.2.1/24</code-label>",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 	},
 	{
