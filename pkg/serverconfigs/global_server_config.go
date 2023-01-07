@@ -9,6 +9,7 @@ func DefaultGlobalServerConfig() *GlobalServerConfig {
 	config.HTTPAccessLog.EnableCookies = true
 	config.Log.RecordServerError = false
 	config.Performance.AutoWriteTimeout = true
+	config.Performance.AutoReadTimeout = true
 	return config
 }
 
@@ -32,6 +33,7 @@ type GlobalServerConfig struct {
 	Performance struct {
 		Debug            bool `yaml:"debug" json:"debug"`                       // Debug模式
 		AutoWriteTimeout bool `yaml:"autoWriteTimeout" json:"autoWriteTimeout"` // 是否自动写超时
+		AutoReadTimeout  bool `yaml:"autoReadTimeout" json:"autoReadTimeout"`   // 是否自动读超时
 	} `yaml:"performance" json:"performance"` // 性能
 
 	Log struct {
