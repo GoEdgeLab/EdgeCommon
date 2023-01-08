@@ -18,8 +18,8 @@ const (
 	HTTPFirewallRuleOperatorNotContains  HTTPFirewallRuleOperator = "not contains"
 	HTTPFirewallRuleOperatorPrefix       HTTPFirewallRuleOperator = "prefix"
 	HTTPFirewallRuleOperatorSuffix       HTTPFirewallRuleOperator = "suffix"
-	HTTPFirewallRuleOperatorContainsAny  HTTPFirewallRuleOperator = "containsAny"
-	HTTPFirewallRuleOperatorContainsAll  HTTPFirewallRuleOperator = "containsAll"
+	HTTPFirewallRuleOperatorContainsAny  HTTPFirewallRuleOperator = "contains any"
+	HTTPFirewallRuleOperatorContainsAll  HTTPFirewallRuleOperator = "contains all"
 	HTTPFirewallRuleOperatorHasKey       HTTPFirewallRuleOperator = "has key" // has key in slice or map
 	HTTPFirewallRuleOperatorVersionGt    HTTPFirewallRuleOperator = "version gt"
 	HTTPFirewallRuleOperatorVersionLt    HTTPFirewallRuleOperator = "version lt"
@@ -30,6 +30,7 @@ const (
 
 	// ip
 	HTTPFirewallRuleOperatorEqIP       HTTPFirewallRuleOperator = "eq ip"
+	HTTPFirewallRuleOperatorInIPList   HTTPFirewallRuleOperator = "in ip list"
 	HTTPFirewallRuleOperatorGtIP       HTTPFirewallRuleOperator = "gt ip"
 	HTTPFirewallRuleOperatorGteIP      HTTPFirewallRuleOperator = "gte ip"
 	HTTPFirewallRuleOperatorLtIP       HTTPFirewallRuleOperator = "lt ip"
@@ -188,62 +189,68 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 	{
 		Name:            "IP等于",
 		Code:            HTTPFirewallRuleOperatorEqIP,
-		Description:     "将参数转换为IP进行对比",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		Description:     "将参数转换为IP进行对比，只能对比单个IP",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
+	},
+	{
+		Name:            "在一组IP中",
+		Code:            HTTPFirewallRuleOperatorInIPList,
+		Description:     "判断参数IP在一组IP内，每行一个IP",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "IP大于",
 		Code:            HTTPFirewallRuleOperatorGtIP,
 		Description:     "将参数转换为IP进行对比",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "IP大于等于",
 		Code:            HTTPFirewallRuleOperatorGteIP,
 		Description:     "将参数转换为IP进行对比",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "IP小于",
 		Code:            HTTPFirewallRuleOperatorLtIP,
 		Description:     "将参数转换为IP进行对比",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "IP小于等于",
 		Code:            HTTPFirewallRuleOperatorLteIP,
 		Description:     "将参数转换为IP进行对比",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "IP范围",
 		Code:            HTTPFirewallRuleOperatorIPRange,
 		Description:     "IP在某个范围之内，范围格式可以是英文逗号分隔的<code-label>开始IP,结束IP</code-label>，比如<code-label>192.168.1.100,192.168.2.200</code-label>；或者CIDR格式的ip/bits，比如<code-label>192.168.2.1/24</code-label>；或者单个IP。可以填写多行，每行一个IP范围。",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "不在IP范围",
 		Code:            HTTPFirewallRuleOperatorNotIPRange,
 		Description:     "IP不在某个范围之内，范围格式可以是英文逗号分隔的<code-label>开始IP,结束IP</code-label>，比如<code-label>192.168.1.100,192.168.2.200</code-label>；或者CIDR格式的ip/bits，比如<code-label>192.168.2.1/24</code-label>；或者单个IP。可以填写多行，每行一个IP范围。",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "IP取模10",
 		Code:            HTTPFirewallRuleOperatorIPMod10,
 		Description:     "对IP参数值取模，除数为10，对比值为余数",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "IP取模100",
 		Code:            HTTPFirewallRuleOperatorIPMod100,
 		Description:     "对IP参数值取模，除数为100，对比值为余数",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "IP取模",
 		Code:            HTTPFirewallRuleOperatorIPMod,
 		Description:     "对IP参数值取模，对比值格式为：除数,余数，比如10,1",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 }
 
