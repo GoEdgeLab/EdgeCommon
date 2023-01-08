@@ -12911,7 +12911,7 @@
     },
     {
       "name": "ComposeUserDashboardResponse",
-      "code": "message ComposeUserDashboardResponse {\n\tint64 countServers = 1;\n\tint64 monthlyTrafficBytes = 2;\n\tint64 monthlyPeekBandwidthBytes = 3;\n\tint64 dailyTrafficBytes = 4;\n\tint64 dailyPeekBandwidthBytes = 5;\n\trepeated DailyTrafficStat dailyTrafficStats = 6;\n\trepeated DailyPeekBandwidthStat dailyPeekBandwidthStats = 7;\n\tint32 bandwidthPercentile = 8; // 带宽百分位\n\tint64 bandwidthPercentileBits = 9; // 带宽百分位上的比特数\n\n\n\tmessage DailyTrafficStat {\n\t\tstring day = 1;\n\t\tint64 bytes = 2;\n\t}\n\n\n\tmessage DailyPeekBandwidthStat {\n\t\tstring day = 1;\n\t\tint64 bytes = 2;\n\t}\n}",
+      "code": "message ComposeUserDashboardResponse {\n\tint64 countServers = 1;\n\tint64 monthlyTrafficBytes = 2;\n\tint64 monthlyPeekBandwidthBytes = 3;\n\tint64 dailyTrafficBytes = 4;\n\tint64 dailyPeekBandwidthBytes = 5;\n\trepeated DailyTrafficStat dailyTrafficStats = 6;\n\trepeated DailyPeekBandwidthStat dailyPeekBandwidthStats = 7;\n\tint32 bandwidthPercentile = 8; // 带宽百分位\n\tint64 bandwidthPercentileBits = 9; // 带宽百分位上的比特数\n\n\n\tmessage DailyTrafficStat {\n\t\tstring day = 1;\n\t\tint64 bytes = 2;\n\t\tint64 cachedBytes = 3;\n\t\tint64 attackBytes = 4;\n\t\tint64 countRequests = 5;\n\t\tint64 countCachedRequests = 6;\n\t\tint64 countAttackRequests = 7;\n\t}\n\n\n\tmessage DailyPeekBandwidthStat {\n\t\tstring day = 1;\n\t\tint64 bytes = 2;\n\t}\n}",
       "doc": ""
     },
     {

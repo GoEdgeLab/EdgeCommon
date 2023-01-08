@@ -234,6 +234,11 @@ message ComposeUserDashboardResponse {
 	message DailyTrafficStat {
 		string day = 1;
 		int64 bytes = 2;
+		int64 cachedBytes = 3;
+		int64 attackBytes = 4;
+		int64 countRequests = 5;
+		int64 countCachedRequests = 6;
+		int64 countAttackRequests = 7;
 	}
 
 	message DailyPeekBandwidthStat {
