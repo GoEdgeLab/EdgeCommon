@@ -19,9 +19,10 @@ type UserUIConfig struct {
 	LogoFileId     int64  `json:"logoFileId"`     // Logo文件ID
 	TimeZone       string `json:"timeZone"`       // 时区
 
-	BandwidthUnit       BandwidthUnit `json:"bandwidthUnit"`       // 带宽单位
-	ShowTrafficCharts   bool          `json:"showTrafficCharts"`   // 是否显示流量相关图表和数据
-	ShowBandwidthCharts bool          `json:"showBandwidthCharts"` // 是否显示带宽相关图表和数据
+	BandwidthUnit                BandwidthUnit `json:"bandwidthUnit"`                // 带宽单位
+	ShowTrafficCharts            bool          `json:"showTrafficCharts"`            // 是否显示流量相关图表和数据
+	ShowCacheInfoInTrafficCharts bool          `json:"showCacheInfoInTrafficCharts"` // 在流量图中显示缓存相关信息
+	ShowBandwidthCharts          bool          `json:"showBandwidthCharts"`          // 是否显示带宽相关图表和数据
 
 	TrafficStats struct {
 		BandwidthPercentile       int32  `json:"bandwidthPercentile"`       // 带宽百分位
