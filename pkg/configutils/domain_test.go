@@ -95,6 +95,14 @@ func TestMatchDomain(t *testing.T) {
 		a.IsTrue(ok)
 	}
 	{
+		var ok = MatchDomains([]string{"a.example.com:*"}, "a.example.com:8001")
+		a.IsTrue(ok)
+	}
+	{
+		var ok = MatchDomains([]string{"a.example.com:*"}, "a.example.com")
+		a.IsTrue(ok)
+	}
+	{
 		var ok = MatchDomains([]string{"*.example.com:*"}, "a.example.com:8001")
 		a.IsTrue(ok)
 	}

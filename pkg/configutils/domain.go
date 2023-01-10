@@ -64,7 +64,7 @@ func MatchDomain(pattern string, domain string) (isMatched bool) {
 			var portIndex = strings.LastIndex(patternPiece, ":*")
 			if portIndex >= 0 {
 				var prefix = patternPiece[:portIndex]
-				if strings.HasPrefix(domainPieces[index], prefix+":") {
+				if strings.HasPrefix(domainPieces[index], prefix+":") || domainPieces[index] == prefix {
 					continue
 				}
 			}
