@@ -1,3 +1,5 @@
+// Copyright 2022 Liuxiangchao iwind.liu@gmail.com. All rights reserved. Official site: https://goedge.cn .
+
 package firewallconfigs_test
 
 import (
@@ -7,15 +9,15 @@ import (
 	"testing"
 )
 
-func TestRuleOperator_Markdown(t *testing.T) {
+func TestRuleCheckpoint_Markdown(t *testing.T) {
 	var result = []string{}
-	for _, def := range firewallconfigs.AllRuleOperators {
+	for _, def := range firewallconfigs.AllCheckpoints {
 		def.Description = strings.ReplaceAll(def.Description, "<code-label>", "`")
 		def.Description = strings.ReplaceAll(def.Description, "</code-label>", "`")
 
 		var row = "## " + def.Name + "\n"
 		row += "* 名称：" + def.Name + "\n"
-		row += "* 代号：`" + def.Code + "`\n"
+		row += "* 代号：`${" + def.Prefix + "}`\n"
 		row += "* 描述：" + def.Description + "\n"
 		result = append(result, row)
 	}
