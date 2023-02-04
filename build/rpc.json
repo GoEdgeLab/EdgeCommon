@@ -3717,6 +3717,49 @@
       "doc": "认证相关服务"
     },
     {
+      "name": "LoginSessionService",
+      "methods": [
+        {
+          "name": "createLoginSession",
+          "requestMessageName": "CreateLoginSessionRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc createLoginSession(CreateLoginSessionRequest) returns (RPCSuccess);",
+          "doc": "创建SESSION",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "writeLoginSessionValue",
+          "requestMessageName": "WriteLoginSessionValueRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc writeLoginSessionValue(WriteLoginSessionValueRequest) returns (RPCSuccess);",
+          "doc": "写入SESSION数据",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "deleteLoginSession",
+          "requestMessageName": "DeleteLoginSessionRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deleteLoginSession(DeleteLoginSessionRequest) returns (RPCSuccess);",
+          "doc": "删除SESSION",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "findLoginSession",
+          "requestMessageName": "FindLoginSessionRequest",
+          "responseMessageName": "FindLoginSessionResponse",
+          "code": "rpc findLoginSession(FindLoginSessionRequest) returns (FindLoginSessionResponse);",
+          "doc": "查找SESSION",
+          "roles": [],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_login_session.proto",
+      "doc": "登录SESSION服务"
+    },
+    {
       "name": "MessageService",
       "methods": [
         {
@@ -13750,6 +13793,11 @@
       "doc": ""
     },
     {
+      "name": "CreateLoginSessionRequest",
+      "code": "message CreateLoginSessionRequest {\n\tstring sid = 1; // SESSION ID\n\tstring ip = 2; // 登录IP\n\tint64 expiresAt = 3; // 过期时间\n}",
+      "doc": "创建SESSION"
+    },
+    {
       "name": "CreateMessageMediaInstanceRequest",
       "code": "message CreateMessageMediaInstanceRequest {\n\tstring name = 1;\n\tstring mediaType = 2;\n\tbytes paramsJSON = 3;\n\trepeated int64 groupIds = 4;\n\tstring description = 5;\n\tbytes rateJSON = 6;\n\tint32 hashLife = 7;\n}",
       "doc": "创建接收人"
@@ -14493,6 +14541,11 @@
       "name": "DeleteLogPermanentlyRequest",
       "code": "message DeleteLogPermanentlyRequest {\n\tint64 logId = 1;\n}",
       "doc": "删除单条"
+    },
+    {
+      "name": "DeleteLoginSessionRequest",
+      "code": "message DeleteLoginSessionRequest {\n\tstring sid = 1;\n}",
+      "doc": "删除SESSION"
     },
     {
       "name": "DeleteLogsPermanentlyRequest",
@@ -17290,6 +17343,16 @@
       "doc": ""
     },
     {
+      "name": "FindLoginSessionRequest",
+      "code": "message FindLoginSessionRequest {\n\tstring sid = 1;\n}",
+      "doc": "查找SESSION"
+    },
+    {
+      "name": "FindLoginSessionResponse",
+      "code": "message FindLoginSessionResponse {\n\tLoginSession loginSession = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "FindNSAccessLogRequest",
       "code": "message FindNSAccessLogRequest {\n\tstring requestId = 1;\n}",
       "doc": "查找单个日志"
@@ -19018,6 +19081,11 @@
       "name": "LoginAdminResponse",
       "code": "message LoginAdminResponse {\n\tint64 adminId = 1;\n\tbool isOk = 2;\n\tstring message = 3;\n}",
       "doc": ""
+    },
+    {
+      "name": "LoginSession",
+      "code": "message LoginSession {\n\tint64 id = 1;\n\tint64 adminId = 2;\n\tint64 userId = 3;\n\tstring sid = 4;\n\tbytes valuesJSON = 5;\n\tstring ip = 6;\n\tint64 createdAt = 7;\n\tint64 expiresAt = 8;\n}",
+      "doc": "登录SESSION"
     },
     {
       "name": "LoginUserRequest",
@@ -21093,6 +21161,11 @@
       "name": "WriteHTTPAccessLogPolicyRequest",
       "code": "message WriteHTTPAccessLogPolicyRequest {\n\tint64 httpAccessLogPolicyId = 1;\n\tHTTPAccessLog httpAccessLog = 2;\n}",
       "doc": "测试写入某个访问日志策略"
+    },
+    {
+      "name": "WriteLoginSessionValueRequest",
+      "code": "message WriteLoginSessionValueRequest {\n\tstring sid = 1;\n\tstring key = 2;\n\tstring value = 3;\n}",
+      "doc": "写入SESSION数据"
     }
   ],
   "links": [

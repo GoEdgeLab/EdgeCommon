@@ -1,0 +1,16 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 登录SESSION
+message LoginSession {
+	int64 id = 1;
+	int64 adminId = 2;
+	int64 userId = 3;
+	string sid = 4;
+	bytes valuesJSON = 5;
+	string ip = 6;
+	int64 createdAt = 7;
+	int64 expiresAt = 8;
+}

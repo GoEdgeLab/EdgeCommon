@@ -1,0 +1,50 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_login_session.proto";
+import "models/rpc_messages.proto";
+
+// 登录SESSION服务
+service LoginSessionService {
+	// 创建SESSION
+	rpc createLoginSession(CreateLoginSessionRequest) returns (RPCSuccess);
+
+	// 写入SESSION数据
+	rpc writeLoginSessionValue(WriteLoginSessionValueRequest) returns (RPCSuccess);
+
+	// 删除SESSION
+	rpc deleteLoginSession(DeleteLoginSessionRequest) returns (RPCSuccess);
+
+	// 查找SESSION
+	rpc findLoginSession(FindLoginSessionRequest) returns (FindLoginSessionResponse);
+}
+
+// 创建SESSION
+message CreateLoginSessionRequest {
+	string sid = 1; // SESSION ID
+	string ip = 2; // 登录IP
+	int64 expiresAt = 3; // 过期时间
+}
+
+// 写入SESSION数据
+message WriteLoginSessionValueRequest {
+	string sid = 1;
+	string key = 2;
+	string value = 3;
+}
+
+// 删除SESSION
+message DeleteLoginSessionRequest {
+	string sid = 1;
+}
+
+// 查找SESSION
+message FindLoginSessionRequest {
+	string sid = 1;
+}
+
+message FindLoginSessionResponse {
+	LoginSession loginSession = 1;
+}

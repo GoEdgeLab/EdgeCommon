@@ -16,6 +16,7 @@ type HTTPFirewallRule struct {
 	Operator          string                 `yaml:"operator" json:"operator"`
 	Value             string                 `yaml:"value" json:"value"`
 	IsCaseInsensitive bool                   `yaml:"isCaseInsensitive" json:"isCaseInsensitive"`
+	IsComposed        bool                   `yaml:"isComposed" json:"isComposed"`
 	CheckpointOptions map[string]interface{} `yaml:"checkpointOptions" json:"checkpointOptions"`
 	Description       string                 `yaml:"description" json:"description"`
 }
