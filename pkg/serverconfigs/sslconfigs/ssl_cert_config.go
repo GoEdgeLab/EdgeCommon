@@ -35,6 +35,7 @@ type SSLCertConfig struct {
 	OCSPError     string `yaml:"ocspError" json:"ocspError"`
 
 	cert      *tls.Certificate
+	caCerts   []*x509.Certificate
 	timeBegin time.Time
 	timeEnd   time.Time
 }
@@ -43,6 +44,8 @@ type SSLCertConfig struct {
 func (this *SSLCertConfig) Init() error {
 	var commonNames []string // 发行组织
 	var dnsNames []string    // 域名
+
+	this.caCerts = []*x509.Certificate{}
 
 	// 分析证书
 	if this.IsCA { // CA证书
@@ -68,6 +71,7 @@ func (this *SSLCertConfig) Init() error {
 			if c == nil {
 				return errors.New("no available certificates in file")
 			}
+			this.caCerts = append(this.caCerts, c)
 
 			for _, dnsName := range c.DNSNames {
 				if !lists.ContainsString(dnsNames, dnsName) {
@@ -139,6 +143,10 @@ func (this *SSLCertConfig) MatchDomain(domain string) bool {
 // CertObject 获取证书对象
 func (this *SSLCertConfig) CertObject() *tls.Certificate {
 	return this.cert
+}
+
+func (this *SSLCertConfig) CACerts() []*x509.Certificate {
+	return this.caCerts
 }
 
 // TimeBegin 开始时间

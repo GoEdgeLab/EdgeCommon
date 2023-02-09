@@ -71,6 +71,8 @@ func (this *SSLPolicy) Init() error {
 	}
 
 	// CA certs
+	this.clientCAPool = x509.NewCertPool()
+
 	for _, cert := range this.ClientCACerts {
 		err := cert.Init()
 		if err != nil {
@@ -79,6 +81,10 @@ func (this *SSLPolicy) Init() error {
 		certs = append(certs, *cert.CertObject())
 		for _, dnsName := range cert.DNSNames {
 			this.nameMapping[dnsName] = cert.CertObject()
+		}
+
+		for _, caCert := range cert.CACerts() {
+			this.clientCAPool.AddCert(caCert)
 		}
 	}
 
