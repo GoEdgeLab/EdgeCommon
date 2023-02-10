@@ -87,6 +87,11 @@ func FindAllMetricKeyDefinitions(category MetricItemCategory) []*shared.Definiti
 				Description: "请求路径中的文件扩展名，包括点符号，比如.html、.png",
 			},
 			{
+				Name:        "小写文件扩展名",
+				Code:        "${requestPathLowerExtension}",
+				Description: "请求路径中的文件扩展名小写形式，包括点符号，比如.html、.png",
+			},
+			{
 				Name:        "主机名",
 				Code:        "${host}",
 				Description: "通常是请求的域名",

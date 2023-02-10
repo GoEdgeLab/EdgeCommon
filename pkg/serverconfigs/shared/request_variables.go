@@ -18,6 +18,8 @@ func DefaultRequestVariables() []maps.Map {
 		{"code": "${requestLength}", "name": "请求内容长度", "description": ""},
 		{"code": "${requestMethod}", "name": "请求方法", "description": "比如GET、POST"},
 		{"code": "${requestFilename}", "name": "请求文件路径", "description": ""},
+		{"code": "${requestPathExtension}", "name": "请求文件扩展名", "description": "请求路径中的文件扩展名，包括点符号，比如.html、.png"},
+		{"code": "${requestPathLowerExtension}", "name": "请求文件小写扩展名", "description": "请求路径中的文件扩展名，其中大写字母会被自动转换为小写，包括点符号，比如.html、.png"},
 		{"code": "${scheme}", "name": "请求协议，http或https", "description": ""},
 		{"code": "${proto}", "name": "包含版本的HTTP请求协议", "description:": "类似于HTTP/1.0"},
 		{"code": "${timeISO8601}", "name": "ISO 8601格式的时间", "description": "比如2018-07-16T23:52:24.839+08:00"},

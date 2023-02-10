@@ -71,7 +71,7 @@
 					{
 						"type": "url-extension",
 						"isRequest": true,
-						"param": "${requestPathExtension}",
+						"param": "${requestPathLowerExtension}",
 						"operator": "in",
 						"value": "[\".css\",\".png\",\".js\",\".woff2\"]",
 						"isReverse": false,
