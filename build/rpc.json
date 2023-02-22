@@ -13035,7 +13035,7 @@
     },
     {
       "name": "AuthorityKey",
-      "code": "message AuthorityKey {\n\tstring value = 1;\n\tstring dayFrom = 2;\n\tstring dayTo = 3;\n\tstring hostname = 4;\n\trepeated string macAddresses = 5;\n\tint64 updatedAt = 6;\n\tstring company = 7;\n\tint32 nodes = 8;\n\trepeated string components = 9;\n}",
+      "code": "message AuthorityKey {\n\tstring value = 1;\n\tstring dayFrom = 2;\n\tstring dayTo = 3;\n\tstring hostname = 4;\n\trepeated string macAddresses = 5;\n\tint64 updatedAt = 6;\n\tstring company = 7;\n\tint32 nodes = 8;\n\trepeated string components = 9;\n\tstring edition = 10;\n\tstring requestCode = 11;\n}",
       "doc": "版本认证"
     },
     {
@@ -14320,7 +14320,7 @@
     },
     {
       "name": "CreateHTTPWebRequest",
-      "code": "message CreateHTTPWebRequest {\n\tbytes rootJSON = 1;\n}",
+      "code": "message CreateHTTPWebRequest {\n\tbytes rootJSON = 1; // 可选，静态分发配置\n}",
       "doc": "创建Web配置"
     },
     {

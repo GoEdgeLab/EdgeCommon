@@ -35,7 +35,7 @@ type CreateHTTPWebRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	RootJSON []byte `protobuf:"bytes,1,opt,name=rootJSON,proto3" json:"rootJSON,omitempty"`
+	RootJSON []byte `protobuf:"bytes,1,opt,name=rootJSON,proto3" json:"rootJSON,omitempty"` // 可选，静态分发配置
 }
 
 func (x *CreateHTTPWebRequest) Reset() {
