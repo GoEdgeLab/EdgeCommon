@@ -1,0 +1,78 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ad_network.proto";
+import "models/rpc_messages.proto";
+
+// 高防线路服务
+service ADNetworkService {
+	// 创建线路
+	rpc createADNetwork(CreateADNetworkRequest) returns (CreateADNetworkResponse);
+
+	// 修改线路
+	rpc updateADNetwork(UpdateADNetworkRequest) returns (RPCSuccess);
+
+	// 查找单个线路
+	rpc findADNetwork(FindADNetworkRequest) returns (FindADNetworkResponse);
+
+	// 列出所有线路
+	rpc findAllADNetworks(FindAllADNetworkRequest) returns (FindAllADNetworkResponse);
+
+	// 列出所有可用的线路
+	rpc findAllAvailableADNetworks(FindAllAvailableADNetworksRequest) returns (FindAllAvailableADNetworksResponse);
+
+	// 删除线路
+	rpc deleteADNetwork(DeleteADNetworkRequest) returns (RPCSuccess);
+}
+
+// 创建线路
+message CreateADNetworkRequest {
+	string name = 1;
+	string description = 2;
+}
+
+message CreateADNetworkResponse {
+	int64 adNetworkId = 1;
+}
+
+// 修改线路
+message UpdateADNetworkRequest {
+	int64 adNetworkId = 1;
+	bool isOn = 2;
+	string name = 3;
+	string description = 4;
+}
+
+// 查找单个线路
+message FindADNetworkRequest {
+	int64 adNetworkId = 1;
+}
+
+message FindADNetworkResponse {
+	ADNetwork adNetwork = 1;
+}
+
+// 列出所有线路
+message FindAllADNetworkRequest {
+
+}
+
+message FindAllADNetworkResponse {
+	repeated ADNetwork adNetworks = 1;
+}
+
+// 列出所有可用的线路
+message FindAllAvailableADNetworksRequest {
+
+}
+
+message FindAllAvailableADNetworksResponse {
+	repeated ADNetwork adNetworks = 1;
+}
+
+// 删除线路
+message DeleteADNetworkRequest {
+	int64 adNetworkId = 1;
+}

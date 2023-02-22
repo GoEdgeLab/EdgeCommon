@@ -1,0 +1,105 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ad_package_instance.proto";
+import "models/rpc_messages.proto";
+
+// 高防实例服务
+service ADPackageInstanceService {
+	// 创建实例
+	rpc createADPackageInstance(CreateADPackageInstanceRequest) returns (CreateADPackageInstanceResponse);
+
+	// 修改实例
+	rpc updateADPackageInstance(UpdateADPackageInstanceRequest) returns (RPCSuccess);
+
+	// 查找单个实例
+	rpc findADPackageInstance(FindADPackageInstanceRequest) returns (FindADPackageInstanceResponse);
+
+	// 列出单个高防产品所有实例
+	rpc findAllADPackageInstances(FindAllADPackageInstancesRequest) returns (FindAllADPackageInstancesResponse);
+
+	// 删除实例
+	rpc deleteADPackageInstance(DeleteADPackageInstanceRequest) returns (RPCSuccess);
+
+	// 计算可购的实例数量
+	rpc countIdleADPackageInstances(CountIdleADPackageInstancesRequest) returns (RPCCountResponse);
+
+	// 计算实例数量
+	rpc countADPackageInstances(CountADPackageInstancesRequest) returns (RPCCountResponse);
+
+	// 列出单页实例
+	rpc listADPackageInstances(ListADPackageInstancesRequest) returns (ListADPackageInstancesResponse);
+}
+
+// 创建实例
+message CreateADPackageInstanceRequest {
+	int64 adPackageId = 1;
+	int64 nodeClusterId = 2;
+	repeated int64 nodeIds = 3;
+	repeated string ipAddresses = 4;
+}
+
+message CreateADPackageInstanceResponse {
+	int64 adPackageInstanceId = 1;
+}
+
+// 修改实例
+message UpdateADPackageInstanceRequest {
+	int64 adPackageInstanceId = 1;
+	int64 nodeClusterId = 2;
+	repeated int64 nodeIds = 3;
+	repeated string ipAddresses = 4;
+	bool isOn = 5;
+}
+
+// 查找单个实例
+message FindADPackageInstanceRequest {
+	int64 adPackageInstanceId = 1;
+}
+
+message FindADPackageInstanceResponse {
+	ADPackageInstance adPackageInstance = 1;
+}
+
+// 列出单个高防产品所有实例
+message FindAllADPackageInstancesRequest {
+	int64 adPackageId = 1;
+}
+
+message FindAllADPackageInstancesResponse {
+	repeated ADPackageInstance adPackageInstances = 1;
+}
+
+// 删除实例
+message DeleteADPackageInstanceRequest {
+	int64 adPackageInstanceId = 1;
+}
+
+// 计算可购的实例数量
+message CountIdleADPackageInstancesRequest {
+	int64 adPackageId = 1;
+}
+
+// 计算实例数量
+message CountADPackageInstancesRequest {
+	int64 adNetworkId = 1; // 可选，线路
+	int64 adPackageId = 2; // 可选，如果不填则表示获取所有实例数量
+	int64 userId = 3; // 可选，用户ID
+	string ip = 4;  // 可选，高防IP
+}
+
+// 列出单页实例
+message ListADPackageInstancesRequest {
+	int64 adNetworkId = 1; // 可选，线路
+	int64 adPackageId = 2; // 可选，如果不填则表示获取所有实例数量
+	int64 userId = 3; // 可选，用户ID
+	string ip = 4; // 可选，高防IP
+	int64 offset = 5;
+	int64 size = 6;
+}
+
+message ListADPackageInstancesResponse {
+	repeated ADPackageInstance adPackageInstances = 1;
+}

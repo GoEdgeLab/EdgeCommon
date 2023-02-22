@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ad_network.proto";
+
+// 高防产品
+message ADPackage {
+	int64 id = 1;
+	bool isOn = 2;
+	int64 adNetworkId = 3;
+	int32 protectionBandwidthSize = 4;
+	string protectionBandwidthUnit = 5;
+	int32 serverBandwidthSize = 6;
+	string serverBandwidthUnit = 7;
+
+	ADNetwork adNetwork = 30;
+	string summary = 31; // 概述
+	int64 countIdleADPackageInstances = 32; // 剩余可用的实例数，只有在获取可用高防产品的时候才会返回
+}

@@ -1,0 +1,76 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ad_package_period.proto";
+import "models/rpc_messages.proto";
+
+// 高防实例有效期服务
+service ADPackagePeriodService {
+	// 创建有效期
+	rpc createADPackagePeriod(CreateADPackagePeriodRequest) returns (CreateADPackagePeriodResponse);
+
+	// 修改有效期
+	rpc updateADPackagePeriod(UpdateADPackagePeriodRequest) returns (RPCSuccess);
+
+	// 删除有效期
+	rpc deleteADPackagePeriod(DeleteADPackagePeriodRequest) returns (RPCSuccess);
+
+	// 查找有效期
+	rpc findADPackagePeriod(FindADPackagePeriodRequest) returns (FindADPackagePeriodResponse);
+
+	// 列出所有有效期
+	rpc findAllADPackagePeriods(FindAllADPackagePeriodsRequest) returns (FindAllADPackagePeriodsResponse);
+
+	// 列出所有可用有效期
+	rpc findAllAvailableADPackagePeriods(FindAllAvailableADPackagePeriodsRequest) returns (FindAllAvailableADPackagePeriodsResponse);
+}
+
+// 创建有效期
+message CreateADPackagePeriodRequest {
+	int32 count = 1;
+	string unit = 2; // month | year
+}
+
+message CreateADPackagePeriodResponse {
+	int64 adPackagePeriodId = 1;
+}
+
+// 修改有效期
+message UpdateADPackagePeriodRequest {
+	int64 adPackagePeriodId = 1;
+	bool isOn = 2;
+}
+
+// 删除有效期
+message DeleteADPackagePeriodRequest {
+	int64 adPackagePeriodId = 1;
+}
+
+// 查找有效期
+message FindADPackagePeriodRequest {
+	int64 adPackagePeriodId = 1;
+}
+
+message FindADPackagePeriodResponse {
+	ADPackagePeriod adPackagePeriod = 1;
+}
+
+// 列出所有有效期
+message FindAllADPackagePeriodsRequest {
+
+}
+
+message FindAllADPackagePeriodsResponse {
+	repeated ADPackagePeriod adPackagePeriods = 1;
+}
+
+// 列出所有可用有效期
+message FindAllAvailableADPackagePeriodsRequest {
+
+}
+
+message FindAllAvailableADPackagePeriodsResponse {
+	repeated ADPackagePeriod adPackagePeriods = 1;
+}

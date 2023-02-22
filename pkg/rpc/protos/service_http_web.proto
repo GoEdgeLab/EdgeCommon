@@ -116,7 +116,7 @@ service HTTPWebService {
 
 // 创建Web配置
 message CreateHTTPWebRequest {
-	bytes rootJSON = 1;
+	bytes rootJSON = 1; // 可选，静态分发配置
 }
 
 message CreateHTTPWebResponse {

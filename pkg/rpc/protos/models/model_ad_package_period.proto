@@ -1,0 +1,13 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 高防实例有效期
+message ADPackagePeriod {
+	int64 id = 1;
+	bool isOn = 2;
+	int32 count = 3;
+	string unit = 4;
+	int32 months = 5;
+}

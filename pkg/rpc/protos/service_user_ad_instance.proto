@@ -1,0 +1,108 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_user_ad_instance.proto";
+import "models/rpc_messages.proto";
+
+// 用户高防实例服务
+service UserADInstanceService {
+	// 创建用户高防实例
+	rpc createUserADInstance(CreateUserADInstanceRequest) returns (CreateUserADInstanceResponse);
+
+	// 购买用户高防实例
+	rpc buyUserADInstance(BuyUserADInstanceRequest) returns (BuyUserADInstanceResponse);
+
+	// 计算用户高防实例数量
+	rpc countUserADInstances(CountUserADInstancesRequest) returns (RPCCountResponse);
+
+	// 列出单页用户高防实例
+	rpc listUserADInstances(ListUserADInstancesRequest) returns (ListUserADInstancesResponse);
+
+	// 查找单个用户高防实例
+	rpc findUserADInstance(FindUserADInstanceRequest) returns (FindUserADInstanceResponse);
+
+	// 删除用户高防实例
+	rpc deleteUserADInstance(DeleteUserADInstanceRequest) returns (RPCSuccess);
+
+	// 续期用户高防实例
+	rpc renewUserADInstance(RenewUserADInstanceRequest) returns (RPCSuccess);
+
+	// 修改实例防护对象
+	rpc updateUserADInstanceObjects(UpdateUserADInstanceObjectsRequest) returns (RPCSuccess);
+}
+
+// 创建用户高防实例
+message CreateUserADInstanceRequest {
+	int64 userId = 1;
+	int64 adPackageId = 2;
+	int64 adPackagePeriodId = 3;
+	int32 count = 4;
+}
+
+message CreateUserADInstanceResponse {
+	repeated int64 userADInstanceIds = 1;
+}
+
+// 购买用户高防实例
+message BuyUserADInstanceRequest {
+	int64 userId = 1;
+	int64 adPackageId = 2;
+	int64 adPackagePeriodId = 3;
+	int32 count = 4;
+}
+
+message BuyUserADInstanceResponse {
+	repeated int64 userADInstanceIds = 1;
+}
+
+// 查询用户高防实例数量
+message CountUserADInstancesRequest {
+	int64 adNetworkId = 1; // 线路ID
+	int64 userId = 2; // 用户ID
+	int64 adPackagePeriodId = 3;
+	string expiresDay = 4;
+	bool availableOnly = 5; // 是否只查询有效的高防实例
+}
+
+// 列出单页用户高防实例
+message ListUserADInstancesRequest {
+	int64 adNetworkId = 1; // 线路ID
+	int64 userId = 2; // 用户ID
+	int64 adPackagePeriodId = 3;
+	string expiresDay = 4;
+	bool availableOnly = 5; // 是否只查询有效的高防实例
+	int64 offset = 6;
+	int64 size = 7;
+}
+
+message ListUserADInstancesResponse {
+	repeated UserADInstance userADInstances = 1;
+}
+
+// 查找单个用户高防实例
+message FindUserADInstanceRequest {
+	int64 userADInstanceId = 1;
+}
+
+message FindUserADInstanceResponse {
+	UserADInstance userADInstance = 1;
+}
+
+// 删除用户高防实例
+message DeleteUserADInstanceRequest {
+	int64 userADInstanceId = 1;
+}
+
+// 续期用户高防实例
+message RenewUserADInstanceRequest {
+	int64 userADInstanceId = 1;
+	int64 adPackagePeriodId = 2;
+}
+
+// 修改实例防护对象
+message UpdateUserADInstanceObjectsRequest {
+	int64 userADInstanceId = 1;
+	repeated string objectCodes = 2;
+}

@@ -1,0 +1,67 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ad_package_price.proto";
+import "models/rpc_messages.proto";
+
+// 高防产品价格服务
+service ADPackagePriceService {
+	// 设置高防产品价格
+	rpc updateADPackagePrice(UpdateADPackagePriceRequest) returns (RPCSuccess);
+
+	// 获取单个高防产品具体价格
+	rpc findADPackagePrice(FindADPackagePriceRequest) returns (FindADPackagePriceResponse);
+
+	// 计算高防产品价格项数量
+	rpc countADPackagePrices(CountADPackagePricesRequest) returns (RPCCountResponse);
+
+	// 查找高防产品价格
+	rpc findADPackagePrices(FindADPackagePricesRequest) returns (FindADPackagePricesResponse);
+
+	// 查找所有高防产品价格
+	rpc findAllADPackagePrices(FindAllADPackagePricesRequest) returns (FindAllADPackagePricesResponse);
+}
+
+// 设置高防产品价格
+message UpdateADPackagePriceRequest {
+	int64 adPackageId = 1;
+	int64 adPackagePeriodId = 2;
+	double price = 3;
+}
+
+// 获取单个高防产品具体价格
+message FindADPackagePriceRequest {
+	int64 adPackageId = 1;
+	int64 adPackagePeriodId = 2;
+	int32 count = 3;
+}
+
+message FindADPackagePriceResponse {
+	double price = 1; // 单价
+	double amount = 2; // 总价
+}
+
+// 计算高防产品价格项数量
+message CountADPackagePricesRequest {
+	int64 adPackageId = 1;
+}
+
+// 查找高防产品价格
+message FindADPackagePricesRequest {
+	int64 adPackageId = 1;
+}
+
+message FindADPackagePricesResponse {
+	repeated ADPackagePrice adPackagePrices = 1;
+}
+
+// 查找所有高防产品价格
+message FindAllADPackagePricesRequest {
+
+}
+
+message FindAllADPackagePricesResponse {
+	repeated ADPackagePrice adPackagePrices = 1;
+}

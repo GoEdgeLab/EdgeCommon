@@ -1,0 +1,25 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_node_cluster.proto";
+import "models/model_ad_package.proto";
+import "models/model_user.proto";
+
+// 高防产品实例
+message ADPackageInstance {
+	int64 id = 1;
+	bool isOn = 2;
+	int64 adPackageId = 3;
+	int64 nodeClusterId = 4;
+	repeated int64 nodeIds = 5;
+	repeated string ipAddresses = 6;
+	int64 userId = 7; // 租用用户ID
+	string userDayTo = 8; // 租用日期
+	int64 userInstanceId = 9; // 当前绑定的用户实例ID
+
+	NodeCluster nodeCluster = 30;
+	ADPackage adPackage = 31;
+	User user = 32;
+}

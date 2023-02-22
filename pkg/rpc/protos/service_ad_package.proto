@@ -1,0 +1,102 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ad_package.proto";
+import "models/rpc_messages.proto";
+
+// 高防产品服务
+service ADPackageService {
+	// 创建高防产品
+	rpc createADPackage(CreateADPackageRequest) returns (CreateADPackageResponse);
+
+	// 修改高防产品
+	rpc updateADPackage(UpdateADPackageRequest) returns (RPCSuccess);
+
+	// 查找单个高防产品
+	rpc findADPackage(FindADPackageRequest) returns (FindADPackageResponse);
+
+	// 查询高防产品数量
+	rpc countADPackages(CountADPackagesRequest) returns (RPCCountResponse);
+
+	// 查询可用的产品数量
+	rpc countAllIdleADPackages(CountAllIdleADPackages) returns (RPCCountResponse);
+
+	// 列出单页高防产品
+	rpc listADPackages(ListADPackagesRequest) returns (ListADPackagesResponse);
+
+	// 列出所有可用的高防产品
+	rpc findAllIdleADPackages(FindAllIdleADPackagesRequest) returns (FindAllIdleADPackagesResponse);
+
+	// 删除高防产品
+	rpc deleteADPackage(DeleteADPackageRequest) returns (RPCSuccess);
+}
+
+// 创建高防产品
+message CreateADPackageRequest {
+	int64 adNetworkId = 1;
+	int32 protectionBandwidthSize = 2;
+	string protectionBandwidthUnit = 3;
+	int32  serverBandwidthSize = 4;
+	string serverBandwidthUnit = 5;
+}
+
+message CreateADPackageResponse {
+	int64 adPackageId = 1;
+}
+
+// 修改高防产品
+message UpdateADPackageRequest {
+	int64 adPackageId = 1;
+	bool isOn = 2;
+	int64 adNetworkId = 3;
+	int32 protectionBandwidthSize = 4;
+	string protectionBandwidthUnit = 5;
+	int32  serverBandwidthSize = 6;
+	string serverBandwidthUnit = 7;
+}
+
+// 查找单个高防产品
+message FindADPackageRequest {
+	int64 adPackageId = 1;
+}
+
+message FindADPackageResponse {
+	ADPackage adPackage = 1;
+}
+
+// 查询高防产品数量
+message CountADPackagesRequest {
+	int64 adNetworkId = 1;
+}
+
+// 查询可用的产品数量
+message CountAllIdleADPackages {
+
+}
+
+// 列出单页高防产品
+message ListADPackagesRequest {
+	int64 adNetworkId = 1;
+	int64 offset = 2;
+	int64 size = 3;
+}
+
+message ListADPackagesResponse {
+	repeated ADPackage adPackages = 1;
+}
+
+// 列出所有可用的高防产品
+message FindAllIdleADPackagesRequest {
+
+}
+
+message FindAllIdleADPackagesResponse {
+	repeated ADPackage adPackages = 1;
+}
+
+// 删除高防产品
+message DeleteADPackageRequest {
+	int64 adPackageId = 1;
+}

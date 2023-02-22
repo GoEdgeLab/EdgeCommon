@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 高防产品价格定义
+message ADPackagePrice {
+	int64 adPackageId = 1;
+	int64 adPackagePeriodId = 2;
+	double price = 3;
+}

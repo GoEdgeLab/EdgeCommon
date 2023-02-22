@@ -1,0 +1,29 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_ad_package_instance.proto";
+import "models/model_user.proto";
+
+// 高防实例
+message UserADInstance {
+	int64 id = 1;
+	int64 userId = 2;
+	int64 adPackageInstanceId = 3;
+	int64 adPackagePeriodId = 4;
+	int32 adPackagePeriodCount = 5;
+	string adPackagePeriodUnit = 6;
+	string dayFrom = 7; // 开始日期，格式：YYYYMMDD
+	string dayTo = 8; // 结束日期，格式：YYYYMMDD
+	int64 createdAt = 9;
+	int32 maxObjects = 10;
+	repeated string objectCodes = 11;
+
+	ADPackageInstance adPackageInstance = 30;
+	User user = 31;
+	bool canDelete = 32;
+	bool isAvailable = 33; // 当前是否在生效中
+	int32 countObjects = 34; // 防护对象数量
+	bytes objectsJSON = 35; // 对象JSON
+}

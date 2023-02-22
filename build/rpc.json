@@ -351,6 +351,404 @@
       "doc": "ACME用户相关服务"
     },
     {
+      "name": "ADNetworkService",
+      "methods": [
+        {
+          "name": "createADNetwork",
+          "requestMessageName": "CreateADNetworkRequest",
+          "responseMessageName": "CreateADNetworkResponse",
+          "code": "rpc createADNetwork(CreateADNetworkRequest) returns (CreateADNetworkResponse);",
+          "doc": "创建线路",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateADNetwork",
+          "requestMessageName": "UpdateADNetworkRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateADNetwork(UpdateADNetworkRequest) returns (RPCSuccess);",
+          "doc": "修改线路",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findADNetwork",
+          "requestMessageName": "FindADNetworkRequest",
+          "responseMessageName": "FindADNetworkResponse",
+          "code": "rpc findADNetwork(FindADNetworkRequest) returns (FindADNetworkResponse);",
+          "doc": "查找单个线路",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findAllADNetworks",
+          "requestMessageName": "FindAllADNetworkRequest",
+          "responseMessageName": "FindAllADNetworkResponse",
+          "code": "rpc findAllADNetworks(FindAllADNetworkRequest) returns (FindAllADNetworkResponse);",
+          "doc": "列出所有线路",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findAllAvailableADNetworks",
+          "requestMessageName": "FindAllAvailableADNetworksRequest",
+          "responseMessageName": "FindAllAvailableADNetworksResponse",
+          "code": "rpc findAllAvailableADNetworks(FindAllAvailableADNetworksRequest) returns (FindAllAvailableADNetworksResponse);",
+          "doc": "列出所有可用的线路",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "deleteADNetwork",
+          "requestMessageName": "DeleteADNetworkRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deleteADNetwork(DeleteADNetworkRequest) returns (RPCSuccess);",
+          "doc": "删除线路",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_ad_network.proto",
+      "doc": "高防线路服务"
+    },
+    {
+      "name": "ADPackageService",
+      "methods": [
+        {
+          "name": "createADPackage",
+          "requestMessageName": "CreateADPackageRequest",
+          "responseMessageName": "CreateADPackageResponse",
+          "code": "rpc createADPackage(CreateADPackageRequest) returns (CreateADPackageResponse);",
+          "doc": "创建高防产品",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateADPackage",
+          "requestMessageName": "UpdateADPackageRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateADPackage(UpdateADPackageRequest) returns (RPCSuccess);",
+          "doc": "修改高防产品",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findADPackage",
+          "requestMessageName": "FindADPackageRequest",
+          "responseMessageName": "FindADPackageResponse",
+          "code": "rpc findADPackage(FindADPackageRequest) returns (FindADPackageResponse);",
+          "doc": "查找单个高防产品",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "countADPackages",
+          "requestMessageName": "CountADPackagesRequest",
+          "responseMessageName": "RPCCountResponse",
+          "code": "rpc countADPackages(CountADPackagesRequest) returns (RPCCountResponse);",
+          "doc": "查询高防产品数量",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "countAllIdleADPackages",
+          "requestMessageName": "CountAllIdleADPackages",
+          "responseMessageName": "RPCCountResponse",
+          "code": "rpc countAllIdleADPackages(CountAllIdleADPackages) returns (RPCCountResponse);",
+          "doc": "查询可用的产品数量",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "listADPackages",
+          "requestMessageName": "ListADPackagesRequest",
+          "responseMessageName": "ListADPackagesResponse",
+          "code": "rpc listADPackages(ListADPackagesRequest) returns (ListADPackagesResponse);",
+          "doc": "列出单页高防产品",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findAllIdleADPackages",
+          "requestMessageName": "FindAllIdleADPackagesRequest",
+          "responseMessageName": "FindAllIdleADPackagesResponse",
+          "code": "rpc findAllIdleADPackages(FindAllIdleADPackagesRequest) returns (FindAllIdleADPackagesResponse);",
+          "doc": "列出所有可用的高防产品",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "deleteADPackage",
+          "requestMessageName": "DeleteADPackageRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deleteADPackage(DeleteADPackageRequest) returns (RPCSuccess);",
+          "doc": "删除高防产品",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_ad_package.proto",
+      "doc": "高防产品服务"
+    },
+    {
+      "name": "ADPackageInstanceService",
+      "methods": [
+        {
+          "name": "createADPackageInstance",
+          "requestMessageName": "CreateADPackageInstanceRequest",
+          "responseMessageName": "CreateADPackageInstanceResponse",
+          "code": "rpc createADPackageInstance(CreateADPackageInstanceRequest) returns (CreateADPackageInstanceResponse);",
+          "doc": "创建实例",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateADPackageInstance",
+          "requestMessageName": "UpdateADPackageInstanceRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateADPackageInstance(UpdateADPackageInstanceRequest) returns (RPCSuccess);",
+          "doc": "修改实例",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findADPackageInstance",
+          "requestMessageName": "FindADPackageInstanceRequest",
+          "responseMessageName": "FindADPackageInstanceResponse",
+          "code": "rpc findADPackageInstance(FindADPackageInstanceRequest) returns (FindADPackageInstanceResponse);",
+          "doc": "查找单个实例",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findAllADPackageInstances",
+          "requestMessageName": "FindAllADPackageInstancesRequest",
+          "responseMessageName": "FindAllADPackageInstancesResponse",
+          "code": "rpc findAllADPackageInstances(FindAllADPackageInstancesRequest) returns (FindAllADPackageInstancesResponse);",
+          "doc": "列出单个高防产品所有实例",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "deleteADPackageInstance",
+          "requestMessageName": "DeleteADPackageInstanceRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deleteADPackageInstance(DeleteADPackageInstanceRequest) returns (RPCSuccess);",
+          "doc": "删除实例",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "countIdleADPackageInstances",
+          "requestMessageName": "CountIdleADPackageInstancesRequest",
+          "responseMessageName": "RPCCountResponse",
+          "code": "rpc countIdleADPackageInstances(CountIdleADPackageInstancesRequest) returns (RPCCountResponse);",
+          "doc": "计算可购的实例数量",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "countADPackageInstances",
+          "requestMessageName": "CountADPackageInstancesRequest",
+          "responseMessageName": "RPCCountResponse",
+          "code": "rpc countADPackageInstances(CountADPackageInstancesRequest) returns (RPCCountResponse);",
+          "doc": "计算实例数量",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "listADPackageInstances",
+          "requestMessageName": "ListADPackageInstancesRequest",
+          "responseMessageName": "ListADPackageInstancesResponse",
+          "code": "rpc listADPackageInstances(ListADPackageInstancesRequest) returns (ListADPackageInstancesResponse);",
+          "doc": "列出单页实例",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_ad_package_instance.proto",
+      "doc": "高防实例服务"
+    },
+    {
+      "name": "ADPackagePeriodService",
+      "methods": [
+        {
+          "name": "createADPackagePeriod",
+          "requestMessageName": "CreateADPackagePeriodRequest",
+          "responseMessageName": "CreateADPackagePeriodResponse",
+          "code": "rpc createADPackagePeriod(CreateADPackagePeriodRequest) returns (CreateADPackagePeriodResponse);",
+          "doc": "创建有效期",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateADPackagePeriod",
+          "requestMessageName": "UpdateADPackagePeriodRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateADPackagePeriod(UpdateADPackagePeriodRequest) returns (RPCSuccess);",
+          "doc": "修改有效期",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "deleteADPackagePeriod",
+          "requestMessageName": "DeleteADPackagePeriodRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deleteADPackagePeriod(DeleteADPackagePeriodRequest) returns (RPCSuccess);",
+          "doc": "删除有效期",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findADPackagePeriod",
+          "requestMessageName": "FindADPackagePeriodRequest",
+          "responseMessageName": "FindADPackagePeriodResponse",
+          "code": "rpc findADPackagePeriod(FindADPackagePeriodRequest) returns (FindADPackagePeriodResponse);",
+          "doc": "查找有效期",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findAllADPackagePeriods",
+          "requestMessageName": "FindAllADPackagePeriodsRequest",
+          "responseMessageName": "FindAllADPackagePeriodsResponse",
+          "code": "rpc findAllADPackagePeriods(FindAllADPackagePeriodsRequest) returns (FindAllADPackagePeriodsResponse);",
+          "doc": "列出所有有效期",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findAllAvailableADPackagePeriods",
+          "requestMessageName": "FindAllAvailableADPackagePeriodsRequest",
+          "responseMessageName": "FindAllAvailableADPackagePeriodsResponse",
+          "code": "rpc findAllAvailableADPackagePeriods(FindAllAvailableADPackagePeriodsRequest) returns (FindAllAvailableADPackagePeriodsResponse);",
+          "doc": "列出所有可用有效期",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_ad_package_period.proto",
+      "doc": "高防实例有效期服务"
+    },
+    {
+      "name": "ADPackagePriceService",
+      "methods": [
+        {
+          "name": "updateADPackagePrice",
+          "requestMessageName": "UpdateADPackagePriceRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateADPackagePrice(UpdateADPackagePriceRequest) returns (RPCSuccess);",
+          "doc": "设置高防产品价格",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findADPackagePrice",
+          "requestMessageName": "FindADPackagePriceRequest",
+          "responseMessageName": "FindADPackagePriceResponse",
+          "code": "rpc findADPackagePrice(FindADPackagePriceRequest) returns (FindADPackagePriceResponse);",
+          "doc": "获取单个高防产品具体价格",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "countADPackagePrices",
+          "requestMessageName": "CountADPackagePricesRequest",
+          "responseMessageName": "RPCCountResponse",
+          "code": "rpc countADPackagePrices(CountADPackagePricesRequest) returns (RPCCountResponse);",
+          "doc": "计算高防产品价格项数量",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findADPackagePrices",
+          "requestMessageName": "FindADPackagePricesRequest",
+          "responseMessageName": "FindADPackagePricesResponse",
+          "code": "rpc findADPackagePrices(FindADPackagePricesRequest) returns (FindADPackagePricesResponse);",
+          "doc": "查找高防产品价格",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findAllADPackagePrices",
+          "requestMessageName": "FindAllADPackagePricesRequest",
+          "responseMessageName": "FindAllADPackagePricesResponse",
+          "code": "rpc findAllADPackagePrices(FindAllADPackagePricesRequest) returns (FindAllADPackagePricesResponse);",
+          "doc": "查找所有高防产品价格",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_ad_package_price.proto",
+      "doc": "高防产品价格服务"
+    },
+    {
       "name": "AdminService",
       "methods": [
         {
@@ -3725,7 +4123,9 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc createLoginSession(CreateLoginSessionRequest) returns (RPCSuccess);",
           "doc": "创建SESSION",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         },
         {
@@ -3734,7 +4134,9 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc writeLoginSessionValue(WriteLoginSessionValueRequest) returns (RPCSuccess);",
           "doc": "写入SESSION数据",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         },
         {
@@ -3743,7 +4145,9 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc deleteLoginSession(DeleteLoginSessionRequest) returns (RPCSuccess);",
           "doc": "删除SESSION",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         },
         {
@@ -3752,7 +4156,9 @@
           "responseMessageName": "FindLoginSessionResponse",
           "code": "rpc findLoginSession(FindLoginSessionRequest) returns (FindLoginSessionResponse);",
           "doc": "查找SESSION",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         }
       ],
@@ -11593,6 +11999,101 @@
       "doc": "用户账户日志服务"
     },
     {
+      "name": "UserADInstanceService",
+      "methods": [
+        {
+          "name": "createUserADInstance",
+          "requestMessageName": "CreateUserADInstanceRequest",
+          "responseMessageName": "CreateUserADInstanceResponse",
+          "code": "rpc createUserADInstance(CreateUserADInstanceRequest) returns (CreateUserADInstanceResponse);",
+          "doc": "创建用户高防实例",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "buyUserADInstance",
+          "requestMessageName": "BuyUserADInstanceRequest",
+          "responseMessageName": "BuyUserADInstanceResponse",
+          "code": "rpc buyUserADInstance(BuyUserADInstanceRequest) returns (BuyUserADInstanceResponse);",
+          "doc": "购买用户高防实例",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "countUserADInstances",
+          "requestMessageName": "CountUserADInstancesRequest",
+          "responseMessageName": "RPCCountResponse",
+          "code": "rpc countUserADInstances(CountUserADInstancesRequest) returns (RPCCountResponse);",
+          "doc": "计算用户高防实例数量",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "listUserADInstances",
+          "requestMessageName": "ListUserADInstancesRequest",
+          "responseMessageName": "ListUserADInstancesResponse",
+          "code": "rpc listUserADInstances(ListUserADInstancesRequest) returns (ListUserADInstancesResponse);",
+          "doc": "列出单页用户高防实例",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findUserADInstance",
+          "requestMessageName": "FindUserADInstanceRequest",
+          "responseMessageName": "FindUserADInstanceResponse",
+          "code": "rpc findUserADInstance(FindUserADInstanceRequest) returns (FindUserADInstanceResponse);",
+          "doc": "查找单个用户高防实例",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "deleteUserADInstance",
+          "requestMessageName": "DeleteUserADInstanceRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deleteUserADInstance(DeleteUserADInstanceRequest) returns (RPCSuccess);",
+          "doc": "删除用户高防实例",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "renewUserADInstance",
+          "requestMessageName": "RenewUserADInstanceRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc renewUserADInstance(RenewUserADInstanceRequest) returns (RPCSuccess);",
+          "doc": "续期用户高防实例",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateUserADInstanceObjects",
+          "requestMessageName": "UpdateUserADInstanceObjectsRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateUserADInstanceObjects(UpdateUserADInstanceObjectsRequest) returns (RPCSuccess);",
+          "doc": "修改实例防护对象",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_user_ad_instance.proto",
+      "doc": "用户高防实例服务"
+    },
+    {
       "name": "UserBillService",
       "methods": [
         {
@@ -12473,6 +12974,31 @@
       "doc": ""
     },
     {
+      "name": "ADNetwork",
+      "code": "message ADNetwork {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring description = 4;\n}",
+      "doc": "高防线路"
+    },
+    {
+      "name": "ADPackage",
+      "code": "message ADPackage {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tint64 adNetworkId = 3;\n\tint32 protectionBandwidthSize = 4;\n\tstring protectionBandwidthUnit = 5;\n\tint32 serverBandwidthSize = 6;\n\tstring serverBandwidthUnit = 7;\n\n\tADNetwork adNetwork = 30;\n\tstring summary = 31; // 概述\n\tint64 countIdleADPackageInstances = 32; // 剩余可用的实例数，只有在获取可用高防产品的时候才会返回\n}",
+      "doc": "高防产品"
+    },
+    {
+      "name": "ADPackageInstance",
+      "code": "message ADPackageInstance {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tint64 adPackageId = 3;\n\tint64 nodeClusterId = 4;\n\trepeated int64 nodeIds = 5;\n\trepeated string ipAddresses = 6;\n\tint64 userId = 7; // 租用用户ID\n\tstring userDayTo = 8; // 租用日期\n\tint64 userInstanceId = 9; // 当前绑定的用户实例ID\n\n\tNodeCluster nodeCluster = 30;\n\tADPackage adPackage = 31;\n\tUser user = 32;\n}",
+      "doc": "高防产品实例"
+    },
+    {
+      "name": "ADPackagePeriod",
+      "code": "message ADPackagePeriod {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tint32 count = 3;\n\tstring unit = 4;\n\tint32 months = 5;\n}",
+      "doc": "高防实例有效期"
+    },
+    {
+      "name": "ADPackagePrice",
+      "code": "message ADPackagePrice {\n\tint64 adPackageId = 1;\n\tint64 adPackagePeriodId = 2;\n\tdouble price = 3;\n}",
+      "doc": "高防产品价格定义"
+    },
+    {
       "name": "APIMethodStat",
       "code": "message APIMethodStat {\n\tint64 id = 1;\n\tint64 apiNodeId = 2;\n\tstring method = 3;\n\tstring tag = 4;\n\tfloat costMs = 5;\n\tfloat peekMs = 6;\n\tint64  countCalls = 7;\n\n\tAPINode apiNode = 30;\n}",
       "doc": ""
@@ -12530,6 +13056,16 @@
     {
       "name": "BuyNSUserPlanResponse",
       "code": "message BuyNSUserPlanResponse {\n\tint64 userPlanId = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "BuyUserADInstanceRequest",
+      "code": "message BuyUserADInstanceRequest {\n\tint64 userId = 1;\n\tint64 adPackageId = 2;\n\tint64 adPackagePeriodId = 3;\n\tint32 count = 4;\n}",
+      "doc": "购买用户高防实例"
+    },
+    {
+      "name": "BuyUserADInstanceResponse",
+      "code": "message BuyUserADInstanceResponse {\n\trepeated int64 userADInstanceIds = 1;\n}",
       "doc": ""
     },
     {
@@ -12968,6 +13504,21 @@
       "doc": ""
     },
     {
+      "name": "CountADPackageInstancesRequest",
+      "code": "message CountADPackageInstancesRequest {\n\tint64 adNetworkId = 1; // 可选，线路\n\tint64 adPackageId = 2; // 可选，如果不填则表示获取所有实例数量\n\tint64 userId = 3; // 可选，用户ID\n\tstring ip = 4;  // 可选，高防IP\n}",
+      "doc": "计算实例数量"
+    },
+    {
+      "name": "CountADPackagePricesRequest",
+      "code": "message CountADPackagePricesRequest {\n\tint64 adPackageId = 1;\n}",
+      "doc": "计算高防产品价格项数量"
+    },
+    {
+      "name": "CountADPackagesRequest",
+      "code": "message CountADPackagesRequest {\n\tint64 adNetworkId = 1;\n}",
+      "doc": "查询高防产品数量"
+    },
+    {
       "name": "CountAPIMethodStatsWithDayRequest",
       "code": "message CountAPIMethodStatsWithDayRequest {\n\tstring day = 1; // YYYYMMDD\n}",
       "doc": "检查是否有统计数据"
@@ -13228,6 +13779,11 @@
       "doc": "计算访问日志策略数量"
     },
     {
+      "name": "CountAllIdleADPackages",
+      "code": "message CountAllIdleADPackages {\n\n}",
+      "doc": "查询可用的产品数量"
+    },
+    {
       "name": "CountAllNSClustersWithSSLCertIdRequest",
       "code": "message CountAllNSClustersWithSSLCertIdRequest {\n\tint64 sslCertId = 1;\n}",
       "doc": "计算使用某个SSL证书的集群数量"
@@ -13373,6 +13929,11 @@
       "doc": "计算IP数量"
     },
     {
+      "name": "CountIdleADPackageInstancesRequest",
+      "code": "message CountIdleADPackageInstancesRequest {\n\tint64 adPackageId = 1;\n}",
+      "doc": "计算可购的实例数量"
+    },
+    {
       "name": "CountLogRequest",
       "code": "message CountLogRequest {\n\tstring dayFrom = 1;\n\tstring dayTo = 2;\n\tstring keyword = 3;\n\tstring userType = 4; // admin|user\n}",
       "doc": "计算日志数量"
@@ -13411,6 +13972,11 @@
       "name": "CountUnreadMessagesRequest",
       "code": "message CountUnreadMessagesRequest {\n\n}",
       "doc": "计算未读消息数"
+    },
+    {
+      "name": "CountUserADInstancesRequest",
+      "code": "message CountUserADInstancesRequest {\n\tint64 adNetworkId = 1; // 线路ID\n\tint64 userId = 2; // 用户ID\n\tint64 adPackagePeriodId = 3;\n\tstring expiresDay = 4;\n\tbool availableOnly = 5; // 是否只查询有效的高防实例\n}",
+      "doc": "查询用户高防实例数量"
     },
     {
       "name": "CountUserAccountLogsRequest",
@@ -13465,6 +14031,46 @@
     {
       "name": "CreateACMEUserResponse",
       "code": "message CreateACMEUserResponse {\n\tint64 acmeUserId = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "CreateADNetworkRequest",
+      "code": "message CreateADNetworkRequest {\n\tstring name = 1;\n\tstring description = 2;\n}",
+      "doc": "创建线路"
+    },
+    {
+      "name": "CreateADNetworkResponse",
+      "code": "message CreateADNetworkResponse {\n\tint64 adNetworkId = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "CreateADPackageInstanceRequest",
+      "code": "message CreateADPackageInstanceRequest {\n\tint64 adPackageId = 1;\n\tint64 nodeClusterId = 2;\n\trepeated int64 nodeIds = 3;\n\trepeated string ipAddresses = 4;\n}",
+      "doc": "创建实例"
+    },
+    {
+      "name": "CreateADPackageInstanceResponse",
+      "code": "message CreateADPackageInstanceResponse {\n\tint64 adPackageInstanceId = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "CreateADPackagePeriodRequest",
+      "code": "message CreateADPackagePeriodRequest {\n\tint32 count = 1;\n\tstring unit = 2; // month | year\n}",
+      "doc": "创建有效期"
+    },
+    {
+      "name": "CreateADPackagePeriodResponse",
+      "code": "message CreateADPackagePeriodResponse {\n\tint64 adPackagePeriodId = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "CreateADPackageRequest",
+      "code": "message CreateADPackageRequest {\n\tint64 adNetworkId = 1;\n\tint32 protectionBandwidthSize = 2;\n\tstring protectionBandwidthUnit = 3;\n\tint32  serverBandwidthSize = 4;\n\tstring serverBandwidthUnit = 5;\n}",
+      "doc": "创建高防产品"
+    },
+    {
+      "name": "CreateADPackageResponse",
+      "code": "message CreateADPackageResponse {\n\tint64 adPackageId = 1;\n}",
       "doc": ""
     },
     {
@@ -14283,6 +14889,16 @@
       "doc": ""
     },
     {
+      "name": "CreateUserADInstanceRequest",
+      "code": "message CreateUserADInstanceRequest {\n\tint64 userId = 1;\n\tint64 adPackageId = 2;\n\tint64 adPackagePeriodId = 3;\n\tint32 count = 4;\n}",
+      "doc": "创建用户高防实例"
+    },
+    {
+      "name": "CreateUserADInstanceResponse",
+      "code": "message CreateUserADInstanceResponse {\n\trepeated int64 userADInstanceIds = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "CreateUserAccessKeyRequest",
       "code": "message CreateUserAccessKeyRequest {\n\tint64 userId = 1;\n\tint64 adminId = 3;\n\tstring description = 2;\n}",
       "doc": "创建AccessKey"
@@ -14441,6 +15057,26 @@
       "name": "DeleteACMEUserRequest",
       "code": "message DeleteACMEUserRequest {\n\tint64 acmeUserId = 1;\n}",
       "doc": "删除用户"
+    },
+    {
+      "name": "DeleteADNetworkRequest",
+      "code": "message DeleteADNetworkRequest {\n\tint64 adNetworkId = 1;\n}",
+      "doc": "删除线路"
+    },
+    {
+      "name": "DeleteADPackageInstanceRequest",
+      "code": "message DeleteADPackageInstanceRequest {\n\tint64 adPackageInstanceId = 1;\n}",
+      "doc": "删除实例"
+    },
+    {
+      "name": "DeleteADPackagePeriodRequest",
+      "code": "message DeleteADPackagePeriodRequest {\n\tint64 adPackagePeriodId = 1;\n}",
+      "doc": "删除有效期"
+    },
+    {
+      "name": "DeleteADPackageRequest",
+      "code": "message DeleteADPackageRequest {\n\tint64 adPackageId = 1;\n}",
+      "doc": "删除高防产品"
     },
     {
       "name": "DeleteAPINodeRequest",
@@ -14763,6 +15399,11 @@
       "doc": "删除流量包"
     },
     {
+      "name": "DeleteUserADInstanceRequest",
+      "code": "message DeleteUserADInstanceRequest {\n\tint64 userADInstanceId = 1;\n}",
+      "doc": "删除用户高防实例"
+    },
+    {
       "name": "DeleteUserAccessKeyRequest",
       "code": "message DeleteUserAccessKeyRequest {\n\tint64 userAccessKeyId = 1;\n}",
       "doc": "删除AccessKey"
@@ -15008,6 +15649,66 @@
       "doc": ""
     },
     {
+      "name": "FindADNetworkRequest",
+      "code": "message FindADNetworkRequest {\n\tint64 adNetworkId = 1;\n}",
+      "doc": "查找单个线路"
+    },
+    {
+      "name": "FindADNetworkResponse",
+      "code": "message FindADNetworkResponse {\n\tADNetwork adNetwork = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindADPackageInstanceRequest",
+      "code": "message FindADPackageInstanceRequest {\n\tint64 adPackageInstanceId = 1;\n}",
+      "doc": "查找单个实例"
+    },
+    {
+      "name": "FindADPackageInstanceResponse",
+      "code": "message FindADPackageInstanceResponse {\n\tADPackageInstance adPackageInstance = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindADPackagePeriodRequest",
+      "code": "message FindADPackagePeriodRequest {\n\tint64 adPackagePeriodId = 1;\n}",
+      "doc": "查找有效期"
+    },
+    {
+      "name": "FindADPackagePeriodResponse",
+      "code": "message FindADPackagePeriodResponse {\n\tADPackagePeriod adPackagePeriod = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindADPackagePriceRequest",
+      "code": "message FindADPackagePriceRequest {\n\tint64 adPackageId = 1;\n\tint64 adPackagePeriodId = 2;\n\tint32 count = 3;\n}",
+      "doc": "获取单个高防产品具体价格"
+    },
+    {
+      "name": "FindADPackagePriceResponse",
+      "code": "message FindADPackagePriceResponse {\n\tdouble price = 1; // 单价\n\tdouble amount = 2; // 总价\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindADPackagePricesRequest",
+      "code": "message FindADPackagePricesRequest {\n\tint64 adPackageId = 1;\n}",
+      "doc": "查找高防产品价格"
+    },
+    {
+      "name": "FindADPackagePricesResponse",
+      "code": "message FindADPackagePricesResponse {\n\trepeated ADPackagePrice adPackagePrices = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindADPackageRequest",
+      "code": "message FindADPackageRequest {\n\tint64 adPackageId = 1;\n}",
+      "doc": "查找单个高防产品"
+    },
+    {
+      "name": "FindADPackageResponse",
+      "code": "message FindADPackageResponse {\n\tADPackage adPackage = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "FindAPIMethodStatsWithDayRequest",
       "code": "message FindAPIMethodStatsWithDayRequest {\n\tstring day = 1; // YYYYMMDD\n}",
       "doc": "查找某天的统计"
@@ -15068,6 +15769,46 @@
       "doc": ""
     },
     {
+      "name": "FindAllADNetworkRequest",
+      "code": "message FindAllADNetworkRequest {\n\n}",
+      "doc": "列出所有线路"
+    },
+    {
+      "name": "FindAllADNetworkResponse",
+      "code": "message FindAllADNetworkResponse {\n\trepeated ADNetwork adNetworks = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAllADPackageInstancesRequest",
+      "code": "message FindAllADPackageInstancesRequest {\n\tint64 adPackageId = 1;\n}",
+      "doc": "列出单个高防产品所有实例"
+    },
+    {
+      "name": "FindAllADPackageInstancesResponse",
+      "code": "message FindAllADPackageInstancesResponse {\n\trepeated ADPackageInstance adPackageInstances = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAllADPackagePeriodsRequest",
+      "code": "message FindAllADPackagePeriodsRequest {\n\n}",
+      "doc": "列出所有有效期"
+    },
+    {
+      "name": "FindAllADPackagePeriodsResponse",
+      "code": "message FindAllADPackagePeriodsResponse {\n\trepeated ADPackagePeriod adPackagePeriods = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAllADPackagePricesRequest",
+      "code": "message FindAllADPackagePricesRequest {\n\n}",
+      "doc": "查找所有高防产品价格"
+    },
+    {
+      "name": "FindAllADPackagePricesResponse",
+      "code": "message FindAllADPackagePricesResponse {\n\trepeated ADPackagePrice adPackagePrices = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "FindAllAdminModulesRequest",
       "code": "message FindAllAdminModulesRequest {\n\n}",
       "doc": "获取管理所有权限列表"
@@ -15085,6 +15826,26 @@
     {
       "name": "FindAllAgentNSRoutesResponse",
       "code": "message FindAllAgentNSRoutesResponse{\n\trepeated NSRoute nsRoutes = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAllAvailableADNetworksRequest",
+      "code": "message FindAllAvailableADNetworksRequest {\n\n}",
+      "doc": "列出所有可用的线路"
+    },
+    {
+      "name": "FindAllAvailableADNetworksResponse",
+      "code": "message FindAllAvailableADNetworksResponse {\n\trepeated ADNetwork adNetworks = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAllAvailableADPackagePeriodsRequest",
+      "code": "message FindAllAvailableADPackagePeriodsRequest {\n\n}",
+      "doc": "列出所有可用有效期"
+    },
+    {
+      "name": "FindAllAvailableADPackagePeriodsResponse",
+      "code": "message FindAllAvailableADPackagePeriodsResponse {\n\trepeated ADPackagePeriod adPackagePeriods = 1;\n}",
       "doc": ""
     },
     {
@@ -15715,6 +16476,16 @@
     {
       "name": "FindAllIPLibraryArtifactsResponse",
       "code": "message FindAllIPLibraryArtifactsResponse {\n\trepeated IPLibraryArtifact ipLibraryArtifacts = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAllIdleADPackagesRequest",
+      "code": "message FindAllIdleADPackagesRequest {\n\n}",
+      "doc": "列出所有可用的高防产品"
+    },
+    {
+      "name": "FindAllIdleADPackagesResponse",
+      "code": "message FindAllIdleADPackagesResponse {\n\trepeated ADPackage adPackages = 1;\n}",
       "doc": ""
     },
     {
@@ -18068,6 +18839,16 @@
       "doc": ""
     },
     {
+      "name": "FindUserADInstanceRequest",
+      "code": "message FindUserADInstanceRequest {\n\tint64 userADInstanceId = 1;\n}",
+      "doc": "查找单个用户高防实例"
+    },
+    {
+      "name": "FindUserADInstanceResponse",
+      "code": "message FindUserADInstanceResponse {\n\tUserADInstance userADInstance = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "FindUserBillRequest",
       "code": "message FindUserBillRequest {\n\tint64 userBillId = 1; // ID，和单号二选一\n\tstring code = 2; // 单号\n}",
       "doc": "查找账单信息"
@@ -18355,6 +19136,26 @@
     {
       "name": "ListACMEUsersResponse",
       "code": "message ListACMEUsersResponse {\n\trepeated ACMEUser acmeUsers = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "ListADPackageInstancesRequest",
+      "code": "message ListADPackageInstancesRequest {\n\tint64 adNetworkId = 1; // 可选，线路\n\tint64 adPackageId = 2; // 可选，如果不填则表示获取所有实例数量\n\tint64 userId = 3; // 可选，用户ID\n\tstring ip = 4; // 可选，高防IP\n\tint64 offset = 5;\n\tint64 size = 6;\n}",
+      "doc": "列出单页实例"
+    },
+    {
+      "name": "ListADPackageInstancesResponse",
+      "code": "message ListADPackageInstancesResponse {\n\trepeated ADPackageInstance adPackageInstances = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "ListADPackagesRequest",
+      "code": "message ListADPackagesRequest {\n\tint64 adNetworkId = 1;\n\tint64 offset = 2;\n\tint64 size = 3;\n}",
+      "doc": "列出单页高防产品"
+    },
+    {
+      "name": "ListADPackagesResponse",
+      "code": "message ListADPackagesResponse {\n\trepeated ADPackage adPackages = 1;\n}",
       "doc": ""
     },
     {
@@ -18983,6 +19784,16 @@
       "doc": ""
     },
     {
+      "name": "ListUserADInstancesRequest",
+      "code": "message ListUserADInstancesRequest {\n\tint64 adNetworkId = 1; // 线路ID\n\tint64 userId = 2; // 用户ID\n\tint64 adPackagePeriodId = 3;\n\tstring expiresDay = 4;\n\tbool availableOnly = 5; // 是否只查询有效的高防实例\n\tint64 offset = 6;\n\tint64 size = 7;\n}",
+      "doc": "列出单页用户高防实例"
+    },
+    {
+      "name": "ListUserADInstancesResponse",
+      "code": "message ListUserADInstancesResponse {\n\trepeated UserADInstance userADInstances = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "ListUserAccountDailyStatsRequest",
       "code": "message ListUserAccountDailyStatsRequest {\n\tstring dayFrom = 1;\n\tstring dayTo = 2;\n}",
       "doc": "列出按天统计"
@@ -19518,6 +20329,11 @@
       "doc": "拒绝用户实名认证信息"
     },
     {
+      "name": "RenewUserADInstanceRequest",
+      "code": "message RenewUserADInstanceRequest {\n\tint64 userADInstanceId = 1;\n\tint64 adPackagePeriodId = 2;\n}",
+      "doc": "续期用户高防实例"
+    },
+    {
       "name": "RenewUserPlanRequest",
       "code": "message RenewUserPlanRequest {\n\tint64 userPlanId = 1;\n\tstring dayTo = 3;\n\tstring period = 4;\n\tint32  countPeriod = 5;\n}",
       "doc": "续费套餐"
@@ -19891,6 +20707,31 @@
       "name": "UpdateACMEUserRequest",
       "code": "message UpdateACMEUserRequest {\n\tint64 acmeUserId = 1;\n\tstring description = 2;\n}",
       "doc": "修改用户"
+    },
+    {
+      "name": "UpdateADNetworkRequest",
+      "code": "message UpdateADNetworkRequest {\n\tint64 adNetworkId = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring description = 4;\n}",
+      "doc": "修改线路"
+    },
+    {
+      "name": "UpdateADPackageInstanceRequest",
+      "code": "message UpdateADPackageInstanceRequest {\n\tint64 adPackageInstanceId = 1;\n\tint64 nodeClusterId = 2;\n\trepeated int64 nodeIds = 3;\n\trepeated string ipAddresses = 4;\n\tbool isOn = 5;\n}",
+      "doc": "修改实例"
+    },
+    {
+      "name": "UpdateADPackagePeriodRequest",
+      "code": "message UpdateADPackagePeriodRequest {\n\tint64 adPackagePeriodId = 1;\n\tbool isOn = 2;\n}",
+      "doc": "修改有效期"
+    },
+    {
+      "name": "UpdateADPackagePriceRequest",
+      "code": "message UpdateADPackagePriceRequest {\n\tint64 adPackageId = 1;\n\tint64 adPackagePeriodId = 2;\n\tdouble price = 3;\n}",
+      "doc": "设置高防产品价格"
+    },
+    {
+      "name": "UpdateADPackageRequest",
+      "code": "message UpdateADPackageRequest {\n\tint64 adPackageId = 1;\n\tbool isOn = 2;\n\tint64 adNetworkId = 3;\n\tint32 protectionBandwidthSize = 4;\n\tstring protectionBandwidthUnit = 5;\n\tint32  serverBandwidthSize = 6;\n\tstring serverBandwidthUnit = 7;\n}",
+      "doc": "修改高防产品"
     },
     {
       "name": "UpdateAPINodeRequest",
@@ -20913,6 +21754,11 @@
       "doc": "修改流量包"
     },
     {
+      "name": "UpdateUserADInstanceObjectsRequest",
+      "code": "message UpdateUserADInstanceObjectsRequest {\n\tint64 userADInstanceId = 1;\n\trepeated string objectCodes = 2;\n}",
+      "doc": "修改实例防护对象"
+    },
+    {
       "name": "UpdateUserAccessKeyIsOnRequest",
       "code": "message UpdateUserAccessKeyIsOnRequest {\n\tint64 userAccessKeyId = 1;\n\tbool isOn = 2;\n}",
       "doc": "设置是否启用AccessKey"
@@ -21021,6 +21867,11 @@
       "name": "User",
       "code": "message User {\n\tint64 id = 1;\n\tstring username = 2;\n\tstring fullname = 3;\n\tstring mobile = 4;\n\tstring tel = 5;\n\tstring email = 6;\n\tstring verifiedEmail = 20;\n\tstring remark = 7;\n\tbool isOn = 8;\n\tint64 createdAt = 9;\n\tstring registeredIP = 12;\n\tbool isVerified = 13;\n\tbool isRejected = 14;\n\tstring rejectReason = 15;\n\tbool isDeleted = 16;\n\tbool isIndividualIdentified = 17;\n\tbool isEnterpriseIdentified = 18;\n\n\tLogin otpLogin = 19; // OTP认证\n\n\tNodeCluster nodeCluster = 10;\n\trepeated UserFeature features = 11;\n}",
       "doc": ""
+    },
+    {
+      "name": "UserADInstance",
+      "code": "message UserADInstance {\n\tint64 id = 1;\n\tint64 userId = 2;\n\tint64 adPackageInstanceId = 3;\n\tint64 adPackagePeriodId = 4;\n\tint32 adPackagePeriodCount = 5;\n\tstring adPackagePeriodUnit = 6;\n\tstring dayFrom = 7; // 开始日期，格式：YYYYMMDD\n\tstring dayTo = 8; // 结束日期，格式：YYYYMMDD\n\tint64 createdAt = 9;\n\tint32 maxObjects = 10;\n\trepeated string objectCodes = 11;\n\n\tADPackageInstance adPackageInstance = 30;\n\tUser user = 31;\n\tbool canDelete = 32;\n\tbool isAvailable = 33; // 当前是否在生效中\n\tint32 countObjects = 34; // 防护对象数量\n\tbytes objectsJSON = 35; // 对象JSON\n}",
+      "doc": "高防实例"
     },
     {
       "name": "UserAccessKey",
@@ -21175,11 +22026,11 @@
     },
     {
       "name": "json:http_cache_config",
-      "content": "# HTTP缓存配置\n## 定义\n~~~json\n{\n  \"isPrior\": \"是否覆盖上级配置\",\n  \"isOn\": \"是否启用配置\",\n  \"addStatusHeader\": \"是否增加命中状态Header（X-Cache）\",\n  \"addAgeHeader\": \"是否增加Age Header\",\n  \"enableCacheControlMaxAge\": \"是否支持Cache-Control: max-age=...\",\n  \"disablePolicyRefs\": \"是否停用策略中定义的条件\",\n  \"purgeIsOn\": \"是否允许使用Purge方法清理\",\n  \"purgeKey\": \"Purge时使用的X-Edge-Purge-Key\",\n  \"stale\": \"陈旧缓存使用策略\",\n  \"cacheRefs\": [\"缓存条件1\", \"缓存条件2\", ...]\n}\n~~~\n其中：\n* `缓存条件` - 参考 {json:http_cache_ref}\n\n## 示例\n### 无缓存条件\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"addStatusHeader\": true,\n  \"addAgeHeader\": true,\n  \"enableCacheControlMaxAge\": true,\n  \"disablePolicyRefs\": false,\n  \"purgeIsOn\": false,\n  \"purgeKey\": \"\",\n  \"stale\": null,\n  \"cacheRefs\": []\n}\n~~~\n\n### 加入缓存条件\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"addStatusHeader\": true,\n  \"addAgeHeader\": true,\n  \"enableCacheControlMaxAge\": true,\n  \"disablePolicyRefs\": false,\n  \"purgeIsOn\": false,\n  \"purgeKey\": \"\",\n  \"stale\": null,\n  \"cacheRefs\": [\n    {\n\t  \"id\": 0,\n\t  \"isOn\": true,\n\t  \"key\": \"${scheme}://${host}${requestPath}${isArgs}${args}\",\n\t  \"life\": {\"count\": 2, \"unit\": \"hour\"},\n\t  \"status\": [200],\n      \"maxSize\": {\"count\": 32, \"unit\": \"mb\"},\n      \"minSize\": {\"count\": 0, \"unit\": \"kb\"},\n      \"skipCacheControlValues\": [\"private\", \"no-cache\", \"no-store\"],\n      \"skipSetCookie\": true,\n      \"enableRequestCachePragma\": false,\n      \"conds\": {\n        \"isOn\": true,\n        \"connector\": \"or\",\n        \"groups\": [\n          {\n            \"isOn\": true,\n            \"connector\": \"and\",\n            \"conds\": [\n              {\n                \"type\": \"url-extension\",\n                \"isRequest\": true,\n                \"param\": \"${requestPathExtension}\",\n                \"operator\": \"in\",\n                \"value\": \"[\\\".css\\\",\\\".png\\\",\\\".js\\\",\\\".woff2\\\"]\",\n                \"isReverse\": false,\n                \"isCaseInsensitive\": false,\n                \"typeName\": \"URL扩展名\"\n              }\n            ],\n            \"isReverse\": false,\n            \"description\": \"\"\n          }\n        ]\n      },\n      \"allowChunkedEncoding\": true,\n      \"allowPartialContent\": false,\n      \"isReverse\": false,\n      \"methods\": []\n\t}\n  ]\n}\n~~~\n"
+      "content": "# HTTP缓存配置\n## 定义\n~~~json\n{\n  \"isPrior\": \"是否覆盖上级配置\",\n  \"isOn\": \"是否启用配置\",\n  \"addStatusHeader\": \"是否增加命中状态Header（X-Cache）\",\n  \"addAgeHeader\": \"是否增加Age Header\",\n  \"enableCacheControlMaxAge\": \"是否支持Cache-Control: max-age=...\",\n  \"disablePolicyRefs\": \"是否停用策略中定义的条件\",\n  \"purgeIsOn\": \"是否允许使用Purge方法清理\",\n  \"purgeKey\": \"Purge时使用的X-Edge-Purge-Key\",\n  \"stale\": \"陈旧缓存使用策略\",\n  \"cacheRefs\": [\"缓存条件1\", \"缓存条件2\", ...]\n}\n~~~\n其中：\n* `缓存条件` - 参考 {json:http_cache_ref}\n\n## 示例\n### 无缓存条件\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"addStatusHeader\": true,\n  \"addAgeHeader\": true,\n  \"enableCacheControlMaxAge\": true,\n  \"disablePolicyRefs\": false,\n  \"purgeIsOn\": false,\n  \"purgeKey\": \"\",\n  \"stale\": null,\n  \"cacheRefs\": []\n}\n~~~\n\n### 加入缓存条件\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"addStatusHeader\": true,\n  \"addAgeHeader\": true,\n  \"enableCacheControlMaxAge\": true,\n  \"disablePolicyRefs\": false,\n  \"purgeIsOn\": false,\n  \"purgeKey\": \"\",\n  \"stale\": null,\n  \"cacheRefs\": [\n    {\n\t  \"id\": 0,\n\t  \"isOn\": true,\n\t  \"key\": \"${scheme}://${host}${requestPath}${isArgs}${args}\",\n\t  \"life\": {\"count\": 2, \"unit\": \"hour\"},\n\t  \"status\": [200],\n      \"maxSize\": {\"count\": 32, \"unit\": \"mb\"},\n      \"minSize\": {\"count\": 0, \"unit\": \"kb\"},\n      \"skipCacheControlValues\": [\"private\", \"no-cache\", \"no-store\"],\n      \"skipSetCookie\": true,\n      \"enableRequestCachePragma\": false,\n      \"conds\": {\n        \"isOn\": true,\n        \"connector\": \"or\",\n        \"groups\": [\n          {\n            \"isOn\": true,\n            \"connector\": \"and\",\n            \"conds\": [\n              {\n                \"type\": \"url-extension\",\n                \"isRequest\": true,\n                \"param\": \"${requestPathLowerExtension}\",\n                \"operator\": \"in\",\n                \"value\": \"[\\\".css\\\",\\\".png\\\",\\\".js\\\",\\\".woff2\\\"]\",\n                \"isReverse\": false,\n                \"isCaseInsensitive\": false,\n                \"typeName\": \"URL扩展名\"\n              }\n            ],\n            \"isReverse\": false,\n            \"description\": \"\"\n          }\n        ]\n      },\n      \"allowChunkedEncoding\": true,\n      \"allowPartialContent\": false,\n      \"isReverse\": false,\n      \"methods\": []\n\t}\n  ]\n}\n~~~\n"
     },
     {
       "name": "json:http_cache_ref",
-      "content": "# 缓存条件设置\n## 定义\n~~~json\n{\n  \"isOn\": \"是否启用配置\",\n  \"key\": \"每个缓存的Key规则，里面可以有变量\",\n  \"life\": \"缓存时长\",\n  \"expiresTime\": \"客户端过期时间\",\n  \"status\": [\"缓存的状态码1\", \"缓存的状态码2\", ...],\n  \"minSize\": \"能够缓存的最小尺寸\",\n  \"maxSize\": \"能够缓存的最大尺寸\",\n  \"methods\": [\"支持的请求方法1\", \"支持的请求方法2\", ...],\n  \"skipCacheControlValues\": \"可以跳过的响应的Cache-Control值\",\n  \"skipSetCookie\": \"是否跳过响应的Set-Cookie Header\",\n  \"enableRequestCachePragma\": \"是否支持客户端的Pragma: no-cache\",\n  \"allowChunkedEncoding\": \"是否允许分片内容\",\n  \"allowPartialContent\": \"支持分段内容缓存\",\n  \"conds\": \"请求条件\",\n  \"isReverse\": \"是否为反向条件，反向条件的不缓存\"\n}\n~~~\n\n## 示例\n~~~json\n{\n\t\"isOn\": true,\n\t\"key\": \"${scheme}://${host}${requestURI}\",\n\t\"life\": {\n\t\t\"count\": 1,\n\t\t\"unit\": \"day\"\n\t},\n\t\"expiresTime\": {\n\t\t\"isPrior\": true,\n\t\t\"isOn\": true,\n\t\t\"overwrite\": true,\n\t\t\"autoCalculate\": false,\n\t\t\"duration\": {\n\t\t\t\"count\": 1,\n\t\t\t\"unit\": \"day\"\n\t\t}\n\t},\n\t\"status\": [\n\t\t200\n\t],\n\t\"minSize\": {\n\t\t\"count\": 0,\n\t\t\"unit\": \"kb\"\n\t},\n\t\"maxSize\": {\n\t\t\"count\": 32,\n\t\t\"unit\": \"mb\"\n\t},\n\t\"methods\": [],\n\t\"skipCacheControlValues\": [\n\t\t\"private\",\n\t\t\"no-cache\",\n\t\t\"no-store\"\n\t],\n\t\"skipSetCookie\": true,\n\t\"enableRequestCachePragma\": false,\n\t\"allowChunkedEncoding\": true,\n\t\"allowPartialContent\": false,\n\t\"conds\": {\n\t\t\"isOn\": true,\n\t\t\"connector\": \"or\",\n\t\t\"groups\": [\n\t\t\t{\n\t\t\t\t\"isOn\": true,\n\t\t\t\t\"connector\": \"and\",\n\t\t\t\t\"conds\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"type\": \"url-extension\",\n\t\t\t\t\t\t\"isRequest\": true,\n\t\t\t\t\t\t\"param\": \"${requestPathExtension}\",\n\t\t\t\t\t\t\"operator\": \"in\",\n\t\t\t\t\t\t\"value\": \"[\\\".css\\\",\\\".png\\\",\\\".js\\\",\\\".woff2\\\"]\",\n\t\t\t\t\t\t\"isReverse\": false,\n\t\t\t\t\t\t\"isCaseInsensitive\": false,\n\t\t\t\t\t\t\"typeName\": \"URL扩展名\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"isReverse\": false,\n\t\t\t\t\"description\": \"\"\n\t\t\t}\n\t\t]\n\t},\n\t\"cachePolicy\": null,\n\t\"isReverse\": false,\n\t\"id\": 1\n}\n~~~"
+      "content": "# 缓存条件设置\n## 定义\n~~~json\n{\n  \"isOn\": \"是否启用配置\",\n  \"key\": \"每个缓存的Key规则，里面可以有变量\",\n  \"life\": \"缓存时长\",\n  \"expiresTime\": \"客户端过期时间\",\n  \"status\": [\"缓存的状态码1\", \"缓存的状态码2\", ...],\n  \"minSize\": \"能够缓存的最小尺寸\",\n  \"maxSize\": \"能够缓存的最大尺寸\",\n  \"methods\": [\"支持的请求方法1\", \"支持的请求方法2\", ...],\n  \"skipCacheControlValues\": \"可以跳过的响应的Cache-Control值\",\n  \"skipSetCookie\": \"是否跳过响应的Set-Cookie Header\",\n  \"enableRequestCachePragma\": \"是否支持客户端的Pragma: no-cache\",\n  \"allowChunkedEncoding\": \"是否允许分片内容\",\n  \"allowPartialContent\": \"支持分段内容缓存\",\n  \"conds\": \"请求条件\",\n  \"isReverse\": \"是否为反向条件，反向条件的不缓存\"\n}\n~~~\n\n## 示例\n~~~json\n{\n\t\"isOn\": true,\n\t\"key\": \"${scheme}://${host}${requestURI}\",\n\t\"life\": {\n\t\t\"count\": 1,\n\t\t\"unit\": \"day\"\n\t},\n\t\"expiresTime\": {\n\t\t\"isPrior\": true,\n\t\t\"isOn\": true,\n\t\t\"overwrite\": true,\n\t\t\"autoCalculate\": false,\n\t\t\"duration\": {\n\t\t\t\"count\": 1,\n\t\t\t\"unit\": \"day\"\n\t\t}\n\t},\n\t\"status\": [\n\t\t200\n\t],\n\t\"minSize\": {\n\t\t\"count\": 0,\n\t\t\"unit\": \"kb\"\n\t},\n\t\"maxSize\": {\n\t\t\"count\": 32,\n\t\t\"unit\": \"mb\"\n\t},\n\t\"methods\": [],\n\t\"skipCacheControlValues\": [\n\t\t\"private\",\n\t\t\"no-cache\",\n\t\t\"no-store\"\n\t],\n\t\"skipSetCookie\": true,\n\t\"enableRequestCachePragma\": false,\n\t\"allowChunkedEncoding\": true,\n\t\"allowPartialContent\": false,\n\t\"conds\": {\n\t\t\"isOn\": true,\n\t\t\"connector\": \"or\",\n\t\t\"groups\": [\n\t\t\t{\n\t\t\t\t\"isOn\": true,\n\t\t\t\t\"connector\": \"and\",\n\t\t\t\t\"conds\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"type\": \"url-extension\",\n\t\t\t\t\t\t\"isRequest\": true,\n\t\t\t\t\t\t\"param\": \"${requestPathLowerExtension}\",\n\t\t\t\t\t\t\"operator\": \"in\",\n\t\t\t\t\t\t\"value\": \"[\\\".css\\\",\\\".png\\\",\\\".js\\\",\\\".woff2\\\"]\",\n\t\t\t\t\t\t\"isReverse\": false,\n\t\t\t\t\t\t\"isCaseInsensitive\": false,\n\t\t\t\t\t\t\"typeName\": \"URL扩展名\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"isReverse\": false,\n\t\t\t\t\"description\": \"\"\n\t\t\t}\n\t\t]\n\t},\n\t\"cachePolicy\": null,\n\t\"isReverse\": false,\n\t\"id\": 1\n}\n~~~"
     },
     {
       "name": "json:http_firewall_ref",
