@@ -36,8 +36,11 @@ type UserRegisterConfig struct {
 	ClusterId int64    `yaml:"clusterId" json:"clusterId"` // 用户创建服务集群
 	Features  []string `yaml:"features" json:"features"`   // 默认启用的功能
 
-	// 开通DNS
+	// 开通DNS服务
 	NSIsOn bool `json:"nsIsOn"` // 是否开启智能DNS服务
+
+	// 开通高防服务
+	ADIsOn bool `json:"adIsOn"` // 是否开启高防服务
 }
 
 func DefaultUserRegisterConfig() *UserRegisterConfig {
