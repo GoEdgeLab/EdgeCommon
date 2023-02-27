@@ -144,6 +144,7 @@ message UpdateUserRequest {
 	string remark = 8;
 	bool isOn = 9;
 	int64 nodeClusterId = 10;
+	string bandwidthAlgo = 11;
 }
 
 // 删除用户

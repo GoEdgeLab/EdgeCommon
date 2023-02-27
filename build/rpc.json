@@ -16935,22 +16935,22 @@
     },
     {
       "name": "FindDailyServerBandwidthStatsBetweenDaysRequest",
-      "code": "message FindDailyServerBandwidthStatsBetweenDaysRequest {\n\tint64 userId = 1; // 用户ID，和服务ID二选一\n\tint64 serverId = 2; // 服务ID，和用户ID二选一\n\tstring dayFrom = 3; // 开始日期 YYYYMMDD\n\tstring dayTo = 4; // 结束日期 YYYYMMDD\n\tint32 percentile = 5; // 可选项，百分位（nth）带宽位置，0-100之间\n\tint64 nodeRegionId = 6; // 区域ID，可选项（目前只有用户整体统计支持区域ID）\n}",
+      "code": "message FindDailyServerBandwidthStatsBetweenDaysRequest {\n\tint64 userId = 1; // 用户ID，和服务ID二选一\n\tint64 serverId = 2; // 服务ID，和用户ID二选一\n\tstring dayFrom = 3; // 开始日期 YYYYMMDD\n\tstring dayTo = 4; // 结束日期 YYYYMMDD\n\tint32 percentile = 5; // 可选项，百分位（nth）带宽位置，0-100之间\n\tint64 nodeRegionId = 6; // 区域ID，可选项（目前只有用户整体统计支持区域ID）\n\tstring algo = 7; // 带宽算法，目前支持secondly和avg\n}",
       "doc": "读取日期段内的带宽数据"
     },
     {
       "name": "FindDailyServerBandwidthStatsBetweenDaysResponse",
-      "code": "message FindDailyServerBandwidthStatsBetweenDaysResponse {\n\trepeated Stat stats = 1;\n\tStat nthStat = 2;\n\n\n\tmessage Stat {\n\t\tstring day = 1;\n\t\tstring timeAt = 2;\n\t\tint64 bytes = 3; // 字节/秒\n\t\tint64 bits = 4; // 比特/秒\n\t}\n}",
+      "code": "message FindDailyServerBandwidthStatsBetweenDaysResponse {\n\trepeated Stat stats = 1;\n\tStat nthStat = 2;\n\n\n\tmessage Stat {\n\t\tstring day = 1;\n\t\tstring timeAt = 2;\n\t\tint64 bytes = 3; // 峰值字节/秒\n\t\tint64 bits = 4; // 峰值比特/秒\n\t}\n}",
       "doc": ""
     },
     {
       "name": "FindDailyServerBandwidthStatsRequest",
-      "code": "message FindDailyServerBandwidthStatsRequest {\n\tint64 serverId = 1;\n\tint32 days = 2;\n}",
+      "code": "message FindDailyServerBandwidthStatsRequest {\n\tint64 serverId = 1;\n\tint32 days = 2;\n\tstring algo = 3; // 带宽算法，目前支持secondly和avg\n}",
       "doc": "获取最近N天峰值带宽"
     },
     {
       "name": "FindDailyServerBandwidthStatsResponse",
-      "code": "message FindDailyServerBandwidthStatsResponse {\n\trepeated Stat stats = 1;\n\tint32 percentile = 2; // 百分位\n\tStat nthStat = 3; // 百分位统计数据\n\n\n\tmessage Stat {\n\t\tstring day = 1;\n\t\tint64 bytes = 3;\n\t\tint64 bits = 4;\n\t}\n}",
+      "code": "message FindDailyServerBandwidthStatsResponse {\n\trepeated Stat stats = 1;\n\tint32 percentile = 2; // 百分位\n\tStat nthStat = 3; // 百分位统计数据\n\n\n\tmessage Stat {\n\t\tstring day = 1;\n\t\tint64 bytes = 3; // 峰值字节/秒\n\t\tint64 bits = 4; // 峰值比特/秒\n\t}\n}",
       "doc": ""
     },
     {
@@ -17985,12 +17985,12 @@
     },
     {
       "name": "FindHourlyServerBandwidthStatsRequest",
-      "code": "message FindHourlyServerBandwidthStatsRequest {\n\tint64 serverId = 1;\n\tint32 hours = 2;\n}",
+      "code": "message FindHourlyServerBandwidthStatsRequest {\n\tint64 serverId = 1;\n\tint32 hours = 2;\n\tstring algo = 3; // 带宽算法，目前支持secondly和avg\n}",
       "doc": "获取最近N小时峰值带宽"
     },
     {
       "name": "FindHourlyServerBandwidthStatsResponse",
-      "code": "message FindHourlyServerBandwidthStatsResponse {\n\trepeated Stat stats = 1;\n\tint32 percentile = 2; // 百分位\n\tStat nthStat = 3; // 百分位统计数据\n\n\n\tmessage Stat {\n\t\tstring day = 1;\n\t\tint32 hour = 2;\n\t\tint64 bytes = 3;\n\t\tint64 bits = 4;\n\t}\n}",
+      "code": "message FindHourlyServerBandwidthStatsResponse {\n\trepeated Stat stats = 1;\n\tint32 percentile = 2; // 百分位\n\tStat nthStat = 3; // 百分位统计数据\n\n\n\tmessage Stat {\n\t\tstring day = 1;\n\t\tint32 hour = 2;\n\t\tint64 bytes = 3; // 峰值字节/秒\n\t\tint64 bits = 4; // 峰值比特/秒\n\t}\n}",
       "doc": ""
     },
     {
@@ -18670,7 +18670,7 @@
     },
     {
       "name": "FindServerBandwidthStatsRequest",
-      "code": "message FindServerBandwidthStatsRequest {\n\tint64 serverId = 1; // 服务ID\n\tstring month = 2; // YYYYMM，month和day二选一\n\tstring day = 3; // YYYYMMDD\n}",
+      "code": "message FindServerBandwidthStatsRequest {\n\tint64 serverId = 1; // 服务ID\n\tstring month = 2; // YYYYMM，month和day二选一\n\tstring day = 3; // YYYYMMDD\n\tstring algo = 4; // 带宽算法，目前支持secondly和avg\n}",
       "doc": "获取服务的峰值带宽"
     },
     {
@@ -20450,7 +20450,7 @@
     },
     {
       "name": "ServerBandwidthStat",
-      "code": "message ServerBandwidthStat {\n\tint64 id = 1;\n\tint64 userId = 2;\n\tint64 serverId = 3;\n\tstring day = 4;\n\tstring timeAt = 5;\n\tint64 bytes = 6;\n\tint64 bits = 7;\n\tint64 nodeRegionId = 8;\n}",
+      "code": "message ServerBandwidthStat {\n\tint64 id = 1; // ID\n\tint64 userId = 2; // 用户ID\n\tint64 serverId = 3; //服务ID\n\tstring day = 4; // 日期，格式YYYYMMDD\n\tstring timeAt = 5; // 时间，格式HHII\n\tint64 bytes = 6; // 峰值带宽字节\n\tint64 totalBytes = 9; // 总流量\n\tint64 bits = 7; // 峰值带宽比特\n\tint64 nodeRegionId = 8; // 节点所在区域ID\n}",
       "doc": "带宽统计数据"
     },
     {
@@ -21815,7 +21815,7 @@
     },
     {
       "name": "UpdateUserRequest",
-      "code": "message UpdateUserRequest {\n\tint64 userId = 1;\n\tstring username = 2;\n\tstring password = 3;\n\tstring fullname = 4;\n\tstring mobile = 5;\n\tstring tel = 6;\n\tstring email = 7;\n\tstring remark = 8;\n\tbool isOn = 9;\n\tint64 nodeClusterId = 10;\n}",
+      "code": "message UpdateUserRequest {\n\tint64 userId = 1;\n\tstring username = 2;\n\tstring password = 3;\n\tstring fullname = 4;\n\tstring mobile = 5;\n\tstring tel = 6;\n\tstring email = 7;\n\tstring remark = 8;\n\tbool isOn = 9;\n\tint64 nodeClusterId = 10;\n\tstring bandwidthAlgo = 11;\n}",
       "doc": "修改用户"
     },
     {
@@ -21865,7 +21865,7 @@
     },
     {
       "name": "User",
-      "code": "message User {\n\tint64 id = 1;\n\tstring username = 2;\n\tstring fullname = 3;\n\tstring mobile = 4;\n\tstring tel = 5;\n\tstring email = 6;\n\tstring verifiedEmail = 20;\n\tstring remark = 7;\n\tbool isOn = 8;\n\tint64 createdAt = 9;\n\tstring registeredIP = 12;\n\tbool isVerified = 13;\n\tbool isRejected = 14;\n\tstring rejectReason = 15;\n\tbool isDeleted = 16;\n\tbool isIndividualIdentified = 17;\n\tbool isEnterpriseIdentified = 18;\n\n\tLogin otpLogin = 19; // OTP认证\n\n\tNodeCluster nodeCluster = 10;\n\trepeated UserFeature features = 11;\n}",
+      "code": "message User {\n\tint64 id = 1;\n\tstring username = 2;\n\tstring fullname = 3;\n\tstring mobile = 4;\n\tstring tel = 5;\n\tstring email = 6;\n\tstring verifiedEmail = 20;\n\tstring remark = 7;\n\tbool isOn = 8;\n\tint64 createdAt = 9;\n\tstring registeredIP = 12;\n\tbool isVerified = 13;\n\tbool isRejected = 14;\n\tstring rejectReason = 15;\n\tbool isDeleted = 16;\n\tbool isIndividualIdentified = 17;\n\tbool isEnterpriseIdentified = 18;\n\tstring bandwidthAlgo = 21; // 带宽算法\n\n\tLogin otpLogin = 19; // OTP认证\n\n\tNodeCluster nodeCluster = 10;\n\trepeated UserFeature features = 11;\n}",
       "doc": ""
     },
     {
@@ -21895,7 +21895,7 @@
     },
     {
       "name": "UserBandwidthStat",
-      "code": "message UserBandwidthStat {\n\tint64 id = 1;\n\tint64 userId = 2;\n\tstring day = 3;\n\tstring timeAt = 4;\n\tint64 bytes = 5;\n}",
+      "code": "message UserBandwidthStat {\n\tint64 id = 1;\n\tint64 userId = 2;\n\tstring day = 3;\n\tstring timeAt = 4;\n\tint64 bytes = 5; // 峰值带宽字节\n}",
       "doc": "带宽统计数据"
     },
     {

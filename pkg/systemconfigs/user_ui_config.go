@@ -25,8 +25,9 @@ type UserUIConfig struct {
 	ShowBandwidthCharts          bool          `json:"showBandwidthCharts"`          // 是否显示带宽相关图表和数据
 
 	TrafficStats struct {
-		BandwidthPercentile       int32  `json:"bandwidthPercentile"`       // 带宽百分位
-		DefaultBandwidthDateRange string `json:"defaultBandwidthDateRange"` // 默认带宽周期
+		BandwidthPercentile       int32         `json:"bandwidthPercentile"`       // 带宽百分位
+		DefaultBandwidthDateRange string        `json:"defaultBandwidthDateRange"` // 默认带宽周期
+		BandwidthAlgo             BandwidthAlgo `json:"bandwidthAlgo"`             // 带宽算法
 	} `json:"trafficStats"` // 流量统计相关设置
 }
 

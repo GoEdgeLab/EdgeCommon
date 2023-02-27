@@ -5,12 +5,13 @@ package pb;
 
 // 带宽统计数据
 message ServerBandwidthStat {
-	int64 id = 1;
-	int64 userId = 2;
-	int64 serverId = 3;
-	string day = 4;
-	string timeAt = 5;
-	int64 bytes = 6;
-	int64 bits = 7;
-	int64 nodeRegionId = 8;
+	int64 id = 1; // ID
+	int64 userId = 2; // 用户ID
+	int64 serverId = 3; //服务ID
+	string day = 4; // 日期，格式YYYYMMDD
+	string timeAt = 5; // 时间，格式HHII
+	int64 bytes = 6; // 峰值带宽字节
+	int64 totalBytes = 9; // 总流量
+	int64 bits = 7; // 峰值带宽比特
+	int64 nodeRegionId = 8; // 节点所在区域ID
 }

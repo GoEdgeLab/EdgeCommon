@@ -25,6 +25,7 @@ message User {
 	bool isDeleted = 16;
 	bool isIndividualIdentified = 17;
 	bool isEnterpriseIdentified = 18;
+	string bandwidthAlgo = 21; // 带宽算法
 
 	Login otpLogin = 19; // OTP认证
 

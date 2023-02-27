@@ -34,6 +34,7 @@ message FindServerBandwidthStatsRequest {
 	int64 serverId = 1; // 服务ID
 	string month = 2; // YYYYMM，month和day二选一
 	string day = 3; // YYYYMMDD
+	string algo = 4; // 带宽算法，目前支持secondly和avg
 }
 
 message FindServerBandwidthStatsResponse {
@@ -44,6 +45,7 @@ message FindServerBandwidthStatsResponse {
 message FindHourlyServerBandwidthStatsRequest {
 	int64 serverId = 1;
 	int32 hours = 2;
+	string algo = 3; // 带宽算法，目前支持secondly和avg
 }
 
 message FindHourlyServerBandwidthStatsResponse {
@@ -54,8 +56,8 @@ message FindHourlyServerBandwidthStatsResponse {
 	message Stat {
 		string day = 1;
 		int32 hour = 2;
-		int64 bytes = 3;
-		int64 bits = 4;
+		int64 bytes = 3; // 峰值字节/秒
+		int64 bits = 4; // 峰值比特/秒
 	}
 }
 
@@ -63,6 +65,7 @@ message FindHourlyServerBandwidthStatsResponse {
 message FindDailyServerBandwidthStatsRequest {
 	int64 serverId = 1;
 	int32 days = 2;
+	string algo = 3; // 带宽算法，目前支持secondly和avg
 }
 
 message FindDailyServerBandwidthStatsResponse {
@@ -72,8 +75,8 @@ message FindDailyServerBandwidthStatsResponse {
 
 	message Stat {
 		string day = 1;
-		int64 bytes = 3;
-		int64 bits = 4;
+		int64 bytes = 3; // 峰值字节/秒
+		int64 bits = 4; // 峰值比特/秒
 	}
 }
 
@@ -85,6 +88,7 @@ message FindDailyServerBandwidthStatsBetweenDaysRequest {
 	string dayTo = 4; // 结束日期 YYYYMMDD
 	int32 percentile = 5; // 可选项，百分位（nth）带宽位置，0-100之间
 	int64 nodeRegionId = 6; // 区域ID，可选项（目前只有用户整体统计支持区域ID）
+	string algo = 7; // 带宽算法，目前支持secondly和avg
 }
 
 message FindDailyServerBandwidthStatsBetweenDaysResponse {
@@ -94,7 +98,7 @@ message FindDailyServerBandwidthStatsBetweenDaysResponse {
 	message Stat {
 		string day = 1;
 		string timeAt = 2;
-		int64 bytes = 3; // 字节/秒
-		int64 bits = 4; // 比特/秒
+		int64 bytes = 3; // 峰值字节/秒
+		int64 bits = 4; // 峰值比特/秒
 	}
 }

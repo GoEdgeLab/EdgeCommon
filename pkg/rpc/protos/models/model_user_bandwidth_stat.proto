@@ -9,5 +9,5 @@ message UserBandwidthStat {
 	int64 userId = 2;
 	string day = 3;
 	string timeAt = 4;
-	int64 bytes = 5;
+	int64 bytes = 5; // 峰值带宽字节
 }

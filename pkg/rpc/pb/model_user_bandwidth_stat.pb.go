@@ -35,7 +35,7 @@ type UserBandwidthStat struct {
 	UserId int64  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`
 	Day    string `protobuf:"bytes,3,opt,name=day,proto3" json:"day,omitempty"`
 	TimeAt string `protobuf:"bytes,4,opt,name=timeAt,proto3" json:"timeAt,omitempty"`
-	Bytes  int64  `protobuf:"varint,5,opt,name=bytes,proto3" json:"bytes,omitempty"`
+	Bytes  int64  `protobuf:"varint,5,opt,name=bytes,proto3" json:"bytes,omitempty"` // 峰值带宽字节
 }
 
 func (x *UserBandwidthStat) Reset() {
