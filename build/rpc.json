@@ -14655,7 +14655,7 @@
     },
     {
       "name": "CreateNodeIPAddressRequest",
-      "code": "message CreateNodeIPAddressRequest {\n\tint64 nodeId = 1;\n\tstring role = 2;\n\tstring name = 3;\n\tstring ip = 4;\n\tbool canAccess = 5;\n\tbool isUp = 6;\n}",
+      "code": "message CreateNodeIPAddressRequest {\n\tint64 nodeId = 1; // 节点ID\n\tstring role = 2; // 角色：node：边缘节点，dns：智能DNS节点\n\tstring name = 3; // 名称\n\tstring ip = 4; // IP地址\n\tbool canAccess = 5; // 是否能够访问\n\tbool isUp = 6; // 是否上线\n\trepeated int64 nodeClusterIds = 7; // 所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群\n}",
       "doc": "创建IP地址"
     },
     {
@@ -14675,7 +14675,7 @@
     },
     {
       "name": "CreateNodeIPAddressesRequest",
-      "code": "message CreateNodeIPAddressesRequest {\n\tint64 nodeId = 1;\n\tstring role = 2;\n\tstring name = 3;\n\trepeated string ipList = 4;\n\tbool canAccess = 5;\n\tbool isUp = 6;\n\tstring groupValue = 7;\n}",
+      "code": "message CreateNodeIPAddressesRequest {\n\tint64 nodeId = 1;\n\tstring role = 2;\n\tstring name = 3;\n\trepeated string ipList = 4;\n\tbool canAccess = 5;\n\tbool isUp = 6;\n\tstring groupValue = 7;\n\trepeated int64 nodeClusterIds = 8; // 所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群\n}",
       "doc": "批量创建IP地址"
     },
     {
@@ -20115,7 +20115,7 @@
     },
     {
       "name": "NodeIPAddress",
-      "code": "message NodeIPAddress {\n\tint64 id = 1;\n\tint64 nodeId = 2;\n\tstring name = 3;\n\tstring ip = 4;\n\tstring description = 5;\n\tint64 state = 6;\n\tint64 order = 7;\n\tbool canAccess = 8;\n\tbool isOn = 9;\n\tbool isUp = 10;\n\tstring role = 12;\n\tstring backupIP = 13;\n\tbool isHealthy = 14;\n}",
+      "code": "message NodeIPAddress {\n\tint64 id = 1;\n\tint64 nodeId = 2;\n\tstring name = 3;\n\tstring ip = 4;\n\tstring description = 5;\n\tint64 state = 6;\n\tint64 order = 7;\n\tbool canAccess = 8;\n\tbool isOn = 9;\n\tbool isUp = 10;\n\tstring role = 12;\n\tstring backupIP = 13;\n\tbool isHealthy = 14;\n\n\trepeated NodeCluster nodeClusters = 30;\n}",
       "doc": "节点地址"
     },
     {
@@ -21435,7 +21435,7 @@
     },
     {
       "name": "UpdateNodeIPAddressRequest",
-      "code": "message UpdateNodeIPAddressRequest {\n\tint64 nodeIPAddressId = 1;\n\tstring name = 2;\n\tstring ip = 3;\n\tbool canAccess = 4;\n\tbool isOn = 5;\n\tbool isUp = 6;\n}",
+      "code": "message UpdateNodeIPAddressRequest {\n\tint64 nodeIPAddressId = 1; // IP地址ID\n\tstring name = 2;\n\tstring ip = 3;\n\tbool canAccess = 4; // 是否能够访问\n\tbool isOn = 5; // 是否启用\n\tbool isUp = 6; // 是否上线\n\trepeated int64 clusterIds = 7; // 所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群\n}",
       "doc": "修改IP地址"
     },
     {

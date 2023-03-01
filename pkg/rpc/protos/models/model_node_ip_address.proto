@@ -3,6 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
+import "models/model_node_cluster.proto";
+
 // 节点地址
 message NodeIPAddress {
 	int64 id = 1;
@@ -18,4 +20,6 @@ message NodeIPAddress {
 	string role = 12;
 	string backupIP = 13;
 	bool isHealthy = 14;
+
+	repeated NodeCluster nodeClusters = 30;
 }

@@ -47,12 +47,13 @@ service NodeIPAddressService {
 
 // 创建IP地址
 message CreateNodeIPAddressRequest {
-	int64 nodeId = 1;
-	string role = 2;
-	string name = 3;
-	string ip = 4;
-	bool canAccess = 5;
-	bool isUp = 6;
+	int64 nodeId = 1; // 节点ID
+	string role = 2; // 角色：node：边缘节点，dns：智能DNS节点
+	string name = 3; // 名称
+	string ip = 4; // IP地址
+	bool canAccess = 5; // 是否能够访问
+	bool isUp = 6; // 是否上线
+	repeated int64 nodeClusterIds = 7; // 可选项，所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群
 }
 
 message CreateNodeIPAddressResponse {
@@ -68,6 +69,7 @@ message CreateNodeIPAddressesRequest {
 	bool canAccess = 5;
 	bool isUp = 6;
 	string groupValue = 7;
+	repeated int64 nodeClusterIds = 8; // 可选项，所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群
 }
 
 message CreateNodeIPAddressesResponse {
@@ -76,12 +78,13 @@ message CreateNodeIPAddressesResponse {
 
 // 修改IP地址
 message UpdateNodeIPAddressRequest {
-	int64 nodeIPAddressId = 1;
+	int64 nodeIPAddressId = 1; // IP地址ID
 	string name = 2;
 	string ip = 3;
-	bool canAccess = 4;
-	bool isOn = 5;
-	bool isUp = 6;
+	bool canAccess = 4; // 是否能够访问
+	bool isOn = 5; // 是否启用
+	bool isUp = 6; // 是否上线
+	repeated int64 clusterIds = 7; // 可选项，所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群
 }
 
 // 修改IP地址所属节点
