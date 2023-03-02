@@ -14565,7 +14565,7 @@
     },
     {
       "name": "CreateNSRecordRequest",
-      "code": "message CreateNSRecordRequest {\n\tint64 nsDomainId = 1;\n\tstring description = 2;\n\tstring name = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 ttl = 6;\n\trepeated int64 nsRouteIds = 7 [deprecated = true];\n\trepeated string nsRouteCodes = 8; // 路线代号\n\n\tint32 mxPriority = 9; // mx优先级\n\n\tint32 srvPriority = 10; // SRV优先级\n\tint32 srvWeight = 11; // SRV权重\n\tint32 srvPort = 12; // SRV端口\n\n\tint32 caaFlag = 13; // CAA Flag\n\tstring caaTag = 14; // CAA TAG\n}",
+      "code": "message CreateNSRecordRequest {\n\tint64 nsDomainId = 1;\n\tstring description = 2;\n\tstring name = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 ttl = 6;\n\trepeated int64 nsRouteIds = 7 [deprecated = true];\n\trepeated string nsRouteCodes = 8; // 路线代号\n\tint32 weight = 15; // 权重\n\n\tint32 mxPriority = 9; // mx优先级\n\n\tint32 srvPriority = 10; // SRV优先级\n\tint32 srvWeight = 11; // SRV权重\n\tint32 srvPort = 12; // SRV端口\n\n\tint32 caaFlag = 13; // CAA Flag\n\tstring caaTag = 14; // CAA TAG\n}",
       "doc": "创建记录"
     },
     {
@@ -14575,7 +14575,7 @@
     },
     {
       "name": "CreateNSRecordsRequest",
-      "code": "message CreateNSRecordsRequest {\n\tint64 nsDomainId = 1;\n\tstring description = 2;\n\trepeated string names = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 ttl = 6;\n\trepeated string nsRouteCodes = 7; // 路线代号\n\n\tint32 mxPriority = 8; // mx优先级\n\n\tint32 srvPriority = 9; // SRV优先级\n\tint32 srvWeight = 10; // SRV权重\n\tint32 srvPort = 11; // SRV端口\n\n\tint32 caaFlag = 12; // CAA Flag\n\tstring caaTag = 13; // CAA TAG\n}",
+      "code": "message CreateNSRecordsRequest {\n\tint64 nsDomainId = 1;\n\tstring description = 2;\n\trepeated string names = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 ttl = 6;\n\trepeated string nsRouteCodes = 7; // 路线代号\n\tint32 weight = 14; // 权重\n\n\tint32 mxPriority = 8; // mx优先级\n\n\tint32 srvPriority = 9; // SRV优先级\n\tint32 srvWeight = 10; // SRV权重\n\tint32 srvPort = 11; // SRV端口\n\n\tint32 caaFlag = 12; // CAA Flag\n\tstring caaTag = 13; // CAA TAG\n}",
       "doc": "批量创建记录"
     },
     {
@@ -14655,7 +14655,7 @@
     },
     {
       "name": "CreateNodeIPAddressRequest",
-      "code": "message CreateNodeIPAddressRequest {\n\tint64 nodeId = 1; // 节点ID\n\tstring role = 2; // 角色：node：边缘节点，dns：智能DNS节点\n\tstring name = 3; // 名称\n\tstring ip = 4; // IP地址\n\tbool canAccess = 5; // 是否能够访问\n\tbool isUp = 6; // 是否上线\n\trepeated int64 nodeClusterIds = 7; // 所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群\n}",
+      "code": "message CreateNodeIPAddressRequest {\n\tint64 nodeId = 1; // 节点ID\n\tstring role = 2; // 角色：node：边缘节点，dns：智能DNS节点\n\tstring name = 3; // 名称\n\tstring ip = 4; // IP地址\n\tbool canAccess = 5; // 是否能够访问\n\tbool isUp = 6; // 是否上线\n\trepeated int64 nodeClusterIds = 7; // 可选项，所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群\n}",
       "doc": "创建IP地址"
     },
     {
@@ -14675,7 +14675,7 @@
     },
     {
       "name": "CreateNodeIPAddressesRequest",
-      "code": "message CreateNodeIPAddressesRequest {\n\tint64 nodeId = 1;\n\tstring role = 2;\n\tstring name = 3;\n\trepeated string ipList = 4;\n\tbool canAccess = 5;\n\tbool isUp = 6;\n\tstring groupValue = 7;\n\trepeated int64 nodeClusterIds = 8; // 所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群\n}",
+      "code": "message CreateNodeIPAddressesRequest {\n\tint64 nodeId = 1;\n\tstring role = 2;\n\tstring name = 3;\n\trepeated string ipList = 4;\n\tbool canAccess = 5;\n\tbool isUp = 6;\n\tstring groupValue = 7;\n\trepeated int64 nodeClusterIds = 8; // 可选项，所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群\n}",
       "doc": "批量创建IP地址"
     },
     {
@@ -19100,7 +19100,7 @@
     },
     {
       "name": "ImportNSRecordsRequest",
-      "code": "message ImportNSRecordsRequest {\n\trepeated Record nsRecords = 1;\n\tint64 userId = 2;\n\n\n\tmessage Record {\n\t\tstring nsDomainName = 1;\n\t\tstring name = 2;\n\t\tstring type = 3;\n\t\tstring value = 4;\n\t\tint32 ttl = 5;\n\t\tint32 mxPriority = 6; // MX优先级\n\n\t\tint32 srvPriority = 7; // SRV优先级\n\t\tint32 srvWeight = 8; // SRV权重\n\t\tint32 srvPort = 9; // SRV端口\n\n\t\tint32 caaFlag = 10; // CAA Flag\n\t\tstring caaTag = 11; // CAA TAG\n\t}\n}",
+      "code": "message ImportNSRecordsRequest {\n\trepeated Record nsRecords = 1;\n\tint64 userId = 2;\n\n\n\tmessage Record {\n\t\tstring nsDomainName = 1;\n\t\tstring name = 2;\n\t\tstring type = 3;\n\t\tstring value = 4;\n\t\tint32 ttl = 5;\n\t\tint32 mxPriority = 6; // MX优先级\n\t\tint32 weight = 12; // 权重\n\n\t\tint32 srvPriority = 7; // SRV优先级\n\t\tint32 srvWeight = 8; // SRV权重\n\t\tint32 srvPort = 9; // SRV端口\n\n\t\tint32 caaFlag = 10; // CAA Flag\n\t\tstring caaTag = 11; // CAA TAG\n\t}\n}",
       "doc": "导入域名解析"
     },
     {
@@ -21275,7 +21275,7 @@
     },
     {
       "name": "UpdateNSRecordRequest",
-      "code": "message UpdateNSRecordRequest {\n\tint64 nsRecordId = 1;\n\tstring description = 2;\n\tstring name = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 ttl = 6;\n\trepeated int64 nsRouteIds = 7 [deprecated = true];\n\tbool isOn = 8;\n\trepeated string nsRouteCodes = 9; // 路线代号\n\n\tint32 mxPriority = 10; // mx优先级\n\n\tint32 srvPriority = 11; // SRV优先级\n\tint32 srvWeight = 12; // SRV权重\n\tint32 srvPort = 13; // SRV端口\n\n\tint32 caaFlag = 14; // CAA Flag\n\tstring caaTag = 15; // CAA TAG\n}",
+      "code": "message UpdateNSRecordRequest {\n\tint64 nsRecordId = 1;\n\tstring description = 2;\n\tstring name = 3;\n\tstring type = 4;\n\tstring value = 5;\n\tint32 ttl = 6;\n\trepeated int64 nsRouteIds = 7 [deprecated = true];\n\tbool isOn = 8;\n\trepeated string nsRouteCodes = 9; // 路线代号\n\tint32 weight = 16; // 权重\n\n\tint32 mxPriority = 10; // mx优先级\n\n\tint32 srvPriority = 11; // SRV优先级\n\tint32 srvWeight = 12; // SRV权重\n\tint32 srvPort = 13; // SRV端口\n\n\tint32 caaFlag = 14; // CAA Flag\n\tstring caaTag = 15; // CAA TAG\n}",
       "doc": "修改记录"
     },
     {
@@ -21435,7 +21435,7 @@
     },
     {
       "name": "UpdateNodeIPAddressRequest",
-      "code": "message UpdateNodeIPAddressRequest {\n\tint64 nodeIPAddressId = 1; // IP地址ID\n\tstring name = 2;\n\tstring ip = 3;\n\tbool canAccess = 4; // 是否能够访问\n\tbool isOn = 5; // 是否启用\n\tbool isUp = 6; // 是否上线\n\trepeated int64 clusterIds = 7; // 所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群\n}",
+      "code": "message UpdateNodeIPAddressRequest {\n\tint64 nodeIPAddressId = 1; // IP地址ID\n\tstring name = 2;\n\tstring ip = 3;\n\tbool canAccess = 4; // 是否能够访问\n\tbool isOn = 5; // 是否启用\n\tbool isUp = 6; // 是否上线\n\trepeated int64 clusterIds = 7; // 可选项，所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群\n}",
       "doc": "修改IP地址"
     },
     {

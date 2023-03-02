@@ -41,7 +41,7 @@ type CreateNodeIPAddressRequest struct {
 	Ip             string  `protobuf:"bytes,4,opt,name=ip,proto3" json:"ip,omitempty"`                                 // IP地址
 	CanAccess      bool    `protobuf:"varint,5,opt,name=canAccess,proto3" json:"canAccess,omitempty"`                  // 是否能够访问
 	IsUp           bool    `protobuf:"varint,6,opt,name=isUp,proto3" json:"isUp,omitempty"`                            // 是否上线
-	NodeClusterIds []int64 `protobuf:"varint,7,rep,packed,name=nodeClusterIds,proto3" json:"nodeClusterIds,omitempty"` // 所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群
+	NodeClusterIds []int64 `protobuf:"varint,7,rep,packed,name=nodeClusterIds,proto3" json:"nodeClusterIds,omitempty"` // 可选项，所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群
 }
 
 func (x *CreateNodeIPAddressRequest) Reset() {
@@ -185,7 +185,7 @@ type CreateNodeIPAddressesRequest struct {
 	CanAccess      bool     `protobuf:"varint,5,opt,name=canAccess,proto3" json:"canAccess,omitempty"`
 	IsUp           bool     `protobuf:"varint,6,opt,name=isUp,proto3" json:"isUp,omitempty"`
 	GroupValue     string   `protobuf:"bytes,7,opt,name=groupValue,proto3" json:"groupValue,omitempty"`
-	NodeClusterIds []int64  `protobuf:"varint,8,rep,packed,name=nodeClusterIds,proto3" json:"nodeClusterIds,omitempty"` // 所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群
+	NodeClusterIds []int64  `protobuf:"varint,8,rep,packed,name=nodeClusterIds,proto3" json:"nodeClusterIds,omitempty"` // 可选项，所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群
 }
 
 func (x *CreateNodeIPAddressesRequest) Reset() {
@@ -335,7 +335,7 @@ type UpdateNodeIPAddressRequest struct {
 	CanAccess       bool    `protobuf:"varint,4,opt,name=canAccess,proto3" json:"canAccess,omitempty"`          // 是否能够访问
 	IsOn            bool    `protobuf:"varint,5,opt,name=isOn,proto3" json:"isOn,omitempty"`                    // 是否启用
 	IsUp            bool    `protobuf:"varint,6,opt,name=isUp,proto3" json:"isUp,omitempty"`                    // 是否上线
-	ClusterIds      []int64 `protobuf:"varint,7,rep,packed,name=clusterIds,proto3" json:"clusterIds,omitempty"` // 所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群
+	ClusterIds      []int64 `protobuf:"varint,7,rep,packed,name=clusterIds,proto3" json:"clusterIds,omitempty"` // 可选项，所属集群ID列表，如果没有指定，则表示应用于节点所属的所有集群
 }
 
 func (x *UpdateNodeIPAddressRequest) Reset() {
