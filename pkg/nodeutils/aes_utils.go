@@ -10,8 +10,8 @@ import (
 	"time"
 )
 
-// EncryptData 加密
-func EncryptData(nodeUniqueId string, nodeSecret string, data maps.Map, timeout int32) (string, error) {
+// EncryptMap 加密
+func EncryptMap(nodeUniqueId string, nodeSecret string, data maps.Map, timeout int32) (string, error) {
 	if data == nil {
 		data = maps.Map{}
 	}
@@ -42,8 +42,8 @@ func EncryptData(nodeUniqueId string, nodeSecret string, data maps.Map, timeout 
 	return base64.StdEncoding.EncodeToString(result), nil
 }
 
-// DecryptData 解密
-func DecryptData(nodeUniqueId string, nodeSecret string, encodedString string) (maps.Map, error) {
+// DecryptMap 解密
+func DecryptMap(nodeUniqueId string, nodeSecret string, encodedString string) (maps.Map, error) {
 	var method = &AES256CFBMethod{}
 	err := method.Init([]byte(nodeUniqueId), []byte(nodeSecret))
 	if err != nil {
@@ -72,4 +72,43 @@ func DecryptData(nodeUniqueId string, nodeSecret string, encodedString string) (
 	}
 
 	return result.GetMap("data"), nil
+}
+
+// EncryptData 加密
+func EncryptData(nodeUniqueId string, nodeSecret string, data []byte) (string, error) {
+	if len(data) == 0 {
+		return "", nil
+	}
+
+	var method = &AES256CFBMethod{}
+	err := method.Init([]byte(nodeUniqueId), []byte(nodeSecret))
+	if err != nil {
+		return "", err
+	}
+	result, err := method.Encrypt(data)
+	if err != nil {
+		return "", err
+	}
+
+	return base64.StdEncoding.EncodeToString(result), nil
+}
+
+// DecryptData 解密
+func DecryptData(nodeUniqueId string, nodeSecret string, encodedString string) ([]byte, error) {
+	if len(encodedString) == 0 {
+		return nil, nil
+	}
+
+	var method = &AES256CFBMethod{}
+	err := method.Init([]byte(nodeUniqueId), []byte(nodeSecret))
+	if err != nil {
+		return nil, err
+	}
+
+	encodedData, err := base64.StdEncoding.DecodeString(encodedString)
+	if err != nil {
+		return nil, errors.New("base64 decode failed: " + err.Error())
+	}
+
+	return method.Decrypt(encodedData)
 }

@@ -1,10 +1,13 @@
 package nodeconfigs
 
 import (
+	"bytes"
 	"crypto/sha256"
+	"encoding/base64"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/TeaOSLab/EdgeCommon/pkg/nodeutils"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/ddosconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/firewallconfigs"
@@ -14,6 +17,7 @@ import (
 	"os"
 	"reflect"
 	"strconv"
+	"strings"
 )
 
 var sharedNodeConfig *NodeConfig = nil
@@ -122,17 +126,50 @@ func SharedNodeConfig() (*NodeConfig, error) {
 		return sharedNodeConfig, nil
 	}
 
-	data, err := os.ReadFile(Tea.ConfigFile("node.json"))
+	// 从本地缓存读取
+	var configFile = Tea.ConfigFile("node.json")
+	var readCacheOk = false
+	defer func() {
+		if !readCacheOk {
+			_ = os.Remove(configFile)
+		}
+	}()
+
+	data, err := os.ReadFile(configFile)
+	if err != nil {
+		return &NodeConfig{}, err
+	}
+
+	encodedNodeInfo, encodedJSONData, found := bytes.Cut(data, []byte("\n"))
+	if !found {
+		// 删除缓存文件
+		return &NodeConfig{}, errors.New("node.json: invalid data format")
+	}
+
+	encodedNodeInfoData, err := base64.StdEncoding.DecodeString(string(encodedNodeInfo))
+	if err != nil {
+		// 删除缓存文件
+		return &NodeConfig{}, err
+	}
+
+	nodeUniqueId, nodeSecret, found := strings.Cut(string(encodedNodeInfoData), "|")
+	if !found {
+		// 删除缓存文件
+		return &NodeConfig{}, errors.New("node.json: node info: invalid data format")
+	}
+
+	jsonData, err := nodeutils.DecryptData(nodeUniqueId, nodeSecret, string(encodedJSONData))
 	if err != nil {
 		return &NodeConfig{}, err
 	}
 
 	var config = &NodeConfig{}
-	err = json.Unmarshal(data, &config)
+	err = json.Unmarshal(jsonData, &config)
 	if err != nil {
 		return &NodeConfig{}, err
 	}
 
+	readCacheOk = true
 	sharedNodeConfig = config
 	return config, nil
 }
@@ -397,7 +434,7 @@ func (this *NodeConfig) RemoveServer(serverId int64) {
 
 // AvailableGroups 根据网络地址和协议分组
 func (this *NodeConfig) AvailableGroups() []*serverconfigs.ServerAddressGroup {
-	groupMapping := map[string]*serverconfigs.ServerAddressGroup{} // protocol://addr => Server Group
+	var groupMapping = map[string]*serverconfigs.ServerAddressGroup{} // protocol://addr => Server Group
 	for _, server := range this.Servers {
 		if !server.IsOk() || !server.IsOn {
 			continue
@@ -413,7 +450,7 @@ func (this *NodeConfig) AvailableGroups() []*serverconfigs.ServerAddressGroup {
 			groupMapping[addr] = group
 		}
 	}
-	result := []*serverconfigs.ServerAddressGroup{}
+	var result = []*serverconfigs.ServerAddressGroup{}
 	for _, group := range groupMapping {
 		result = append(result, group)
 	}
@@ -435,7 +472,14 @@ func (this *NodeConfig) Save() error {
 		return err
 	}
 
-	return os.WriteFile(Tea.ConfigFile("node.json"), data, 0777)
+	var headerData = []byte(base64.StdEncoding.EncodeToString([]byte(this.NodeId+"|"+this.Secret)) + "\n")
+
+	encodedData, err := nodeutils.EncryptData(this.NodeId, this.Secret, data)
+	if err != nil {
+		return err
+	}
+
+	return os.WriteFile(Tea.ConfigFile("node.json"), append(headerData, encodedData...), 0777)
 }
 
 // PaddedId 获取填充后的ID
