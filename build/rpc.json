@@ -1092,6 +1092,17 @@
             "admin"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "uploadAPINodeFile",
+          "requestMessageName": "UploadAPINodeFileRequest",
+          "responseMessageName": "UploadAPINodeFileResponse",
+          "code": "rpc uploadAPINodeFile(UploadAPINodeFileRequest) returns (UploadAPINodeFileResponse);",
+          "doc": "上传新版API节点文件",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_api_node.proto",
@@ -16870,7 +16881,7 @@
     },
     {
       "name": "FindCurrentAPINodeVersionResponse",
-      "code": "message FindCurrentAPINodeVersionResponse {\n\tstring version = 1;\n}",
+      "code": "message FindCurrentAPINodeVersionResponse {\n\tstring version = 1; // 版本号\n\tstring os = 2; // 系统代号，比如linux\n\tstring arch = 3; // 架构\n}",
       "doc": ""
     },
     {
@@ -21832,6 +21843,16 @@
       "name": "UpgradeNodeRequest",
       "code": "message UpgradeNodeRequest {\n\tint64 nodeId = 1;\n}",
       "doc": "升级节点"
+    },
+    {
+      "name": "UploadAPINodeFileRequest",
+      "code": "message UploadAPINodeFileRequest {\n\tstring filename = 1; // 文件名\n\tstring sum = 2; // 整个文件的SUM值\n\tbytes chunkData = 3; // 片段数据\n\tbool isFirstChunk = 4; // 是否为第一个片段\n\tbool isLastChunk = 5; // 是否为最后一个片段\n}",
+      "doc": "上传新版API节点文件"
+    },
+    {
+      "name": "UploadAPINodeFileResponse",
+      "code": "message UploadAPINodeFileResponse {\n\n}",
+      "doc": ""
     },
     {
       "name": "UploadMetricStatsRequest",

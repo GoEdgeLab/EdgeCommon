@@ -42,6 +42,9 @@ service APINodeService {
 
 	// 修改调试模式状态
 	rpc debugAPINode(DebugAPINodeRequest) returns (RPCSuccess);
+
+	// 上传新版API节点文件
+	rpc uploadAPINodeFile(UploadAPINodeFileRequest) returns (UploadAPINodeFileResponse);
 }
 
 // 创建API节点
@@ -125,7 +128,9 @@ message FindCurrentAPINodeVersionRequest {
 }
 
 message FindCurrentAPINodeVersionResponse {
-	string version = 1;
+	string version = 1; // 版本号
+	string os = 2; // 系统代号，比如linux
+	string arch = 3; // 架构
 }
 
 // 获取当前API节点的信息
@@ -144,4 +149,17 @@ message CountAllEnabledAPINodesWithSSLCertIdRequest {
 // 修改调试模式状态
 message DebugAPINodeRequest {
 	bool debug = 1;
+}
+
+// 上传新版API节点文件
+message UploadAPINodeFileRequest {
+	string filename = 1; // 文件名
+	string sum = 2; // 整个文件的SUM值
+	bytes chunkData = 3; // 片段数据
+	bool isFirstChunk = 4; // 是否为第一个片段
+	bool isLastChunk = 5; // 是否为最后一个片段
+}
+
+message UploadAPINodeFileResponse {
+
 }

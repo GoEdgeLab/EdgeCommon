@@ -770,7 +770,9 @@ type FindCurrentAPINodeVersionResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Version string `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"`
+	Version string `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"` // 版本号
+	Os      string `protobuf:"bytes,2,opt,name=os,proto3" json:"os,omitempty"`           // 系统代号，比如linux
+	Arch    string `protobuf:"bytes,3,opt,name=arch,proto3" json:"arch,omitempty"`       // 架构
 }
 
 func (x *FindCurrentAPINodeVersionResponse) Reset() {
@@ -808,6 +810,20 @@ func (*FindCurrentAPINodeVersionResponse) Descriptor() ([]byte, []int) {
 func (x *FindCurrentAPINodeVersionResponse) GetVersion() string {
 	if x != nil {
 		return x.Version
+	}
+	return ""
+}
+
+func (x *FindCurrentAPINodeVersionResponse) GetOs() string {
+	if x != nil {
+		return x.Os
+	}
+	return ""
+}
+
+func (x *FindCurrentAPINodeVersionResponse) GetArch() string {
+	if x != nil {
+		return x.Arch
 	}
 	return ""
 }
@@ -994,6 +1010,124 @@ func (x *DebugAPINodeRequest) GetDebug() bool {
 	return false
 }
 
+// 上传新版API节点文件
+type UploadAPINodeFileRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Filename     string `protobuf:"bytes,1,opt,name=filename,proto3" json:"filename,omitempty"`          // 文件名
+	Sum          string `protobuf:"bytes,2,opt,name=sum,proto3" json:"sum,omitempty"`                    // 整个文件的SUM值
+	ChunkData    []byte `protobuf:"bytes,3,opt,name=chunkData,proto3" json:"chunkData,omitempty"`        // 片段数据
+	IsFirstChunk bool   `protobuf:"varint,4,opt,name=isFirstChunk,proto3" json:"isFirstChunk,omitempty"` // 是否为第一个片段
+	IsLastChunk  bool   `protobuf:"varint,5,opt,name=isLastChunk,proto3" json:"isLastChunk,omitempty"`   // 是否为最后一个片段
+}
+
+func (x *UploadAPINodeFileRequest) Reset() {
+	*x = UploadAPINodeFileRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_api_node_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UploadAPINodeFileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UploadAPINodeFileRequest) ProtoMessage() {}
+
+func (x *UploadAPINodeFileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_api_node_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UploadAPINodeFileRequest.ProtoReflect.Descriptor instead.
+func (*UploadAPINodeFileRequest) Descriptor() ([]byte, []int) {
+	return file_service_api_node_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *UploadAPINodeFileRequest) GetFilename() string {
+	if x != nil {
+		return x.Filename
+	}
+	return ""
+}
+
+func (x *UploadAPINodeFileRequest) GetSum() string {
+	if x != nil {
+		return x.Sum
+	}
+	return ""
+}
+
+func (x *UploadAPINodeFileRequest) GetChunkData() []byte {
+	if x != nil {
+		return x.ChunkData
+	}
+	return nil
+}
+
+func (x *UploadAPINodeFileRequest) GetIsFirstChunk() bool {
+	if x != nil {
+		return x.IsFirstChunk
+	}
+	return false
+}
+
+func (x *UploadAPINodeFileRequest) GetIsLastChunk() bool {
+	if x != nil {
+		return x.IsLastChunk
+	}
+	return false
+}
+
+type UploadAPINodeFileResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UploadAPINodeFileResponse) Reset() {
+	*x = UploadAPINodeFileResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_api_node_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UploadAPINodeFileResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UploadAPINodeFileResponse) ProtoMessage() {}
+
+func (x *UploadAPINodeFileResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_api_node_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UploadAPINodeFileResponse.ProtoReflect.Descriptor instead.
+func (*UploadAPINodeFileResponse) Descriptor() ([]byte, []int) {
+	return file_service_api_node_proto_rawDescGZIP(), []int{19}
+}
+
 var File_service_api_node_proto protoreflect.FileDescriptor
 
 var file_service_api_node_proto_rawDesc = []byte{
@@ -1081,24 +1215,39 @@ var file_service_api_node_proto_rawDesc = []byte{
 	0x49, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x07, 0x61, 0x70, 0x69, 0x4e, 0x6f, 0x64, 0x65, 0x22, 0x22,
 	0x0a, 0x20, 0x46, 0x69, 0x6e, 0x64, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x41, 0x50, 0x49,
 	0x4e, 0x6f, 0x64, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x22, 0x3d, 0x0a, 0x21, 0x46, 0x69, 0x6e, 0x64, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e,
+	0x73, 0x74, 0x22, 0x61, 0x0a, 0x21, 0x46, 0x69, 0x6e, 0x64, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e,
 	0x74, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52,
 	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69,
 	0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f,
-	0x6e, 0x22, 0x1b, 0x0a, 0x19, 0x46, 0x69, 0x6e, 0x64, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74,
-	0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x43,
-	0x0a, 0x1a, 0x46, 0x69, 0x6e, 0x64, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x41, 0x50, 0x49,
-	0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x25, 0x0a, 0x07,
-	0x61, 0x70, 0x69, 0x4e, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b, 0x2e,
-	0x70, 0x62, 0x2e, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x07, 0x61, 0x70, 0x69, 0x4e,
-	0x6f, 0x64, 0x65, 0x22, 0x4b, 0x0a, 0x2b, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45,
-	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x73, 0x57, 0x69,
-	0x74, 0x68, 0x53, 0x53, 0x4c, 0x43, 0x65, 0x72, 0x74, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x73, 0x73, 0x6c, 0x43, 0x65, 0x72, 0x74, 0x49, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x73, 0x73, 0x6c, 0x43, 0x65, 0x72, 0x74, 0x49, 0x64,
-	0x22, 0x2b, 0x0a, 0x13, 0x44, 0x65, 0x62, 0x75, 0x67, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x64, 0x65, 0x62, 0x75, 0x67,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x64, 0x65, 0x62, 0x75, 0x67, 0x32, 0xf5, 0x07,
+	0x6e, 0x12, 0x0e, 0x0a, 0x02, 0x6f, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x6f,
+	0x73, 0x12, 0x12, 0x0a, 0x04, 0x61, 0x72, 0x63, 0x68, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x61, 0x72, 0x63, 0x68, 0x22, 0x1b, 0x0a, 0x19, 0x46, 0x69, 0x6e, 0x64, 0x43, 0x75, 0x72,
+	0x72, 0x65, 0x6e, 0x74, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x22, 0x43, 0x0a, 0x1a, 0x46, 0x69, 0x6e, 0x64, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e,
+	0x74, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x25, 0x0a, 0x07, 0x61, 0x70, 0x69, 0x4e, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x0b, 0x2e, 0x70, 0x62, 0x2e, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x07,
+	0x61, 0x70, 0x69, 0x4e, 0x6f, 0x64, 0x65, 0x22, 0x4b, 0x0a, 0x2b, 0x43, 0x6f, 0x75, 0x6e, 0x74,
+	0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64,
+	0x65, 0x73, 0x57, 0x69, 0x74, 0x68, 0x53, 0x53, 0x4c, 0x43, 0x65, 0x72, 0x74, 0x49, 0x64, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x73, 0x73, 0x6c, 0x43, 0x65, 0x72,
+	0x74, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x73, 0x73, 0x6c, 0x43, 0x65,
+	0x72, 0x74, 0x49, 0x64, 0x22, 0x2b, 0x0a, 0x13, 0x44, 0x65, 0x62, 0x75, 0x67, 0x41, 0x50, 0x49,
+	0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x64,
+	0x65, 0x62, 0x75, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x64, 0x65, 0x62, 0x75,
+	0x67, 0x22, 0xac, 0x01, 0x0a, 0x18, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x41, 0x50, 0x49, 0x4e,
+	0x6f, 0x64, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a,
+	0x0a, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x73, 0x75,
+	0x6d, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x73, 0x75, 0x6d, 0x12, 0x1c, 0x0a, 0x09,
+	0x63, 0x68, 0x75, 0x6e, 0x6b, 0x44, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0c, 0x52,
+	0x09, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x44, 0x61, 0x74, 0x61, 0x12, 0x22, 0x0a, 0x0c, 0x69, 0x73,
+	0x46, 0x69, 0x72, 0x73, 0x74, 0x43, 0x68, 0x75, 0x6e, 0x6b, 0x18, 0x04, 0x20, 0x01, 0x28, 0x08,
+	0x52, 0x0c, 0x69, 0x73, 0x46, 0x69, 0x72, 0x73, 0x74, 0x43, 0x68, 0x75, 0x6e, 0x6b, 0x12, 0x20,
+	0x0a, 0x0b, 0x69, 0x73, 0x4c, 0x61, 0x73, 0x74, 0x43, 0x68, 0x75, 0x6e, 0x6b, 0x18, 0x05, 0x20,
+	0x01, 0x28, 0x08, 0x52, 0x0b, 0x69, 0x73, 0x4c, 0x61, 0x73, 0x74, 0x43, 0x68, 0x75, 0x6e, 0x6b,
+	0x22, 0x1b, 0x0a, 0x19, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64,
+	0x65, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xc7, 0x08,
 	0x0a, 0x0e, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
 	0x12, 0x44, 0x0a, 0x0d, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64,
 	0x65, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x50, 0x49,
@@ -1162,8 +1311,13 @@ var file_service_api_node_proto_rawDesc = []byte{
 	0x64, 0x65, 0x62, 0x75, 0x67, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x12, 0x17, 0x2e, 0x70,
 	0x62, 0x2e, 0x44, 0x65, 0x62, 0x75, 0x67, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x52, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75,
-	0x63, 0x63, 0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x50, 0x0a, 0x11, 0x75, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x41,
+	0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x1c, 0x2e, 0x70, 0x62, 0x2e,
+	0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x46, 0x69, 0x6c,
+	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70,
+	0x6c, 0x6f, 0x61, 0x64, 0x41, 0x50, 0x49, 0x4e, 0x6f, 0x64, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1178,7 +1332,7 @@ func file_service_api_node_proto_rawDescGZIP() []byte {
 	return file_service_api_node_proto_rawDescData
 }
 
-var file_service_api_node_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_service_api_node_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_service_api_node_proto_goTypes = []interface{}{
 	(*CreateAPINodeRequest)(nil),                        // 0: pb.CreateAPINodeRequest
 	(*CreateAPINodeResponse)(nil),                       // 1: pb.CreateAPINodeResponse
@@ -1198,15 +1352,17 @@ var file_service_api_node_proto_goTypes = []interface{}{
 	(*FindCurrentAPINodeResponse)(nil),                  // 15: pb.FindCurrentAPINodeResponse
 	(*CountAllEnabledAPINodesWithSSLCertIdRequest)(nil), // 16: pb.CountAllEnabledAPINodesWithSSLCertIdRequest
 	(*DebugAPINodeRequest)(nil),                         // 17: pb.DebugAPINodeRequest
-	(*APINode)(nil),                                     // 18: pb.APINode
-	(*RPCSuccess)(nil),                                  // 19: pb.RPCSuccess
-	(*RPCCountResponse)(nil),                            // 20: pb.RPCCountResponse
+	(*UploadAPINodeFileRequest)(nil),                    // 18: pb.UploadAPINodeFileRequest
+	(*UploadAPINodeFileResponse)(nil),                   // 19: pb.UploadAPINodeFileResponse
+	(*APINode)(nil),                                     // 20: pb.APINode
+	(*RPCSuccess)(nil),                                  // 21: pb.RPCSuccess
+	(*RPCCountResponse)(nil),                            // 22: pb.RPCCountResponse
 }
 var file_service_api_node_proto_depIdxs = []int32{
-	18, // 0: pb.FindAllEnabledAPINodesResponse.apiNodes:type_name -> pb.APINode
-	18, // 1: pb.ListEnabledAPINodesResponse.apiNodes:type_name -> pb.APINode
-	18, // 2: pb.FindEnabledAPINodeResponse.apiNode:type_name -> pb.APINode
-	18, // 3: pb.FindCurrentAPINodeResponse.apiNode:type_name -> pb.APINode
+	20, // 0: pb.FindAllEnabledAPINodesResponse.apiNodes:type_name -> pb.APINode
+	20, // 1: pb.ListEnabledAPINodesResponse.apiNodes:type_name -> pb.APINode
+	20, // 2: pb.FindEnabledAPINodeResponse.apiNode:type_name -> pb.APINode
+	20, // 3: pb.FindCurrentAPINodeResponse.apiNode:type_name -> pb.APINode
 	0,  // 4: pb.APINodeService.createAPINode:input_type -> pb.CreateAPINodeRequest
 	2,  // 5: pb.APINodeService.updateAPINode:input_type -> pb.UpdateAPINodeRequest
 	3,  // 6: pb.APINodeService.deleteAPINode:input_type -> pb.DeleteAPINodeRequest
@@ -1219,20 +1375,22 @@ var file_service_api_node_proto_depIdxs = []int32{
 	14, // 13: pb.APINodeService.findCurrentAPINode:input_type -> pb.FindCurrentAPINodeRequest
 	16, // 14: pb.APINodeService.countAllEnabledAPINodesWithSSLCertId:input_type -> pb.CountAllEnabledAPINodesWithSSLCertIdRequest
 	17, // 15: pb.APINodeService.debugAPINode:input_type -> pb.DebugAPINodeRequest
-	1,  // 16: pb.APINodeService.createAPINode:output_type -> pb.CreateAPINodeResponse
-	19, // 17: pb.APINodeService.updateAPINode:output_type -> pb.RPCSuccess
-	19, // 18: pb.APINodeService.deleteAPINode:output_type -> pb.RPCSuccess
-	5,  // 19: pb.APINodeService.findAllEnabledAPINodes:output_type -> pb.FindAllEnabledAPINodesResponse
-	20, // 20: pb.APINodeService.countAllEnabledAPINodes:output_type -> pb.RPCCountResponse
-	20, // 21: pb.APINodeService.countAllEnabledAndOnAPINodes:output_type -> pb.RPCCountResponse
-	9,  // 22: pb.APINodeService.listEnabledAPINodes:output_type -> pb.ListEnabledAPINodesResponse
-	11, // 23: pb.APINodeService.findEnabledAPINode:output_type -> pb.FindEnabledAPINodeResponse
-	13, // 24: pb.APINodeService.findCurrentAPINodeVersion:output_type -> pb.FindCurrentAPINodeVersionResponse
-	15, // 25: pb.APINodeService.findCurrentAPINode:output_type -> pb.FindCurrentAPINodeResponse
-	20, // 26: pb.APINodeService.countAllEnabledAPINodesWithSSLCertId:output_type -> pb.RPCCountResponse
-	19, // 27: pb.APINodeService.debugAPINode:output_type -> pb.RPCSuccess
-	16, // [16:28] is the sub-list for method output_type
-	4,  // [4:16] is the sub-list for method input_type
+	18, // 16: pb.APINodeService.uploadAPINodeFile:input_type -> pb.UploadAPINodeFileRequest
+	1,  // 17: pb.APINodeService.createAPINode:output_type -> pb.CreateAPINodeResponse
+	21, // 18: pb.APINodeService.updateAPINode:output_type -> pb.RPCSuccess
+	21, // 19: pb.APINodeService.deleteAPINode:output_type -> pb.RPCSuccess
+	5,  // 20: pb.APINodeService.findAllEnabledAPINodes:output_type -> pb.FindAllEnabledAPINodesResponse
+	22, // 21: pb.APINodeService.countAllEnabledAPINodes:output_type -> pb.RPCCountResponse
+	22, // 22: pb.APINodeService.countAllEnabledAndOnAPINodes:output_type -> pb.RPCCountResponse
+	9,  // 23: pb.APINodeService.listEnabledAPINodes:output_type -> pb.ListEnabledAPINodesResponse
+	11, // 24: pb.APINodeService.findEnabledAPINode:output_type -> pb.FindEnabledAPINodeResponse
+	13, // 25: pb.APINodeService.findCurrentAPINodeVersion:output_type -> pb.FindCurrentAPINodeVersionResponse
+	15, // 26: pb.APINodeService.findCurrentAPINode:output_type -> pb.FindCurrentAPINodeResponse
+	22, // 27: pb.APINodeService.countAllEnabledAPINodesWithSSLCertId:output_type -> pb.RPCCountResponse
+	21, // 28: pb.APINodeService.debugAPINode:output_type -> pb.RPCSuccess
+	19, // 29: pb.APINodeService.uploadAPINodeFile:output_type -> pb.UploadAPINodeFileResponse
+	17, // [17:30] is the sub-list for method output_type
+	4,  // [4:17] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name
 	4,  // [4:4] is the sub-list for extension extendee
 	0,  // [0:4] is the sub-list for field type_name
@@ -1462,6 +1620,30 @@ func file_service_api_node_proto_init() {
 				return nil
 			}
 		}
+		file_service_api_node_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UploadAPINodeFileRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_api_node_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UploadAPINodeFileResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1469,7 +1651,7 @@ func file_service_api_node_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_api_node_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   18,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -1519,6 +1701,8 @@ type APINodeServiceClient interface {
 	CountAllEnabledAPINodesWithSSLCertId(ctx context.Context, in *CountAllEnabledAPINodesWithSSLCertIdRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 修改调试模式状态
 	DebugAPINode(ctx context.Context, in *DebugAPINodeRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 上传新版API节点文件
+	UploadAPINodeFile(ctx context.Context, in *UploadAPINodeFileRequest, opts ...grpc.CallOption) (*UploadAPINodeFileResponse, error)
 }
 
 type aPINodeServiceClient struct {
@@ -1637,6 +1821,15 @@ func (c *aPINodeServiceClient) DebugAPINode(ctx context.Context, in *DebugAPINod
 	return out, nil
 }
 
+func (c *aPINodeServiceClient) UploadAPINodeFile(ctx context.Context, in *UploadAPINodeFileRequest, opts ...grpc.CallOption) (*UploadAPINodeFileResponse, error) {
+	out := new(UploadAPINodeFileResponse)
+	err := c.cc.Invoke(ctx, "/pb.APINodeService/uploadAPINodeFile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // APINodeServiceServer is the server API for APINodeService service.
 type APINodeServiceServer interface {
 	// 创建API节点
@@ -1663,6 +1856,8 @@ type APINodeServiceServer interface {
 	CountAllEnabledAPINodesWithSSLCertId(context.Context, *CountAllEnabledAPINodesWithSSLCertIdRequest) (*RPCCountResponse, error)
 	// 修改调试模式状态
 	DebugAPINode(context.Context, *DebugAPINodeRequest) (*RPCSuccess, error)
+	// 上传新版API节点文件
+	UploadAPINodeFile(context.Context, *UploadAPINodeFileRequest) (*UploadAPINodeFileResponse, error)
 }
 
 // UnimplementedAPINodeServiceServer can be embedded to have forward compatible implementations.
@@ -1704,6 +1899,9 @@ func (*UnimplementedAPINodeServiceServer) CountAllEnabledAPINodesWithSSLCertId(c
 }
 func (*UnimplementedAPINodeServiceServer) DebugAPINode(context.Context, *DebugAPINodeRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DebugAPINode not implemented")
+}
+func (*UnimplementedAPINodeServiceServer) UploadAPINodeFile(context.Context, *UploadAPINodeFileRequest) (*UploadAPINodeFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadAPINodeFile not implemented")
 }
 
 func RegisterAPINodeServiceServer(s *grpc.Server, srv APINodeServiceServer) {
@@ -1926,6 +2124,24 @@ func _APINodeService_DebugAPINode_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _APINodeService_UploadAPINodeFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadAPINodeFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(APINodeServiceServer).UploadAPINodeFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.APINodeService/UploadAPINodeFile",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(APINodeServiceServer).UploadAPINodeFile(ctx, req.(*UploadAPINodeFileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _APINodeService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.APINodeService",
 	HandlerType: (*APINodeServiceServer)(nil),
@@ -1977,6 +2193,10 @@ var _APINodeService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "debugAPINode",
 			Handler:    _APINodeService_DebugAPINode_Handler,
+		},
+		{
+			MethodName: "uploadAPINodeFile",
+			Handler:    _APINodeService_UploadAPINodeFile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
