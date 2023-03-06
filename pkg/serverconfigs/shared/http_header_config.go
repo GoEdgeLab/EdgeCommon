@@ -103,3 +103,16 @@ func (this *HTTPHeaderConfig) Init() error {
 func (this *HTTPHeaderConfig) HasVariables() bool {
 	return this.hasVariables
 }
+
+// Match 判断是否匹配状态码
+func (this *HTTPHeaderConfig) Match(statusCode int) bool {
+	if !this.IsOn {
+		return false
+	}
+
+	if this.Status == nil {
+		return false
+	}
+
+	return this.Status.Match(statusCode)
+}
