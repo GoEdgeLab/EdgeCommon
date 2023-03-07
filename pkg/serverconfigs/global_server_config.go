@@ -7,6 +7,7 @@ func DefaultGlobalServerConfig() *GlobalServerConfig {
 	config.HTTPAccessLog.EnableRequestHeaders = true
 	config.HTTPAccessLog.EnableResponseHeaders = true
 	config.HTTPAccessLog.EnableCookies = true
+	config.HTTPAccessLog.EnableServerNotFound = true
 	config.Log.RecordServerError = false
 	config.Performance.AutoWriteTimeout = true
 	config.Performance.AutoReadTimeout = true
@@ -28,6 +29,7 @@ type GlobalServerConfig struct {
 		CommonRequestHeadersOnly bool `yaml:"commonRequestHeadersOnly" json:"commonRequestHeadersOnly"` // 只保留通用Header
 		EnableResponseHeaders    bool `yaml:"enableResponseHeaders" json:"enableResponseHeaders"`       // 记录响应Header
 		EnableCookies            bool `yaml:"enableCookies" json:"enableCookies"`                       // 记录Cookie
+		EnableServerNotFound     bool `yaml:"enableServerNotFound" json:"enableServerNotFound"`         // 记录服务找不到的日志
 	} `yaml:"httpAccessLog" json:"httpAccessLog"` // 访问日志配置
 
 	Performance struct {
