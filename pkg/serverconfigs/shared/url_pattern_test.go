@@ -45,6 +45,12 @@ func TestURLPattern_Match(t *testing.T) {
 		},
 		{
 			patternType: "wildcard",
+			pattern:     "*COM",
+			url:         "https://example.com/hello",
+			result:      false,
+		},
+		{
+			patternType: "wildcard",
 			pattern:     "http://*",
 			url:         "https://example.com",
 			result:      false,

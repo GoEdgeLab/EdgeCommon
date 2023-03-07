@@ -34,7 +34,7 @@ func (this *URLPattern) Init() error {
 		for index, piece := range pieces {
 			pieces[index] = regexp.QuoteMeta(piece)
 		}
-		reg, err := regexp.Compile("(?i)" /** 大小写不敏感 **/ + strings.Join(pieces, "(.*)"))
+		reg, err := regexp.Compile("(?i)" /** 大小写不敏感 **/ + "^" + strings.Join(pieces, "(.*)") + "$")
 		if err != nil {
 			return err
 		}
