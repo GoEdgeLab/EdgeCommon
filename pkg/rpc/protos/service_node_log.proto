@@ -31,6 +31,9 @@ service NodeLogService {
 
 	// 设置所有日志未已读
 	rpc updateAllNodeLogsRead(UpdateAllNodeLogsReadRequest) returns (RPCSuccess);
+
+	// 删除日志
+	rpc deleteNodeLogs(DeleteNodeLogsRequest) returns (RPCSuccess);
 }
 
 // 创建日志
@@ -108,4 +111,24 @@ message UpdateNodeLogsReadRequest {
 // 设置所有日志未已读
 message UpdateAllNodeLogsReadRequest {
 
+}
+
+// 删除日志
+message DeleteNodeLogsRequest {
+	int64 nodeClusterId = 15;
+	int64 nodeId = 1;
+	string role = 2;
+	int64 offset = 3;
+	int64 size = 4;
+
+	string dayFrom = 5;
+	string dayTo = 6;
+	string keyword = 7;
+	string level = 8;
+	int64 serverId = 9;
+	int32 fixedState = 10;
+	bool allServers = 11; // 是否获取所有服务相关的日志
+	int64 originId = 12;
+	bool isUnread = 13;
+	string tag = 14;
 }

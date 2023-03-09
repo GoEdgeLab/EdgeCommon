@@ -3405,7 +3405,10 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateHTTPWebCC(UpdateHTTPWebCCRequest) returns (RPCSuccess);",
           "doc": "修改CC设置",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -3414,7 +3417,10 @@
           "responseMessageName": "FindHTTPWebCCResponse",
           "code": "rpc findHTTPWebCC(FindHTTPWebCCRequest) returns (FindHTTPWebCCResponse);",
           "doc": "查找UAM设置",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -6658,6 +6664,15 @@
           "roles": [
             "admin"
           ],
+          "isDeprecated": false
+        },
+        {
+          "name": "deleteNodeLogs",
+          "requestMessageName": "DeleteNodeLogsRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deleteNodeLogs(DeleteNodeLogsRequest) returns (RPCSuccess);",
+          "doc": "删除日志",
+          "roles": [],
           "isDeprecated": false
         }
       ],
@@ -15346,6 +15361,11 @@
       "name": "DeleteNodeIPAddressThresholdRequest",
       "code": "message DeleteNodeIPAddressThresholdRequest {\n\tint64 nodeIPAddressThresholdId = 1;\n}",
       "doc": "删除阈值"
+    },
+    {
+      "name": "DeleteNodeLogsRequest",
+      "code": "message DeleteNodeLogsRequest {\n\tint64 nodeClusterId = 15;\n\tint64 nodeId = 1;\n\tstring role = 2;\n\tint64 offset = 3;\n\tint64 size = 4;\n\n\tstring dayFrom = 5;\n\tstring dayTo = 6;\n\tstring keyword = 7;\n\tstring level = 8;\n\tint64 serverId = 9;\n\tint32 fixedState = 10;\n\tbool allServers = 11; // 是否获取所有服务相关的日志\n\tint64 originId = 12;\n\tbool isUnread = 13;\n\tstring tag = 14;\n}",
+      "doc": "删除日志"
     },
     {
       "name": "DeleteNodePriceItemRequest",
