@@ -50,8 +50,8 @@ type HTTPWebConfig struct {
 	RequestScripts *HTTPRequestScriptsConfig `yaml:"requestScripts" json:"requestScripts"` // HTTP请求相关脚本
 
 	// UAM, CC ...
-	UAM *UAMConfig `yaml:"uam" json:"uam"`
-	CC  *UAMConfig `yaml:"cc" json:"cc"`
+	UAM *UAMConfig    `yaml:"uam" json:"uam"`
+	CC  *HTTPCCConfig `yaml:"cc" json:"cc"`
 }
 
 func (this *HTTPWebConfig) Init() error {

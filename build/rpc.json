@@ -3400,6 +3400,24 @@
           "isDeprecated": false
         },
         {
+          "name": "updateHTTPWebCC",
+          "requestMessageName": "UpdateHTTPWebCCRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateHTTPWebCC(UpdateHTTPWebCCRequest) returns (RPCSuccess);",
+          "doc": "修改CC设置",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "findHTTPWebCC",
+          "requestMessageName": "FindHTTPWebCCRequest",
+          "responseMessageName": "FindHTTPWebCCResponse",
+          "code": "rpc findHTTPWebCC(FindHTTPWebCCRequest) returns (FindHTTPWebCCResponse);",
+          "doc": "查找UAM设置",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
           "name": "updateHTTPWebReferers",
           "requestMessageName": "UpdateHTTPWebReferersRequest",
           "responseMessageName": "RPCSuccess",
@@ -17935,6 +17953,16 @@
       "doc": ""
     },
     {
+      "name": "FindHTTPWebCCRequest",
+      "code": "message FindHTTPWebCCRequest {\n\tint64 httpWebId = 1;\n}",
+      "doc": "查找服务UAM设置"
+    },
+    {
+      "name": "FindHTTPWebCCResponse",
+      "code": "message FindHTTPWebCCResponse {\n\tbytes ccJSON = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "FindHTTPWebHostRedirectsRequest",
       "code": "message FindHTTPWebHostRedirectsRequest {\n\tint64 httpWebId = 1;\n}",
       "doc": "查找主机跳转设置"
@@ -20958,6 +20986,11 @@
       "name": "UpdateHTTPWebAuthRequest",
       "code": "message UpdateHTTPWebAuthRequest {\n\tint64 httpWebId = 1;\n\tbytes authJSON = 2;\n}",
       "doc": "更改认证设置"
+    },
+    {
+      "name": "UpdateHTTPWebCCRequest",
+      "code": "message UpdateHTTPWebCCRequest {\n\tint64 httpWebId = 1;\n\tbytes ccJSON = 2;\n}",
+      "doc": "修改服务CC设置"
     },
     {
       "name": "UpdateHTTPWebCacheRequest",

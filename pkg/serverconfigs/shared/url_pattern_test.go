@@ -4,13 +4,10 @@ package shared_test
 
 import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
-	"github.com/iwind/TeaGo/assert"
 	"testing"
 )
 
 func TestURLPattern_Match(t *testing.T) {
-	var a = assert.NewAssertion(t)
-
 	type unitTest struct {
 		patternType string
 		pattern     string
@@ -56,6 +53,24 @@ func TestURLPattern_Match(t *testing.T) {
 			result:      false,
 		},
 		{
+			patternType: "wildcard",
+			pattern:     "https://example.com",
+			url:         "https://example.com",
+			result:      true,
+		},
+		{
+			patternType: "wildcard",
+			pattern:     "/hello/world",
+			url:         "https://example-test.com/hello/world",
+			result:      true,
+		},
+		{
+			patternType: "wildcard",
+			pattern:     "/hello/world",
+			url:         "https://example-test.com/123/hello/world",
+			result:      false,
+		},
+		{
 			patternType: "regexp",
 			pattern:     ".*",
 			url:         "https://example.com",
@@ -94,6 +109,9 @@ func TestURLPattern_Match(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		a.IsTrue(p.Match(ut.url) == ut.result)
+		var b = p.Match(ut.url) == ut.result
+		if !b {
+			t.Fatal("not matched pattern:", ut.pattern, "url:", ut.url)
+		}
 	}
 }

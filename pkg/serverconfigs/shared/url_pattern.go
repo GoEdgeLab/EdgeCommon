@@ -34,7 +34,11 @@ func (this *URLPattern) Init() error {
 		for index, piece := range pieces {
 			pieces[index] = regexp.QuoteMeta(piece)
 		}
-		reg, err := regexp.Compile("(?i)" /** 大小写不敏感 **/ + "^" + strings.Join(pieces, "(.*)") + "$")
+		var pattern = strings.Join(pieces, "(.*)")
+		if len(pattern) > 0 && pattern[0] == '/' {
+			pattern = "(http|https)://[\\w.-]+" + pattern
+		}
+		reg, err := regexp.Compile("(?i)" /** 大小写不敏感 **/ + "^" + pattern + "$")
 		if err != nil {
 			return err
 		}
