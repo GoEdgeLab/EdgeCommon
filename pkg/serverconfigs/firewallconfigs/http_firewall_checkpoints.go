@@ -286,7 +286,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "CC统计（旧）",
 		Prefix:      "cc",
-		Description: "统计某段时间段内的请求信息（请使用新的CC统计代替）",
+		Description: "统计某段时间段内的请求信息（不推荐再使用，请使用新的CC2统计代替）",
 		HasParams:   true,
 		Params: []*KeyValue{
 			NewKeyValue("请求数", "requests"),
