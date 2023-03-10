@@ -555,9 +555,10 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				Operator: HTTPFirewallRuleOperatorGt,
 				Value:    "120",
 				CheckpointOptions: map[string]interface{}{
-					"keys":      []string{"${remoteAddr}", "${requestPath}"},
-					"period":    "60",
-					"threshold": 120,
+					"keys":              []string{"${remoteAddr}", "${requestPath}"},
+					"period":            "60",
+					"threshold":         120,
+					"enableFingerprint": true,
 				},
 				IsCaseInsensitive: false,
 			})
@@ -613,9 +614,10 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				Operator: HTTPFirewallRuleOperatorGt,
 				Value:    "1200",
 				CheckpointOptions: map[string]interface{}{
-					"keys":      []string{"${remoteAddr}"},
-					"period":    "60",
-					"threshold": 1200,
+					"keys":              []string{"${remoteAddr}"},
+					"period":            "60",
+					"threshold":         1200,
+					"enableFingerprint": true,
 				},
 				IsCaseInsensitive: false,
 			})
