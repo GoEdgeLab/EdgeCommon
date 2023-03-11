@@ -11,6 +11,10 @@ func DefaultGlobalServerConfig() *GlobalServerConfig {
 	config.Log.RecordServerError = false
 	config.Performance.AutoWriteTimeout = true
 	config.Performance.AutoReadTimeout = true
+	config.Stat.Upload.MaxCities = 20
+	config.Stat.Upload.MaxProviders = 20
+	config.Stat.Upload.MaxSystems = 20
+	config.Stat.Upload.MaxBrowsers = 20
 	return config
 }
 
@@ -22,7 +26,7 @@ type GlobalServerConfig struct {
 		AllowNodeIP          bool                  `yaml:"allowNodeIP" json:"allowNodeIP"`                   // 允许IP直接访问
 		DefaultDomain        string                `yaml:"defaultDomain" json:"defaultDomain"`               // 默认的域名
 		DomainMismatchAction *DomainMismatchAction `yaml:"domainMismatchAction" json:"domainMismatchAction"` // 不匹配时采取的动作
-	} `yaml:"httpAll" json:"httpAll"`
+	} `yaml:"httpAll" json:"httpAll"` // HTTP统一配置
 
 	HTTPAccessLog struct {
 		EnableRequestHeaders     bool `yaml:"enableRequestHeaders" json:"enableRequestHeaders"`         // 记录请求Header
@@ -31,6 +35,15 @@ type GlobalServerConfig struct {
 		EnableCookies            bool `yaml:"enableCookies" json:"enableCookies"`                       // 记录Cookie
 		EnableServerNotFound     bool `yaml:"enableServerNotFound" json:"enableServerNotFound"`         // 记录服务找不到的日志
 	} `yaml:"httpAccessLog" json:"httpAccessLog"` // 访问日志配置
+
+	Stat struct {
+		Upload struct {
+			MaxCities    int16 `yaml:"maxCities" json:"maxCities"`       // 最大区域数量
+			MaxProviders int16 `yaml:"maxProviders" json:"maxProviders"` // 最大运营商数量
+			MaxSystems   int16 `yaml:"maxSystems" json:"maxSystems"`     // 最大操作系统数量
+			MaxBrowsers  int16 `yaml:"maxBrowsers" json:"maxBrowsers"`   // 最大浏览器数量
+		} `yaml:"upload" json:"upload"` // 上传相关设置
+	} `yaml:"stat" json:"stat"` // 统计相关配置
 
 	Performance struct {
 		Debug            bool `yaml:"debug" json:"debug"`                       // Debug模式
