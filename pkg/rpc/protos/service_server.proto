@@ -518,19 +518,19 @@ message UploadServerHTTPRequestStatRequest {
 
 	message RegionCity {
 		int64 serverId = 1;
-		string countryName = 2;
-		string provinceName = 3;
-		string cityName = 4;
 		int64 countRequests = 5;
 		int64 bytes = 6;
 		int64 countAttackRequests = 7;
 		int64 attackBytes = 8;
+		int64 countryId = 9;
+		int64 provinceId = 10;
+		int64 cityId = 11;
 	}
 
 	message RegionProvider {
 		int64 serverId = 1;
-		string name = 2;
 		int64 count = 3;
+		int64 providerId = 4;
 	}
 
 	message System {

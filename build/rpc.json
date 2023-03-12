@@ -6672,7 +6672,9 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc deleteNodeLogs(DeleteNodeLogsRequest) returns (RPCSuccess);",
           "doc": "删除日志",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         }
       ],
@@ -21929,7 +21931,7 @@
     },
     {
       "name": "UploadServerHTTPRequestStatRequest",
-      "code": "message UploadServerHTTPRequestStatRequest {\n\tstring month = 1;\n\tstring day = 2;\n\trepeated RegionCity regionCities = 3;\n\trepeated RegionProvider regionProviders = 4;\n\trepeated System systems = 5;\n\trepeated Browser browsers = 6;\n\trepeated HTTPFirewallRuleGroup httpFirewallRuleGroups = 7;\n\n\n\tmessage RegionCity {\n\t\tint64 serverId = 1;\n\t\tstring countryName = 2;\n\t\tstring provinceName = 3;\n\t\tstring cityName = 4;\n\t\tint64 countRequests = 5;\n\t\tint64 bytes = 6;\n\t\tint64 countAttackRequests = 7;\n\t\tint64 attackBytes = 8;\n\t}\n\n\n\tmessage RegionProvider {\n\t\tint64 serverId = 1;\n\t\tstring name = 2;\n\t\tint64 count = 3;\n\t}\n\n\n\tmessage System {\n\t\tint64 serverId = 1;\n\t\tstring name = 2;\n\t\tstring version = 3;\n\t\tint64 count = 4;\n\t}\n\n\n\tmessage Browser {\n\t\tint64 serverId = 1;\n\t\tstring name = 2;\n\t\tstring version = 3;\n\t\tint64 count = 4;\n\t}\n\n\n\tmessage HTTPFirewallRuleGroup {\n\t\tint64 serverId = 1;\n\t\tint64 httpFirewallRuleGroupId = 2;\n\t\tstring action = 3;\n\t\tint64 count = 4;\n\t}\n}",
+      "code": "message UploadServerHTTPRequestStatRequest {\n\tstring month = 1;\n\tstring day = 2;\n\trepeated RegionCity regionCities = 3;\n\trepeated RegionProvider regionProviders = 4;\n\trepeated System systems = 5;\n\trepeated Browser browsers = 6;\n\trepeated HTTPFirewallRuleGroup httpFirewallRuleGroups = 7;\n\n\n\tmessage RegionCity {\n\t\tint64 serverId = 1;\n\t\tint64 countRequests = 5;\n\t\tint64 bytes = 6;\n\t\tint64 countAttackRequests = 7;\n\t\tint64 attackBytes = 8;\n\t\tint64 countryId = 9;\n\t\tint64 provinceId = 10;\n\t\tint64 cityId = 11;\n\t}\n\n\n\tmessage RegionProvider {\n\t\tint64 serverId = 1;\n\t\tint64 count = 3;\n\t\tint64 providerId = 4;\n\t}\n\n\n\tmessage System {\n\t\tint64 serverId = 1;\n\t\tstring name = 2;\n\t\tstring version = 3;\n\t\tint64 count = 4;\n\t}\n\n\n\tmessage Browser {\n\t\tint64 serverId = 1;\n\t\tstring name = 2;\n\t\tstring version = 3;\n\t\tint64 count = 4;\n\t}\n\n\n\tmessage HTTPFirewallRuleGroup {\n\t\tint64 serverId = 1;\n\t\tint64 httpFirewallRuleGroupId = 2;\n\t\tstring action = 3;\n\t\tint64 count = 4;\n\t}\n}",
       "doc": "上传HTTP请求待统计数据"
     },
     {
