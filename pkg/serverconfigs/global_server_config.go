@@ -11,10 +11,10 @@ func DefaultGlobalServerConfig() *GlobalServerConfig {
 	config.Log.RecordServerError = false
 	config.Performance.AutoWriteTimeout = true
 	config.Performance.AutoReadTimeout = true
-	config.Stat.Upload.MaxCities = 20
-	config.Stat.Upload.MaxProviders = 20
-	config.Stat.Upload.MaxSystems = 20
-	config.Stat.Upload.MaxBrowsers = 20
+	config.Stat.Upload.MaxCities = 32
+	config.Stat.Upload.MaxProviders = 32
+	config.Stat.Upload.MaxSystems = 64
+	config.Stat.Upload.MaxBrowsers = 64
 	return config
 }
 
