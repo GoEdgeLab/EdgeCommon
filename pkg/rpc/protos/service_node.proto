@@ -204,15 +204,15 @@ message CountAllEnabledNodesRequest {
 
 // 列出单页节点
 message ListEnabledNodesMatchRequest {
-	int64 offset = 1;
-	int64 size = 2;
-	int64 nodeClusterId = 3;
-	int32 installState = 4;
-	int32 activeState = 5;
-	string keyword = 6;
-	int64 nodeGroupId = 7;
-	int64 nodeRegionId = 8;
-	int32 level = 9;
+	int64 offset = 1; // 读取位置
+	int64 size = 2; // 读取数量
+	int64 nodeClusterId = 3; // 集群ID
+	int32 installState = 4; // 安装状态
+	int32 activeState = 5; // 在线状态
+	string keyword = 6; // 关键词
+	int64 nodeGroupId = 7; // 节点分组ID
+	int64 nodeRegionId = 8; // 节点区域ID
+	int32 level = 9; // 节点级别，目前只有1（L1）和2（L2）
 
 	bool cpuAsc = 20;
 	bool cpuDesc = 21;
@@ -224,6 +224,8 @@ message ListEnabledNodesMatchRequest {
 	bool trafficOutDesc = 27;
 	bool loadAsc = 28;
 	bool loadDesc = 29;
+	bool connectionsAsc = 30;
+	bool connectionsDesc = 31;
 }
 
 message ListEnabledNodesMatchResponse {

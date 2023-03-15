@@ -19421,7 +19421,7 @@
     },
     {
       "name": "ListEnabledNodesMatchRequest",
-      "code": "message ListEnabledNodesMatchRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n\tint64 nodeClusterId = 3;\n\tint32 installState = 4;\n\tint32 activeState = 5;\n\tstring keyword = 6;\n\tint64 nodeGroupId = 7;\n\tint64 nodeRegionId = 8;\n\tint32 level = 9;\n\n\tbool cpuAsc = 20;\n\tbool cpuDesc = 21;\n\tbool memoryAsc = 22;\n\tbool memoryDesc = 23;\n\tbool trafficInAsc = 24;\n\tbool trafficInDesc = 25;\n\tbool trafficOutAsc = 26;\n\tbool trafficOutDesc = 27;\n\tbool loadAsc = 28;\n\tbool loadDesc = 29;\n}",
+      "code": "message ListEnabledNodesMatchRequest {\n\tint64 offset = 1; // 读取位置\n\tint64 size = 2; // 读取数量\n\tint64 nodeClusterId = 3; // 集群ID\n\tint32 installState = 4; // 安装状态\n\tint32 activeState = 5; // 在线状态\n\tstring keyword = 6; // 关键词\n\tint64 nodeGroupId = 7; // 节点分组ID\n\tint64 nodeRegionId = 8; // 节点区域ID\n\tint32 level = 9; // 节点级别，目前只有1（L1）和2（L2）\n\n\tbool cpuAsc = 20;\n\tbool cpuDesc = 21;\n\tbool memoryAsc = 22;\n\tbool memoryDesc = 23;\n\tbool trafficInAsc = 24;\n\tbool trafficInDesc = 25;\n\tbool trafficOutAsc = 26;\n\tbool trafficOutDesc = 27;\n\tbool loadAsc = 28;\n\tbool loadDesc = 29;\n\tbool connectionsAsc = 30;\n\tbool connectionsDesc = 31;\n}",
       "doc": "列出单页节点"
     },
     {
