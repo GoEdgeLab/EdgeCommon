@@ -108,6 +108,9 @@ message ComposeServerStatNodeBoardResponse {
 	float memoryUsage = 10;
 	int64 memoryTotalSize = 11;
 	float load = 12;
+	int64 monthlyTrafficBytes = 13; // 当月流量
+	int64 dailyTrafficBytes = 14; // 当日流量
+	int64 lastDailyTrafficBytes = 15; // 昨日流量
 
 	repeated DailyTrafficStat dailyTrafficStats = 31;
 	repeated HourlyTrafficStat hourlyTrafficStats = 32;
