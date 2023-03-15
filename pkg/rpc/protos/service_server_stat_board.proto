@@ -39,10 +39,13 @@ message ComposeServerStatNodeClusterBoardRequest {
 }
 
 message ComposeServerStatNodeClusterBoardResponse {
-	int64 countActiveNodes = 1;
-	int64 countInactiveNodes = 2;
-	int64 countServers = 3;
-	int64 countUsers = 4;
+	int64 countActiveNodes = 1; // 在线节点
+	int64 countInactiveNodes = 2; // 离线节点
+	int64 countServers = 3; // 服务数量
+	int64 countUsers = 4; // 用户数量
+	int64 monthlyTrafficBytes = 5; // 当月流量
+	int64 dailyTrafficBytes = 6; // 当日流量
+	int64 lastDailyTrafficBytes = 7; // 昨日流量
 
 	repeated DailyTrafficStat dailyTrafficStats = 30;
 	repeated HourlyTrafficStat hourlyTrafficStats = 31;
@@ -52,8 +55,9 @@ message ComposeServerStatNodeClusterBoardResponse {
 	repeated NodeValue memoryNodeValues = 35;
 	repeated NodeValue loadNodeValues = 36;
 
-	repeated MetricDataChart metricDataCharts = 37;
+	repeated MetricDataChart metricDataCharts = 37; // 指标图表
 
+	// 日流量统计
 	message DailyTrafficStat {
 		string day = 1;
 		int64 bytes = 2;
@@ -64,6 +68,7 @@ message ComposeServerStatNodeClusterBoardResponse {
 		int64 attackBytes = 7;
 	}
 
+	// 小时流量统计
 	message HourlyTrafficStat {
 		string hour = 1;
 		int64 bytes = 2;
@@ -74,6 +79,7 @@ message ComposeServerStatNodeClusterBoardResponse {
 		int64 attackBytes = 7;
 	}
 
+	// 节点统计
 	message NodeStat {
 		int64 nodeId = 1;
 		string nodeName = 2;
