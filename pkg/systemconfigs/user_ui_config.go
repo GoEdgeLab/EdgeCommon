@@ -29,6 +29,8 @@ type UserUIConfig struct {
 		DefaultBandwidthDateRange string        `json:"defaultBandwidthDateRange"` // 默认带宽周期
 		BandwidthAlgo             BandwidthAlgo `json:"bandwidthAlgo"`             // 带宽算法
 	} `json:"trafficStats"` // 流量统计相关设置
+
+	Theme ThemeConfig `yaml:"theme" json:"theme"` // 风格模板
 }
 
 func DefaultUserUIConfig() *UserUIConfig {
