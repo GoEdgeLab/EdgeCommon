@@ -30,3 +30,22 @@ func (this *BaseProtocol) FullAddresses() []string {
 func (this *BaseProtocol) AddListen(addr ...*NetworkAddressConfig) {
 	this.Listen = append(this.Listen, addr...)
 }
+
+// AllPorts 获取所有端口号
+func (this *BaseProtocol) AllPorts() []int {
+	var ports = []int{}
+	var portMap = map[int]bool{}
+	for _, listen := range this.Listen {
+		if listen.MinPort > 0 && listen.MaxPort > 0 {
+			for port := listen.MinPort; port <= listen.MaxPort; port++ {
+				_, ok := portMap[port]
+				if ok {
+					continue
+				}
+				ports = append(ports, port)
+				portMap[port] = true
+			}
+		}
+	}
+	return ports
+}
