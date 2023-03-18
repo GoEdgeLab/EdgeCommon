@@ -1,6 +1,7 @@
 package serverconfigs
 
 import (
+	"context"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/firewallconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 )
@@ -54,7 +55,7 @@ type HTTPWebConfig struct {
 	CC  *HTTPCCConfig `yaml:"cc" json:"cc"`
 }
 
-func (this *HTTPWebConfig) Init() error {
+func (this *HTTPWebConfig) Init(ctx context.Context) error {
 	// root
 	if this.Root != nil {
 		err := this.Root.Init()
@@ -66,7 +67,7 @@ func (this *HTTPWebConfig) Init() error {
 	// 路径规则
 	if len(this.Locations) > 0 {
 		for _, location := range this.Locations {
-			err := location.Init()
+			err := location.Init(ctx)
 			if err != nil {
 				return err
 			}

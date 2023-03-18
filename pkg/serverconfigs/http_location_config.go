@@ -1,6 +1,7 @@
 package serverconfigs
 
 import (
+	"context"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"regexp"
 	"strconv"
@@ -32,14 +33,14 @@ type HTTPLocationConfig struct {
 	reverse         bool           // 是否翻转规则，比如非前缀，非路径
 }
 
-func (this *HTTPLocationConfig) Init() error {
+func (this *HTTPLocationConfig) Init(ctx context.Context) error {
 	err := this.ExtractPattern()
 	if err != nil {
 		return err
 	}
 
 	if this.Web != nil {
-		err := this.Web.Init()
+		err := this.Web.Init(ctx)
 		if err != nil {
 			return err
 		}
@@ -53,7 +54,7 @@ func (this *HTTPLocationConfig) Init() error {
 	}
 
 	if this.ReverseProxy != nil {
-		err := this.ReverseProxy.Init()
+		err := this.ReverseProxy.Init(ctx)
 		if err != nil {
 			return err
 		}
@@ -61,7 +62,7 @@ func (this *HTTPLocationConfig) Init() error {
 
 	// Children
 	for _, child := range this.Children {
-		err := child.Init()
+		err := child.Init(ctx)
 		if err != nil {
 			return err
 		}

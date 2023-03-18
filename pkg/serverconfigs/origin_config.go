@@ -1,6 +1,7 @@
 package serverconfigs
 
 import (
+	"context"
 	"fmt"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
@@ -30,10 +31,11 @@ type OriginConfig struct {
 
 	Domains []string `yaml:"domains" json:"domains"` // 所属域名
 
-	StripPrefix string `yaml:"stripPrefix" json:"stripPrefix"` // 去除URL前缀
-	RequestURI  string `yaml:"requestURI" json:"requestURI"`   // 转发后的请求URI TODO
-	RequestHost string `yaml:"requestHost" json:"requestHost"` // 自定义主机名
-	FollowPort  bool   `yaml:"followPort" json:"followPort"`   // 端口跟随
+	StripPrefix    string                `yaml:"stripPrefix" json:"stripPrefix"`       // 去除URL前缀
+	RequestURI     string                `yaml:"requestURI" json:"requestURI"`         // 转发后的请求URI TODO
+	RequestHost    string                `yaml:"requestHost" json:"requestHost"`       // 自定义主机名
+	FollowPort     bool                  `yaml:"followPort" json:"followPort"`         // 端口跟随
+	FollowProtocol *FollowProtocolConfig `yaml:"followProtocol" json:"followProtocol"` // 协议跟随 TODO
 
 	RequestHeaderPolicyRef  *shared.HTTPHeaderPolicyRef `yaml:"requestHeaderPolicyRef" json:"requestHeaderPolicyRef"`   // 请求Header
 	RequestHeaderPolicy     *shared.HTTPHeaderPolicy    `yaml:"requestHeaderPolicy" json:"requestHeaderPolicy"`         // 请求Header策略
@@ -71,7 +73,7 @@ type OriginConfig struct {
 }
 
 // Init 校验
-func (this *OriginConfig) Init() error {
+func (this *OriginConfig) Init(ctx context.Context) error {
 	this.IsOk = true
 
 	// URL
@@ -91,7 +93,7 @@ func (this *OriginConfig) Init() error {
 
 	// 证书
 	if this.Cert != nil {
-		err := this.Cert.Init()
+		err := this.Cert.Init(ctx)
 		if err != nil {
 			return err
 		}
@@ -156,6 +158,14 @@ func (this *OriginConfig) Init() error {
 	// health check
 	if this.HealthCheck != nil {
 		err := this.HealthCheck.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// follow protocol
+	if this.FollowProtocol != nil {
+		err := this.FollowProtocol.Init()
 		if err != nil {
 			return err
 		}

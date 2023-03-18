@@ -2,6 +2,7 @@ package sslconfigs
 
 import (
 	"bytes"
+	"context"
 	"crypto/tls"
 	"crypto/x509"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
@@ -48,13 +49,13 @@ type SSLPolicy struct {
 }
 
 // Init 校验配置
-func (this *SSLPolicy) Init() error {
+func (this *SSLPolicy) Init(ctx context.Context) error {
 	this.nameMapping = map[string]*tls.Certificate{}
 
 	// certs
 	var certs = []tls.Certificate{}
 	for _, cert := range this.Certs {
-		err := cert.Init()
+		err := cert.Init(ctx)
 		if err != nil {
 			return err
 		}
@@ -74,7 +75,7 @@ func (this *SSLPolicy) Init() error {
 	this.clientCAPool = x509.NewCertPool()
 
 	for _, cert := range this.ClientCACerts {
-		err := cert.Init()
+		err := cert.Init(ctx)
 		if err != nil {
 			return err
 		}

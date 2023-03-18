@@ -1,6 +1,7 @@
 package serverconfigs
 
 import (
+	"context"
 	"encoding/json"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
 )
@@ -25,14 +26,14 @@ type HTTPSProtocolConfig struct {
 }
 
 // Init 初始化
-func (this *HTTPSProtocolConfig) Init() error {
+func (this *HTTPSProtocolConfig) Init(ctx context.Context) error {
 	err := this.InitBase()
 	if err != nil {
 		return err
 	}
 
 	if this.SSLPolicy != nil {
-		err := this.SSLPolicy.Init()
+		err := this.SSLPolicy.Init(ctx)
 		if err != nil {
 			return err
 		}

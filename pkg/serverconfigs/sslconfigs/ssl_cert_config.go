@@ -1,12 +1,15 @@
 package sslconfigs
 
 import (
+	"context"
 	"crypto/tls"
 	"crypto/x509"
 	"encoding/pem"
 	"errors"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/lists"
+	"reflect"
 	"strconv"
 	"time"
 )
@@ -41,7 +44,23 @@ type SSLCertConfig struct {
 }
 
 // Init 校验
-func (this *SSLCertConfig) Init() error {
+func (this *SSLCertConfig) Init(ctx context.Context) error {
+	// 从ctx中读取数据
+	if ctx != nil {
+		var dataMapOne = ctx.Value("DataMap")
+		if dataMapOne != nil && !reflect.ValueOf(dataMapOne).IsNil() {
+			dataMap, ok := dataMapOne.(*shared.DataMap)
+			if !ok {
+				return errors.New("SSLCertConfig.init(): invalid 'DataMap' in context")
+			}
+			if dataMap != nil { // 再次检查是否为nil
+				this.KeyData = dataMap.Read(this.KeyData)
+				this.CertData = dataMap.Read(this.CertData)
+				this.OCSP = dataMap.Read(this.OCSP)
+			}
+		}
+	}
+
 	var commonNames []string // 发行组织
 	var dnsNames []string    // 域名
 

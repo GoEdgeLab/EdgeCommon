@@ -30,7 +30,7 @@ func TestReverseProxyConfig_Init(t *testing.T) {
 		Addr: &NetworkAddressConfig{Host: "127.0.0.4"},
 		IsOn: true,
 	})
-	err := config.Init()
+	err := config.Init(nil)
 	if err != nil {
 		t.Fatal(err)
 	}

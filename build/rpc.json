@@ -16946,7 +16946,7 @@
     },
     {
       "name": "FindCurrentNodeConfigRequest",
-      "code": "message FindCurrentNodeConfigRequest {\n\t// 由于登录信息中已经包含了节点信息，所以这里不需要nodeId\n\tint64 version = 1;\n\tbool compress = 2; // 是否压缩\n\tint64 nodeTaskVersion = 3; // 通知任务版本\n}",
+      "code": "message FindCurrentNodeConfigRequest {\n\t// 由于登录信息中已经包含了节点信息，所以这里不需要nodeId\n\tint64 version = 1;\n\tbool compress = 2; // 是否压缩\n\tint64 nodeTaskVersion = 3; // 通知任务版本\n\tbool useDataMap = 4; // 是否使用公共的数据集\n}",
       "doc": "组合单个节点配置"
     },
     {

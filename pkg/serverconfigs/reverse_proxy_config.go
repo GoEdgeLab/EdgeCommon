@@ -1,6 +1,7 @@
 package serverconfigs
 
 import (
+	"context"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/lists"
@@ -42,8 +43,9 @@ type ReverseProxyConfig struct {
 
 	AutoFlush bool `yaml:"autoFlush" json:"autoFlush"` // 是否自动刷新缓冲区，在比如SSE（server-sent events）场景下很有用
 
-	ProxyProtocol   *ProxyProtocolConfig `yaml:"proxyProtocol" json:"proxyProtocol"`     // PROXY Protocol
-	FollowRedirects bool                 `yaml:"followRedirects" json:"followRedirects"` // 回源跟随
+	ProxyProtocol   *ProxyProtocolConfig  `yaml:"proxyProtocol" json:"proxyProtocol"`     // PROXY Protocol
+	FollowRedirects bool                  `yaml:"followRedirects" json:"followRedirects"` // 回源跟随
+	FollowProtocol  *FollowProtocolConfig `yaml:"followProtocol" json:"followProtocol"`   // 协议跟随 TODO
 
 	requestHostHasVariables bool
 	requestURIHasVariables  bool
@@ -60,7 +62,7 @@ type ReverseProxyConfig struct {
 }
 
 // Init 初始化
-func (this *ReverseProxyConfig) Init() error {
+func (this *ReverseProxyConfig) Init(ctx context.Context) error {
 	this.requestHostHasVariables = configutils.HasVariables(this.RequestHost)
 	this.requestURIHasVariables = configutils.HasVariables(this.RequestURI)
 
@@ -171,7 +173,7 @@ func (this *ReverseProxyConfig) Init() error {
 			}
 
 			// 初始化
-			err := origin.Init()
+			err := origin.Init(ctx)
 			if err != nil {
 				return err
 			}
@@ -200,6 +202,14 @@ func (this *ReverseProxyConfig) Init() error {
 	// PROXY Protocol
 	if this.ProxyProtocol != nil {
 		err := this.ProxyProtocol.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// follow protocol
+	if this.FollowProtocol != nil {
+		err := this.FollowProtocol.Init()
 		if err != nil {
 			return err
 		}

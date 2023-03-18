@@ -120,7 +120,7 @@ Z3NIV2eNt6YBwkC69DzdazXT
 		OCSPExpiresAt: nowTime + 2,
 	})
 
-	err := policy.Init()
+	err := policy.Init(nil)
 	if err != nil {
 		t.Fatal(err)
 	}

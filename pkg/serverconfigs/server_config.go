@@ -1,6 +1,7 @@
 package serverconfigs
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
@@ -80,7 +81,7 @@ func NewServerConfig() *ServerConfig {
 	return &ServerConfig{}
 }
 
-func (this *ServerConfig) Init() (results []error) {
+func (this *ServerConfig) Init(ctx context.Context) (results []error) {
 	if this.isInitialized {
 		return
 	}
@@ -193,7 +194,7 @@ func (this *ServerConfig) Init() (results []error) {
 	}
 
 	if this.HTTPS != nil {
-		err := this.HTTPS.Init()
+		err := this.HTTPS.Init(ctx)
 		if err != nil {
 			results = append(results, err)
 		}
@@ -207,7 +208,7 @@ func (this *ServerConfig) Init() (results []error) {
 	}
 
 	if this.TLS != nil {
-		err := this.TLS.Init()
+		err := this.TLS.Init(ctx)
 		if err != nil {
 			results = append(results, err)
 		}
@@ -235,14 +236,14 @@ func (this *ServerConfig) Init() (results []error) {
 	}
 
 	if this.ReverseProxy != nil {
-		err := this.ReverseProxy.Init()
+		err := this.ReverseProxy.Init(ctx)
 		if err != nil {
 			results = append(results, err)
 		}
 	}
 
 	if this.Web != nil {
-		err := this.Web.Init()
+		err := this.Web.Init(ctx)
 		if err != nil {
 			results = append(results, err)
 		}

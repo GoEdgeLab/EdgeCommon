@@ -2,6 +2,7 @@ package nodeconfigs
 
 import (
 	"bytes"
+	"context"
 	"crypto/sha256"
 	"encoding/base64"
 	"encoding/json"
@@ -44,6 +45,7 @@ type NodeConfig struct {
 	GroupId      int64                         `yaml:"groupId" json:"groupId"`
 	RegionId     int64                         `yaml:"regionId" json:"regionId"`
 	OCSPVersion  int64                         `yaml:"ocspVersion" json:"ocspVersion"`
+	DataMap      *shared.DataMap               `yaml:"dataMap" json:"dataMap"`
 
 	// 性能
 	MaxCPU       int32                                 `yaml:"maxCPU" json:"maxCPU"`
@@ -209,7 +211,13 @@ func CloneNodeConfig(nodeConfig *NodeConfig) (*NodeConfig, error) {
 }
 
 // Init 初始化
-func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
+func (this *NodeConfig) Init(ctx context.Context) (err error, serverErrors []*ServerError) {
+	// 设置Context
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	ctx = context.WithValue(ctx, "DataMap", this.DataMap)
+
 	this.secretHash = fmt.Sprintf("%x", sha256.Sum256([]byte(this.NodeId+"@"+this.Secret)))
 	this.paddedId = fmt.Sprintf("%08d", this.Id)
 
@@ -221,7 +229,7 @@ func (this *NodeConfig) Init() (err error, serverErrors []*ServerError) {
 		}
 
 		// 初始化
-		errs := server.Init()
+		errs := server.Init(ctx)
 		if len(errs) > 0 {
 			// 这里不返回错误，而是继续往下，防止单个服务错误而影响其他服务
 			for _, serverErr := range errs {

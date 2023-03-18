@@ -7,7 +7,7 @@ func TestOriginConfig_UniqueKey(t *testing.T) {
 		Id:      1,
 		Version: 101,
 	}
-	err := origin.Init()
+	err := origin.Init(nil)
 	if err != nil {
 		t.Fatal(err)
 	}

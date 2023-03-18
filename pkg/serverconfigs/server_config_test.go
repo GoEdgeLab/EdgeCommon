@@ -65,7 +65,7 @@ func TestServerConfig_Protocols(t *testing.T) {
 				},
 			},
 		}}
-		err := server.Init()
+		err := server.Init(nil)
 		if err != nil {
 			t.Fatal(err)
 		}

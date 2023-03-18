@@ -291,6 +291,7 @@ message FindCurrentNodeConfigRequest {
 	int64 version = 1;
 	bool compress = 2; // 是否压缩
 	int64 nodeTaskVersion = 3; // 通知任务版本
+	bool useDataMap = 4; // 是否使用公共的数据集
 }
 
 message FindCurrentNodeConfigResponse {
