@@ -13,6 +13,7 @@ message NodeCluster {
 	string secret = 7;
 	string dnsName = 8;
 	int64 dnsDomainId = 9;
+	string dnsDefaultRoute = 22; // DNS默认线路
 	int64 httpCachePolicyId = 10;
 	int64 httpFirewallPolicyId = 11;
 	bool isOn = 12;

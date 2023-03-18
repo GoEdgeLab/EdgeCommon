@@ -16326,8 +16326,8 @@
     },
     {
       "name": "FindAllEnabledNodesDNSWithNodeClusterIdRequest",
-      "code": "message FindAllEnabledNodesDNSWithNodeClusterIdRequest {\n\tint64 nodeClusterId = 1;\n}",
-      "doc": "取得某个集群下的所有节点"
+      "code": "message FindAllEnabledNodesDNSWithNodeClusterIdRequest {\n\tint64 nodeClusterId = 1;\n\tbool isInstalled = 2;\n}",
+      "doc": "取得某个集群下的所有节点DNS信息"
     },
     {
       "name": "FindAllEnabledNodesDNSWithNodeClusterIdResponse",
@@ -20146,7 +20146,7 @@
     },
     {
       "name": "NodeCluster",
-      "code": "message NodeCluster {\n\tint64 id = 1;\n\tstring name = 2;\n\tint64 createdAt = 3;\n\tint64 nodeGrantId = 4;\n\tstring installDir = 5;\n\tstring uniqueId = 6;\n\tstring secret = 7;\n\tstring dnsName = 8;\n\tint64 dnsDomainId = 9;\n\tint64 httpCachePolicyId = 10;\n\tint64 httpFirewallPolicyId = 11;\n\tbool isOn = 12;\n\tstring timeZone = 13;\n\tint32 nodeMaxThreads = 14;\n\tbool autoOpenPorts = 16;\n\tbool isPinned = 17;\n\tbytes clockJSON = 18;\n\tbool autoRemoteStart = 19;\n\tbool autoInstallNftables = 20;\n\tbytes sshParamsJSON = 21;\n}",
+      "code": "message NodeCluster {\n\tint64 id = 1;\n\tstring name = 2;\n\tint64 createdAt = 3;\n\tint64 nodeGrantId = 4;\n\tstring installDir = 5;\n\tstring uniqueId = 6;\n\tstring secret = 7;\n\tstring dnsName = 8;\n\tint64 dnsDomainId = 9;\n\tstring dnsDefaultRoute = 22; // DNS默认线路\n\tint64 httpCachePolicyId = 10;\n\tint64 httpFirewallPolicyId = 11;\n\tbool isOn = 12;\n\tstring timeZone = 13;\n\tint32 nodeMaxThreads = 14;\n\tbool autoOpenPorts = 16;\n\tbool isPinned = 17;\n\tbytes clockJSON = 18;\n\tbool autoRemoteStart = 19;\n\tbool autoInstallNftables = 20;\n\tbytes sshParamsJSON = 21;\n}",
       "doc": ""
     },
     {

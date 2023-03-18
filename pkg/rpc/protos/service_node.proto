@@ -447,9 +447,10 @@ message CountAllEnabledNodesWithNodeGroupIdRequest {
 	int64 nodeGroupId = 1;
 }
 
-// 取得某个集群下的所有节点
+// 取得某个集群下的所有节点DNS信息
 message FindAllEnabledNodesDNSWithNodeClusterIdRequest {
 	int64 nodeClusterId = 1;
+	bool isInstalled = 2;
 }
 
 message FindAllEnabledNodesDNSWithNodeClusterIdResponse {
