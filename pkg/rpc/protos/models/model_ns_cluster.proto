@@ -19,4 +19,5 @@ message NSCluster {
 	string timeZone = 10;
 	bytes answerJSON = 11;
 	bool detectAgents = 14;
+	bool checkingPorts = 15; // 检查端口连通性
 }

@@ -20066,7 +20066,7 @@
     },
     {
       "name": "NSCluster",
-      "code": "message NSCluster {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring installDir = 4;\n\tbytes tcpJSON = 5;\n\tbytes tlsJSON = 6;\n\tbytes udpJSON = 7;\n\trepeated string hosts = 8;\n\tbytes soaJSON = 12;\n\tstring email = 13;\n\tbool autoRemoteStart = 9;\n\tstring timeZone = 10;\n\tbytes answerJSON = 11;\n\tbool detectAgents = 14;\n}",
+      "code": "message NSCluster {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring installDir = 4;\n\tbytes tcpJSON = 5;\n\tbytes tlsJSON = 6;\n\tbytes udpJSON = 7;\n\trepeated string hosts = 8;\n\tbytes soaJSON = 12;\n\tstring email = 13;\n\tbool autoRemoteStart = 9;\n\tstring timeZone = 10;\n\tbytes answerJSON = 11;\n\tbool detectAgents = 14;\n\tbool checkingPorts = 15; // 检查端口连通性\n}",
       "doc": "域名服务集群"
     },
     {
@@ -21251,7 +21251,7 @@
     },
     {
       "name": "UpdateNSClusterRequest",
-      "code": "message UpdateNSClusterRequest {\n\tint64 nsClusterId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\trepeated string hosts = 4;\n\tstring email = 8;\n\tbool autoRemoteStart = 5;\n\tstring timeZone = 6;\n\tbool detectAgents = 7;\n}",
+      "code": "message UpdateNSClusterRequest {\n\tint64 nsClusterId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\trepeated string hosts = 4;\n\tstring email = 8;\n\tbool autoRemoteStart = 5;\n\tstring timeZone = 6;\n\tbool detectAgents = 7;\n\tbool checkingPorts = 9; // 是否检查端口连通性（目前仅在节点列表上）\n}",
       "doc": "修改集群"
     },
     {

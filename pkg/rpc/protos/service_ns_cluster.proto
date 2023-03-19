@@ -110,6 +110,7 @@ message UpdateNSClusterRequest {
 	bool autoRemoteStart = 5;
 	string timeZone = 6;
 	bool detectAgents = 7;
+	bool checkingPorts = 9; // 是否检查端口连通性（目前仅在节点列表上）
 }
 
 // 查找集群访问日志配置
