@@ -19,6 +19,10 @@ type UserUIConfig struct {
 	LogoFileId     int64  `json:"logoFileId"`     // Logo文件ID
 	TimeZone       string `json:"timeZone"`       // 时区
 
+	Server struct {
+		CheckCNAME bool `json:"checkCNAME"` // 是否检查CNAME
+	} `json:"server"` // 服务相关设置
+
 	BandwidthUnit                BandwidthUnit `json:"bandwidthUnit"`                // 带宽单位
 	ShowTrafficCharts            bool          `json:"showTrafficCharts"`            // 是否显示流量相关图表和数据
 	ShowCacheInfoInTrafficCharts bool          `json:"showCacheInfoInTrafficCharts"` // 在流量图中显示缓存相关信息
@@ -44,6 +48,11 @@ func DefaultUserUIConfig() *UserUIConfig {
 		ShowBandwidthCharts: true,
 		ShowTrafficCharts:   true,
 	}
+
+	// 服务相关
+	config.Server.CheckCNAME = true
+
+	// 流量相关
 	config.TrafficStats.BandwidthPercentile = 95
 	config.TrafficStats.DefaultBandwidthDateRange = "latest30days"
 	return config
