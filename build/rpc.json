@@ -20526,7 +20526,7 @@
     },
     {
       "name": "ServerDailyStat",
-      "code": "message ServerDailyStat {\n\tint64 serverId = 1;\n\tint64 nodeRegionId = 2;\n\tint64 bytes = 3;\n\tint64 cachedBytes = 5;\n\tint64 countRequests = 6;\n\tint64 countCachedRequests = 7;\n\tint64 createdAt = 4;\n\tint64 countAttackRequests = 8;\n\tint64 attackBytes = 9;\n\tbool checkTrafficLimiting = 10;\n\tint64 planId = 11;\n\tstring day = 12;\n\tstring hour = 13;\n\tstring timeFrom = 14;\n\tstring timeTo = 15;\n}",
+      "code": "message ServerDailyStat {\n\tint64 serverId = 1;\n\tint64 userId = 16; // 用户ID\n\tint64 nodeRegionId = 2;\n\tint64 bytes = 3;\n\tint64 cachedBytes = 5;\n\tint64 countRequests = 6;\n\tint64 countCachedRequests = 7;\n\tint64 createdAt = 4;\n\tint64 countAttackRequests = 8;\n\tint64 attackBytes = 9;\n\tbool checkTrafficLimiting = 10;\n\tint64 planId = 11;\n\tstring day = 12;\n\tstring hour = 13;\n\tstring timeFrom = 14;\n\tstring timeTo = 15;\n}",
       "doc": "服务每日统计"
     },
     {

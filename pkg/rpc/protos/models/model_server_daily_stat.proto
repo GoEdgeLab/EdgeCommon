@@ -6,6 +6,7 @@ package pb;
 // 服务每日统计
 message ServerDailyStat {
 	int64 serverId = 1;
+	int64 userId = 16; // 用户ID
 	int64 nodeRegionId = 2;
 	int64 bytes = 3;
 	int64 cachedBytes = 5;
