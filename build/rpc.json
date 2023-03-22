@@ -20511,7 +20511,7 @@
     },
     {
       "name": "ServerBandwidthStat",
-      "code": "message ServerBandwidthStat {\n\tint64 id = 1; // ID\n\tint64 userId = 2; // 用户ID\n\tint64 serverId = 3; //服务ID\n\tstring day = 4; // 日期，格式YYYYMMDD\n\tstring timeAt = 5; // 时间，格式HHII\n\tint64 bytes = 6; // 峰值带宽字节\n\tint64 totalBytes = 9; // 总流量\n\tint64 bits = 7; // 峰值带宽比特\n\tint64 nodeRegionId = 8; // 节点所在区域ID\n}",
+      "code": "message ServerBandwidthStat {\n\tint64 id = 1; // ID\n\tint64 userId = 2; // 用户ID\n\tint64 serverId = 3; //服务ID\n\tstring day = 4; // 日期，格式YYYYMMDD\n\tstring timeAt = 5; // 时间，格式HHII\n\tint64 bytes = 6; // 峰值带宽字节\n\tint64 totalBytes = 9; // 总流量\n\tint64 bits = 7; // 峰值带宽比特\n\tint64 nodeRegionId = 8; // 节点所在区域ID\n\tint64 cachedBytes = 10; // 总缓存流量\n\tint64 attackBytes = 11; // 总攻击流量\n\tint64 countRequests = 12; // 总请求数\n\tint64 countCachedRequests = 13; // 总缓存请求数\n\tint64 countAttackRequests = 14; // 总攻击请求数\n}",
       "doc": "带宽统计数据"
     },
     {
