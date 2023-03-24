@@ -8,22 +8,25 @@ import "models/model_ssl_cert.proto";
 
 // SSL证书管理服务
 service SSLCertService {
-	// 创建Cert
+	// 创建证书
 	rpc createSSLCert (CreateSSLCertRequest) returns (CreateSSLCertResponse);
 
-	// 修改Cert
+	// 创建一组证书
+	rpc createSSLCerts(CreateSSLCertsRequest) returns (CreateSSLCertsResponse);
+
+	// 修改证书
 	rpc updateSSLCert (UpdateSSLCertRequest) returns (RPCSuccess);
 
-	// 删除Cert
+	// 删除证书
 	rpc deleteSSLCert (DeleteSSLCertRequest) returns (RPCSuccess);
 
 	// 查找证书配置
 	rpc findEnabledSSLCertConfig (FindEnabledSSLCertConfigRequest) returns (FindEnabledSSLCertConfigResponse);
 
-	// 计算匹配的Cert数量
+	// 计算匹配的证书数量
 	rpc countSSLCerts (CountSSLCertRequest) returns (RPCCountResponse);
 
-	// 列出单页匹配的Cert
+	// 列出单页匹配的证书
 	rpc listSSLCerts (ListSSLCertsRequest) returns (ListSSLCertsResponse);
 
 	// 计算有OCSP错误的证书数量
@@ -45,7 +48,7 @@ service SSLCertService {
 	rpc listUpdatedSSLCertOCSP(ListUpdatedSSLCertOCSPRequest) returns (ListUpdatedSSLCertOCSPResponse);
 }
 
-// 创建Cert
+// 创建证书
 message CreateSSLCertRequest {
 	bool isOn = 1;
 	string name = 2;
@@ -64,7 +67,31 @@ message CreateSSLCertResponse {
 	int64 sslCertId = 1;
 }
 
-// 修改Cert
+// 创建一组证书
+message CreateSSLCertsRequest {
+	repeated cert SSLCerts = 1; // 证书信息
+	int64 userId = 2; // 用户ID
+
+	message cert {
+		bool isOn = 1;
+		string name = 2;
+		string description = 3;
+		string serverName = 4;
+		bool isCA = 5;
+		bytes certData = 6;
+		bytes keyData = 7;
+		int64 timeBeginAt = 8;
+		int64 timeEndAt = 9;
+		repeated string dnsNames = 10;
+		repeated string commonNames = 11;
+	}
+}
+
+message CreateSSLCertsResponse {
+	repeated int64 sslCertIds = 1;
+}
+
+// 修改证书
 message UpdateSSLCertRequest {
 	int64 sslCertId = 1;
 	bool isOn = 2;
@@ -94,26 +121,28 @@ message DeleteSSLCertRequest {
 	int64 sslCertId = 1;
 }
 
-// 计算匹配的Cert数量
+// 计算匹配的证书数量
 message CountSSLCertRequest {
-	bool isCA = 1;
-	bool isAvailable = 2;
-	bool isExpired = 3;
-	int32 expiringDays = 4;
-	string keyword = 5;
-	int64 userId = 6;
+	bool isCA = 1; // 是否为CA证书
+	bool isAvailable = 2; // 是否可用（在有效期内）
+	bool isExpired = 3; // 是否已过期
+	int32 expiringDays = 4; // 离过期日的天数
+	string keyword = 5; // 关键词
+	int64 userId = 6; // 用户ID
+	repeated string domains = 7; // 搜索使用的域名列表
 }
 
-// 列出单页匹配的Cert
+// 列出单页匹配的证书
 message ListSSLCertsRequest {
-	bool isCA = 1;
-	bool isAvailable = 2;
-	bool isExpired = 3;
-	int32 expiringDays = 4;
-	string keyword = 5;
-	int64 offset = 6;
-	int64 size = 7;
-	int64 userId = 8;
+	bool isCA = 1; // 是否为CA证书
+	bool isAvailable = 2; // 是否可用（在有效期内）
+	bool isExpired = 3; // 是否已过期
+	int32 expiringDays = 4; // 离过期日的天数
+	string keyword = 5; // 关键词
+	int64 userId = 8; // 用户ID
+	repeated string domains = 9; // 搜索使用的域名列表
+	int64 offset = 6; // 读取位置
+	int64 size = 7; // 读取长度
 }
 
 message ListSSLCertsResponse {

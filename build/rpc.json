@@ -11087,7 +11087,19 @@
           "requestMessageName": "CreateSSLCertRequest",
           "responseMessageName": "CreateSSLCertResponse",
           "code": "rpc createSSLCert (CreateSSLCertRequest) returns (CreateSSLCertResponse);",
-          "doc": "创建Cert",
+          "doc": "创建证书",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "createSSLCerts",
+          "requestMessageName": "CreateSSLCertsRequest",
+          "responseMessageName": "CreateSSLCertsResponse",
+          "code": "rpc createSSLCerts(CreateSSLCertsRequest) returns (CreateSSLCertsResponse);",
+          "doc": "创建一组证书",
           "roles": [
             "admin",
             "user"
@@ -11099,7 +11111,7 @@
           "requestMessageName": "UpdateSSLCertRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateSSLCert (UpdateSSLCertRequest) returns (RPCSuccess);",
-          "doc": "修改Cert",
+          "doc": "修改证书",
           "roles": [
             "admin",
             "user"
@@ -11111,7 +11123,7 @@
           "requestMessageName": "DeleteSSLCertRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc deleteSSLCert (DeleteSSLCertRequest) returns (RPCSuccess);",
-          "doc": "删除Cert",
+          "doc": "删除证书",
           "roles": [
             "admin",
             "user"
@@ -11135,7 +11147,7 @@
           "requestMessageName": "CountSSLCertRequest",
           "responseMessageName": "RPCCountResponse",
           "code": "rpc countSSLCerts (CountSSLCertRequest) returns (RPCCountResponse);",
-          "doc": "计算匹配的Cert数量",
+          "doc": "计算匹配的证书数量",
           "roles": [
             "admin",
             "user"
@@ -11147,7 +11159,7 @@
           "requestMessageName": "ListSSLCertsRequest",
           "responseMessageName": "ListSSLCertsResponse",
           "code": "rpc listSSLCerts (ListSSLCertsRequest) returns (ListSSLCertsResponse);",
-          "doc": "列出单页匹配的Cert",
+          "doc": "列出单页匹配的证书",
           "roles": [
             "admin",
             "user"
@@ -14006,8 +14018,8 @@
     },
     {
       "name": "CountSSLCertRequest",
-      "code": "message CountSSLCertRequest {\n\tbool isCA = 1;\n\tbool isAvailable = 2;\n\tbool isExpired = 3;\n\tint32 expiringDays = 4;\n\tstring keyword = 5;\n\tint64 userId = 6;\n}",
-      "doc": "计算匹配的Cert数量"
+      "code": "message CountSSLCertRequest {\n\tbool isCA = 1; // 是否为CA证书\n\tbool isAvailable = 2; // 是否可用（在有效期内）\n\tbool isExpired = 3; // 是否已过期\n\tint32 expiringDays = 4; // 离过期日的天数\n\tstring keyword = 5; // 关键词\n\tint64 userId = 6; // 用户ID\n\trepeated string domains = 7; // 搜索使用的域名列表\n}",
+      "doc": "计算匹配的证书数量"
     },
     {
       "name": "CountTrafficPackagePricesRequest",
@@ -14867,11 +14879,21 @@
     {
       "name": "CreateSSLCertRequest",
       "code": "message CreateSSLCertRequest {\n\tbool isOn = 1;\n\tstring name = 2;\n\tstring description = 3;\n\tstring serverName = 4;\n\tbool isCA = 5;\n\tbytes certData = 6;\n\tbytes keyData = 7;\n\tint64 timeBeginAt = 8;\n\tint64 timeEndAt = 9;\n\trepeated string dnsNames = 10;\n\trepeated string commonNames = 11;\n}",
-      "doc": "创建Cert"
+      "doc": "创建证书"
     },
     {
       "name": "CreateSSLCertResponse",
       "code": "message CreateSSLCertResponse {\n\tint64 sslCertId = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "CreateSSLCertsRequest",
+      "code": "message CreateSSLCertsRequest {\n\trepeated cert SSLCerts = 1; // 证书信息\n\tint64 userId = 2; // 用户ID\n\n\n\tmessage cert {\n\t\tbool isOn = 1;\n\t\tstring name = 2;\n\t\tstring description = 3;\n\t\tstring serverName = 4;\n\t\tbool isCA = 5;\n\t\tbytes certData = 6;\n\t\tbytes keyData = 7;\n\t\tint64 timeBeginAt = 8;\n\t\tint64 timeEndAt = 9;\n\t\trepeated string dnsNames = 10;\n\t\trepeated string commonNames = 11;\n\t}\n}",
+      "doc": "创建一组证书"
+    },
+    {
+      "name": "CreateSSLCertsResponse",
+      "code": "message CreateSSLCertsResponse {\n\trepeated int64 sslCertIds = 1;\n}",
       "doc": ""
     },
     {
@@ -19786,8 +19808,8 @@
     },
     {
       "name": "ListSSLCertsRequest",
-      "code": "message ListSSLCertsRequest {\n\tbool isCA = 1;\n\tbool isAvailable = 2;\n\tbool isExpired = 3;\n\tint32 expiringDays = 4;\n\tstring keyword = 5;\n\tint64 offset = 6;\n\tint64 size = 7;\n\tint64 userId = 8;\n}",
-      "doc": "列出单页匹配的Cert"
+      "code": "message ListSSLCertsRequest {\n\tbool isCA = 1; // 是否为CA证书\n\tbool isAvailable = 2; // 是否可用（在有效期内）\n\tbool isExpired = 3; // 是否已过期\n\tint32 expiringDays = 4; // 离过期日的天数\n\tstring keyword = 5; // 关键词\n\tint64 userId = 8; // 用户ID\n\trepeated string domains = 9; // 搜索使用的域名列表\n\tint64 offset = 6; // 读取位置\n\tint64 size = 7; // 读取长度\n}",
+      "doc": "列出单页匹配的证书"
     },
     {
       "name": "ListSSLCertsResponse",
@@ -21667,7 +21689,7 @@
     {
       "name": "UpdateSSLCertRequest",
       "code": "message UpdateSSLCertRequest {\n\tint64 sslCertId = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring description = 4;\n\tstring serverName = 5;\n\tbool isCA = 6;\n\tbytes certData = 7;\n\tbytes keyData = 8;\n\tint64 timeBeginAt = 9;\n\tint64 timeEndAt = 10;\n\trepeated string dnsNames = 11;\n\trepeated string commonNames = 12;\n}",
-      "doc": "修改Cert"
+      "doc": "修改证书"
     },
     {
       "name": "UpdateSSLPolicyRequest",
