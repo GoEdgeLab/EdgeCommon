@@ -20,6 +20,7 @@ message Server {
 	string dnsName = 19;
 	bool supportCNAME = 23;
 	int64 userPlanId = 24;
+	int64 userId = 29; // 所属用户ID
 
 	// 配置相关
 	bytes config = 17;
