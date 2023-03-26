@@ -14878,7 +14878,7 @@
     },
     {
       "name": "CreateSSLCertRequest",
-      "code": "message CreateSSLCertRequest {\n\tbool isOn = 1;\n\tstring name = 2;\n\tstring description = 3;\n\tstring serverName = 4;\n\tbool isCA = 5;\n\tbytes certData = 6;\n\tbytes keyData = 7;\n\tint64 timeBeginAt = 8;\n\tint64 timeEndAt = 9;\n\trepeated string dnsNames = 10;\n\trepeated string commonNames = 11;\n}",
+      "code": "message CreateSSLCertRequest {\n\tbool isOn = 1;\n\tint64 userId = 12; // 所属用户，仅管理员才能指定\n\tstring name = 2;\n\tstring description = 3;\n\tstring serverName = 4;\n\tbool isCA = 5;\n\tbytes certData = 6;\n\tbytes keyData = 7;\n\tint64 timeBeginAt = 8;\n\tint64 timeEndAt = 9;\n\trepeated string dnsNames = 10;\n\trepeated string commonNames = 11;\n}",
       "doc": "创建证书"
     },
     {
