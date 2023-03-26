@@ -3,6 +3,11 @@
 
 package serverconfigs
 
+// DefaultHTTPCCConfig 默认的CC配置
+func DefaultHTTPCCConfig() *HTTPCCConfig {
+	return &HTTPCCConfig{}
+}
+
 // HTTPCCConfig HTTP CC防护配置
 type HTTPCCConfig struct {
 	IsPrior bool `yaml:"isPrior" json:"isPrior"` // 是否覆盖父级
