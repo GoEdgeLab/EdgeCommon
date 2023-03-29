@@ -177,7 +177,7 @@ func (this *QueryResult) Summary() string {
 		pieces = append(pieces, cityName)
 	}
 	if len(townName) > 0 && !lists.ContainsString(pieces, townName) && !lists.ContainsString(pieces, strings.TrimSuffix(townName, "县")) {
-		pieces = append(pieces, cityName)
+		pieces = append(pieces, townName)
 	}
 
 	if len(providerName) > 0 && !lists.ContainsString(pieces, providerName) {
