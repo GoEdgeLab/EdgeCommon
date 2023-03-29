@@ -41,6 +41,13 @@ func (this *hashWriter) Sum() string {
 type Writer struct {
 	writer *hashWriter
 	meta   *Meta
+
+	lastIPFrom     uint64 // 上一次的IP
+	lastCountryId  int64
+	lastProvinceId int64
+	lastCityId     int64
+	lastTownId     int64
+	lastProviderId int64
 }
 
 func NewWriter(writer io.Writer, meta *Meta) *Writer {
@@ -103,7 +110,12 @@ func (this *Writer) Write(ipFrom string, ipTo string, countryId int64, provinceI
 		fromIPLong, toIPLong = toIPLong, fromIPLong
 	}
 
-	pieces = append(pieces, types.String(fromIPLong))
+	if this.lastIPFrom > 0 && fromIPLong > this.lastIPFrom {
+		pieces = append(pieces, "+"+types.String(fromIPLong-this.lastIPFrom))
+	} else {
+		pieces = append(pieces, types.String(fromIPLong))
+	}
+	this.lastIPFrom = fromIPLong
 	if ipFrom == ipTo {
 		// 2
 		pieces = append(pieces, "")
@@ -114,40 +126,65 @@ func (this *Writer) Write(ipFrom string, ipTo string, countryId int64, provinceI
 
 	// 3
 	if countryId > 0 {
-		pieces = append(pieces, types.String(countryId))
+		if countryId == this.lastCountryId {
+			pieces = append(pieces, "+")
+		} else {
+			pieces = append(pieces, types.String(countryId))
+		}
 	} else {
 		pieces = append(pieces, "")
 	}
+	this.lastCountryId = countryId
 
 	// 4
 	if provinceId > 0 {
-		pieces = append(pieces, types.String(provinceId))
+		if provinceId == this.lastProvinceId {
+			pieces = append(pieces, "+")
+		} else {
+			pieces = append(pieces, types.String(provinceId))
+		}
 	} else {
 		pieces = append(pieces, "")
 	}
+	this.lastProvinceId = provinceId
 
 	// 5
 	if cityId > 0 {
-		pieces = append(pieces, types.String(cityId))
+		if cityId == this.lastCityId {
+			pieces = append(pieces, "+")
+		} else {
+			pieces = append(pieces, types.String(cityId))
+		}
 	} else {
 		pieces = append(pieces, "")
 	}
+	this.lastCityId = cityId
 
 	// 6
 	if townId > 0 {
-		pieces = append(pieces, types.String(townId))
+		if townId == this.lastTownId {
+			pieces = append(pieces, "+")
+		} else {
+			pieces = append(pieces, types.String(townId))
+		}
 	} else {
 		pieces = append(pieces, "")
 	}
+	this.lastTownId = townId
 
 	// 7
 	if providerId > 0 {
-		pieces = append(pieces, types.String(providerId))
+		if providerId == this.lastProviderId {
+			pieces = append(pieces, "+")
+		} else {
+			pieces = append(pieces, types.String(providerId))
+		}
 	} else {
 		pieces = append(pieces, "")
 	}
+	this.lastProviderId = providerId
 
-	_, err := this.writer.Write([]byte(strings.Join(pieces, "|")))
+	_, err := this.writer.Write([]byte(strings.TrimRight(strings.Join(pieces, "|"), "|")))
 	if err != nil {
 		return err
 	}

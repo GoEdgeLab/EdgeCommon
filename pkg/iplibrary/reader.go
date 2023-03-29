@@ -14,6 +14,7 @@ import (
 	"strings"
 )
 
+// Reader IP库Reader
 type Reader struct {
 	meta *Meta
 
@@ -21,8 +22,16 @@ type Reader struct {
 
 	ipV4Items []*ipItem
 	ipV6Items []*ipItem
+
+	lastIPFrom     uint64
+	lastCountryId  uint32
+	lastProvinceId uint32
+	lastCityId     uint32
+	lastTownId     uint32
+	lastProviderId uint32
 }
 
+// NewReader 创建新Reader对象
 func NewReader(reader io.Reader) (*Reader, error) {
 	var libReader = &Reader{
 		regionMap: map[string]*ipRegion{},
@@ -34,6 +43,7 @@ func NewReader(reader io.Reader) (*Reader, error) {
 	return libReader, nil
 }
 
+// 从Reader中加载数据
 func (this *Reader) load(reader io.Reader) error {
 	var buf = make([]byte, 1024)
 	var metaLine = []byte{}
@@ -157,72 +167,20 @@ func (this *Reader) IPv6Items() []*ipItem {
 	return this.ipV6Items
 }
 
+// 分析数据
 func (this *Reader) parse(data []byte) (left []byte, err error) {
 	if len(data) == 0 {
 		return
 	}
+
 	for {
 		var index = bytes.IndexByte(data, '\n')
 		if index >= 0 {
 			var line = data[:index]
-			var pieces = strings.Split(string(line), "|")
-			if len(pieces) != 8 {
-				return nil, errors.New("invalid ip definition '" + string(line) + "'")
+			err = this.parseLine(line)
+			if err != nil {
+				return nil, err
 			}
-
-			var version = pieces[0]
-			if len(version) == 0 {
-				version = "4"
-			}
-
-			if version != "4" && version != "6" {
-				return nil, errors.New("invalid ip version '" + string(line) + "'")
-			}
-
-			var ipFrom uint64
-			var ipTo uint64
-			if len(pieces[2]) == 0 {
-				pieces[2] = pieces[1]
-				ipFrom = types.Uint64(pieces[1])
-				ipTo = types.Uint64(pieces[2])
-			} else {
-				ipFrom = types.Uint64(pieces[1])
-				ipTo = types.Uint64(pieces[2]) + ipFrom
-			}
-
-			var countryId = types.Uint32(pieces[3])
-			var provinceId = types.Uint32(pieces[4])
-			var cityId = types.Uint32(pieces[5])
-			var townId = types.Uint32(pieces[6])
-			var providerId = types.Uint32(pieces[7])
-			var hash = HashRegion(countryId, provinceId, cityId, townId, providerId)
-
-			region, ok := this.regionMap[hash]
-			if !ok {
-				region = &ipRegion{
-					CountryId:  countryId,
-					ProvinceId: provinceId,
-					CityId:     cityId,
-					TownId:     townId,
-					ProviderId: providerId,
-				}
-				this.regionMap[hash] = region
-			}
-
-			if version == "4" {
-				this.ipV4Items = append(this.ipV4Items, &ipItem{
-					IPFrom: ipFrom,
-					IPTo:   ipTo,
-					Region: region,
-				})
-			} else {
-				this.ipV6Items = append(this.ipV6Items, &ipItem{
-					IPFrom: ipFrom,
-					IPTo:   ipTo,
-					Region: region,
-				})
-			}
-
 			data = data[index+1:]
 		} else {
 			left = data
@@ -230,4 +188,116 @@ func (this *Reader) parse(data []byte) (left []byte, err error) {
 		}
 	}
 	return
+}
+
+// 单行分析
+func (this *Reader) parseLine(line []byte) error {
+	const maxPieces = 8
+	var pieces = strings.Split(string(line), "|")
+	var countPieces = len(pieces)
+	if countPieces < maxPieces { // 补足一行
+		for i := 0; i < maxPieces-countPieces; i++ {
+			pieces = append(pieces, "")
+		}
+	} else if countPieces > maxPieces {
+		return errors.New("invalid ip definition '" + string(line) + "'")
+	}
+
+	var version = pieces[0]
+	if len(version) == 0 {
+		version = "4"
+	}
+
+	if version != "4" && version != "6" {
+		return errors.New("invalid ip version '" + string(line) + "'")
+	}
+
+	// ip range
+	var ipFrom uint64
+	var ipTo uint64
+	if strings.HasPrefix(pieces[1], "+") {
+		ipFrom = this.lastIPFrom + types.Uint64(pieces[1][1:])
+	} else {
+		ipFrom = types.Uint64(pieces[1])
+	}
+	if len(pieces[2]) == 0 {
+		ipTo = ipFrom
+	} else {
+		ipTo = types.Uint64(pieces[2]) + ipFrom
+	}
+	this.lastIPFrom = ipFrom
+
+	// country
+	var countryId uint32
+	if pieces[3] == "+" {
+		countryId = this.lastCountryId
+	} else {
+		countryId = types.Uint32(pieces[3])
+	}
+	this.lastCountryId = countryId
+
+	var provinceId uint32
+	if pieces[4] == "+" {
+		provinceId = this.lastProvinceId
+	} else {
+		provinceId = types.Uint32(pieces[4])
+	}
+	this.lastProvinceId = provinceId
+
+	// city
+	var cityId uint32
+	if pieces[5] == "+" {
+		cityId = this.lastCityId
+	} else {
+		cityId = types.Uint32(pieces[5])
+	}
+	this.lastCityId = cityId
+
+	// town
+	var townId uint32
+	if pieces[6] == "+" {
+		townId = this.lastTownId
+	} else {
+		townId = types.Uint32(pieces[6])
+	}
+	this.lastTownId = townId
+
+	// provider
+	var providerId uint32
+	if pieces[7] == "+" {
+		providerId = this.lastProviderId
+	} else {
+		providerId = types.Uint32(pieces[7])
+	}
+	this.lastProviderId = providerId
+
+	var hash = HashRegion(countryId, provinceId, cityId, townId, providerId)
+
+	region, ok := this.regionMap[hash]
+	if !ok {
+		region = &ipRegion{
+			CountryId:  countryId,
+			ProvinceId: provinceId,
+			CityId:     cityId,
+			TownId:     townId,
+			ProviderId: providerId,
+		}
+		this.regionMap[hash] = region
+	}
+
+	if version == "4" {
+		this.ipV4Items = append(this.ipV4Items, &ipItem{
+			IPFrom: ipFrom,
+			IPTo:   ipTo,
+			Region: region,
+		})
+	} else {
+		this.ipV6Items = append(this.ipV6Items, &ipItem{
+			IPFrom: ipFrom,
+			IPTo:   ipTo,
+			Region: region,
+		})
+	}
+
+	return nil
 }

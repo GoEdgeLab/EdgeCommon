@@ -19153,7 +19153,7 @@
     },
     {
       "name": "IPLibraryArtifact",
-      "code": "message IPLibraryArtifact {\n\tint64 id = 1;\n\tint64 fileId = 2;\n\tint64 createdAt = 3;\n\tbytes metaJSON = 4;\n\tbool isPublic = 5;\n\tstring name = 6;\n\tstring code = 7;\n}",
+      "code": "message IPLibraryArtifact {\n\tint64 id = 1;\n\tint64 fileId = 2;\n\tint64 createdAt = 3;\n\tbytes metaJSON = 4;\n\tbool isPublic = 5; // 是否公开\n\tstring name = 6;\n\tstring code = 7;\n\n\tFile file = 30; // 文件信息\n}",
       "doc": ""
     },
     {
