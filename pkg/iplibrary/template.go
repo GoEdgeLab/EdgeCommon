@@ -38,7 +38,7 @@ func (this *Template) init() error {
 
 		return keyword
 	})
-	reg, err := regexp.Compile("^(?U)" + template)
+	reg, err := regexp.Compile("^(?U)" + template + "\n?$")
 	if err != nil {
 		return err
 	}

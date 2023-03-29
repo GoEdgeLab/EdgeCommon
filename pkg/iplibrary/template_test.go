@@ -13,14 +13,15 @@ func TestNewTemplate(t *testing.T) {
 		t.Fatal(err)
 	}
 	for _, s := range []string{
+		"0.0.0.0|0.255.255.255|0|0|0|内网IP|内网IP",
 		"42.0.32.0|42.0.63.255|中国|0|广东省|广州市|电信",
 		"42.0.32.0|42.0.63.255|中国|0|广东省|广州市|电信\n123",
 		"42.0.32.0|42.0.63.255|中国||广东省|广州市|电信",
 		"42.0.32.0|42.0.63.255|中国|0||广州市|电信",
 		"42.0.32.0|42.0.63.255|中国|0|广东省|广州市",
 	} {
-		values, _ := template.Extract(s, []string{})
-		t.Log(s, "=>\n", values)
+		values, ok := template.Extract(s, []string{})
+		t.Log(ok, s, "=>\n", values)
 	}
 }
 
