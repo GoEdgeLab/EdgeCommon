@@ -3,13 +3,13 @@
 package iplibrary
 
 type Country struct {
-	Id    uint32   `json:"id"`
+	Id    uint16   `json:"id"`
 	Name  string   `json:"name"`
 	Codes []string `json:"codes"`
 }
 
 type Province struct {
-	Id    uint32   `json:"id"`
+	Id    uint16   `json:"id"`
 	Name  string   `json:"name"`
 	Codes []string `json:"codes"`
 }
@@ -27,7 +27,7 @@ type Town struct {
 }
 
 type Provider struct {
-	Id    uint32   `json:"id"`
+	Id    uint16   `json:"id"`
 	Name  string   `json:"name"`
 	Codes []string `json:"codes"`
 }
@@ -43,19 +43,19 @@ type Meta struct {
 	Providers []*Provider `json:"providers"`
 	CreatedAt int64       `json:"createdAt"`
 
-	countryMap  map[uint32]*Country  // id => *Country
-	provinceMap map[uint32]*Province // id => *Province
+	countryMap  map[uint16]*Country  // id => *Country
+	provinceMap map[uint16]*Province // id => *Province
 	cityMap     map[uint32]*City     // id => *City
 	townMap     map[uint32]*Town     // id => *Town
-	providerMap map[uint32]*Provider // id => *Provider
+	providerMap map[uint16]*Provider // id => *Provider
 }
 
 func (this *Meta) Init() {
-	this.countryMap = map[uint32]*Country{}
-	this.provinceMap = map[uint32]*Province{}
+	this.countryMap = map[uint16]*Country{}
+	this.provinceMap = map[uint16]*Province{}
 	this.cityMap = map[uint32]*City{}
 	this.townMap = map[uint32]*Town{}
-	this.providerMap = map[uint32]*Provider{}
+	this.providerMap = map[uint16]*Provider{}
 
 	for _, country := range this.Countries {
 		this.countryMap[country.Id] = country
@@ -74,11 +74,11 @@ func (this *Meta) Init() {
 	}
 }
 
-func (this *Meta) CountryWithId(countryId uint32) *Country {
+func (this *Meta) CountryWithId(countryId uint16) *Country {
 	return this.countryMap[countryId]
 }
 
-func (this *Meta) ProvinceWithId(provinceId uint32) *Province {
+func (this *Meta) ProvinceWithId(provinceId uint16) *Province {
 	return this.provinceMap[provinceId]
 }
 
@@ -90,6 +90,6 @@ func (this *Meta) TownWithId(townId uint32) *Town {
 	return this.townMap[townId]
 }
 
-func (this *Meta) ProviderWithId(providerId uint32) *Provider {
+func (this *Meta) ProviderWithId(providerId uint16) *Provider {
 	return this.providerMap[providerId]
 }

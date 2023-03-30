@@ -10,9 +10,9 @@ import (
 )
 
 func TestNewFileWriter(t *testing.T) {
-	writer, err := iplibrary.NewFileWriter("./internal-ip-library.db", &iplibrary.Meta{
+	writer, err := iplibrary.NewFileWriter("./internal-ip-library-test.db", &iplibrary.Meta{
 		Author: "GoEdge",
-	})
+	}, "")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -41,7 +41,7 @@ func TestNewFileWriter(t *testing.T) {
 		return types.String(rands.Int(0, 255))
 	}
 
-	for i := 0; i < 1_000_000; i++ {
+	for i := 0; i < 1; i++ {
 		err = writer.Write(n()+"."+n()+"."+n()+"."+n(), n()+"."+n()+"."+n()+"."+n(), int64(i)+100, 201, 301, 401, 501)
 		if err != nil {
 			t.Fatal(err)

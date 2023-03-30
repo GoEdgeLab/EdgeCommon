@@ -11,7 +11,7 @@ import (
 )
 
 func TestNewFileReader(t *testing.T) {
-	reader, err := iplibrary.NewFileReader("./ip")
+	reader, err := iplibrary.NewFileReader("./ip-20c1461c.db", "123456")
 	if err != nil {
 		t.Fatal(err)
 	}

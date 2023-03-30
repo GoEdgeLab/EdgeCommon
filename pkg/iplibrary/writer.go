@@ -8,10 +8,10 @@ import (
 	"errors"
 	"fmt"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
-	"github.com/iwind/TeaGo/types"
 	"hash"
 	"io"
 	"net"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -54,7 +54,7 @@ func NewWriter(writer io.Writer, meta *Meta) *Writer {
 	if meta == nil {
 		meta = &Meta{}
 	}
-	meta.Version = Version1
+	meta.Version = Version2
 	meta.CreatedAt = time.Now().Unix()
 
 	var libWriter = &Writer{
@@ -111,9 +111,9 @@ func (this *Writer) Write(ipFrom string, ipTo string, countryId int64, provinceI
 	}
 
 	if this.lastIPFrom > 0 && fromIPLong > this.lastIPFrom {
-		pieces = append(pieces, "+"+types.String(fromIPLong-this.lastIPFrom))
+		pieces = append(pieces, "+"+this.formatUint64(fromIPLong-this.lastIPFrom))
 	} else {
-		pieces = append(pieces, types.String(fromIPLong))
+		pieces = append(pieces, this.formatUint64(fromIPLong))
 	}
 	this.lastIPFrom = fromIPLong
 	if ipFrom == ipTo {
@@ -121,7 +121,7 @@ func (this *Writer) Write(ipFrom string, ipTo string, countryId int64, provinceI
 		pieces = append(pieces, "")
 	} else {
 		// 2
-		pieces = append(pieces, types.String(toIPLong-fromIPLong))
+		pieces = append(pieces, this.formatUint64(toIPLong-fromIPLong))
 	}
 
 	// 3
@@ -129,7 +129,7 @@ func (this *Writer) Write(ipFrom string, ipTo string, countryId int64, provinceI
 		if countryId == this.lastCountryId {
 			pieces = append(pieces, "+")
 		} else {
-			pieces = append(pieces, types.String(countryId))
+			pieces = append(pieces, this.formatUint64(uint64(countryId)))
 		}
 	} else {
 		pieces = append(pieces, "")
@@ -141,7 +141,7 @@ func (this *Writer) Write(ipFrom string, ipTo string, countryId int64, provinceI
 		if provinceId == this.lastProvinceId {
 			pieces = append(pieces, "+")
 		} else {
-			pieces = append(pieces, types.String(provinceId))
+			pieces = append(pieces, this.formatUint64(uint64(provinceId)))
 		}
 	} else {
 		pieces = append(pieces, "")
@@ -153,7 +153,7 @@ func (this *Writer) Write(ipFrom string, ipTo string, countryId int64, provinceI
 		if cityId == this.lastCityId {
 			pieces = append(pieces, "+")
 		} else {
-			pieces = append(pieces, types.String(cityId))
+			pieces = append(pieces, this.formatUint64(uint64(cityId)))
 		}
 	} else {
 		pieces = append(pieces, "")
@@ -165,7 +165,7 @@ func (this *Writer) Write(ipFrom string, ipTo string, countryId int64, provinceI
 		if townId == this.lastTownId {
 			pieces = append(pieces, "+")
 		} else {
-			pieces = append(pieces, types.String(townId))
+			pieces = append(pieces, this.formatUint64(uint64(townId)))
 		}
 	} else {
 		pieces = append(pieces, "")
@@ -177,7 +177,7 @@ func (this *Writer) Write(ipFrom string, ipTo string, countryId int64, provinceI
 		if providerId == this.lastProviderId {
 			pieces = append(pieces, "+")
 		} else {
-			pieces = append(pieces, types.String(providerId))
+			pieces = append(pieces, this.formatUint64(uint64(providerId)))
 		}
 	} else {
 		pieces = append(pieces, "")
@@ -195,4 +195,8 @@ func (this *Writer) Write(ipFrom string, ipTo string, countryId int64, provinceI
 
 func (this *Writer) Sum() string {
 	return this.writer.Sum()
+}
+
+func (this *Writer) formatUint64(i uint64) string {
+	return strconv.FormatUint(i, 32)
 }

@@ -213,7 +213,7 @@ func (this *Updater) Loop() error {
 func (this *Updater) loadFile(fp *os.File) error {
 	this.source.LogInfo("load ip library from '" + fp.Name() + "' ...")
 
-	fileReader, err := NewFileDataReader(fp)
+	fileReader, err := NewFileDataReader(fp, "")
 	if err != nil {
 		return errors.New("load ip library from reader failed: " + err.Error())
 	}

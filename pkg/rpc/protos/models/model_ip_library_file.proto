@@ -18,6 +18,7 @@ message IPLibraryFile {
 	repeated City cities = 12;
 	repeated Town towns = 13;
 	repeated string providerNames = 14;
+	string password = 15; // 密码
 
 	message Province {
 		string countryName = 1;

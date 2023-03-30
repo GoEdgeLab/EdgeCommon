@@ -7,10 +7,10 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
-	"github.com/iwind/TeaGo/types"
 	"io"
 	"net"
 	"sort"
+	"strconv"
 	"strings"
 )
 
@@ -18,17 +18,17 @@ import (
 type Reader struct {
 	meta *Meta
 
-	regionMap map[string]*ipRegion
+	regionMap map[string]*ipRegion // 缓存重复的区域用来节约内存
 
-	ipV4Items []*ipItem
-	ipV6Items []*ipItem
+	ipV4Items []*ipv4Item
+	ipV6Items []*ipv6Item
 
 	lastIPFrom     uint64
-	lastCountryId  uint32
-	lastProvinceId uint32
+	lastCountryId  uint16
+	lastProvinceId uint16
 	lastCityId     uint32
 	lastTownId     uint32
-	lastProviderId uint32
+	lastProviderId uint16
 }
 
 // NewReader 创建新Reader对象
@@ -112,6 +112,9 @@ func (this *Reader) load(reader io.Reader) error {
 		return from0 < from1
 	})
 
+	// 清理内存
+	this.regionMap = nil
+
 	return nil
 }
 
@@ -122,12 +125,12 @@ func (this *Reader) Lookup(ip net.IP) *QueryResult {
 
 	var ipLong = configutils.IP2Long(ip)
 	var isV4 = configutils.IsIPv4(ip)
-	var resultItem *ipItem
+	var resultItem any
 	if isV4 {
 		sort.Search(len(this.ipV4Items), func(i int) bool {
 			var item = this.ipV4Items[i]
-			if item.IPFrom <= ipLong {
-				if item.IPTo >= ipLong {
+			if item.IPFrom <= uint32(ipLong) {
+				if item.IPTo >= uint32(ipLong) {
 					resultItem = item
 					return false
 				}
@@ -159,11 +162,11 @@ func (this *Reader) Meta() *Meta {
 	return this.meta
 }
 
-func (this *Reader) IPv4Items() []*ipItem {
+func (this *Reader) IPv4Items() []*ipv4Item {
 	return this.ipV4Items
 }
 
-func (this *Reader) IPv6Items() []*ipItem {
+func (this *Reader) IPv6Items() []*ipv6Item {
 	return this.ipV6Items
 }
 
@@ -216,31 +219,31 @@ func (this *Reader) parseLine(line []byte) error {
 	var ipFrom uint64
 	var ipTo uint64
 	if strings.HasPrefix(pieces[1], "+") {
-		ipFrom = this.lastIPFrom + types.Uint64(pieces[1][1:])
+		ipFrom = this.lastIPFrom + this.decodeUint64(pieces[1][1:])
 	} else {
-		ipFrom = types.Uint64(pieces[1])
+		ipFrom = this.decodeUint64(pieces[1])
 	}
 	if len(pieces[2]) == 0 {
 		ipTo = ipFrom
 	} else {
-		ipTo = types.Uint64(pieces[2]) + ipFrom
+		ipTo = this.decodeUint64(pieces[2]) + ipFrom
 	}
 	this.lastIPFrom = ipFrom
 
 	// country
-	var countryId uint32
+	var countryId uint16
 	if pieces[3] == "+" {
 		countryId = this.lastCountryId
 	} else {
-		countryId = types.Uint32(pieces[3])
+		countryId = uint16(this.decodeUint64(pieces[3]))
 	}
 	this.lastCountryId = countryId
 
-	var provinceId uint32
+	var provinceId uint16
 	if pieces[4] == "+" {
 		provinceId = this.lastProvinceId
 	} else {
-		provinceId = types.Uint32(pieces[4])
+		provinceId = uint16(this.decodeUint64(pieces[4]))
 	}
 	this.lastProvinceId = provinceId
 
@@ -249,7 +252,7 @@ func (this *Reader) parseLine(line []byte) error {
 	if pieces[5] == "+" {
 		cityId = this.lastCityId
 	} else {
-		cityId = types.Uint32(pieces[5])
+		cityId = uint32(this.decodeUint64(pieces[5]))
 	}
 	this.lastCityId = cityId
 
@@ -258,16 +261,16 @@ func (this *Reader) parseLine(line []byte) error {
 	if pieces[6] == "+" {
 		townId = this.lastTownId
 	} else {
-		townId = types.Uint32(pieces[6])
+		townId = uint32(this.decodeUint64(pieces[6]))
 	}
 	this.lastTownId = townId
 
 	// provider
-	var providerId uint32
+	var providerId uint16
 	if pieces[7] == "+" {
 		providerId = this.lastProviderId
 	} else {
-		providerId = types.Uint32(pieces[7])
+		providerId = uint16(this.decodeUint64(pieces[7]))
 	}
 	this.lastProviderId = providerId
 
@@ -286,13 +289,13 @@ func (this *Reader) parseLine(line []byte) error {
 	}
 
 	if version == "4" {
-		this.ipV4Items = append(this.ipV4Items, &ipItem{
-			IPFrom: ipFrom,
-			IPTo:   ipTo,
+		this.ipV4Items = append(this.ipV4Items, &ipv4Item{
+			IPFrom: uint32(ipFrom),
+			IPTo:   uint32(ipTo),
 			Region: region,
 		})
 	} else {
-		this.ipV6Items = append(this.ipV6Items, &ipItem{
+		this.ipV6Items = append(this.ipV6Items, &ipv6Item{
 			IPFrom: ipFrom,
 			IPTo:   ipTo,
 			Region: region,
@@ -300,4 +303,13 @@ func (this *Reader) parseLine(line []byte) error {
 	}
 
 	return nil
+}
+
+func (this *Reader) decodeUint64(s string) uint64 {
+	if this.meta != nil && this.meta.Version == Version2 {
+		i, _ := strconv.ParseUint(s, 32, 64)
+		return i
+	}
+	i, _ := strconv.ParseUint(s, 10, 64)
+	return i
 }

@@ -14418,7 +14418,7 @@
     },
     {
       "name": "CreateIPLibraryFileRequest",
-      "code": "message CreateIPLibraryFileRequest {\n\tstring name = 1;\n\tstring template = 2;\n\trepeated string emptyValues = 3;\n\tint64 fileId = 4;\n\tbytes countriesJSON = 5;\n\tbytes provincesJSON = 6;\n\tbytes citiesJSON = 7;\n\tbytes townsJSON = 8;\n\tbytes providersJSON = 9;\n}",
+      "code": "message CreateIPLibraryFileRequest {\n\tstring name = 1;\n\tstring template = 2;\n\trepeated string emptyValues = 3;\n\tint64 fileId = 4;\n\tbytes countriesJSON = 5;\n\tbytes provincesJSON = 6;\n\tbytes citiesJSON = 7;\n\tbytes townsJSON = 8;\n\tbytes providersJSON = 9;\n\tstring password = 10; // 密码\n}",
       "doc": "创建IP库文件"
     },
     {
@@ -19158,7 +19158,7 @@
     },
     {
       "name": "IPLibraryFile",
-      "code": "message IPLibraryFile {\n\tint64 id = 1;\n\tstring name = 2;\n\tint64 fileId = 3;\n\tstring template = 4;\n\trepeated string emptyValues = 5;\n\tint64 generatedFileId = 6;\n\tint64 generatedAt = 7;\n\tbool isFinished = 8;\n\tint64 createdAt = 9;\n\trepeated string countryNames = 10;\n\trepeated Province provinces = 11;\n\trepeated City cities = 12;\n\trepeated Town towns = 13;\n\trepeated string providerNames = 14;\n\n\n\tmessage Province {\n\t\tstring countryName = 1;\n\t\tstring provinceName = 2;\n\t}\n\n\n\tmessage City {\n\t\tstring countryName = 1;\n\t\tstring provinceName = 2;\n\t\tstring cityName = 3;\n\t}\n\n\n\tmessage Town {\n\t\tstring countryName = 1;\n\t\tstring provinceName = 2;\n\t\tstring cityName = 3;\n\t\tstring townName = 4;\n\t}\n}",
+      "code": "message IPLibraryFile {\n\tint64 id = 1;\n\tstring name = 2;\n\tint64 fileId = 3;\n\tstring template = 4;\n\trepeated string emptyValues = 5;\n\tint64 generatedFileId = 6;\n\tint64 generatedAt = 7;\n\tbool isFinished = 8;\n\tint64 createdAt = 9;\n\trepeated string countryNames = 10;\n\trepeated Province provinces = 11;\n\trepeated City cities = 12;\n\trepeated Town towns = 13;\n\trepeated string providerNames = 14;\n\tstring password = 15; // 密码\n\n\n\tmessage Province {\n\t\tstring countryName = 1;\n\t\tstring provinceName = 2;\n\t}\n\n\n\tmessage City {\n\t\tstring countryName = 1;\n\t\tstring provinceName = 2;\n\t\tstring cityName = 3;\n\t}\n\n\n\tmessage Town {\n\t\tstring countryName = 1;\n\t\tstring provinceName = 2;\n\t\tstring cityName = 3;\n\t\tstring townName = 4;\n\t}\n}",
       "doc": ""
     },
     {

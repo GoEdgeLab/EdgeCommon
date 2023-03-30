@@ -88,6 +88,7 @@ message CreateIPLibraryFileRequest {
 	bytes citiesJSON = 7;
 	bytes townsJSON = 8;
 	bytes providersJSON = 9;
+	string password = 10; // 密码
 }
 
 message CreateIPLibraryFileResponse {

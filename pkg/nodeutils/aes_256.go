@@ -13,7 +13,7 @@ type AES256CFBMethod struct {
 
 func (this *AES256CFBMethod) Init(key, iv []byte) error {
 	// 判断key是否为32长度
-	l := len(key)
+	var l = len(key)
 	if l > 32 {
 		key = key[:32]
 	} else if l < 32 {
@@ -27,7 +27,7 @@ func (this *AES256CFBMethod) Init(key, iv []byte) error {
 	this.block = block
 
 	// 判断iv长度
-	l2 := len(iv)
+	var l2 = len(iv)
 	if l2 > aes.BlockSize {
 		iv = iv[:aes.BlockSize]
 	} else if l2 < aes.BlockSize {
@@ -49,7 +49,7 @@ func (this *AES256CFBMethod) Encrypt(src []byte) (dst []byte, err error) {
 
 	dst = make([]byte, len(src))
 
-	encrypter := cipher.NewCFBEncrypter(this.block, this.iv)
+	var encrypter = cipher.NewCFBEncrypter(this.block, this.iv)
 	encrypter.XORKeyStream(dst, src)
 
 	return
@@ -65,7 +65,7 @@ func (this *AES256CFBMethod) Decrypt(dst []byte) (src []byte, err error) {
 	}()
 
 	src = make([]byte, len(dst))
-	decrypter := cipher.NewCFBDecrypter(this.block, this.iv)
+	var decrypter = cipher.NewCFBDecrypter(this.block, this.iv)
 	decrypter.XORKeyStream(src, dst)
 
 	return

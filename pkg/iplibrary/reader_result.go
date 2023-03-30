@@ -8,7 +8,7 @@ import (
 )
 
 type QueryResult struct {
-	item *ipItem
+	item any
 	meta *Meta
 }
 
@@ -17,18 +17,16 @@ func (this *QueryResult) IsOk() bool {
 }
 
 func (this *QueryResult) CountryId() int64 {
-	if this.item != nil {
-		return int64(this.item.Region.CountryId)
-	}
-	return 0
+	return int64(this.realCountryId())
 }
 
 func (this *QueryResult) CountryName() string {
 	if this.item == nil {
 		return ""
 	}
-	if this.item.Region.CountryId > 0 {
-		var country = this.meta.CountryWithId(this.item.Region.CountryId)
+	var countryId = this.realCountryId()
+	if countryId > 0 {
+		var country = this.meta.CountryWithId(countryId)
 		if country != nil {
 			return country.Name
 		}
@@ -40,8 +38,9 @@ func (this *QueryResult) CountryCodes() []string {
 	if this.item == nil {
 		return nil
 	}
-	if this.item.Region.CountryId > 0 {
-		var country = this.meta.CountryWithId(this.item.Region.CountryId)
+	var countryId = this.realCountryId()
+	if countryId > 0 {
+		var country = this.meta.CountryWithId(countryId)
 		if country != nil {
 			return country.Codes
 		}
@@ -50,18 +49,16 @@ func (this *QueryResult) CountryCodes() []string {
 }
 
 func (this *QueryResult) ProvinceId() int64 {
-	if this.item != nil {
-		return int64(this.item.Region.ProvinceId)
-	}
-	return 0
+	return int64(this.realProvinceId())
 }
 
 func (this *QueryResult) ProvinceName() string {
 	if this.item == nil {
 		return ""
 	}
-	if this.item.Region.ProvinceId > 0 {
-		var province = this.meta.ProvinceWithId(this.item.Region.ProvinceId)
+	var provinceId = this.realProvinceId()
+	if provinceId > 0 {
+		var province = this.meta.ProvinceWithId(provinceId)
 		if province != nil {
 			return province.Name
 		}
@@ -73,8 +70,9 @@ func (this *QueryResult) ProvinceCodes() []string {
 	if this.item == nil {
 		return nil
 	}
-	if this.item.Region.ProvinceId > 0 {
-		var province = this.meta.ProvinceWithId(this.item.Region.ProvinceId)
+	var provinceId = this.realProvinceId()
+	if provinceId > 0 {
+		var province = this.meta.ProvinceWithId(provinceId)
 		if province != nil {
 			return province.Codes
 		}
@@ -83,18 +81,16 @@ func (this *QueryResult) ProvinceCodes() []string {
 }
 
 func (this *QueryResult) CityId() int64 {
-	if this.item != nil {
-		return int64(this.item.Region.CityId)
-	}
-	return 0
+	return int64(this.realCityId())
 }
 
 func (this *QueryResult) CityName() string {
 	if this.item == nil {
 		return ""
 	}
-	if this.item.Region.CityId > 0 {
-		var city = this.meta.CityWithId(this.item.Region.CityId)
+	var cityId = this.realCityId()
+	if cityId > 0 {
+		var city = this.meta.CityWithId(cityId)
 		if city != nil {
 			return city.Name
 		}
@@ -103,18 +99,16 @@ func (this *QueryResult) CityName() string {
 }
 
 func (this *QueryResult) TownId() int64 {
-	if this.item != nil {
-		return int64(this.item.Region.TownId)
-	}
-	return 0
+	return int64(this.realTownId())
 }
 
 func (this *QueryResult) TownName() string {
 	if this.item == nil {
 		return ""
 	}
-	if this.item.Region.TownId > 0 {
-		var town = this.meta.TownWithId(this.item.Region.TownId)
+	var townId = this.realTownId()
+	if townId > 0 {
+		var town = this.meta.TownWithId(townId)
 		if town != nil {
 			return town.Name
 		}
@@ -123,18 +117,16 @@ func (this *QueryResult) TownName() string {
 }
 
 func (this *QueryResult) ProviderId() int64 {
-	if this.item != nil {
-		return int64(this.item.Region.ProviderId)
-	}
-	return 0
+	return int64(this.realProviderId())
 }
 
 func (this *QueryResult) ProviderName() string {
 	if this.item == nil {
 		return ""
 	}
-	if this.item.Region.ProviderId > 0 {
-		var provider = this.meta.ProviderWithId(this.item.Region.ProviderId)
+	var providerId = this.realProviderId()
+	if providerId > 0 {
+		var provider = this.meta.ProviderWithId(providerId)
 		if provider != nil {
 			return provider.Name
 		}
@@ -146,8 +138,9 @@ func (this *QueryResult) ProviderCodes() []string {
 	if this.item == nil {
 		return nil
 	}
-	if this.item.Region.ProviderId > 0 {
-		var provider = this.meta.ProviderWithId(this.item.Region.ProviderId)
+	var providerId = this.realProviderId()
+	if providerId > 0 {
+		var provider = this.meta.ProviderWithId(providerId)
 		if provider != nil {
 			return provider.Codes
 		}
@@ -188,4 +181,69 @@ func (this *QueryResult) Summary() string {
 	}
 
 	return strings.Join(pieces, " ")
+}
+
+func (this *QueryResult) realCountryId() uint16 {
+	if this.item != nil {
+		switch item := this.item.(type) {
+		case *ipv4Item:
+			return item.Region.CountryId
+		case *ipv6Item:
+			return item.Region.CountryId
+		}
+
+	}
+	return 0
+}
+
+func (this *QueryResult) realProvinceId() uint16 {
+	if this.item != nil {
+		switch item := this.item.(type) {
+		case *ipv4Item:
+			return item.Region.ProvinceId
+		case *ipv6Item:
+			return item.Region.ProvinceId
+		}
+
+	}
+	return 0
+}
+
+func (this *QueryResult) realCityId() uint32 {
+	if this.item != nil {
+		switch item := this.item.(type) {
+		case *ipv4Item:
+			return item.Region.CityId
+		case *ipv6Item:
+			return item.Region.CityId
+		}
+
+	}
+	return 0
+}
+
+func (this *QueryResult) realTownId() uint32 {
+	if this.item != nil {
+		switch item := this.item.(type) {
+		case *ipv4Item:
+			return item.Region.TownId
+		case *ipv6Item:
+			return item.Region.TownId
+		}
+
+	}
+	return 0
+}
+
+func (this *QueryResult) realProviderId() uint16 {
+	if this.item != nil {
+		switch item := this.item.(type) {
+		case *ipv4Item:
+			return item.Region.ProviderId
+		case *ipv6Item:
+			return item.Region.ProviderId
+		}
+
+	}
+	return 0
 }

@@ -3,12 +3,17 @@
 package iplibrary
 
 import (
-	"bytes"
-	"encoding/binary"
 	"github.com/iwind/TeaGo/types"
 )
 
-type ipItem struct {
+type ipv4Item struct {
+	IPFrom uint32
+	IPTo   uint32
+
+	Region *ipRegion
+}
+
+type ipv6Item struct {
 	IPFrom uint64
 	IPTo   uint64
 
@@ -16,23 +21,14 @@ type ipItem struct {
 }
 
 type ipRegion struct {
-	CountryId  uint32
-	ProvinceId uint32
+	CountryId  uint16
+	ProvinceId uint16
 	CityId     uint32
 	TownId     uint32
-	ProviderId uint32
+	ProviderId uint16
 }
 
-func (this *ipItem) AsBinary() ([]byte, error) {
-	var buf = &bytes.Buffer{}
-	err := binary.Write(buf, binary.BigEndian, this)
-	if err != nil {
-		return nil, err
-	}
-	return buf.Bytes(), nil
-}
-
-func HashRegion(countryId uint32, provinceId uint32, cityId uint32, townId uint32, providerId uint32) string {
+func HashRegion(countryId uint16, provinceId uint16, cityId uint32, townId uint32, providerId uint16) string {
 	var providerHash = ""
 	if providerId > 0 {
 		providerHash = "_" + types.String(providerId)

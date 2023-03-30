@@ -10,11 +10,12 @@ import (
 type FileWriter struct {
 	fp       *os.File
 	gzWriter *gzip.Writer
+	password string
 
 	rawWriter *Writer
 }
 
-func NewFileWriter(path string, meta *Meta) (*FileWriter, error) {
+func NewFileWriter(path string, meta *Meta, password string) (*FileWriter, error) {
 	fp, err := os.OpenFile(path, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0666)
 	if err != nil {
 		return nil, err
@@ -29,6 +30,7 @@ func NewFileWriter(path string, meta *Meta) (*FileWriter, error) {
 		fp:        fp,
 		gzWriter:  gzWriter,
 		rawWriter: NewWriter(gzWriter, meta),
+		password:  password,
 	}
 	return writer, nil
 }
@@ -54,5 +56,25 @@ func (this *FileWriter) Close() error {
 	if err2 != nil {
 		return err2
 	}
+
+	// 加密内容
+	if len(this.password) > 0 {
+		var filePath = this.fp.Name()
+		data, err := os.ReadFile(filePath)
+		if err != nil {
+			return err
+		}
+		if len(data) > 0 {
+			encodedData, err := NewEncrypt().Encode(data, this.password)
+			if err != nil {
+				return err
+			}
+			err = os.WriteFile(filePath, encodedData, 0666)
+			if err != nil {
+				return err
+			}
+		}
+	}
+
 	return nil
 }

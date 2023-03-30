@@ -3,6 +3,7 @@
 package iplibrary
 
 import (
+	"bytes"
 	"compress/gzip"
 	"errors"
 	"io"
@@ -12,9 +13,10 @@ import (
 
 type FileReader struct {
 	rawReader *Reader
+	password  string
 }
 
-func NewFileReader(path string) (*FileReader, error) {
+func NewFileReader(path string, password string) (*FileReader, error) {
 	fp, err := os.Open(path)
 	if err != nil {
 		return nil, err
@@ -23,10 +25,24 @@ func NewFileReader(path string) (*FileReader, error) {
 		_ = fp.Close()
 	}()
 
-	return NewFileDataReader(fp)
+	return NewFileDataReader(fp, password)
 }
 
-func NewFileDataReader(dataReader io.Reader) (*FileReader, error) {
+func NewFileDataReader(dataReader io.Reader, password string) (*FileReader, error) {
+	if len(password) > 0 {
+		data, err := io.ReadAll(dataReader)
+		if err != nil {
+			return nil, err
+		}
+
+		sourceData, err := NewEncrypt().Decode(data, password)
+		if err != nil {
+			return nil, err
+		}
+
+		dataReader = bytes.NewReader(sourceData)
+	}
+
 	gzReader, err := gzip.NewReader(dataReader)
 	if err != nil {
 		return nil, errors.New("create gzip reader failed: " + err.Error())
