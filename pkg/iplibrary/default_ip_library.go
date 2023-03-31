@@ -119,5 +119,6 @@ func (this *IPLibrary) LookupIP(ip string) *QueryResult {
 func (this *IPLibrary) Destroy() {
 	if this.reader != nil {
 		this.reader.Destroy()
+		this.reader = nil
 	}
 }
