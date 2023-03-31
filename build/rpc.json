@@ -10459,6 +10459,15 @@
             "admin"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "updateServerName",
+          "requestMessageName": "UpdateServerNameRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateServerName(UpdateServerNameRequest) returns (RPCSuccess);",
+          "doc": "修改服务名称",
+          "roles": [],
+          "isDeprecated": false
         }
       ],
       "filename": "service_server.proto",
@@ -21760,6 +21769,11 @@
       "name": "UpdateServerIsOnRequest",
       "code": "message UpdateServerIsOnRequest {\n\tint64 serverId = 1;\n\tbool isOn = 2;\n}",
       "doc": "修改服务启是否启用"
+    },
+    {
+      "name": "UpdateServerNameRequest",
+      "code": "message UpdateServerNameRequest {\n\tint64 serverId  = 1; // 服务ID\n\tstring name = 2; // 服务名称\n}",
+      "doc": "修改服务名称"
     },
     {
       "name": "UpdateServerNamesAuditingRequest",

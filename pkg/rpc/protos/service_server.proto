@@ -169,6 +169,9 @@ service ServerService {
 
 	// 修改服务所属用户
 	rpc updateServerUser(UpdateServerUserRequest) returns (RPCSuccess);
+
+	// 修改服务名称
+	rpc updateServerName(UpdateServerNameRequest) returns (RPCSuccess);
 }
 
 // 创建服务
@@ -661,4 +664,10 @@ message FindEnabledServerUAMResponse {
 message UpdateServerUserRequest {
 	int64 serverId = 1;
 	int64 userId = 2;
+}
+
+// 修改服务名称
+message UpdateServerNameRequest {
+	int64 serverId  = 1; // 服务ID
+	string name = 2; // 服务名称
 }
