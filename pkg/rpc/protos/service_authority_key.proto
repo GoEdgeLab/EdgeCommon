@@ -19,6 +19,9 @@ service AuthorityKeyService {
 
 	// 校验Key
 	rpc validateAuthorityKey(ValidateAuthorityKeyRequest) returns (ValidateAuthorityKeyResponse);
+
+	// 检查版本信息
+	rpc checkAuthority(CheckAuthorityRequest) returns (CheckAuthorityResponse);
 }
 
 // 设置Key
@@ -53,4 +56,14 @@ message ValidateAuthorityKeyRequest {
 message ValidateAuthorityKeyResponse {
 	bool isOk = 1;
 	string error = 2;
+}
+
+// 检查版本信息
+message CheckAuthorityRequest {
+
+}
+
+message CheckAuthorityResponse {
+	bool isPlus = 1;
+	string edition = 2;
 }

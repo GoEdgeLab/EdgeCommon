@@ -35,6 +35,7 @@ func NewServerError(serverId int64, message string) *ServerError {
 // NodeConfig 边缘节点配置
 type NodeConfig struct {
 	Id           int64                         `yaml:"id" json:"id"`
+	Edition      string                        `yaml:"edition" json:"edition"`
 	NodeId       string                        `yaml:"nodeId" json:"nodeId"`
 	Secret       string                        `yaml:"secret" json:"secret"`
 	IsOn         bool                          `yaml:"isOn" json:"isOn"`
