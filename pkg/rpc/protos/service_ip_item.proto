@@ -14,6 +14,9 @@ service IPItemService {
 	// 创建IP
 	rpc createIPItem (CreateIPItemRequest) returns (CreateIPItemResponse);
 
+	// 创建一组IP
+	rpc createIPItems(CreateIPItemsRequest) returns (CreateIPItemsResponse);
+
 	// 修改IP
 	rpc updateIPItem (UpdateIPItemRequest) returns (RPCSuccess);
 
@@ -73,6 +76,34 @@ message CreateIPItemRequest {
 
 message CreateIPItemResponse {
 	int64 ipItemId = 1;
+}
+
+// 创建一组IP
+message CreateIPItemsRequest {
+	repeated IPItem ipItems = 1; // 要创建的IP列表
+
+	message IPItem {
+		int64 ipListId = 1; // IP列表ID
+		string ipFrom = 2; // 开始IP
+		string ipTo = 3; // 结束IP（可选）
+		int64 expiredAt = 4; // 过期时间戳（可选）
+		string reason = 5; // 加入理由（可选）
+		string type = 6; // 类型
+		string eventLevel = 7; // 级别
+
+		int64 nodeId = 8; // 所属节点ID
+		int64 serverId = 9; // 所属服务ID
+
+		int64 sourceNodeId = 10;
+		int64 sourceServerId = 11;
+		int64 sourceHTTPFirewallPolicyId = 12;
+		int64 sourceHTTPFirewallRuleGroupId = 13;
+		int64 sourceHTTPFirewallRuleSetId = 14;
+	}
+}
+
+message CreateIPItemsResponse {
+	repeated int64 ipItemIds = 1; // 创建后的IP ID列表
 }
 
 // 修改IP
