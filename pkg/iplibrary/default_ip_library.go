@@ -115,3 +115,9 @@ func (this *IPLibrary) LookupIP(ip string) *QueryResult {
 	}
 	return this.Lookup(net.ParseIP(ip))
 }
+
+func (this *IPLibrary) Destroy() {
+	if this.reader != nil {
+		this.reader.Destroy()
+	}
+}

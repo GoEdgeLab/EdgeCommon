@@ -170,6 +170,13 @@ func (this *Reader) IPv6Items() []*ipv6Item {
 	return this.ipV6Items
 }
 
+func (this *Reader) Destroy() {
+	this.meta = nil
+	this.regionMap = nil
+	this.ipV4Items = nil
+	this.ipV6Items = nil
+}
+
 // 分析数据
 func (this *Reader) parse(data []byte) (left []byte, err error) {
 	if len(data) == 0 {
