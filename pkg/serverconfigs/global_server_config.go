@@ -4,11 +4,15 @@ package serverconfigs
 
 func DefaultGlobalServerConfig() *GlobalServerConfig {
 	var config = &GlobalServerConfig{}
+	config.HTTPAll.SupportsLowVersionHTTP = false
+
 	config.HTTPAccessLog.EnableRequestHeaders = true
 	config.HTTPAccessLog.EnableResponseHeaders = true
 	config.HTTPAccessLog.EnableCookies = true
 	config.HTTPAccessLog.EnableServerNotFound = true
+
 	config.Log.RecordServerError = false
+
 	config.Performance.AutoWriteTimeout = true
 	config.Performance.AutoReadTimeout = true
 	config.Stat.Upload.MaxCities = 32
@@ -26,6 +30,8 @@ type GlobalServerConfig struct {
 		AllowNodeIP          bool                  `yaml:"allowNodeIP" json:"allowNodeIP"`                   // 允许IP直接访问
 		DefaultDomain        string                `yaml:"defaultDomain" json:"defaultDomain"`               // 默认的域名
 		DomainMismatchAction *DomainMismatchAction `yaml:"domainMismatchAction" json:"domainMismatchAction"` // 不匹配时采取的动作
+
+		SupportsLowVersionHTTP bool `yaml:"supportsLowVersionHTTP" json:"supportsLowVersionHTTP"` // 是否启用低版本HTTP
 	} `yaml:"httpAll" json:"httpAll"` // HTTP统一配置
 
 	HTTPAccessLog struct {
