@@ -4,7 +4,7 @@ package serverconfigs
 
 func DefaultGlobalServerConfig() *GlobalServerConfig {
 	var config = &GlobalServerConfig{}
-	config.HTTPAll.SupportsLowVersionHTTP = false
+	config.HTTPAll.SupportsLowVersionHTTP = true
 
 	config.HTTPAccessLog.EnableRequestHeaders = true
 	config.HTTPAccessLog.EnableResponseHeaders = true
