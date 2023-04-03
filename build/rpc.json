@@ -3529,7 +3529,12 @@
           "responseMessageName": "CreateIPItemsResponse",
           "code": "rpc createIPItems(CreateIPItemsRequest) returns (CreateIPItemsResponse);",
           "doc": "创建一组IP",
-          "roles": [],
+          "roles": [
+            "dns",
+            "user",
+            "node",
+            "admin"
+          ],
           "isDeprecated": false
         },
         {
@@ -13674,7 +13679,7 @@
     },
     {
       "name": "CountAllEnabledIPItemsRequest",
-      "code": "message CountAllEnabledIPItemsRequest {\n\tstring keyword = 6;\n\tstring ip = 1;\n\tbool globalOnly = 2;\n\tbool unread = 3;\n\tstring eventLevel = 4;\n\tstring listType = 5;\n}",
+      "code": "message CountAllEnabledIPItemsRequest {\n\tstring keyword = 6; // 关键词\n\tstring ip = 1; // 单个IP，搜索单个IP时需要\n\tbool globalOnly = 2; // 是否为自动添加的IP\n\tbool unread = 3; // 是否未读\n\tstring eventLevel = 4; // 事件级别\n\tstring listType = 5; // 列表类型：black|white\n\tint64 userId = 7; // 用户ID，只有管理员才有权限指定用户ID\n}",
       "doc": "计算所有IP数量"
     },
     {
@@ -19274,7 +19279,7 @@
     },
     {
       "name": "ListAllEnabledIPItemsRequest",
-      "code": "message ListAllEnabledIPItemsRequest {\n\tstring keyword = 8;\n\tstring ip = 1;\n\tbool globalOnly = 2;\n\tbool unread = 5;\n\tstring eventLevel = 6;\n\tstring listType = 7;\n\tint64 offset = 3;\n\tint64 size = 4;\n}",
+      "code": "message ListAllEnabledIPItemsRequest {\n\tstring keyword = 8; // 关键词\n\tstring ip = 1; // 单个IP，搜索单个IP时需要\n\tbool globalOnly = 2;  // 是否为自动添加的IP\n\tbool unread = 5; // 是否未读\n\tstring eventLevel = 6; // 事件级别\n\tstring listType = 7; // 列表类型：black|white\n\tint64 userId = 9; // 用户ID，只有管理员才有权限指定用户ID\n\tint64 offset = 3; // 读取位置，从0开始\n\tint64 size = 4; // 每次读取数量\n}",
       "doc": "列出所有名单中的IP"
     },
     {

@@ -200,24 +200,26 @@ message ExistsEnabledIPItemResponse {
 
 // 计算所有IP数量
 message CountAllEnabledIPItemsRequest {
-	string keyword = 6;
-	string ip = 1;
-	bool globalOnly = 2;
-	bool unread = 3;
-	string eventLevel = 4;
-	string listType = 5;
+	string keyword = 6; // 关键词
+	string ip = 1; // 单个IP，搜索单个IP时需要
+	bool globalOnly = 2; // 是否为自动添加的IP
+	bool unread = 3; // 是否未读
+	string eventLevel = 4; // 事件级别
+	string listType = 5; // 列表类型：black|white
+	int64 userId = 7; // 用户ID，只有管理员才有权限指定用户ID
 }
 
 // 列出所有名单中的IP
 message ListAllEnabledIPItemsRequest {
-	string keyword = 8;
-	string ip = 1;
-	bool globalOnly = 2;
-	bool unread = 5;
-	string eventLevel = 6;
-	string listType = 7;
-	int64 offset = 3;
-	int64 size = 4;
+	string keyword = 8; // 关键词
+	string ip = 1; // 单个IP，搜索单个IP时需要
+	bool globalOnly = 2;  // 是否为自动添加的IP
+	bool unread = 5; // 是否未读
+	string eventLevel = 6; // 事件级别
+	string listType = 7; // 列表类型：black|white
+	int64 userId = 9; // 用户ID，只有管理员才有权限指定用户ID
+	int64 offset = 3; // 读取位置，从0开始
+	int64 size = 4; // 每次读取数量
 }
 
 message ListAllEnabledIPItemsResponse {
