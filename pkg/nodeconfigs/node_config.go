@@ -19,9 +19,11 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 var sharedNodeConfig *NodeConfig = nil
+var uamPolicyLocker = &sync.RWMutex{}
 
 type ServerError struct {
 	Id      int64
@@ -189,6 +191,9 @@ func CloneNodeConfig(nodeConfig *NodeConfig) (*NodeConfig, error) {
 	if nodeConfig == nil {
 		return nil, errors.New("node config should not be nil")
 	}
+
+	uamPolicyLocker.RLock()
+	defer uamPolicyLocker.RUnlock()
 
 	var newConfigValue = reflect.Indirect(reflect.ValueOf(&NodeConfig{}))
 	var oldValue = reflect.Indirect(reflect.ValueOf(nodeConfig))
@@ -374,14 +379,17 @@ func (this *NodeConfig) Init(ctx context.Context) (err error, serverErrors []*Se
 	}
 
 	// uam policy
+	uamPolicyLocker.RLock()
 	if this.UAMPolicies != nil {
 		for _, policy := range this.UAMPolicies {
 			err = policy.Init()
 			if err != nil {
+				uamPolicyLocker.RUnlock()
 				return
 			}
 		}
 	}
+	uamPolicyLocker.RUnlock()
 
 	// dns resolver
 	if this.DNSResolver != nil {
@@ -608,10 +616,19 @@ func (this *NodeConfig) FindWebPImagePolicyWithClusterId(clusterId int64) *WebPI
 
 // FindUAMPolicyWithClusterId 使用集群ID查找UAM策略
 func (this *NodeConfig) FindUAMPolicyWithClusterId(clusterId int64) *UAMPolicy {
+	uamPolicyLocker.RLock()
+	defer uamPolicyLocker.RUnlock()
 	if this.UAMPolicies == nil {
 		return nil
 	}
 	return this.UAMPolicies[clusterId]
+}
+
+// UpdateUAMPolicies 修改集群UAM策略
+func (this *NodeConfig) UpdateUAMPolicies(policies map[int64]*UAMPolicy) {
+	uamPolicyLocker.Lock()
+	defer uamPolicyLocker.Unlock()
+	this.UAMPolicies = policies
 }
 
 // SecretHash 对Id和Secret的Hash计算

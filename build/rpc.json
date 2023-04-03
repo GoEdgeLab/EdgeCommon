@@ -3568,7 +3568,8 @@
           "code": "rpc deleteIPItems(DeleteIPItemsRequest) returns (RPCSuccess);",
           "doc": "批量删除IP",
           "roles": [
-            "admin"
+            "admin",
+            "user"
           ],
           "isDeprecated": false
         },
@@ -3649,7 +3650,8 @@
           "code": "rpc countAllEnabledIPItems(CountAllEnabledIPItemsRequest) returns (RPCCountResponse);",
           "doc": "计算所有IP数量",
           "roles": [
-            "admin"
+            "admin",
+            "user"
           ],
           "isDeprecated": false
         },
@@ -3660,7 +3662,8 @@
           "code": "rpc listAllEnabledIPItems(ListAllEnabledIPItemsRequest) returns (ListAllEnabledIPItemsResponse);",
           "doc": "列出所有名单中的IP",
           "roles": [
-            "admin"
+            "admin",
+            "user"
           ],
           "isDeprecated": false
         },
@@ -3671,7 +3674,8 @@
           "code": "rpc updateIPItemsRead(UpdateIPItemsReadRequest) returns (RPCSuccess);",
           "doc": "设置所有为已读",
           "roles": [
-            "admin"
+            "admin",
+            "user"
           ],
           "isDeprecated": false
         }
@@ -5549,6 +5553,15 @@
           "roles": [
             "admin"
           ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findNodeUAMPolicies",
+          "requestMessageName": "FindNodeUAMPoliciesRequest",
+          "responseMessageName": "FindNodeUAMPoliciesResponse",
+          "code": "rpc findNodeUAMPolicies(FindNodeUAMPoliciesRequest) returns (FindNodeUAMPoliciesResponse);",
+          "doc": "查找节点的UAM策略",
+          "roles": [],
           "isDeprecated": false
         }
       ],
@@ -18685,6 +18698,16 @@
     {
       "name": "FindNodeTasksResponse",
       "code": "message FindNodeTasksResponse {\n\trepeated NodeTask nodeTasks = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindNodeUAMPoliciesRequest",
+      "code": "message FindNodeUAMPoliciesRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
+      "doc": "查找节点的UAM策略"
+    },
+    {
+      "name": "FindNodeUAMPoliciesResponse",
+      "code": "message FindNodeUAMPoliciesResponse {\n\trepeated UAMPolicy uamPolicies = 1; // UAM策略列表\n\n\n\tmessage UAMPolicy {\n\t\tint64 nodeClusterId = 1; // 集群ID\n\t\tbytes uamPolicyJSON = 2; // UAM策略配置\n\t}\n}",
       "doc": ""
     },
     {

@@ -169,6 +169,9 @@ service NodeService {
 
 	// 修改某个节点的API相关配置
 	rpc updateNodeAPIConfig(UpdateNodeAPIConfigRequest) returns (RPCSuccess);
+
+	// 查找节点的UAM策略
+	rpc findNodeUAMPolicies(FindNodeUAMPoliciesRequest) returns (FindNodeUAMPoliciesResponse);
 }
 
 // 创建节点
@@ -657,4 +660,18 @@ message FindNodeAPIConfigResponse {
 message UpdateNodeAPIConfigRequest {
 	int64 nodeId = 1;
 	bytes apiNodeAddrsJSON = 2;
+}
+
+// 查找节点的UAM策略
+message FindNodeUAMPoliciesRequest {
+	int64 nodeId = 1; // 节点ID
+}
+
+message FindNodeUAMPoliciesResponse {
+	repeated UAMPolicy uamPolicies = 1; // UAM策略列表
+
+	message UAMPolicy {
+		int64 nodeClusterId = 1; // 集群ID
+		bytes uamPolicyJSON = 2; // UAM策略配置
+	}
 }

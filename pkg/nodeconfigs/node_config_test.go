@@ -97,5 +97,24 @@ func TestNodeConfig_AddServer(t *testing.T) {
 	for _, s := range config.Servers {
 		t.Log(s.Id)
 	}
+}
 
+func TestCloneNodeConfig_UAMPolicies(t *testing.T) {
+	var config = &NodeConfig{}
+	config.UAMPolicies = map[int64]*UAMPolicy{}
+	t.Logf("%p", config.UAMPolicies)
+
+	clonedConfig, err := CloneNodeConfig(config)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Logf("%p", clonedConfig.UAMPolicies)
+}
+
+func BenchmarkNodeConfig(b *testing.B) {
+	var config = &NodeConfig{}
+
+	for i := 0; i < b.N; i++ {
+		_, _ = CloneNodeConfig(config)
+	}
 }
