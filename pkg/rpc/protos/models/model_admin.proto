@@ -7,13 +7,14 @@ import "models/model_admin_module.proto";
 import "models/model_login.proto";
 
 message Admin {
-	int64 id = 1;
-	string fullname = 2;
-	string username = 3;
-	bool isOn = 4;
-	bool isSuper = 5;
-	int64 createdAt = 6;
-	repeated AdminModule Modules = 7;
+	int64 id = 1; // ID
+	string fullname = 2; // 全称
+	string username = 3; // 用户名
+	bool isOn = 4; // 是否启用
+	bool isSuper = 5; // 是否为超级用户
+	int64 createdAt = 6; // 创建时间
+	repeated AdminModule Modules = 7; // 有权限的模块
 	Login otpLogin = 8; // OTP认证
 	bool canLogin = 9; // 是否可以登录
+	bool hasWeakPassword = 10; // 是否设置了弱密码，只有超级管理员能看到此项
 }

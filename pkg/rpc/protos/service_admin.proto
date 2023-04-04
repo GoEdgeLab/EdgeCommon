@@ -172,13 +172,16 @@ message UpdateAdminRequest {
 
 // 计算管理员数量
 message CountAllEnabledAdminsRequest {
-
+	string keyword = 1; // 可选项，查询关键词
+	bool hasWeakPassword = 2; // 可选项，筛选有弱密码的管理员，只有超级管理员才能查询
 }
 
 // 列出单页的管理员
 message ListEnabledAdminsRequest {
-	int64 offset = 1;
-	int64 size = 2;
+	string keyword = 3; // 可选项，查询关键词
+	bool hasWeakPassword = 4; // 可选项，筛选有弱密码的管理员，只有超级管理员才能查询
+	int64 offset = 1; // 读取位置，从0开始
+	int64 size = 2; // 读取数量
 }
 
 message ListEnabledAdminsResponse {

@@ -5561,7 +5561,9 @@
           "responseMessageName": "FindNodeUAMPoliciesResponse",
           "code": "rpc findNodeUAMPolicies(FindNodeUAMPoliciesRequest) returns (FindNodeUAMPoliciesResponse);",
           "doc": "查找节点的UAM策略",
-          "roles": [],
+          "roles": [
+            "node"
+          ],
           "isDeprecated": false
         }
       ],
@@ -13117,7 +13119,7 @@
     },
     {
       "name": "Admin",
-      "code": "message Admin {\n\tint64 id = 1;\n\tstring fullname = 2;\n\tstring username = 3;\n\tbool isOn = 4;\n\tbool isSuper = 5;\n\tint64 createdAt = 6;\n\trepeated AdminModule Modules = 7;\n\tLogin otpLogin = 8; // OTP认证\n\tbool canLogin = 9; // 是否可以登录\n}",
+      "code": "message Admin {\n\tint64 id = 1; // ID\n\tstring fullname = 2; // 全称\n\tstring username = 3; // 用户名\n\tbool isOn = 4; // 是否启用\n\tbool isSuper = 5; // 是否为超级用户\n\tint64 createdAt = 6; // 创建时间\n\trepeated AdminModule Modules = 7; // 有权限的模块\n\tLogin otpLogin = 8; // OTP认证\n\tbool canLogin = 9; // 是否可以登录\n\tbool hasWeakPassword = 10; // 是否设置了弱密码，只有超级管理员能看到此项\n}",
       "doc": ""
     },
     {
@@ -13662,7 +13664,7 @@
     },
     {
       "name": "CountAllEnabledAdminsRequest",
-      "code": "message CountAllEnabledAdminsRequest {\n\n}",
+      "code": "message CountAllEnabledAdminsRequest {\n\tstring keyword = 1; // 可选项，查询关键词\n\tbool hasWeakPassword = 2; // 可选项，筛选有弱密码的管理员，只有超级管理员才能查询\n}",
       "doc": "计算管理员数量"
     },
     {
@@ -19362,7 +19364,7 @@
     },
     {
       "name": "ListEnabledAdminsRequest",
-      "code": "message ListEnabledAdminsRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n}",
+      "code": "message ListEnabledAdminsRequest {\n\tstring keyword = 3; // 可选项，查询关键词\n\tbool hasWeakPassword = 4; // 可选项，筛选有弱密码的管理员，只有超级管理员才能查询\n\tint64 offset = 1; // 读取位置，从0开始\n\tint64 size = 2; // 读取数量\n}",
       "doc": "列出单页的管理员"
     },
     {
