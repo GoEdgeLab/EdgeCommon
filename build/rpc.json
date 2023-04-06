@@ -10500,6 +10500,18 @@
             "user"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "copyServerConfig",
+          "requestMessageName": "CopyServerConfigRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc copyServerConfig(CopyServerConfigRequest) returns (RPCSuccess);",
+          "doc": "在服务之间复制配置",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_server.proto",
@@ -11605,6 +11617,24 @@
       ],
       "filename": "service_traffic_package_price.proto",
       "doc": "流量包价格服务"
+    },
+    {
+      "name": "UpdatingServerListService",
+      "methods": [
+        {
+          "name": "findUpdatingServerLists",
+          "requestMessageName": "FindUpdatingServerListsRequest",
+          "responseMessageName": "FindUpdatingServerListsResponse",
+          "code": "rpc findUpdatingServerLists(FindUpdatingServerListsRequest) returns (FindUpdatingServerListsResponse);",
+          "doc": "查找要更新的服务配置",
+          "roles": [
+            "node"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_updating_server_list.proto",
+      "doc": "待更新服务列表服务"
     },
     {
       "name": "UserService",
@@ -13603,6 +13633,11 @@
       "doc": ""
     },
     {
+      "name": "CopyServerConfigRequest",
+      "code": "message CopyServerConfigRequest {\n\tint64 serverId = 1; // 被复制服务ID\n\tstring configCode = 2; // 要拷贝的配置代号\n\tstring targetType = 3; // 目标类型：servers, groups, cluster（当前集群下所有服务，只有管理员才有权限）、user（当前用户下所有服务）\n\trepeated int64 targetServerIds = 4; // 目标服务ID列表\n\trepeated int64 targetServerGroupIds = 5; // 目标服务分组ID列表\n\tint64 targetClusterId = 6; // 目标集群ID\n\tint64 targetUserId = 7; // 目标用户ID\n}",
+      "doc": "在服务之间复制配置"
+    },
+    {
       "name": "CountADPackageInstancesRequest",
       "code": "message CountADPackageInstancesRequest {\n\tint64 adNetworkId = 1; // 可选，线路\n\tint64 adPackageId = 2; // 可选，如果不填则表示获取所有实例数量\n\tint64 userId = 3; // 可选，用户ID\n\tstring ip = 4;  // 可选，高防IP\n}",
       "doc": "计算实例数量"
@@ -14034,7 +14069,7 @@
     },
     {
       "name": "CountLogRequest",
-      "code": "message CountLogRequest {\n\tstring dayFrom = 1;\n\tstring dayTo = 2;\n\tstring keyword = 3;\n\tstring userType = 4; // admin|user\n}",
+      "code": "message CountLogRequest {\n\tstring dayFrom = 1; // 可选项，开始日期\n\tstring dayTo = 2; // 可选项，结束日期\n\tstring keyword = 3; // 可选项，关键词\n\tstring userType = 4; // 可选项，用户类型：admin|user；用户端固定为user\n\tstring level = 5; // 可选项，错误级别：info, warn, error\n}",
       "doc": "计算日志数量"
     },
     {
@@ -18983,6 +19018,16 @@
       "doc": ""
     },
     {
+      "name": "FindUpdatingServerListsRequest",
+      "code": "message FindUpdatingServerListsRequest {\n\tint64 lastId = 1; // 上一次读取的列表ID\n}",
+      "doc": "查找要更新的服务配置"
+    },
+    {
+      "name": "FindUpdatingServerListsResponse",
+      "code": "message FindUpdatingServerListsResponse {\n\tbytes serversJSON = 1; // 服务配置列表\n\tint64 maxId = 2; // 最大的一个列表ID\n}",
+      "doc": ""
+    },
+    {
       "name": "FindUserADInstanceRequest",
       "code": "message FindUserADInstanceRequest {\n\tint64 userADInstanceId = 1;\n}",
       "doc": "查找单个用户高防实例"
@@ -19664,7 +19709,7 @@
     },
     {
       "name": "ListLogsRequest",
-      "code": "message ListLogsRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n\tstring dayFrom = 3;\n\tstring dayTo = 4;\n\tstring keyword = 5;\n\tstring userType = 6;\n}",
+      "code": "message ListLogsRequest {\n\tint64 offset = 1; // 读取位置，从0开始\n\tint64 size = 2; // 读取数量\n\tstring dayFrom = 3; // 可选项，开始日期\n\tstring dayTo = 4; // 可选项，结束日期\n\tstring keyword = 5; // 可选项，关键词\n\tstring userType = 6; // 可选项，用户类型：admin|user；用户端固定为user\n\tstring level = 7; // 可选项，错误级别：info, warn, error\n}",
       "doc": "列出单页日志"
     },
     {

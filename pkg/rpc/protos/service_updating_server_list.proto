@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 待更新服务列表服务
+service UpdatingServerListService {
+	// 查找要更新的服务配置
+	rpc findUpdatingServerLists(FindUpdatingServerListsRequest) returns (FindUpdatingServerListsResponse);
+}
+
+// 查找要更新的服务配置
+message FindUpdatingServerListsRequest {
+	int64 lastId = 1; // 上一次读取的列表ID
+}
+
+message FindUpdatingServerListsResponse {
+	bytes serversJSON = 1; // 服务配置列表
+	int64 maxId = 2; // 最大的一个列表ID
+}

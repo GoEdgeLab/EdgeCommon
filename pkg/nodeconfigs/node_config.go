@@ -36,19 +36,20 @@ func NewServerError(serverId int64, message string) *ServerError {
 
 // NodeConfig 边缘节点配置
 type NodeConfig struct {
-	Id           int64                         `yaml:"id" json:"id"`
-	Edition      string                        `yaml:"edition" json:"edition"`
-	NodeId       string                        `yaml:"nodeId" json:"nodeId"`
-	Secret       string                        `yaml:"secret" json:"secret"`
-	IsOn         bool                          `yaml:"isOn" json:"isOn"`
-	Servers      []*serverconfigs.ServerConfig `yaml:"servers" json:"servers"`
-	SupportCNAME bool                          `yaml:"supportCNAME" json:"supportCNAME"`
-	Version      int64                         `yaml:"version" json:"version"`
-	Name         string                        `yaml:"name" json:"name"`
-	GroupId      int64                         `yaml:"groupId" json:"groupId"`
-	RegionId     int64                         `yaml:"regionId" json:"regionId"`
-	OCSPVersion  int64                         `yaml:"ocspVersion" json:"ocspVersion"`
-	DataMap      *shared.DataMap               `yaml:"dataMap" json:"dataMap"`
+	Id                   int64                         `yaml:"id" json:"id"`
+	Edition              string                        `yaml:"edition" json:"edition"`
+	NodeId               string                        `yaml:"nodeId" json:"nodeId"`
+	Secret               string                        `yaml:"secret" json:"secret"`
+	IsOn                 bool                          `yaml:"isOn" json:"isOn"`
+	Servers              []*serverconfigs.ServerConfig `yaml:"servers" json:"servers"`
+	SupportCNAME         bool                          `yaml:"supportCNAME" json:"supportCNAME"`
+	Version              int64                         `yaml:"version" json:"version"`
+	Name                 string                        `yaml:"name" json:"name"`
+	GroupId              int64                         `yaml:"groupId" json:"groupId"`
+	RegionId             int64                         `yaml:"regionId" json:"regionId"`
+	OCSPVersion          int64                         `yaml:"ocspVersion" json:"ocspVersion"`
+	DataMap              *shared.DataMap               `yaml:"dataMap" json:"dataMap"`
+	UpdatingServerListId int64                         `yaml:"updatingServerListId" json:"updatingServerListId"`
 
 	// 性能
 	MaxCPU       int32                                 `yaml:"maxCPU" json:"maxCPU"`

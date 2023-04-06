@@ -172,6 +172,9 @@ service ServerService {
 
 	// 修改服务名称
 	rpc updateServerName(UpdateServerNameRequest) returns (RPCSuccess);
+
+	// 在服务之间复制配置
+	rpc copyServerConfig(CopyServerConfigRequest) returns (RPCSuccess);
 }
 
 // 创建服务
@@ -670,4 +673,15 @@ message UpdateServerUserRequest {
 message UpdateServerNameRequest {
 	int64 serverId  = 1; // 服务ID
 	string name = 2; // 服务名称
+}
+
+// 在服务之间复制配置
+message CopyServerConfigRequest {
+	int64 serverId = 1; // 被复制服务ID
+	string configCode = 2; // 要拷贝的配置代号
+	string targetType = 3; // 目标类型：servers, groups, cluster（当前集群下所有服务，只有管理员才有权限）、user（当前用户下所有服务）
+	repeated int64 targetServerIds = 4; // 目标服务ID列表
+	repeated int64 targetServerGroupIds = 5; // 目标服务分组ID列表
+	int64 targetClusterId = 6; // 目标集群ID
+	int64 targetUserId = 7; // 目标用户ID
 }
