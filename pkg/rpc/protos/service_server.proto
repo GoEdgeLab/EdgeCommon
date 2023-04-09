@@ -186,7 +186,8 @@ message CreateServerRequest {
 	string description = 5;
 
 	// 配置相关
-	bytes serverNamesJON = 8; // @link json:server_names
+	bytes serverNamesJSON = 8; // @link json:server_names
+	bytes serverNamesJON = 19 [deprecated = true]; // 已过期，请使用 serverNamesJSON 代替
 	bytes httpJSON = 9;
 	bytes httpsJSON = 10;
 	bytes tcpJSON = 11;
@@ -671,7 +672,7 @@ message UpdateServerUserRequest {
 
 // 修改服务名称
 message UpdateServerNameRequest {
-	int64 serverId  = 1; // 服务ID
+	int64 serverId = 1; // 服务ID
 	string name = 2; // 服务名称
 }
 

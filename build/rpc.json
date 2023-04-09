@@ -14998,7 +14998,7 @@
     },
     {
       "name": "CreateServerRequest",
-      "code": "message CreateServerRequest {\n\tint64 userId = 1;\n\tint64 adminId = 2;\n\tstring type = 3;\n\tstring name = 4;\n\tstring description = 5;\n\n\t// 配置相关\n\tbytes serverNamesJON = 8; // @link json:server_names\n\tbytes httpJSON = 9;\n\tbytes httpsJSON = 10;\n\tbytes tcpJSON = 11;\n\tbytes tlsJSON = 12;\n\tbytes unixJSON = 13;\n\tbytes udpJSON = 14;\n\tint64 webId = 15;\n\tbytes reverseProxyJSON = 16;\n\trepeated int64 serverGroupIds = 17;\n\tint64 userPlanId = 18;\n\n\tint64 nodeClusterId = 30;\n\tbytes includeNodesJSON = 31;\n\tbytes excludeNodesJSON = 32;\n}",
+      "code": "message CreateServerRequest {\n\tint64 userId = 1;\n\tint64 adminId = 2;\n\tstring type = 3;\n\tstring name = 4;\n\tstring description = 5;\n\n\t// 配置相关\n\tbytes serverNamesJSON = 8; // @link json:server_names\n\tbytes serverNamesJON = 19 [deprecated = true]; // 已过期，请使用 serverNamesJSON 代替\n\tbytes httpJSON = 9;\n\tbytes httpsJSON = 10;\n\tbytes tcpJSON = 11;\n\tbytes tlsJSON = 12;\n\tbytes unixJSON = 13;\n\tbytes udpJSON = 14;\n\tint64 webId = 15;\n\tbytes reverseProxyJSON = 16;\n\trepeated int64 serverGroupIds = 17;\n\tint64 userPlanId = 18;\n\n\tint64 nodeClusterId = 30;\n\tbytes includeNodesJSON = 31;\n\tbytes excludeNodesJSON = 32;\n}",
       "doc": "创建服务"
     },
     {
@@ -21858,7 +21858,7 @@
     },
     {
       "name": "UpdateServerNameRequest",
-      "code": "message UpdateServerNameRequest {\n\tint64 serverId  = 1; // 服务ID\n\tstring name = 2; // 服务名称\n}",
+      "code": "message UpdateServerNameRequest {\n\tint64 serverId = 1; // 服务ID\n\tstring name = 2; // 服务名称\n}",
       "doc": "修改服务名称"
     },
     {
