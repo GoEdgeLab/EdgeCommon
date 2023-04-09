@@ -8,9 +8,6 @@ import "models/rpc_messages.proto";
 
 // 登录SESSION服务
 service LoginSessionService {
-	// 创建SESSION
-	rpc createLoginSession(CreateLoginSessionRequest) returns (RPCSuccess);
-
 	// 写入SESSION数据
 	rpc writeLoginSessionValue(WriteLoginSessionValueRequest) returns (RPCSuccess);
 
@@ -19,13 +16,6 @@ service LoginSessionService {
 
 	// 查找SESSION
 	rpc findLoginSession(FindLoginSessionRequest) returns (FindLoginSessionResponse);
-}
-
-// 创建SESSION
-message CreateLoginSessionRequest {
-	string sid = 1; // SESSION ID
-	string ip = 2; // 登录IP
-	int64 expiresAt = 3; // 过期时间
 }
 
 // 写入SESSION数据

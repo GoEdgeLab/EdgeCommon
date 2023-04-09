@@ -4171,17 +4171,6 @@
       "name": "LoginSessionService",
       "methods": [
         {
-          "name": "createLoginSession",
-          "requestMessageName": "CreateLoginSessionRequest",
-          "responseMessageName": "RPCSuccess",
-          "code": "rpc createLoginSession(CreateLoginSessionRequest) returns (RPCSuccess);",
-          "doc": "创建SESSION",
-          "roles": [
-            "admin"
-          ],
-          "isDeprecated": false
-        },
-        {
           "name": "writeLoginSessionValue",
           "requestMessageName": "WriteLoginSessionValueRequest",
           "responseMessageName": "RPCSuccess",
@@ -14541,11 +14530,6 @@
       "name": "CreateLogResponse",
       "code": "message CreateLogResponse {\n\n}",
       "doc": ""
-    },
-    {
-      "name": "CreateLoginSessionRequest",
-      "code": "message CreateLoginSessionRequest {\n\tstring sid = 1; // SESSION ID\n\tstring ip = 2; // 登录IP\n\tint64 expiresAt = 3; // 过期时间\n}",
-      "doc": "创建SESSION"
     },
     {
       "name": "CreateMessageMediaInstanceRequest",
