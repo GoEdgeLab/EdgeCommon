@@ -4,7 +4,8 @@ option go_package = "./pb";
 package pb;
 
 message ServerGroup {
-	int64 id = 1;
-	string name = 2;
-	int64 userId = 3;
+	int64 id = 1; // ID
+	string name = 2;  // 分组名称
+	int64 userId = 3; // 所属用户ID
+	bool isOn = 4; // 是否启用
 }

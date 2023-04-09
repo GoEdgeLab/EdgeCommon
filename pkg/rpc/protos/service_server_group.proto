@@ -73,10 +73,11 @@ message DeleteServerGroupRequest {
 
 // 查询所有分组
 message FindAllEnabledServerGroupsRequest {
+	int64 userId = 1; // 可选项，用户ID，只有管理员才可以指定用户ID
 }
 
 message FindAllEnabledServerGroupsResponse {
-	repeated ServerGroup serverGroups = 1;
+	repeated ServerGroup serverGroups = 1; // 分组列表
 }
 
 // 修改分组排序

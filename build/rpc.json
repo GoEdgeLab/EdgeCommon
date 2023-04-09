@@ -16523,8 +16523,13 @@
       "doc": ""
     },
     {
+      "name": "FindAllEnabledServerGroupsRequest",
+      "code": "message FindAllEnabledServerGroupsRequest {\n\tint64 userId = 1; // 可选项，用户ID，只有管理员才可以指定用户ID\n}",
+      "doc": "查询所有分组"
+    },
+    {
       "name": "FindAllEnabledServerGroupsResponse",
-      "code": "message FindAllEnabledServerGroupsResponse {\n\trepeated ServerGroup serverGroups = 1;\n}",
+      "code": "message FindAllEnabledServerGroupsResponse {\n\trepeated ServerGroup serverGroups = 1; // 分组列表\n}",
       "doc": ""
     },
     {
@@ -20664,7 +20669,7 @@
     },
     {
       "name": "ServerGroup",
-      "code": "message ServerGroup {\n\tint64 id = 1;\n\tstring name = 2;\n\tint64 userId = 3;\n}",
+      "code": "message ServerGroup {\n\tint64 id = 1; // ID\n\tstring name = 2;  // 分组名称\n\tint64 userId = 3; // 所属用户ID\n\tbool isOn = 4; // 是否启用\n}",
       "doc": ""
     },
     {
