@@ -46,7 +46,7 @@ type SSLCertConfig struct {
 // Init 校验
 func (this *SSLCertConfig) Init(ctx context.Context) error {
 	// 如果没有指定数据， 则从ctx中读取数据
-	if ctx != nil && len(this.CertData) == 0 {
+	if ctx != nil && len(this.CertData) < 128 {
 		var dataMapOne = ctx.Value("DataMap")
 		if dataMapOne != nil && !reflect.ValueOf(dataMapOne).IsNil() {
 			dataMap, ok := dataMapOne.(*shared.DataMap)
