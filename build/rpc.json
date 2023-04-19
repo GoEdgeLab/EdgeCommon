@@ -19263,7 +19263,7 @@
     },
     {
       "name": "IPRegion",
-      "code": "message IPRegion {\n\tstring country = 1;\n\tstring region = 2;\n\tstring province = 3;\n\tstring city = 4;\n\tstring isp = 5;\n\tint64 countryId = 6;\n\tint64 provinceId = 7;\n\tstring summary = 8; // 完整的地区组合\n}",
+      "code": "message IPRegion {\n\tstring country = 1; // 国家/地区名称\n\tstring region = 2; // 区域名称\n\tstring province = 3; // 省份名称\n\tstring city = 4; // 城市名称\n\tstring isp = 5; // 运营商名称\n\tint64 countryId = 6; // 国家/地区ID\n\tint64 provinceId = 7; // 省份ID\n\tint64 cityId = 9; // 城市ID\n\tint64 townId = 10; // 区县ID\n\tint64 providerId = 11; // 运营商ID\n\tstring summary = 8; // 完整的地区组合\n}",
       "doc": "IP信息"
     },
     {

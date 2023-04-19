@@ -102,12 +102,15 @@ message LookupIPRegionsResponse {
 
 // IP信息
 message IPRegion {
-	string country = 1;
-	string region = 2;
-	string province = 3;
-	string city = 4;
-	string isp = 5;
-	int64 countryId = 6;
-	int64 provinceId = 7;
+	string country = 1; // 国家/地区名称
+	string region = 2; // 区域名称
+	string province = 3; // 省份名称
+	string city = 4; // 城市名称
+	string isp = 5; // 运营商名称
+	int64 countryId = 6; // 国家/地区ID
+	int64 provinceId = 7; // 省份ID
+	int64 cityId = 9; // 城市ID
+	int64 townId = 10; // 区县ID
+	int64 providerId = 11; // 运营商ID
 	string summary = 8; // 完整的地区组合
 }
