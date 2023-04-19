@@ -4,15 +4,17 @@ import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 
 // SecurityConfig 安全相关配置
 type SecurityConfig struct {
-	Frame              string   `json:"frame"`              // Frame嵌套
-	AllowCountryIds    []int64  `json:"allowCountryIds"`    // 允许的国家/地区
-	AllowProvinceIds   []int64  `json:"allowProvinceIds"`   // 允许的省份
-	AllowLocal         bool     `json:"allowLocal"`         // 允许本地+局域网IP访问
-	AllowIPs           []string `json:"allowIPs"`           // 允许访问的IP
-	AllowRememberLogin bool     `json:"allowRememberLogin"` // 是否允许在设备上记住登录
-	DenySearchEngines  bool     `json:"denySearchEngines"`  // 禁止常见的搜索引擎访问
-	DenySpiders        bool     `json:"denySpiders"`        // 禁止常见的爬虫
-	AllowDomains       []string `json:"allowDomains"`       // 允许访问的域名
+	Frame                  string   `json:"frame"`                  // Frame嵌套
+	AllowCountryIds        []int64  `json:"allowCountryIds"`        // 允许的国家/地区
+	AllowProvinceIds       []int64  `json:"allowProvinceIds"`       // 允许的省份
+	AllowLocal             bool     `json:"allowLocal"`             // 允许本地+局域网IP访问
+	AllowIPs               []string `json:"allowIPs"`               // 允许访问的IP
+	AllowRememberLogin     bool     `json:"allowRememberLogin"`     // 是否允许在设备上记住登录
+	DenySearchEngines      bool     `json:"denySearchEngines"`      // 禁止常见的搜索引擎访问
+	DenySpiders            bool     `json:"denySpiders"`            // 禁止常见的爬虫
+	AllowDomains           []string `json:"allowDomains"`           // 允许访问的域名
+	CheckClientFingerprint bool     `json:"checkClientFingerprint"` // 在登录状态下检查客户端指纹
+	CheckClientRegion      bool     `json:"checkClientRegion"`      // 在登录状态下检查客户端区域
 
 	allowIPRanges []*shared.IPRangeConfig
 }
