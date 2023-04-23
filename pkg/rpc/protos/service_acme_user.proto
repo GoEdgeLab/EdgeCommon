@@ -32,10 +32,11 @@ service ACMEUserService {
 
 // 创建用户
 message CreateACMEUserRequest {
-	string email = 1;
-	string description = 2;
-	string acmeProviderCode = 3;
-	int64 acmeProviderAccountId = 4;
+	int64 userId = 5; // 所属用户，只有管理员才有权限指定
+	string email = 1; // 用户邮箱
+	string description = 2; // 用户描述
+	string acmeProviderCode = 3; // 服务商代号
+	int64 acmeProviderAccountId = 4; // 服务商帐号
 }
 
 message CreateACMEUserResponse {

@@ -14138,7 +14138,7 @@
     },
     {
       "name": "CreateACMETaskRequest",
-      "code": "message CreateACMETaskRequest {\n\tint64 acmeUserId = 1;\n\tint64 dnsProviderId = 2;\n\tstring dnsDomain = 3;\n\trepeated string domains = 4;\n\tbool autoRenew = 5;\n\tstring authType = 6;\n\tstring authURL = 7;\n}",
+      "code": "message CreateACMETaskRequest {\n\tint64 userId = 8; // 平台用户ID，只有管理员才有权限指定\n\tint64 acmeUserId = 1;\n\tint64 dnsProviderId = 2;\n\tstring dnsDomain = 3;\n\trepeated string domains = 4;\n\tbool autoRenew = 5;\n\tstring authType = 6;\n\tstring authURL = 7;\n}",
       "doc": "创建任务"
     },
     {
@@ -14148,7 +14148,7 @@
     },
     {
       "name": "CreateACMEUserRequest",
-      "code": "message CreateACMEUserRequest {\n\tstring email = 1;\n\tstring description = 2;\n\tstring acmeProviderCode = 3;\n\tint64 acmeProviderAccountId = 4;\n}",
+      "code": "message CreateACMEUserRequest {\n\tint64 userId = 5; // 所属用户，只有管理员才有权限指定\n\tstring email = 1; // 用户邮箱\n\tstring description = 2; // 用户描述\n\tstring acmeProviderCode = 3; // 服务商代号\n\tint64 acmeProviderAccountId = 4; // 服务商帐号\n}",
       "doc": "创建用户"
     },
     {

@@ -74,6 +74,7 @@ message ListEnabledACMETasksResponse {
 
 // 创建任务
 message CreateACMETaskRequest {
+	int64 userId = 8; // 平台用户ID，只有管理员才有权限指定
 	int64 acmeUserId = 1;
 	int64 dnsProviderId = 2;
 	string dnsDomain = 3;
