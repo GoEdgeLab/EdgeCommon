@@ -1103,6 +1103,28 @@
             "admin"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "uploadDeployFileToAPINode",
+          "requestMessageName": "UploadDeployFileToAPINodeRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc uploadDeployFileToAPINode(UploadDeployFileToAPINodeRequest) returns (RPCSuccess);",
+          "doc": "上传节点安装文件",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findLatestDeployFiles",
+          "requestMessageName": "FindLatestDeployFilesRequest",
+          "responseMessageName": "FindLatestDeployFilesResponse",
+          "code": "rpc findLatestDeployFiles(FindLatestDeployFilesRequest) returns (FindLatestDeployFilesResponse);",
+          "doc": "查找已有节点安装文件信息",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_api_node.proto",
@@ -18172,6 +18194,16 @@
       "doc": ""
     },
     {
+      "name": "FindLatestDeployFilesRequest",
+      "code": "message FindLatestDeployFilesRequest {\n\n}",
+      "doc": "查找已有节点安装文件信息"
+    },
+    {
+      "name": "FindLatestDeployFilesResponse",
+      "code": "message FindLatestDeployFilesResponse {\n\trepeated DeployFile nodeDeployFiles = 1; // 边缘节点\n\trepeated DeployFile nsNodeDeployFiles = 2; // NS节点\n\n\n\tmessage DeployFile {\n\t\tstring os = 1; // 操作系统代号\n\t\tstring arch = 2; // 架构\n\t\tstring version = 3; // 版本号\n\t}\n}",
+      "doc": ""
+    },
+    {
       "name": "FindLatestIPLibraryWithTypeRequest",
       "code": "message FindLatestIPLibraryWithTypeRequest {\n\tstring type = 1;\n}",
       "doc": "查找最新的IP库"
@@ -22030,6 +22062,11 @@
       "name": "UploadAPINodeFileResponse",
       "code": "message UploadAPINodeFileResponse {\n\n}",
       "doc": ""
+    },
+    {
+      "name": "UploadDeployFileToAPINodeRequest",
+      "code": "message UploadDeployFileToAPINodeRequest {\n\tstring filename = 1; // 文件名\n\tstring sum = 2; // 整个文件的SUM值\n\tbytes chunkData = 3; // 片段数据\n\tbool isFirstChunk = 4; // 是否为第一个片段\n\tbool isLastChunk = 5; // 是否为最后一个片段\n}",
+      "doc": "上传节点安装文件"
     },
     {
       "name": "UploadMetricStatsRequest",

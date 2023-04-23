@@ -45,6 +45,12 @@ service APINodeService {
 
 	// 上传新版API节点文件
 	rpc uploadAPINodeFile(UploadAPINodeFileRequest) returns (UploadAPINodeFileResponse);
+
+	// 上传节点安装文件
+	rpc uploadDeployFileToAPINode(UploadDeployFileToAPINodeRequest) returns (RPCSuccess);
+
+	// 查找已有节点安装文件信息
+	rpc findLatestDeployFiles(FindLatestDeployFilesRequest) returns (FindLatestDeployFilesResponse);
 }
 
 // 创建API节点
@@ -162,4 +168,29 @@ message UploadAPINodeFileRequest {
 
 message UploadAPINodeFileResponse {
 
+}
+
+// 上传节点安装文件
+message UploadDeployFileToAPINodeRequest {
+	string filename = 1; // 文件名
+	string sum = 2; // 整个文件的SUM值
+	bytes chunkData = 3; // 片段数据
+	bool isFirstChunk = 4; // 是否为第一个片段
+	bool isLastChunk = 5; // 是否为最后一个片段
+}
+
+// 查找已有节点安装文件信息
+message FindLatestDeployFilesRequest {
+
+}
+
+message FindLatestDeployFilesResponse {
+	repeated DeployFile nodeDeployFiles = 1; // 边缘节点
+	repeated DeployFile nsNodeDeployFiles = 2; // NS节点
+
+	message DeployFile {
+		string os = 1; // 操作系统代号
+		string arch = 2; // 架构
+		string version = 3; // 版本号
+	}
 }
