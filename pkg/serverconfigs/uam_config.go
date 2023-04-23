@@ -9,8 +9,15 @@ type UAMConfig struct {
 	IsPrior bool `yaml:"isPrior" json:"isPrior"`
 	IsOn    bool `yaml:"isOn" json:"isOn"`
 
+	AddToWhiteList    bool                 `yaml:"addToWhiteList" json:"addToWhiteList"`       // 是否将IP加入到白名单
 	OnlyURLPatterns   []*shared.URLPattern `yaml:"onlyURLPatterns" json:"onlyURLPatterns"`     // 仅限的URL
 	ExceptURLPatterns []*shared.URLPattern `yaml:"exceptURLPatterns" json:"exceptURLPatterns"` // 排除的URL
+}
+
+func NewUAMConfig() *UAMConfig {
+	return &UAMConfig{
+		AddToWhiteList: true,
+	}
 }
 
 func (this *UAMConfig) Init() error {
