@@ -4,6 +4,13 @@ package serverconfigs
 
 import "github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 
+// NewReferersConfig 获取新防盗链配置对象
+func NewReferersConfig() *ReferersConfig {
+	return &ReferersConfig{
+		CheckOrigin: true,
+	}
+}
+
 // ReferersConfig 防盗链设置
 type ReferersConfig struct {
 	IsPrior         bool     `yaml:"isPrior" json:"isPrior"`
@@ -12,6 +19,7 @@ type ReferersConfig struct {
 	AllowSameDomain bool     `yaml:"allowSameDomain" json:"allowSameDomain"` // 允许来源域名和当前访问的域名一致，相当于在站内访问
 	AllowDomains    []string `yaml:"allowDomains" json:"allowDomains"`       // 允许的来源域名列表
 	DenyDomains     []string `yaml:"denyDomains" json:"denyDomains"`         // 禁止的来源域名列表
+	CheckOrigin     bool     `yaml:"checkOrigin" json:"checkOrigin"`         // 是否检查Origin
 }
 
 func (this *ReferersConfig) Init() error {
