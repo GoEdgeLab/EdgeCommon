@@ -61,6 +61,12 @@ service NSDomainService {
 
 	// 验证域名信息
 	rpc verifyNSDomain(VerifyNSDomainRequest) returns (VerifyNSDomainResponse);
+
+	// 查询记录健康检查全局设置
+	rpc findNSDomainRecordsHealthCheck(FindNSDomainRecordsHealthCheckRequest) returns (FindNSDomainRecordsHealthCheckResponse);
+
+	// 修改记录健康检查全局设置
+	rpc updateNSDomainRecordsHealthCheck(UpdateNSDomainRecordsHealthCheckRequest) returns (RPCSuccess);
 }
 
 // 创建单个域名
@@ -231,4 +237,19 @@ message VerifyNSDomainResponse {
 	bool isOk = 1; // 是否成功
 	string errorCode = 2; // 错误代码
 	string errorMessage = 3; // 错误消息
+}
+
+// 查询记录健康检查全局设置
+message FindNSDomainRecordsHealthCheckRequest {
+	int64 nsDomainId = 1; // 域名ID
+}
+
+message FindNSDomainRecordsHealthCheckResponse {
+	bytes nsDomainRecordsHealthCheckJSON = 1; // 健康检查设置
+}
+
+// 修改记录健康检查全局设置
+message UpdateNSDomainRecordsHealthCheckRequest {
+	int64 nsDomainId = 1; // 域名ID
+	bytes nsDomainRecordsHealthCheckJSON = 2; // 健康检查设置
 }

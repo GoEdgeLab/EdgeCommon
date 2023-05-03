@@ -55,6 +55,15 @@ service NSRecordService {
 
 	// 根据版本列出一组记录
 	rpc listNSRecordsAfterVersion (ListNSRecordsAfterVersionRequest) returns (ListNSRecordsAfterVersionResponse);
+
+	// 查询记录健康检查设置
+	rpc findNSRecordHealthCheck(FindNSRecordHealthCheckRequest) returns (FindNSRecordHealthCheckResponse);
+
+	// 修改记录健康检查设置
+	rpc updateNSRecordHealthCheck(UpdateNSRecordHealthCheckRequest) returns (RPCSuccess);
+
+	// 手动修改记录在线状态
+	rpc updateNSRecordIsUp(UpdateNSRecordIsUpRequest) returns (RPCSuccess);
 }
 
 // 创建记录
@@ -233,6 +242,8 @@ message ListNSRecordsRequest {
 	bool typeDesc = 11;
 	bool ttlAsc = 12;
 	bool ttlDesc = 13;
+	bool upAsc = 14;
+	bool upDesc = 15;
 
 	int64 offset = 5;
 	int64 size = 6;
@@ -281,4 +292,25 @@ message ListNSRecordsAfterVersionRequest {
 
 message ListNSRecordsAfterVersionResponse {
 	repeated NSRecord nsRecords = 1;
+}
+
+// 查询记录健康检查设置
+message FindNSRecordHealthCheckRequest {
+	int64 nsRecordId = 1; // 记录ID
+}
+
+message FindNSRecordHealthCheckResponse {
+	bytes nsRecordHealthCheckJSON = 1; // 记录健康检查配置
+}
+
+// 修改记录健康检查设置
+message UpdateNSRecordHealthCheckRequest {
+	int64 nsRecordId = 1; // 记录ID
+	bytes nsRecordHealthCheckJSON = 2; // 记录健康检查配置
+}
+
+// 手动修改记录在线状态
+message UpdateNSRecordIsUpRequest {
+	int64 nsRecordId = 1; // 记录ID
+	bool isUp = 2;  // 是否在线
 }

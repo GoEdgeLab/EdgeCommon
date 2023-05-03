@@ -19,6 +19,7 @@ message NSDomain {
 	repeated int64 nsDomainGroupIds = 8;
 	string status = 9;
 	int64 userId = 10; // 用户ID
+	bytes recordsHealthCheckJSON = 11; // 健康检查设置
 
 	NSCluster nsCluster = 30;
 	User user = 31;

@@ -7709,6 +7709,30 @@
             "user"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findNSDomainRecordsHealthCheck",
+          "requestMessageName": "FindNSDomainRecordsHealthCheckRequest",
+          "responseMessageName": "FindNSDomainRecordsHealthCheckResponse",
+          "code": "rpc findNSDomainRecordsHealthCheck(FindNSDomainRecordsHealthCheckRequest) returns (FindNSDomainRecordsHealthCheckResponse);",
+          "doc": "查询记录健康检查全局设置",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateNSDomainRecordsHealthCheck",
+          "requestMessageName": "UpdateNSDomainRecordsHealthCheckRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateNSDomainRecordsHealthCheck(UpdateNSDomainRecordsHealthCheckRequest) returns (RPCSuccess);",
+          "doc": "修改记录健康检查全局设置",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_ns_domain.proto",
@@ -8507,6 +8531,42 @@
           "doc": "根据版本列出一组记录",
           "roles": [
             "dns"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findNSRecordHealthCheck",
+          "requestMessageName": "FindNSRecordHealthCheckRequest",
+          "responseMessageName": "FindNSRecordHealthCheckResponse",
+          "code": "rpc findNSRecordHealthCheck(FindNSRecordHealthCheckRequest) returns (FindNSRecordHealthCheckResponse);",
+          "doc": "查询记录健康检查设置",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateNSRecordHealthCheck",
+          "requestMessageName": "UpdateNSRecordHealthCheckRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateNSRecordHealthCheck(UpdateNSRecordHealthCheckRequest) returns (RPCSuccess);",
+          "doc": "修改记录健康检查设置",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateNSRecordIsUp",
+          "requestMessageName": "UpdateNSRecordIsUpRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateNSRecordIsUp(UpdateNSRecordIsUpRequest) returns (RPCSuccess);",
+          "doc": "手动修改记录在线状态",
+          "roles": [
+            "admin",
+            "user"
           ],
           "isDeprecated": false
         }
@@ -18434,6 +18494,16 @@
       "doc": ""
     },
     {
+      "name": "FindNSDomainRecordsHealthCheckRequest",
+      "code": "message FindNSDomainRecordsHealthCheckRequest {\n\tint64 nsDomainId = 1; // 域名ID\n}",
+      "doc": "查询记录健康检查全局设置"
+    },
+    {
+      "name": "FindNSDomainRecordsHealthCheckResponse",
+      "code": "message FindNSDomainRecordsHealthCheckResponse {\n\tbytes nsDomainRecordsHealthCheckJSON = 1; // 健康检查设置\n}",
+      "doc": ""
+    },
+    {
       "name": "FindNSDomainRequest",
       "code": "message FindNSDomainRequest {\n\tint64 nsDomainId = 1; // 域名ID\n}",
       "doc": "查找单个域名"
@@ -18541,6 +18611,16 @@
     {
       "name": "FindNSQuestionOptionResponse",
       "code": "message FindNSQuestionOptionResponse {\n\tNSQuestionOption nsQuestionOption = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindNSRecordHealthCheckRequest",
+      "code": "message FindNSRecordHealthCheckRequest {\n\tint64 nsRecordId = 1; // 记录ID\n}",
+      "doc": "查询记录健康检查设置"
+    },
+    {
+      "name": "FindNSRecordHealthCheckResponse",
+      "code": "message FindNSRecordHealthCheckResponse {\n\tbytes nsRecordHealthCheckJSON = 1; // 记录健康检查配置\n}",
       "doc": ""
     },
     {
@@ -19845,7 +19925,7 @@
     },
     {
       "name": "ListNSRecordsRequest",
-      "code": "message ListNSRecordsRequest {\n\tint64 nsDomainId = 1;\n\tstring type = 2;\n\tint64 nsRouteId = 3 [deprecated = true]; // 使用nsRouteCode代替\n\tstring nsRouteCode = 7;\n\tstring keyword = 4;\n\n\tbool nameAsc = 8;\n\tbool nameDesc = 9;\n\tbool typeAsc = 10;\n\tbool typeDesc = 11;\n\tbool ttlAsc = 12;\n\tbool ttlDesc = 13;\n\n\tint64 offset = 5;\n\tint64 size = 6;\n}",
+      "code": "message ListNSRecordsRequest {\n\tint64 nsDomainId = 1;\n\tstring type = 2;\n\tint64 nsRouteId = 3 [deprecated = true]; // 使用nsRouteCode代替\n\tstring nsRouteCode = 7;\n\tstring keyword = 4;\n\n\tbool nameAsc = 8;\n\tbool nameDesc = 9;\n\tbool typeAsc = 10;\n\tbool typeDesc = 11;\n\tbool ttlAsc = 12;\n\tbool ttlDesc = 13;\n\tbool upAsc = 14;\n\tbool upDesc = 15;\n\n\tint64 offset = 5;\n\tint64 size = 6;\n}",
       "doc": "读取单页记录"
     },
     {
@@ -20220,7 +20300,7 @@
     },
     {
       "name": "NSDomain",
-      "code": "message NSDomain {\n\tint64 id = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tint64 createdAt = 4;\n\tbool isDeleted = 5;\n\tint64 version = 6;\n\tbytes tsigJSON = 7;\n\trepeated int64 nsDomainGroupIds = 8;\n\tstring status = 9;\n\tint64 userId = 10; // 用户ID\n\n\tNSCluster nsCluster = 30;\n\tUser user = 31;\n\trepeated NSDomainGroup nsDomainGroups = 32;\n}",
+      "code": "message NSDomain {\n\tint64 id = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tint64 createdAt = 4;\n\tbool isDeleted = 5;\n\tint64 version = 6;\n\tbytes tsigJSON = 7;\n\trepeated int64 nsDomainGroupIds = 8;\n\tstring status = 9;\n\tint64 userId = 10; // 用户ID\n\tbytes recordsHealthCheckJSON = 11; // 健康检查设置\n\n\tNSCluster nsCluster = 30;\n\tUser user = 31;\n\trepeated NSDomainGroup nsDomainGroups = 32;\n}",
       "doc": "DNS域名"
     },
     {
@@ -20255,7 +20335,7 @@
     },
     {
       "name": "NSRecord",
-      "code": "message NSRecord {\n\tint64 id = 1;\n\tstring description = 2;\n\tstring name = 3;\n\tstring type = 4;\n\tstring value = 5;\n\n\tint32 mxPriority = 12; // mx优先级\n\n\tint32 srvPriority = 13; // SRV优先级\n\tint32 srvWeight = 14; // SRV权重\n\tint32 srvPort = 15; // SRV端口\n\n\tint32 caaFlag = 16; // CAA Flag\n\tstring caaTag = 17; // CAA TAG\n\n\tint32 ttl = 6;\n\tint32 weight = 7;\n\tint64 createdAt = 8;\n\tbool isDeleted = 9;\n\tint64 version = 10;\n\tbool isOn = 11;\n\n\tNSDomain nsDomain = 30;\n\trepeated NSRoute nsRoutes = 31;\n}",
+      "code": "message NSRecord {\n\tint64 id = 1; // 记录ID\n\tstring description = 2; // 备注\n\tstring name = 3; // 记录名\n\tstring type = 4; // 记录类型\n\tstring value = 5; // 记录值\n\n\tint32 mxPriority = 12; // mx优先级\n\n\tint32 srvPriority = 13; // SRV优先级\n\tint32 srvWeight = 14; // SRV权重\n\tint32 srvPort = 15; // SRV端口\n\n\tint32 caaFlag = 16; // CAA Flag\n\tstring caaTag = 17; // CAA TAG\n\n\tint32 ttl = 6; // TTL\n\tint32 weight = 7; // 权重\n\tint64 createdAt = 8;\n\tbool isDeleted = 9;\n\tint64 version = 10;\n\tbool isOn = 11; // 是否启用\n\n\tbytes healthCheckJSON = 18; // 健康检查配置\n\tbool isUp = 19; // 是否在线（根据健康检查结果）\n\n\tNSDomain nsDomain = 30; // 所属域名\n\trepeated NSRoute nsRoutes = 31; // 线路\n}",
       "doc": "域名记录"
     },
     {
@@ -21429,6 +21509,11 @@
       "doc": "修改分组"
     },
     {
+      "name": "UpdateNSDomainRecordsHealthCheckRequest",
+      "code": "message UpdateNSDomainRecordsHealthCheckRequest {\n\tint64 nsDomainId = 1; // 域名ID\n\tbytes nsDomainRecordsHealthCheckJSON = 2; // 健康检查设置\n}",
+      "doc": "修改记录健康检查全局设置"
+    },
+    {
       "name": "UpdateNSDomainRequest",
       "code": "message UpdateNSDomainRequest {\n\tint64 nsDomainId = 1;\n\tint64 nsClusterId = 2;\n\tint64 userId = 3;\n\trepeated int64 nsDomainGroupIds = 5; // 域名分组ID\n\tbool isOn = 4;\n}",
       "doc": "修改域名\n注意：名称不允许修改"
@@ -21487,6 +21572,16 @@
       "name": "UpdateNSPlanRequest",
       "code": "message UpdateNSPlanRequest {\n\tint64 nsPlanId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tfloat monthlyPrice = 4;\n\tfloat yearlyPrice = 5;\n\tbytes configJSON = 6;\n}",
       "doc": "修改DNS套餐"
+    },
+    {
+      "name": "UpdateNSRecordHealthCheckRequest",
+      "code": "message UpdateNSRecordHealthCheckRequest {\n\tint64 nsRecordId = 1; // 记录ID\n\tbytes nsRecordHealthCheckJSON = 2; // 记录健康检查配置\n}",
+      "doc": "修改记录健康检查设置"
+    },
+    {
+      "name": "UpdateNSRecordIsUpRequest",
+      "code": "message UpdateNSRecordIsUpRequest {\n\tint64 nsRecordId = 1; // 记录ID\n\tbool isUp = 2;  // 是否在线\n}",
+      "doc": "手动修改记录在线状态"
     },
     {
       "name": "UpdateNSRecordRequest",
