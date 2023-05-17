@@ -37,6 +37,9 @@ message Node {
 	repeated string lnAddrs = 21; // Ln访问地址
 	bool enableIPLists = 22;
 	bytes apiNodeAddrsJSON = 24;
+	string offlineDay = 25; // 下线日期
+	bool isBackupForCluster = 26; // 是否为集群备用节点
+	bool isBackupForGroup = 27; // 是否为分组备用节点
 
 	NodeCluster nodeCluster = 32; // 主集群
 	NodeLogin nodeLogin = 33;

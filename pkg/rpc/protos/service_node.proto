@@ -172,6 +172,15 @@ service NodeService {
 
 	// 查找节点的UAM策略
 	rpc findNodeUAMPolicies(FindNodeUAMPoliciesRequest) returns (FindNodeUAMPoliciesResponse);
+
+	// 查找节点调度信息
+	rpc findNodeScheduleInfo(FindNodeScheduleInfoRequest) returns (FindNodeScheduleInfoResponse);
+
+	// 修改节点调度信息
+	rpc updateNodeScheduleInfo(UpdateNodeScheduleInfoRequest) returns (RPCSuccess);
+
+	// 重置节点动作状态
+	rpc resetNodeActionStatus(ResetNodeActionStatusRequest) returns (RPCSuccess);
 }
 
 // 创建节点
@@ -471,6 +480,9 @@ message NodeDNSInfo {
 	int64 dnsDomainId = 6;
 	string dnsDomainName = 7;
 	string nodeClusterDNSName = 8;
+	bool isBackupForCluster = 10; // 是否为集群备份节点
+	bool isBackupForGroup = 11; // 是否为分组备份节点
+	bool isOffline = 12; // 是否下线
 }
 
 // 查找单个节点的域名解析信息
@@ -609,12 +621,13 @@ message FindEnabledNodeConfigInfoRequest {
 }
 
 message FindEnabledNodeConfigInfoResponse {
-	bool hasDNSInfo = 1;
-	bool  hasCacheInfo = 2;
-	bool  hasThresholds = 3;
-	bool  hasSSH = 4;
-	bool  hasSystemSettings = 5;
-	bool hasDDoSProtection = 6;
+	bool hasDNSInfo = 1; // 是否有DNS设置
+	bool  hasCacheInfo = 2; // 是否有缓存设置
+	bool  hasThresholds = 3; // 是否有阈值设置
+	bool  hasSSH = 4; // 是否有SSH设置
+	bool  hasSystemSettings = 5; // 是否有系统设置
+	bool hasDDoSProtection = 6; // 是否有DDoS防护设置
+	bool hasScheduleSettings = 7; // 是否有调度设置
 }
 
 // 查找节点区域信息数量
@@ -674,4 +687,35 @@ message FindNodeUAMPoliciesResponse {
 		int64 nodeClusterId = 1; // 集群ID
 		bytes uamPolicyJSON = 2; // UAM策略配置
 	}
+}
+
+// 查找节点调度信息
+message FindNodeScheduleInfoRequest {
+	int64 nodeId = 1; // 节点ID
+}
+
+message FindNodeScheduleInfoResponse {
+	ScheduleInfo scheduleInfo = 1; // 调度信息
+
+	message ScheduleInfo {
+		string offlineDay = 1; // 下线日期，格式YYYYMMDD
+		bool isBackupForCluster = 2; // 是否为集群备份节点
+		bool isBackupForGroup = 3; // 是否为分组备份节点
+		repeated string backupIPs = 4; // 备用IP
+		bytes actionStatusJSON = 5; // 动作状态
+	}
+}
+
+// 修改节点调度信息
+message UpdateNodeScheduleInfoRequest {
+	int64 nodeId = 1; // 节点ID
+	string offlineDay = 2; // 下线日期，格式YYYYMMDD
+	bool isBackupForCluster = 3; // 是否为集群备份节点
+	bool isBackupForGroup = 4; // 是否为分组备份节点
+	repeated string backupIPs = 5; // 备用IP
+}
+
+// 重置节点动作状态
+message ResetNodeActionStatusRequest {
+	int64 nodeId = 1; // 节点ID
 }

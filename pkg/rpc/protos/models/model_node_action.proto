@@ -1,0 +1,15 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 节点动作
+message NodeAction {
+	int64 id = 1;
+	int64 nodeId = 2;
+	string role = 3;
+	bool isOn = 4; // 是否启用
+	bytes condsJSON = 5; // 条件定义
+	bytes actionJSON = 6; // 动作定义
+	bytes durationJSON = 7; // 持续时间
+}

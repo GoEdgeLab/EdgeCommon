@@ -2,6 +2,7 @@ package shared
 
 import (
 	"encoding/json"
+	"github.com/iwind/TeaGo/types"
 	"time"
 )
 
@@ -38,6 +39,45 @@ func (this *TimeDuration) Duration() time.Duration {
 		return time.Duration(this.Count) * 24 * 7 * time.Hour
 	default:
 		return time.Duration(this.Count) * time.Second
+	}
+}
+
+func (this *TimeDuration) Seconds() int64 {
+	switch this.Unit {
+	case TimeDurationUnitMS:
+		return this.Count / 1000
+	case TimeDurationUnitSecond:
+		return this.Count
+	case TimeDurationUnitMinute:
+		return this.Count * 60
+	case TimeDurationUnitHour:
+		return this.Count * 3600
+	case TimeDurationUnitDay:
+		return this.Count * 3600 * 24
+	case TimeDurationUnitWeek:
+		return this.Count * 3600 * 24 * 7
+	default:
+		return this.Count
+	}
+}
+
+func (this *TimeDuration) Description() string {
+	var countString = types.String(this.Count)
+	switch this.Unit {
+	case TimeDurationUnitMS:
+		return countString + "毫秒"
+	case TimeDurationUnitSecond:
+		return countString + "秒"
+	case TimeDurationUnitMinute:
+		return countString + "分钟"
+	case TimeDurationUnitHour:
+		return countString + "小时"
+	case TimeDurationUnitDay:
+		return countString + "天"
+	case TimeDurationUnitWeek:
+		return countString + "周"
+	default:
+		return countString + "秒"
 	}
 }
 

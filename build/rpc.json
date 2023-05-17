@@ -5576,10 +5576,105 @@
             "node"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findNodeScheduleInfo",
+          "requestMessageName": "FindNodeScheduleInfoRequest",
+          "responseMessageName": "FindNodeScheduleInfoResponse",
+          "code": "rpc findNodeScheduleInfo(FindNodeScheduleInfoRequest) returns (FindNodeScheduleInfoResponse);",
+          "doc": "查找节点调度信息",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateNodeScheduleInfo",
+          "requestMessageName": "UpdateNodeScheduleInfoRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateNodeScheduleInfo(UpdateNodeScheduleInfoRequest) returns (RPCSuccess);",
+          "doc": "修改节点调度信息",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "resetNodeActionStatus",
+          "requestMessageName": "ResetNodeActionStatusRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc resetNodeActionStatus(ResetNodeActionStatusRequest) returns (RPCSuccess);",
+          "doc": "重置节点动作状态",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_node.proto",
       "doc": "边缘节点管理服务"
+    },
+    {
+      "name": "NodeActionService",
+      "methods": [
+        {
+          "name": "createNodeAction",
+          "requestMessageName": "CreateNodeActionRequest",
+          "responseMessageName": "CreateNodeActionResponse",
+          "code": "rpc createNodeAction(CreateNodeActionRequest) returns (CreateNodeActionResponse);",
+          "doc": "添加动作",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "deleteNodeAction",
+          "requestMessageName": "DeleteNodeActionRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deleteNodeAction(DeleteNodeActionRequest) returns (RPCSuccess);",
+          "doc": "删除动作",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateNodeAction",
+          "requestMessageName": "UpdateNodeActionRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateNodeAction(UpdateNodeActionRequest) returns (RPCSuccess);",
+          "doc": "修改动作",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findAllNodeActions",
+          "requestMessageName": "FindAllNodeActionsRequest",
+          "responseMessageName": "FindAllNodeActionsResponse",
+          "code": "rpc findAllNodeActions(FindAllNodeActionsRequest) returns (FindAllNodeActionsResponse);",
+          "doc": "列出某个节点的所有动作",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findNodeAction",
+          "requestMessageName": "FindNodeActionRequest",
+          "responseMessageName": "FindNodeActionResponse",
+          "code": "rpc findNodeAction(FindNodeActionRequest) returns (FindNodeActionResponse);",
+          "doc": "查找单个节点动作",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_node_action.proto",
+      "doc": "节点动作服务"
     },
     {
       "name": "NodeClusterService",
@@ -14829,6 +14924,16 @@
       "doc": ""
     },
     {
+      "name": "CreateNodeActionRequest",
+      "code": "message CreateNodeActionRequest {\n\tint64 nodeId = 1; // 节点ID\n\tstring role = 2; // 节点角色\n\tbytes condsJSON = 3; // 条件设置\n\tbytes actionJSON = 4; // 动作设置\n\tbytes durationJSON = 5; // 持续时间\n}",
+      "doc": "添加动作"
+    },
+    {
+      "name": "CreateNodeActionResponse",
+      "code": "message CreateNodeActionResponse {\n\tint64 nodeActionId = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "CreateNodeClusterFirewallActionRequest",
       "code": "message CreateNodeClusterFirewallActionRequest {\n\tint64 nodeClusterId = 1;\n\tstring name = 2;\n\tstring eventLevel = 3;\n\tstring type = 4;\n\tbytes paramsJSON = 5;\n}",
       "doc": "创建动作"
@@ -15512,6 +15617,11 @@
       "name": "DeleteNSUserPlanRequest",
       "code": "message DeleteNSUserPlanRequest{\n\tint64 nsUserPlanId = 1;\n}",
       "doc": "删除用户套餐"
+    },
+    {
+      "name": "DeleteNodeActionRequest",
+      "code": "message DeleteNodeActionRequest {\n\tint64 nodeActionId = 1;\n}",
+      "doc": "删除动作"
     },
     {
       "name": "DeleteNodeClusterFirewallActionRequest",
@@ -16789,6 +16899,16 @@
       "doc": ""
     },
     {
+      "name": "FindAllNodeActionsRequest",
+      "code": "message FindAllNodeActionsRequest {\n\tint64 nodeId = 1; // 节点ID\n\tstring role = 2; // 节点角色\n}",
+      "doc": "列出某个节点的所有动作"
+    },
+    {
+      "name": "FindAllNodeActionsResponse",
+      "code": "message FindAllNodeActionsResponse {\n\trepeated NodeAction nodeActions = 1; // 动作列表\n}",
+      "doc": ""
+    },
+    {
       "name": "FindAllNodeClusterMetricItemsRequest",
       "code": "message FindAllNodeClusterMetricItemsRequest {\n\tint64 nodeClusterId = 1;\n\tstring category = 2;\n}",
       "doc": "查找集群中所有指标"
@@ -17670,7 +17790,7 @@
     },
     {
       "name": "FindEnabledNodeConfigInfoResponse",
-      "code": "message FindEnabledNodeConfigInfoResponse {\n\tbool hasDNSInfo = 1;\n\tbool  hasCacheInfo = 2;\n\tbool  hasThresholds = 3;\n\tbool  hasSSH = 4;\n\tbool  hasSystemSettings = 5;\n\tbool hasDDoSProtection = 6;\n}",
+      "code": "message FindEnabledNodeConfigInfoResponse {\n\tbool hasDNSInfo = 1; // 是否有DNS设置\n\tbool  hasCacheInfo = 2; // 是否有缓存设置\n\tbool  hasThresholds = 3; // 是否有阈值设置\n\tbool  hasSSH = 4; // 是否有SSH设置\n\tbool  hasSystemSettings = 5; // 是否有系统设置\n\tbool hasDDoSProtection = 6; // 是否有DDoS防护设置\n\tbool hasScheduleSettings = 7; // 是否有调度设置\n}",
       "doc": ""
     },
     {
@@ -18724,6 +18844,16 @@
       "doc": ""
     },
     {
+      "name": "FindNodeActionRequest",
+      "code": "message FindNodeActionRequest {\n\tint64 nodeActionId = 1; // 动作ID\n}",
+      "doc": "查找单个节点动作"
+    },
+    {
+      "name": "FindNodeActionResponse",
+      "code": "message FindNodeActionResponse {\n\tNodeAction nodeAction = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "FindNodeClusterDDoSProtectionRequest",
       "code": "message FindNodeClusterDDoSProtectionRequest {\n\tint64 nodeClusterId = 1;\n}",
       "doc": "获取集群的DDoS设置"
@@ -18826,6 +18956,16 @@
     {
       "name": "FindNodeLoginSuggestPortsResponse",
       "code": "message FindNodeLoginSuggestPortsResponse {\n\trepeated int32 ports = 1;\n\trepeated int32 availablePorts = 2;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindNodeScheduleInfoRequest",
+      "code": "message FindNodeScheduleInfoRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
+      "doc": "查找节点调度信息"
+    },
+    {
+      "name": "FindNodeScheduleInfoResponse",
+      "code": "message FindNodeScheduleInfoResponse {\n\tScheduleInfo scheduleInfo = 1; // 调度信息\n\n\n\tmessage ScheduleInfo {\n\t\tstring offlineDay = 1; // 下线日期，格式YYYYMMDD\n\t\tbool isBackupForCluster = 2; // 是否为集群备份节点\n\t\tbool isBackupForGroup = 3; // 是否为分组备份节点\n\t\trepeated string backupIPs = 4; // 备用IP\n\t\tbytes actionStatusJSON = 5; // 动作状态\n\t}\n}",
       "doc": ""
     },
     {
@@ -20370,8 +20510,13 @@
     },
     {
       "name": "Node",
-      "code": "message Node {\n\tint64 id = 1;\n\tstring name = 2;\n\tbytes statusJSON = 3;\n\tstring installDir = 4;\n\tbool isInstalled = 5;\n\tstring code = 6;\n\tstring uniqueId = 7;\n\tstring secret = 8;\n\tint64 version = 9;\n\tint64 latestVersion = 10;\n\trepeated int64 connectedAPINodeIds = 11;\n\tint32 maxCPU = 12;\n\tbool isOn = 13;\n\tbool isUp = 14;\n\trepeated DNSRoute dnsRoutes = 15;\n\tbool isActive = 16;\n\tSizeCapacity maxCacheDiskCapacity = 17;\n\tSizeCapacity maxCacheMemoryCapacity = 18;\n\tstring cacheDiskDir = 19;\n\tbytes cacheDiskSubDirsJSON = 23;\n\tint32 level = 20;\n\trepeated string lnAddrs = 21; // Ln访问地址\n\tbool enableIPLists = 22;\n\tbytes apiNodeAddrsJSON = 24;\n\n\tNodeCluster nodeCluster = 32; // 主集群\n\tNodeLogin nodeLogin = 33;\n\tNodeInstallStatus installStatus = 34;\n\trepeated NodeIPAddress ipAddresses = 35;\n\tNodeGroup nodeGroup = 36;\n\tNodeRegion nodeRegion = 37;\n\trepeated NodeCluster secondaryNodeClusters = 38; // 从集群\n}",
+      "code": "message Node {\n\tint64 id = 1;\n\tstring name = 2;\n\tbytes statusJSON = 3;\n\tstring installDir = 4;\n\tbool isInstalled = 5;\n\tstring code = 6;\n\tstring uniqueId = 7;\n\tstring secret = 8;\n\tint64 version = 9;\n\tint64 latestVersion = 10;\n\trepeated int64 connectedAPINodeIds = 11;\n\tint32 maxCPU = 12;\n\tbool isOn = 13;\n\tbool isUp = 14;\n\trepeated DNSRoute dnsRoutes = 15;\n\tbool isActive = 16;\n\tSizeCapacity maxCacheDiskCapacity = 17;\n\tSizeCapacity maxCacheMemoryCapacity = 18;\n\tstring cacheDiskDir = 19;\n\tbytes cacheDiskSubDirsJSON = 23;\n\tint32 level = 20;\n\trepeated string lnAddrs = 21; // Ln访问地址\n\tbool enableIPLists = 22;\n\tbytes apiNodeAddrsJSON = 24;\n\tstring offlineDay = 25; // 下线日期\n\tbool isBackupForCluster = 26; // 是否为集群备用节点\n\tbool isBackupForGroup = 27; // 是否为分组备用节点\n\n\tNodeCluster nodeCluster = 32; // 主集群\n\tNodeLogin nodeLogin = 33;\n\tNodeInstallStatus installStatus = 34;\n\trepeated NodeIPAddress ipAddresses = 35;\n\tNodeGroup nodeGroup = 36;\n\tNodeRegion nodeRegion = 37;\n\trepeated NodeCluster secondaryNodeClusters = 38; // 从集群\n}",
       "doc": ""
+    },
+    {
+      "name": "NodeAction",
+      "code": "message NodeAction {\n\tint64 id = 1;\n\tint64 nodeId = 2;\n\tstring role = 3;\n\tbool isOn = 4; // 是否启用\n\tbytes condsJSON = 5; // 条件定义\n\tbytes actionJSON = 6; // 动作定义\n\tbytes durationJSON = 7; // 持续时间\n}",
+      "doc": "节点动作"
     },
     {
       "name": "NodeCluster",
@@ -20390,7 +20535,7 @@
     },
     {
       "name": "NodeDNSInfo",
-      "code": "message NodeDNSInfo {\n\tint64 id = 1;\n\tstring name = 2;\n\tstring ipAddr = 3;\n\tint64 nodeIPAddressId = 9;\n\trepeated DNSRoute routes = 4;\n\tint64 nodeClusterId = 5;\n\tint64 dnsDomainId = 6;\n\tstring dnsDomainName = 7;\n\tstring nodeClusterDNSName = 8;\n}",
+      "code": "message NodeDNSInfo {\n\tint64 id = 1;\n\tstring name = 2;\n\tstring ipAddr = 3;\n\tint64 nodeIPAddressId = 9;\n\trepeated DNSRoute routes = 4;\n\tint64 nodeClusterId = 5;\n\tint64 dnsDomainId = 6;\n\tstring dnsDomainName = 7;\n\tstring nodeClusterDNSName = 8;\n\tbool isBackupForCluster = 10; // 是否为集群备份节点\n\tbool isBackupForGroup = 11; // 是否为分组备份节点\n\tbool isOffline = 12; // 是否下线\n}",
       "doc": ""
     },
     {
@@ -20672,6 +20817,11 @@
       "name": "ResetHTTPCacheTaskRequest",
       "code": "message ResetHTTPCacheTaskRequest {\n\tint64 httpCacheTaskId = 1;\n}",
       "doc": "重置任务状态"
+    },
+    {
+      "name": "ResetNodeActionStatusRequest",
+      "code": "message ResetNodeActionStatusRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
+      "doc": "重置节点动作状态"
     },
     {
       "name": "ResetSSLCertsWithOCSPErrorRequest",
@@ -21629,6 +21779,11 @@
       "doc": "修改某个节点的API相关配置"
     },
     {
+      "name": "UpdateNodeActionRequest",
+      "code": "message UpdateNodeActionRequest {\n\tint64 nodeActionId = 1; // 动作ID\n\tbytes condsJSON = 2;\n\tbytes actionJSON = 3;\n\tbytes durationJSON = 4; // 持续时间\n\tbool isOn = 5; // 是否启用\n}",
+      "doc": "修改动作"
+    },
+    {
       "name": "UpdateNodeCacheRequest",
       "code": "message UpdateNodeCacheRequest {\n\tint64 nodeId = 1; // 节点ID\n\tSizeCapacity maxCacheDiskCapacity = 2; // 磁盘容量限制\n\tSizeCapacity maxCacheMemoryCapacity = 3; // 内存容量限制\n\tstring cacheDiskDir = 4; // 磁盘缓存目录\n\tbytes cacheDiskSubDirsJSON = 5; // 磁盘缓存子目录\n}",
       "doc": "修改节点缓存设置"
@@ -21797,6 +21952,11 @@
       "name": "UpdateNodeRequest",
       "code": "message UpdateNodeRequest {\n\tint64 nodeId = 1;\n\tstring name = 2;\n\tint64 nodeClusterId = 3;\n\trepeated int64 secondaryNodeClusterIds = 13;\n\tbool isOn = 6;\n\tint64 nodeGroupId = 7;\n\tint64 nodeRegionId = 10;\n\tint32 level = 14;\n\trepeated string lnAddrs = 15; // Ln节点访问地址\n\tbool enableIPLists = 16; // 是否启用IP名单\n}",
       "doc": "修改节点"
+    },
+    {
+      "name": "UpdateNodeScheduleInfoRequest",
+      "code": "message UpdateNodeScheduleInfoRequest {\n\tint64 nodeId = 1; // 节点ID\n\tstring offlineDay = 2; // 下线日期，格式YYYYMMDD\n\tbool isBackupForCluster = 3; // 是否为集群备份节点\n\tbool isBackupForGroup = 4; // 是否为分组备份节点\n\trepeated string backupIPs = 5; // 备用IP\n}",
+      "doc": "修改节点调度信息"
     },
     {
       "name": "UpdateNodeStatusRequest",
