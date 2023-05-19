@@ -12,7 +12,7 @@ type HTTPCORSHeaderConfig struct {
 	MaxAge            int32    `yaml:"maxAge" json:"maxAge"`
 	RequestHeaders    []string `yaml:"requestHeaders" json:"requestHeaders"` // TODO
 	RequestMethod     string   `yaml:"requestMethod" json:"requestMethod"`
-	OptionsMethodOnly bool     `yaml:"optionsMethodOnly" json:"optionsMethodOnly"`
+	OptionsMethodOnly bool     `yaml:"optionsMethodOnly" json:"optionsMethodOnly"` // 是否仅支持OPTIONS方法
 }
 
 func NewHTTPCORSHeaderConfig() *HTTPCORSHeaderConfig {
