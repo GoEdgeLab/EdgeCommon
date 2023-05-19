@@ -181,6 +181,15 @@ service NodeService {
 
 	// 重置节点动作状态
 	rpc resetNodeActionStatus(ResetNodeActionStatusRequest) returns (RPCSuccess);
+
+	// 查找集群的节点调度信息
+	rpc findAllNodeScheduleInfoWithNodeClusterId(FindAllNodeScheduleInfoWithNodeClusterIdRequest) returns (FindAllNodeScheduleInfoWithNodeClusterIdResponse);
+
+	// 复制动作设置到分组
+	rpc copyNodeActionsToNodeGroup(CopyNodeActionsToNodeGroupRequest) returns (RPCSuccess);
+
+	// 复制动作设置到集群
+	rpc copyNodeActionsToNodeCluster(CopyNodeActionsToNodeClusterRequest) returns (RPCSuccess);
 }
 
 // 创建节点
@@ -718,4 +727,35 @@ message UpdateNodeScheduleInfoRequest {
 // 重置节点动作状态
 message ResetNodeActionStatusRequest {
 	int64 nodeId = 1; // 节点ID
+}
+
+// 查找集群的节点调度信息
+message FindAllNodeScheduleInfoWithNodeClusterIdRequest {
+	int64 nodeClusterId = 1; // 集群ID
+}
+
+message FindAllNodeScheduleInfoWithNodeClusterIdResponse {
+	repeated ScheduleInfo nodes = 1; // 调动信息列表
+
+	message ScheduleInfo {
+		int64 nodeId = 1; // 节点ID
+		string nodeName = 2; // 节点名称
+		int64 nodeGroupId = 3; // 节点分组ID
+		string nodeGroupName = 4; // 节点分组名称
+		string offlineDay = 5; // 下线日期，格式YYYYMMDD
+		bool isBackupForCluster = 6; // 是否为集群备份节点
+		bool isBackupForGroup = 7; // 是否为分组备份节点
+		repeated string backupIPs = 8; // 备用IP
+		bytes actionStatusJSON = 9; // 动作状态
+	}
+}
+
+// 同步动作设置到分组
+message CopyNodeActionsToNodeGroupRequest {
+	int64 nodeId = 1;
+}
+
+// 同步动作设置到集群
+message CopyNodeActionsToNodeClusterRequest {
+	int64 nodeId = 1;
 }

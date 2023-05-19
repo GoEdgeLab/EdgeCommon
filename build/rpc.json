@@ -5609,6 +5609,35 @@
             "admin"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findAllNodeScheduleInfoWithNodeClusterId",
+          "requestMessageName": "FindAllNodeScheduleInfoWithNodeClusterIdRequest",
+          "responseMessageName": "FindAllNodeScheduleInfoWithNodeClusterIdResponse",
+          "code": "rpc findAllNodeScheduleInfoWithNodeClusterId(FindAllNodeScheduleInfoWithNodeClusterIdRequest) returns (FindAllNodeScheduleInfoWithNodeClusterIdResponse);",
+          "doc": "查找集群的节点调度信息",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "copyNodeActionsToNodeGroup",
+          "requestMessageName": "CopyNodeActionsToNodeGroupRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc copyNodeActionsToNodeGroup(CopyNodeActionsToNodeGroupRequest) returns (RPCSuccess);",
+          "doc": "复制动作设置到分组",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "copyNodeActionsToNodeCluster",
+          "requestMessageName": "CopyNodeActionsToNodeClusterRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc copyNodeActionsToNodeCluster(CopyNodeActionsToNodeClusterRequest) returns (RPCSuccess);",
+          "doc": "复制动作设置到集群",
+          "roles": [],
+          "isDeprecated": false
         }
       ],
       "filename": "service_node.proto",
@@ -13799,6 +13828,16 @@
       "doc": ""
     },
     {
+      "name": "CopyNodeActionsToNodeClusterRequest",
+      "code": "message CopyNodeActionsToNodeClusterRequest {\n\tint64 nodeId = 1;\n}",
+      "doc": "同步动作设置到集群"
+    },
+    {
+      "name": "CopyNodeActionsToNodeGroupRequest",
+      "code": "message CopyNodeActionsToNodeGroupRequest {\n\tint64 nodeId = 1;\n}",
+      "doc": "同步动作设置到分组"
+    },
+    {
       "name": "CopyServerConfigRequest",
       "code": "message CopyServerConfigRequest {\n\tint64 serverId = 1; // 被复制服务ID\n\tstring configCode = 2; // 要拷贝的配置代号\n\tstring targetType = 3; // 目标类型：servers, groups, cluster（当前集群下所有服务，只有管理员才有权限）、user（当前用户下所有服务）\n\trepeated int64 targetServerIds = 4; // 目标服务ID列表\n\trepeated int64 targetServerGroupIds = 5; // 目标服务分组ID列表\n\tint64 targetClusterId = 6; // 目标集群ID\n\tint64 targetUserId = 7; // 目标用户ID\n}",
       "doc": "在服务之间复制配置"
@@ -16926,6 +16965,16 @@
     {
       "name": "FindAllNodeClustersWithMetricItemIdResponse",
       "code": "message FindAllNodeClustersWithMetricItemIdResponse {\n\trepeated NodeCluster nodeClusters = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAllNodeScheduleInfoWithNodeClusterIdRequest",
+      "code": "message FindAllNodeScheduleInfoWithNodeClusterIdRequest {\n\tint64 nodeClusterId = 1; // 集群ID\n}",
+      "doc": "查找集群的节点调度信息"
+    },
+    {
+      "name": "FindAllNodeScheduleInfoWithNodeClusterIdResponse",
+      "code": "message FindAllNodeScheduleInfoWithNodeClusterIdResponse {\n\trepeated ScheduleInfo nodes = 1; // 调动信息列表\n\n\n\tmessage ScheduleInfo {\n\t\tint64 nodeId = 1; // 节点ID\n\t\tstring nodeName = 2; // 节点名称\n\t\tint64 nodeGroupId = 3; // 节点分组ID\n\t\tstring nodeGroupName = 4; // 节点分组名称\n\t\tstring offlineDay = 5; // 下线日期，格式YYYYMMDD\n\t\tbool isBackupForCluster = 6; // 是否为集群备份节点\n\t\tbool isBackupForGroup = 7; // 是否为分组备份节点\n\t\trepeated string backupIPs = 8; // 备用IP\n\t\tbytes actionStatusJSON = 9; // 动作状态\n\t}\n}",
       "doc": ""
     },
     {
