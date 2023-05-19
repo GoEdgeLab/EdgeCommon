@@ -13,8 +13,9 @@ type HTTPHeaderPolicy struct {
 	SetHeaders    []*HTTPHeaderConfig `yaml:"setHeaders" json:"setHeaders"`
 	DeleteHeaders []string            `yaml:"deleteHeaders" json:"deleteHeaders"` // 删除的Header
 
-	Expires *HTTPExpireHeaderConfig `yaml:"expires" json:"expires"` // TODO
-	CORS    *HTTPCORSHeaderConfig   `yaml:"cors" json:"cors"`
+	Expires            *HTTPExpireHeaderConfig `yaml:"expires" json:"expires"`                       // 内容过期设置 TODO
+	CORS               *HTTPCORSHeaderConfig   `yaml:"cors" json:"cors"`                             // CORS跨域设置
+	NonStandardHeaders []string                `yaml:"nonStandardHeaders" json:"nonStandardHeaders"` // 非标Header列表
 
 	setHeaderNames  []string
 	deleteHeaderMap map[string]bool // header => bool

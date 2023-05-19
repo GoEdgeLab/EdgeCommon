@@ -2876,6 +2876,15 @@
           "isDeprecated": false
         },
         {
+          "name": "updateHTTPHeaderPolicyNonStandardHeaders",
+          "requestMessageName": "UpdateHTTPHeaderPolicyNonStandardHeadersRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateHTTPHeaderPolicyNonStandardHeaders(UpdateHTTPHeaderPolicyNonStandardHeadersRequest) returns (RPCSuccess);",
+          "doc": "修改非标的Headers",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
           "name": "updateHTTPHeaderPolicyCORS",
           "requestMessageName": "UpdateHTTPHeaderPolicyCORSRequest",
           "responseMessageName": "RPCSuccess",
@@ -5627,7 +5636,9 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc copyNodeActionsToNodeGroup(CopyNodeActionsToNodeGroupRequest) returns (RPCSuccess);",
           "doc": "复制动作设置到分组",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         },
         {
@@ -5636,7 +5647,9 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc copyNodeActionsToNodeCluster(CopyNodeActionsToNodeClusterRequest) returns (RPCSuccess);",
           "doc": "复制动作设置到集群",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         }
       ],
@@ -21391,6 +21404,11 @@
       "name": "UpdateHTTPHeaderPolicyDeletingHeadersRequest",
       "code": "message UpdateHTTPHeaderPolicyDeletingHeadersRequest {\n\tint64 httpHeaderPolicyId = 1;\n\trepeated string headerNames = 2;\n}",
       "doc": "修改删除的Headers"
+    },
+    {
+      "name": "UpdateHTTPHeaderPolicyNonStandardHeadersRequest",
+      "code": "message UpdateHTTPHeaderPolicyNonStandardHeadersRequest {\n\tint64 httpHeaderPolicyId = 1; // Header策略ID\n\trepeated string headerNames = 2; // 非标Header名称列表\n}",
+      "doc": "修改非标的Headers"
     },
     {
       "name": "UpdateHTTPHeaderPolicyReplacingHeadersRequest",

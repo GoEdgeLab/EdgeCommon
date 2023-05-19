@@ -28,6 +28,9 @@ service HTTPHeaderPolicyService {
 	// 修改删除的Headers
 	rpc updateHTTPHeaderPolicyDeletingHeaders (UpdateHTTPHeaderPolicyDeletingHeadersRequest) returns (RPCSuccess);
 
+	// 修改非标的Headers
+	rpc updateHTTPHeaderPolicyNonStandardHeaders(UpdateHTTPHeaderPolicyNonStandardHeadersRequest) returns (RPCSuccess);
+
 	// 修改策略CORS设置
 	rpc updateHTTPHeaderPolicyCORS(UpdateHTTPHeaderPolicyCORSRequest) returns (RPCSuccess);
 }
@@ -84,4 +87,10 @@ message UpdateHTTPHeaderPolicyDeletingHeadersRequest {
 message UpdateHTTPHeaderPolicyCORSRequest {
 	int64 httpHeaderPolicyId = 1;
 	bytes corsJSON = 2;
+}
+
+// 修改非标的Headers
+message UpdateHTTPHeaderPolicyNonStandardHeadersRequest {
+	int64 httpHeaderPolicyId = 1; // Header策略ID
+	repeated string headerNames = 2; // 非标Header名称列表
 }
