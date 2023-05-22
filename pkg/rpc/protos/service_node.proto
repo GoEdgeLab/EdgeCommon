@@ -173,6 +173,9 @@ service NodeService {
 	// 查找节点的UAM策略
 	rpc findNodeUAMPolicies(FindNodeUAMPoliciesRequest) returns (FindNodeUAMPoliciesResponse);
 
+	// 查找节点的自定义页面策略
+	rpc findNodeHTTPPagesPolicies(FindNodeHTTPPagesPoliciesRequest) returns (FindNodeHTTPPagesPoliciesResponse);
+
 	// 查找节点调度信息
 	rpc findNodeScheduleInfo(FindNodeScheduleInfoRequest) returns (FindNodeScheduleInfoResponse);
 
@@ -695,6 +698,20 @@ message FindNodeUAMPoliciesResponse {
 	message UAMPolicy {
 		int64 nodeClusterId = 1; // 集群ID
 		bytes uamPolicyJSON = 2; // UAM策略配置
+	}
+}
+
+// 查找节点的自定义页面策略
+message FindNodeHTTPPagesPoliciesRequest {
+	int64 nodeId = 1; // 节点ID
+}
+
+message FindNodeHTTPPagesPoliciesResponse {
+	repeated HTTPPagesPolicy httpPagesPolicies = 1; // 自定义页面策略列表
+
+	message HTTPPagesPolicy {
+		int64 nodeClusterId = 1; // 集群ID
+		bytes httpPagesPolicyJSON = 2; // 自定义页面策略配置
 	}
 }
 

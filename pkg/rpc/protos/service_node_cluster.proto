@@ -140,6 +140,12 @@ service NodeClusterService {
 
 	// 修改集群的全局服务设置
 	rpc updateNodeClusterGlobalServerConfig(UpdateNodeClusterGlobalServerConfigRequest) returns (RPCSuccess);
+
+	// 获取集群的自定义页面设置
+	rpc findNodeClusterHTTPPagesPolicy(FindNodeClusterHTTPPagesPolicyRequest) returns (FindNodeClusterHTTPPagesPolicyResponse);
+
+	// 修改集群的自定义页面设置
+	rpc updateNodeClusterHTTPPagesPolicy(UpdateNodeClusterHTTPPagesPolicyRequest) returns (RPCSuccess);
 }
 
 // 获取所有集群的信息
@@ -456,10 +462,11 @@ message FindEnabledNodeClusterConfigInfoResponse {
 	bool hasMessageReceivers = 4;
 	bool isTOAEnabled = 5;
 	bool hasMetricItems = 6;
-	bool webpIsOn = 7;
-	bool uamIsOn = 10;
+	bool webpIsOn = 7; // 是否定义了WebP策略
+	bool uamIsOn = 10; // 是否定义了UAM策略
 	bool hasSystemServices = 8;
 	bool hasDDoSProtection = 9;
+	bool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略
 }
 
 // 设置集群是否置顶
@@ -526,4 +533,19 @@ message FindNodeClusterGlobalServerConfigResponse {
 message UpdateNodeClusterGlobalServerConfigRequest {
 	int64 nodeClusterId = 1;
 	bytes globalServerConfigJSON = 2;
+}
+
+// 获取集群的自定义页面设置
+message FindNodeClusterHTTPPagesPolicyRequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindNodeClusterHTTPPagesPolicyResponse {
+	bytes httpPagesPolicyJSON = 1; // HTTP自定义页面策略配置
+}
+
+// 修改集群的自定义页面设置
+message UpdateNodeClusterHTTPPagesPolicyRequest {
+	int64 nodeClusterId = 1;
+	bytes httpPagesPolicyJSON = 2; // HTTP自定义页面策略配置
 }

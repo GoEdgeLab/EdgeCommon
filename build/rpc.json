@@ -2881,7 +2881,10 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateHTTPHeaderPolicyNonStandardHeaders(UpdateHTTPHeaderPolicyNonStandardHeadersRequest) returns (RPCSuccess);",
           "doc": "修改非标的Headers",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -5587,6 +5590,15 @@
           "isDeprecated": false
         },
         {
+          "name": "findNodeHTTPPagesPolicies",
+          "requestMessageName": "FindNodeHTTPPagesPoliciesRequest",
+          "responseMessageName": "FindNodeHTTPPagesPoliciesResponse",
+          "code": "rpc findNodeHTTPPagesPolicies(FindNodeHTTPPagesPoliciesRequest) returns (FindNodeHTTPPagesPoliciesResponse);",
+          "doc": "查找节点的自定义页面策略",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
           "name": "findNodeScheduleInfo",
           "requestMessageName": "FindNodeScheduleInfoRequest",
           "responseMessageName": "FindNodeScheduleInfoResponse",
@@ -6190,6 +6202,28 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateNodeClusterGlobalServerConfig(UpdateNodeClusterGlobalServerConfigRequest) returns (RPCSuccess);",
           "doc": "修改集群的全局服务设置",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findNodeClusterHTTPPagesPolicy",
+          "requestMessageName": "FindNodeClusterHTTPPagesPolicyRequest",
+          "responseMessageName": "FindNodeClusterHTTPPagesPolicyResponse",
+          "code": "rpc findNodeClusterHTTPPagesPolicy(FindNodeClusterHTTPPagesPolicyRequest) returns (FindNodeClusterHTTPPagesPolicyResponse);",
+          "doc": "获取集群的自定义页面设置",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateNodeClusterHTTPPagesPolicy",
+          "requestMessageName": "UpdateNodeClusterHTTPPagesPolicyRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateNodeClusterHTTPPagesPolicy(UpdateNodeClusterHTTPPagesPolicyRequest) returns (RPCSuccess);",
+          "doc": "修改集群的自定义页面设置",
           "roles": [
             "admin"
           ],
@@ -17782,7 +17816,7 @@
     },
     {
       "name": "FindEnabledNodeClusterConfigInfoResponse",
-      "code": "message FindEnabledNodeClusterConfigInfoResponse {\n\tbool healthCheckIsOn = 1;\n\tbool hasFirewallActions = 2;\n\tbool hasThresholds = 3;\n\tbool hasMessageReceivers = 4;\n\tbool isTOAEnabled = 5;\n\tbool hasMetricItems = 6;\n\tbool webpIsOn = 7;\n\tbool uamIsOn = 10;\n\tbool hasSystemServices = 8;\n\tbool hasDDoSProtection = 9;\n}",
+      "code": "message FindEnabledNodeClusterConfigInfoResponse {\n\tbool healthCheckIsOn = 1;\n\tbool hasFirewallActions = 2;\n\tbool hasThresholds = 3;\n\tbool hasMessageReceivers = 4;\n\tbool isTOAEnabled = 5;\n\tbool hasMetricItems = 6;\n\tbool webpIsOn = 7; // 是否定义了WebP策略\n\tbool uamIsOn = 10; // 是否定义了UAM策略\n\tbool hasSystemServices = 8;\n\tbool hasDDoSProtection = 9;\n\tbool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略\n}",
       "doc": ""
     },
     {
@@ -18936,6 +18970,16 @@
       "doc": ""
     },
     {
+      "name": "FindNodeClusterHTTPPagesPolicyRequest",
+      "code": "message FindNodeClusterHTTPPagesPolicyRequest {\n\tint64 nodeClusterId = 1;\n}",
+      "doc": "获取集群的自定义页面设置"
+    },
+    {
+      "name": "FindNodeClusterHTTPPagesPolicyResponse",
+      "code": "message FindNodeClusterHTTPPagesPolicyResponse {\n\tbytes httpPagesPolicyJSON = 1; // HTTP自定义页面策略配置\n}",
+      "doc": ""
+    },
+    {
       "name": "FindNodeClusterHealthCheckConfigRequest",
       "code": "message FindNodeClusterHealthCheckConfigRequest {\n\tint64 nodeClusterId = 1;\n}",
       "doc": "查找集群的健康检查配置"
@@ -18993,6 +19037,16 @@
     {
       "name": "FindNodeGlobalServerConfigResponse",
       "code": "message FindNodeGlobalServerConfigResponse {\n\tbytes globalServerConfigJSON = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindNodeHTTPPagesPoliciesRequest",
+      "code": "message FindNodeHTTPPagesPoliciesRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
+      "doc": "查找节点的自定义页面策略"
+    },
+    {
+      "name": "FindNodeHTTPPagesPoliciesResponse",
+      "code": "message FindNodeHTTPPagesPoliciesResponse {\n\trepeated HTTPPagesPolicy httpPagesPolicies = 1; // 自定义页面策略列表\n\n\n\tmessage HTTPPagesPolicy {\n\t\tint64 nodeClusterId = 1; // 集群ID\n\t\tbytes httpPagesPolicyJSON = 2; // 自定义页面策略配置\n\t}\n}",
       "doc": ""
     },
     {
@@ -21884,6 +21938,11 @@
       "name": "UpdateNodeClusterHTTPFirewallPolicyIdRequest",
       "code": "message UpdateNodeClusterHTTPFirewallPolicyIdRequest {\n\tint64 nodeClusterId = 1;\n\tint64 httpFirewallPolicyId = 2;\n}",
       "doc": "修改集群的WAF策略"
+    },
+    {
+      "name": "UpdateNodeClusterHTTPPagesPolicyRequest",
+      "code": "message UpdateNodeClusterHTTPPagesPolicyRequest {\n\tint64 nodeClusterId = 1;\n\tbytes httpPagesPolicyJSON = 2; // HTTP自定义页面策略配置\n}",
+      "doc": "修改集群的自定义页面设置"
     },
     {
       "name": "UpdateNodeClusterHealthCheckRequest",

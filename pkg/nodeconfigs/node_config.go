@@ -24,6 +24,7 @@ import (
 
 var sharedNodeConfig *NodeConfig = nil
 var uamPolicyLocker = &sync.RWMutex{}
+var httpPagesPolicyLocker = &sync.RWMutex{}
 
 type ServerError struct {
 	Id      int64
@@ -98,7 +99,10 @@ type NodeConfig struct {
 	WebPImagePolicies map[int64]*WebPImagePolicy `yaml:"webpImagePolicies" json:"webpImagePolicies"` // clusterId => *WebPImagePolicy
 
 	// UAM相关配置
-	UAMPolicies map[int64]*UAMPolicy `yaml:"uamPolicies" yaml:"uamPolicies" json:"uamPolicies"` // clusterId => *UAMPolicy
+	UAMPolicies map[int64]*UAMPolicy `yaml:"uamPolicies" json:"uamPolicies"` // clusterId => *UAMPolicy
+
+	// 自定义页面
+	HTTPPagesPolicies map[int64]*HTTPPagesPolicy `yaml:"httpPagesPolicies" json:"httpPagesPolicies"` // clusterId => *HTTPPagesPolicy
 
 	// DNS
 	DNSResolver *DNSResolverConfig `yaml:"dnsResolver" json:"dnsResolver"`
@@ -195,6 +199,9 @@ func CloneNodeConfig(nodeConfig *NodeConfig) (*NodeConfig, error) {
 
 	uamPolicyLocker.RLock()
 	defer uamPolicyLocker.RUnlock()
+
+	httpPagesPolicyLocker.RLock()
+	defer httpPagesPolicyLocker.RUnlock()
 
 	var newConfigValue = reflect.Indirect(reflect.ValueOf(&NodeConfig{}))
 	var oldValue = reflect.Indirect(reflect.ValueOf(nodeConfig))
@@ -381,7 +388,7 @@ func (this *NodeConfig) Init(ctx context.Context) (err error, serverErrors []*Se
 
 	// uam policy
 	uamPolicyLocker.RLock()
-	if this.UAMPolicies != nil {
+	if len(this.UAMPolicies) > 0 {
 		for _, policy := range this.UAMPolicies {
 			err = policy.Init()
 			if err != nil {
@@ -391,6 +398,19 @@ func (this *NodeConfig) Init(ctx context.Context) (err error, serverErrors []*Se
 		}
 	}
 	uamPolicyLocker.RUnlock()
+
+	// http pages
+	httpPagesPolicyLocker.RLock()
+	if len(this.HTTPPagesPolicies) > 0 {
+		for _, policy := range this.HTTPPagesPolicies {
+			err = policy.Init()
+			if err != nil {
+				httpPagesPolicyLocker.RUnlock()
+				return
+			}
+		}
+	}
+	httpPagesPolicyLocker.RUnlock()
 
 	// dns resolver
 	if this.DNSResolver != nil {
@@ -630,6 +650,23 @@ func (this *NodeConfig) UpdateUAMPolicies(policies map[int64]*UAMPolicy) {
 	uamPolicyLocker.Lock()
 	defer uamPolicyLocker.Unlock()
 	this.UAMPolicies = policies
+}
+
+// UpdateHTTPPagesPolicies 修改集群自定义页面策略
+func (this *NodeConfig) UpdateHTTPPagesPolicies(policies map[int64]*HTTPPagesPolicy) {
+	httpPagesPolicyLocker.Lock()
+	defer httpPagesPolicyLocker.Unlock()
+	this.HTTPPagesPolicies = policies
+}
+
+// FindHTTPPagesPolicyWithClusterId 使用集群ID查找自定义页面策略
+func (this *NodeConfig) FindHTTPPagesPolicyWithClusterId(clusterId int64) *HTTPPagesPolicy {
+	httpPagesPolicyLocker.RLock()
+	defer httpPagesPolicyLocker.RUnlock()
+	if this.HTTPPagesPolicies == nil {
+		return nil
+	}
+	return this.HTTPPagesPolicies[clusterId]
 }
 
 // SecretHash 对Id和Secret的Hash计算

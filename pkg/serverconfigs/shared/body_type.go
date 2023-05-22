@@ -12,12 +12,12 @@ const (
 func FindAllBodyTypes() []*Definition {
 	return []*Definition{
 		{
-			Name: "读取URL",
-			Code: BodyTypeURL,
-		},
-		{
 			Name: "HTML",
 			Code: BodyTypeHTML,
+		},
+		{
+			Name: "读取URL",
+			Code: BodyTypeURL,
 		},
 	}
 }
