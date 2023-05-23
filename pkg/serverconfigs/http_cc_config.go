@@ -3,6 +3,28 @@
 
 package serverconfigs
 
+type HTTPCCThreshold struct {
+	// stub
+}
+
+func NewHTTPCCThreshold() *HTTPCCThreshold {
+	return &HTTPCCThreshold{}
+}
+
+func (this *HTTPCCThreshold) Merge(threshold *HTTPCCThreshold) {
+	// stub
+}
+
+func (this *HTTPCCThreshold) MergeIfEmpty(threshold *HTTPCCThreshold) {
+	// stub
+}
+
+func (this *HTTPCCThreshold) Clone() *HTTPCCThreshold {
+	return &HTTPCCThreshold{}
+}
+
+var DefaultHTTPCCThresholds = []*HTTPCCThreshold{} // stub
+
 // DefaultHTTPCCConfig 默认的CC配置
 func DefaultHTTPCCConfig() *HTTPCCConfig {
 	return &HTTPCCConfig{}

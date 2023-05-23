@@ -3,9 +3,12 @@
 
 package nodeconfigs
 
+import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs"
+
 // HTTPCCPolicy CC策略
 type HTTPCCPolicy struct {
-	IsOn bool `json:"isOn" yaml:"isOn"`
+	IsOn       bool                             `json:"isOn" yaml:"isOn"`
+	Thresholds []*serverconfigs.HTTPCCThreshold `json:"thresholds" yaml:"thresholds"` // 阈值
 }
 
 func NewHTTPCCPolicy() *HTTPCCPolicy {
