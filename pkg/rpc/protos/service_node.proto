@@ -173,6 +173,9 @@ service NodeService {
 	// 查找节点的UAM策略
 	rpc findNodeUAMPolicies(FindNodeUAMPoliciesRequest) returns (FindNodeUAMPoliciesResponse);
 
+	// 查找节点的HTTP CC策略
+	rpc findNodeHTTPCCPolicies(FindNodeHTTPCCPoliciesRequest) returns (FindNodeHTTPCCPoliciesResponse);
+
 	// 查找节点的自定义页面策略
 	rpc findNodeHTTPPagesPolicies(FindNodeHTTPPagesPoliciesRequest) returns (FindNodeHTTPPagesPoliciesResponse);
 
@@ -698,6 +701,20 @@ message FindNodeUAMPoliciesResponse {
 	message UAMPolicy {
 		int64 nodeClusterId = 1; // 集群ID
 		bytes uamPolicyJSON = 2; // UAM策略配置
+	}
+}
+
+// 查找节点的HTTP CC策略
+message FindNodeHTTPCCPoliciesRequest {
+	int64 nodeId = 1; // 节点ID
+}
+
+message FindNodeHTTPCCPoliciesResponse {
+	repeated HTTPCCPolicy httpCCPolicies = 1; // HTTP CC策略列表
+
+	message HTTPCCPolicy {
+		int64 nodeClusterId = 1; // 集群ID
+		bytes httpCCPolicyJSON = 2; // HTTP CC策略配置
 	}
 }
 

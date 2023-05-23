@@ -24,6 +24,7 @@ import (
 
 var sharedNodeConfig *NodeConfig = nil
 var uamPolicyLocker = &sync.RWMutex{}
+var httpCCPolicyLocker = &sync.RWMutex{}
 var httpPagesPolicyLocker = &sync.RWMutex{}
 
 type ServerError struct {
@@ -100,6 +101,9 @@ type NodeConfig struct {
 
 	// UAM相关配置
 	UAMPolicies map[int64]*UAMPolicy `yaml:"uamPolicies" json:"uamPolicies"` // clusterId => *UAMPolicy
+
+	// CC相关配置
+	HTTPCCPolicies map[int64]*HTTPCCPolicy `yaml:"httpCCPolicies" json:"httpCCPolicies"` // clusterId => *HTTPCCPolicy
 
 	// 自定义页面
 	HTTPPagesPolicies map[int64]*HTTPPagesPolicy `yaml:"httpPagesPolicies" json:"httpPagesPolicies"` // clusterId => *HTTPPagesPolicy
@@ -199,6 +203,9 @@ func CloneNodeConfig(nodeConfig *NodeConfig) (*NodeConfig, error) {
 
 	uamPolicyLocker.RLock()
 	defer uamPolicyLocker.RUnlock()
+
+	httpCCPolicyLocker.RLock()
+	defer httpCCPolicyLocker.RUnlock()
 
 	httpPagesPolicyLocker.RLock()
 	defer httpPagesPolicyLocker.RUnlock()
@@ -399,7 +406,20 @@ func (this *NodeConfig) Init(ctx context.Context) (err error, serverErrors []*Se
 	}
 	uamPolicyLocker.RUnlock()
 
-	// http pages
+	// http cc policy
+	httpCCPolicyLocker.RLock()
+	if len(this.HTTPCCPolicies) > 0 {
+		for _, policy := range this.HTTPCCPolicies {
+			err = policy.Init()
+			if err != nil {
+				httpCCPolicyLocker.RUnlock()
+				return
+			}
+		}
+	}
+	httpCCPolicyLocker.RUnlock()
+
+	// http pages policy
 	httpPagesPolicyLocker.RLock()
 	if len(this.HTTPPagesPolicies) > 0 {
 		for _, policy := range this.HTTPPagesPolicies {
@@ -650,6 +670,23 @@ func (this *NodeConfig) UpdateUAMPolicies(policies map[int64]*UAMPolicy) {
 	uamPolicyLocker.Lock()
 	defer uamPolicyLocker.Unlock()
 	this.UAMPolicies = policies
+}
+
+// FindHTTPCCPolicyWithClusterId 使用集群ID查找CC策略
+func (this *NodeConfig) FindHTTPCCPolicyWithClusterId(clusterId int64) *HTTPCCPolicy {
+	httpCCPolicyLocker.RLock()
+	defer httpCCPolicyLocker.RUnlock()
+	if this.HTTPCCPolicies == nil {
+		return nil
+	}
+	return this.HTTPCCPolicies[clusterId]
+}
+
+// UpdateHTTPCCPolicies 修改集群CC策略
+func (this *NodeConfig) UpdateHTTPCCPolicies(policies map[int64]*HTTPCCPolicy) {
+	httpCCPolicyLocker.Lock()
+	defer httpCCPolicyLocker.Unlock()
+	this.HTTPCCPolicies = policies
 }
 
 // UpdateHTTPPagesPolicies 修改集群自定义页面策略

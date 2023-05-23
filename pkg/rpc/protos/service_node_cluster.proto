@@ -129,6 +129,12 @@ service NodeClusterService {
 	// 设置集群的UAM策略
 	rpc updateNodeClusterUAMPolicy(UpdateNodeClusterUAMPolicyRequest) returns (RPCSuccess);
 
+	// 读取集群的HTTP CC策略
+	rpc findEnabledNodeClusterHTTPCCPolicy(FindEnabledNodeClusterHTTPCCPolicyRequest) returns (FindEnabledNodeClusterHTTPCCPolicyResponse);
+
+	// 设置集群的HTTP CC策略
+	rpc updateNodeClusterHTTPCCPolicy(UpdateNodeClusterHTTPCCPolicyRequest) returns (RPCSuccess);
+
 	// 获取集群的DDoS设置
 	rpc findNodeClusterDDoSProtection(FindNodeClusterDDoSProtectionRequest) returns (FindNodeClusterDDoSProtectionResponse);
 
@@ -464,6 +470,7 @@ message FindEnabledNodeClusterConfigInfoResponse {
 	bool hasMetricItems = 6;
 	bool webpIsOn = 7; // 是否定义了WebP策略
 	bool uamIsOn = 10; // 是否定义了UAM策略
+	bool httpCCIsOn = 12; // 是否定义了CC策略
 	bool hasSystemServices = 8;
 	bool hasDDoSProtection = 9;
 	bool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略
@@ -503,6 +510,21 @@ message FindEnabledNodeClusterUAMPolicyResponse {
 message UpdateNodeClusterUAMPolicyRequest {
 	int64 nodeClusterId = 1;
 	bytes uamPolicyJSON = 2;
+}
+
+// 读取集群的HTTP CC策略
+message FindEnabledNodeClusterHTTPCCPolicyRequest {
+	int64 nodeClusterId = 1;
+}
+
+message FindEnabledNodeClusterHTTPCCPolicyResponse {
+	bytes httpCCPolicyJSON = 1;
+}
+
+// 设置集群的HTTP CC策略
+message UpdateNodeClusterHTTPCCPolicyRequest {
+	int64 nodeClusterId = 1;
+	bytes httpCCPolicyJSON = 2;
 }
 
 // 获取集群的DDoS设置

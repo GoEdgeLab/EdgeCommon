@@ -5590,12 +5590,23 @@
           "isDeprecated": false
         },
         {
+          "name": "findNodeHTTPCCPolicies",
+          "requestMessageName": "FindNodeHTTPCCPoliciesRequest",
+          "responseMessageName": "FindNodeHTTPCCPoliciesResponse",
+          "code": "rpc findNodeHTTPCCPolicies(FindNodeHTTPCCPoliciesRequest) returns (FindNodeHTTPCCPoliciesResponse);",
+          "doc": "查找节点的HTTP CC策略",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
           "name": "findNodeHTTPPagesPolicies",
           "requestMessageName": "FindNodeHTTPPagesPoliciesRequest",
           "responseMessageName": "FindNodeHTTPPagesPoliciesResponse",
           "code": "rpc findNodeHTTPPagesPolicies(FindNodeHTTPPagesPoliciesRequest) returns (FindNodeHTTPPagesPoliciesResponse);",
           "doc": "查找节点的自定义页面策略",
-          "roles": [],
+          "roles": [
+            "node"
+          ],
           "isDeprecated": false
         },
         {
@@ -6158,6 +6169,28 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateNodeClusterUAMPolicy(UpdateNodeClusterUAMPolicyRequest) returns (RPCSuccess);",
           "doc": "设置集群的UAM策略",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findEnabledNodeClusterHTTPCCPolicy",
+          "requestMessageName": "FindEnabledNodeClusterHTTPCCPolicyRequest",
+          "responseMessageName": "FindEnabledNodeClusterHTTPCCPolicyResponse",
+          "code": "rpc findEnabledNodeClusterHTTPCCPolicy(FindEnabledNodeClusterHTTPCCPolicyRequest) returns (FindEnabledNodeClusterHTTPCCPolicyResponse);",
+          "doc": "读取集群的HTTP CC策略",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateNodeClusterHTTPCCPolicy",
+          "requestMessageName": "UpdateNodeClusterHTTPCCPolicyRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateNodeClusterHTTPCCPolicy(UpdateNodeClusterHTTPCCPolicyRequest) returns (RPCSuccess);",
+          "doc": "设置集群的HTTP CC策略",
           "roles": [
             "admin"
           ],
@@ -17816,7 +17849,7 @@
     },
     {
       "name": "FindEnabledNodeClusterConfigInfoResponse",
-      "code": "message FindEnabledNodeClusterConfigInfoResponse {\n\tbool healthCheckIsOn = 1;\n\tbool hasFirewallActions = 2;\n\tbool hasThresholds = 3;\n\tbool hasMessageReceivers = 4;\n\tbool isTOAEnabled = 5;\n\tbool hasMetricItems = 6;\n\tbool webpIsOn = 7; // 是否定义了WebP策略\n\tbool uamIsOn = 10; // 是否定义了UAM策略\n\tbool hasSystemServices = 8;\n\tbool hasDDoSProtection = 9;\n\tbool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略\n}",
+      "code": "message FindEnabledNodeClusterConfigInfoResponse {\n\tbool healthCheckIsOn = 1;\n\tbool hasFirewallActions = 2;\n\tbool hasThresholds = 3;\n\tbool hasMessageReceivers = 4;\n\tbool isTOAEnabled = 5;\n\tbool hasMetricItems = 6;\n\tbool webpIsOn = 7; // 是否定义了WebP策略\n\tbool uamIsOn = 10; // 是否定义了UAM策略\n\tbool httpCCIsOn = 12; // 是否定义了CC策略\n\tbool hasSystemServices = 8;\n\tbool hasDDoSProtection = 9;\n\tbool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略\n}",
       "doc": ""
     },
     {
@@ -17837,6 +17870,16 @@
     {
       "name": "FindEnabledNodeClusterFirewallActionResponse",
       "code": "message FindEnabledNodeClusterFirewallActionResponse {\n\tNodeClusterFirewallAction nodeClusterFirewallAction = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindEnabledNodeClusterHTTPCCPolicyRequest",
+      "code": "message FindEnabledNodeClusterHTTPCCPolicyRequest {\n\tint64 nodeClusterId = 1;\n}",
+      "doc": "读取集群的HTTP CC策略"
+    },
+    {
+      "name": "FindEnabledNodeClusterHTTPCCPolicyResponse",
+      "code": "message FindEnabledNodeClusterHTTPCCPolicyResponse {\n\tbytes httpCCPolicyJSON = 1;\n}",
       "doc": ""
     },
     {
@@ -19037,6 +19080,16 @@
     {
       "name": "FindNodeGlobalServerConfigResponse",
       "code": "message FindNodeGlobalServerConfigResponse {\n\tbytes globalServerConfigJSON = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindNodeHTTPCCPoliciesRequest",
+      "code": "message FindNodeHTTPCCPoliciesRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
+      "doc": "查找节点的HTTP CC策略"
+    },
+    {
+      "name": "FindNodeHTTPCCPoliciesResponse",
+      "code": "message FindNodeHTTPCCPoliciesResponse {\n\trepeated HTTPCCPolicy httpCCPolicies = 1; // HTTP CC策略列表\n\n\n\tmessage HTTPCCPolicy {\n\t\tint64 nodeClusterId = 1; // 集群ID\n\t\tbytes httpCCPolicyJSON = 2; // HTTP CC策略配置\n\t}\n}",
       "doc": ""
     },
     {
@@ -21928,6 +21981,11 @@
       "name": "UpdateNodeClusterGlobalServerConfigRequest",
       "code": "message UpdateNodeClusterGlobalServerConfigRequest {\n\tint64 nodeClusterId = 1;\n\tbytes globalServerConfigJSON = 2;\n}",
       "doc": "修改集群的全局服务设置"
+    },
+    {
+      "name": "UpdateNodeClusterHTTPCCPolicyRequest",
+      "code": "message UpdateNodeClusterHTTPCCPolicyRequest {\n\tint64 nodeClusterId = 1;\n\tbytes httpCCPolicyJSON = 2;\n}",
+      "doc": "设置集群的HTTP CC策略"
     },
     {
       "name": "UpdateNodeClusterHTTPCachePolicyIdRequest",
