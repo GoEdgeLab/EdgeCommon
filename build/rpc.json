@@ -5595,7 +5595,9 @@
           "responseMessageName": "FindNodeHTTPCCPoliciesResponse",
           "code": "rpc findNodeHTTPCCPolicies(FindNodeHTTPCCPoliciesRequest) returns (FindNodeHTTPCCPoliciesResponse);",
           "doc": "查找节点的HTTP CC策略",
-          "roles": [],
+          "roles": [
+            "node"
+          ],
           "isDeprecated": false
         },
         {
@@ -5732,6 +5734,17 @@
           "responseMessageName": "FindNodeActionResponse",
           "code": "rpc findNodeAction(FindNodeActionRequest) returns (FindNodeActionResponse);",
           "doc": "查找单个节点动作",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateNodeActionOrders",
+          "requestMessageName": "UpdateNodeActionOrdersRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateNodeActionOrders(UpdateNodeActionOrdersRequest) returns (RPCSuccess);",
+          "doc": "设置节点动作排序",
           "roles": [
             "admin"
           ],
@@ -21951,6 +21964,11 @@
       "name": "UpdateNodeAPIConfigRequest",
       "code": "message UpdateNodeAPIConfigRequest {\n\tint64 nodeId = 1;\n\tbytes apiNodeAddrsJSON = 2;\n}",
       "doc": "修改某个节点的API相关配置"
+    },
+    {
+      "name": "UpdateNodeActionOrdersRequest",
+      "code": "message UpdateNodeActionOrdersRequest {\n\trepeated int64 nodeActionIds = 1; // 节点动作ID列表\n}",
+      "doc": "设置节点动作排序"
     },
     {
       "name": "UpdateNodeActionRequest",

@@ -22,6 +22,9 @@ service NodeActionService {
 
 	// 查找单个节点动作
 	rpc findNodeAction(FindNodeActionRequest) returns (FindNodeActionResponse);
+
+	// 设置节点动作排序
+	rpc updateNodeActionOrders(UpdateNodeActionOrdersRequest) returns (RPCSuccess);
 }
 
 // 添加动作
@@ -68,4 +71,9 @@ message FindNodeActionRequest {
 
 message FindNodeActionResponse {
 	NodeAction nodeAction = 1;
+}
+
+// 设置节点动作排序
+message UpdateNodeActionOrdersRequest {
+	repeated int64 nodeActionIds = 1; // 节点动作ID列表
 }
