@@ -35,6 +35,7 @@ type NodeActionParamDefinition struct {
 	Operators   []NodeActionOperator `json:"operators"`
 	ValueName   string               `json:"valueName"`
 	ValueType   string               `json:"valueType"`
+	HasDuration bool                 `json:"hasDuration"`
 }
 
 func FindAllNodeActionParamDefinitions() []*NodeActionParamDefinition {
@@ -46,6 +47,7 @@ func FindAllNodeActionParamDefinitions() []*NodeActionParamDefinition {
 			Operators:   allNodeActionNumberOperators,
 			ValueName:   "对比带宽",
 			ValueType:   "bandwidth",
+			HasDuration: true,
 		},
 		{
 			Code:        NodeActionParamBandwidthIn,
@@ -54,6 +56,7 @@ func FindAllNodeActionParamDefinitions() []*NodeActionParamDefinition {
 			Operators:   allNodeActionNumberOperators,
 			ValueName:   "对比带宽",
 			ValueType:   "bandwidth",
+			HasDuration: true,
 		},
 		{
 			Code:        NodeActionParamMonthlyTrafficOut,
@@ -62,6 +65,7 @@ func FindAllNodeActionParamDefinitions() []*NodeActionParamDefinition {
 			Operators:   allNodeActionNumberOperators,
 			ValueName:   "对比流量",
 			ValueType:   "traffic",
+			HasDuration: false,
 		},
 		{
 			Code:        NodeActionParamDailyTrafficOut,
@@ -70,6 +74,7 @@ func FindAllNodeActionParamDefinitions() []*NodeActionParamDefinition {
 			Operators:   allNodeActionNumberOperators,
 			ValueName:   "对比流量",
 			ValueType:   "traffic",
+			HasDuration: false,
 		},
 		{
 			Code:        NodeActionParamCPUUsage,
@@ -78,6 +83,7 @@ func FindAllNodeActionParamDefinitions() []*NodeActionParamDefinition {
 			Operators:   allNodeActionNumberOperators,
 			ValueName:   "CPU利用率",
 			ValueType:   "cpu",
+			HasDuration: true,
 		},
 		{
 			Code:        NodeActionParamMemoryUsage,
@@ -86,6 +92,7 @@ func FindAllNodeActionParamDefinitions() []*NodeActionParamDefinition {
 			Operators:   allNodeActionNumberOperators,
 			ValueName:   "内存利用率",
 			ValueType:   "memory",
+			HasDuration: true,
 		},
 		{
 			Code:        NodeActionParamLoad,
@@ -94,12 +101,14 @@ func FindAllNodeActionParamDefinitions() []*NodeActionParamDefinition {
 			Operators:   allNodeActionNumberOperators,
 			ValueName:   "系统负载",
 			ValueType:   "load",
+			HasDuration: true,
 		},
 		{
 			Code:        NodeActionParamHealthCheckFailure,
 			Name:        "健康检查失败",
 			Description: "当前节点任一IP健康检查失败。",
 			Operators:   nil,
+			HasDuration: true,
 		},
 	}
 }
@@ -355,7 +364,7 @@ func FindAllNodeActionDefinitions() []*shared.Definition {
 		{
 			Code:        NodeActionCodeSwitchToBackupIP,
 			Name:        "切换到备用IP",
-			Description: "将当前节点的IP切换到当前节点配置的备用IP",
+			Description: "将当前节点的IP切换到当前节点配置的备用IP。",
 		},
 
 		{
@@ -371,13 +380,13 @@ func FindAllNodeActionDefinitions() []*shared.Definition {
 		{
 			Code:        NodeActionCodeEnableBackupIP,
 			Name:        "启用备用IP",
-			Description: "保持当前节点的IP并启用当前节点配置的备用IP",
+			Description: "保持当前节点的IP并启用当前节点配置的备用IP。",
 		},
 
 		{
 			Code:        NodeActionCodeWebHook,
 			Name:        "WebHook",
-			Description: "通过WebHook发送通知到URL",
+			Description: "通过WebHook发送通知到URL。",
 		},
 	}
 }
