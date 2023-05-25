@@ -19,6 +19,7 @@ func DefaultGlobalServerConfig() *GlobalServerConfig {
 	config.Stat.Upload.MaxProviders = 32
 	config.Stat.Upload.MaxSystems = 64
 	config.Stat.Upload.MaxBrowsers = 64
+
 	return config
 }
 
@@ -31,7 +32,8 @@ type GlobalServerConfig struct {
 		DefaultDomain        string                `yaml:"defaultDomain" json:"defaultDomain"`               // 默认的域名
 		DomainMismatchAction *DomainMismatchAction `yaml:"domainMismatchAction" json:"domainMismatchAction"` // 不匹配时采取的动作
 
-		SupportsLowVersionHTTP bool `yaml:"supportsLowVersionHTTP" json:"supportsLowVersionHTTP"` // 是否启用低版本HTTP
+		SupportsLowVersionHTTP  bool `yaml:"supportsLowVersionHTTP" json:"supportsLowVersionHTTP"`   // 是否启用低版本HTTP
+		MatchCertFromAllServers bool `yaml:"matchCertFromAllServers" json:"matchCertFromAllServers"` // 从所有服务中匹配证书（不要轻易开启！）
 	} `yaml:"httpAll" json:"httpAll"` // HTTP统一配置
 
 	HTTPAccessLog struct {
