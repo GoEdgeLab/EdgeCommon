@@ -22,6 +22,9 @@ service AuthorityKeyService {
 
 	// 检查版本信息
 	rpc checkAuthority(CheckAuthorityRequest) returns (CheckAuthorityResponse);
+
+	// 查询授权容量
+	rpc findAuthorityQuota(FindAuthorityQuotaRequest) returns (FindAuthorityQuotaResponse);
 }
 
 // 设置Key
@@ -66,4 +69,14 @@ message CheckAuthorityRequest {
 message CheckAuthorityResponse {
 	bool isPlus = 1;
 	string edition = 2;
+}
+
+// 查询授权容量
+message FindAuthorityQuotaRequest {
+
+}
+
+message FindAuthorityQuotaResponse {
+	int32 maxNodes = 1; // 节点数限制
+	int32 countNodes = 2; // 已占用节点数
 }
