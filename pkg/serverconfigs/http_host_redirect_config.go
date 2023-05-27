@@ -55,6 +55,7 @@ type HTTPHostRedirectConfig struct {
 	PortAfterScheme string   `yaml:"portAfterScheme" json:"portAfterScheme"` // 跳转之后的协议
 
 	beforePortRanges [][2]int // [[from, to], {from2, to2}, ...]
+	beforeHasQuery   bool
 }
 
 // Init 初始化
@@ -65,6 +66,8 @@ func (this *HTTPHostRedirectConfig) Init() error {
 
 	if this.Type == HTTPHostRedirectTypeURL {
 		if !this.MatchRegexp {
+			this.beforeHasQuery = strings.Contains(this.BeforeURL, "?")
+
 			u, err := url.Parse(this.BeforeURL)
 			if err != nil {
 				return err
@@ -115,6 +118,11 @@ func (this *HTTPHostRedirectConfig) Init() error {
 // RealBeforeURL 跳转前URL
 func (this *HTTPHostRedirectConfig) RealBeforeURL() string {
 	return this.realBeforeURL
+}
+
+// BeforeHasQuery 判断跳转前URL是否有查询参数
+func (this *HTTPHostRedirectConfig) BeforeHasQuery() bool {
+	return this.beforeHasQuery
 }
 
 // BeforeURLRegexp 跳转前URL正则表达式
