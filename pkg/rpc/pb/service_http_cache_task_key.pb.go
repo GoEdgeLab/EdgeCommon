@@ -267,6 +267,62 @@ func (x *UpdateHTTPCacheTaskKeysStatusRequest) GetKeyResults() []*UpdateHTTPCach
 	return nil
 }
 
+// 计算当天已经清理的Key数量
+type CountHTTPCacheTaskKeysWithDayRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	KeyType string `protobuf:"bytes,1,opt,name=keyType,proto3" json:"keyType,omitempty"` // Key类型：清理：purge，预热：fetch
+	Day     string `protobuf:"bytes,2,opt,name=day,proto3" json:"day,omitempty"`         // 日期，格式：YYYYMMDD
+}
+
+func (x *CountHTTPCacheTaskKeysWithDayRequest) Reset() {
+	*x = CountHTTPCacheTaskKeysWithDayRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_http_cache_task_key_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CountHTTPCacheTaskKeysWithDayRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountHTTPCacheTaskKeysWithDayRequest) ProtoMessage() {}
+
+func (x *CountHTTPCacheTaskKeysWithDayRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_http_cache_task_key_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountHTTPCacheTaskKeysWithDayRequest.ProtoReflect.Descriptor instead.
+func (*CountHTTPCacheTaskKeysWithDayRequest) Descriptor() ([]byte, []int) {
+	return file_service_http_cache_task_key_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *CountHTTPCacheTaskKeysWithDayRequest) GetKeyType() string {
+	if x != nil {
+		return x.KeyType
+	}
+	return ""
+}
+
+func (x *CountHTTPCacheTaskKeysWithDayRequest) GetDay() string {
+	if x != nil {
+		return x.Day
+	}
+	return ""
+}
+
 type ValidateHTTPCacheTaskKeysResponse_FailKey struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -279,7 +335,7 @@ type ValidateHTTPCacheTaskKeysResponse_FailKey struct {
 func (x *ValidateHTTPCacheTaskKeysResponse_FailKey) Reset() {
 	*x = ValidateHTTPCacheTaskKeysResponse_FailKey{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_cache_task_key_proto_msgTypes[5]
+		mi := &file_service_http_cache_task_key_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -292,7 +348,7 @@ func (x *ValidateHTTPCacheTaskKeysResponse_FailKey) String() string {
 func (*ValidateHTTPCacheTaskKeysResponse_FailKey) ProtoMessage() {}
 
 func (x *ValidateHTTPCacheTaskKeysResponse_FailKey) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_cache_task_key_proto_msgTypes[5]
+	mi := &file_service_http_cache_task_key_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -335,7 +391,7 @@ type UpdateHTTPCacheTaskKeysStatusRequest_KeyResult struct {
 func (x *UpdateHTTPCacheTaskKeysStatusRequest_KeyResult) Reset() {
 	*x = UpdateHTTPCacheTaskKeysStatusRequest_KeyResult{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_http_cache_task_key_proto_msgTypes[6]
+		mi := &file_service_http_cache_task_key_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -348,7 +404,7 @@ func (x *UpdateHTTPCacheTaskKeysStatusRequest_KeyResult) String() string {
 func (*UpdateHTTPCacheTaskKeysStatusRequest_KeyResult) ProtoMessage() {}
 
 func (x *UpdateHTTPCacheTaskKeysStatusRequest_KeyResult) ProtoReflect() protoreflect.Message {
-	mi := &file_service_http_cache_task_key_proto_msgTypes[6]
+	mi := &file_service_http_cache_task_key_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -432,29 +488,40 @@ var file_service_http_cache_task_key_proto_rawDesc = []byte{
 	0x0d, 0x6e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x03, 0x52, 0x0d, 0x6e, 0x6f, 0x64, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
 	0x72, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x03, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x32, 0xcb, 0x02, 0x0a, 0x17, 0x48, 0x54,
-	0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79, 0x53, 0x65,
-	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x68, 0x0a, 0x19, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74,
-	0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x4b, 0x65,
-	0x79, 0x73, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65,
+	0x28, 0x09, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x22, 0x52, 0x0a, 0x24, 0x43, 0x6f, 0x75,
+	0x6e, 0x74, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x4b,
+	0x65, 0x79, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x61, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x18, 0x0a, 0x07, 0x6b, 0x65, 0x79, 0x54, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x07, 0x6b, 0x65, 0x79, 0x54, 0x79, 0x70, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x64,
+	0x61, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x64, 0x61, 0x79, 0x32, 0xac, 0x03,
+	0x0a, 0x17, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x4b,
+	0x65, 0x79, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x68, 0x0a, 0x19, 0x76, 0x61, 0x6c,
+	0x69, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61,
+	0x73, 0x6b, 0x4b, 0x65, 0x79, 0x73, 0x12, 0x24, 0x2e, 0x70, 0x62, 0x2e, 0x56, 0x61, 0x6c, 0x69,
+	0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61, 0x73,
+	0x6b, 0x4b, 0x65, 0x79, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x70,
+	0x62, 0x2e, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61,
+	0x63, 0x68, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x6b, 0x0a, 0x1a, 0x66, 0x69, 0x6e, 0x64, 0x44, 0x6f, 0x69, 0x6e, 0x67,
 	0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79,
-	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x56, 0x61,
-	0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54,
-	0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x6b, 0x0a, 0x1a, 0x66, 0x69, 0x6e, 0x64, 0x44, 0x6f, 0x69, 0x6e, 0x67, 0x48, 0x54, 0x54, 0x50,
-	0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79, 0x73, 0x12, 0x25, 0x2e,
-	0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x44, 0x6f, 0x69, 0x6e, 0x67, 0x48, 0x54, 0x54, 0x50,
-	0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79, 0x73, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x44, 0x6f,
-	0x69, 0x6e, 0x67, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61, 0x73, 0x6b,
-	0x4b, 0x65, 0x79, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x59, 0x0a, 0x1d,
-	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54,
-	0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x28, 0x2e,
-	0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63,
-	0x68, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43,
-	0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x12, 0x25, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x44, 0x6f, 0x69, 0x6e, 0x67,
+	0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69,
+	0x6e, 0x64, 0x44, 0x6f, 0x69, 0x6e, 0x67, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65,
+	0x54, 0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x59, 0x0a, 0x1d, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61,
+	0x63, 0x68, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x12, 0x28, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x48, 0x54, 0x54,
+	0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79, 0x73, 0x53, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62,
+	0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x5f, 0x0a, 0x1d, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65, 0x54, 0x61, 0x73,
+	0x6b, 0x4b, 0x65, 0x79, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x61, 0x79, 0x12, 0x28, 0x2e, 0x70,
+	0x62, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x48, 0x54, 0x54, 0x50, 0x43, 0x61, 0x63, 0x68, 0x65,
+	0x54, 0x61, 0x73, 0x6b, 0x4b, 0x65, 0x79, 0x73, 0x57, 0x69, 0x74, 0x68, 0x44, 0x61, 0x79, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x43,
+	0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04,
+	0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -469,33 +536,37 @@ func file_service_http_cache_task_key_proto_rawDescGZIP() []byte {
 	return file_service_http_cache_task_key_proto_rawDescData
 }
 
-var file_service_http_cache_task_key_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_service_http_cache_task_key_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_service_http_cache_task_key_proto_goTypes = []interface{}{
 	(*ValidateHTTPCacheTaskKeysRequest)(nil),               // 0: pb.ValidateHTTPCacheTaskKeysRequest
 	(*ValidateHTTPCacheTaskKeysResponse)(nil),              // 1: pb.ValidateHTTPCacheTaskKeysResponse
 	(*FindDoingHTTPCacheTaskKeysRequest)(nil),              // 2: pb.FindDoingHTTPCacheTaskKeysRequest
 	(*FindDoingHTTPCacheTaskKeysResponse)(nil),             // 3: pb.FindDoingHTTPCacheTaskKeysResponse
 	(*UpdateHTTPCacheTaskKeysStatusRequest)(nil),           // 4: pb.UpdateHTTPCacheTaskKeysStatusRequest
-	(*ValidateHTTPCacheTaskKeysResponse_FailKey)(nil),      // 5: pb.ValidateHTTPCacheTaskKeysResponse.FailKey
-	(*UpdateHTTPCacheTaskKeysStatusRequest_KeyResult)(nil), // 6: pb.UpdateHTTPCacheTaskKeysStatusRequest.KeyResult
-	(*HTTPCacheTaskKey)(nil),                               // 7: pb.HTTPCacheTaskKey
-	(*RPCSuccess)(nil),                                     // 8: pb.RPCSuccess
+	(*CountHTTPCacheTaskKeysWithDayRequest)(nil),           // 5: pb.CountHTTPCacheTaskKeysWithDayRequest
+	(*ValidateHTTPCacheTaskKeysResponse_FailKey)(nil),      // 6: pb.ValidateHTTPCacheTaskKeysResponse.FailKey
+	(*UpdateHTTPCacheTaskKeysStatusRequest_KeyResult)(nil), // 7: pb.UpdateHTTPCacheTaskKeysStatusRequest.KeyResult
+	(*HTTPCacheTaskKey)(nil),                               // 8: pb.HTTPCacheTaskKey
+	(*RPCSuccess)(nil),                                     // 9: pb.RPCSuccess
+	(*RPCCountResponse)(nil),                               // 10: pb.RPCCountResponse
 }
 var file_service_http_cache_task_key_proto_depIdxs = []int32{
-	5, // 0: pb.ValidateHTTPCacheTaskKeysResponse.failKeys:type_name -> pb.ValidateHTTPCacheTaskKeysResponse.FailKey
-	7, // 1: pb.FindDoingHTTPCacheTaskKeysResponse.httpCacheTaskKeys:type_name -> pb.HTTPCacheTaskKey
-	6, // 2: pb.UpdateHTTPCacheTaskKeysStatusRequest.keyResults:type_name -> pb.UpdateHTTPCacheTaskKeysStatusRequest.KeyResult
-	0, // 3: pb.HTTPCacheTaskKeyService.validateHTTPCacheTaskKeys:input_type -> pb.ValidateHTTPCacheTaskKeysRequest
-	2, // 4: pb.HTTPCacheTaskKeyService.findDoingHTTPCacheTaskKeys:input_type -> pb.FindDoingHTTPCacheTaskKeysRequest
-	4, // 5: pb.HTTPCacheTaskKeyService.updateHTTPCacheTaskKeysStatus:input_type -> pb.UpdateHTTPCacheTaskKeysStatusRequest
-	1, // 6: pb.HTTPCacheTaskKeyService.validateHTTPCacheTaskKeys:output_type -> pb.ValidateHTTPCacheTaskKeysResponse
-	3, // 7: pb.HTTPCacheTaskKeyService.findDoingHTTPCacheTaskKeys:output_type -> pb.FindDoingHTTPCacheTaskKeysResponse
-	8, // 8: pb.HTTPCacheTaskKeyService.updateHTTPCacheTaskKeysStatus:output_type -> pb.RPCSuccess
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	6,  // 0: pb.ValidateHTTPCacheTaskKeysResponse.failKeys:type_name -> pb.ValidateHTTPCacheTaskKeysResponse.FailKey
+	8,  // 1: pb.FindDoingHTTPCacheTaskKeysResponse.httpCacheTaskKeys:type_name -> pb.HTTPCacheTaskKey
+	7,  // 2: pb.UpdateHTTPCacheTaskKeysStatusRequest.keyResults:type_name -> pb.UpdateHTTPCacheTaskKeysStatusRequest.KeyResult
+	0,  // 3: pb.HTTPCacheTaskKeyService.validateHTTPCacheTaskKeys:input_type -> pb.ValidateHTTPCacheTaskKeysRequest
+	2,  // 4: pb.HTTPCacheTaskKeyService.findDoingHTTPCacheTaskKeys:input_type -> pb.FindDoingHTTPCacheTaskKeysRequest
+	4,  // 5: pb.HTTPCacheTaskKeyService.updateHTTPCacheTaskKeysStatus:input_type -> pb.UpdateHTTPCacheTaskKeysStatusRequest
+	5,  // 6: pb.HTTPCacheTaskKeyService.countHTTPCacheTaskKeysWithDay:input_type -> pb.CountHTTPCacheTaskKeysWithDayRequest
+	1,  // 7: pb.HTTPCacheTaskKeyService.validateHTTPCacheTaskKeys:output_type -> pb.ValidateHTTPCacheTaskKeysResponse
+	3,  // 8: pb.HTTPCacheTaskKeyService.findDoingHTTPCacheTaskKeys:output_type -> pb.FindDoingHTTPCacheTaskKeysResponse
+	9,  // 9: pb.HTTPCacheTaskKeyService.updateHTTPCacheTaskKeysStatus:output_type -> pb.RPCSuccess
+	10, // 10: pb.HTTPCacheTaskKeyService.countHTTPCacheTaskKeysWithDay:output_type -> pb.RPCCountResponse
+	7,  // [7:11] is the sub-list for method output_type
+	3,  // [3:7] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_service_http_cache_task_key_proto_init() }
@@ -567,7 +638,7 @@ func file_service_http_cache_task_key_proto_init() {
 			}
 		}
 		file_service_http_cache_task_key_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ValidateHTTPCacheTaskKeysResponse_FailKey); i {
+			switch v := v.(*CountHTTPCacheTaskKeysWithDayRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -579,6 +650,18 @@ func file_service_http_cache_task_key_proto_init() {
 			}
 		}
 		file_service_http_cache_task_key_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ValidateHTTPCacheTaskKeysResponse_FailKey); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_http_cache_task_key_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateHTTPCacheTaskKeysStatusRequest_KeyResult); i {
 			case 0:
 				return &v.state
@@ -597,7 +680,7 @@ func file_service_http_cache_task_key_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_http_cache_task_key_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -629,6 +712,8 @@ type HTTPCacheTaskKeyServiceClient interface {
 	FindDoingHTTPCacheTaskKeys(ctx context.Context, in *FindDoingHTTPCacheTaskKeysRequest, opts ...grpc.CallOption) (*FindDoingHTTPCacheTaskKeysResponse, error)
 	// 更新一组Key状态
 	UpdateHTTPCacheTaskKeysStatus(ctx context.Context, in *UpdateHTTPCacheTaskKeysStatusRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 计算当天已经清理的Key数量
+	CountHTTPCacheTaskKeysWithDay(ctx context.Context, in *CountHTTPCacheTaskKeysWithDayRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 }
 
 type hTTPCacheTaskKeyServiceClient struct {
@@ -666,6 +751,15 @@ func (c *hTTPCacheTaskKeyServiceClient) UpdateHTTPCacheTaskKeysStatus(ctx contex
 	return out, nil
 }
 
+func (c *hTTPCacheTaskKeyServiceClient) CountHTTPCacheTaskKeysWithDay(ctx context.Context, in *CountHTTPCacheTaskKeysWithDayRequest, opts ...grpc.CallOption) (*RPCCountResponse, error) {
+	out := new(RPCCountResponse)
+	err := c.cc.Invoke(ctx, "/pb.HTTPCacheTaskKeyService/countHTTPCacheTaskKeysWithDay", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HTTPCacheTaskKeyServiceServer is the server API for HTTPCacheTaskKeyService service.
 type HTTPCacheTaskKeyServiceServer interface {
 	// 校验缓存Key
@@ -674,6 +768,8 @@ type HTTPCacheTaskKeyServiceServer interface {
 	FindDoingHTTPCacheTaskKeys(context.Context, *FindDoingHTTPCacheTaskKeysRequest) (*FindDoingHTTPCacheTaskKeysResponse, error)
 	// 更新一组Key状态
 	UpdateHTTPCacheTaskKeysStatus(context.Context, *UpdateHTTPCacheTaskKeysStatusRequest) (*RPCSuccess, error)
+	// 计算当天已经清理的Key数量
+	CountHTTPCacheTaskKeysWithDay(context.Context, *CountHTTPCacheTaskKeysWithDayRequest) (*RPCCountResponse, error)
 }
 
 // UnimplementedHTTPCacheTaskKeyServiceServer can be embedded to have forward compatible implementations.
@@ -688,6 +784,9 @@ func (*UnimplementedHTTPCacheTaskKeyServiceServer) FindDoingHTTPCacheTaskKeys(co
 }
 func (*UnimplementedHTTPCacheTaskKeyServiceServer) UpdateHTTPCacheTaskKeysStatus(context.Context, *UpdateHTTPCacheTaskKeysStatusRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPCacheTaskKeysStatus not implemented")
+}
+func (*UnimplementedHTTPCacheTaskKeyServiceServer) CountHTTPCacheTaskKeysWithDay(context.Context, *CountHTTPCacheTaskKeysWithDayRequest) (*RPCCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountHTTPCacheTaskKeysWithDay not implemented")
 }
 
 func RegisterHTTPCacheTaskKeyServiceServer(s *grpc.Server, srv HTTPCacheTaskKeyServiceServer) {
@@ -748,6 +847,24 @@ func _HTTPCacheTaskKeyService_UpdateHTTPCacheTaskKeysStatus_Handler(srv interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HTTPCacheTaskKeyService_CountHTTPCacheTaskKeysWithDay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountHTTPCacheTaskKeysWithDayRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPCacheTaskKeyServiceServer).CountHTTPCacheTaskKeysWithDay(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.HTTPCacheTaskKeyService/CountHTTPCacheTaskKeysWithDay",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPCacheTaskKeyServiceServer).CountHTTPCacheTaskKeysWithDay(ctx, req.(*CountHTTPCacheTaskKeysWithDayRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _HTTPCacheTaskKeyService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.HTTPCacheTaskKeyService",
 	HandlerType: (*HTTPCacheTaskKeyServiceServer)(nil),
@@ -763,6 +880,10 @@ var _HTTPCacheTaskKeyService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "updateHTTPCacheTaskKeysStatus",
 			Handler:    _HTTPCacheTaskKeyService_UpdateHTTPCacheTaskKeysStatus_Handler,
+		},
+		{
+			MethodName: "countHTTPCacheTaskKeysWithDay",
+			Handler:    _HTTPCacheTaskKeyService_CountHTTPCacheTaskKeysWithDay_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

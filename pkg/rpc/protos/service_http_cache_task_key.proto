@@ -16,6 +16,9 @@ service HTTPCacheTaskKeyService {
 
 	// 更新一组Key状态
 	rpc updateHTTPCacheTaskKeysStatus(UpdateHTTPCacheTaskKeysStatusRequest) returns (RPCSuccess);
+
+	// 计算当天已经清理的Key数量
+	rpc countHTTPCacheTaskKeysWithDay(CountHTTPCacheTaskKeysWithDayRequest) returns (RPCCountResponse);
 }
 
 // 校验缓存Key
@@ -50,4 +53,10 @@ message UpdateHTTPCacheTaskKeysStatusRequest {
 		int64 nodeClusterId = 2; // 特意设置的冗余数据
 		string error = 3;
 	}
+}
+
+// 计算当天已经清理的Key数量
+message CountHTTPCacheTaskKeysWithDayRequest {
+	string keyType = 1; // Key类型：清理：purge，预热：fetch
+	string day = 2; // 日期，格式：YYYYMMDD
 }
