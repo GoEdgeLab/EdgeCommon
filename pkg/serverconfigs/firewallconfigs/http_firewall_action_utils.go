@@ -36,6 +36,12 @@ var AllActions = []*HTTPFirewallActionDefinition{
 		Category:    HTTPFirewallActionCategoryBlock,
 	},
 	{
+		Name:        "跳转",
+		Code:        HTTPFirewallActionRedirect,
+		Description: "跳转到新的URL。",
+		Category:    HTTPFirewallActionCategoryBlock,
+	},
+	{
 		Name:        "允许通过",
 		Code:        HTTPFirewallActionAllow,
 		Description: "允许正常通过，不记录到日志。",

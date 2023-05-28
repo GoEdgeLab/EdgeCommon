@@ -13,6 +13,7 @@ const (
 	HTTPFirewallActionRecordIP         HTTPFirewallActionString = "record_ip" // 记录IP
 	HTTPFirewallActionTag              HTTPFirewallActionString = "tag"       // 标签
 	HTTPFirewallActionPage             HTTPFirewallActionString = "page"      // 显示页面
+	HTTPFirewallActionRedirect         HTTPFirewallActionString = "redirect"  // 跳转
 	HTTPFirewallActionAllow            HTTPFirewallActionString = "allow"     // allow
 	HTTPFirewallActionGoGroup          HTTPFirewallActionString = "go_group"  // go to next rule group
 	HTTPFirewallActionGoSet            HTTPFirewallActionString = "go_set"    // go to next rule set
