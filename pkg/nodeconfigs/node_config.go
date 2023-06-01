@@ -729,6 +729,9 @@ func (this *NodeConfig) FindHTTP3Ports() (ports []int) {
 	http3PolicyLocker.RLock()
 	defer http3PolicyLocker.RUnlock()
 	for _, policy := range this.HTTP3Policies {
+		if !policy.IsOn {
+			continue
+		}
 		if policy.Port <= 0 {
 			policy.Port = DefaultHTTP3Port
 		}
