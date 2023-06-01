@@ -19,15 +19,16 @@ service SSLPolicyService {
 
 // 创建Policy
 message CreateSSLPolicyRequest {
-	bool http2Enabled = 1;
-	string minVersion = 2;
-	bytes sslCertsJSON = 3;
-	bytes hstsJSON = 4;
-	int32 clientAuthType = 5;
-	bytes clientCACertsJSON = 6;
-	repeated string cipherSuites = 7;
-	bool cipherSuitesIsOn = 8;
-	bool ocspIsOn = 9;
+	bool http2Enabled = 1; // 是否启用HTTP/2
+	bool http3Enabled = 10; // 是否启用HTTP/3（在满足条件的基础上）
+	string minVersion = 2; // 支持的最低SSL版本
+	bytes sslCertsJSON = 3; // 证书内容
+	bytes hstsJSON = 4; // HSTS配置
+	int32 clientAuthType = 5; //
+	bytes clientCACertsJSON = 6; // CA证书内容
+	repeated string cipherSuites = 7; // 自定义加密套件
+	bool cipherSuitesIsOn = 8; // 是否启用自定义加密套件
+	bool ocspIsOn = 9; // 是否启用OCSP
 }
 
 message CreateSSLPolicyResponse {
@@ -38,6 +39,7 @@ message CreateSSLPolicyResponse {
 message UpdateSSLPolicyRequest {
 	int64 sslPolicyId = 1;
 	bool http2Enabled = 2;
+	bool http3Enabled = 11; // 是否启用HTTP/3（在满足条件的基础上）
 	string minVersion = 3;
 	bytes sslCertsJSON = 4;
 	bytes hstsJSON = 5;

@@ -152,6 +152,12 @@ service NodeClusterService {
 
 	// 修改集群的自定义页面设置
 	rpc updateNodeClusterHTTPPagesPolicy(UpdateNodeClusterHTTPPagesPolicyRequest) returns (RPCSuccess);
+
+	// 获取集群的HTTP3设置
+	rpc findNodeClusterHTTP3Policy(FindNodeClusterHTTP3PolicyRequest) returns (FindNodeClusterHTTP3PolicyResponse);
+
+	// 修改集群的HTTP3设置
+	rpc updateNodeClusterHTTP3Policy(UpdateNodeClusterHTTP3PolicyRequest) returns (RPCSuccess);
 }
 
 // 获取所有集群的信息
@@ -474,6 +480,7 @@ message FindEnabledNodeClusterConfigInfoResponse {
 	bool hasSystemServices = 8;
 	bool hasDDoSProtection = 9;
 	bool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略
+	bool http3IsOn = 13; // 是否启用HTTP3
 }
 
 // 设置集群是否置顶
@@ -553,13 +560,13 @@ message FindNodeClusterGlobalServerConfigResponse {
 
 // 修改集群的全局服务设置
 message UpdateNodeClusterGlobalServerConfigRequest {
-	int64 nodeClusterId = 1;
-	bytes globalServerConfigJSON = 2;
+	int64 nodeClusterId = 1; // 集群ID
+	bytes globalServerConfigJSON = 2; // 网站全局配置
 }
 
 // 获取集群的自定义页面设置
 message FindNodeClusterHTTPPagesPolicyRequest {
-	int64 nodeClusterId = 1;
+	int64 nodeClusterId = 1; // 集群ID
 }
 
 message FindNodeClusterHTTPPagesPolicyResponse {
@@ -568,6 +575,21 @@ message FindNodeClusterHTTPPagesPolicyResponse {
 
 // 修改集群的自定义页面设置
 message UpdateNodeClusterHTTPPagesPolicyRequest {
-	int64 nodeClusterId = 1;
+	int64 nodeClusterId = 1; // 集群ID
 	bytes httpPagesPolicyJSON = 2; // HTTP自定义页面策略配置
+}
+
+// 获取集群的HTTP3设置
+message FindNodeClusterHTTP3PolicyRequest {
+	int64 nodeClusterId = 1; // 集群ID
+}
+
+message FindNodeClusterHTTP3PolicyResponse {
+	bytes http3PolicyJSON = 1; // HTTP3策略配置
+}
+
+// 修改集群的HTTP3设置
+message UpdateNodeClusterHTTP3PolicyRequest {
+	int64 nodeClusterId = 1; // 集群ID
+	bytes http3PolicyJSON = 2; // HTTP3策略配置
 }

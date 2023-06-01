@@ -463,3 +463,13 @@ func (this *ServerConfig) ShouldCheckTrafficLimit() bool {
 func (this *ServerConfig) PlanId() int64 {
 	return this.planId
 }
+
+// SupportsHTTP3 是否支持HTTP/3
+func (this *ServerConfig) SupportsHTTP3() bool {
+	return this.isOk &&
+		this.HTTPS != nil &&
+		this.HTTPS.IsOn &&
+		this.HTTPS.SSLPolicy != nil &&
+		this.HTTPS.SSLPolicy.IsOn &&
+		this.HTTPS.SSLPolicy.HTTP3Enabled
+}

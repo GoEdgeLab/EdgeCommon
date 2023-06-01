@@ -32,7 +32,8 @@ type SSLPolicy struct {
 	CipherSuites     []TLSCipherSuite `yaml:"cipherSuites" json:"cipherSuites"`         // 加密算法套件
 
 	HSTS         *HSTSConfig `yaml:"hsts" json:"hsts"`                 // HSTS配置
-	HTTP2Enabled bool        `yaml:"http2Enabled" json:"http2Enabled"` // 是否启用HTTP2
+	HTTP2Enabled bool        `yaml:"http2Enabled" json:"http2Enabled"` // 是否启用HTTP/2
+	HTTP3Enabled bool        `yaml:"http3Enabled" json:"http3Enabled"` // 是否启用HTTP/3
 
 	OCSPIsOn bool `yaml:"ocspIsOn" json:"ocspIsOn"` // 是否启用OCSP
 
@@ -110,7 +111,7 @@ func (this *SSLPolicy) Init(ctx context.Context) error {
 		cipherSuites = nil
 	}
 
-	nextProto := []string{}
+	var nextProto = []string{}
 	if this.HTTP2Enabled {
 		nextProto = []string{http2.NextProtoTLS}
 	}

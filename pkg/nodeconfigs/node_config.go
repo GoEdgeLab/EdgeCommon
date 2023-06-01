@@ -14,6 +14,7 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/firewallconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/Tea"
+	"github.com/iwind/TeaGo/lists"
 	"github.com/iwind/TeaGo/maps"
 	"os"
 	"reflect"
@@ -25,6 +26,7 @@ import (
 var sharedNodeConfig *NodeConfig = nil
 var uamPolicyLocker = &sync.RWMutex{}
 var httpCCPolicyLocker = &sync.RWMutex{}
+var http3PolicyLocker = &sync.RWMutex{}
 var httpPagesPolicyLocker = &sync.RWMutex{}
 
 type ServerError struct {
@@ -96,17 +98,11 @@ type NodeConfig struct {
 	// 脚本
 	CommonScripts []*serverconfigs.CommonScript `yaml:"commonScripts" json:"commonScripts"`
 
-	// WebP
-	WebPImagePolicies map[int64]*WebPImagePolicy `yaml:"webpImagePolicies" json:"webpImagePolicies"` // clusterId => *WebPImagePolicy
-
-	// UAM相关配置
-	UAMPolicies map[int64]*UAMPolicy `yaml:"uamPolicies" json:"uamPolicies"` // clusterId => *UAMPolicy
-
-	// CC相关配置
-	HTTPCCPolicies map[int64]*HTTPCCPolicy `yaml:"httpCCPolicies" json:"httpCCPolicies"` // clusterId => *HTTPCCPolicy
-
-	// 自定义页面
-	HTTPPagesPolicies map[int64]*HTTPPagesPolicy `yaml:"httpPagesPolicies" json:"httpPagesPolicies"` // clusterId => *HTTPPagesPolicy
+	WebPImagePolicies map[int64]*WebPImagePolicy `yaml:"webpImagePolicies" json:"webpImagePolicies"` // WebP相关配置，clusterId => *WebPImagePolicy
+	UAMPolicies       map[int64]*UAMPolicy       `yaml:"uamPolicies" json:"uamPolicies"`             // UAM相关配置，clusterId => *UAMPolicy
+	HTTPCCPolicies    map[int64]*HTTPCCPolicy    `yaml:"httpCCPolicies" json:"httpCCPolicies"`       // CC相关配置， clusterId => *HTTPCCPolicy
+	HTTP3Policies     map[int64]*HTTP3Policy     `yaml:"http3Policies" json:"http3Policies"`         // HTTP3相关配置， clusterId => *HTTP3Policy
+	HTTPPagesPolicies map[int64]*HTTPPagesPolicy `yaml:"httpPagesPolicies" json:"httpPagesPolicies"` // 自定义页面，clusterId => *HTTPPagesPolicy
 
 	// DNS
 	DNSResolver *DNSResolverConfig `yaml:"dnsResolver" json:"dnsResolver"`
@@ -206,6 +202,9 @@ func CloneNodeConfig(nodeConfig *NodeConfig) (*NodeConfig, error) {
 
 	httpCCPolicyLocker.RLock()
 	defer httpCCPolicyLocker.RUnlock()
+
+	http3PolicyLocker.RLock()
+	defer http3PolicyLocker.RUnlock()
 
 	httpPagesPolicyLocker.RLock()
 	defer httpPagesPolicyLocker.RUnlock()
@@ -419,6 +418,19 @@ func (this *NodeConfig) Init(ctx context.Context) (err error, serverErrors []*Se
 	}
 	httpCCPolicyLocker.RUnlock()
 
+	// http3 policy
+	http3PolicyLocker.RLock()
+	if len(this.HTTP3Policies) > 0 {
+		for _, policy := range this.HTTP3Policies {
+			err = policy.Init()
+			if err != nil {
+				http3PolicyLocker.RUnlock()
+				return
+			}
+		}
+	}
+	http3PolicyLocker.RUnlock()
+
 	// http pages policy
 	httpPagesPolicyLocker.RLock()
 	if len(this.HTTPPagesPolicies) > 0 {
@@ -513,6 +525,19 @@ func (this *NodeConfig) AvailableGroups() []*serverconfigs.ServerAddressGroup {
 		result = append(result, group)
 	}
 	return result
+}
+
+// HTTP3Group HTTP/3网站分组
+// 这里暂时不区分集群
+func (this *NodeConfig) HTTP3Group() *serverconfigs.ServerAddressGroup {
+	var group = serverconfigs.NewServerAddressGroup("HTTP3")
+	for _, server := range this.Servers {
+		if !server.SupportsHTTP3() {
+			continue
+		}
+		group.Add(server)
+	}
+	return group
 }
 
 // FindAllFirewallPolicies 获取所有的防火墙策略
@@ -687,6 +712,38 @@ func (this *NodeConfig) UpdateHTTPCCPolicies(policies map[int64]*HTTPCCPolicy) {
 	httpCCPolicyLocker.Lock()
 	defer httpCCPolicyLocker.Unlock()
 	this.HTTPCCPolicies = policies
+}
+
+// FindHTTP3PolicyWithClusterId 使用集群ID查找HTTP/3策略
+func (this *NodeConfig) FindHTTP3PolicyWithClusterId(clusterId int64) *HTTP3Policy {
+	http3PolicyLocker.RLock()
+	defer http3PolicyLocker.RUnlock()
+	if this.HTTP3Policies == nil {
+		return nil
+	}
+	return this.HTTP3Policies[clusterId]
+}
+
+// FindHTTP3Ports 查询HTTP/3所有端口
+func (this *NodeConfig) FindHTTP3Ports() (ports []int) {
+	http3PolicyLocker.RLock()
+	defer http3PolicyLocker.RUnlock()
+	for _, policy := range this.HTTP3Policies {
+		if policy.Port <= 0 {
+			policy.Port = DefaultHTTP3Port
+		}
+		if !lists.ContainsInt(ports, policy.Port) {
+			ports = append(ports, policy.Port)
+		}
+	}
+	return
+}
+
+// UpdateHTTP3Policies 修改集群HTTP/3策略
+func (this *NodeConfig) UpdateHTTP3Policies(policies map[int64]*HTTP3Policy) {
+	http3PolicyLocker.Lock()
+	defer http3PolicyLocker.Unlock()
+	this.HTTP3Policies = policies
 }
 
 // UpdateHTTPPagesPolicies 修改集群自定义页面策略

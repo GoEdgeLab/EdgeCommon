@@ -5612,6 +5612,17 @@
           "isDeprecated": false
         },
         {
+          "name": "findNodeHTTP3Policies",
+          "requestMessageName": "FindNodeHTTP3PoliciesRequest",
+          "responseMessageName": "FindNodeHTTP3PoliciesResponse",
+          "code": "rpc findNodeHTTP3Policies(FindNodeHTTP3PoliciesRequest) returns (FindNodeHTTP3PoliciesResponse);",
+          "doc": "查找节点的HTTP3策略",
+          "roles": [
+            "node"
+          ],
+          "isDeprecated": false
+        },
+        {
           "name": "findNodeHTTPPagesPolicies",
           "requestMessageName": "FindNodeHTTPPagesPoliciesRequest",
           "responseMessageName": "FindNodeHTTPPagesPoliciesResponse",
@@ -6281,6 +6292,28 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateNodeClusterHTTPPagesPolicy(UpdateNodeClusterHTTPPagesPolicyRequest) returns (RPCSuccess);",
           "doc": "修改集群的自定义页面设置",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findNodeClusterHTTP3Policy",
+          "requestMessageName": "FindNodeClusterHTTP3PolicyRequest",
+          "responseMessageName": "FindNodeClusterHTTP3PolicyResponse",
+          "code": "rpc findNodeClusterHTTP3Policy(FindNodeClusterHTTP3PolicyRequest) returns (FindNodeClusterHTTP3PolicyResponse);",
+          "doc": "获取集群的HTTP3设置",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateNodeClusterHTTP3Policy",
+          "requestMessageName": "UpdateNodeClusterHTTP3PolicyRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateNodeClusterHTTP3Policy(UpdateNodeClusterHTTP3PolicyRequest) returns (RPCSuccess);",
+          "doc": "修改集群的HTTP3设置",
           "roles": [
             "admin"
           ],
@@ -15303,7 +15336,7 @@
     },
     {
       "name": "CreateSSLPolicyRequest",
-      "code": "message CreateSSLPolicyRequest {\n\tbool http2Enabled = 1;\n\tstring minVersion = 2;\n\tbytes sslCertsJSON = 3;\n\tbytes hstsJSON = 4;\n\tint32 clientAuthType = 5;\n\tbytes clientCACertsJSON = 6;\n\trepeated string cipherSuites = 7;\n\tbool cipherSuitesIsOn = 8;\n\tbool ocspIsOn = 9;\n}",
+      "code": "message CreateSSLPolicyRequest {\n\tbool http2Enabled = 1; // 是否启用HTTP/2\n\tbool http3Enabled = 10; // 是否启用HTTP/3（在满足条件的基础上）\n\tstring minVersion = 2; // 支持的最低SSL版本\n\tbytes sslCertsJSON = 3; // 证书内容\n\tbytes hstsJSON = 4; // HSTS配置\n\tint32 clientAuthType = 5; //\n\tbytes clientCACertsJSON = 6; // CA证书内容\n\trepeated string cipherSuites = 7; // 自定义加密套件\n\tbool cipherSuitesIsOn = 8; // 是否启用自定义加密套件\n\tbool ocspIsOn = 9; // 是否启用OCSP\n}",
       "doc": "创建Policy"
     },
     {
@@ -17878,7 +17911,7 @@
     },
     {
       "name": "FindEnabledNodeClusterConfigInfoResponse",
-      "code": "message FindEnabledNodeClusterConfigInfoResponse {\n\tbool healthCheckIsOn = 1;\n\tbool hasFirewallActions = 2;\n\tbool hasThresholds = 3;\n\tbool hasMessageReceivers = 4;\n\tbool isTOAEnabled = 5;\n\tbool hasMetricItems = 6;\n\tbool webpIsOn = 7; // 是否定义了WebP策略\n\tbool uamIsOn = 10; // 是否定义了UAM策略\n\tbool httpCCIsOn = 12; // 是否定义了CC策略\n\tbool hasSystemServices = 8;\n\tbool hasDDoSProtection = 9;\n\tbool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略\n}",
+      "code": "message FindEnabledNodeClusterConfigInfoResponse {\n\tbool healthCheckIsOn = 1;\n\tbool hasFirewallActions = 2;\n\tbool hasThresholds = 3;\n\tbool hasMessageReceivers = 4;\n\tbool isTOAEnabled = 5;\n\tbool hasMetricItems = 6;\n\tbool webpIsOn = 7; // 是否定义了WebP策略\n\tbool uamIsOn = 10; // 是否定义了UAM策略\n\tbool httpCCIsOn = 12; // 是否定义了CC策略\n\tbool hasSystemServices = 8;\n\tbool hasDDoSProtection = 9;\n\tbool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略\n\tbool http3IsOn = 13; // 是否启用HTTP3\n}",
       "doc": ""
     },
     {
@@ -19042,8 +19075,18 @@
       "doc": ""
     },
     {
+      "name": "FindNodeClusterHTTP3PolicyRequest",
+      "code": "message FindNodeClusterHTTP3PolicyRequest {\n\tint64 nodeClusterId = 1; // 集群ID\n}",
+      "doc": "获取集群的HTTP3设置"
+    },
+    {
+      "name": "FindNodeClusterHTTP3PolicyResponse",
+      "code": "message FindNodeClusterHTTP3PolicyResponse {\n\tbytes http3PolicyJSON = 1; // HTTP3策略配置\n}",
+      "doc": ""
+    },
+    {
       "name": "FindNodeClusterHTTPPagesPolicyRequest",
-      "code": "message FindNodeClusterHTTPPagesPolicyRequest {\n\tint64 nodeClusterId = 1;\n}",
+      "code": "message FindNodeClusterHTTPPagesPolicyRequest {\n\tint64 nodeClusterId = 1; // 集群ID\n}",
       "doc": "获取集群的自定义页面设置"
     },
     {
@@ -19109,6 +19152,16 @@
     {
       "name": "FindNodeGlobalServerConfigResponse",
       "code": "message FindNodeGlobalServerConfigResponse {\n\tbytes globalServerConfigJSON = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindNodeHTTP3PoliciesRequest",
+      "code": "message FindNodeHTTP3PoliciesRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
+      "doc": "查找节点的HTTP3策略"
+    },
+    {
+      "name": "FindNodeHTTP3PoliciesResponse",
+      "code": "message FindNodeHTTP3PoliciesResponse {\n\trepeated HTTP3Policy http3Policies = 1; // HTTP3策略列表\n\n\n\tmessage HTTP3Policy {\n\t\tint64 nodeClusterId = 1; // 集群ID\n\t\tbytes http3PolicyJSON = 2; // HTTP3策略配置\n\t}\n}",
       "doc": ""
     },
     {
@@ -22013,8 +22066,13 @@
     },
     {
       "name": "UpdateNodeClusterGlobalServerConfigRequest",
-      "code": "message UpdateNodeClusterGlobalServerConfigRequest {\n\tint64 nodeClusterId = 1;\n\tbytes globalServerConfigJSON = 2;\n}",
+      "code": "message UpdateNodeClusterGlobalServerConfigRequest {\n\tint64 nodeClusterId = 1; // 集群ID\n\tbytes globalServerConfigJSON = 2; // 网站全局配置\n}",
       "doc": "修改集群的全局服务设置"
+    },
+    {
+      "name": "UpdateNodeClusterHTTP3PolicyRequest",
+      "code": "message UpdateNodeClusterHTTP3PolicyRequest {\n\tint64 nodeClusterId = 1; // 集群ID\n\tbytes http3PolicyJSON = 2; // HTTP3策略配置\n}",
+      "doc": "修改集群的HTTP3设置"
     },
     {
       "name": "UpdateNodeClusterHTTPCCPolicyRequest",
@@ -22033,7 +22091,7 @@
     },
     {
       "name": "UpdateNodeClusterHTTPPagesPolicyRequest",
-      "code": "message UpdateNodeClusterHTTPPagesPolicyRequest {\n\tint64 nodeClusterId = 1;\n\tbytes httpPagesPolicyJSON = 2; // HTTP自定义页面策略配置\n}",
+      "code": "message UpdateNodeClusterHTTPPagesPolicyRequest {\n\tint64 nodeClusterId = 1; // 集群ID\n\tbytes httpPagesPolicyJSON = 2; // HTTP自定义页面策略配置\n}",
       "doc": "修改集群的自定义页面设置"
     },
     {
@@ -22293,7 +22351,7 @@
     },
     {
       "name": "UpdateSSLPolicyRequest",
-      "code": "message UpdateSSLPolicyRequest {\n\tint64 sslPolicyId = 1;\n\tbool http2Enabled = 2;\n\tstring minVersion = 3;\n\tbytes sslCertsJSON = 4;\n\tbytes hstsJSON = 5;\n\tint32 clientAuthType = 6;\n\tbytes clientCACertsJSON = 7;\n\trepeated string cipherSuites = 8;\n\tbool cipherSuitesIsOn = 9;\n\tbool ocspIsOn = 10;\n}",
+      "code": "message UpdateSSLPolicyRequest {\n\tint64 sslPolicyId = 1;\n\tbool http2Enabled = 2;\n\tbool http3Enabled = 11; // 是否启用HTTP/3（在满足条件的基础上）\n\tstring minVersion = 3;\n\tbytes sslCertsJSON = 4;\n\tbytes hstsJSON = 5;\n\tint32 clientAuthType = 6;\n\tbytes clientCACertsJSON = 7;\n\trepeated string cipherSuites = 8;\n\tbool cipherSuitesIsOn = 9;\n\tbool ocspIsOn = 10;\n}",
       "doc": "修改Policy"
     },
     {
