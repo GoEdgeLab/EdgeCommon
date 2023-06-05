@@ -29,6 +29,8 @@ type GlobalServerConfig struct {
 		MatchDomainStrictly  bool                  `yaml:"matchDomainStrictly" json:"matchDomainStrictly"`   // 是否严格匹配域名
 		AllowMismatchDomains []string              `yaml:"allowMismatchDomains" json:"allowMismatchDomains"` // 允许的不匹配的域名
 		AllowNodeIP          bool                  `yaml:"allowNodeIP" json:"allowNodeIP"`                   // 允许IP直接访问
+		NodeIPShowPage       bool                  `yaml:"nodeIPShowPage" json:"nodeIPShowPage"`             // 访问IP地址是否显示页面
+		NodeIPPageHTML       string                `yaml:"nodeIPPageHTML" json:"nodeIPPageHTML"`             // 访问IP地址页面内容
 		DefaultDomain        string                `yaml:"defaultDomain" json:"defaultDomain"`               // 默认的域名
 		DomainMismatchAction *DomainMismatchAction `yaml:"domainMismatchAction" json:"domainMismatchAction"` // 不匹配时采取的动作
 
