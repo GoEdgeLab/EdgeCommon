@@ -237,6 +237,8 @@ message VerifyNSDomainResponse {
 	bool isOk = 1; // 是否成功
 	string errorCode = 2; // 错误代码
 	string errorMessage = 3; // 错误消息
+	repeated string currentTXTValues = 4; // 当前的TXT值
+	repeated string currentNSValues = 5; // 当前的NS记录值
 }
 
 // 查询记录健康检查全局设置

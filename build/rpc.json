@@ -22751,7 +22751,7 @@
     },
     {
       "name": "VerifyNSDomainResponse",
-      "code": "message VerifyNSDomainResponse {\n\tbool isOk = 1; // 是否成功\n\tstring errorCode = 2; // 错误代码\n\tstring errorMessage = 3; // 错误消息\n}",
+      "code": "message VerifyNSDomainResponse {\n\tbool isOk = 1; // 是否成功\n\tstring errorCode = 2; // 错误代码\n\tstring errorMessage = 3; // 错误消息\n\trepeated string currentTXTValues = 4; // 当前的TXT值\n\trepeated string currentNSValues = 5; // 当前的NS记录值\n}",
       "doc": ""
     },
     {
