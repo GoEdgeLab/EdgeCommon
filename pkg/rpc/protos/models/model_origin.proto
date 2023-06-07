@@ -9,7 +9,8 @@ message Origin {
 	int64 id = 1;
 	bool isOn = 2;
 	string name = 3;
-	NetworkAddress addr = 4;
+	NetworkAddress addr = 4; // 源站网络地址
+	bytes ossJSON = 9; // 源站网络地址为oss:开头时有此内容
 	string description = 5;
 	repeated string domains = 6;
 	string host = 7;

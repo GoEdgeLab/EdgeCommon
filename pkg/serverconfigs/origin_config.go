@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/ossconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
 	"strconv"
@@ -18,6 +19,7 @@ type OriginConfig struct {
 	Version     int                   `yaml:"version" json:"version"`         // 版本
 	Name        string                `yaml:"name" json:"name"`               // 名称
 	Addr        *NetworkAddressConfig `yaml:"addr" json:"addr"`               // 地址
+	OSS         *ossconfigs.OSSConfig `yaml:"oss" json:"oss"`                 // 对象存储配置
 	Description string                `yaml:"description" json:"description"` // 描述 TODO
 	Code        string                `yaml:"code" json:"code"`               // 代号 TODO
 
@@ -171,6 +173,14 @@ func (this *OriginConfig) Init(ctx context.Context) error {
 		}
 	}
 
+	// oss
+	if this.OSS != nil {
+		err := this.OSS.Init()
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -216,4 +226,23 @@ func (this *OriginConfig) RequestURIHasVariables() bool {
 // UniqueKey 唯一Key
 func (this *OriginConfig) UniqueKey() string {
 	return this.uniqueKey
+}
+
+// IsOSS 判断当前源站是否为OSS
+func (this *OriginConfig) IsOSS() bool {
+	return this.Addr != nil && ossconfigs.IsOSSProtocol(this.Addr.Protocol.String())
+}
+
+// AddrSummary 地址描述
+func (this *OriginConfig) AddrSummary() string {
+	if this.Addr == nil {
+		return ""
+	}
+
+	// OSS
+	if ossconfigs.IsOSSProtocol(this.Addr.Protocol.String()) && this.OSS != nil {
+		return this.OSS.Summary()
+	}
+
+	return this.Addr.Protocol.String() + "://" + this.Addr.Host + ":" + this.Addr.PortRange
 }

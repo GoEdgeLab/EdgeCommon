@@ -24,20 +24,21 @@ service OriginService {
 
 // 创建源站
 message CreateOriginRequest {
-	string name = 1;
-	NetworkAddress addr = 2;
-	string description = 3;
-	int32 weight = 4;
-	bool isOn = 5;
-	bytes connTimeoutJSON = 6;
-	bytes readTimeoutJSON = 7;
-	bytes idleTimeoutJSON = 8;
-	int32 maxConns = 9;
-	int32 maxIdleConns = 10;
-	repeated string domains = 11;
-	bytes certRefJSON = 12;
-	string host = 13;
-	bool followPort = 14;
+	string name = 1; // 名称，为可选项
+	NetworkAddress addr = 2; // 源站网络地址
+	bytes ossJSON = 15; // OSS配置信息，源站网络地址中protocol为oss:开头时需要设置此项
+	string description = 3; // 描述，为可选项
+	int32 weight = 4; // 权重，不小于0，一般设置为10
+	bool isOn = 5; // 是否启用
+	bytes connTimeoutJSON = 6; // 可选项
+	bytes readTimeoutJSON = 7; // 可选项
+	bytes idleTimeoutJSON = 8; // 可选项
+	int32 maxConns = 9; // 可选项
+	int32 maxIdleConns = 10; // 可选项
+	repeated string domains = 11; // 可选项
+	bytes certRefJSON = 12; // 可选项
+	string host = 13; // 可选项
+	bool followPort = 14; // 可选项
 }
 
 message CreateOriginResponse {
@@ -46,21 +47,22 @@ message CreateOriginResponse {
 
 // 修改源站
 message UpdateOriginRequest {
-	int64 originId = 1;
-	string name = 2;
-	NetworkAddress addr = 3;
-	string description = 4;
-	int32 weight = 5;
-	bool isOn = 6;
-	bytes connTimeoutJSON = 7;
-	bytes readTimeoutJSON = 8;
-	bytes idleTimeoutJSON = 9;
-	int32 maxConns = 10;
-	int32 maxIdleConns = 11;
-	repeated string domains = 12;
-	bytes certRefJSON = 13;
-	string host = 14;
-	bool followPort = 15;
+	int64 originId = 1; // 源站ID
+	string name = 2; // 可选项
+	NetworkAddress addr = 3; // 源站网络地址
+	bytes ossJSON = 16; // OSS配置信息，源站网络地址中protocol为oss:开头时需要设置此项
+	string description = 4; // 可选项
+	int32 weight = 5; // 权重，不小于0，一般设置为10
+	bool isOn = 6; // 是否启用
+	bytes connTimeoutJSON = 7; // 可选项
+	bytes readTimeoutJSON = 8; // 可选项
+	bytes idleTimeoutJSON = 9; // 可选项
+	int32 maxConns = 10; // 可选项
+	int32 maxIdleConns = 11; // 可选项
+	repeated string domains = 12; // 可选项
+	bytes certRefJSON = 13; // 可选项
+	string host = 14; // 可选项
+	bool followPort = 15; // 可选项
 }
 
 // 查找单个源站信息

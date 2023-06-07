@@ -15266,7 +15266,7 @@
     },
     {
       "name": "CreateOriginRequest",
-      "code": "message CreateOriginRequest {\n\tstring name = 1;\n\tNetworkAddress addr = 2;\n\tstring description = 3;\n\tint32 weight = 4;\n\tbool isOn = 5;\n\tbytes connTimeoutJSON = 6;\n\tbytes readTimeoutJSON = 7;\n\tbytes idleTimeoutJSON = 8;\n\tint32 maxConns = 9;\n\tint32 maxIdleConns = 10;\n\trepeated string domains = 11;\n\tbytes certRefJSON = 12;\n\tstring host = 13;\n\tbool followPort = 14;\n}",
+      "code": "message CreateOriginRequest {\n\tstring name = 1; // 名称，为可选项\n\tNetworkAddress addr = 2; // 源站网络地址\n\tbytes ossJSON = 15; // OSS配置信息，源站网络地址中protocol为oss:开头时需要设置此项\n\tstring description = 3; // 描述，为可选项\n\tint32 weight = 4; // 权重，不小于0，一般设置为10\n\tbool isOn = 5; // 是否启用\n\tbytes connTimeoutJSON = 6; // 可选项\n\tbytes readTimeoutJSON = 7; // 可选项\n\tbytes idleTimeoutJSON = 8; // 可选项\n\tint32 maxConns = 9; // 可选项\n\tint32 maxIdleConns = 10; // 可选项\n\trepeated string domains = 11; // 可选项\n\tbytes certRefJSON = 12; // 可选项\n\tstring host = 13; // 可选项\n\tbool followPort = 14; // 可选项\n}",
       "doc": "创建源站"
     },
     {
@@ -20886,7 +20886,7 @@
     },
     {
       "name": "Origin",
-      "code": "message Origin {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tNetworkAddress addr = 4;\n\tstring description = 5;\n\trepeated string domains = 6;\n\tstring host = 7;\n\tbool followPort = 8;\n}",
+      "code": "message Origin {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tNetworkAddress addr = 4; // 源站网络地址\n\tbytes ossJSON = 9; // 源站网络地址为oss:开头时有此内容\n\tstring description = 5;\n\trepeated string domains = 6;\n\tstring host = 7;\n\tbool followPort = 8;\n}",
       "doc": ""
     },
     {
@@ -22266,7 +22266,7 @@
     },
     {
       "name": "UpdateOriginRequest",
-      "code": "message UpdateOriginRequest {\n\tint64 originId = 1;\n\tstring name = 2;\n\tNetworkAddress addr = 3;\n\tstring description = 4;\n\tint32 weight = 5;\n\tbool isOn = 6;\n\tbytes connTimeoutJSON = 7;\n\tbytes readTimeoutJSON = 8;\n\tbytes idleTimeoutJSON = 9;\n\tint32 maxConns = 10;\n\tint32 maxIdleConns = 11;\n\trepeated string domains = 12;\n\tbytes certRefJSON = 13;\n\tstring host = 14;\n\tbool followPort = 15;\n}",
+      "code": "message UpdateOriginRequest {\n\tint64 originId = 1; // 源站ID\n\tstring name = 2; // 可选项\n\tNetworkAddress addr = 3; // 源站网络地址\n\tbytes ossJSON = 16; // OSS配置信息，源站网络地址中protocol为oss:开头时需要设置此项\n\tstring description = 4; // 可选项\n\tint32 weight = 5; // 权重，不小于0，一般设置为10\n\tbool isOn = 6; // 是否启用\n\tbytes connTimeoutJSON = 7; // 可选项\n\tbytes readTimeoutJSON = 8; // 可选项\n\tbytes idleTimeoutJSON = 9; // 可选项\n\tint32 maxConns = 10; // 可选项\n\tint32 maxIdleConns = 11; // 可选项\n\trepeated string domains = 12; // 可选项\n\tbytes certRefJSON = 13; // 可选项\n\tstring host = 14; // 可选项\n\tbool followPort = 15; // 可选项\n}",
       "doc": "修改源站"
     },
     {

@@ -1,5 +1,7 @@
 package serverconfigs
 
+import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/ossconfigs"
+
 type Protocol string
 
 const (
@@ -52,7 +54,11 @@ func (this Protocol) IsUDPFamily() bool {
 	return this == ProtocolUDP
 }
 
-// 主协议
+func (this Protocol) IsOSS() bool {
+	return ossconfigs.IsOSSProtocol(this.String())
+}
+
+// Primary 主协议
 func (this Protocol) Primary() Protocol {
 	switch this {
 	case ProtocolHTTP, ProtocolHTTP4, ProtocolHTTP6:
@@ -72,7 +78,7 @@ func (this Protocol) Primary() Protocol {
 	}
 }
 
-// Scheme
+// Scheme schema
 func (this Protocol) Scheme() string {
 	return string(this)
 }
