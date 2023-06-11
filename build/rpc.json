@@ -7655,6 +7655,24 @@
           "isDeprecated": false
         },
         {
+          "name": "findNSClusterDoHConfig",
+          "requestMessageName": "FindNSClusterDoHConfigRequest",
+          "responseMessageName": "FindNSClusterDoHConfigResponse",
+          "code": "rpc findNSClusterDoHConfig(FindNSClusterDoHConfigRequest) returns (FindNSClusterDoHConfigResponse);",
+          "doc": "查找集群的DoH设置",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateNSClusterDoH",
+          "requestMessageName": "UpdateNSClusterDoHRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateNSClusterDoH (UpdateNSClusterDoHRequest) returns (RPCSuccess);",
+          "doc": "修改集群的DoH设置",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
           "name": "countAllNSClustersWithSSLCertId",
           "requestMessageName": "CountAllNSClustersWithSSLCertIdRequest",
           "responseMessageName": "RPCCountResponse",
@@ -18735,6 +18753,16 @@
       "doc": ""
     },
     {
+      "name": "FindNSClusterDoHConfigRequest",
+      "code": "message FindNSClusterDoHConfigRequest {\n\tint64 nsClusterId = 1;\n}",
+      "doc": "查找集群的DoH设置"
+    },
+    {
+      "name": "FindNSClusterDoHConfigResponse",
+      "code": "message FindNSClusterDoHConfigResponse {\n\tbytes dohJSON = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "FindNSClusterHostsRequest",
       "code": "message FindNSClusterHostsRequest {\n\tint64 nsClusterId = 1;\n}",
       "doc": "查找NS集群的主机地址"
@@ -20686,7 +20714,7 @@
     },
     {
       "name": "NSCluster",
-      "code": "message NSCluster {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring installDir = 4;\n\tbytes tcpJSON = 5;\n\tbytes tlsJSON = 6;\n\tbytes udpJSON = 7;\n\trepeated string hosts = 8;\n\tbytes soaJSON = 12;\n\tstring email = 13;\n\tbool autoRemoteStart = 9;\n\tstring timeZone = 10;\n\tbytes answerJSON = 11;\n\tbool detectAgents = 14;\n\tbool checkingPorts = 15; // 检查端口连通性\n}",
+      "code": "message NSCluster {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring installDir = 4;\n\tbytes tcpJSON = 5; // TCP设置\n\tbytes tlsJSON = 6; // TLS设置\n\tbytes udpJSON = 7; // UDP设置\n\tbytes dohJSON = 16; // DoH设置\n\trepeated string hosts = 8;\n\tbytes soaJSON = 12;\n\tstring email = 13;\n\tbool autoRemoteStart = 9;\n\tstring timeZone = 10;\n\tbytes answerJSON = 11;\n\tbool detectAgents = 14;\n\tbool checkingPorts = 15; // 检查端口连通性\n}",
       "doc": "域名服务集群"
     },
     {
@@ -21878,6 +21906,11 @@
       "name": "UpdateNSClusterDDoSProtectionRequest",
       "code": "message UpdateNSClusterDDoSProtectionRequest {\n\tint64 nsClusterId = 1;\n\tbytes ddosProtectionJSON = 2;\n}",
       "doc": "修改集群的DDoS设置"
+    },
+    {
+      "name": "UpdateNSClusterDoHRequest",
+      "code": "message UpdateNSClusterDoHRequest {\n\tint64 nsClusterId = 1;\n\tbytes dohJSON = 2;\n}",
+      "doc": "修改集群的DoH设置"
     },
     {
       "name": "UpdateNSClusterRecursionConfigRequest",

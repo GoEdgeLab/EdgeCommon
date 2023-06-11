@@ -9,9 +9,10 @@ message NSCluster {
 	bool isOn = 2;
 	string name = 3;
 	string installDir = 4;
-	bytes tcpJSON = 5;
-	bytes tlsJSON = 6;
-	bytes udpJSON = 7;
+	bytes tcpJSON = 5; // TCP设置
+	bytes tlsJSON = 6; // TLS设置
+	bytes udpJSON = 7; // UDP设置
+	bytes dohJSON = 16; // DoH设置
 	repeated string hosts = 8;
 	bytes soaJSON = 12;
 	string email = 13;
