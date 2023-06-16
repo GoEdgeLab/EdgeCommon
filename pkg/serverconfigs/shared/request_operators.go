@@ -2,15 +2,23 @@ package shared
 
 import "github.com/iwind/TeaGo/maps"
 
-// 运算符定义
+// RequestCondOperator 运算符定义
 type RequestCondOperator = string
 
 const (
+
 	// 正则
+
 	RequestCondOperatorRegexp    RequestCondOperator = "regexp"
 	RequestCondOperatorNotRegexp RequestCondOperator = "not regexp"
 
+	// 通配符
+
+	RequestCondOperatorWildcardMatch    RequestCondOperator = "wildcard match"
+	RequestCondOperatorWildcardNotMatch RequestCondOperator = "wildcard not match"
+
 	// 数字相关
+
 	RequestCondOperatorEqInt    RequestCondOperator = "eq int"   // 整数等于
 	RequestCondOperatorEqFloat  RequestCondOperator = "eq float" // 浮点数等于
 	RequestCondOperatorGtFloat  RequestCondOperator = "gt"
@@ -19,11 +27,13 @@ const (
 	RequestCondOperatorLteFloat RequestCondOperator = "lte"
 
 	// 取模
+
 	RequestCondOperatorMod10  RequestCondOperator = "mod 10"
 	RequestCondOperatorMod100 RequestCondOperator = "mod 100"
 	RequestCondOperatorMod    RequestCondOperator = "mod"
 
 	// 字符串相关
+
 	RequestCondOperatorEqString          RequestCondOperator = "eq"
 	RequestCondOperatorNeqString         RequestCondOperator = "not"
 	RequestCondOperatorHasPrefix         RequestCondOperator = "prefix"
@@ -37,6 +47,7 @@ const (
 	RequestCondOperatorVersionRange      RequestCondOperator = "version range"
 
 	// IP相关
+
 	RequestCondOperatorEqIP     RequestCondOperator = "eq ip"
 	RequestCondOperatorGtIP     RequestCondOperator = "gt ip"
 	RequestCondOperatorGteIP    RequestCondOperator = "gte ip"
@@ -48,11 +59,13 @@ const (
 	RequestCondOperatorIPMod    RequestCondOperator = "ip mod"
 
 	// 文件相关
-	RequestCondOperatorFileExist    RequestCondOperator = "file exist"
-	RequestCondOperatorFileNotExist RequestCondOperator = "file not exist"
+	// 为了安全暂时不提供
+
+	//RequestCondOperatorFileExist    RequestCondOperator = "file exist"
+	//RequestCondOperatorFileNotExist RequestCondOperator = "file not exist"
 )
 
-// 所有的运算符
+// AllRequestOperators 所有的运算符
 func AllRequestOperators() []maps.Map {
 	return []maps.Map{
 		{
@@ -64,6 +77,16 @@ func AllRequestOperators() []maps.Map {
 			"name":        "正则表达式不匹配",
 			"op":          RequestCondOperatorNotRegexp,
 			"description": "判断是否正则表达式不匹配",
+		},
+		{
+			"name":        "通配符匹配",
+			"op":          RequestCondOperatorWildcardMatch,
+			"description": "判断是否和指定的通配符匹配",
+		},
+		{
+			"name":        "通配符不匹配",
+			"op":          RequestCondOperatorWildcardNotMatch,
+			"description": "判断是否和指定的通配符不匹配",
 		},
 		{
 			"name":        "字符串等于",
@@ -211,7 +234,7 @@ func AllRequestOperators() []maps.Map {
 			"description": "对IP参数值取模，对比值格式为：除数,余数，比如10,1",
 		},
 
-		{
+		/**{
 			"name":        "文件存在",
 			"op":          RequestCondOperatorFileExist,
 			"description": "判断参数值解析后的文件是否存在",
@@ -221,6 +244,6 @@ func AllRequestOperators() []maps.Map {
 			"name":        "文件不存在",
 			"op":          RequestCondOperatorFileNotExist,
 			"description": "判断参数值解析后的文件是否不存在",
-		},
+		},**/
 	}
 }
