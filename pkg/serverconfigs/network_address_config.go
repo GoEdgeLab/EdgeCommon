@@ -27,6 +27,14 @@ type NetworkAddressConfig struct {
 func (this *NetworkAddressConfig) Init() error {
 	this.hostHasVariables = configutils.HasVariables(this.Host)
 
+	// 特殊端口自动修复，防止有些小白用户不了解HTTP和HTTPS的区别而选择了错误的协议
+	if this.PortRange == "80" && this.Protocol == ProtocolHTTPS {
+		this.Protocol = ProtocolHTTP
+	}
+	if this.PortRange == "443" && this.Protocol == ProtocolHTTP {
+		this.Protocol = ProtocolHTTPS
+	}
+
 	// 8080
 	if regexpSinglePort.MatchString(this.PortRange) {
 		this.MinPort = types.Int(this.PortRange)
