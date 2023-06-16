@@ -12,6 +12,7 @@ type UserRegisterConfig struct {
 	ComplexPassword     bool `yaml:"complexPassword" json:"complexPassword"`         // 必须使用复杂密码
 	RequireVerification bool `yaml:"requireVerification" json:"requireVerification"` // 是否需要审核
 	RequireIdentity     bool `yaml:"requireIdentity" json:"requireIdentity"`         // 是否需要实名认证
+	CheckClientRegion   bool `yaml:"checkClientRegion" json:"checkClientRegion"`     // 在登录状态下检查客户端区域
 
 	// 电子邮箱激活设置
 	EmailVerification struct {
