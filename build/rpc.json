@@ -7660,7 +7660,9 @@
           "responseMessageName": "FindNSClusterDoHConfigResponse",
           "code": "rpc findNSClusterDoHConfig(FindNSClusterDoHConfigRequest) returns (FindNSClusterDoHConfigResponse);",
           "doc": "查找集群的DoH设置",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         },
         {
@@ -7669,7 +7671,9 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateNSClusterDoH (UpdateNSClusterDoHRequest) returns (RPCSuccess);",
           "doc": "修改集群的DoH设置",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         },
         {
@@ -10226,7 +10230,7 @@
           "requestMessageName": "CreateServerRequest",
           "responseMessageName": "CreateServerResponse",
           "code": "rpc createServer (CreateServerRequest) returns (CreateServerResponse);",
-          "doc": "创建服务",
+          "doc": "创建网站",
           "roles": [
             "admin",
             "user"
@@ -11647,7 +11651,7 @@
           "requestMessageName": "CreateSSLPolicyRequest",
           "responseMessageName": "CreateSSLPolicyResponse",
           "code": "rpc createSSLPolicy (CreateSSLPolicyRequest) returns (CreateSSLPolicyResponse);",
-          "doc": "创建Policy",
+          "doc": "创建策略",
           "roles": [
             "admin",
             "user"
@@ -11659,7 +11663,7 @@
           "requestMessageName": "UpdateSSLPolicyRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateSSLPolicy (UpdateSSLPolicyRequest) returns (RPCSuccess);",
-          "doc": "修改Policy",
+          "doc": "修改策略",
           "roles": [
             "admin",
             "user"
@@ -11671,7 +11675,7 @@
           "requestMessageName": "FindEnabledSSLPolicyConfigRequest",
           "responseMessageName": "FindEnabledSSLPolicyConfigResponse",
           "code": "rpc findEnabledSSLPolicyConfig (FindEnabledSSLPolicyConfigRequest) returns (FindEnabledSSLPolicyConfigResponse);",
-          "doc": "查找Policy",
+          "doc": "查找策略",
           "roles": [
             "user",
             "admin"
@@ -15354,12 +15358,12 @@
     },
     {
       "name": "CreateSSLPolicyRequest",
-      "code": "message CreateSSLPolicyRequest {\n\tbool http2Enabled = 1; // 是否启用HTTP/2\n\tbool http3Enabled = 10; // 是否启用HTTP/3（在满足条件的基础上）\n\tstring minVersion = 2; // 支持的最低SSL版本\n\tbytes sslCertsJSON = 3; // 证书内容\n\tbytes hstsJSON = 4; // HSTS配置\n\tint32 clientAuthType = 5; //\n\tbytes clientCACertsJSON = 6; // CA证书内容\n\trepeated string cipherSuites = 7; // 自定义加密套件\n\tbool cipherSuitesIsOn = 8; // 是否启用自定义加密套件\n\tbool ocspIsOn = 9; // 是否启用OCSP\n}",
-      "doc": "创建Policy"
+      "code": "message CreateSSLPolicyRequest {\n\tbool http2Enabled = 1; // 可选项，是否启用HTTP/2\n\tbool http3Enabled = 10; // 可选项，是否启用HTTP/3（在满足条件的基础上）\n\tstring minVersion = 2; // 支持的最低SSL版本，可选择值： SSL 3.0, TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3\n\tbytes sslCertsJSON = 3; // 可选项，关联的证书信息，可以在创建后再通过修改策略来配置 @link json:ssl_cert_refs\n\tbytes hstsJSON = 4; // 可选项，HSTS配置 @link json:hsts\n\tint32 clientAuthType = 5; // 可选项，客户端校验类型：0 无需证书，1 需要客户端证书，2 需要任一客户端证书，3 如果客户端上传了证书才校验，4 需要客户端证书而且需要校验\n\tbytes clientCACertsJSON = 6; // 可选项，CA证书内容\n\trepeated string cipherSuites = 7; // 可选项，自定义加密套件\n\tbool cipherSuitesIsOn = 8; // 可选项，是否启用自定义加密套件\n\tbool ocspIsOn = 9; // 可选项，是否启用OCSP\n}",
+      "doc": "创建策略"
     },
     {
       "name": "CreateSSLPolicyResponse",
-      "code": "message CreateSSLPolicyResponse {\n\tint64 sslPolicyId = 1;\n}",
+      "code": "message CreateSSLPolicyResponse {\n\tint64 sslPolicyId = 1; // 创建的策略ID\n}",
       "doc": ""
     },
     {
@@ -15384,8 +15388,8 @@
     },
     {
       "name": "CreateServerRequest",
-      "code": "message CreateServerRequest {\n\tint64 userId = 1;\n\tint64 adminId = 2;\n\tstring type = 3;\n\tstring name = 4;\n\tstring description = 5;\n\n\t// 配置相关\n\tbytes serverNamesJSON = 8; // @link json:server_names\n\tbytes serverNamesJON = 19 [deprecated = true]; // 已过期，请使用 serverNamesJSON 代替\n\tbytes httpJSON = 9;\n\tbytes httpsJSON = 10;\n\tbytes tcpJSON = 11;\n\tbytes tlsJSON = 12;\n\tbytes unixJSON = 13;\n\tbytes udpJSON = 14;\n\tint64 webId = 15;\n\tbytes reverseProxyJSON = 16;\n\trepeated int64 serverGroupIds = 17;\n\tint64 userPlanId = 18;\n\n\tint64 nodeClusterId = 30;\n\tbytes includeNodesJSON = 31;\n\tbytes excludeNodesJSON = 32;\n}",
-      "doc": "创建服务"
+      "code": "message CreateServerRequest {\n\tint64 userId = 1; // 可选参数，用户ID，如果不想指定用户，此值可以为0\n\tint64 adminId = 2; // 可选参数，管理员ID\n\tstring type = 3; // 类型：httpProxy（HTTP反向代理，一般CDN服务都选这个）、httpWeb（静态文件服务，只会从服务器上读取文件内容，不会转发到源站）、tcpProxy（TCP反向代理）、udpProxy（UDP反向代理）\n\tstring name = 4; // 网站名称，通常可以是一个域名\n\tstring description = 5; // 可选参数，网站描述\n\n\t// 配置相关\n\tbytes serverNamesJSON = 8; // 域名列表 @link json:server_names\n\tbytes serverNamesJON = 19 [deprecated = true]; // 已过期，请使用 serverNamesJSON 代替\n\tbytes httpJSON = 9; // HTTP协议，当type为httpProxy或者httpWeb时填写 @link json:http_protocol\n\tbytes httpsJSON = 10;  // HTTPS协议，当type为httpProxy或者httpWeb时填写 @link json:https_protocol\n\tbytes tcpJSON = 11;  // TCP协议，当type为tcpProxy时填写 @link json:tcp_protocol\n\tbytes tlsJSON = 12;  // TLS协议，当type为tcpProxy时填写 @link json:tls_protocol\n\tbytes unixJSON = 13; // 备用参数，不用填写\n\tbytes udpJSON = 14; // UDP协议，当type为udpProxy时填写 @link json:udp_protocol\n\tint64 webId = 15; // 可选参数，Web配置ID，当type为httpProxy或者httpWeb时填写，可以通过 /HTTPWebService/createHTTPWeb 接口创建；如果你需要配置缓存等信息时需要在 HTTPWebService 接口操作\n\tbytes reverseProxyJSON = 16; // 反向代理（包含源站）设置\n\trepeated int64 serverGroupIds = 17; // 所属网站分组ID列表\n\tint64 userPlanId = 18; // 可选参数，套餐ID\n\n\tint64 nodeClusterId = 30; // 所部署的集群ID\n\tbytes includeNodesJSON = 31; // 备用参数，不用填写\n\tbytes excludeNodesJSON = 32; // 备用参数，不用填写\n}",
+      "doc": "创建网站"
     },
     {
       "name": "CreateServerResponse",
@@ -18244,12 +18248,12 @@
     },
     {
       "name": "FindEnabledSSLPolicyConfigRequest",
-      "code": "message FindEnabledSSLPolicyConfigRequest {\n\tint64 sslPolicyId = 1; // SSL策略ID\n\tbool ignoreData = 2; // 忽略证书内容数据\n}",
-      "doc": "查找Policy"
+      "code": "message FindEnabledSSLPolicyConfigRequest {\n\tint64 sslPolicyId = 1; // SSL策略ID\n\tbool ignoreData = 2; // 是否忽略证书内容数据\n}",
+      "doc": "查找策略"
     },
     {
       "name": "FindEnabledSSLPolicyConfigResponse",
-      "code": "message FindEnabledSSLPolicyConfigResponse {\n\tbytes sslPolicyJSON = 1;\n}",
+      "code": "message FindEnabledSSLPolicyConfigResponse {\n\tbytes sslPolicyJSON = 1; // 策略配置信息\n}",
       "doc": ""
     },
     {
@@ -22384,8 +22388,8 @@
     },
     {
       "name": "UpdateSSLPolicyRequest",
-      "code": "message UpdateSSLPolicyRequest {\n\tint64 sslPolicyId = 1;\n\tbool http2Enabled = 2;\n\tbool http3Enabled = 11; // 是否启用HTTP/3（在满足条件的基础上）\n\tstring minVersion = 3;\n\tbytes sslCertsJSON = 4;\n\tbytes hstsJSON = 5;\n\tint32 clientAuthType = 6;\n\tbytes clientCACertsJSON = 7;\n\trepeated string cipherSuites = 8;\n\tbool cipherSuitesIsOn = 9;\n\tbool ocspIsOn = 10;\n}",
-      "doc": "修改Policy"
+      "code": "message UpdateSSLPolicyRequest {\n\tint64 sslPolicyId = 1; // 策略ID\n\tbool http2Enabled = 2; // 可选项，是否启用HTTP/2\n\tbool http3Enabled = 11; // 可选项，是否启用HTTP/3（在满足条件的基础上）\n\tstring minVersion = 3; // 支持的最低SSL版本，可选择值： SSL 3.0, TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3\n\tbytes sslCertsJSON = 4; // 关联的证书信息 @link json:ssl_cert_refs\n\tbytes hstsJSON = 5; // 可选项，HSTS配置 @link json:hsts\n\tint32 clientAuthType = 6; // 可选项，客户端校验类型：0 无需证书，1 需要客户端证书，2 需要任一客户端证书，3 如果客户端上传了证书才校验，4 需要客户端证书而且需要校验\n\tbytes clientCACertsJSON = 7; // 可选项，CA证书内容\n\trepeated string cipherSuites = 8; // 可选项，自定义加密套件\n\tbool cipherSuitesIsOn = 9; // 可选项，是否启用自定义加密套件\n\tbool ocspIsOn = 10; // 可选项，是否启用OCSP\n}",
+      "doc": "修改策略"
     },
     {
       "name": "UpdateScriptRequest",
@@ -22820,6 +22824,10 @@
   ],
   "links": [
     {
+      "name": "json:hsts",
+      "content": "# HSTS\n\n## 定义\n~~~json\n{\n  \"isOn\": \"是否启用\",\n  \"maxAge\": \"最大有效期，单位秒\",\n  \"includeSubDomains\": \"可选项，是否包含子域名\",\n  \"preload\": \"可选项，是否预加载\",\n  \"domains\": [\"可选项，支持的域名1\", \"可选项，支持的域名2\" ...]\n}\n~~~\n\n其中：\n* `maxAge` 可以填写一天（86400秒）或者更长时间\n* 如果不填写 `domains` 则支持所有域名\n\n## 示例\n### 不限制任何域名\n~~~json\n{\n  \"isOn\": true,\n  \"maxAge\": 86400,\n  \"includeSubDomains\":false, \n  \"preload\":false,\n  \"domains\":[]\n}\n~~~\n\n### 限制域名\n~~~json\n{\n  \"isOn\": true,\n  \"maxAge\": 86400,\n  \"includeSubDomains\":false, \n  \"preload\":false,\n  \"domains\":[\"example.com\", \"www.example.com\"]\n}\n~~~"
+    },
+    {
       "name": "json:http_access_log_ref",
       "content": "# 访问日志引用\n## 定义\n~~~json\n{\n  \"isPrior\": \"是否覆盖父级应用\",\n  \"isOn\": \"是否启用配置\",\n  \"fields\": [\"字段1\", \"字段2\", ...] // 可以留空\n  \"status1\": \"是否启用状态1xx\",\n  \"status2\": \"是否启用状态2xx\",\n  \"status3\": \"是否启用状态3xx\",\n  \"status4\": \"是否启用状态4xx\",\n  \"status5\": \"是否启用状态5xx\",\n  \"enableClientClosed\": \"是否记录客户端关闭事件\",\n  \"firewallOnly\": \"是否只记录防火墙（WAF）相关日志\"\n}\n~~~\n\n### 字段值\n* `1` - 请求Header\n* `2` - 响应Header\n* `3` - 请求URL参数\n* `4` - Cookie\n* `5` - 扩展信息\n* `6` - Referer\n* `7` - UserAgent\n* `8` - 请求Body\n* `9` - 响应Body（目前不支持）\n\n## 示例\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"fields\": [],\n  \"status1\": true,\n  \"status2\": true,\n  \"status3\": true,\n  \"status4\": true,\n  \"status5\": true,\n  \"enableClientClosed\": true,\n  \"firewallOnly\": true\n}\n~~~"
     },
@@ -22836,6 +22844,10 @@
       "content": "# HTTP防火墙（即WAF）引用\n## 定义\n~~~json\n{\n  \"isPrior\": \"是否覆盖上级配置\",\n  \"isOn\": \"是否启用配置\",\n  \"firewallPolicyId\": \"WAF策略ID\"\n}\n~~~\n\n## 示例\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"firewallPolicyId\": 123\n}\n~~~"
     },
     {
+      "name": "json:http_protocol",
+      "content": "# HTTP协议配置\n\n## 定义\n~~~json\n{\n\t\"isOn\": \"是否启用\",\n  \t\"listen\": [\n      {\n\t\t\"protocol\": \"协议\",\n\t\t\"host\": \"主机地址，通常为空\",\n\t\t\"portRange\": \"端口或者端口范围\"\n\t  },\n\t  ...\n\t]\n}\n~~~\n\n## 示例\n\n### 监听80端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"http\",\n      \"host\": \"\",\n      \"portRange\": \"80\"\n\t}\n  ]\n}\n~~~\n\n### 监听80和8080端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"http\",\n      \"portRange\": \"80\"\n\t},\n    {\n      \"protocol\": \"http\",\n      \"portRange\": \"8080\"\n\t}\n  ]\n}\n~~~"
+    },
+    {
       "name": "json:http_remote_addr_config",
       "content": "# HTTP获取客户端IP地址方式配置\n## 定义\n~~~json\n{\n  \"isPrior\": \"是否覆盖父级应用\",\n  \"isOn\": \"是否启用配置\",\n  \"value\": \"自定义值变量\",\n  \"isCustomized\": \"是否自定义\"\n}\n~~~\n\n## 示例\n### 不启用自定义\n~~~json\n{\n  \"isPrior\": false,\n  \"isOn\": false,\n  \"value\": \"\",\n  \"isCustomized\": false\n}\n~~~\n\n### 启用自定义\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"value\": \"${remoteAddr}\",\n  \"isCustomized\": true\n}\n~~~"
     },
@@ -22848,6 +22860,10 @@
       "content": "# WebSocket引用\n\n## 定义\n~~~json\n{\n\t\"isPrior\": \"是否覆盖上级配置，true|false\",\n\t\"isOn\": \"是否启用，true|false\",\n\t\"websocketId\": \"Websocket配置ID\"\n}\n~~~\n其中：\n* `Websocket配置ID` - 需要调用 `HTTPWebsocketService.CreateHTTPWebsocketRequest()` 生成 \n\n## 示例\n~~~json\n{\n\t\"isPrior\": true,\n\t\"isOn\": true,\n\t\"websocketId\": 123\n}\n~~~"
     },
     {
+      "name": "json:https_protocol",
+      "content": "# HTTPS协议配置\n\n## 定义\n~~~json\n{\n\t\"isOn\": \"是否启用\",\n  \t\"listen\": [\n      {\n\t\t\"protocol\": \"协议\",\n\t\t\"host\": \"主机地址，通常为空\",\n\t\t\"portRange\": \"端口或者端口范围\"\n\t  },\n\t  ...\n\t],\n  \t\"sslPolicyRef\": {\n\t  \"isOn\": \"启用SSL策略\",\n\t  \"sslPolicyId\": \"SSL策略ID\"\n\t}\n}\n~~~\n\n其中 `SSL策略ID` 通过 `/SSLPolicyService/createSSLPolicy` 接口创建。\n\n## 示例\n\n### 监听443端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"https\",\n      \"host\": \"\",\n      \"portRange\": \"443\"\n\t}\n  ],\n  \"sslPolicyRef\": {\n    \"isOn\": true,\n    \"sslPolicyId\": 123\n  }\n}\n~~~\n\n其中SSL策略ID `123` 通过 `/SSLPolicyService/createSSLPolicy` 接口创建。\n\n### 监听443和8443端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"https\",\n      \"portRange\": \"443\"\n\t},\n    {\n      \"protocol\": \"https\",\n      \"portRange\": \"8443\"\n\t}\n  ],\n  \"sslPolicyRef\": {\n    \"isOn\": true,\n    \"sslPolicyId\": 123\n  }\n}\n~~~\n\n其中SSL策略ID `123` 通过 `/SSLPolicyService/createSSLPolicy` 接口创建。"
+    },
+    {
       "name": "json:server_name",
       "content": "# 域名信息\n\n## 示例\n~~~json\n{\n  \"name\": \"example.com\",\n  \"type\": \"full\"\n}\n~~~"
     },
@@ -22857,7 +22873,19 @@
     },
     {
       "name": "json:ssl_cert_refs",
-      "content": "# SSL证书引用\n\n## 示例\n~~~\n[\n  {\n    \"isOn\": true,\n    \"certId\": 12345\n  },\n  {\n    \"isOn\": true,\n    \"certId\": 12346\n  }\n]\n~~~\n\n其中：\n* `certId` - 证书的ID"
+      "content": "# SSL证书引用\n\n可以用来引用一组证书。\n\n## 定义\n~~~json\n[\n  {\n\t\"isOn\": \"是否启用\",\n\t\"certId\": \"证书ID 1\"\n  },\n  {\n    \"isOn\": \"是否启用\",\n    \"certId\": \"证书ID 2\"\n  },\n  ...\n]\n~~~\n\n## 示例\n~~~json\n[\n  {\n    \"isOn\": true,\n    \"certId\": 12345\n  },\n  {\n    \"isOn\": true,\n    \"certId\": 12346\n  }\n]\n~~~\n\n其中：\n* `certId` - 证书的ID"
+    },
+    {
+      "name": "json:tcp_protocol",
+      "content": "# TCP协议配置\n\n## 定义\n~~~json\n{\n\t\"isOn\": \"是否启用\",\n  \t\"listen\": [\n      {\n\t\t\"protocol\": \"协议\",\n\t\t\"host\": \"主机地址，通常为空\",\n\t\t\"portRange\": \"端口或者端口范围\"\n\t  },\n\t  ...\n\t]\n}\n~~~\n\n## 示例\n\n### 监听1234端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"tcp\",\n      \"host\": \"\",\n      \"portRange\": \"1234\"\n\t}\n  ]\n}\n~~~\n\n### 监听1234和2345端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"tcp\",\n      \"portRange\": \"1234\"\n\t},\n    {\n      \"protocol\": \"tcp\",\n      \"portRange\": \"2345\"\n\t}\n  ]\n}\n~~~\n\n### 监听1234到1240之间的所有端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"tcp\",\n      \"host\": \"\",\n      \"portRange\": \"1234-1240\"\n\t}\n  ]\n}\n~~~"
+    },
+    {
+      "name": "json:tls_protocol",
+      "content": "# TLS协议配置\n\n## 定义\n~~~json\n{\n\t\"isOn\": \"是否启用\",\n  \t\"listen\": [\n      {\n\t\t\"protocol\": \"协议\",\n\t\t\"host\": \"主机地址，通常为空\",\n\t\t\"portRange\": \"端口或者端口范围\"\n\t  },\n\t  ...\n\t],\n  \t\"sslPolicyRef\": {\n\t  \"isOn\": \"启用SSL策略\",\n\t  \"sslPolicyId\": \"SSL策略ID\"\n\t}\n}\n~~~\n\n其中 `SSL策略ID` 通过 `/SSLPolicyService/createSSLPolicy` 接口创建。\n\n## 示例\n\n### 监听8443端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"tls\",\n      \"host\": \"\",\n      \"portRange\": \"8443\"\n\t}\n  ],\n  \"sslPolicyRef\": {\n    \"isOn\": true,\n    \"sslPolicyId\": 123\n  }\n}\n~~~\n\n其中SSL策略ID `123` 通过 `/SSLPolicyService/createSSLPolicy` 接口创建。\n\n### 监听8443和8543端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"tls\",\n      \"portRange\": \"8443\"\n\t},\n    {\n      \"protocol\": \"tls\",\n      \"portRange\": \"8543\"\n\t}\n  ],\n  \"sslPolicyRef\": {\n    \"isOn\": true,\n    \"sslPolicyId\": 123\n  }\n}\n~~~\n\n其中SSL策略ID `123` 通过 `/SSLPolicyService/createSSLPolicy` 接口创建。\n\n"
+    },
+    {
+      "name": "json:udp_protocol",
+      "content": "# UDP协议配置\n\n## 定义\n~~~json\n{\n\t\"isOn\": \"是否启用\",\n  \t\"listen\": [\n      {\n\t\t\"protocol\": \"协议\",\n\t\t\"host\": \"主机地址，通常为空\",\n\t\t\"portRange\": \"端口或者端口范围\"\n\t  },\n\t  ...\n\t]\n}\n~~~\n\n## 示例\n\n### 监听1234端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"udp\",\n      \"host\": \"\",\n      \"portRange\": \"1234\"\n\t}\n  ]\n}\n~~~\n\n### 监听1234和2345端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"udp\",\n      \"portRange\": \"1234\"\n\t},\n    {\n      \"protocol\": \"udp\",\n      \"portRange\": \"2345\"\n\t}\n  ]\n}\n~~~\n\n### 监听1234到1240之间的所有端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"udp\",\n      \"host\": \"\",\n      \"portRange\": \"1234-1240\"\n\t}\n  ]\n}\n~~~"
     }
   ]
 }

@@ -29,34 +29,34 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-// 创建服务
+// 创建网站
 type CreateServerRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId      int64  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
-	AdminId     int64  `protobuf:"varint,2,opt,name=adminId,proto3" json:"adminId,omitempty"`
-	Type        string `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
-	Name        string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	Description string `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	UserId      int64  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`          // 可选参数，用户ID，如果不想指定用户，此值可以为0
+	AdminId     int64  `protobuf:"varint,2,opt,name=adminId,proto3" json:"adminId,omitempty"`        // 可选参数，管理员ID
+	Type        string `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`               // 类型：httpProxy（HTTP反向代理，一般CDN服务都选这个）、httpWeb（静态文件服务，只会从服务器上读取文件内容，不会转发到源站）、tcpProxy（TCP反向代理）、udpProxy（UDP反向代理）
+	Name        string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`               // 网站名称，通常可以是一个域名
+	Description string `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"` // 可选参数，网站描述
 	// 配置相关
-	ServerNamesJSON []byte `protobuf:"bytes,8,opt,name=serverNamesJSON,proto3" json:"serverNamesJSON,omitempty"` // @link json:server_names
+	ServerNamesJSON []byte `protobuf:"bytes,8,opt,name=serverNamesJSON,proto3" json:"serverNamesJSON,omitempty"` // 域名列表 @link json:server_names
 	// Deprecated: Do not use.
-	ServerNamesJON   []byte  `protobuf:"bytes,19,opt,name=serverNamesJON,proto3" json:"serverNamesJON,omitempty"` // 已过期，请使用 serverNamesJSON 代替
-	HttpJSON         []byte  `protobuf:"bytes,9,opt,name=httpJSON,proto3" json:"httpJSON,omitempty"`
-	HttpsJSON        []byte  `protobuf:"bytes,10,opt,name=httpsJSON,proto3" json:"httpsJSON,omitempty"`
-	TcpJSON          []byte  `protobuf:"bytes,11,opt,name=tcpJSON,proto3" json:"tcpJSON,omitempty"`
-	TlsJSON          []byte  `protobuf:"bytes,12,opt,name=tlsJSON,proto3" json:"tlsJSON,omitempty"`
-	UnixJSON         []byte  `protobuf:"bytes,13,opt,name=unixJSON,proto3" json:"unixJSON,omitempty"`
-	UdpJSON          []byte  `protobuf:"bytes,14,opt,name=udpJSON,proto3" json:"udpJSON,omitempty"`
-	WebId            int64   `protobuf:"varint,15,opt,name=webId,proto3" json:"webId,omitempty"`
-	ReverseProxyJSON []byte  `protobuf:"bytes,16,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"`
-	ServerGroupIds   []int64 `protobuf:"varint,17,rep,packed,name=serverGroupIds,proto3" json:"serverGroupIds,omitempty"`
-	UserPlanId       int64   `protobuf:"varint,18,opt,name=userPlanId,proto3" json:"userPlanId,omitempty"`
-	NodeClusterId    int64   `protobuf:"varint,30,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"`
-	IncludeNodesJSON []byte  `protobuf:"bytes,31,opt,name=includeNodesJSON,proto3" json:"includeNodesJSON,omitempty"`
-	ExcludeNodesJSON []byte  `protobuf:"bytes,32,opt,name=excludeNodesJSON,proto3" json:"excludeNodesJSON,omitempty"`
+	ServerNamesJON   []byte  `protobuf:"bytes,19,opt,name=serverNamesJON,proto3" json:"serverNamesJON,omitempty"`         // 已过期，请使用 serverNamesJSON 代替
+	HttpJSON         []byte  `protobuf:"bytes,9,opt,name=httpJSON,proto3" json:"httpJSON,omitempty"`                      // HTTP协议，当type为httpProxy或者httpWeb时填写 @link json:http_protocol
+	HttpsJSON        []byte  `protobuf:"bytes,10,opt,name=httpsJSON,proto3" json:"httpsJSON,omitempty"`                   // HTTPS协议，当type为httpProxy或者httpWeb时填写 @link json:https_protocol
+	TcpJSON          []byte  `protobuf:"bytes,11,opt,name=tcpJSON,proto3" json:"tcpJSON,omitempty"`                       // TCP协议，当type为tcpProxy时填写 @link json:tcp_protocol
+	TlsJSON          []byte  `protobuf:"bytes,12,opt,name=tlsJSON,proto3" json:"tlsJSON,omitempty"`                       // TLS协议，当type为tcpProxy时填写 @link json:tls_protocol
+	UnixJSON         []byte  `protobuf:"bytes,13,opt,name=unixJSON,proto3" json:"unixJSON,omitempty"`                     // 备用参数，不用填写
+	UdpJSON          []byte  `protobuf:"bytes,14,opt,name=udpJSON,proto3" json:"udpJSON,omitempty"`                       // UDP协议，当type为udpProxy时填写 @link json:udp_protocol
+	WebId            int64   `protobuf:"varint,15,opt,name=webId,proto3" json:"webId,omitempty"`                          // 可选参数，Web配置ID，当type为httpProxy或者httpWeb时填写，可以通过 /HTTPWebService/createHTTPWeb 接口创建；如果你需要配置缓存等信息时需要在 HTTPWebService 接口操作
+	ReverseProxyJSON []byte  `protobuf:"bytes,16,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"`     // 反向代理（包含源站）设置
+	ServerGroupIds   []int64 `protobuf:"varint,17,rep,packed,name=serverGroupIds,proto3" json:"serverGroupIds,omitempty"` // 所属网站分组ID列表
+	UserPlanId       int64   `protobuf:"varint,18,opt,name=userPlanId,proto3" json:"userPlanId,omitempty"`                // 可选参数，套餐ID
+	NodeClusterId    int64   `protobuf:"varint,30,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"`          // 所部署的集群ID
+	IncludeNodesJSON []byte  `protobuf:"bytes,31,opt,name=includeNodesJSON,proto3" json:"includeNodesJSON,omitempty"`     // 备用参数，不用填写
+	ExcludeNodesJSON []byte  `protobuf:"bytes,32,opt,name=excludeNodesJSON,proto3" json:"excludeNodesJSON,omitempty"`     // 备用参数，不用填写
 }
 
 func (x *CreateServerRequest) Reset() {
@@ -7266,7 +7266,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ServerServiceClient interface {
-	// 创建服务
+	// 创建网站
 	CreateServer(ctx context.Context, in *CreateServerRequest, opts ...grpc.CallOption) (*CreateServerResponse, error)
 	// 修改服务基本信息
 	UpdateServerBasic(ctx context.Context, in *UpdateServerBasicRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
@@ -7883,7 +7883,7 @@ func (c *serverServiceClient) CopyServerConfig(ctx context.Context, in *CopyServ
 
 // ServerServiceServer is the server API for ServerService service.
 type ServerServiceServer interface {
-	// 创建服务
+	// 创建网站
 	CreateServer(context.Context, *CreateServerRequest) (*CreateServerResponse, error)
 	// 修改服务基本信息
 	UpdateServerBasic(context.Context, *UpdateServerBasicRequest) (*RPCSuccess, error)

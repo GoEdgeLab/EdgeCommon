@@ -7,55 +7,55 @@ import "models/rpc_messages.proto";
 
 // SSL/TLS策略管理服务
 service SSLPolicyService {
-	// 创建Policy
+	// 创建策略
 	rpc createSSLPolicy (CreateSSLPolicyRequest) returns (CreateSSLPolicyResponse);
 
-	// 修改Policy
+	// 修改策略
 	rpc updateSSLPolicy (UpdateSSLPolicyRequest) returns (RPCSuccess);
 
-	// 查找Policy
+	// 查找策略
 	rpc findEnabledSSLPolicyConfig (FindEnabledSSLPolicyConfigRequest) returns (FindEnabledSSLPolicyConfigResponse);
 }
 
-// 创建Policy
+// 创建策略
 message CreateSSLPolicyRequest {
-	bool http2Enabled = 1; // 是否启用HTTP/2
-	bool http3Enabled = 10; // 是否启用HTTP/3（在满足条件的基础上）
-	string minVersion = 2; // 支持的最低SSL版本
-	bytes sslCertsJSON = 3; // 证书内容
-	bytes hstsJSON = 4; // HSTS配置
-	int32 clientAuthType = 5; //
-	bytes clientCACertsJSON = 6; // CA证书内容
-	repeated string cipherSuites = 7; // 自定义加密套件
-	bool cipherSuitesIsOn = 8; // 是否启用自定义加密套件
-	bool ocspIsOn = 9; // 是否启用OCSP
+	bool http2Enabled = 1; // 可选项，是否启用HTTP/2
+	bool http3Enabled = 10; // 可选项，是否启用HTTP/3（在满足条件的基础上）
+	string minVersion = 2; // 支持的最低SSL版本，可选择值： SSL 3.0, TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3
+	bytes sslCertsJSON = 3; // 可选项，关联的证书信息，可以在创建后再通过修改策略来配置 @link json:ssl_cert_refs
+	bytes hstsJSON = 4; // 可选项，HSTS配置 @link json:hsts
+	int32 clientAuthType = 5; // 可选项，客户端校验类型：0 无需证书，1 需要客户端证书，2 需要任一客户端证书，3 如果客户端上传了证书才校验，4 需要客户端证书而且需要校验
+	bytes clientCACertsJSON = 6; // 可选项，CA证书内容
+	repeated string cipherSuites = 7; // 可选项，自定义加密套件
+	bool cipherSuitesIsOn = 8; // 可选项，是否启用自定义加密套件
+	bool ocspIsOn = 9; // 可选项，是否启用OCSP
 }
 
 message CreateSSLPolicyResponse {
-	int64 sslPolicyId = 1;
+	int64 sslPolicyId = 1; // 创建的策略ID
 }
 
-// 修改Policy
+// 修改策略
 message UpdateSSLPolicyRequest {
-	int64 sslPolicyId = 1;
-	bool http2Enabled = 2;
-	bool http3Enabled = 11; // 是否启用HTTP/3（在满足条件的基础上）
-	string minVersion = 3;
-	bytes sslCertsJSON = 4;
-	bytes hstsJSON = 5;
-	int32 clientAuthType = 6;
-	bytes clientCACertsJSON = 7;
-	repeated string cipherSuites = 8;
-	bool cipherSuitesIsOn = 9;
-	bool ocspIsOn = 10;
+	int64 sslPolicyId = 1; // 策略ID
+	bool http2Enabled = 2; // 可选项，是否启用HTTP/2
+	bool http3Enabled = 11; // 可选项，是否启用HTTP/3（在满足条件的基础上）
+	string minVersion = 3; // 支持的最低SSL版本，可选择值： SSL 3.0, TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3
+	bytes sslCertsJSON = 4; // 关联的证书信息 @link json:ssl_cert_refs
+	bytes hstsJSON = 5; // 可选项，HSTS配置 @link json:hsts
+	int32 clientAuthType = 6; // 可选项，客户端校验类型：0 无需证书，1 需要客户端证书，2 需要任一客户端证书，3 如果客户端上传了证书才校验，4 需要客户端证书而且需要校验
+	bytes clientCACertsJSON = 7; // 可选项，CA证书内容
+	repeated string cipherSuites = 8; // 可选项，自定义加密套件
+	bool cipherSuitesIsOn = 9; // 可选项，是否启用自定义加密套件
+	bool ocspIsOn = 10; // 可选项，是否启用OCSP
 }
 
-// 查找Policy
+// 查找策略
 message FindEnabledSSLPolicyConfigRequest {
 	int64 sslPolicyId = 1; // SSL策略ID
-	bool ignoreData = 2; // 忽略证书内容数据
+	bool ignoreData = 2; // 是否忽略证书内容数据
 }
 
 message FindEnabledSSLPolicyConfigResponse {
-	bytes sslPolicyJSON = 1;
+	bytes sslPolicyJSON = 1; // 策略配置信息
 }

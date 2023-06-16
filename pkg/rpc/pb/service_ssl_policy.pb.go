@@ -29,22 +29,22 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-// 创建Policy
+// 创建策略
 type CreateSSLPolicyRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Http2Enabled      bool     `protobuf:"varint,1,opt,name=http2Enabled,proto3" json:"http2Enabled,omitempty"`          // 是否启用HTTP/2
-	Http3Enabled      bool     `protobuf:"varint,10,opt,name=http3Enabled,proto3" json:"http3Enabled,omitempty"`         // 是否启用HTTP/3（在满足条件的基础上）
-	MinVersion        string   `protobuf:"bytes,2,opt,name=minVersion,proto3" json:"minVersion,omitempty"`               // 支持的最低SSL版本
-	SslCertsJSON      []byte   `protobuf:"bytes,3,opt,name=sslCertsJSON,proto3" json:"sslCertsJSON,omitempty"`           // 证书内容
-	HstsJSON          []byte   `protobuf:"bytes,4,opt,name=hstsJSON,proto3" json:"hstsJSON,omitempty"`                   // HSTS配置
-	ClientAuthType    int32    `protobuf:"varint,5,opt,name=clientAuthType,proto3" json:"clientAuthType,omitempty"`      //
-	ClientCACertsJSON []byte   `protobuf:"bytes,6,opt,name=clientCACertsJSON,proto3" json:"clientCACertsJSON,omitempty"` // CA证书内容
-	CipherSuites      []string `protobuf:"bytes,7,rep,name=cipherSuites,proto3" json:"cipherSuites,omitempty"`           // 自定义加密套件
-	CipherSuitesIsOn  bool     `protobuf:"varint,8,opt,name=cipherSuitesIsOn,proto3" json:"cipherSuitesIsOn,omitempty"`  // 是否启用自定义加密套件
-	OcspIsOn          bool     `protobuf:"varint,9,opt,name=ocspIsOn,proto3" json:"ocspIsOn,omitempty"`                  // 是否启用OCSP
+	Http2Enabled      bool     `protobuf:"varint,1,opt,name=http2Enabled,proto3" json:"http2Enabled,omitempty"`          // 可选项，是否启用HTTP/2
+	Http3Enabled      bool     `protobuf:"varint,10,opt,name=http3Enabled,proto3" json:"http3Enabled,omitempty"`         // 可选项，是否启用HTTP/3（在满足条件的基础上）
+	MinVersion        string   `protobuf:"bytes,2,opt,name=minVersion,proto3" json:"minVersion,omitempty"`               // 支持的最低SSL版本，可选择值： SSL 3.0, TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3
+	SslCertsJSON      []byte   `protobuf:"bytes,3,opt,name=sslCertsJSON,proto3" json:"sslCertsJSON,omitempty"`           // 可选项，关联的证书信息，可以在创建后再通过修改策略来配置 @link json:ssl_cert_refs
+	HstsJSON          []byte   `protobuf:"bytes,4,opt,name=hstsJSON,proto3" json:"hstsJSON,omitempty"`                   // 可选项，HSTS配置 @link json:hsts
+	ClientAuthType    int32    `protobuf:"varint,5,opt,name=clientAuthType,proto3" json:"clientAuthType,omitempty"`      // 可选项，客户端校验类型：0 无需证书，1 需要客户端证书，2 需要任一客户端证书，3 如果客户端上传了证书才校验，4 需要客户端证书而且需要校验
+	ClientCACertsJSON []byte   `protobuf:"bytes,6,opt,name=clientCACertsJSON,proto3" json:"clientCACertsJSON,omitempty"` // 可选项，CA证书内容
+	CipherSuites      []string `protobuf:"bytes,7,rep,name=cipherSuites,proto3" json:"cipherSuites,omitempty"`           // 可选项，自定义加密套件
+	CipherSuitesIsOn  bool     `protobuf:"varint,8,opt,name=cipherSuitesIsOn,proto3" json:"cipherSuitesIsOn,omitempty"`  // 可选项，是否启用自定义加密套件
+	OcspIsOn          bool     `protobuf:"varint,9,opt,name=ocspIsOn,proto3" json:"ocspIsOn,omitempty"`                  // 可选项，是否启用OCSP
 }
 
 func (x *CreateSSLPolicyRequest) Reset() {
@@ -154,7 +154,7 @@ type CreateSSLPolicyResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SslPolicyId int64 `protobuf:"varint,1,opt,name=sslPolicyId,proto3" json:"sslPolicyId,omitempty"`
+	SslPolicyId int64 `protobuf:"varint,1,opt,name=sslPolicyId,proto3" json:"sslPolicyId,omitempty"` // 创建的策略ID
 }
 
 func (x *CreateSSLPolicyResponse) Reset() {
@@ -196,23 +196,23 @@ func (x *CreateSSLPolicyResponse) GetSslPolicyId() int64 {
 	return 0
 }
 
-// 修改Policy
+// 修改策略
 type UpdateSSLPolicyRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SslPolicyId       int64    `protobuf:"varint,1,opt,name=sslPolicyId,proto3" json:"sslPolicyId,omitempty"`
-	Http2Enabled      bool     `protobuf:"varint,2,opt,name=http2Enabled,proto3" json:"http2Enabled,omitempty"`
-	Http3Enabled      bool     `protobuf:"varint,11,opt,name=http3Enabled,proto3" json:"http3Enabled,omitempty"` // 是否启用HTTP/3（在满足条件的基础上）
-	MinVersion        string   `protobuf:"bytes,3,opt,name=minVersion,proto3" json:"minVersion,omitempty"`
-	SslCertsJSON      []byte   `protobuf:"bytes,4,opt,name=sslCertsJSON,proto3" json:"sslCertsJSON,omitempty"`
-	HstsJSON          []byte   `protobuf:"bytes,5,opt,name=hstsJSON,proto3" json:"hstsJSON,omitempty"`
-	ClientAuthType    int32    `protobuf:"varint,6,opt,name=clientAuthType,proto3" json:"clientAuthType,omitempty"`
-	ClientCACertsJSON []byte   `protobuf:"bytes,7,opt,name=clientCACertsJSON,proto3" json:"clientCACertsJSON,omitempty"`
-	CipherSuites      []string `protobuf:"bytes,8,rep,name=cipherSuites,proto3" json:"cipherSuites,omitempty"`
-	CipherSuitesIsOn  bool     `protobuf:"varint,9,opt,name=cipherSuitesIsOn,proto3" json:"cipherSuitesIsOn,omitempty"`
-	OcspIsOn          bool     `protobuf:"varint,10,opt,name=ocspIsOn,proto3" json:"ocspIsOn,omitempty"`
+	SslPolicyId       int64    `protobuf:"varint,1,opt,name=sslPolicyId,proto3" json:"sslPolicyId,omitempty"`            // 策略ID
+	Http2Enabled      bool     `protobuf:"varint,2,opt,name=http2Enabled,proto3" json:"http2Enabled,omitempty"`          // 可选项，是否启用HTTP/2
+	Http3Enabled      bool     `protobuf:"varint,11,opt,name=http3Enabled,proto3" json:"http3Enabled,omitempty"`         // 可选项，是否启用HTTP/3（在满足条件的基础上）
+	MinVersion        string   `protobuf:"bytes,3,opt,name=minVersion,proto3" json:"minVersion,omitempty"`               // 支持的最低SSL版本，可选择值： SSL 3.0, TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3
+	SslCertsJSON      []byte   `protobuf:"bytes,4,opt,name=sslCertsJSON,proto3" json:"sslCertsJSON,omitempty"`           // 关联的证书信息 @link json:ssl_cert_refs
+	HstsJSON          []byte   `protobuf:"bytes,5,opt,name=hstsJSON,proto3" json:"hstsJSON,omitempty"`                   // 可选项，HSTS配置 @link json:hsts
+	ClientAuthType    int32    `protobuf:"varint,6,opt,name=clientAuthType,proto3" json:"clientAuthType,omitempty"`      // 可选项，客户端校验类型：0 无需证书，1 需要客户端证书，2 需要任一客户端证书，3 如果客户端上传了证书才校验，4 需要客户端证书而且需要校验
+	ClientCACertsJSON []byte   `protobuf:"bytes,7,opt,name=clientCACertsJSON,proto3" json:"clientCACertsJSON,omitempty"` // 可选项，CA证书内容
+	CipherSuites      []string `protobuf:"bytes,8,rep,name=cipherSuites,proto3" json:"cipherSuites,omitempty"`           // 可选项，自定义加密套件
+	CipherSuitesIsOn  bool     `protobuf:"varint,9,opt,name=cipherSuitesIsOn,proto3" json:"cipherSuitesIsOn,omitempty"`  // 可选项，是否启用自定义加密套件
+	OcspIsOn          bool     `protobuf:"varint,10,opt,name=ocspIsOn,proto3" json:"ocspIsOn,omitempty"`                 // 可选项，是否启用OCSP
 }
 
 func (x *UpdateSSLPolicyRequest) Reset() {
@@ -324,14 +324,14 @@ func (x *UpdateSSLPolicyRequest) GetOcspIsOn() bool {
 	return false
 }
 
-// 查找Policy
+// 查找策略
 type FindEnabledSSLPolicyConfigRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	SslPolicyId int64 `protobuf:"varint,1,opt,name=sslPolicyId,proto3" json:"sslPolicyId,omitempty"` // SSL策略ID
-	IgnoreData  bool  `protobuf:"varint,2,opt,name=ignoreData,proto3" json:"ignoreData,omitempty"`   // 忽略证书内容数据
+	IgnoreData  bool  `protobuf:"varint,2,opt,name=ignoreData,proto3" json:"ignoreData,omitempty"`   // 是否忽略证书内容数据
 }
 
 func (x *FindEnabledSSLPolicyConfigRequest) Reset() {
@@ -385,7 +385,7 @@ type FindEnabledSSLPolicyConfigResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SslPolicyJSON []byte `protobuf:"bytes,1,opt,name=sslPolicyJSON,proto3" json:"sslPolicyJSON,omitempty"`
+	SslPolicyJSON []byte `protobuf:"bytes,1,opt,name=sslPolicyJSON,proto3" json:"sslPolicyJSON,omitempty"` // 策略配置信息
 }
 
 func (x *FindEnabledSSLPolicyConfigResponse) Reset() {
@@ -655,11 +655,11 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type SSLPolicyServiceClient interface {
-	// 创建Policy
+	// 创建策略
 	CreateSSLPolicy(ctx context.Context, in *CreateSSLPolicyRequest, opts ...grpc.CallOption) (*CreateSSLPolicyResponse, error)
-	// 修改Policy
+	// 修改策略
 	UpdateSSLPolicy(ctx context.Context, in *UpdateSSLPolicyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
-	// 查找Policy
+	// 查找策略
 	FindEnabledSSLPolicyConfig(ctx context.Context, in *FindEnabledSSLPolicyConfigRequest, opts ...grpc.CallOption) (*FindEnabledSSLPolicyConfigResponse, error)
 }
 
@@ -700,11 +700,11 @@ func (c *sSLPolicyServiceClient) FindEnabledSSLPolicyConfig(ctx context.Context,
 
 // SSLPolicyServiceServer is the server API for SSLPolicyService service.
 type SSLPolicyServiceServer interface {
-	// 创建Policy
+	// 创建策略
 	CreateSSLPolicy(context.Context, *CreateSSLPolicyRequest) (*CreateSSLPolicyResponse, error)
-	// 修改Policy
+	// 修改策略
 	UpdateSSLPolicy(context.Context, *UpdateSSLPolicyRequest) (*RPCSuccess, error)
-	// 查找Policy
+	// 查找策略
 	FindEnabledSSLPolicyConfig(context.Context, *FindEnabledSSLPolicyConfigRequest) (*FindEnabledSSLPolicyConfigResponse, error)
 }
 
