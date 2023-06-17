@@ -179,11 +179,11 @@ service ServerService {
 
 // 创建网站
 message CreateServerRequest {
-	int64 userId = 1; // 可选参数，用户ID，如果不想指定用户，此值可以为0
-	int64 adminId = 2; // 可选参数，管理员ID
+	int64 userId = 1; // 可选项，用户ID，如果不想指定用户，此值可以为0
+	int64 adminId = 2; // 可选项，管理员ID
 	string type = 3; // 类型：httpProxy（HTTP反向代理，一般CDN服务都选这个）、httpWeb（静态文件服务，只会从服务器上读取文件内容，不会转发到源站）、tcpProxy（TCP反向代理）、udpProxy（UDP反向代理）
 	string name = 4; // 网站名称，通常可以是一个域名
-	string description = 5; // 可选参数，网站描述
+	string description = 5; // 可选项，网站描述
 
 	// 配置相关
 	bytes serverNamesJSON = 8; // 域名列表 @link json:server_names
@@ -194,10 +194,10 @@ message CreateServerRequest {
 	bytes tlsJSON = 12;  // TLS协议，当type为tcpProxy时填写 @link json:tls_protocol
 	bytes unixJSON = 13; // 备用参数，不用填写
 	bytes udpJSON = 14; // UDP协议，当type为udpProxy时填写 @link json:udp_protocol
-	int64 webId = 15; // 可选参数，Web配置ID，当type为httpProxy或者httpWeb时填写，可以通过 /HTTPWebService/createHTTPWeb 接口创建；如果你需要配置缓存等信息时需要在 HTTPWebService 接口操作
-	bytes reverseProxyJSON = 16; // 反向代理（包含源站）设置
-	repeated int64 serverGroupIds = 17; // 所属网站分组ID列表
-	int64 userPlanId = 18; // 可选参数，套餐ID
+	int64 webId = 15; // 可选项，Web配置ID，当type为httpProxy或者httpWeb时填写，可以通过 /HTTPWebService/createHTTPWeb 接口创建；如果你需要配置缓存等信息时需要在 HTTPWebService 接口操作
+	bytes reverseProxyJSON = 16; // 反向代理（包含源站）配置引用，此项可以在创建网站后再设置 @link json:reverse_proxy_ref
+	repeated int64 serverGroupIds = 17; // 可选项，所属网站分组ID列表
+	int64 userPlanId = 18; // 可选项，套餐ID
 
 	int64 nodeClusterId = 30; // 所部署的集群ID
 	bytes includeNodesJSON = 31; // 备用参数，不用填写

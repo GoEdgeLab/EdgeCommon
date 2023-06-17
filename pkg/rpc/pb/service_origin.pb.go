@@ -194,7 +194,7 @@ type CreateOriginResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OriginId int64 `protobuf:"varint,1,opt,name=originId,proto3" json:"originId,omitempty"`
+	OriginId int64 `protobuf:"varint,1,opt,name=originId,proto3" json:"originId,omitempty"` // 创建的源站ID
 }
 
 func (x *CreateOriginResponse) Reset() {

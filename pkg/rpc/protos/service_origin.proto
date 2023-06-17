@@ -42,7 +42,7 @@ message CreateOriginRequest {
 }
 
 message CreateOriginResponse {
-	int64 originId = 1;
+	int64 originId = 1; // 创建的源站ID
 }
 
 // 修改源站

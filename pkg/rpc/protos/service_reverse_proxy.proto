@@ -32,9 +32,9 @@ service ReverseProxyService {
 
 // 创建反向代理
 message CreateReverseProxyRequest {
-	bytes schedulingJSON = 1;
-	bytes primaryOriginsJSON = 2;
-	bytes backupOriginsJSON = 3;
+	bytes schedulingJSON = 1; // 可选项，调度设置 @link json:scheduling
+	bytes primaryOriginsJSON = 2; // 可选项，主要源站 @link json:origin_refs
+	bytes backupOriginsJSON = 3; // 可选项，备用源站 @link json:origin_refs
 }
 
 message CreateReverseProxyResponse {

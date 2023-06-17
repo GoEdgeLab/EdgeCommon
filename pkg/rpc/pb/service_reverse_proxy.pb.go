@@ -35,9 +35,9 @@ type CreateReverseProxyRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SchedulingJSON     []byte `protobuf:"bytes,1,opt,name=schedulingJSON,proto3" json:"schedulingJSON,omitempty"`
-	PrimaryOriginsJSON []byte `protobuf:"bytes,2,opt,name=primaryOriginsJSON,proto3" json:"primaryOriginsJSON,omitempty"`
-	BackupOriginsJSON  []byte `protobuf:"bytes,3,opt,name=backupOriginsJSON,proto3" json:"backupOriginsJSON,omitempty"`
+	SchedulingJSON     []byte `protobuf:"bytes,1,opt,name=schedulingJSON,proto3" json:"schedulingJSON,omitempty"`         // 可选项，调度设置 @link json:scheduling
+	PrimaryOriginsJSON []byte `protobuf:"bytes,2,opt,name=primaryOriginsJSON,proto3" json:"primaryOriginsJSON,omitempty"` // 可选项，主要源站 @link json:origin_refs
+	BackupOriginsJSON  []byte `protobuf:"bytes,3,opt,name=backupOriginsJSON,proto3" json:"backupOriginsJSON,omitempty"`   // 可选项，备用源站 @link json:origin_refs
 }
 
 func (x *CreateReverseProxyRequest) Reset() {
