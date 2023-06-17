@@ -13,8 +13,8 @@ func DefaultGlobalServerConfig() *GlobalServerConfig {
 
 	config.Log.RecordServerError = false
 
-	config.Performance.AutoWriteTimeout = true
-	config.Performance.AutoReadTimeout = true
+	config.Performance.AutoWriteTimeout = false
+	config.Performance.AutoReadTimeout = false
 	config.Stat.Upload.MaxCities = 32
 	config.Stat.Upload.MaxProviders = 32
 	config.Stat.Upload.MaxSystems = 64
