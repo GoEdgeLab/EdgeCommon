@@ -10238,11 +10238,23 @@
           "isDeprecated": false
         },
         {
+          "name": "createBasicHTTPServer",
+          "requestMessageName": "CreateBasicHTTPServerRequest",
+          "responseMessageName": "CreateBasicHTTPServerResponse",
+          "code": "rpc createBasicHTTPServer(CreateBasicHTTPServerRequest) returns (CreateBasicHTTPServerResponse);",
+          "doc": "快速创建基本的HTTP网站",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
           "name": "updateServerBasic",
           "requestMessageName": "UpdateServerBasicRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerBasic (UpdateServerBasicRequest) returns (RPCSuccess);",
-          "doc": "修改服务基本信息",
+          "doc": "修改网站基本信息",
           "roles": [
             "admin"
           ],
@@ -10253,7 +10265,7 @@
           "requestMessageName": "UpdateServerGroupIdsRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerGroupIds(UpdateServerGroupIdsRequest) returns (RPCSuccess);",
-          "doc": "修改服务所在分组",
+          "doc": "修改网站所在分组",
           "roles": [
             "admin",
             "user"
@@ -10265,7 +10277,7 @@
           "requestMessageName": "UpdateServerIsOnRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerIsOn (UpdateServerIsOnRequest) returns (RPCSuccess);",
-          "doc": "修改服务是否启用",
+          "doc": "修改网站是否启用",
           "roles": [
             "admin",
             "user"
@@ -10277,7 +10289,7 @@
           "requestMessageName": "UpdateServerHTTPRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerHTTP (UpdateServerHTTPRequest) returns (RPCSuccess);",
-          "doc": "修改服务的HTTP设置",
+          "doc": "修改网站的HTTP设置",
           "roles": [
             "admin",
             "user"
@@ -10289,7 +10301,7 @@
           "requestMessageName": "UpdateServerHTTPSRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerHTTPS (UpdateServerHTTPSRequest) returns (RPCSuccess);",
-          "doc": "修改服务的HTTPS设置",
+          "doc": "修改网站的HTTPS设置",
           "roles": [
             "admin",
             "user"
@@ -10301,7 +10313,7 @@
           "requestMessageName": "UpdateServerTCPRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerTCP (UpdateServerTCPRequest) returns (RPCSuccess);",
-          "doc": "修改服务的TCP设置",
+          "doc": "修改网站的TCP设置",
           "roles": [
             "admin",
             "user"
@@ -10313,7 +10325,7 @@
           "requestMessageName": "UpdateServerTLSRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerTLS (UpdateServerTLSRequest) returns (RPCSuccess);",
-          "doc": "修改服务的TLS设置",
+          "doc": "修改网站的TLS设置",
           "roles": [
             "admin",
             "user"
@@ -10325,7 +10337,7 @@
           "requestMessageName": "UpdateServerUnixRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerUnix (UpdateServerUnixRequest) returns (RPCSuccess);",
-          "doc": "修改服务的Unix设置",
+          "doc": "修改网站的Unix设置",
           "roles": [
             "admin"
           ],
@@ -10336,7 +10348,7 @@
           "requestMessageName": "UpdateServerUDPRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerUDP (UpdateServerUDPRequest) returns (RPCSuccess);",
-          "doc": "修改服务的UDP设置",
+          "doc": "修改网站的UDP设置",
           "roles": [
             "admin",
             "user"
@@ -10348,7 +10360,7 @@
           "requestMessageName": "UpdateServerWebRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerWeb (UpdateServerWebRequest) returns (RPCSuccess);",
-          "doc": "修改服务的Web设置",
+          "doc": "修改网站的Web设置",
           "roles": [
             "admin",
             "user"
@@ -10360,7 +10372,7 @@
           "requestMessageName": "UpdateServerReverseProxyRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerReverseProxy (UpdateServerReverseProxyRequest) returns (RPCSuccess);",
-          "doc": "修改服务的反向代理设置",
+          "doc": "修改网站的反向代理设置",
           "roles": [
             "admin",
             "user"
@@ -10372,7 +10384,7 @@
           "requestMessageName": "FindServerNamesRequest",
           "responseMessageName": "FindServerNamesResponse",
           "code": "rpc findServerNames (FindServerNamesRequest) returns (FindServerNamesResponse);",
-          "doc": "查找服务的域名设置",
+          "doc": "查找网站的域名设置",
           "roles": [
             "admin",
             "user"
@@ -10384,7 +10396,7 @@
           "requestMessageName": "UpdateServerNamesRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerNames (UpdateServerNamesRequest) returns (RPCSuccess);",
-          "doc": "修改服务的域名设置",
+          "doc": "修改网站的域名设置",
           "roles": [
             "admin",
             "user"
@@ -10396,7 +10408,7 @@
           "requestMessageName": "UpdateServerNamesAuditingRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerNamesAuditing (UpdateServerNamesAuditingRequest) returns (RPCSuccess);",
-          "doc": "审核服务的域名设置",
+          "doc": "审核网站的域名设置",
           "roles": [
             "admin"
           ],
@@ -10407,7 +10419,7 @@
           "requestMessageName": "UpdateServerDNSRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerDNS(UpdateServerDNSRequest) returns (RPCSuccess);",
-          "doc": "修改服务的DNS相关设置",
+          "doc": "修改网站的DNS相关设置",
           "roles": [
             "admin"
           ],
@@ -10429,7 +10441,7 @@
           "requestMessageName": "UpdateServerDNSNameRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerDNSName(UpdateServerDNSNameRequest) returns (RPCSuccess);",
-          "doc": "修改服务的CNAME",
+          "doc": "修改网站的CNAME",
           "roles": [
             "admin"
           ],
@@ -10440,7 +10452,7 @@
           "requestMessageName": "FindServerIdWithDNSNameRequest",
           "responseMessageName": "FindServerIdWithDNSNameResponse",
           "code": "rpc findServerIdWithDNSName(FindServerIdWithDNSNameRequest) returns (FindServerIdWithDNSNameResponse);",
-          "doc": "使用CNAME查找服务",
+          "doc": "使用CNAME查找网站",
           "roles": [
             "admin"
           ],
@@ -10451,7 +10463,7 @@
           "requestMessageName": "CountAllEnabledServersMatchRequest",
           "responseMessageName": "RPCCountResponse",
           "code": "rpc countAllEnabledServersMatch (CountAllEnabledServersMatchRequest) returns (RPCCountResponse);",
-          "doc": "计算匹配的服务数量",
+          "doc": "计算匹配的网站数量",
           "roles": [
             "admin",
             "user"
@@ -10463,7 +10475,7 @@
           "requestMessageName": "ListEnabledServersMatchRequest",
           "responseMessageName": "ListEnabledServersMatchResponse",
           "code": "rpc listEnabledServersMatch (ListEnabledServersMatchRequest) returns (ListEnabledServersMatchResponse);",
-          "doc": "列出单页服务",
+          "doc": "列出单页网站",
           "roles": [
             "admin",
             "user"
@@ -10475,7 +10487,7 @@
           "requestMessageName": "DeleteServerRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc deleteServer (DeleteServerRequest) returns (RPCSuccess);",
-          "doc": "禁用某服务",
+          "doc": "禁用某网站",
           "roles": [
             "admin",
             "user"
@@ -10487,7 +10499,7 @@
           "requestMessageName": "FindEnabledServerRequest",
           "responseMessageName": "FindEnabledServerResponse",
           "code": "rpc findEnabledServer (FindEnabledServerRequest) returns (FindEnabledServerResponse);",
-          "doc": "查找单个服务",
+          "doc": "查找单个网站",
           "roles": [
             "admin",
             "user"
@@ -10499,7 +10511,7 @@
           "requestMessageName": "FindEnabledServerConfigRequest",
           "responseMessageName": "FindEnabledServerConfigResponse",
           "code": "rpc findEnabledServerConfig (FindEnabledServerConfigRequest) returns (FindEnabledServerConfigResponse);",
-          "doc": "查找服务配置",
+          "doc": "查找网站配置",
           "roles": [
             "admin",
             "user"
@@ -10511,7 +10523,7 @@
           "requestMessageName": "FindEnabledServerTypeRequest",
           "responseMessageName": "FindEnabledServerTypeResponse",
           "code": "rpc findEnabledServerType (FindEnabledServerTypeRequest) returns (FindEnabledServerTypeResponse);",
-          "doc": "查找服务的服务类型",
+          "doc": "查找网站的网站类型",
           "roles": [
             "admin",
             "user"
@@ -10547,7 +10559,7 @@
           "requestMessageName": "CountAllEnabledServersWithSSLCertIdRequest",
           "responseMessageName": "RPCCountResponse",
           "code": "rpc countAllEnabledServersWithSSLCertId (CountAllEnabledServersWithSSLCertIdRequest) returns (RPCCountResponse);",
-          "doc": "计算使用某个SSL证书的服务数量",
+          "doc": "计算使用某个SSL证书的网站数量",
           "roles": [
             "admin",
             "user"
@@ -10559,7 +10571,7 @@
           "requestMessageName": "FindAllEnabledServersWithSSLCertIdRequest",
           "responseMessageName": "FindAllEnabledServersWithSSLCertIdResponse",
           "code": "rpc findAllEnabledServersWithSSLCertId (FindAllEnabledServersWithSSLCertIdRequest) returns (FindAllEnabledServersWithSSLCertIdResponse);",
-          "doc": "查找使用某个SSL证书的所有服务",
+          "doc": "查找使用某个SSL证书的所有网站",
           "roles": [
             "admin",
             "user"
@@ -10571,7 +10583,7 @@
           "requestMessageName": "CountAllEnabledServersWithNodeClusterIdRequest",
           "responseMessageName": "RPCCountResponse",
           "code": "rpc countAllEnabledServersWithNodeClusterId (CountAllEnabledServersWithNodeClusterIdRequest) returns (RPCCountResponse);",
-          "doc": "计算运行在某个集群上的所有服务数量",
+          "doc": "计算运行在某个集群上的所有网站数量",
           "roles": [
             "admin"
           ],
@@ -10582,7 +10594,7 @@
           "requestMessageName": "CountAllEnabledServersWithServerGroupIdRequest",
           "responseMessageName": "RPCCountResponse",
           "code": "rpc countAllEnabledServersWithServerGroupId (CountAllEnabledServersWithServerGroupIdRequest) returns (RPCCountResponse);",
-          "doc": "计算使用某个分组的服务数量",
+          "doc": "计算使用某个分组的网站数量",
           "roles": [
             "admin",
             "user"
@@ -10605,7 +10617,7 @@
           "requestMessageName": "FindAllEnabledServersDNSWithNodeClusterIdRequest",
           "responseMessageName": "FindAllEnabledServersDNSWithNodeClusterIdResponse",
           "code": "rpc findAllEnabledServersDNSWithNodeClusterId (FindAllEnabledServersDNSWithNodeClusterIdRequest) returns (FindAllEnabledServersDNSWithNodeClusterIdResponse);",
-          "doc": "取得某个集群下的所有服务相关的DNS",
+          "doc": "取得某个集群下的所有网站相关的DNS",
           "roles": [
             "admin"
           ],
@@ -10616,7 +10628,7 @@
           "requestMessageName": "FindEnabledServerDNSRequest",
           "responseMessageName": "FindEnabledServerDNSResponse",
           "code": "rpc findEnabledServerDNS (FindEnabledServerDNSRequest) returns (FindEnabledServerDNSResponse);",
-          "doc": "查找单个服务的DNS信息",
+          "doc": "查找单个网站的DNS信息",
           "roles": [
             "admin",
             "user"
@@ -10628,7 +10640,7 @@
           "requestMessageName": "CheckUserServerRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc checkUserServer (CheckUserServerRequest) returns (RPCSuccess);",
-          "doc": "检查服务是否属于某个用户",
+          "doc": "检查网站是否属于某个用户",
           "roles": [
             "user"
           ],
@@ -10651,7 +10663,7 @@
           "requestMessageName": "FindAllUserServersRequest",
           "responseMessageName": "FindAllUserServersResponse",
           "code": "rpc findAllUserServers(FindAllUserServersRequest) returns (FindAllUserServersResponse);",
-          "doc": "查找一个用户下的所有服务",
+          "doc": "查找一个用户下的所有网站",
           "roles": [
             "admin",
             "user"
@@ -10663,7 +10675,7 @@
           "requestMessageName": "ComposeAllUserServersConfigRequest",
           "responseMessageName": "ComposeAllUserServersConfigResponse",
           "code": "rpc composeAllUserServersConfig(ComposeAllUserServersConfigRequest) returns (ComposeAllUserServersConfigResponse);",
-          "doc": "查找某个用户下的服务配置",
+          "doc": "查找某个用户下的网站配置",
           "roles": [
             "node"
           ],
@@ -10674,7 +10686,7 @@
           "requestMessageName": "FindEnabledUserServerBasicRequest",
           "responseMessageName": "FindEnabledUserServerBasicResponse",
           "code": "rpc findEnabledUserServerBasic (FindEnabledUserServerBasicRequest) returns (FindEnabledUserServerBasicResponse);",
-          "doc": "查找用户服务基本信息",
+          "doc": "查找用户网站基本信息",
           "roles": [
             "admin",
             "user"
@@ -10686,7 +10698,7 @@
           "requestMessageName": "UpdateEnabledUserServerBasicRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateEnabledUserServerBasic (UpdateEnabledUserServerBasicRequest) returns (RPCSuccess);",
-          "doc": "修改用户服务基本信息",
+          "doc": "修改用户网站基本信息",
           "roles": [
             "admin",
             "user"
@@ -10721,7 +10733,7 @@
           "requestMessageName": "FindLatestServersRequest",
           "responseMessageName": "FindLatestServersResponse",
           "code": "rpc findLatestServers (FindLatestServersRequest) returns (FindLatestServersResponse);",
-          "doc": "查找最近访问的服务",
+          "doc": "查找最近访问的网站",
           "roles": [
             "admin"
           ],
@@ -10732,7 +10744,7 @@
           "requestMessageName": "FindNearbyServersRequest",
           "responseMessageName": "FindNearbyServersResponse",
           "code": "rpc findNearbyServers(FindNearbyServersRequest) returns (FindNearbyServersResponse);",
-          "doc": "查找某个服务附近的服务",
+          "doc": "查找某个网站附近的网站",
           "roles": [
             "admin"
           ],
@@ -10778,7 +10790,7 @@
           "requestMessageName": "UpdateServerUserPlanRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerUserPlan(UpdateServerUserPlanRequest) returns (RPCSuccess);",
-          "doc": "修改服务套餐",
+          "doc": "修改网站套餐",
           "roles": [
             "admin",
             "user"
@@ -10790,7 +10802,7 @@
           "requestMessageName": "FindServerUserPlanRequest",
           "responseMessageName": "FindServerUserPlanResponse",
           "code": "rpc findServerUserPlan(FindServerUserPlanRequest) returns (FindServerUserPlanResponse);",
-          "doc": "获取服务套餐信息",
+          "doc": "获取网站套餐信息",
           "roles": [
             "admin",
             "user"
@@ -10802,7 +10814,7 @@
           "requestMessageName": "ComposeServerConfigRequest",
           "responseMessageName": "ComposeServerConfigResponse",
           "code": "rpc composeServerConfig(ComposeServerConfigRequest) returns (ComposeServerConfigResponse);",
-          "doc": "获取服务配置",
+          "doc": "获取网站配置",
           "roles": [
             "node"
           ],
@@ -10813,7 +10825,7 @@
           "requestMessageName": "UpdateServerUAMRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerUAM(UpdateServerUAMRequest) returns (RPCSuccess);",
-          "doc": "修改服务UAM设置",
+          "doc": "修改网站UAM设置",
           "roles": [
             "admin",
             "user"
@@ -10825,7 +10837,7 @@
           "requestMessageName": "FindEnabledServerUAMRequest",
           "responseMessageName": "FindEnabledServerUAMResponse",
           "code": "rpc findEnabledServerUAM(FindEnabledServerUAMRequest) returns (FindEnabledServerUAMResponse);",
-          "doc": "查找服务UAM设置",
+          "doc": "查找网站UAM设置",
           "roles": [
             "admin",
             "user"
@@ -10837,7 +10849,7 @@
           "requestMessageName": "UpdateServerUserRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerUser(UpdateServerUserRequest) returns (RPCSuccess);",
-          "doc": "修改服务所属用户",
+          "doc": "修改网站所属用户",
           "roles": [
             "admin"
           ],
@@ -10848,7 +10860,7 @@
           "requestMessageName": "UpdateServerNameRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateServerName(UpdateServerNameRequest) returns (RPCSuccess);",
-          "doc": "修改服务名称",
+          "doc": "修改网站名称",
           "roles": [
             "admin",
             "user"
@@ -10860,7 +10872,7 @@
           "requestMessageName": "CopyServerConfigRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc copyServerConfig(CopyServerConfigRequest) returns (RPCSuccess);",
-          "doc": "在服务之间复制配置",
+          "doc": "在网站之间复制配置",
           "roles": [
             "admin",
             "user"
@@ -13753,7 +13765,7 @@
     },
     {
       "name": "CheckServerNameDuplicationInNodeClusterRequest",
-      "code": "message CheckServerNameDuplicationInNodeClusterRequest {\n\tint64 nodeClusterId = 1;\n\trepeated string serverNames = 2; // 可以同时检查一批域名\n\tint64 excludeServerId = 3; // 要排除的服务ID\n\tbool supportWildcard = 4;// 支持泛解析\n}",
+      "code": "message CheckServerNameDuplicationInNodeClusterRequest {\n\tint64 nodeClusterId = 1;\n\trepeated string serverNames = 2; // 可以同时检查一批域名\n\tint64 excludeServerId = 3; // 要排除的网站ID\n\tbool supportWildcard = 4;// 支持泛解析\n}",
       "doc": "检查域名是否已经存在"
     },
     {
@@ -13804,7 +13816,7 @@
     {
       "name": "CheckUserServerRequest",
       "code": "message CheckUserServerRequest {\n\tint64 serverId = 1;\n}",
-      "doc": "检查服务是否属于某个用户"
+      "doc": "检查网站是否属于某个用户"
     },
     {
       "name": "CheckUserServersStateRequest",
@@ -13869,7 +13881,7 @@
     {
       "name": "ComposeAllUserServersConfigRequest",
       "code": "message ComposeAllUserServersConfigRequest {\n\tint64 userId = 1;\n}",
-      "doc": "查找某个用户下的服务配置"
+      "doc": "查找某个用户下的网站配置"
     },
     {
       "name": "ComposeAllUserServersConfigResponse",
@@ -13919,7 +13931,7 @@
     {
       "name": "ComposeServerConfigRequest",
       "code": "message ComposeServerConfigRequest {\n\tint64 serverId = 1;\n}",
-      "doc": "获取服务配置"
+      "doc": "获取网站配置"
     },
     {
       "name": "ComposeServerConfigResponse",
@@ -13998,8 +14010,8 @@
     },
     {
       "name": "CopyServerConfigRequest",
-      "code": "message CopyServerConfigRequest {\n\tint64 serverId = 1; // 被复制服务ID\n\tstring configCode = 2; // 要拷贝的配置代号\n\tstring targetType = 3; // 目标类型：servers, groups, cluster（当前集群下所有服务，只有管理员才有权限）、user（当前用户下所有服务）\n\trepeated int64 targetServerIds = 4; // 目标服务ID列表\n\trepeated int64 targetServerGroupIds = 5; // 目标服务分组ID列表\n\tint64 targetClusterId = 6; // 目标集群ID\n\tint64 targetUserId = 7; // 目标用户ID\n}",
-      "doc": "在服务之间复制配置"
+      "code": "message CopyServerConfigRequest {\n\tint64 serverId = 1; // 被复制网站ID\n\tstring configCode = 2; // 要拷贝的配置代号\n\tstring targetType = 3; // 目标类型：servers, groups, cluster（当前集群下所有网站，只有管理员才有权限）、user（当前用户下所有网站）\n\trepeated int64 targetServerIds = 4; // 目标网站ID列表\n\trepeated int64 targetServerGroupIds = 5; // 目标网站分组ID列表\n\tint64 targetClusterId = 6; // 目标集群ID\n\tint64 targetUserId = 7; // 目标用户ID\n}",
+      "doc": "在网站之间复制配置"
     },
     {
       "name": "CountADPackageInstancesRequest",
@@ -14228,23 +14240,23 @@
     },
     {
       "name": "CountAllEnabledServersMatchRequest",
-      "code": "message CountAllEnabledServersMatchRequest {\n\tint64 serverGroupId = 1; // 服务分组ID，如果为-1表示查找未分组\n\tstring keyword = 2;\n\tint64 userId = 3;\n\tint64 nodeClusterId = 4;\n\tint32 auditingFlag = 5;\n\tstring protocolFamily = 6;\n}",
-      "doc": "计算服务数量"
+      "code": "message CountAllEnabledServersMatchRequest {\n\tint64 serverGroupId = 1; // 网站分组ID，如果为-1表示查找未分组\n\tstring keyword = 2;\n\tint64 userId = 3;\n\tint64 nodeClusterId = 4;\n\tint32 auditingFlag = 5;\n\tstring protocolFamily = 6;\n}",
+      "doc": "计算网站数量"
     },
     {
       "name": "CountAllEnabledServersWithNodeClusterIdRequest",
       "code": "message CountAllEnabledServersWithNodeClusterIdRequest {\n\tint64 nodeClusterId = 1;\n}",
-      "doc": "计算运行在某个集群上的所有服务数量"
+      "doc": "计算运行在某个集群上的所有网站数量"
     },
     {
       "name": "CountAllEnabledServersWithSSLCertIdRequest",
       "code": "message CountAllEnabledServersWithSSLCertIdRequest {\n\tint64 sslCertId = 1;\n}",
-      "doc": "计算使用某个SSL证书的服务数量"
+      "doc": "计算使用某个SSL证书的网站数量"
     },
     {
       "name": "CountAllEnabledServersWithServerGroupIdRequest",
       "code": "message CountAllEnabledServersWithServerGroupIdRequest {\n\tint64 serverGroupId = 1;\n}",
-      "doc": "计算使用某个分组的服务数量"
+      "doc": "计算使用某个分组的网站数量"
     },
     {
       "name": "CountAllEnabledUserAccessKeysRequest",
@@ -14594,6 +14606,16 @@
     {
       "name": "CreateAdminResponse",
       "code": "message CreateAdminResponse {\n\tint64 adminId = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "CreateBasicHTTPServerRequest",
+      "code": "message CreateBasicHTTPServerRequest {\n\tint64 nodeClusterId = 1; // 部署的集群ID，用户创建时不需要指定此项\n\tint64 userId = 2; // 管理员创建网站时可以指定此用户ID，也可以为0表示不指定\n\trepeated string domains = 3; // 域名列表\n\trepeated int64 sslCertIds = 4; // HTTPS用到的证书ID列表\n\trepeated string originAddrs = 5; // 源站地址列表，每一个源站地址需要带协议部分，比如 http://example.com\n\n\tbool enableWebsocket = 6; // 可选项，是否启用Websocket\n}",
+      "doc": "快速创建基本的HTTP网站"
+    },
+    {
+      "name": "CreateBasicHTTPServerResponse",
+      "code": "message CreateBasicHTTPServerResponse {\n\tint64 serverId = 1; // 所创建的网站ID\n}",
       "doc": ""
     },
     {
@@ -15393,7 +15415,7 @@
     },
     {
       "name": "CreateServerResponse",
-      "code": "message CreateServerResponse {\n\tint64 serverId = 1;\n}",
+      "code": "message CreateServerResponse {\n\tint64 serverId = 1; // 所创建的网站ID\n}",
       "doc": ""
     },
     {
@@ -15924,7 +15946,7 @@
     {
       "name": "DeleteServerRequest",
       "code": "message DeleteServerRequest {\n\tint64 serverId = 1;\n}",
-      "doc": "禁用服务"
+      "doc": "禁用网站"
     },
     {
       "name": "DeleteTrafficPackagePeriodRequest",
@@ -16944,7 +16966,7 @@
     {
       "name": "FindAllEnabledServersDNSWithNodeClusterIdRequest",
       "code": "message FindAllEnabledServersDNSWithNodeClusterIdRequest {\n\tint64 nodeClusterId = 1;\n}",
-      "doc": "取得某个集群下的所有服务相关的DNS"
+      "doc": "取得某个集群下的所有网站相关的DNS"
     },
     {
       "name": "FindAllEnabledServersDNSWithNodeClusterIdResponse",
@@ -16954,7 +16976,7 @@
     {
       "name": "FindAllEnabledServersWithSSLCertIdRequest",
       "code": "message FindAllEnabledServersWithSSLCertIdRequest {\n\tint64 sslCertId = 1;\n}",
-      "doc": "查找使用某个SSL证书的所有服务"
+      "doc": "查找使用某个SSL证书的所有网站"
     },
     {
       "name": "FindAllEnabledServersWithSSLCertIdResponse",
@@ -17304,7 +17326,7 @@
     {
       "name": "FindAllUserServersRequest",
       "code": "message FindAllUserServersRequest {\n\tint64 userId = 1;\n}",
-      "doc": "查找一个用户下的所有服务"
+      "doc": "查找一个用户下的所有网站"
     },
     {
       "name": "FindAllUserServersResponse",
@@ -18269,7 +18291,7 @@
     {
       "name": "FindEnabledServerConfigRequest",
       "code": "message FindEnabledServerConfigRequest {\n\tint64 serverId = 1;\n}",
-      "doc": "查找服务配置"
+      "doc": "查找网站配置"
     },
     {
       "name": "FindEnabledServerConfigResponse",
@@ -18279,7 +18301,7 @@
     {
       "name": "FindEnabledServerDNSRequest",
       "code": "message FindEnabledServerDNSRequest {\n\tint64 serverId = 1;\n}",
-      "doc": "查找单个服务的DNS信息"
+      "doc": "查找单个网站的DNS信息"
     },
     {
       "name": "FindEnabledServerDNSResponse",
@@ -18308,8 +18330,8 @@
     },
     {
       "name": "FindEnabledServerRequest",
-      "code": "message FindEnabledServerRequest {\n\tint64 serverId = 1; // 服务ID\n\tbool ignoreSSLCerts = 2; // 忽略SSL证书数据\n}",
-      "doc": "查找单个服务"
+      "code": "message FindEnabledServerRequest {\n\tint64 serverId = 1; // 网站ID\n\tbool ignoreSSLCerts = 2; // 忽略SSL证书数据\n}",
+      "doc": "查找单个网站"
     },
     {
       "name": "FindEnabledServerResponse",
@@ -18329,7 +18351,7 @@
     {
       "name": "FindEnabledServerTypeRequest",
       "code": "message FindEnabledServerTypeRequest {\n\tint64 serverId = 1;\n}",
-      "doc": "查找服务的服务类型"
+      "doc": "查找网站的网站类型"
     },
     {
       "name": "FindEnabledServerTypeResponse",
@@ -18339,7 +18361,7 @@
     {
       "name": "FindEnabledServerUAMRequest",
       "code": "message FindEnabledServerUAMRequest {\n\tint64 serverId = 1;\n}",
-      "doc": "查找服务UAM设置"
+      "doc": "查找网站UAM设置"
     },
     {
       "name": "FindEnabledServerUAMResponse",
@@ -18429,7 +18451,7 @@
     {
       "name": "FindEnabledUserServerBasicRequest",
       "code": "message FindEnabledUserServerBasicRequest {\n\tint64 serverId = 1;\n}",
-      "doc": "查找用户服务基本信息"
+      "doc": "查找用户网站基本信息"
     },
     {
       "name": "FindEnabledUserServerBasicResponse",
@@ -18689,7 +18711,7 @@
     {
       "name": "FindLatestServersRequest",
       "code": "message FindLatestServersRequest {\n\tint64 size = 1;\n}",
-      "doc": "查找最近访问的服务"
+      "doc": "查找最近访问的网站"
     },
     {
       "name": "FindLatestServersResponse",
@@ -19059,7 +19081,7 @@
     {
       "name": "FindNearbyServersRequest",
       "code": "message FindNearbyServersRequest {\n\tint64 serverId = 1;\n}",
-      "doc": "查找某个服务附近的服务"
+      "doc": "查找某个网站附近的网站"
     },
     {
       "name": "FindNearbyServersResponse",
@@ -19394,7 +19416,7 @@
     {
       "name": "FindServerIdWithDNSNameRequest",
       "code": "message FindServerIdWithDNSNameRequest {\n\tint64 nodeClusterId = 1;\n\tstring dnsName = 2;\n}",
-      "doc": "使用CNAME查找服务"
+      "doc": "使用CNAME查找网站"
     },
     {
       "name": "FindServerIdWithDNSNameResponse",
@@ -19404,7 +19426,7 @@
     {
       "name": "FindServerNamesRequest",
       "code": "message FindServerNamesRequest {\n\tint64 serverId = 1;\n}",
-      "doc": "查找服务的域名设置"
+      "doc": "查找网站的域名设置"
     },
     {
       "name": "FindServerNamesResponse",
@@ -19414,7 +19436,7 @@
     {
       "name": "FindServerUserPlanRequest",
       "code": "message FindServerUserPlanRequest {\n\tint64 serverId = 1;\n}",
-      "doc": "获取服务套餐信息"
+      "doc": "获取网站套餐信息"
     },
     {
       "name": "FindServerUserPlanResponse",
@@ -20113,8 +20135,8 @@
     },
     {
       "name": "ListEnabledServersMatchRequest",
-      "code": "message ListEnabledServersMatchRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n\tint64 serverGroupId = 3;  // 服务分组ID，如果为-1表示查找未分组\n\tstring keyword = 4;\n\tint64 userId = 5;\n\tint64 nodeClusterId = 6;\n\tint32 auditingFlag = 7;\n\tstring protocolFamily = 8;\n\tbool trafficOutAsc = 9;\n\tbool trafficOutDesc = 10;\n\tbool ignoreServerNames = 11; // 忽略域名\n\tbool ignoreSSLCerts = 12; // 忽略证书\n}",
-      "doc": "列出单页服务"
+      "code": "message ListEnabledServersMatchRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n\tint64 serverGroupId = 3;  // 网站分组ID，如果为-1表示查找未分组\n\tstring keyword = 4;\n\tint64 userId = 5;\n\tint64 nodeClusterId = 6;\n\tint32 auditingFlag = 7;\n\tstring protocolFamily = 8;\n\tbool trafficOutAsc = 9;\n\tbool trafficOutDesc = 10;\n\tbool ignoreServerNames = 11; // 忽略域名\n\tbool ignoreSSLCerts = 12; // 忽略证书\n}",
+      "doc": "列出单页网站"
     },
     {
       "name": "ListEnabledServersMatchResponse",
@@ -21519,7 +21541,7 @@
     {
       "name": "UpdateEnabledUserServerBasicRequest",
       "code": "message UpdateEnabledUserServerBasicRequest {\n\tint64 serverId = 1;\n\tstring name = 2;\n}",
-      "doc": "修改用户服务基本信息"
+      "doc": "修改用户网站基本信息"
     },
     {
       "name": "UpdateFileFinishedRequest",
@@ -22398,18 +22420,18 @@
     },
     {
       "name": "UpdateServerBasicRequest",
-      "code": "message UpdateServerBasicRequest {\n\tint64 serverId = 1;\n\tstring name = 2;\n\tstring description = 3;\n\tint64 nodeClusterId = 4;\n\tbool keepOldConfigs = 7; // 是否在老节点上保留一段时间配置\n\tbool isOn = 5;\n\trepeated int64 serverGroupIds = 6;\n}",
-      "doc": "修改服务基本信息"
+      "code": "message UpdateServerBasicRequest {\n\tint64 serverId = 1; // 网站ID\n\tstring name = 2; // 网站名称\n\tstring description = 3; // 可选项，网站描述\n\tint64 nodeClusterId = 4; // 集群ID\n\tbool keepOldConfigs = 7; // 可选项，是否在老节点上保留一段时间配置\n\tbool isOn = 5; // 是否启用\n\trepeated int64 serverGroupIds = 6; // 可选项，网站分组ID列表\n}",
+      "doc": "修改网站基本信息"
     },
     {
       "name": "UpdateServerDNSNameRequest",
       "code": "message UpdateServerDNSNameRequest {\n\tint64 serverId = 1;\n\tstring dnsName = 2;\n}",
-      "doc": "修改服务的CNAME"
+      "doc": "修改网站的CNAME"
     },
     {
       "name": "UpdateServerDNSRequest",
       "code": "message UpdateServerDNSRequest {\n\tint64 serverId = 1;\n\tbool supportCNAME = 2;\n}",
-      "doc": "修改服务的DNS相关设置"
+      "doc": "修改网站的DNS相关设置"
     },
     {
       "name": "UpdateServerGroupHTTPReverseProxyRequest",
@@ -22419,7 +22441,7 @@
     {
       "name": "UpdateServerGroupIdsRequest",
       "code": "message UpdateServerGroupIdsRequest {\n\tint64 serverId = 1;\n\trepeated int64 serverGroupIds = 2;\n}",
-      "doc": "修改服务所在分组"
+      "doc": "修改网站所在分组"
     },
     {
       "name": "UpdateServerGroupOrdersRequest",
@@ -22444,7 +22466,7 @@
     {
       "name": "UpdateServerHTTPRequest",
       "code": "message UpdateServerHTTPRequest {\n\tint64 serverId = 1;\n\tbytes httpJSON = 2;\n}",
-      "doc": "修改服务的HTTP等设置"
+      "doc": "修改网站的HTTP等设置"
     },
     {
       "name": "UpdateServerHTTPSRequest",
@@ -22454,27 +22476,27 @@
     {
       "name": "UpdateServerIsOnRequest",
       "code": "message UpdateServerIsOnRequest {\n\tint64 serverId = 1;\n\tbool isOn = 2;\n}",
-      "doc": "修改服务启是否启用"
+      "doc": "修改网站启是否启用"
     },
     {
       "name": "UpdateServerNameRequest",
-      "code": "message UpdateServerNameRequest {\n\tint64 serverId = 1; // 服务ID\n\tstring name = 2; // 服务名称\n}",
-      "doc": "修改服务名称"
+      "code": "message UpdateServerNameRequest {\n\tint64 serverId = 1; // 网站ID\n\tstring name = 2; // 网站名称\n}",
+      "doc": "修改网站名称"
     },
     {
       "name": "UpdateServerNamesAuditingRequest",
       "code": "message UpdateServerNamesAuditingRequest {\n\tint64 serverId = 1;\n\tServerNameAuditingResult auditingResult = 2;\n}",
-      "doc": "审核服务的域名设置"
+      "doc": "审核网站的域名设置"
     },
     {
       "name": "UpdateServerNamesRequest",
       "code": "message UpdateServerNamesRequest {\n\tint64 serverId = 1;\n\tbytes serverNamesJSON = 2;\n}",
-      "doc": "修改服务的域名设置"
+      "doc": "修改网站的域名设置"
     },
     {
       "name": "UpdateServerReverseProxyRequest",
       "code": "message UpdateServerReverseProxyRequest {\n\tint64 serverId = 1;\n\tbytes reverseProxyJSON = 2;\n}",
-      "doc": "修改服务的反向代理设置"
+      "doc": "修改网站的反向代理设置"
     },
     {
       "name": "UpdateServerTCPRequest",
@@ -22494,7 +22516,7 @@
     {
       "name": "UpdateServerUAMRequest",
       "code": "message UpdateServerUAMRequest {\n\tint64 serverId = 1;\n\tbytes uamJSON = 2;\n}",
-      "doc": "修改服务UAM设置"
+      "doc": "修改网站UAM设置"
     },
     {
       "name": "UpdateServerUDPRequest",
@@ -22509,12 +22531,12 @@
     {
       "name": "UpdateServerUserPlanRequest",
       "code": "message UpdateServerUserPlanRequest {\n\tint64 serverId = 1;\n\tint64 userPlanId = 2;\n}",
-      "doc": "修改服务套餐"
+      "doc": "修改网站套餐"
     },
     {
       "name": "UpdateServerUserRequest",
       "code": "message UpdateServerUserRequest {\n\tint64 serverId = 1;\n\tint64 userId = 2;\n}",
-      "doc": "修改服务所属用户"
+      "doc": "修改网站所属用户"
     },
     {
       "name": "UpdateServerWebRequest",
