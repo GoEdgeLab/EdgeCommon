@@ -17,6 +17,9 @@ service ServerService {
 	// 快速创建基本的HTTP网站
 	rpc createBasicHTTPServer(CreateBasicHTTPServerRequest) returns (CreateBasicHTTPServerResponse);
 
+	// 快速创建基本的TCP网站
+	rpc createBasicTCPServer(CreateBasicTCPServerRequest) returns (CreateBasicTCPServerResponse);
+
 	// 修改网站基本信息
 	rpc updateServerBasic (UpdateServerBasicRequest) returns (RPCSuccess);
 
@@ -223,6 +226,20 @@ message CreateBasicHTTPServerRequest {
 }
 
 message CreateBasicHTTPServerResponse {
+	int64 serverId = 1; // 所创建的网站ID
+}
+
+// 快速创建基本的TCP网站
+message CreateBasicTCPServerRequest {
+	int64 nodeClusterId = 1; // 部署的集群ID，用户创建时不需要指定此项
+	int64 userId = 2; // 管理员创建网站时可以指定此用户ID，也可以为0表示不指定
+	repeated int32 tcpPorts = 3; // TCP端口
+	repeated int32 tlsPorts = 4; // TLS端口
+	repeated int64 sslCertIds = 5; // TLS用到的证书ID列表
+	repeated string originAddrs = 6; // 源站地址列表，每一个源站地址需要带协议部分，比如 tcp://example.com, tls://example.com
+}
+
+message CreateBasicTCPServerResponse {
 	int64 serverId = 1; // 所创建的网站ID
 }
 

@@ -10250,6 +10250,18 @@
           "isDeprecated": false
         },
         {
+          "name": "createBasicTCPServer",
+          "requestMessageName": "CreateBasicTCPServerRequest",
+          "responseMessageName": "CreateBasicTCPServerResponse",
+          "code": "rpc createBasicTCPServer(CreateBasicTCPServerRequest) returns (CreateBasicTCPServerResponse);",
+          "doc": "快速创建基本的TCP网站",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
           "name": "updateServerBasic",
           "requestMessageName": "UpdateServerBasicRequest",
           "responseMessageName": "RPCSuccess",
@@ -14616,6 +14628,16 @@
     {
       "name": "CreateBasicHTTPServerResponse",
       "code": "message CreateBasicHTTPServerResponse {\n\tint64 serverId = 1; // 所创建的网站ID\n}",
+      "doc": ""
+    },
+    {
+      "name": "CreateBasicTCPServerRequest",
+      "code": "message CreateBasicTCPServerRequest {\n\tint64 nodeClusterId = 1; // 部署的集群ID，用户创建时不需要指定此项\n\tint64 userId = 2; // 管理员创建网站时可以指定此用户ID，也可以为0表示不指定\n\trepeated int32 tcpPorts = 3; // TCP端口\n\trepeated int32 tlsPorts = 4; // TLS端口\n\trepeated int64 sslCertIds = 5; // TLS用到的证书ID列表\n\trepeated string originAddrs = 6; // 源站地址列表，每一个源站地址需要带协议部分，比如 tcp://example.com, tls://example.com\n}",
+      "doc": "快速创建基本的TCP网站"
+    },
+    {
+      "name": "CreateBasicTCPServerResponse",
+      "code": "message CreateBasicTCPServerResponse {\n\tint64 serverId = 1; // 所创建的网站ID\n}",
       "doc": ""
     },
     {
