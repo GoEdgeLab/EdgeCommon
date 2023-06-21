@@ -194,12 +194,12 @@ message CreateServerRequest {
 	// 配置相关
 	bytes serverNamesJSON = 8; // 域名列表 @link json:server_names
 	bytes serverNamesJON = 19 [deprecated = true]; // 已过期，请使用 serverNamesJSON 代替
-	bytes httpJSON = 9; // HTTP协议，当type为httpProxy或者httpWeb时填写 @link json:http_protocol
-	bytes httpsJSON = 10;  // HTTPS协议，当type为httpProxy或者httpWeb时填写 @link json:https_protocol
-	bytes tcpJSON = 11;  // TCP协议，当type为tcpProxy时填写 @link json:tcp_protocol
-	bytes tlsJSON = 12;  // TLS协议，当type为tcpProxy时填写 @link json:tls_protocol
+	bytes httpJSON = 9; // HTTP协议设置，当type为httpProxy或者httpWeb时填写 @link json:http_protocol
+	bytes httpsJSON = 10;  // HTTPS协议设置，当type为httpProxy或者httpWeb时填写 @link json:https_protocol
+	bytes tcpJSON = 11;  // TCP协议设置，当type为tcpProxy时填写 @link json:tcp_protocol
+	bytes tlsJSON = 12;  // TLS协议设置，当type为tcpProxy时填写 @link json:tls_protocol
 	bytes unixJSON = 13; // 备用参数，不用填写
-	bytes udpJSON = 14; // UDP协议，当type为udpProxy时填写 @link json:udp_protocol
+	bytes udpJSON = 14; // UDP协议设置，当type为udpProxy时填写 @link json:udp_protocol
 	int64 webId = 15; // 可选项，Web配置ID，当type为httpProxy或者httpWeb时填写，可以通过 /HTTPWebService/createHTTPWeb 接口创建；如果你需要配置缓存等信息时需要在 HTTPWebService 接口操作
 	bytes reverseProxyJSON = 16; // 反向代理（包含源站）配置引用，此项可以在创建网站后再设置 @link json:reverse_proxy_ref
 	repeated int64 serverGroupIds = 17; // 可选项，所属网站分组ID列表
@@ -256,65 +256,65 @@ message UpdateServerBasicRequest {
 
 // 修改网站所在分组
 message UpdateServerGroupIdsRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 	repeated int64 serverGroupIds = 2;
 }
 
 // 修改网站启是否启用
 message UpdateServerIsOnRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 	bool isOn = 2;
 }
 
 // 修改网站的HTTP等设置
 message UpdateServerHTTPRequest {
-	int64 serverId = 1;
-	bytes httpJSON = 2;
+	int64 serverId = 1; // 网站ID
+	bytes httpJSON = 2; // HTTP协议设置，当type为httpProxy或者httpWeb时填写 @link json:http_protocol
 }
 
 message UpdateServerHTTPSRequest {
-	int64 serverId = 1;
-	bytes httpsJSON = 2;
+	int64 serverId = 1; // 网站ID
+	bytes httpsJSON = 2; // HTTPS协议设置，当type为httpProxy或者httpWeb时填写 @link json:https_protocol
 }
 
 message UpdateServerTCPRequest {
-	int64 serverId = 1;
-	bytes tcpJSON = 2;
+	int64 serverId = 1; // 网站ID
+	bytes tcpJSON = 2; // TCP协议设置，当type为tcpProxy时填写 @link json:tcp_protocol
 }
 
 message UpdateServerTLSRequest {
-	int64 serverId = 1;
-	bytes tlsJSON = 2;
+	int64 serverId = 1; // 网站ID
+	bytes tlsJSON = 2; // TLS协议设置，当type为tcpProxy时填写 @link json:tls_protocol
 }
 
 message UpdateServerUnixRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 	bytes unixJSON = 2;
 }
 
 message UpdateServerUDPRequest {
-	int64 serverId = 1;
-	bytes udpJSON = 2;
+	int64 serverId = 1; // 网站ID
+	bytes udpJSON = 2; // UDP协议设置，当type为udpProxy时填写 @link json:udp_protocol
 }
 
 message UpdateServerWebRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 	int64 webId = 2;
 }
 
 // 修改网站的反向代理设置
 message UpdateServerReverseProxyRequest {
-	int64 serverId = 1;
-	bytes reverseProxyJSON = 2;
+	int64 serverId = 1; // 网站ID
+	bytes reverseProxyJSON = 2; // 反向代理（包含源站）配置引用，此项可以在创建网站后再设置 @link json:reverse_proxy_ref
 }
 
 // 查找网站的域名设置
 message FindServerNamesRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 message FindServerNamesResponse {
-	bytes serverNamesJSON = 1;
+	bytes serverNamesJSON = 1; // 域名列表 @link json:server_names
 	bool isAuditing = 2;
 	int64 auditingAt = 5;
 	bytes auditingServerNamesJSON = 3;
@@ -323,30 +323,30 @@ message FindServerNamesResponse {
 
 // 修改网站的域名设置
 message UpdateServerNamesRequest {
-	int64 serverId = 1;
-	bytes serverNamesJSON = 2;
+	int64 serverId = 1; // 网站ID
+	bytes serverNamesJSON = 2; // 域名列表 @link json:server_names
 }
 
 // 审核网站的域名设置
 message UpdateServerNamesAuditingRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 	ServerNameAuditingResult auditingResult = 2;
 }
 
 // 修改网站的DNS相关设置
 message UpdateServerDNSRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 	bool supportCNAME = 2;
 }
 
 // 重新生成CNAME
 message RegenerateServerDNSNameRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 // 修改网站的CNAME
 message UpdateServerDNSNameRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 	string dnsName = 2;
 }
 
@@ -357,7 +357,7 @@ message FindServerIdWithDNSNameRequest {
 }
 
 message FindServerIdWithDNSNameResponse {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 // 计算网站数量
@@ -392,7 +392,7 @@ message ListEnabledServersMatchResponse {
 
 // 禁用网站
 message DeleteServerRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 // 查找单个网站
@@ -407,7 +407,7 @@ message FindEnabledServerResponse {
 
 // 查找网站配置
 message FindEnabledServerConfigRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 message FindEnabledServerConfigResponse {
@@ -416,7 +416,7 @@ message FindEnabledServerConfigResponse {
 
 // 查找网站的网站类型
 message FindEnabledServerTypeRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 message FindEnabledServerTypeResponse {
@@ -425,7 +425,7 @@ message FindEnabledServerTypeResponse {
 
 // 查找反向代理设置
 message FindAndInitServerReverseProxyConfigRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 message FindAndInitServerReverseProxyConfigResponse {
@@ -435,7 +435,7 @@ message FindAndInitServerReverseProxyConfigResponse {
 
 // 初始化Web设置
 message FindAndInitServerWebConfigRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 message FindAndInitServerWebConfigResponse {
@@ -492,7 +492,7 @@ message ServerDNSInfo {
 
 // 查找单个网站的DNS信息
 message FindEnabledServerDNSRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 message FindEnabledServerDNSResponse {
@@ -503,7 +503,7 @@ message FindEnabledServerDNSResponse {
 
 // 检查网站是否属于某个用户
 message CheckUserServerRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 // 查找一个用户下的所有域名列表
@@ -535,7 +535,7 @@ message ComposeAllUserServersConfigResponse {
 
 // 查找用户网站基本信息
 message FindEnabledUserServerBasicRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 message FindEnabledUserServerBasicResponse {
@@ -544,7 +544,7 @@ message FindEnabledUserServerBasicResponse {
 
 // 修改用户网站基本信息
 message UpdateEnabledUserServerBasicRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 	string name = 2;
 }
 
@@ -559,7 +559,7 @@ message UploadServerHTTPRequestStatRequest {
 	repeated HTTPFirewallRuleGroup httpFirewallRuleGroups = 7;
 
 	message RegionCity {
-		int64 serverId = 1;
+		int64 serverId = 1; // 网站ID
 		int64 countRequests = 5;
 		int64 bytes = 6;
 		int64 countAttackRequests = 7;
@@ -570,27 +570,27 @@ message UploadServerHTTPRequestStatRequest {
 	}
 
 	message RegionProvider {
-		int64 serverId = 1;
+		int64 serverId = 1; // 网站ID
 		int64 count = 3;
 		int64 providerId = 4;
 	}
 
 	message System {
-		int64 serverId = 1;
+		int64 serverId = 1; // 网站ID
 		string name = 2;
 		string version = 3;
 		int64 count = 4;
 	}
 
 	message Browser {
-		int64 serverId = 1;
+		int64 serverId = 1; // 网站ID
 		string name = 2;
 		string version = 3;
 		int64 count = 4;
 	}
 
 	message HTTPFirewallRuleGroup {
-		int64 serverId = 1;
+		int64 serverId = 1; // 网站ID
 		int64 httpFirewallRuleGroupId = 2;
 		string action = 3;
 		int64 count = 4;
@@ -620,7 +620,7 @@ message FindLatestServersResponse {
 
 // 查找某个网站附近的网站
 message FindNearbyServersRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 message FindNearbyServersResponse {
@@ -647,7 +647,7 @@ message PurgeServerCacheResponse {
 
 // 查找流量限制
 message FindEnabledServerTrafficLimitRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 message FindEnabledServerTrafficLimitResponse {
@@ -656,19 +656,19 @@ message FindEnabledServerTrafficLimitResponse {
 
 // 设置流量限制
 message UpdateServerTrafficLimitRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 	bytes trafficLimitJSON = 2;
 }
 
 // 修改网站套餐
 message UpdateServerUserPlanRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 	int64 userPlanId = 2;
 }
 
 // 获取网站套餐信息
 message FindServerUserPlanRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 message FindServerUserPlanResponse {
@@ -677,7 +677,7 @@ message FindServerUserPlanResponse {
 
 // 获取网站配置
 message ComposeServerConfigRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 message ComposeServerConfigResponse {
@@ -686,13 +686,13 @@ message ComposeServerConfigResponse {
 
 // 修改网站UAM设置
 message UpdateServerUAMRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 	bytes uamJSON = 2;
 }
 
 // 查找网站UAM设置
 message FindEnabledServerUAMRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 }
 
 message FindEnabledServerUAMResponse {
@@ -701,7 +701,7 @@ message FindEnabledServerUAMResponse {
 
 // 修改网站所属用户
 message UpdateServerUserRequest {
-	int64 serverId = 1;
+	int64 serverId = 1; // 网站ID
 	int64 userId = 2;
 }
 
