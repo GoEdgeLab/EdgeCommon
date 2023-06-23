@@ -30,15 +30,16 @@ message CreateOriginRequest {
 	string description = 3; // 描述，为可选项
 	int32 weight = 4; // 权重，不小于0，一般设置为10
 	bool isOn = 5; // 是否启用
-	bytes connTimeoutJSON = 6; // 可选项
-	bytes readTimeoutJSON = 7; // 可选项
-	bytes idleTimeoutJSON = 8; // 可选项
-	int32 maxConns = 9; // 可选项
-	int32 maxIdleConns = 10; // 可选项
-	repeated string domains = 11; // 可选项
-	bytes certRefJSON = 12; // 可选项
-	string host = 13; // 可选项
-	bool followPort = 14; // 可选项
+	bytes connTimeoutJSON = 6; // 可选项，连接超时时间
+	bytes readTimeoutJSON = 7; // 可选项，读取超时时间
+	bytes idleTimeoutJSON = 8; // 可选项，空闲超时时间
+	int32 maxConns = 9; // 可选项，最大连接数
+	int32 maxIdleConns = 10; // 可选项，最大空闲连接数
+	repeated string domains = 11; // 可选项，专属域名列表
+	bytes certRefJSON = 12; // 可选项，证书设置
+	string host = 13; // 可选项，回源主机名
+	bool followPort = 14; // 可选项，是否跟随端口
+	bool http2Enabled = 16; // 可选项，是否支持HTTP/2，只在HTTPS源站时生效
 }
 
 message CreateOriginResponse {
@@ -63,6 +64,7 @@ message UpdateOriginRequest {
 	bytes certRefJSON = 13; // 可选项
 	string host = 14; // 可选项
 	bool followPort = 15; // 可选项
+	bool http2Enabled = 17; // 可选项，是否支持HTTP/2，只在HTTPS源站时生效
 }
 
 // 查找单个源站信息

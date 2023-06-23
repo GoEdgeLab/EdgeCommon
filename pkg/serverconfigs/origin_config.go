@@ -14,30 +14,31 @@ import (
 
 // OriginConfig 源站服务配置
 type OriginConfig struct {
-	Id          int64                 `yaml:"id" json:"id"`                   // ID
-	IsOn        bool                  `yaml:"isOn" json:"isOn"`               // 是否启用
-	Version     int                   `yaml:"version" json:"version"`         // 版本
-	Name        string                `yaml:"name" json:"name"`               // 名称
-	Addr        *NetworkAddressConfig `yaml:"addr" json:"addr"`               // 地址
-	OSS         *ossconfigs.OSSConfig `yaml:"oss" json:"oss"`                 // 对象存储配置
-	Description string                `yaml:"description" json:"description"` // 描述 TODO
-	Code        string                `yaml:"code" json:"code"`               // 代号 TODO
+	Id           int64                 `yaml:"id" json:"id"`                     // ID
+	IsOn         bool                  `yaml:"isOn" json:"isOn"`                 // 是否启用
+	Version      int                   `yaml:"version" json:"version"`           // 版本
+	Name         string                `yaml:"name" json:"name"`                 // 名称
+	Addr         *NetworkAddressConfig `yaml:"addr" json:"addr"`                 // 地址
+	HTTP2Enabled bool                  `yaml:"http2Enabled" json:"http2Enabled"` // 是否支持HTTP2
+	OSS          *ossconfigs.OSSConfig `yaml:"oss" json:"oss"`                   // 对象存储配置
+	Description  string                `yaml:"description" json:"description"`   // 描述
+	Code         string                `yaml:"code" json:"code"`                 // 代号
 
 	Weight       uint                 `yaml:"weight" json:"weight"`           // 权重
 	ConnTimeout  *shared.TimeDuration `yaml:"connTimeout" json:"connTimeout"` // 连接失败超时
 	ReadTimeout  *shared.TimeDuration `yaml:"readTimeout" json:"readTimeout"` // 读取超时时间
 	IdleTimeout  *shared.TimeDuration `yaml:"idleTimeout" json:"idleTimeout"` // 空闲连接超时时间
-	MaxFails     int                  `yaml:"maxFails" json:"maxFails"`       // 最多失败次数 TODO
+	MaxFails     int                  `yaml:"maxFails" json:"maxFails"`       // 最多失败次数
 	MaxConns     int                  `yaml:"maxConns" json:"maxConns"`       // 最大并发连接数
 	MaxIdleConns int                  `yaml:"idleConns" json:"idleConns"`     // 最大空闲连接数
 
 	Domains []string `yaml:"domains" json:"domains"` // 所属域名
 
 	StripPrefix    string                `yaml:"stripPrefix" json:"stripPrefix"`       // 去除URL前缀
-	RequestURI     string                `yaml:"requestURI" json:"requestURI"`         // 转发后的请求URI TODO
+	RequestURI     string                `yaml:"requestURI" json:"requestURI"`         // 转发后的请求URI
 	RequestHost    string                `yaml:"requestHost" json:"requestHost"`       // 自定义主机名
 	FollowPort     bool                  `yaml:"followPort" json:"followPort"`         // 端口跟随
-	FollowProtocol *FollowProtocolConfig `yaml:"followProtocol" json:"followProtocol"` // 协议跟随 TODO
+	FollowProtocol *FollowProtocolConfig `yaml:"followProtocol" json:"followProtocol"` // 协议跟随
 
 	RequestHeaderPolicyRef  *shared.HTTPHeaderPolicyRef `yaml:"requestHeaderPolicyRef" json:"requestHeaderPolicyRef"`   // 请求Header
 	RequestHeaderPolicy     *shared.HTTPHeaderPolicy    `yaml:"requestHeaderPolicy" json:"requestHeaderPolicy"`         // 请求Header策略

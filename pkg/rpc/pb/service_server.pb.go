@@ -44,12 +44,12 @@ type CreateServerRequest struct {
 	ServerNamesJSON []byte `protobuf:"bytes,8,opt,name=serverNamesJSON,proto3" json:"serverNamesJSON,omitempty"` // 域名列表 @link json:server_names
 	// Deprecated: Do not use.
 	ServerNamesJON   []byte  `protobuf:"bytes,19,opt,name=serverNamesJON,proto3" json:"serverNamesJON,omitempty"`         // 已过期，请使用 serverNamesJSON 代替
-	HttpJSON         []byte  `protobuf:"bytes,9,opt,name=httpJSON,proto3" json:"httpJSON,omitempty"`                      // HTTP协议，当type为httpProxy或者httpWeb时填写 @link json:http_protocol
-	HttpsJSON        []byte  `protobuf:"bytes,10,opt,name=httpsJSON,proto3" json:"httpsJSON,omitempty"`                   // HTTPS协议，当type为httpProxy或者httpWeb时填写 @link json:https_protocol
-	TcpJSON          []byte  `protobuf:"bytes,11,opt,name=tcpJSON,proto3" json:"tcpJSON,omitempty"`                       // TCP协议，当type为tcpProxy时填写 @link json:tcp_protocol
-	TlsJSON          []byte  `protobuf:"bytes,12,opt,name=tlsJSON,proto3" json:"tlsJSON,omitempty"`                       // TLS协议，当type为tcpProxy时填写 @link json:tls_protocol
+	HttpJSON         []byte  `protobuf:"bytes,9,opt,name=httpJSON,proto3" json:"httpJSON,omitempty"`                      // HTTP协议设置，当type为httpProxy或者httpWeb时填写 @link json:http_protocol
+	HttpsJSON        []byte  `protobuf:"bytes,10,opt,name=httpsJSON,proto3" json:"httpsJSON,omitempty"`                   // HTTPS协议设置，当type为httpProxy或者httpWeb时填写 @link json:https_protocol
+	TcpJSON          []byte  `protobuf:"bytes,11,opt,name=tcpJSON,proto3" json:"tcpJSON,omitempty"`                       // TCP协议设置，当type为tcpProxy时填写 @link json:tcp_protocol
+	TlsJSON          []byte  `protobuf:"bytes,12,opt,name=tlsJSON,proto3" json:"tlsJSON,omitempty"`                       // TLS协议设置，当type为tcpProxy时填写 @link json:tls_protocol
 	UnixJSON         []byte  `protobuf:"bytes,13,opt,name=unixJSON,proto3" json:"unixJSON,omitempty"`                     // 备用参数，不用填写
-	UdpJSON          []byte  `protobuf:"bytes,14,opt,name=udpJSON,proto3" json:"udpJSON,omitempty"`                       // UDP协议，当type为udpProxy时填写 @link json:udp_protocol
+	UdpJSON          []byte  `protobuf:"bytes,14,opt,name=udpJSON,proto3" json:"udpJSON,omitempty"`                       // UDP协议设置，当type为udpProxy时填写 @link json:udp_protocol
 	WebId            int64   `protobuf:"varint,15,opt,name=webId,proto3" json:"webId,omitempty"`                          // 可选项，Web配置ID，当type为httpProxy或者httpWeb时填写，可以通过 /HTTPWebService/createHTTPWeb 接口创建；如果你需要配置缓存等信息时需要在 HTTPWebService 接口操作
 	ReverseProxyJSON []byte  `protobuf:"bytes,16,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"`     // 反向代理（包含源站）配置引用，此项可以在创建网站后再设置 @link json:reverse_proxy_ref
 	ServerGroupIds   []int64 `protobuf:"varint,17,rep,packed,name=serverGroupIds,proto3" json:"serverGroupIds,omitempty"` // 可选项，所属网站分组ID列表
@@ -651,7 +651,7 @@ type UpdateServerGroupIdsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId       int64   `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId       int64   `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	ServerGroupIds []int64 `protobuf:"varint,2,rep,packed,name=serverGroupIds,proto3" json:"serverGroupIds,omitempty"`
 }
 
@@ -707,7 +707,7 @@ type UpdateServerIsOnRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	IsOn     bool  `protobuf:"varint,2,opt,name=isOn,proto3" json:"isOn,omitempty"`
 }
 
@@ -763,8 +763,8 @@ type UpdateServerHTTPRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
-	HttpJSON []byte `protobuf:"bytes,2,opt,name=httpJSON,proto3" json:"httpJSON,omitempty"`
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
+	HttpJSON []byte `protobuf:"bytes,2,opt,name=httpJSON,proto3" json:"httpJSON,omitempty"`  // HTTP协议设置，当type为httpProxy或者httpWeb时填写 @link json:http_protocol
 }
 
 func (x *UpdateServerHTTPRequest) Reset() {
@@ -818,8 +818,8 @@ type UpdateServerHTTPSRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId  int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
-	HttpsJSON []byte `protobuf:"bytes,2,opt,name=httpsJSON,proto3" json:"httpsJSON,omitempty"`
+	ServerId  int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`  // 网站ID
+	HttpsJSON []byte `protobuf:"bytes,2,opt,name=httpsJSON,proto3" json:"httpsJSON,omitempty"` // HTTPS协议设置，当type为httpProxy或者httpWeb时填写 @link json:https_protocol
 }
 
 func (x *UpdateServerHTTPSRequest) Reset() {
@@ -873,8 +873,8 @@ type UpdateServerTCPRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
-	TcpJSON  []byte `protobuf:"bytes,2,opt,name=tcpJSON,proto3" json:"tcpJSON,omitempty"`
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
+	TcpJSON  []byte `protobuf:"bytes,2,opt,name=tcpJSON,proto3" json:"tcpJSON,omitempty"`    // TCP协议设置，当type为tcpProxy时填写 @link json:tcp_protocol
 }
 
 func (x *UpdateServerTCPRequest) Reset() {
@@ -928,8 +928,8 @@ type UpdateServerTLSRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
-	TlsJSON  []byte `protobuf:"bytes,2,opt,name=tlsJSON,proto3" json:"tlsJSON,omitempty"`
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
+	TlsJSON  []byte `protobuf:"bytes,2,opt,name=tlsJSON,proto3" json:"tlsJSON,omitempty"`    // TLS协议设置，当type为tcpProxy时填写 @link json:tls_protocol
 }
 
 func (x *UpdateServerTLSRequest) Reset() {
@@ -983,7 +983,7 @@ type UpdateServerUnixRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	UnixJSON []byte `protobuf:"bytes,2,opt,name=unixJSON,proto3" json:"unixJSON,omitempty"`
 }
 
@@ -1038,8 +1038,8 @@ type UpdateServerUDPRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
-	UdpJSON  []byte `protobuf:"bytes,2,opt,name=udpJSON,proto3" json:"udpJSON,omitempty"`
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
+	UdpJSON  []byte `protobuf:"bytes,2,opt,name=udpJSON,proto3" json:"udpJSON,omitempty"`    // UDP协议设置，当type为udpProxy时填写 @link json:udp_protocol
 }
 
 func (x *UpdateServerUDPRequest) Reset() {
@@ -1093,7 +1093,7 @@ type UpdateServerWebRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	WebId    int64 `protobuf:"varint,2,opt,name=webId,proto3" json:"webId,omitempty"`
 }
 
@@ -1149,8 +1149,8 @@ type UpdateServerReverseProxyRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId         int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
-	ReverseProxyJSON []byte `protobuf:"bytes,2,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"`
+	ServerId         int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`                // 网站ID
+	ReverseProxyJSON []byte `protobuf:"bytes,2,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"` // 反向代理（包含源站）配置引用，此项可以在创建网站后再设置 @link json:reverse_proxy_ref
 }
 
 func (x *UpdateServerReverseProxyRequest) Reset() {
@@ -1205,7 +1205,7 @@ type FindServerNamesRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *FindServerNamesRequest) Reset() {
@@ -1252,7 +1252,7 @@ type FindServerNamesResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerNamesJSON         []byte                    `protobuf:"bytes,1,opt,name=serverNamesJSON,proto3" json:"serverNamesJSON,omitempty"`
+	ServerNamesJSON         []byte                    `protobuf:"bytes,1,opt,name=serverNamesJSON,proto3" json:"serverNamesJSON,omitempty"` // 域名列表 @link json:server_names
 	IsAuditing              bool                      `protobuf:"varint,2,opt,name=isAuditing,proto3" json:"isAuditing,omitempty"`
 	AuditingAt              int64                     `protobuf:"varint,5,opt,name=auditingAt,proto3" json:"auditingAt,omitempty"`
 	AuditingServerNamesJSON []byte                    `protobuf:"bytes,3,opt,name=auditingServerNamesJSON,proto3" json:"auditingServerNamesJSON,omitempty"`
@@ -1332,8 +1332,8 @@ type UpdateServerNamesRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId        int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
-	ServerNamesJSON []byte `protobuf:"bytes,2,opt,name=serverNamesJSON,proto3" json:"serverNamesJSON,omitempty"`
+	ServerId        int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`              // 网站ID
+	ServerNamesJSON []byte `protobuf:"bytes,2,opt,name=serverNamesJSON,proto3" json:"serverNamesJSON,omitempty"` // 域名列表 @link json:server_names
 }
 
 func (x *UpdateServerNamesRequest) Reset() {
@@ -1388,7 +1388,7 @@ type UpdateServerNamesAuditingRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId       int64                     `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId       int64                     `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	AuditingResult *ServerNameAuditingResult `protobuf:"bytes,2,opt,name=auditingResult,proto3" json:"auditingResult,omitempty"`
 }
 
@@ -1444,7 +1444,7 @@ type UpdateServerDNSRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId     int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId     int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	SupportCNAME bool  `protobuf:"varint,2,opt,name=supportCNAME,proto3" json:"supportCNAME,omitempty"`
 }
 
@@ -1500,7 +1500,7 @@ type RegenerateServerDNSNameRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *RegenerateServerDNSNameRequest) Reset() {
@@ -1548,7 +1548,7 @@ type UpdateServerDNSNameRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	DnsName  string `protobuf:"bytes,2,opt,name=dnsName,proto3" json:"dnsName,omitempty"`
 }
 
@@ -1659,7 +1659,7 @@ type FindServerIdWithDNSNameResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *FindServerIdWithDNSNameResponse) Reset() {
@@ -1978,7 +1978,7 @@ type DeleteServerRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *DeleteServerRequest) Reset() {
@@ -2129,7 +2129,7 @@ type FindEnabledServerConfigRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *FindEnabledServerConfigRequest) Reset() {
@@ -2224,7 +2224,7 @@ type FindEnabledServerTypeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *FindEnabledServerTypeRequest) Reset() {
@@ -2319,7 +2319,7 @@ type FindAndInitServerReverseProxyConfigRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *FindAndInitServerReverseProxyConfigRequest) Reset() {
@@ -2422,7 +2422,7 @@ type FindAndInitServerWebConfigRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *FindAndInitServerWebConfigRequest) Reset() {
@@ -2991,7 +2991,7 @@ type FindEnabledServerDNSRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *FindEnabledServerDNSRequest) Reset() {
@@ -3102,7 +3102,7 @@ type CheckUserServerRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *CheckUserServerRequest) Reset() {
@@ -3435,7 +3435,7 @@ type FindEnabledUserServerBasicRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *FindEnabledUserServerBasicRequest) Reset() {
@@ -3530,7 +3530,7 @@ type UpdateEnabledUserServerBasicRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	Name     string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 }
 
@@ -3896,7 +3896,7 @@ type FindNearbyServersRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *FindNearbyServersRequest) Reset() {
@@ -4118,7 +4118,7 @@ type FindEnabledServerTrafficLimitRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *FindEnabledServerTrafficLimitRequest) Reset() {
@@ -4213,7 +4213,7 @@ type UpdateServerTrafficLimitRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId         int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId         int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	TrafficLimitJSON []byte `protobuf:"bytes,2,opt,name=trafficLimitJSON,proto3" json:"trafficLimitJSON,omitempty"`
 }
 
@@ -4269,7 +4269,7 @@ type UpdateServerUserPlanRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId   int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId   int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	UserPlanId int64 `protobuf:"varint,2,opt,name=userPlanId,proto3" json:"userPlanId,omitempty"`
 }
 
@@ -4325,7 +4325,7 @@ type FindServerUserPlanRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *FindServerUserPlanRequest) Reset() {
@@ -4420,7 +4420,7 @@ type ComposeServerConfigRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *ComposeServerConfigRequest) Reset() {
@@ -4515,7 +4515,7 @@ type UpdateServerUAMRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	UamJSON  []byte `protobuf:"bytes,2,opt,name=uamJSON,proto3" json:"uamJSON,omitempty"`
 }
 
@@ -4571,7 +4571,7 @@ type FindEnabledServerUAMRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 }
 
 func (x *FindEnabledServerUAMRequest) Reset() {
@@ -4666,7 +4666,7 @@ type UpdateServerUserRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	UserId   int64 `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`
 }
 
@@ -4873,7 +4873,7 @@ type UploadServerHTTPRequestStatRequest_RegionCity struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId            int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId            int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	CountRequests       int64 `protobuf:"varint,5,opt,name=countRequests,proto3" json:"countRequests,omitempty"`
 	Bytes               int64 `protobuf:"varint,6,opt,name=bytes,proto3" json:"bytes,omitempty"`
 	CountAttackRequests int64 `protobuf:"varint,7,opt,name=countAttackRequests,proto3" json:"countAttackRequests,omitempty"`
@@ -4976,7 +4976,7 @@ type UploadServerHTTPRequestStatRequest_RegionProvider struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId   int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId   int64 `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	Count      int64 `protobuf:"varint,3,opt,name=count,proto3" json:"count,omitempty"`
 	ProviderId int64 `protobuf:"varint,4,opt,name=providerId,proto3" json:"providerId,omitempty"`
 }
@@ -5039,7 +5039,7 @@ type UploadServerHTTPRequestStatRequest_System struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	Name     string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Version  string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
 	Count    int64  `protobuf:"varint,4,opt,name=count,proto3" json:"count,omitempty"`
@@ -5110,7 +5110,7 @@ type UploadServerHTTPRequestStatRequest_Browser struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	Name     string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Version  string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
 	Count    int64  `protobuf:"varint,4,opt,name=count,proto3" json:"count,omitempty"`
@@ -5181,7 +5181,7 @@ type UploadServerHTTPRequestStatRequest_HTTPFirewallRuleGroup struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ServerId                int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	ServerId                int64  `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"` // 网站ID
 	HttpFirewallRuleGroupId int64  `protobuf:"varint,2,opt,name=httpFirewallRuleGroupId,proto3" json:"httpFirewallRuleGroupId,omitempty"`
 	Action                  string `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"`
 	Count                   int64  `protobuf:"varint,4,opt,name=count,proto3" json:"count,omitempty"`

@@ -15,4 +15,5 @@ message Origin {
 	repeated string domains = 6;
 	string host = 7;
 	bool followPort = 8;
+	bool http2Enabled = 10; // 是否支持HTTP/2，只在HTTPS源站时生效
 }
