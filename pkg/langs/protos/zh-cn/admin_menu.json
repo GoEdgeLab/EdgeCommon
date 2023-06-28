@@ -1,0 +1,70 @@
+{
+  "dashboard": "数据看板",
+  "servers": "网站列表",
+  "server_access_logs": "访问日志",
+  "server_groups": "网站分组",
+  "server_certs": "证书管理",
+  "server_traffic_stats": "用量统计",
+  "server_cache_policies": "缓存策略",
+  "server_purge_fetch_caches": "刷新预热",
+  "server_waf_policies": "WAF策略",
+  "server_ip_lists": "IP名单",
+  "server_access_log_policies": "日志策略",
+  "server_metrics": "统计指标",
+  "server_scripts": "脚本库",
+  "server_global_settings": "通用设置",
+
+  "nodes": "边缘节点",
+  "node_clusters": "集群列表",
+  "node_logs": "节点日志",
+  "node_ip_list": "节点IP",
+  "node_regions": "区域设置",
+  "node_ssh_grants": "节点SSH",
+  "node_distributed_monitors": "区域监控",
+  "node_anti_ddos_products": "高防IP",
+
+  "dns": "域名解析",
+  "dns_clusters": "集群列表",
+  "dns_providers": "DNS服务商",
+  "dns_issues": "问题修复",
+
+  "ns": "智能DNS",
+  "ns_domains": "域名管理",
+  "ns_domain_groups": "域名分组",
+  "ns_domain_batch_operations": "批量操作",
+  "ns_clusters": "集群管理",
+  "ns_routes": "线路管理",
+  "ns_settings": "全局配置",
+  "ns_user_plans": "用户套餐",
+  "ns_plans": "套餐设置",
+  "ns_access_logs": "访问日志",
+  "ns_node_logs": "运行日志",
+  "ns_resolve_test": "解析测试",
+
+  "users": "用户设置",
+
+  "finance": "财务管理",
+  "finance_bills": "费用账单",
+  "finance_accounts": "用户账户",
+  "finance_logs": "收支明细",
+  "finance_orders": "订单管理",
+  "finance_income": "统计报表",
+  "finance_fee": "计费设置",
+  "finance_packages": "流量包",
+
+  "plans": "套餐管理",
+  "plan_user_plans": "已购套餐",
+
+  "tickets": "工单系统",
+  "ticket_category": "分类",
+
+  "admins": "系统用户",
+  "admin_recipients": "通知媒介",
+
+  "logs": "日志审计",
+
+  "settings": "系统设置",
+  "setting_basic_settings": "基础设置",
+  "setting_advanced_settings": "高级设置",
+  "setting_authority": "商业版本"
+}

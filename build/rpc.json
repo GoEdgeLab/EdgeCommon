@@ -13537,7 +13537,7 @@
     },
     {
       "name": "AdminModuleList",
-      "code": "message AdminModuleList {\n\tint64 adminId = 1;\n\tbool isSuper = 2;\n\trepeated AdminModule Modules = 3;\n\tstring fullname = 4;\n\tstring theme = 5;\n}",
+      "code": "message AdminModuleList {\n\tint64 adminId = 1;\n\tbool isSuper = 2;\n\trepeated AdminModule Modules = 3;\n\tstring fullname = 4;\n\tstring theme = 5; // 风格模板\n\tstring lang = 6; // 界面语言\n}",
       "doc": ""
     },
     {

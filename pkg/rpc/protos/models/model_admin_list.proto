@@ -10,5 +10,6 @@ message AdminModuleList {
 	bool isSuper = 2;
 	repeated AdminModule Modules = 3;
 	string fullname = 4;
-	string theme = 5;
+	string theme = 5; // 风格模板
+	string lang = 6; // 界面语言
 }
