@@ -7,6 +7,9 @@ import (
 )
 
 const (
+	AdminCertMenuApply                     langs.MessageCode = "admin_cert_menu_apply"                       // 申请证书
+	AdminCertMenuCerts                     langs.MessageCode = "admin_cert_menu_certs"                       // 证书
+	AdminCertMenuOCSP                      langs.MessageCode = "admin_cert_menu_ocsp"                        // OCSP日志
 	AdminClusterMenuSettingBasic           langs.MessageCode = "admin_cluster_menu_setting_basic"            // 基础设置
 	AdminClusterMenuSettingCachePolicy     langs.MessageCode = "admin_cluster_menu_setting_cache_policy"     // 缓存策略
 	AdminClusterMenuSettingCC              langs.MessageCode = "admin_cluster_menu_setting_cc"               // CC防护
@@ -30,6 +33,7 @@ const (
 	AdminClusterMenuTabClusterDelete       langs.MessageCode = "admin_cluster_menu_tab_cluster_delete"       // 删除集群
 	AdminClusterMenuTabClusterNodes        langs.MessageCode = "admin_cluster_menu_tab_cluster_nodes"        // 节点列表
 	AdminClusterMenuTabClusterSettings     langs.MessageCode = "admin_cluster_menu_tab_cluster_settings"     // 集群设置
+	AdminCommonCanceled                    langs.MessageCode = "admin_common_canceled"                       // 已取消
 	AdminCommonMenuSettingBasic            langs.MessageCode = "admin_common_menu_setting_basic"             // 基础设置
 	AdminCommonMenuSettingCache            langs.MessageCode = "admin_common_menu_setting_cache"             // 缓存设置
 	AdminCommonMenuSettingCachePolicy      langs.MessageCode = "admin_common_menu_setting_cache_policy"      // 缓存策略
@@ -46,6 +50,13 @@ const (
 	AdminDashboardUser                     langs.MessageCode = "admin_dashboard_user"                        // 用户
 	AdminDashboardWAF                      langs.MessageCode = "admin_dashboard_waf"                         // WAF
 	AdminDBNodeTabNodes                    langs.MessageCode = "admin_db_node_tab_nodes"                     // 数据库节点
+	AdminLevelError                        langs.MessageCode = "admin_level_error"                           // 错误
+	AdminLevelInfo                         langs.MessageCode = "admin_level_info"                            // 信息
+	AdminLevelWarn                         langs.MessageCode = "admin_level_warn"                            // 警告
+	AdminLogTagAccessLog                   langs.MessageCode = "admin_log_tag_access_log"                    // 访问日志
+	AdminLogTagListener                    langs.MessageCode = "admin_log_tag_listener"                      // 端口监听
+	AdminLogTagScript                      langs.MessageCode = "admin_log_tag_script"                        // 脚本
+	AdminLogTagWAF                         langs.MessageCode = "admin_log_tag_waf"                           // WAF
 	AdminMenuAdminRecipients               langs.MessageCode = "admin_menu_admin_recipients"                 // 通知媒介
 	AdminMenuAdmins                        langs.MessageCode = "admin_menu_admins"                           // 系统用户
 	AdminMenuDashboard                     langs.MessageCode = "admin_menu_dashboard"                        // 数据看板
@@ -103,7 +114,10 @@ const (
 	AdminMenuSettings                      langs.MessageCode = "admin_menu_settings"                         // 系统设置
 	AdminMenuTicketCategory                langs.MessageCode = "admin_menu_ticket_category"                  // 分类
 	AdminMenuTickets                       langs.MessageCode = "admin_menu_tickets"                          // 工单系统
-	AdminMenuUsers                         langs.MessageCode = "admin_menu_users"                            // 用户设置
+	AdminMenuUserSettings                  langs.MessageCode = "admin_menu_user_settings"                    // 用户设置
+	AdminMenuUsers                         langs.MessageCode = "admin_menu_users"                            // 平台用户
+	AdminNodeGrantMethodPrivateKey         langs.MessageCode = "admin_node_grant_method_private_key"         // 私钥
+	AdminNodeGrantMethodUserPassword       langs.MessageCode = "admin_node_grant_method_user_password"       // 用户名+密码
 	AdminNodeMenuCreateMultipleNodes       langs.MessageCode = "admin_node_menu_create_multiple_nodes"       // 批量创建
 	AdminNodeMenuCreateSingleNode          langs.MessageCode = "admin_node_menu_create_single_node"          // 单个创建
 	AdminNodeMenuInstallAutoRegister       langs.MessageCode = "admin_node_menu_install_auto_register"       // 自动注册
@@ -119,9 +133,28 @@ const (
 	AdminNodeMenuSettingSystem             langs.MessageCode = "admin_node_menu_setting_system"              // 系统设置
 	AdminNodeMenuSettingThresholds         langs.MessageCode = "admin_node_menu_setting_thresholds"          // 阈值设置
 	AdminNodeUngroupedLabel                langs.MessageCode = "admin_node_ungrouped_label"                  // 未分组
+	AdminNSClusterMenuAccessLogs           langs.MessageCode = "admin_ns_cluster_menu_access_logs"           // 访问日志
+	AdminNSClusterMenuAnswerSetting        langs.MessageCode = "admin_ns_cluster_menu_answer_setting"        // 应答模式
+	AdminNSClusterMenuBasic                langs.MessageCode = "admin_ns_cluster_menu_basic"                 // 基础设置
+	AdminNSClusterMenuDDoSProtection       langs.MessageCode = "admin_ns_cluster_menu_ddos_protection"       // DDoS防护
+	AdminNSClusterMenuDNSRecursion         langs.MessageCode = "admin_ns_cluster_menu_dns_recursion"         // 递归DNS
+	AdminNSClusterMenuDoH                  langs.MessageCode = "admin_ns_cluster_menu_doh"                   // DoH
+	AdminNSClusterMenuSOA                  langs.MessageCode = "admin_ns_cluster_menu_soa"                   // SOA
+	AdminNSClusterMenuTCP                  langs.MessageCode = "admin_ns_cluster_menu_tcp"                   // TCP
+	AdminNSClusterMenuTLS                  langs.MessageCode = "admin_ns_cluster_menu_tls"                   // TLS
+	AdminNSClusterMenuUDP                  langs.MessageCode = "admin_ns_cluster_menu_udp"                   // UDP
 	AdminNSClusterTabDelete                langs.MessageCode = "admin_ns_cluster_tab_delete"                 // 删除集群
 	AdminNSClusterTabNodes                 langs.MessageCode = "admin_ns_cluster_tab_nodes"                  // 节点列表
 	AdminNSClusterTabSetting               langs.MessageCode = "admin_ns_cluster_tab_setting"                // 集群设置
+	AdminNSSettingAccessLogs               langs.MessageCode = "admin_ns_setting_access_logs"                // 访问日志设置
+	AdminNSSettingUser                     langs.MessageCode = "admin_ns_setting_user"                       // 用户设置
+	AdminServerCopySettingCurrentCluster   langs.MessageCode = "admin_server_copy_setting_current_cluster"   // 当前集群：%s
+	AdminServerCopySettingCurrentGroup     langs.MessageCode = "admin_server_copy_setting_current_group"     // 当前分组：%s
+	AdminServerCopySettingCurrentUser      langs.MessageCode = "admin_server_copy_setting_current_user"      // 当前用户：%s
+	AdminServerCopySettingSelectCluster    langs.MessageCode = "admin_server_copy_setting_select_cluster"    // 选择集群
+	AdminServerCopySettingSelectGroup      langs.MessageCode = "admin_server_copy_setting_select_group"      // 选择分组
+	AdminServerCopySettingSelectServer     langs.MessageCode = "admin_server_copy_setting_select_server"     // 选择网站
+	AdminServerCopySettingSelectUser       langs.MessageCode = "admin_server_copy_setting_select_user"       // 选择用户
 	AdminServerMenuAccesslogHistory        langs.MessageCode = "admin_server_menu_accesslog_history"         // 历史
 	AdminServerMenuAccesslogRealtime       langs.MessageCode = "admin_server_menu_accesslog_realtime"        // 实时
 	AdminServerMenuAccesslogToday          langs.MessageCode = "admin_server_menu_accesslog_today"           // 今天
@@ -140,6 +173,7 @@ const (
 	AdminServerMenuSettingFastcgi          langs.MessageCode = "admin_server_menu_setting_fastcgi"           // Fastcgi
 	AdminServerMenuSettingHTTP             langs.MessageCode = "admin_server_menu_setting_http"              // HTTP
 	AdminServerMenuSettingHTTPHeaders      langs.MessageCode = "admin_server_menu_setting_http_headers"      // HTTP Header
+	AdminServerMenuSettingHTTPProxy        langs.MessageCode = "admin_server_menu_setting_http_proxy"        // HTTP代理
 	AdminServerMenuSettingHTTPS            langs.MessageCode = "admin_server_menu_setting_https"             // HTTPS
 	AdminServerMenuSettingLocations        langs.MessageCode = "admin_server_menu_setting_locations"         // 路由规则
 	AdminServerMenuSettingOrigins          langs.MessageCode = "admin_server_menu_setting_origins"           // 源站
@@ -153,10 +187,12 @@ const (
 	AdminServerMenuSettingScripts          langs.MessageCode = "admin_server_menu_setting_scripts"           // 边缘脚本
 	AdminServerMenuSettingStat             langs.MessageCode = "admin_server_menu_setting_stat"              // 统计
 	AdminServerMenuSettingTCP              langs.MessageCode = "admin_server_menu_setting_tcp"               // TCP
+	AdminServerMenuSettingTCPProxy         langs.MessageCode = "admin_server_menu_setting_tcp_proxy"         // TCP代理
 	AdminServerMenuSettingTLS              langs.MessageCode = "admin_server_menu_setting_tls"               // TLS
 	AdminServerMenuSettingTrafficLimit     langs.MessageCode = "admin_server_menu_setting_traffic_limit"     // 流量限制
 	AdminServerMenuSettingUAM              langs.MessageCode = "admin_server_menu_setting_uam"               // 5秒盾
 	AdminServerMenuSettingUDP              langs.MessageCode = "admin_server_menu_setting_udp"               // UDP
+	AdminServerMenuSettingUDPProxy         langs.MessageCode = "admin_server_menu_setting_udp_proxy"         // UDP代理
 	AdminServerMenuSettingUnix             langs.MessageCode = "admin_server_menu_setting_unix"              // Unix
 	AdminServerMenuSettingUserAgents       langs.MessageCode = "admin_server_menu_setting_user_agents"       // UA名单
 	AdminServerMenuSettingWAF              langs.MessageCode = "admin_server_menu_setting_waf"               // WAF
@@ -172,6 +208,7 @@ const (
 	AdminServerTabDelete                   langs.MessageCode = "admin_server_tab_delete"                     // 删除
 	AdminServerTabSettings                 langs.MessageCode = "admin_server_tab_settings"                   // 设置
 	AdminServerTabStat                     langs.MessageCode = "admin_server_tab_stat"                       // 统计
+	AdminServerTrafficStatAllServers       langs.MessageCode = "admin_server_traffic_stat_all_servers"       // 全部网站（%d）
 	AdminSettingsTabAccessLogDatabases     langs.MessageCode = "admin_settings_tab_access_log_databases"     // 日志数据库
 	AdminSettingsTabAdminSecuritySettings  langs.MessageCode = "admin_settings_tab_admin_security_settings"  // 安全设置
 	AdminSettingsTabAdminServer            langs.MessageCode = "admin_settings_tab_admin_server"             // Web服务
@@ -190,4 +227,8 @@ const (
 	AdminSettingsTabUpdates                langs.MessageCode = "admin_settings_tab_updates"                  // 检查更新
 	AdminSettingsTabUserNodes              langs.MessageCode = "admin_settings_tab_user_nodes"               // 用户节点
 	AdminSettingsTabUserUI                 langs.MessageCode = "admin_settings_tab_user_ui"                  // 用户界面设置
+	AdminWAFConnectorAnd                   langs.MessageCode = "admin_waf_connector_and"                     // 和(AND)
+	AdminWAFConnectorAndDescription        langs.MessageCode = "admin_waf_connector_and_description"         // 所有规则都满足才视为匹配
+	AdminWAFConnectorOr                    langs.MessageCode = "admin_waf_connector_or"                      // 或(OR)
+	AdminWAFConnectorOrDescription         langs.MessageCode = "admin_waf_connector_or_description"          // 任一规则满足了就视为匹配
 )

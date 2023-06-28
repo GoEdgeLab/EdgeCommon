@@ -308,7 +308,7 @@ func upperWord(word string) string {
 	switch word {
 	case "api", "http", "https", "tcp", "tls", "udp", "ip", "dns", "ns",
 		"waf", "acme", "ssh", "toa", "http2", "http3", "uam", "cc",
-		"db", "isp", "sni", "ui":
+		"db", "isp", "sni", "ui", "soa", "ocsp", "en", "zh":
 		return strings.ToUpper(word)
 	case "ipv6":
 		return "IPv6"
@@ -316,6 +316,8 @@ func upperWord(word string) string {
 		return "DDoS"
 	case "webp":
 		return "WebP"
+	case "doh":
+		return "DoH"
 	}
 
 	return strings.ToUpper(word[:1]) + word[1:]

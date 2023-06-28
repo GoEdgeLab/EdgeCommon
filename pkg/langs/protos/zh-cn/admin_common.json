@@ -8,5 +8,7 @@
   "menu_setting_metrics": "统计指标",
   "menu_setting_ddos_protection": "DDoS防护",
   "menu_setting_cache": "缓存设置",
-  "system": "系统"
+
+  "system": "系统",
+  "canceled": "已取消"
 }

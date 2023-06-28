@@ -41,7 +41,8 @@
   "ns_node_logs": "运行日志",
   "ns_resolve_test": "解析测试",
 
-  "users": "用户设置",
+  "users": "平台用户",
+  "user_settings": "用户设置",
 
   "finance": "财务管理",
   "finance_bills": "费用账单",
