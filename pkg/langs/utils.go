@@ -11,7 +11,7 @@ import (
 
 // Message 读取消息
 // Read message
-func Message(langCode string, messageCode MessageCode, args ...any) string {
+func Message(langCode LangCode, messageCode MessageCode, args ...any) string {
 	return defaultManager.GetMessage(langCode, messageCode, args...)
 }
 
@@ -51,19 +51,18 @@ func ParseLangFromAction(action actions.ActionWrapper) (langCode string) {
 // Format string that contains message variables, such as ${lang.MESSAGE_CODE}
 //
 // 暂时不支持变量中加参数
-func Format(langCode string, varString string) string {
+func Format(langCode LangCode, varString string) string {
 	return configutils.ParseVariables(varString, func(varName string) (value string) {
-		const prefix = "lang."
-		if !strings.HasPrefix(varName, prefix) {
+		if !strings.HasPrefix(varName, varPrefix) {
 			return "${" + varName + "}" // keep origin variable
 		}
-		return Message(langCode, varName[len(prefix):])
+		return Message(langCode, varName[len(varPrefix):])
 	})
 }
 
 // Load 加载消息定义
 // Load message definitions from map
-func Load(langCode string, messageMap map[string]string) {
+func Load(langCode LangCode, messageMap map[string]string) {
 	lang, ok := defaultManager.GetLang(langCode)
 	if !ok {
 		lang = defaultManager.AddLang(langCode)

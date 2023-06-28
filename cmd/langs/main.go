@@ -51,9 +51,10 @@ func runGenerate() {
 	var dirRegexp = regexp.MustCompile(`^[a-z]+-[a-z]+$`)
 	var jsonFileNameRegexp = regexp.MustCompile(`^([a-zA-Z0-9]+)(_([a-zA-Z0-9]+))+\.json$`)
 	var messageCodeRegexp = regexp.MustCompile(`^[a-zA-Z0-9_]+$`)
+	var jsonCommentRegexp = regexp.MustCompile(`//.+`)
 
 	var messageCodes = []string{}
-	var messageMaps = map[string]map[string]string{} // lang => { K:V }
+	var langMaps = map[string]*langs.Lang{} // lang => *langs.Lang
 	var defaultLang = langs.DefaultManager().DefaultLang()
 
 	for _, file := range files {
@@ -65,11 +66,11 @@ func runGenerate() {
 		var langCode = dirName
 		var isBaseLang = langCode == defaultLang
 
-		func() {
+		var processOk = func() bool {
 			jsonFiles, err := filepath.Glob(rootDir + "/" + dirName + "/*.json")
 			if err != nil {
 				fmt.Println("[ERROR]list json files failed: " + err.Error())
-				return
+				return false
 			}
 
 			for _, jsonFile := range jsonFiles {
@@ -82,21 +83,24 @@ func runGenerate() {
 				data, err := os.ReadFile(jsonFile)
 				if err != nil {
 					fmt.Println("[ERROR]read json file '" + jsonFile + "' failed: " + err.Error())
-					return
+					return false
 				}
+
+				// remove comments in json
+				data = jsonCommentRegexp.ReplaceAll(data, []byte{})
 
 				var m = map[string]string{} // code => value
 				err = json.Unmarshal(data, &m)
 				if err != nil {
 					fmt.Println("[ERROR]decode json file '" + jsonFile + "' failed: " + err.Error())
-					return
+					return false
 				}
 
 				var newM = map[string]string{}
 				for code, value := range m {
 					if !messageCodeRegexp.MatchString(code) {
 						fmt.Println("[ERROR]invalid message code '" + code + "'")
-						return
+						return false
 					}
 
 					var fullCode = module + "_" + code
@@ -106,28 +110,42 @@ func runGenerate() {
 					newM[fullCode] = value
 				}
 
-				finalMap, ok := messageMaps[langCode]
+				finalLang, ok := langMaps[langCode]
 				if !ok {
-					finalMap = map[string]string{}
-					messageMaps[langCode] = finalMap
+					finalLang = langs.NewLang(langCode)
+					langMaps[langCode] = finalLang
 				}
 				for code, value := range newM {
-					finalMap[code] = value
+					finalLang.Set(code, value)
 				}
 			}
+
+			return true
 		}()
+		if !processOk {
+			return
+		}
+	}
+
+	// compile
+	for langCode, lang := range langMaps {
+		err = lang.Compile()
+		if err != nil {
+			fmt.Println("[ERROR]compile '" + langCode + "' failed: " + err.Error())
+			return
+		}
 	}
 
 	// check message codes
 	fmt.Println("checking message codes ...")
 	var defaultMessageMap = map[string]string{}
-	for langCode, messageMap := range messageMaps {
+	for langCode, messageLang := range langMaps {
 		if langCode == defaultLang { // only check lang not equal to 'en-us'
-			defaultMessageMap = messageMap
+			defaultMessageMap = messageLang.GetAll()
 			continue
 		}
 
-		for messageCode := range messageMap {
+		for messageCode := range messageLang.GetAll() {
 			if !lists.ContainsString(messageCodes, messageCode) {
 				fmt.Println("[ERROR]message code '" + messageCode + "' in lang '" + langCode + "' not exist in default lang file ('" + defaultLang + "')")
 				return
@@ -150,11 +168,16 @@ import(
 const (
 	`
 
-	for _, messageCode := range messageCodes {
+	for index, messageCode := range messageCodes {
 		// add comment to message code
 		comment, _, _ := strings.Cut(defaultMessageMap[messageCode], "\n")
 
-		codesSource += upperWords(messageCode) + " langs.MessageCode = " + strconv.Quote(messageCode) + " // " + comment + "\n"
+		codesSource += upperWords(messageCode) + " langs.MessageCode = " + strconv.Quote(messageCode) + " // " + comment
+
+		// add NL
+		if index != len(messageCodes)-1 {
+			codesSource += "\n"
+		}
 	}
 
 	codesSource += `
@@ -175,7 +198,7 @@ const (
 	}
 
 	// generate messages_LANG.go
-	for langCode, messageMap := range messageMaps {
+	for langCode, messageLang := range langMaps {
 		var langFile = strings.ReplaceAll("messages/messages_"+langCode+".go", "-", "_")
 
 		fmt.Println("generating '" + langFile + "' ...")
@@ -192,7 +215,7 @@ func init() {
 	langs.Load("` + langCode + `", map[string]string{
 	`
 
-		for code, value := range messageMap {
+		for code, value := range messageLang.GetAll() {
 			source += strconv.Quote(code) + ": " + strconv.Quote(value) + ",\n"
 		}
 
@@ -214,8 +237,8 @@ func init() {
 		}
 	}
 
-	// generate language javascript files for EdgeAdmin
-	for lang, messageMap := range messageMaps {
+	// generate language javascript files for EdgeAdmin and EdgeUser (commercial versions)
+	for lang, messageLang := range langMaps {
 		if lang != defaultLang {
 			// TODO merge messageMap with default message map
 		}
@@ -226,7 +249,26 @@ func init() {
 			var targetDir = filepath.Dir(targetFile)
 			dirStat, _ := os.Stat(targetDir)
 			if dirStat != nil {
-				messageMapJSON, err := json.Marshal(messageMap)
+
+				var prefix = ""
+				switch component {
+				case "EdgeAdmin":
+					prefix = "admin_"
+				case "EdgeUser":
+					prefix = "user_"
+				}
+				if len(prefix) == 0 {
+					continue
+				}
+
+				var filteredMessages = map[string]string{}
+				for code, value := range messageLang.GetAll() {
+					if strings.HasPrefix(code, prefix) {
+						filteredMessages[code] = value
+					}
+				}
+
+				messageMapJSON, err := json.Marshal(filteredMessages)
 				if err != nil {
 					fmt.Println("[ERROR]marshal message map failed: " + err.Error())
 					return
@@ -264,12 +306,16 @@ func upperWord(word string) string {
 
 	// special words
 	switch word {
-	case "api", "http", "https", "tcp", "udp", "ip", "dns", "ns", "waf", "acme", "ssh", "toa":
+	case "api", "http", "https", "tcp", "tls", "udp", "ip", "dns", "ns",
+		"waf", "acme", "ssh", "toa", "http2", "http3", "uam", "cc",
+		"db", "isp", "sni", "ui":
 		return strings.ToUpper(word)
 	case "ipv6":
 		return "IPv6"
 	case "ddos":
 		return "DDoS"
+	case "webp":
+		return "WebP"
 	}
 
 	return strings.ToUpper(word[:1]) + word[1:]

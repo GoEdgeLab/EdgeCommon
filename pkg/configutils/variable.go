@@ -66,6 +66,18 @@ func ParseVariables(source string, replacer func(varName string) (value string))
 	return builder.String()
 }
 
+func ParseVariablesError(source string, replacer func(varName string) (value string, err error)) (string, error) {
+	var resultErr error
+	var result = ParseVariables(source, func(varName string) (value string) {
+		replacedValue, err := replacer(varName)
+		if err != nil {
+			resultErr = err
+		}
+		return replacedValue
+	})
+	return result, resultErr
+}
+
 // ParseVariablesFromHolders 从占位中分析变量
 func ParseVariablesFromHolders(holders VariableHolders, replacer func(varName string) (value string)) string {
 	// no variables

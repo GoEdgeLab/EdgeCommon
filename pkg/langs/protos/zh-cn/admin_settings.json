@@ -1,0 +1,20 @@
+{
+  "tab_admin_server": "Web服务",
+  "tab_admin_ui": "管理界面设置",
+  "tab_user_ui": "用户界面设置",
+  "tab_admin_security_settings": "安全设置",
+  "tab_updates": "检查更新",
+  "tab_profile": "个人资料",
+  "tab_login": "登录设置",
+  "tab_database": "数据库",
+  "tab_api_nodes": "API节点",
+  "tab_user_nodes": "用户节点",
+  "tab_monitor_nodes": "监控节点",
+  "tab_ip_library": "IP库",
+  "tab_client_operation_systems": "操作系统库",
+  "tab_client_browsers": "浏览器库",
+  "tab_authority": "商业版认证",
+  "tab_access_log_databases": "日志数据库",
+  "tab_transfer": "迁移",
+  "tab_backup": "备份"
+}
