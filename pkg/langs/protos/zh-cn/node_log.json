@@ -1,0 +1,5 @@
+{
+  "log_delete_node_logs_batch": "批量删除节点运行日志",
+  "log_fix_node_logs": "设置日志 %s 为已修复",
+  "log_fix_all_logs": "设置所有日志为已修复"
+}

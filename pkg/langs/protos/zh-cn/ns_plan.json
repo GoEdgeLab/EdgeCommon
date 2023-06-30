@@ -1,0 +1,6 @@
+{
+  "log_update_ns_plan": "修改套餐 %d",
+  "log_create_ns_plan": "创建套餐 %d",
+  "log_delete_ns_plan": "删除套餐 %d",
+  "log_sort_ns_plans": "套餐排序"
+}

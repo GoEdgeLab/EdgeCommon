@@ -1,0 +1,5 @@
+{
+  "log_create_ad_package": "创建高防产品 %d",
+  "log_delete_ad_package": "删除高防产品 %d",
+  "log_update_ad_package": "修改高防产品 %d"
+}

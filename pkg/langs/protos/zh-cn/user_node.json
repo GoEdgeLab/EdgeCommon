@@ -1,0 +1,5 @@
+{
+  "log_create_user_node": "创建用户节点 %d",
+  "log_update_user_node": "修改用户节点 %d",
+  "log_delete_user_node": "删除用户节点 %d"
+}

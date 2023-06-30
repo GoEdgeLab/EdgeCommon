@@ -1,0 +1,6 @@
+{
+  "log_delete_ns_route_category": "删除NS线路分类 %d",
+  "log_update_ns_route_category": "修改NS线路分类 %d",
+  "log_create_ns_route_category": "创建NS线路分类 %d",
+  "log_sort_ns_route_categories": "对NS线路分类进行排序"
+}

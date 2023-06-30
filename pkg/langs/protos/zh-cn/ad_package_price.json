@@ -1,0 +1,4 @@
+{
+  "log_create_ad_package_price": "为用户 %d 创建高防实例：%d，有效期：%d，数量：%d",
+  "log_update_ad_package_price": "修改高防产品 %d 有效期 %d 的价格"
+}

@@ -1,0 +1,10 @@
+{
+  "log_create_deleting_header": "添加删除的Header HeaderPolicyId: %d, Name: %s",
+  "log_create_non_standard_header": "添加非标的Header HeaderPolicyId: %d, Name: %s",
+  "log_create_setting_header": "设置请求Header，HeaderPolicyId:%d, Name:%s, Value:%s",
+  "log_delete_header": "删除请求Header，HeaderPolicyId:%d, HeaderId:%d",
+  "log_delete_deleting_header": "删除需要删除的Header，HeaderPolicyId:%d, HeaderName:%s",
+  "log_delete_non_standard_header": "删除需要非标的Header，HeaderPolicyId:%d, HeaderName:%s",
+  "log_update_setting_header": "修改设置请求Header，HeaderPolicyId:%d, Name:%s, Value:%s",
+  "log_update_http_headers": "修改Web %d 的Header设置"
+}

@@ -1,0 +1,7 @@
+{
+  "log_add_metric_item_to_cluster": "添加指标 %d 到集群 %d",
+  "log_delete_metric_item_from_cluster": "从集群 %d 中移除指标 %d",
+  "log_create_metric_item": "创建统计指标 %d",
+  "log_delete_metric_item": "删除统计指标",
+  "log_update_metric_item": "修改统计指标 %d"
+}

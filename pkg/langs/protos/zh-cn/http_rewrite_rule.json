@@ -1,0 +1,6 @@
+{
+  "log_create_rewrite_rule": "在Web %d 中创建重写规则 %d",
+  "log_delete_rewrite_rule": "从Web %d 中删除重写规则 %d",
+  "log_sort_rewrite_rules": "对Web %d 中的重写规则进行排序",
+  "log_update_rewrite_rule": "修改Web %d 中的重写规则 %d"
+}

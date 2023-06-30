@@ -15,6 +15,10 @@ func Message(langCode LangCode, messageCode MessageCode, args ...any) string {
 	return defaultManager.GetMessage(langCode, messageCode, args...)
 }
 
+func DefaultMessage(messageCode MessageCode, args ...any) string {
+	return defaultManager.GetMessage("en-us", messageCode, args...)
+}
+
 func ParseLangFromRequest(req *http.Request) (langCode string) {
 	// parse language from cookie
 	const cookieName = "edgelang"
@@ -56,13 +60,13 @@ func Format(langCode LangCode, varString string) string {
 		if !strings.HasPrefix(varName, varPrefix) {
 			return "${" + varName + "}" // keep origin variable
 		}
-		return Message(langCode, varName[len(varPrefix):])
+		return Message(langCode, MessageCode(varName[len(varPrefix):]))
 	})
 }
 
 // Load 加载消息定义
 // Load message definitions from map
-func Load(langCode LangCode, messageMap map[string]string) {
+func Load(langCode LangCode, messageMap map[MessageCode]string) {
 	lang, ok := defaultManager.GetLang(langCode)
 	if !ok {
 		lang = defaultManager.AddLang(langCode)

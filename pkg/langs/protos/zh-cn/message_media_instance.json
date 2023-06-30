@@ -1,0 +1,5 @@
+{
+  "log_create_message_media_instance": "创建消息媒介 %d",
+  "log_delete_message_media_instance": "删除消息媒介 %d",
+  "log_update_message_media_instance": "修改消息媒介 %d"
+}

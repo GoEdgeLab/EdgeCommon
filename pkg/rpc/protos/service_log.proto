@@ -32,10 +32,12 @@ service LogService {
 
 // 创建日志
 message CreateLogRequest {
-	string level = 1;
-	string description = 2;
-	string action = 3;
-	string ip = 4;
+	string level = 1; // 级别：info, warn, error
+	string description = 2; // 描述
+	string action = 3; // 可选项，发生操作所在的页面URL
+	string ip = 4; // 可选项，操作用户IP
+	string langMessageCode = 5; // 多语言消息
+	bytes langMessagesArgsJSON = 6; // 多语言消息中的参数项，格式：[arg1, arg2, ...]
 }
 
 message CreateLogResponse {

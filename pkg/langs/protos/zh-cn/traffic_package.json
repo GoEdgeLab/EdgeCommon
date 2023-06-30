@@ -1,0 +1,5 @@
+{
+  "log_create_traffic_package": "创建流量包 %d",
+  "log_delete_traffic_package": "删除流量包 %d",
+  "log_update_traffic_package": "修改流量包 %d"
+}

@@ -1,0 +1,5 @@
+{
+  "log_reject_user_identity":"驳回用户 %d 的实名认证",
+  "log_reset_user_identity": "重置用户 %d 的实名认证",
+  "log_verify_user_identity": "通过用户 %d 的实名认证"
+}

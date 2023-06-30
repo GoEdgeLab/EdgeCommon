@@ -1,0 +1,6 @@
+{
+  "log_delete_http_cache_task": "删除缓存任务 %d",
+  "log_create_http_cache_task_fetch": "批量预热缓存Key",
+  "log_create_http_cache_task_purge": "批量刷新缓存Key",
+  "log_reset_http_cache_task": "重置缓存任务 %d 状态"
+}

@@ -15,29 +15,34 @@ type LangCode = string
 type Lang struct {
 	code string
 
-	messageMap map[string]string // message code => message text
+	messageMap map[MessageCode]string // message code => message text
 }
 
 func NewLang(code string) *Lang {
 	return &Lang{
 		code:       code,
-		messageMap: map[string]string{},
+		messageMap: map[MessageCode]string{},
 	}
 }
 
-func (this *Lang) Set(messageCode string, messageText string) {
+func (this *Lang) Set(messageCode MessageCode, messageText string) {
 	this.messageMap[messageCode] = messageText
+}
+
+func (this *Lang) Has(messageCode MessageCode) bool {
+	_, ok := this.messageMap[messageCode]
+	return ok
 }
 
 // Get 读取单条消息
 // get single message with message code
-func (this *Lang) Get(messageCode string) string {
+func (this *Lang) Get(messageCode MessageCode) string {
 	return this.messageMap[messageCode]
 }
 
 // GetAll 读取所有消息
 // get all messages
-func (this *Lang) GetAll() map[string]string {
+func (this *Lang) GetAll() map[MessageCode]string {
 	return this.messageMap
 }
 
@@ -46,14 +51,14 @@ func (this *Lang) Compile() error {
 	for code, oldMessage := range this.messageMap {
 		message, err := this.get(code, 0)
 		if err != nil {
-			return errors.New("compile '" + code + "': '" + oldMessage + "' failed: " + err.Error())
+			return errors.New("compile '" + string(code) + "': '" + oldMessage + "' failed: " + err.Error())
 		}
 		this.messageMap[code] = message
 	}
 	return nil
 }
 
-func (this *Lang) get(messageCode string, loopIndex int) (string, error) {
+func (this *Lang) get(messageCode MessageCode, loopIndex int) (string, error) {
 	if loopIndex >= 8 /** max recurse **/ {
 		return "", errors.New("too many recurse")
 	}
@@ -63,7 +68,7 @@ func (this *Lang) get(messageCode string, loopIndex int) (string, error) {
 	if len(message) == 0 {
 		if !ok && loopIndex > 1 {
 			// recover as variable
-			return "${" + varPrefix + messageCode + "}", errors.New("can not find message for code '" + messageCode + "'")
+			return "${" + varPrefix + string(messageCode) + "}", errors.New("can not find message for code '" + string(messageCode) + "'")
 		}
 		return "", nil
 	}
@@ -73,6 +78,6 @@ func (this *Lang) get(messageCode string, loopIndex int) (string, error) {
 			return "${" + varName + "}", nil
 		}
 
-		return this.get(varName[len(varPrefix):], loopIndex)
+		return this.get(MessageCode(varName[len(varPrefix):]), loopIndex)
 	})
 }

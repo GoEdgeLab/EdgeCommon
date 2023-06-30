@@ -1,0 +1,5 @@
+{
+  "log_create_monitor_node": "创建监控节点 %d",
+  "log_update_monitor_node": "修改监控节点 %d",
+  "log_delete_monitor_node": "删除监控节点 %d"
+}

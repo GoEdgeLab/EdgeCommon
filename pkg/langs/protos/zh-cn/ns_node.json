@@ -1,0 +1,9 @@
+{
+  "log_start_ns_node_remotely": "远程启动节点 %d",
+  "log_stop_ns_node_remotely": "远程停止节点 %d",
+  "log_update_ns_node": "修改节点 %d",
+  "log_update_ns_node_installation_status": "修改节点安装状态 %d",
+  "log_create_ns_node": "创建域名服务节点 %d",
+  "log_install_ns_node_remotely": "安装节点 %d",
+  "log_delete_ns_node": "删除域名服务节点 %d"
+}

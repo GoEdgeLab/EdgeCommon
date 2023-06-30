@@ -1,6 +1,0 @@
-{
-  "connector_and": "和(AND)",
-  "connector_and_description": "所有规则都满足才视为匹配",
-  "connector_or": "或(OR)",
-  "connector_or_description": "任一规则满足了就视为匹配"
-}

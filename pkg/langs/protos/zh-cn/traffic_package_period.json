@@ -1,0 +1,5 @@
+{
+  "log_create_traffic_package_period": "创建流量包有效期 %d",
+  "log_delete_traffic_package_period": "删除流量包有效期选项 %d",
+  "log_update_traffic_package_period": "修改流量包有效期选项 %d"
+}

@@ -1,0 +1,6 @@
+{
+  "log_create_ns_route": "创建域名服务线路 %d",
+  "log_delete_ns_route": "删除域名服务线路 %d",
+  "log_sort_ns_routes": "对线路进行排序",
+  "log_update_ns_route": "修改域名线路 %d"
+}

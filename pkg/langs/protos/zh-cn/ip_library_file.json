@@ -1,0 +1,5 @@
+{
+  "log_generate_ip_library_file": "重新生成IP库 %d 文件",
+  "log_upload_ip_library_file": "上传IP库 %d",
+  "log_delete_ip_library_file": "删除IP库文件 %d"
+}

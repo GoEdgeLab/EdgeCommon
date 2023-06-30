@@ -1,0 +1,6 @@
+{
+  "log_update_clean_days": "修改数据库自动清理设置",
+  "log_delete_table": "删除数据表 %s",
+  "log_truncate_table": "清空数据表 %s 数据",
+  "log_update_api_node_database_config": "修改API节点数据库设置"
+}

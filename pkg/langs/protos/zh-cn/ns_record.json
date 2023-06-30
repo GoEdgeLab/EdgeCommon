@@ -1,0 +1,8 @@
+{
+  "log_create_ns_records_batch": "批量创建NS域名记录",
+  "log_create_ns_record": "创建NS域名记录 %d",
+  "log_delete_ns_record": "删除域名记录 %d",
+  "log_update_ns_record_health_check": "修改记录 %d 的健康检查",
+  "log_update_ns_record": "修改域名记录 %d",
+  "log_up_ns_record": "手动设置DNS记录 %d 为上线状态"
+}

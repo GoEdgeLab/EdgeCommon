@@ -1,0 +1,5 @@
+{
+  "log_create_ns_key": "创建DNS密钥 %d",
+  "log_delete_ns_key": "删除DNS密钥 %d",
+  "log_update_ns_key": "修改DNS密钥 %d"
+}

@@ -1,0 +1,5 @@
+{
+  "log_create_ticket_category": "添加工单分类 %d",
+  "log_delete_ticket_category": "删除工单分类 %d",
+  "log_update_ticket_category": "修改分类 %d"
+}

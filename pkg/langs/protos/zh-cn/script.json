@@ -1,0 +1,6 @@
+{
+  "log_create_script": "创建脚本 %d",
+  "log_delete_script": "删除脚本 %d",
+  "log_publish_scripts": "发布脚本库到边缘节点",
+  "log_update_script": "修改脚本 %d"
+}

@@ -1,0 +1,5 @@
+{
+  "log_delete_ad_network": "删除高防IP线路",
+  "log_update_ad_network": "修改高防IP线路 %d",
+  "log_create_ad_network": "创建高防IP线路 %d"
+}

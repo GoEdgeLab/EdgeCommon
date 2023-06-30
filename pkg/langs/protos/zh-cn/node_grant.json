@@ -1,0 +1,8 @@
+{
+  "method_user_password": "用户名+密码",
+  "method_private_key": "私钥",
+
+  "log_create_ssh_grant": "创建SSH认证 %d",
+  "log_delete_ssh_grant": "删除SSH认证 %d",
+  "log_update_ssh_grant": "修改SSH认证 %d"
+}

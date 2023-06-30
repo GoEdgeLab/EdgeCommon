@@ -1,0 +1,29 @@
+{
+  "tab_nodes": "节点列表",
+  "tab_setting": "集群设置",
+  "tab_delete": "删除集群",
+
+  "menu_basic": "基础设置",
+  "menu_udp": "UDP",
+  "menu_tcp": "TCP",
+  "menu_tls": "TLS",
+  "menu_doh": "DoH",
+  "menu_access_logs": "访问日志",
+  "menu_answer_setting": "应答模式",
+  "menu_soa": "SOA",
+  "menu_dns_recursion": "递归DNS",
+  "menu_ddos_protection": "DDoS防护",
+
+  "log_delete_ns_cluster": "删除域名服务集群 %d",
+  "log_create_ns_cluster": "创建域名服务集群 %d",
+  "log_update_ns_cluster_settings_basic": "修改域名服务集群基本信息 %d",
+  "log_update_ns_cluster_settings_access_log": "修改域名服务集群 %d 访问日志配置",
+  "log_update_ns_cluster_settings_answer": "修改NS集群 %d 应答模式设置",
+  "log_update_ns_cluster_settings_ddos_protection": "修改NS集群 %d 的DDOS防护设置",
+  "log_update_ns_cluster_settings_doh": "修改NS集群 %d DoH设置",
+  "log_update_ns_cluster_settings_recursion": "修改DNS集群 %d 的递归DNS设置",
+  "log_update_ns_cluster_settings_soa": "修改NS集群 %d SOA配置",
+  "log_update_ns_cluster_settings_tcp": "修理NS集群 %d TCP设置",
+  "log_update_ns_cluster_settings_tls": "修改NS集群 %d TLS设置",
+  "log_update_ns_cluster_settings_udp": "修改NS集群 %d UDP设置"
+}

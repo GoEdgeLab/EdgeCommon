@@ -1,0 +1,5 @@
+{
+  "log_delete_ad_package_instance": "删除高防实例 %d",
+  "log_update_ad_package_instance": "修改高防实例 %d",
+  "log_create_ad_package_instance": "创建高防实例 %d"
+}

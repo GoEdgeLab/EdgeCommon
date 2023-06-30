@@ -12,7 +12,7 @@ type VariableHolders = []interface{}
 
 var variableMapping = map[string][]interface{}{} // source => [holder1, ...]
 var variableLocker = sync.RWMutex{}
-var regexpNamedVariable = regexp.MustCompile(`\${[\w.-]+}`)
+var regexpNamedVariable = regexp.MustCompile(`\${[@\w.-]+}`)
 
 var stringBuilderPool = sync.Pool{
 	New: func() interface{} {

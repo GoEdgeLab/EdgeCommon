@@ -1,7 +1,7 @@
 {
-  "overview": "概况",
-  "waf": "WAF",
-  "dns": "DNS",
-  "user": "用户",
-  "events": "事件"
+  "ui_overview": "概况",
+  "ui_waf": "WAF",
+  "ui_dns": "DNS",
+  "ui_user": "用户",
+  "ui_events": "事件"
 }

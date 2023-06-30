@@ -1,0 +1,5 @@
+{
+  "log_create_report_node": "创建监控终端 %d",
+  "log_delete_report_node": "删除监控终端 %d",
+  "log_update_report_node": "修改监控终端 %d"
+}

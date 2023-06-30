@@ -1,0 +1,5 @@
+{
+  "log_delete_user_ad_instance": "删除用户高防实例 %d",
+  "log_renew_user_ad_instance": "为用户高防实例 %d 续期",
+  "log_update_user_ad_instance_objects": "修改用户高防实例 %d 防护对象"
+}

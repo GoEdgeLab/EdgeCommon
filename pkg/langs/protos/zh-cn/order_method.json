@@ -1,0 +1,5 @@
+{
+  "log_create_order_method": "创建支付方式 %d",
+  "log_delete_order_method": "删除支付方式 %d",
+  "log_update_order_method": "修改支付方式 %d"
+}

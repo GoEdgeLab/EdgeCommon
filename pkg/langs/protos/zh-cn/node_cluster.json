@@ -1,0 +1,9 @@
+{
+  "log_create_cluster": "创建节点集群：%d",
+  "log_delete_cluster": "删除集群 %d",
+  "log_update_cluster_health_check": "修改集群健康检查设置 %d",
+  "log_run_cluster_health_check": "执行集群健康检查设置 %d",
+  "log_update_cluster_basic_settings": "修改集群基础设置 %d",
+  "log_pin_cluster": "置顶集群 %d",
+  "log_unpin_cluster": "取消置顶集群 %d"
+}

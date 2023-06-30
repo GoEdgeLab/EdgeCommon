@@ -1,0 +1,4 @@
+{
+  "log_create_http_fastcgi": "创建Fastcgi %d",
+  "log_update_http_fastcgi": "修改Fastcgi %d"
+}

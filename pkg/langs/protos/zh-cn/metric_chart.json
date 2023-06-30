@@ -1,0 +1,5 @@
+{
+  "log_create_metric_chart": "创建指标图表 %d",
+  "log_delete_metric_chart": "删除指标图表 %d",
+  "log_update_metric_chart": "修改指标图表 %d"
+}

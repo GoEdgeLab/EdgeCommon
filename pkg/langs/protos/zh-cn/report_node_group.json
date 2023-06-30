@@ -1,0 +1,5 @@
+{
+  "log_create_report_node_group": "创建监控节点分组 %d",
+  "log_delete_report_node_group": "删除监控节点分组 %d",
+  "log_update_report_node_group": "修改监控节点分组 %d"
+}

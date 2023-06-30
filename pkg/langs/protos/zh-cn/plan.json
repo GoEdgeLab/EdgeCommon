@@ -1,0 +1,6 @@
+{
+  "log_delete_plan": "删除套餐 %d",
+  "log_update_plan": "修改套餐 %d",
+  "log_create_plan": "创建套餐 %d",
+  "log_sort_plans": "对套餐进行排序"
+}

@@ -75,7 +75,7 @@ func (this *Manager) DefaultLang() string {
 
 // GetMessage
 // message: name: %s, age: %d, salary: %.2f
-func (this *Manager) GetMessage(langCode string, messageCode string, args ...any) string {
+func (this *Manager) GetMessage(langCode string, messageCode MessageCode, args ...any) string {
 	var lang = this.langMap[langCode]
 	if lang == nil && len(this.defaultLangCode) > 0 {
 		lang = this.langMap[this.defaultLangCode]

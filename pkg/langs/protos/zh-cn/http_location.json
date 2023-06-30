@@ -1,0 +1,4 @@
+{
+  "log_create_http_location": "创建路由规则：%s", // 参数：pattern
+  "log_update_http_location": "修改路由规则 %d 设置"
+}

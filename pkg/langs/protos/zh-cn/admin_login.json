@@ -1,3 +1,8 @@
 {
+  "log_system_error": "登录时发生系统错误：%s",
+  "log_failed": "登录失败，用户名：%s",
+  "log_success": "成功登录系统，用户名：%s",
+  "log_otp_verified_success": "成功通过OTP验证登录系统",
 
+  "log_update_login": "修改登录设置"
 }

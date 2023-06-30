@@ -1,0 +1,5 @@
+{
+  "log_create_ad_package_period": "创建高防IP实例有效期 %d",
+  "log_delete_ad_package_period": "删除高防IP实例有效期选项 %d",
+  "log_update_ad_package_period": "修改高防IP实例有效期选项 %d"
+}

@@ -1,0 +1,4 @@
+{
+  "log_update_cluster_ddos_protection": "修改集群 %d 的DDOS防护设置",
+  "log_update_node_ddos_protection": "修改节点 %d 的DDOS防护设置"
+}

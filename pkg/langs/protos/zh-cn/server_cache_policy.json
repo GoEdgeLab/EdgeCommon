@@ -1,0 +1,11 @@
+{
+  "log_clean_all": "清除缓存，缓存策略：%d",
+  "log_create_cache_policy":  "创建缓存策略：%d",
+  "log_delete_cache_policy": "删除缓存策略：%d",
+  "log_fetch_caches": "预热缓存，缓存策略：%d",
+  "log_purge_caches": "删除缓存，缓存策略：%d",
+  "log_stat_caches": "统计缓存，缓存策略：%d",
+  "log_test_reading": "测试读取，缓存策略：%d",
+  "log_test_writing": "测试写入，缓存策略：%d",
+  "log_update_cache_policy": "修改缓存策略：%d"
+}

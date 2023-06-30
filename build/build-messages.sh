@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-go run ../cmd/langs/main.go generate
+ROOT=$(dirname "$0")
+/usr/local/bin/go run "${ROOT}"/../cmd/langs/main.go generate

@@ -1,0 +1,3 @@
+{
+  "log_update_access_log_setting": "修改Web %d 的访问日志设置" // 参数 webId
+}

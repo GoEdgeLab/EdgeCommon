@@ -1,0 +1,6 @@
+{
+  "log_delete_server_group": "删除网站分组 %d",
+  "log_update_server_group": "修改网站分组 %d",
+  "log_create_server_group": "创建网站分组 %d",
+  "log_sort_server_groups": "修改网站分组排序"
+}

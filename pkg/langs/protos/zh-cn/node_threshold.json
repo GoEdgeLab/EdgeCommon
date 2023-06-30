@@ -1,0 +1,5 @@
+{
+  "log_create_node_threshold": "创建节点阈值 %d",
+  "log_delete_node_threshold": "删除阈值 %d",
+  "log_update_node_threshold": "修改节点阈值 %d"
+}

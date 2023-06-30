@@ -1,0 +1,9 @@
+{
+  "log_create_waf_policy": "创建WAF策略 %d",
+  "log_delete_waf_policy": "删除WAF策略 %d",
+  "log_update_waf_policy": "修改WAF策略 %d 基本信息",
+  "log_update_cluster_waf_policy": "设置集群 %d 的WAF策略为 %d",
+  "log_export_waf_policy": "导出WAF策略 %d",
+  "log_import_waf_policy": "从文件中导入规则到WAF策略 %d",
+  "log_upgrade_waf_policy": "升级WAF %d 内置规则"
+}

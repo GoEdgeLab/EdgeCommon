@@ -1,0 +1,4 @@
+{
+  "log_update_cluster_http_cc_policy": "修改集群 %d 的HTTP CC策略设置",
+  "log_update_cc_settings": "修改Web %d CC防护配置"
+}

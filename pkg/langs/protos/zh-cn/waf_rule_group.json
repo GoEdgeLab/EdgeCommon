@@ -1,0 +1,7 @@
+{
+  "log_create_rule_group": "创建规则分组 %d，名称：%s",
+  "log_delete_rule_group": "删除WAF策略 %d 的规则分组 %d",
+  "log_sort_rule_groups": "修改WAF策略 %d 中的规则分组中的排序",
+  "log_update_rule_group_is_on": "设置WAF规则分组 %d 开启状态",
+  "log_update_rule_group": "修改WAF规则分组 %d 基本信息"
+}

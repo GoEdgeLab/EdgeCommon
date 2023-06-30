@@ -1,0 +1,4 @@
+{
+  "log_update_node_schedule_basic": "修改节点调度基本信息",
+  "log_reset_node_action_status": "重置节点 %d 动作状态"
+}

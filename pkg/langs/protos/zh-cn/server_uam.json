@@ -1,0 +1,5 @@
+{
+  "log_update_cluster_uam_policy": "修改集群 %d 的UAM设置",
+  "log_update_uam_settings": "修改Web %d 全站防护模式",
+  "log_update_server_uam_settings": "修改网站 %d 全站防护模式"
+}

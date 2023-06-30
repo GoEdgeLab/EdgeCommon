@@ -1,0 +1,10 @@
+{
+  "log_update_cluster_dns": "修改集群 %d DNS设置",
+  "log_sync_domain": "同步DNS域名数据 %d",
+  "log_sync_cluster": "同步集群 %d 的DNS设置",
+  "log_create_domain": "添加管理域名到DNS服务商 %d",
+  "log_delete_domain": "从DNS服务商中删除域名 %d",
+  "log_recover_domain": "从DNS服务商中恢复域名 %d",
+  "log_update_domain": "修改DNS服务商域名 %d",
+  "log_update_node_dns": "修改节点 %d 的DNS设置"
+}

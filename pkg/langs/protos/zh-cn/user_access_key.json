@@ -1,0 +1,5 @@
+{
+  "log_update_user_access_key_is_on": "设置AccessKey %d 启用状态",
+  "log_create_user_access_key": "创建AccessKey %d",
+  "log_delete_user_access_key": "删除AccessKey %d"
+}

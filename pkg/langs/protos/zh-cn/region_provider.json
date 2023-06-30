@@ -1,0 +1,4 @@
+{
+  "log_add_region_provider_code": "添加ISP服务商 %d 别名 %s",
+  "log_update_region_provider_custom": "定制ISP %d 信息"
+}

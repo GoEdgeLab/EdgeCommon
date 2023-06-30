@@ -1,0 +1,4 @@
+{
+  "log_delete_node_task": "删除同步任务 %d",
+  "log_delete_node_tasks_batch": "批量删除节点同步任务"
+}

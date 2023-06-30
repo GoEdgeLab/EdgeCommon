@@ -1,0 +1,10 @@
+{
+  "log_update_ns_domain_status": "修改域名 %d 状态为 %s",
+  "log_create_ns_domains_batch": "批量添加域名",
+  "log_create_ns_domain": "创建域名 %d",
+  "log_delete_ns_domain": "删除域名 %d",
+  "log_update_ns_domain": "修改域名 %d",
+
+  "log_update_ns_domain_health_check": "修改域名 %d 健康检查设置",
+  "log_update_ns_domain_tsig": "修改域名 %d 的TSIG配置"
+}

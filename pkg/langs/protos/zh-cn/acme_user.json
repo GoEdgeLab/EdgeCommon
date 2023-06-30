@@ -1,0 +1,5 @@
+{
+  "log_create_acme_user": "创建ACME用户 %d",
+  "log_delete_acme_user": "删除ACME用户 %d",
+  "log_update_acme_user": "修改ACME用户 %d"
+}

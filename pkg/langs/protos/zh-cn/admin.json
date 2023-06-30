@@ -1,0 +1,5 @@
+{
+  "log_create_admin": "创建系统用户 %d",
+  "log_delete_admin": "删除系统用户 %d",
+  "log_update_admin": "修改系统用户 %d"
+}

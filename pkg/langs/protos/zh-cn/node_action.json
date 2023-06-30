@@ -1,0 +1,8 @@
+{
+  "log_copy_node_actions_to_cluster": "复制节点 %d 调度动作到集群",
+  "log_copy_node_actions_to_group": "复制节点 %d 调度动作到分组",
+  "log_create_node_action": "创建动作 %d",
+  "log_delete_node_action": "删除节点动作 %d",
+  "log_sort_node_actions": "修改节点 %d 动作排序",
+  "log_update_node_action": "修改节点动作 %d"
+}

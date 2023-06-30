@@ -1,0 +1,6 @@
+{
+  "log_create_acme_task": "创建证书申请任务 %d",
+  "log_update_acme_task": "修改证书申请任务 %d",
+  "log_delete_acme_task": "删除证书申请任务 %d",
+  "log_run_acme_task": "执行ACME任务 %d"
+}

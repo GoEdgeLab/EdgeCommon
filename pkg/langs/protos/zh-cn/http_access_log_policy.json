@@ -1,0 +1,6 @@
+{
+  "log_create_http_access_log_policy": "创建访问日志策略 %d",
+  "log_delete_http_access_log_policy": "删除访问日志策略 %d",
+  "log_test_http_access_log_policy": "测试向访问日志策略 %d 写入数据",
+  "log_update_http_access_log_policy": "修改访问日志策略 %d"
+}

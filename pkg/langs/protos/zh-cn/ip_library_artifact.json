@@ -1,0 +1,5 @@
+{
+  "log_delete_ip_library_artifact": "删除IP库 %d",
+  "log_use_ip_library_artifact": "使用IP库 %d",
+  "log_cancel_ip_library_artifact": "取消使用IP库 %d"
+}

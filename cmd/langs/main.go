@@ -3,6 +3,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"github.com/TeaOSLab/EdgeCommon/pkg/langs"
@@ -24,10 +25,14 @@ func main() {
 	if len(args) >= 2 {
 		switch args[1] {
 		case "generate":
+			// generate go codes from json files
 			runGenerate()
+		case "search":
+			// search hans from dir path
+			runSearch()
 		}
 	} else {
-		fmt.Println("Usage: langs [generate]")
+		fmt.Println("Usage: langs [generate|search]")
 	}
 }
 
@@ -49,13 +54,15 @@ func runGenerate() {
 	}
 
 	var dirRegexp = regexp.MustCompile(`^[a-z]+-[a-z]+$`)
-	var jsonFileNameRegexp = regexp.MustCompile(`^([a-zA-Z0-9]+)(_([a-zA-Z0-9]+))+\.json$`)
+	var jsonFileNameRegexp = regexp.MustCompile(`^([a-zA-Z0-9]+)(_([a-zA-Z0-9]+))*\.json$`)
 	var messageCodeRegexp = regexp.MustCompile(`^[a-zA-Z0-9_]+$`)
 	var jsonCommentRegexp = regexp.MustCompile(`//.+`)
 
 	var messageCodes = []string{}
 	var langMaps = map[string]*langs.Lang{} // lang => *langs.Lang
 	var defaultLang = langs.DefaultManager().DefaultLang()
+
+	const maxMessageCodeLen = 128
 
 	for _, file := range files {
 		var dirName = file.Name()
@@ -103,7 +110,13 @@ func runGenerate() {
 						return false
 					}
 
-					var fullCode = module + "_" + code
+					var fullCode = module + "@" + code
+
+					if len(fullCode) > maxMessageCodeLen {
+						fmt.Println("[ERROR]message code '" + fullCode + "' too long, max length: " + types.String(maxMessageCodeLen))
+						return false
+					}
+
 					if isBaseLang {
 						messageCodes = append(messageCodes, fullCode)
 					}
@@ -116,7 +129,11 @@ func runGenerate() {
 					langMaps[langCode] = finalLang
 				}
 				for code, value := range newM {
-					finalLang.Set(code, value)
+					if finalLang.Has(langs.MessageCode(code)) {
+						fmt.Println("[ERROR]message code '" + code + "' duplicated")
+						return false
+					}
+					finalLang.Set(langs.MessageCode(code), value)
 				}
 			}
 
@@ -138,7 +155,7 @@ func runGenerate() {
 
 	// check message codes
 	fmt.Println("checking message codes ...")
-	var defaultMessageMap = map[string]string{}
+	var defaultMessageMap = map[langs.MessageCode]string{}
 	for langCode, messageLang := range langMaps {
 		if langCode == defaultLang { // only check lang not equal to 'en-us'
 			defaultMessageMap = messageLang.GetAll()
@@ -146,8 +163,8 @@ func runGenerate() {
 		}
 
 		for messageCode := range messageLang.GetAll() {
-			if !lists.ContainsString(messageCodes, messageCode) {
-				fmt.Println("[ERROR]message code '" + messageCode + "' in lang '" + langCode + "' not exist in default lang file ('" + defaultLang + "')")
+			if !lists.ContainsString(messageCodes, messageCode.String()) {
+				fmt.Println("[ERROR]message code '" + messageCode.String() + "' in lang '" + langCode + "' not exist in default lang file ('" + defaultLang + "')")
 				return
 			}
 		}
@@ -170,7 +187,7 @@ const (
 
 	for index, messageCode := range messageCodes {
 		// add comment to message code
-		comment, _, _ := strings.Cut(defaultMessageMap[messageCode], "\n")
+		comment, _, _ := strings.Cut(defaultMessageMap[langs.MessageCode(messageCode)], "\n")
 
 		codesSource += upperWords(messageCode) + " langs.MessageCode = " + strconv.Quote(messageCode) + " // " + comment
 
@@ -212,11 +229,11 @@ import(
 )
 
 func init() {
-	langs.Load("` + langCode + `", map[string]string{
+	langs.Load("` + langCode + `", map[langs.MessageCode]string{
 	`
 
 		for code, value := range messageLang.GetAll() {
-			source += strconv.Quote(code) + ": " + strconv.Quote(value) + ",\n"
+			source += strconv.Quote(code.String()) + ": " + strconv.Quote(value) + ",\n"
 		}
 
 		source += `
@@ -249,7 +266,6 @@ func init() {
 			var targetDir = filepath.Dir(targetFile)
 			dirStat, _ := os.Stat(targetDir)
 			if dirStat != nil {
-
 				var prefix = ""
 				switch component {
 				case "EdgeAdmin":
@@ -261,9 +277,9 @@ func init() {
 					continue
 				}
 
-				var filteredMessages = map[string]string{}
+				var filteredMessages = map[langs.MessageCode]string{}
 				for code, value := range messageLang.GetAll() {
-					if strings.HasPrefix(code, prefix) {
+					if strings.HasPrefix(code.String(), prefix) && strings.Contains(code.String(), "@ui_") /** must contains 'ui' **/ {
 						filteredMessages[code] = value
 					}
 				}
@@ -287,11 +303,15 @@ window.LANG_MESSAGES = `+string(messageMapJSON)+";\n"), 0666)
 }
 
 func upperWords(s string) string {
-	var words = strings.Split(s, "_")
-	for index, word := range words {
-		words[index] = upperWord(word)
+	var pieces = strings.Split(s, "@")
+	for pieceIndex, piece := range pieces {
+		var words = strings.Split(piece, "_")
+		for index, word := range words {
+			words[index] = upperWord(word)
+		}
+		pieces[pieceIndex] = strings.Join(words, "")
 	}
-	return strings.Join(words, "")
+	return strings.Join(pieces, "_")
 }
 
 func upperWord(word string) string {
@@ -306,9 +326,10 @@ func upperWord(word string) string {
 
 	// special words
 	switch word {
-	case "api", "http", "https", "tcp", "tls", "udp", "ip", "dns", "ns",
+	case "api", "http", "https", "tcp", "tls", "ssl", "udp", "ip", "dns", "ns",
 		"waf", "acme", "ssh", "toa", "http2", "http3", "uam", "cc",
-		"db", "isp", "sni", "ui", "soa", "ocsp", "en", "zh":
+		"db", "isp", "sni", "ui", "soa", "ocsp", "en", "zh", "ad", "tsig",
+		"rpc", "dao":
 		return strings.ToUpper(word)
 	case "ipv6":
 		return "IPv6"
@@ -321,4 +342,112 @@ func upperWord(word string) string {
 	}
 
 	return strings.ToUpper(word[:1]) + word[1:]
+}
+
+func runSearch() {
+	if len(os.Args) < 3 {
+		fmt.Println("Usage: langs search DIR")
+		return
+	}
+	var dir = os.Args[2]
+	stat, err := os.Stat(dir)
+	if err != nil {
+		fmt.Println("[ERROR]could not find dir '" + dir + "': " + err.Error())
+		return
+	}
+	if !stat.IsDir() {
+		fmt.Println("[ERROR]could not find dir '" + dir + "'")
+		return
+	}
+
+	fmt.Println("searching '" + dir + "' ...")
+
+	var ext = ".go"
+
+	var resultFiles = []string{}
+	for _, pattern := range []string{
+		"*" + ext,
+		strings.Repeat("*/", 1) + "*" + ext,
+		strings.Repeat("*/", 2) + "*" + ext,
+		strings.Repeat("*/", 3) + "*" + ext,
+		strings.Repeat("*/", 4) + "*" + ext,
+		strings.Repeat("*/", 5) + "*" + ext,
+		strings.Repeat("*/", 6) + "*" + ext,
+		strings.Repeat("*/", 7) + "*" + ext,
+		strings.Repeat("*/", 8) + "*" + ext,
+		strings.Repeat("*/", 9) + "*" + ext,
+		strings.Repeat("*/", 10) + "*" + ext,
+	} {
+		goFiles, err := filepath.Glob(dir + "/" + pattern)
+		if err != nil {
+			fmt.Println("[ERROR]search error: " + err.Error())
+			return
+		}
+		resultFiles = append(resultFiles, goFiles...)
+	}
+
+	if len(resultFiles) == 0 {
+		fmt.Println("no files found in the dir")
+		return
+	}
+
+	if err != nil {
+		fmt.Println("[ERROR]search dir '" + dir + "' failed: " + err.Error())
+		return
+	}
+	var hansRegexp = regexp.MustCompile(`\p{Han}+`)
+	var countMatches = 0
+	for _, goFile := range resultFiles {
+		if strings.HasSuffix(goFile, "_test.go") ||
+			strings.HasSuffix(goFile, "_plus_test.go") ||
+			strings.Contains(goFile, "/messages/messages_") {
+			continue
+		}
+
+		data, err := os.ReadFile(goFile)
+		if err != nil {
+			fmt.Println("[ERROR]read file '" + goFile + "' failed: " + err.Error())
+			return
+		}
+		var matches = hansRegexp.FindAllSubmatchIndex(data, -1)
+		if len(matches) > 0 {
+			for _, match := range matches {
+				// ignore comment
+				switch ext {
+				case ".go":
+					if checkIsInGoComment(data, match[0]) {
+						continue
+					}
+				}
+
+				countMatches++
+
+				fmt.Printf("%s %s\n", goFile+":"+types.String(bytes.Count(data[:match[0]], []byte{'\n'})+1), string(data[match[0]:match[1]]))
+			}
+		}
+	}
+	fmt.Println(countMatches, "matches")
+}
+
+func checkIsInGoComment(data []byte, start int) bool {
+	if start <= 1 {
+		return false
+	}
+
+	for {
+		start--
+		if start <= 1 || data[start] == '\n' {
+			return false
+		}
+
+		// 'SPACE //'
+		if data[start] == '/' && data[start-1] == '/' {
+			return true
+		}
+
+		// '/** SOMETHING **/'
+		if data[start] == '*' && data[start-1] == '/' {
+			return true
+		}
+	}
 }

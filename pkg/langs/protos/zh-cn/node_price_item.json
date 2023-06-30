@@ -1,0 +1,7 @@
+{
+  "log_create_node_price_item_bandwidth": "创建带宽价格项目 %d",
+  "log_create_node_price_item_traffic": "创建流量价格项目 %d",
+  "log_delete_node_price_item": "删除流量价格项目 %d",
+  "log_update_node_price_item_bandwidth": "修改带宽价格项目 %d",
+  "log_update_node_price_item_traffic": "修改流量价格项目 %d"
+}

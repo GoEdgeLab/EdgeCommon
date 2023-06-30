@@ -1,0 +1,4 @@
+{
+  "log_delete_message_task": "删除消息发送任务 %d",
+  "log_create_testing_message_task": "创建媒介测试任务 %d"
+}

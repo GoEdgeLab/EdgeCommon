@@ -1,0 +1,6 @@
+{
+  "log_create_ip_item": "在名单 %d 中创建IP %d",
+  "log_delete_ip_item": "从IP名单 %d 中删除IP %d",
+  "log_read_all_ip_items": "将所有IP名单置为已读",
+  "log_update_ip_item": "修改IP名单中的IP %d"
+}

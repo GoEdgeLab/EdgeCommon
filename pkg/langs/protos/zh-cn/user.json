@@ -1,0 +1,9 @@
+{
+  "log_update_user_email_settings": "修改用户邮件设置",
+  "log_update_user_global_settings": "修改用户设置",
+  "log_create_user": "创建用户 %d",
+  "log_delete_user": "删除用户 %d",
+  "log_update_user_features": "设置用户 %d 的功能列表",
+  "log_update_user": "修改用户 %d",
+  "log_verify_user": "审核用户：%d 结果：%s"
+}

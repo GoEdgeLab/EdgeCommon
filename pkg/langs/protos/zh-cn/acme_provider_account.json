@@ -1,0 +1,5 @@
+{
+  "log_create_acme_provider_account": "创建ACME服务商账号 %d",
+  "log_delete_acme_provider_account": "删除ACME服务商账号 %d",
+  "log_update_acme_provider_account": "修改ACME服务商账号 %d"
+}

@@ -1,0 +1,11 @@
+{
+  "tag_listener": "端口监听",
+  "tag_waf": "WAF",
+  "tag_access_log": "访问日志",
+  "tag_script": "脚本",
+
+  "log_clean_all_logs": "清除全部日志",
+  "log_clean_logs_days_before": "清除 %d 以前的日志",
+  "log_delete_log": "删除单个操作日志 %d",
+  "log_update_settings": "修改日志相关配置"
+}

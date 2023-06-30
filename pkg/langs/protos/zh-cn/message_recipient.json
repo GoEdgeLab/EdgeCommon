@@ -1,0 +1,5 @@
+{
+  "log_create_message_recipient": "创建媒介接收人 %d",
+  "log_delete_message_recipient": "删除媒介接收人 %d",
+  "log_update_message_recipient": "修改媒介接收人 %d"
+}

@@ -1,0 +1,18 @@
+{
+  "create_single_node": "单个创建",
+  "create_multiple_nodes": "批量创建",
+  "install_manually": "手动安装",
+  "install_auto_register": "自动注册",
+  "install_remote": "远程安装(%d)", // 参数：节点数量
+  "install_remote_upgrade": "远程升级(%d)", // 参数：节点数量,
+
+  "setting_basic": "${lang.admin_common@menu_setting_basic}",
+  "setting_dns": "${lang.admin_common@menu_setting_dns}",
+  "setting_cache": "${lang.admin_common@menu_setting_cache}",
+  "setting_ddos_protection": "${lang.admin_common@menu_setting_ddos_protection}",
+  "setting_ssh": "SSH设置",
+  "setting_system": "系统设置",
+
+  "setting_schedule": "智能调度",
+  "setting_thresholds": "阈值设置"
+}

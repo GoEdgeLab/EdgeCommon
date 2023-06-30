@@ -1,0 +1,5 @@
+{
+  "log_create_waf_action": "创建集群 %d 的WAF动作",
+  "log_delete_waf_action": "删除WAF动作 %d",
+  "log_update_waf_action": "修改WAF动作 %d"
+}

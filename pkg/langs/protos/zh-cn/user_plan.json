@@ -1,0 +1,5 @@
+{
+  "log_buy_user_plan": "为用户 %d 购买套餐 %d",
+  "log_delete_user_plan": "删除用户已购套餐 %d",
+  "log_renew_user_plan": "续费已购套餐 %d"
+}

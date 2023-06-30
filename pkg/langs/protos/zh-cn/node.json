@@ -1,0 +1,15 @@
+{
+  "ungrouped_label": "未分组",
+
+  "log_create_node": "创建节点 %d",
+  "log_create_node_batch": "批量创建节点",
+  "log_install_node": "安装节点 %d",
+  "log_install_node_remotely": "远程安装节点 %d",
+  "log_upgrade_node_remotely": "远程升级节点 %d",
+  "log_start_node_remotely": "远程启动节点 %d",
+  "log_stop_node_remotely": "远程停止节点 %d",
+  "log_update_node": "修改节点 %d 基本信息",
+  "log_update_node_installation_status": "修改节点安装状态 %d",
+  "log_up_node": "手动上线节点 %d",
+  "log_delete_node_from_cluster": "从集群 %d 中删除节点 %d"
+}

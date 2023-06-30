@@ -1,0 +1,5 @@
+{
+  "log_delete_ns_user_plan": "删除用户套餐 %d",
+  "log_create_ns_user_plan": "为用户 %d 创建DNS套餐 %d",
+  "log_update_ns_user_plan": "修改用户DNS套餐 %d"
+}

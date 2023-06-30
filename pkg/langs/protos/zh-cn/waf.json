@@ -1,0 +1,11 @@
+{
+  "connector_and": "和(AND)",
+  "connector_and_description": "所有规则都满足才视为匹配",
+  "connector_or": "或(OR)",
+  "connector_or_description": "任一规则满足了就视为匹配",
+
+  "log_update_forbidden_countries": "WAF策略 %d 设置禁止访问的国家和地区",
+  "log_update_forbidden_provinces": "WAF策略 %d 设置禁止访问的省份",
+  "log_delete_ip_from_waf_policy": "从WAF策略 %d 名单中删除IP %d",
+  "log_update_ip_from_waf_policy": "修改WAF策略 %d 名单中的IP %d"
+}

@@ -1,0 +1,17 @@
+{
+  "menu_certs": "证书",
+  "menu_apply": "申请证书",
+  "menu_ocsp": "OCSP日志",
+
+  "log_delete_ssl_cert": "删除SSL证书 %d",
+  "log_update_ssl_cert": "修改SSL证书 %d",
+  "log_upload_ssl_cert": "上传SSL证书 %d",
+  "log_upload_ssl_cert_batch": "批量上传证书",
+  "log_download_ssl_cert": "下载SSL证书 %d",
+  "log_download_ssl_cert_key": "下载SSL密钥 %d",
+  "log_download_ssl_cert_zip": "下载SSL证书压缩包 %d",
+
+  "log_ocsp_ignore_ocsp_status": "忽略一组证书的OCSP状态",
+  "log_ocsp_reset_ocsp_status": "重置一组证书的OCSP状态",
+  "log_ocsp_reset_all_ocsp_status": "忽略所有证书的OCSP状态"
+}

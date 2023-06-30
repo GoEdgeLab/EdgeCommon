@@ -1,0 +1,6 @@
+{
+  "log_delete_rule_set":"删除WAF规则分组 %d 中的规则集 %d",
+  "log_sort_rule_sets": "修改WAF规则分组 %d 中的规则集排序",
+  "log_update_rule_set_is_on": "修改WAF规则集 %d 开启状态",
+  "log_update_rule_set": "修改WAF规则集 %d 基本信息"
+}

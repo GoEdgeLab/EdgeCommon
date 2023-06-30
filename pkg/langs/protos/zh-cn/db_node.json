@@ -1,0 +1,9 @@
+{
+  "tab_nodes": "数据库节点",
+
+  "log_create_db_node": "创建数据库节点 %d",
+  "log_delete_db_node": "删除数据库节点 %d",
+  "log_update_db_node": "修改数据库节点 %d",
+  "log_delete_table": "删除数据库节点 %d 数据表 %s",
+  "log_truncate_table": "清空数据库节点 %d 数据表 %s 数据"
+}

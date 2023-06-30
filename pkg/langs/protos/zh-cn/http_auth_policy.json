@@ -1,0 +1,4 @@
+{
+  "log_create_http_auth_policy": "创建HTTP鉴权 %d",
+  "log_update_http_auth_policy": "修改HTTP鉴权 %d"
+}

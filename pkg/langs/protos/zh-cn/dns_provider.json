@@ -1,0 +1,5 @@
+{
+  "log_create_dns_provider": "创建DNS服务商 %d",
+  "log_delete_dns_provider": "删除DNS服务商 %d",
+  "log_update_dns_provider": "修改DNS服务商 %d"
+}

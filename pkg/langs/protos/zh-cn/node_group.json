@@ -1,0 +1,6 @@
+{
+  "log_create_node_group": "创建节点分组 %d",
+  "log_delete_node_group": "删除节点分组 %d",
+  "log_sort_node_groups": "修改节点分组排序",
+  "log_update_node_group": "修改节点分组 %d"
+}

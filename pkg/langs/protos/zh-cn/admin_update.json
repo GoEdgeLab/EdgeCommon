@@ -1,0 +1,5 @@
+{
+  "log_ignore_version": "忽略升级版本 %s",
+  "log_reset_ignore_version": "重置忽略升级版本",
+  "log_update_check_settings": "修改检查更新设置"
+}

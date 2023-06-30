@@ -1,0 +1,7 @@
+{
+  "log_create_node_region": "创建节点区域 %d",
+  "log_delete_node_region": "删除节点区域 %d",
+  "log_sort_node_regions": "修改节点区域排序",
+  "log_move_node_between_regions": "修改节点 %d 区域到 %d",
+  "log_update_node_region": "修改节点区域 %d"
+}

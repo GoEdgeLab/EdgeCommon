@@ -1,0 +1,6 @@
+{
+  "log_delete_node_ip_address": "删除IP地址 %d",
+  "log_restore_node_ip_address": "取消IP地址 %d 的备用IP",
+  "log_up_node_ip_address": "手动设置IP地址 %d 上线",
+  "log_down_node_ip_address": "手动设置IP地址 %d 下线"
+}

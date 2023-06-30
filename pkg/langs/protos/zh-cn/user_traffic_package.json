@@ -1,0 +1,4 @@
+{
+  "log_create_user_traffic_package": "为用户 %d 创建流量包：%d，区域：%d，有效期：%d，数量：%d",
+  "log_delete_user_traffic_package": "删除用户流量包 %d"
+}

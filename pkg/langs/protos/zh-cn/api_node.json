@@ -1,0 +1,5 @@
+{
+  "log_create_api_node": "创建API节点 %d",
+  "log_update_api_node": "修改API节点 %d",
+  "log_delete_api_node": "删除API节点 %d"
+}

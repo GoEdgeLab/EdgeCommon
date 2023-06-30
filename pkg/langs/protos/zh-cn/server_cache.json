@@ -1,0 +1,6 @@
+{
+  "log_fetch_caches": "预热网站 %d 缓存",
+  "log_purge_caches": "删除网站 %d 缓存",
+  "log_update_cache_settings": "修改Web %d 的缓存设置",
+  "log_update_cluster_cache_policy": "设置集群 %d 的缓存策略为 %d"
+}
