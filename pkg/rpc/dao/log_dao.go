@@ -38,12 +38,12 @@ func (this *LogDAO) CreateAdminLog(ctx context.Context, level string, action str
 	}
 
 	_, err = this.RPC().LogRPC().CreateLog(ctx, &pb.CreateLogRequest{
-		Level:                level,
-		Description:          description,
-		Action:               action,
-		Ip:                   ip,
-		LangMessageCode:      langMessageCode.String(),
-		LangMessagesArgsJSON: langMessageArgsJSON,
+		Level:               level,
+		Description:         description,
+		Action:              action,
+		Ip:                  ip,
+		LangMessageCode:     langMessageCode.String(),
+		LangMessageArgsJSON: langMessageArgsJSON,
 	})
 	return err
 }
