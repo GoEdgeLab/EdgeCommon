@@ -14947,7 +14947,7 @@
     },
     {
       "name": "CreateLogRequest",
-      "code": "message CreateLogRequest {\n\tstring level = 1; // 级别：info, warn, error\n\tstring description = 2; // 描述\n\tstring action = 3; // 可选项，发生操作所在的页面URL\n\tstring ip = 4; // 可选项，操作用户IP\n\tstring langMessageCode = 5; // 多语言消息\n\tbytes langMessagesArgsJSON = 6; // 多语言消息中的参数项，格式：[arg1, arg2, ...]\n}",
+      "code": "message CreateLogRequest {\n\tstring level = 1; // 级别：info, warn, error\n\tstring description = 2; // 描述\n\tstring action = 3; // 可选项，发生操作所在的页面URL\n\tstring ip = 4; // 可选项，操作用户IP\n\tstring langMessageCode = 5; // 多语言消息\n\tbytes langMessageArgsJSON = 6; // 多语言消息中的参数项，格式：[arg1, arg2, ...]\n}",
       "doc": "创建日志"
     },
     {
