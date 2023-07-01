@@ -51,19 +51,20 @@ service APINodeService {
 
 	// 查找已有节点安装文件信息
 	rpc findLatestDeployFiles(FindLatestDeployFilesRequest) returns (FindLatestDeployFilesResponse);
+
 }
 
 // 创建API节点
 message CreateAPINodeRequest {
-	string name = 1;
-	string description = 2;
-	bytes httpJSON = 3;
-	bytes httpsJSON = 4;
-	bytes accessAddrsJSON = 5;
-	bool isOn = 6;
-	bool restIsOn = 7;
-	bytes restHTTPJSON = 8;
-	bytes restHTTPSJSON = 9;
+	string name = 1; // API节点名称
+	string description = 2; // API节点描述
+	bytes httpJSON = 3; // 监听HTTP地址配置 @link json:http_protocol
+	bytes httpsJSON = 4; // 监听HTTPS地址配置 @link json:https_protocol
+	bytes accessAddrsJSON = 5; // 访问地址 @link json:network_address
+	bool isOn = 6; // 是否启用当前API节点
+	bool restIsOn = 7; // 是否启用API
+	bytes restHTTPJSON = 8; // API地址HTTP地址配置 @link json:http_protocol
+	bytes restHTTPSJSON = 9;  // API地址HTTPS地址配置 @link json:https_protocol
 }
 
 message CreateAPINodeResponse {
@@ -72,17 +73,17 @@ message CreateAPINodeResponse {
 
 // 修改API节点
 message UpdateAPINodeRequest {
-	int64 apiNodeId = 1;
-	string name = 2;
-	string description = 3;
-	bytes httpJSON = 4;
-	bytes httpsJSON = 5;
-	bytes accessAddrsJSON = 6;
-	bool isOn = 7;
-	bool restIsOn = 8;
-	bytes restHTTPJSON = 9;
-	bytes restHTTPSJSON = 10;
-	bool isPrimary = 11;
+	int64 apiNodeId = 1; // API节点ID
+	string name = 2; // API节点名称
+	string description = 3; // API节点描述
+	bytes httpJSON = 4; // 监听HTTP地址配置 @link json:http_protocol
+	bytes httpsJSON = 5; // 监听HTTPS地址配置 @link json:https_protocol
+	bytes accessAddrsJSON = 6; // 访问地址 @link json:network_address
+	bool isOn = 7; // 是否启用当前API节点
+	bool restIsOn = 8; // 是否启用API
+	bytes restHTTPJSON = 9; // API地址HTTP地址配置 @link json:http_protocol
+	bytes restHTTPSJSON = 10; // API地址HTTPS地址配置 @link json:https_protocol
+	bool isPrimary = 11; // 是否为主要API节点，日常任务主要运行在主要API节点上
 }
 
 // 删除API节点
@@ -136,8 +137,8 @@ message FindCurrentAPINodeVersionRequest {
 message FindCurrentAPINodeVersionResponse {
 	string version = 1; // 版本号
 	string os = 2; // 系统代号，比如linux
-	string arch = 3; // 架构
-	string role = 4; // 角色
+	string arch = 3; // 架构，比如amd64
+	string role = 4; // 角色，通常为api
 }
 
 // 获取当前API节点的信息

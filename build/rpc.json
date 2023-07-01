@@ -14602,7 +14602,7 @@
     },
     {
       "name": "CreateAPINodeRequest",
-      "code": "message CreateAPINodeRequest {\n\tstring name = 1;\n\tstring description = 2;\n\tbytes httpJSON = 3;\n\tbytes httpsJSON = 4;\n\tbytes accessAddrsJSON = 5;\n\tbool isOn = 6;\n\tbool restIsOn = 7;\n\tbytes restHTTPJSON = 8;\n\tbytes restHTTPSJSON = 9;\n}",
+      "code": "message CreateAPINodeRequest {\n\tstring name = 1; // API节点名称\n\tstring description = 2; // API节点描述\n\tbytes httpJSON = 3; // 监听HTTP地址配置 @link json:http_protocol\n\tbytes httpsJSON = 4; // 监听HTTPS地址配置 @link json:https_protocol\n\tbytes accessAddrsJSON = 5; // 访问地址 @link json:network_address\n\tbool isOn = 6; // 是否启用当前API节点\n\tbool restIsOn = 7; // 是否启用API\n\tbytes restHTTPJSON = 8; // API地址HTTP地址配置 @link json:http_protocol\n\tbytes restHTTPSJSON = 9;  // API地址HTTPS地址配置 @link json:https_protocol\n}",
       "doc": "创建API节点"
     },
     {
@@ -17477,7 +17477,7 @@
     },
     {
       "name": "FindCurrentAPINodeVersionResponse",
-      "code": "message FindCurrentAPINodeVersionResponse {\n\tstring version = 1; // 版本号\n\tstring os = 2; // 系统代号，比如linux\n\tstring arch = 3; // 架构\n\tstring role = 4; // 角色\n}",
+      "code": "message FindCurrentAPINodeVersionResponse {\n\tstring version = 1; // 版本号\n\tstring os = 2; // 系统代号，比如linux\n\tstring arch = 3; // 架构，比如amd64\n\tstring role = 4; // 角色，通常为api\n}",
       "doc": ""
     },
     {
@@ -21502,7 +21502,7 @@
     },
     {
       "name": "UpdateAPINodeRequest",
-      "code": "message UpdateAPINodeRequest {\n\tint64 apiNodeId = 1;\n\tstring name = 2;\n\tstring description = 3;\n\tbytes httpJSON = 4;\n\tbytes httpsJSON = 5;\n\tbytes accessAddrsJSON = 6;\n\tbool isOn = 7;\n\tbool restIsOn = 8;\n\tbytes restHTTPJSON = 9;\n\tbytes restHTTPSJSON = 10;\n\tbool isPrimary = 11;\n}",
+      "code": "message UpdateAPINodeRequest {\n\tint64 apiNodeId = 1; // API节点ID\n\tstring name = 2; // API节点名称\n\tstring description = 3; // API节点描述\n\tbytes httpJSON = 4; // 监听HTTP地址配置 @link json:http_protocol\n\tbytes httpsJSON = 5; // 监听HTTPS地址配置 @link json:https_protocol\n\tbytes accessAddrsJSON = 6; // 访问地址 @link json:network_address\n\tbool isOn = 7; // 是否启用当前API节点\n\tbool restIsOn = 8; // 是否启用API\n\tbytes restHTTPJSON = 9; // API地址HTTP地址配置 @link json:http_protocol\n\tbytes restHTTPSJSON = 10; // API地址HTTPS地址配置 @link json:https_protocol\n\tbool isPrimary = 11; // 是否为主要API节点，日常任务主要运行在主要API节点上\n}",
       "doc": "修改API节点"
     },
     {
@@ -22906,6 +22906,10 @@
     {
       "name": "json:https_protocol",
       "content": "# HTTPS协议配置\n\n## 定义\n~~~json\n{\n\t\"isOn\": \"是否启用\",\n  \t\"listen\": [\n      {\n\t\t\"protocol\": \"协议\",\n\t\t\"host\": \"主机地址，通常为空\",\n\t\t\"portRange\": \"端口或者端口范围\"\n\t  },\n\t  ...\n\t],\n  \t\"sslPolicyRef\": {\n\t  \"isOn\": \"启用SSL策略\",\n\t  \"sslPolicyId\": \"SSL策略ID\"\n\t}\n}\n~~~\n\n其中 `SSL策略ID` 通过 `/SSLPolicyService/createSSLPolicy` 接口创建。\n\n## 示例\n\n### 监听443端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"https\",\n      \"host\": \"\",\n      \"portRange\": \"443\"\n\t}\n  ],\n  \"sslPolicyRef\": {\n    \"isOn\": true,\n    \"sslPolicyId\": 123\n  }\n}\n~~~\n\n其中SSL策略ID `123` 通过 `/SSLPolicyService/createSSLPolicy` 接口创建。\n\n### 监听443和8443端口\n~~~json\n{\n  \"isOn\": true,\n  \"listen\": [\n    {\n      \"protocol\": \"https\",\n      \"portRange\": \"443\"\n\t},\n    {\n      \"protocol\": \"https\",\n      \"portRange\": \"8443\"\n\t}\n  ],\n  \"sslPolicyRef\": {\n    \"isOn\": true,\n    \"sslPolicyId\": 123\n  }\n}\n~~~\n\n其中SSL策略ID `123` 通过 `/SSLPolicyService/createSSLPolicy` 接口创建。"
+    },
+    {
+      "name": "json:network_address",
+      "content": "# 网络地址定义\n\n## 定义\n~~~json\n{\n\t\"protocol\": \"协议\",\n\t\"host\": \"主机地址，通常为空\",\n\t\"portRange\": \"端口或者端口范围\"\n}\n~~~\n\n## 示例\n对于 `http://example.com`：\n~~~json\n{\n  \"protocol\": \"http\",\n  \"host\": \"example.com\",\n  \"portRange\": \"80\"\n}\n~~~\n\n\n对于 `https://example.com`：\n~~~json\n{\n  \"protocol\": \"https\",\n  \"host\": \"example.com\",\n  \"portRange\": \"443\"\n}\n~~~\n"
     },
     {
       "name": "json:origin_refs",

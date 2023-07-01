@@ -35,15 +35,15 @@ type CreateAPINodeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name            string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Description     string `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	HttpJSON        []byte `protobuf:"bytes,3,opt,name=httpJSON,proto3" json:"httpJSON,omitempty"`
-	HttpsJSON       []byte `protobuf:"bytes,4,opt,name=httpsJSON,proto3" json:"httpsJSON,omitempty"`
-	AccessAddrsJSON []byte `protobuf:"bytes,5,opt,name=accessAddrsJSON,proto3" json:"accessAddrsJSON,omitempty"`
-	IsOn            bool   `protobuf:"varint,6,opt,name=isOn,proto3" json:"isOn,omitempty"`
-	RestIsOn        bool   `protobuf:"varint,7,opt,name=restIsOn,proto3" json:"restIsOn,omitempty"`
-	RestHTTPJSON    []byte `protobuf:"bytes,8,opt,name=restHTTPJSON,proto3" json:"restHTTPJSON,omitempty"`
-	RestHTTPSJSON   []byte `protobuf:"bytes,9,opt,name=restHTTPSJSON,proto3" json:"restHTTPSJSON,omitempty"`
+	Name            string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`                       // API节点名称
+	Description     string `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`         // API节点描述
+	HttpJSON        []byte `protobuf:"bytes,3,opt,name=httpJSON,proto3" json:"httpJSON,omitempty"`               // 监听HTTP地址配置 @link json:http_protocol
+	HttpsJSON       []byte `protobuf:"bytes,4,opt,name=httpsJSON,proto3" json:"httpsJSON,omitempty"`             // 监听HTTPS地址配置 @link json:https_protocol
+	AccessAddrsJSON []byte `protobuf:"bytes,5,opt,name=accessAddrsJSON,proto3" json:"accessAddrsJSON,omitempty"` // 访问地址 @link json:network_address
+	IsOn            bool   `protobuf:"varint,6,opt,name=isOn,proto3" json:"isOn,omitempty"`                      // 是否启用当前API节点
+	RestIsOn        bool   `protobuf:"varint,7,opt,name=restIsOn,proto3" json:"restIsOn,omitempty"`              // 是否启用API
+	RestHTTPJSON    []byte `protobuf:"bytes,8,opt,name=restHTTPJSON,proto3" json:"restHTTPJSON,omitempty"`       // API地址HTTP地址配置 @link json:http_protocol
+	RestHTTPSJSON   []byte `protobuf:"bytes,9,opt,name=restHTTPSJSON,proto3" json:"restHTTPSJSON,omitempty"`     // API地址HTTPS地址配置 @link json:https_protocol
 }
 
 func (x *CreateAPINodeRequest) Reset() {
@@ -194,17 +194,17 @@ type UpdateAPINodeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ApiNodeId       int64  `protobuf:"varint,1,opt,name=apiNodeId,proto3" json:"apiNodeId,omitempty"`
-	Name            string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Description     string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	HttpJSON        []byte `protobuf:"bytes,4,opt,name=httpJSON,proto3" json:"httpJSON,omitempty"`
-	HttpsJSON       []byte `protobuf:"bytes,5,opt,name=httpsJSON,proto3" json:"httpsJSON,omitempty"`
-	AccessAddrsJSON []byte `protobuf:"bytes,6,opt,name=accessAddrsJSON,proto3" json:"accessAddrsJSON,omitempty"`
-	IsOn            bool   `protobuf:"varint,7,opt,name=isOn,proto3" json:"isOn,omitempty"`
-	RestIsOn        bool   `protobuf:"varint,8,opt,name=restIsOn,proto3" json:"restIsOn,omitempty"`
-	RestHTTPJSON    []byte `protobuf:"bytes,9,opt,name=restHTTPJSON,proto3" json:"restHTTPJSON,omitempty"`
-	RestHTTPSJSON   []byte `protobuf:"bytes,10,opt,name=restHTTPSJSON,proto3" json:"restHTTPSJSON,omitempty"`
-	IsPrimary       bool   `protobuf:"varint,11,opt,name=isPrimary,proto3" json:"isPrimary,omitempty"`
+	ApiNodeId       int64  `protobuf:"varint,1,opt,name=apiNodeId,proto3" json:"apiNodeId,omitempty"`            // API节点ID
+	Name            string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`                       // API节点名称
+	Description     string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`         // API节点描述
+	HttpJSON        []byte `protobuf:"bytes,4,opt,name=httpJSON,proto3" json:"httpJSON,omitempty"`               // 监听HTTP地址配置 @link json:http_protocol
+	HttpsJSON       []byte `protobuf:"bytes,5,opt,name=httpsJSON,proto3" json:"httpsJSON,omitempty"`             // 监听HTTPS地址配置 @link json:https_protocol
+	AccessAddrsJSON []byte `protobuf:"bytes,6,opt,name=accessAddrsJSON,proto3" json:"accessAddrsJSON,omitempty"` // 访问地址 @link json:network_address
+	IsOn            bool   `protobuf:"varint,7,opt,name=isOn,proto3" json:"isOn,omitempty"`                      // 是否启用当前API节点
+	RestIsOn        bool   `protobuf:"varint,8,opt,name=restIsOn,proto3" json:"restIsOn,omitempty"`              // 是否启用API
+	RestHTTPJSON    []byte `protobuf:"bytes,9,opt,name=restHTTPJSON,proto3" json:"restHTTPJSON,omitempty"`       // API地址HTTP地址配置 @link json:http_protocol
+	RestHTTPSJSON   []byte `protobuf:"bytes,10,opt,name=restHTTPSJSON,proto3" json:"restHTTPSJSON,omitempty"`    // API地址HTTPS地址配置 @link json:https_protocol
+	IsPrimary       bool   `protobuf:"varint,11,opt,name=isPrimary,proto3" json:"isPrimary,omitempty"`           // 是否为主要API节点，日常任务主要运行在主要API节点上
 }
 
 func (x *UpdateAPINodeRequest) Reset() {
@@ -772,8 +772,8 @@ type FindCurrentAPINodeVersionResponse struct {
 
 	Version string `protobuf:"bytes,1,opt,name=version,proto3" json:"version,omitempty"` // 版本号
 	Os      string `protobuf:"bytes,2,opt,name=os,proto3" json:"os,omitempty"`           // 系统代号，比如linux
-	Arch    string `protobuf:"bytes,3,opt,name=arch,proto3" json:"arch,omitempty"`       // 架构
-	Role    string `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`       // 角色
+	Arch    string `protobuf:"bytes,3,opt,name=arch,proto3" json:"arch,omitempty"`       // 架构，比如amd64
+	Role    string `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`       // 角色，通常为api
 }
 
 func (x *FindCurrentAPINodeVersionResponse) Reset() {
