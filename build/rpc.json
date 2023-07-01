@@ -14487,7 +14487,7 @@
     },
     {
       "name": "CountSSLCertRequest",
-      "code": "message CountSSLCertRequest {\n\tbool isCA = 1; // 是否为CA证书\n\tbool isAvailable = 2; // 是否可用（在有效期内）\n\tbool isExpired = 3; // 是否已过期\n\tint32 expiringDays = 4; // 离过期日的天数\n\tstring keyword = 5; // 关键词\n\tint64 userId = 6; // 用户ID\n\trepeated string domains = 7; // 搜索使用的域名列表\n}",
+      "code": "message CountSSLCertRequest {\n\tbool isCA = 1; // 可选项，是否为CA证书\n\tbool isAvailable = 2; // 可选项，是否可用（在有效期内）\n\tbool isExpired = 3; // 可选项，是否已过期\n\tint32 expiringDays = 4; // 可选项，离过期日的天数\n\tstring keyword = 5; // 可选项，关键词\n\tint64 userId = 6; // 可选项，用户ID，不填则表示读取管理员上传的证书\n\trepeated string domains = 7; // 可选项，搜索使用的域名列表\n}",
       "doc": "计算匹配的证书数量"
     },
     {
@@ -17477,7 +17477,7 @@
     },
     {
       "name": "FindCurrentAPINodeVersionResponse",
-      "code": "message FindCurrentAPINodeVersionResponse {\n\tstring version = 1; // 版本号\n\tstring os = 2; // 系统代号，比如linux\n\tstring arch = 3; // 架构\n}",
+      "code": "message FindCurrentAPINodeVersionResponse {\n\tstring version = 1; // 版本号\n\tstring os = 2; // 系统代号，比如linux\n\tstring arch = 3; // 架构\n\tstring role = 4; // 角色\n}",
       "doc": ""
     },
     {
@@ -20482,7 +20482,7 @@
     },
     {
       "name": "ListSSLCertsRequest",
-      "code": "message ListSSLCertsRequest {\n\tbool isCA = 1; // 是否为CA证书\n\tbool isAvailable = 2; // 是否可用（在有效期内）\n\tbool isExpired = 3; // 是否已过期\n\tint32 expiringDays = 4; // 离过期日的天数\n\tstring keyword = 5; // 关键词\n\tint64 userId = 8; // 用户ID\n\trepeated string domains = 9; // 搜索使用的域名列表\n\tint64 offset = 6; // 读取位置\n\tint64 size = 7; // 读取长度\n}",
+      "code": "message ListSSLCertsRequest {\n\tbool isCA = 1; // 可选项，是否为CA证书\n\tbool isAvailable = 2; // 可选项，是否可用（在有效期内）\n\tbool isExpired = 3; //可选项， 是否已过期\n\tint32 expiringDays = 4; // 可选项，离过期日的天数\n\tstring keyword = 5; // 可选项，关键词\n\tint64 userId = 8; // 可选项，用户ID，不填则表示读取管理员上传的证书\n\trepeated string domains = 9; // 可选项，搜索使用的域名列表\n\tint64 offset = 6; // 读取位置\n\tint64 size = 7; // 读取长度，不能小于0\n}",
       "doc": "列出单页匹配的证书"
     },
     {

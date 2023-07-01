@@ -124,26 +124,26 @@ message DeleteSSLCertRequest {
 
 // 计算匹配的证书数量
 message CountSSLCertRequest {
-	bool isCA = 1; // 是否为CA证书
-	bool isAvailable = 2; // 是否可用（在有效期内）
-	bool isExpired = 3; // 是否已过期
-	int32 expiringDays = 4; // 离过期日的天数
-	string keyword = 5; // 关键词
-	int64 userId = 6; // 用户ID
-	repeated string domains = 7; // 搜索使用的域名列表
+	bool isCA = 1; // 可选项，是否为CA证书
+	bool isAvailable = 2; // 可选项，是否可用（在有效期内）
+	bool isExpired = 3; // 可选项，是否已过期
+	int32 expiringDays = 4; // 可选项，离过期日的天数
+	string keyword = 5; // 可选项，关键词
+	int64 userId = 6; // 可选项，用户ID，不填则表示读取管理员上传的证书
+	repeated string domains = 7; // 可选项，搜索使用的域名列表
 }
 
 // 列出单页匹配的证书
 message ListSSLCertsRequest {
-	bool isCA = 1; // 是否为CA证书
-	bool isAvailable = 2; // 是否可用（在有效期内）
-	bool isExpired = 3; // 是否已过期
-	int32 expiringDays = 4; // 离过期日的天数
-	string keyword = 5; // 关键词
-	int64 userId = 8; // 用户ID
-	repeated string domains = 9; // 搜索使用的域名列表
+	bool isCA = 1; // 可选项，是否为CA证书
+	bool isAvailable = 2; // 可选项，是否可用（在有效期内）
+	bool isExpired = 3; //可选项， 是否已过期
+	int32 expiringDays = 4; // 可选项，离过期日的天数
+	string keyword = 5; // 可选项，关键词
+	int64 userId = 8; // 可选项，用户ID，不填则表示读取管理员上传的证书
+	repeated string domains = 9; // 可选项，搜索使用的域名列表
 	int64 offset = 6; // 读取位置
-	int64 size = 7; // 读取长度
+	int64 size = 7; // 读取长度，不能小于0
 }
 
 message ListSSLCertsResponse {

@@ -137,6 +137,7 @@ message FindCurrentAPINodeVersionResponse {
 	string version = 1; // 版本号
 	string os = 2; // 系统代号，比如linux
 	string arch = 3; // 架构
+	string role = 4; // 角色
 }
 
 // 获取当前API节点的信息

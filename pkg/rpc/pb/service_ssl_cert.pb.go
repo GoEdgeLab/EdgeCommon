@@ -600,13 +600,13 @@ type CountSSLCertRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	IsCA         bool     `protobuf:"varint,1,opt,name=isCA,proto3" json:"isCA,omitempty"`                 // 是否为CA证书
-	IsAvailable  bool     `protobuf:"varint,2,opt,name=isAvailable,proto3" json:"isAvailable,omitempty"`   // 是否可用（在有效期内）
-	IsExpired    bool     `protobuf:"varint,3,opt,name=isExpired,proto3" json:"isExpired,omitempty"`       // 是否已过期
-	ExpiringDays int32    `protobuf:"varint,4,opt,name=expiringDays,proto3" json:"expiringDays,omitempty"` // 离过期日的天数
-	Keyword      string   `protobuf:"bytes,5,opt,name=keyword,proto3" json:"keyword,omitempty"`            // 关键词
-	UserId       int64    `protobuf:"varint,6,opt,name=userId,proto3" json:"userId,omitempty"`             // 用户ID
-	Domains      []string `protobuf:"bytes,7,rep,name=domains,proto3" json:"domains,omitempty"`            // 搜索使用的域名列表
+	IsCA         bool     `protobuf:"varint,1,opt,name=isCA,proto3" json:"isCA,omitempty"`                 // 可选项，是否为CA证书
+	IsAvailable  bool     `protobuf:"varint,2,opt,name=isAvailable,proto3" json:"isAvailable,omitempty"`   // 可选项，是否可用（在有效期内）
+	IsExpired    bool     `protobuf:"varint,3,opt,name=isExpired,proto3" json:"isExpired,omitempty"`       // 可选项，是否已过期
+	ExpiringDays int32    `protobuf:"varint,4,opt,name=expiringDays,proto3" json:"expiringDays,omitempty"` // 可选项，离过期日的天数
+	Keyword      string   `protobuf:"bytes,5,opt,name=keyword,proto3" json:"keyword,omitempty"`            // 可选项，关键词
+	UserId       int64    `protobuf:"varint,6,opt,name=userId,proto3" json:"userId,omitempty"`             // 可选项，用户ID，不填则表示读取管理员上传的证书
+	Domains      []string `protobuf:"bytes,7,rep,name=domains,proto3" json:"domains,omitempty"`            // 可选项，搜索使用的域名列表
 }
 
 func (x *CountSSLCertRequest) Reset() {
@@ -696,15 +696,15 @@ type ListSSLCertsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	IsCA         bool     `protobuf:"varint,1,opt,name=isCA,proto3" json:"isCA,omitempty"`                 // 是否为CA证书
-	IsAvailable  bool     `protobuf:"varint,2,opt,name=isAvailable,proto3" json:"isAvailable,omitempty"`   // 是否可用（在有效期内）
-	IsExpired    bool     `protobuf:"varint,3,opt,name=isExpired,proto3" json:"isExpired,omitempty"`       // 是否已过期
-	ExpiringDays int32    `protobuf:"varint,4,opt,name=expiringDays,proto3" json:"expiringDays,omitempty"` // 离过期日的天数
-	Keyword      string   `protobuf:"bytes,5,opt,name=keyword,proto3" json:"keyword,omitempty"`            // 关键词
-	UserId       int64    `protobuf:"varint,8,opt,name=userId,proto3" json:"userId,omitempty"`             // 用户ID
-	Domains      []string `protobuf:"bytes,9,rep,name=domains,proto3" json:"domains,omitempty"`            // 搜索使用的域名列表
+	IsCA         bool     `protobuf:"varint,1,opt,name=isCA,proto3" json:"isCA,omitempty"`                 // 可选项，是否为CA证书
+	IsAvailable  bool     `protobuf:"varint,2,opt,name=isAvailable,proto3" json:"isAvailable,omitempty"`   // 可选项，是否可用（在有效期内）
+	IsExpired    bool     `protobuf:"varint,3,opt,name=isExpired,proto3" json:"isExpired,omitempty"`       //可选项， 是否已过期
+	ExpiringDays int32    `protobuf:"varint,4,opt,name=expiringDays,proto3" json:"expiringDays,omitempty"` // 可选项，离过期日的天数
+	Keyword      string   `protobuf:"bytes,5,opt,name=keyword,proto3" json:"keyword,omitempty"`            // 可选项，关键词
+	UserId       int64    `protobuf:"varint,8,opt,name=userId,proto3" json:"userId,omitempty"`             // 可选项，用户ID，不填则表示读取管理员上传的证书
+	Domains      []string `protobuf:"bytes,9,rep,name=domains,proto3" json:"domains,omitempty"`            // 可选项，搜索使用的域名列表
 	Offset       int64    `protobuf:"varint,6,opt,name=offset,proto3" json:"offset,omitempty"`             // 读取位置
-	Size         int64    `protobuf:"varint,7,opt,name=size,proto3" json:"size,omitempty"`                 // 读取长度
+	Size         int64    `protobuf:"varint,7,opt,name=size,proto3" json:"size,omitempty"`                 // 读取长度，不能小于0
 }
 
 func (x *ListSSLCertsRequest) Reset() {
