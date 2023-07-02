@@ -232,8 +232,9 @@ func init() {
 	langs.Load("` + langCode + `", map[langs.MessageCode]string{
 	`
 
-		for code, value := range messageLang.GetAll() {
-			source += strconv.Quote(code.String()) + ": " + strconv.Quote(value) + ",\n"
+		for _, code := range messageCodes {
+			var value = messageLang.Get(langs.MessageCode(code))
+			source += strconv.Quote(code) + ": " + strconv.Quote(value) + ",\n"
 		}
 
 		source += `

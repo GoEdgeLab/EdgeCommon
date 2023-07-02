@@ -16,6 +16,9 @@ service DNSTaskService {
 
 	// 删除任务
 	rpc deleteDNSTask (DeleteDNSTaskRequest) returns (RPCSuccess);
+
+	// 删除所有同步任务
+	rpc deleteAllDNSTasks(DeleteAllDNSTasksRequest) returns (RPCSuccess);
 }
 
 // 检查是否有正在执行的任务
@@ -40,4 +43,9 @@ message FindAllDoingDNSTasksResponse {
 // 删除任务
 message DeleteDNSTaskRequest {
 	int64 dnsTaskId = 1;
+}
+
+// 删除所有同步任务
+message DeleteAllDNSTasksRequest {
+
 }

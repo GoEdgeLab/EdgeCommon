@@ -174,6 +174,7 @@ const (
 	DNSProvider_LogCreateDNSProvider                            langs.MessageCode = "dns_provider@log_create_dns_provider"                                // 创建DNS服务商 %d
 	DNSProvider_LogDeleteDNSProvider                            langs.MessageCode = "dns_provider@log_delete_dns_provider"                                // 删除DNS服务商 %d
 	DNSProvider_LogUpdateDNSProvider                            langs.MessageCode = "dns_provider@log_update_dns_provider"                                // 修改DNS服务商 %d
+	DNSTask_LogDeleteAllDNSTasks                                langs.MessageCode = "dns_task@log_delete_all_dns_tasks"                                   // 删除所有DNS同步任务
 	DNSTask_LogDeleteDNSTask                                    langs.MessageCode = "dns_task@log_delete_dns_task"                                        // 删除DNS同步任务 %d
 	Finance_LogBillGenerateManually                             langs.MessageCode = "finance@log_bill_generate_manually"                                  // 手动生成上个月 %s 账单
 	Finance_LogUpdateUserOrderConfig                            langs.MessageCode = "finance@log_update_user_order_config"                                // 修改订单设置
@@ -345,6 +346,7 @@ const (
 	NodeSSH_LogUpdateNodeSSH                                    langs.MessageCode = "node_ssh@log_update_node_ssh"                                        // 修改节点 %d SSH配置
 	NodeSystem_LogUpdateNodeSystemSettings                      langs.MessageCode = "node_system@log_update_node_system_settings"                         // 修改节点 %d 系统信息
 	NodeSystemd_LogUpdateClusterSystemdSettings                 langs.MessageCode = "node_systemd@log_update_cluster_systemd_settings"                    // 修改集群 %d 的系统服务设置
+	NodeTask_LogDeleteAllNodeTasks                              langs.MessageCode = "node_task@log_delete_all_node_tasks"                                 // 删除所有节点同步任务
 	NodeTask_LogDeleteNodeTask                                  langs.MessageCode = "node_task@log_delete_node_task"                                      // 删除同步任务 %d
 	NodeTask_LogDeleteNodeTasksBatch                            langs.MessageCode = "node_task@log_delete_node_tasks_batch"                               // 批量删除节点同步任务
 	NodeThreshold_LogCreateNodeThreshold                        langs.MessageCode = "node_threshold@log_create_node_threshold"                            // 创建节点阈值 %d

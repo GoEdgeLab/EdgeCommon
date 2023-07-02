@@ -1685,6 +1685,15 @@
             "admin"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "deleteAllDNSTasks",
+          "requestMessageName": "DeleteAllDNSTasksRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deleteAllDNSTasks(DeleteAllDNSTasksRequest) returns (RPCSuccess);",
+          "doc": "删除所有同步任务",
+          "roles": [],
+          "isDeprecated": false
         }
       ],
       "filename": "service_dns_task.proto",
@@ -7234,6 +7243,17 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc deleteNodeTasks (DeleteNodeTasksRequest) returns (RPCSuccess);",
           "doc": "批量删除任务",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "deleteAllNodeTasks",
+          "requestMessageName": "DeleteAllNodeTasksRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deleteAllNodeTasks(DeleteAllNodeTasksRequest) returns (RPCSuccess);",
+          "doc": "删除所有任务",
           "roles": [
             "admin"
           ],
@@ -15659,6 +15679,16 @@
       "name": "DeleteAdminRequest",
       "code": "message DeleteAdminRequest {\n\tint64 adminId = 1;\n}",
       "doc": "删除管理员"
+    },
+    {
+      "name": "DeleteAllDNSTasksRequest",
+      "code": "message DeleteAllDNSTasksRequest {\n\n}",
+      "doc": "删除所有同步任务"
+    },
+    {
+      "name": "DeleteAllNodeTasksRequest",
+      "code": "message DeleteAllNodeTasksRequest {\n\n}",
+      "doc": "删除所有任务"
     },
     {
       "name": "DeleteDBNodeRequest",

@@ -1,3 +1,4 @@
 {
-  "log_delete_dns_task": "删除DNS同步任务 %d"
+  "log_delete_dns_task": "删除DNS同步任务 %d",
+  "log_delete_all_dns_tasks": "删除所有DNS同步任务"
 }
