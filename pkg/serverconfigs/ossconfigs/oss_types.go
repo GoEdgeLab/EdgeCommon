@@ -3,6 +3,8 @@
 
 package ossconfigs
 
+import "errors"
+
 type OSSType = string
 
 type OSSTypeDefinition struct {
@@ -26,5 +28,5 @@ func FindOSSType(code string) *OSSTypeDefinition {
 }
 
 func DecodeOSSOptions(ossType OSSType, optionsJSON []byte) (any, error) {
-	return nil, nil
+	return nil, errors.New("'" + ossType + "' has not been supported")
 }
