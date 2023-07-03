@@ -770,3 +770,8 @@ func (this *NodeConfig) FindHTTPPagesPolicyWithClusterId(clusterId int64) *HTTPP
 func (this *NodeConfig) SecretHash() string {
 	return this.secretHash
 }
+
+// HasConnTimeoutSettings 检查是否有连接超时设置
+func (this *NodeConfig) HasConnTimeoutSettings() bool {
+	return this.GlobalServerConfig != nil && (this.GlobalServerConfig.Performance.AutoReadTimeout || this.GlobalServerConfig.Performance.AutoWriteTimeout)
+}
