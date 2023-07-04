@@ -73,7 +73,12 @@
   "log_delete_server": "删除网站 %d",
   "log_update_server_basic": "修改网站 %d 基本信息",
 
-  "log_copy_server_configs": "从服务 %d 中同步配置 %s",
+  "log_copy_server_configs": "从网站 %d 中同步配置 %s",
 
-  "log_submit_auditing_server": "提交服务 %d 域名审核"
+  "log_submit_auditing_server": "提交网站 %d 域名审核",
+  "log_update_server_groups": "修改网站 %d 所属分组",
+  "log_enable_server": "启用网站 %d",
+  "log_disable_server": "停用网站 %d",
+  "log_update_server_name": "修改网站名称",
+  "log_update_server_is_on":"修改网站 %d 启用状态"
 }

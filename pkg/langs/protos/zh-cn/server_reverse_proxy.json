@@ -1,5 +1,5 @@
 {
   "log_update_server_group_reverse_proxy_settings": "修改分组 %d 的反向代理设置",
   "log_update_location_reverse_proxy_settings": "修改路由规则 %d 的反向代理设置",
-  "log_update_server_reverse_proxy_settings": "修改代理服务 %d 的反向代理设置"
+  "log_update_server_reverse_proxy_settings": "修改网站 %d 的反向代理设置"
 }

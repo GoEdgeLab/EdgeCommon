@@ -1692,7 +1692,9 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc deleteAllDNSTasks(DeleteAllDNSTasksRequest) returns (RPCSuccess);",
           "doc": "删除所有同步任务",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         }
       ],
@@ -22742,7 +22744,7 @@
     },
     {
       "name": "User",
-      "code": "message User {\n\tint64 id = 1;\n\tstring username = 2;\n\tstring fullname = 3;\n\tstring mobile = 4;\n\tstring tel = 5;\n\tstring email = 6;\n\tstring verifiedEmail = 20;\n\tstring remark = 7;\n\tbool isOn = 8;\n\tint64 createdAt = 9;\n\tstring registeredIP = 12;\n\tbool isVerified = 13;\n\tbool isRejected = 14;\n\tstring rejectReason = 15;\n\tbool isDeleted = 16;\n\tbool isIndividualIdentified = 17;\n\tbool isEnterpriseIdentified = 18;\n\tstring bandwidthAlgo = 21; // 带宽算法\n\n\tLogin otpLogin = 19; // OTP认证\n\n\tNodeCluster nodeCluster = 10;\n\trepeated UserFeature features = 11;\n}",
+      "code": "message User {\n\tint64 id = 1; // 用户ID\n\tstring username = 2; // 用户名\n\tstring fullname = 3; // 全称\n\tstring mobile = 4;\n\tstring tel = 5;\n\tstring email = 6;\n\tstring verifiedEmail = 20;\n\tstring remark = 7;\n\tbool isOn = 8;\n\tint64 createdAt = 9;\n\tstring registeredIP = 12;\n\tbool isVerified = 13;\n\tbool isRejected = 14;\n\tstring rejectReason = 15;\n\tbool isDeleted = 16;\n\tbool isIndividualIdentified = 17;\n\tbool isEnterpriseIdentified = 18;\n\tstring bandwidthAlgo = 21; // 带宽算法\n\tstring lang = 22; // 语言代号\n\n\tLogin otpLogin = 19; // OTP认证\n\n\tNodeCluster nodeCluster = 10;\n\trepeated UserFeature features = 11;\n}",
       "doc": ""
     },
     {

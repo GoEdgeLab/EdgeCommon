@@ -1,5 +1,10 @@
 {
   "log_reject_user_identity":"驳回用户 %d 的实名认证",
   "log_reset_user_identity": "重置用户 %d 的实名认证",
-  "log_verify_user_identity": "通过用户 %d 的实名认证"
+  "log_verify_user_identity": "通过用户 %d 的实名认证",
+
+  "log_cancel_user_identity": "取消身份认证审核",
+  "log_submit_user_identity": "提交身份认证审核",
+  "log_update_user_identity_individual": "修改/上传个人实名认证信息",
+  "log_update_user_identity_enterprise": "修改/上传企业实名认证信息"
 }

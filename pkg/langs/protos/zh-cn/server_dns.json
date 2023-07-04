@@ -1,5 +1,5 @@
 {
-  "log_update_dns_settings": "修改服务 %d 的DNS设置",
-  "log_regenerate_dns_name": "重新生成服务 %d 的CNAME",
-  "log_update_dns_name": "修改服务 %d CNAME为 %s"
+  "log_update_dns_settings": "修改网站 %d 的DNS设置",
+  "log_regenerate_dns_name": "重新生成网站 %d 的CNAME",
+  "log_update_dns_name": "修改网站 %d CNAME为 %s"
 }

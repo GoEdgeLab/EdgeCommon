@@ -6,6 +6,6 @@
   "log_delete_header": "删除报头，HeaderPolicyId:%d, HeaderId:%d",
   "log_delete_deleting_header": "删除需要删除的报头，HeaderPolicyId:%d, HeaderName:%s",
   "log_delete_non_standard_header": "删除需要非标的报头，HeaderPolicyId:%d, HeaderName:%s",
-  "log_update_setting_header": "修改设置报头，HeaderPolicyId:%d, Name:%s, Value:%s",
+  "log_update_setting_header": "修改设置报头，HeaderId:%d, Name:%s, Value:%s",
   "log_update_http_headers": "修改Web %d 的报头设置"
 }

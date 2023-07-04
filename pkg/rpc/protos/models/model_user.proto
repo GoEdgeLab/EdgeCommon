@@ -8,9 +8,9 @@ import "models/model_user_feature.proto";
 import "models/model_login.proto";
 
 message User {
-	int64 id = 1;
-	string username = 2;
-	string fullname = 3;
+	int64 id = 1; // 用户ID
+	string username = 2; // 用户名
+	string fullname = 3; // 全称
 	string mobile = 4;
 	string tel = 5;
 	string email = 6;
@@ -26,6 +26,7 @@ message User {
 	bool isIndividualIdentified = 17;
 	bool isEnterpriseIdentified = 18;
 	string bandwidthAlgo = 21; // 带宽算法
+	string lang = 22; // 语言代号
 
 	Login otpLogin = 19; // OTP认证
 

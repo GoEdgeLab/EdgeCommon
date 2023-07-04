@@ -1,0 +1,7 @@
+{
+  "system": "系统",
+  "canceled": "已取消",
+
+  "server_error": "服务器出了点小问题，请联系技术人员处理。",
+  "log_system_error": "系统发生错误：%s"
+}

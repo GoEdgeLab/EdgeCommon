@@ -6,5 +6,7 @@
   "log_update_ns_domain": "修改域名 %d",
 
   "log_update_ns_domain_health_check": "修改域名 %d 健康检查设置",
-  "log_update_ns_domain_tsig": "修改域名 %d 的TSIG配置"
+  "log_update_ns_domain_tsig": "修改域名 %d 的TSIG配置",
+
+  "log_validate_ns_domains": "批量验证域名"
 }
