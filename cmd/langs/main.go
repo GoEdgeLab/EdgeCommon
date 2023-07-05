@@ -56,7 +56,7 @@ func runGenerate() {
 	var dirRegexp = regexp.MustCompile(`^[a-z]+-[a-z]+$`)
 	var jsonFileNameRegexp = regexp.MustCompile(`^([a-zA-Z0-9]+)(_([a-zA-Z0-9]+))*\.json$`)
 	var messageCodeRegexp = regexp.MustCompile(`^[a-zA-Z0-9_]+$`)
-	var jsonCommentRegexp = regexp.MustCompile(`//.+`)
+	var jsonCommentRegexp = regexp.MustCompile(`//\s+.+`)
 
 	var messageCodes = []string{}
 	var langMaps = map[string]*langs.Lang{} // lang => *langs.Lang

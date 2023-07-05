@@ -47,6 +47,7 @@ const (
 	AdminCommon_MenuSettingWebP                                 langs.MessageCode = "admin_common@menu_setting_webp"                                      // WebP
 	AdminCommon_ServerError                                     langs.MessageCode = "admin_common@server_error"                                           // 服务器出了点小问题，请联系技术人员处理。
 	AdminCommon_System                                          langs.MessageCode = "admin_common@system"                                                 // 系统
+	AdminDashboard_DiskUsageWarning                             langs.MessageCode = "admin_dashboard@disk_usage_warning"                                  // 当前服务器磁盘空间不足，请立即扩充容量，文件路径：%s，已使用：%dG，已使用比例：%.2f%%，仅剩余空间：%.2f%%。<br/>如果是因为本机数据库数据过多，你可以：<a href="/settings/database/clean">[清理访问日志]</a> &nbsp; &nbsp; <a href="https://goedge.cn/docs/APINode/QA.md" target="_blank">[调整数据库binlog设置]</a>
 	AdminDashboard_UIDNS                                        langs.MessageCode = "admin_dashboard@ui_dns"                                              // DNS
 	AdminDashboard_UIEvents                                     langs.MessageCode = "admin_dashboard@ui_events"                                           // 事件
 	AdminDashboard_UIOverview                                   langs.MessageCode = "admin_dashboard@ui_overview"                                         // 概况
