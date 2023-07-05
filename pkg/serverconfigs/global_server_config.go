@@ -2,10 +2,11 @@
 
 package serverconfigs
 
-func DefaultGlobalServerConfig() *GlobalServerConfig {
+func NewGlobalServerConfig() *GlobalServerConfig {
 	var config = &GlobalServerConfig{}
 	config.HTTPAll.SupportsLowVersionHTTP = true
 
+	config.HTTPAccessLog.IsOn = true
 	config.HTTPAccessLog.EnableRequestHeaders = true
 	config.HTTPAccessLog.EnableResponseHeaders = true
 	config.HTTPAccessLog.EnableCookies = true
@@ -40,6 +41,7 @@ type GlobalServerConfig struct {
 	} `yaml:"httpAll" json:"httpAll"` // HTTP统一配置
 
 	HTTPAccessLog struct {
+		IsOn                     bool `yaml:"isOn" json:"isOn"`                                         // 是否启用此功能
 		EnableRequestHeaders     bool `yaml:"enableRequestHeaders" json:"enableRequestHeaders"`         // 记录请求Header
 		CommonRequestHeadersOnly bool `yaml:"commonRequestHeadersOnly" json:"commonRequestHeadersOnly"` // 只保留通用Header
 		EnableResponseHeaders    bool `yaml:"enableResponseHeaders" json:"enableResponseHeaders"`       // 记录响应Header
