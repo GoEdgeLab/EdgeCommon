@@ -5,5 +5,5 @@
   "ui_user": "用户",
   "ui_events": "事件",
 
-  "disk_usage_warning": "当前服务器磁盘空间不足，请立即扩充容量，文件路径：%s，已使用：%dG，已使用比例：%.2f%%，仅剩余空间：%.2f%%。<br/>如果是因为本机数据库数据过多，你可以：<a href=\"/settings/database/clean\">[清理访问日志]</a> &nbsp; &nbsp; <a href=\"https://goedge.cn/docs/APINode/QA.md\" target=\"_blank\">[调整数据库binlog设置]</a>"
+  "disk_usage_warning": "当前服务器磁盘空间不足，请立即扩充容量，文件路径：%s，已使用：%dG，已使用比例：%.2f%%，仅剩余空间：%.2f%%。<br/>如果是因为本机数据库数据过多，你可以：<a href=\"/settings/database/clean\">[清理访问日志]</a> &nbsp; &nbsp; <a href=\"${lang.system@home_page}/docs/APINode/QA.md\" target=\"_blank\">[调整数据库binlog设置]</a>"
 }
