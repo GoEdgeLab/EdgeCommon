@@ -444,6 +444,12 @@ const (
 	RegionCity_LogUpdateRegionCityCustom                        langs.MessageCode = "region_city@log_update_region_city_custom"                           // 定制城市 %d 信息
 	RegionCountry_LogAddRegionCountryCode                       langs.MessageCode = "region_country@log_add_region_country_code"                          // 添加国家/地区 %d 别名 %s
 	RegionCountry_LogUpdateRegionCountryCustom                  langs.MessageCode = "region_country@log_update_region_country_custom"                     // 定制国家/地区 %d 信息
+	RegionCountry_RegionChina                                   langs.MessageCode = "region_country@region_china"                                         // 中国
+	RegionCountry_RegionChinaHk                                 langs.MessageCode = "region_country@region_china_hk"                                      // 中国香港
+	RegionCountry_RegionChinaMainland                           langs.MessageCode = "region_country@region_china_mainland"                                // 中国内地
+	RegionCountry_RegionChinaMo                                 langs.MessageCode = "region_country@region_china_mo"                                      // 中国澳门
+	RegionCountry_RegionChinaTw                                 langs.MessageCode = "region_country@region_china_tw"                                      // 中国台湾
+	RegionCountry_RegionGreaterChina                            langs.MessageCode = "region_country@region_greater_china"                                 // 中国全境
 	RegionProvider_LogAddRegionProviderCode                     langs.MessageCode = "region_provider@log_add_region_provider_code"                        // 添加ISP服务商 %d 别名 %s
 	RegionProvider_LogUpdateRegionProviderCustom                langs.MessageCode = "region_provider@log_update_region_provider_custom"                   // 定制ISP %d 信息
 	RegionProvince_LogAddRegionProvinceCode                     langs.MessageCode = "region_province@log_add_region_province_code"                        // 添加省份/州 %d 别名 %s
@@ -490,11 +496,12 @@ const (
 	Server_MenuSettingCC                                        langs.MessageCode = "server@menu_setting_cc"                                              // CC防护
 	Server_MenuSettingCharset                                   langs.MessageCode = "server@menu_setting_charset"                                         // 字符编码
 	Server_MenuSettingClientIP                                  langs.MessageCode = "server@menu_setting_client_ip"                                       // 访客IP地址
-	Server_MenuSettingCompress                                  langs.MessageCode = "server@menu_setting_compress"                                        // 内容压缩
+	Server_MenuSettingCompression                               langs.MessageCode = "server@menu_setting_compression"                                     // 内容压缩
 	Server_MenuSettingDelete                                    langs.MessageCode = "server@menu_setting_delete"                                          // 删除
 	Server_MenuSettingDNS                                       langs.MessageCode = "server@menu_setting_dns"                                             // DNS
 	Server_MenuSettingDomains                                   langs.MessageCode = "server@menu_setting_domains"                                         // 域名
 	Server_MenuSettingFastcgi                                   langs.MessageCode = "server@menu_setting_fastcgi"                                         // Fastcgi
+	Server_MenuSettingGroup                                     langs.MessageCode = "server@menu_setting_group"                                           // 分组
 	Server_MenuSettingHTTP                                      langs.MessageCode = "server@menu_setting_http"                                            // HTTP
 	Server_MenuSettingHTTPHeaders                               langs.MessageCode = "server@menu_setting_http_headers"                                    // HTTP报头
 	Server_MenuSettingHTTPProxy                                 langs.MessageCode = "server@menu_setting_http_proxy"                                      // HTTP代理
@@ -503,6 +510,7 @@ const (
 	Server_MenuSettingOrigins                                   langs.MessageCode = "server@menu_setting_origins"                                         // 源站
 	Server_MenuSettingOthers                                    langs.MessageCode = "server@menu_setting_others"                                          // 其他设置
 	Server_MenuSettingPages                                     langs.MessageCode = "server@menu_setting_pages"                                           // 自定义页面
+	Server_MenuSettingPlan                                      langs.MessageCode = "server@menu_setting_plan"                                            // 套餐
 	Server_MenuSettingRedirects                                 langs.MessageCode = "server@menu_setting_redirects"                                       // URL跳转
 	Server_MenuSettingReferers                                  langs.MessageCode = "server@menu_setting_referers"                                        // 防盗链
 	Server_MenuSettingRequestLimit                              langs.MessageCode = "server@menu_setting_request_limit"                                   // 请求限制
@@ -531,6 +539,7 @@ const (
 	Server_TabAccessLogs                                        langs.MessageCode = "server@tab_access_logs"                                              // 日志
 	Server_TabDashboard                                         langs.MessageCode = "server@tab_dashboard"                                                // 看板
 	Server_TabDelete                                            langs.MessageCode = "server@tab_delete"                                                   // 删除
+	Server_TabServerList                                        langs.MessageCode = "server@tab_server_list"                                              // 网站列表
 	Server_TabSettings                                          langs.MessageCode = "server@tab_settings"                                                 // 设置
 	Server_TabStat                                              langs.MessageCode = "server@tab_stat"                                                     // 统计
 	ServerAccessLog_LogUpdateAccessLogSetting                   langs.MessageCode = "server_access_log@log_update_access_log_setting"                     // 修改Web %d 的访问日志设置
@@ -615,6 +624,7 @@ const (
 	SSLCert_MenuApply                                           langs.MessageCode = "ssl_cert@menu_apply"                                                 // 申请证书
 	SSLCert_MenuCerts                                           langs.MessageCode = "ssl_cert@menu_certs"                                                 // 证书
 	SSLCert_MenuOCSP                                            langs.MessageCode = "ssl_cert@menu_ocsp"                                                  // OCSP日志
+	System_HomePage                                             langs.MessageCode = "system@home_page"                                                    // https://goedge.cn
 	TicketCategory_LogCreateTicketCategory                      langs.MessageCode = "ticket_category@log_create_ticket_category"                          // 添加工单分类 %d
 	TicketCategory_LogDeleteTicketCategory                      langs.MessageCode = "ticket_category@log_delete_ticket_category"                          // 删除工单分类 %d
 	TicketCategory_LogUpdateTicketCategory                      langs.MessageCode = "ticket_category@log_update_ticket_category"                          // 修改分类 %d

@@ -4,6 +4,7 @@
   "tab_access_logs": "日志",
   "tab_settings": "设置",
   "tab_delete": "删除",
+  "tab_server_list": "网站列表",
 
   "menu_dashboard": "看板",
 
@@ -34,7 +35,7 @@
   "menu_setting_charset": "字符编码",
   "menu_setting_access_log": "访问日志",
   "menu_setting_stat": "统计",
-  "menu_setting_compress": "内容压缩",
+  "menu_setting_compression": "内容压缩",
   "menu_setting_pages": "自定义页面",
   "menu_setting_http_headers": "HTTP报头",
   "menu_setting_websocket": "Websocket",
@@ -52,6 +53,8 @@
   "menu_setting_http_proxy": "HTTP代理", // 网站分组中使用
   "menu_setting_tcp_proxy": "TCP代理", // 网站分组中使用
   "menu_setting_udp_proxy": "UDP代理", // 网站分组中使用
+  "menu_setting_plan": "套餐",
+  "menu_setting_group": "分组",
 
   "menu_setting_uam": "5秒盾",
   "menu_setting_cc": "CC防护",

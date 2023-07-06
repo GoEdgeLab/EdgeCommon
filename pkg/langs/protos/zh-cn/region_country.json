@@ -1,4 +1,11 @@
 {
   "log_update_region_country_custom": "定制国家/地区 %d 信息",
-  "log_add_region_country_code": "添加国家/地区 %d 别名 %s"
+  "log_add_region_country_code": "添加国家/地区 %d 别名 %s",
+
+  "region_china": "中国",
+  "region_greater_china":  "中国全境",
+  "region_china_tw": "中国台湾",
+  "region_china_hk": "中国香港",
+  "region_china_mo": "中国澳门",
+  "region_china_mainland": "中国内地"
 }
