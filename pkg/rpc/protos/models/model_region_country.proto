@@ -12,4 +12,5 @@ message RegionCountry {
 	string customName = 5;
 	repeated string customCodes = 6;
 	string displayName = 7;
+	bool isCommon = 8; // 是否常用
 }

@@ -3064,7 +3064,8 @@
           "code": "rpc createHTTPRewriteRule (CreateHTTPRewriteRuleRequest) returns (CreateHTTPRewriteRuleResponse);",
           "doc": "创建重写规则",
           "roles": [
-            "admin"
+            "admin",
+            "user"
           ],
           "isDeprecated": false
         },
@@ -3075,7 +3076,8 @@
           "code": "rpc updateHTTPRewriteRule (UpdateHTTPRewriteRuleRequest) returns (RPCSuccess);",
           "doc": "修改重写规则",
           "roles": [
-            "admin"
+            "admin",
+            "user"
           ],
           "isDeprecated": false
         }
@@ -21079,7 +21081,7 @@
     },
     {
       "name": "RegionCountry",
-      "code": "message RegionCountry {\n\tint64 id = 1;\n\tstring name = 2;\n\trepeated string codes = 3;\n\trepeated string pinyin = 4;\n\tstring customName = 5;\n\trepeated string customCodes = 6;\n\tstring displayName = 7;\n}",
+      "code": "message RegionCountry {\n\tint64 id = 1;\n\tstring name = 2;\n\trepeated string codes = 3;\n\trepeated string pinyin = 4;\n\tstring customName = 5;\n\trepeated string customCodes = 6;\n\tstring displayName = 7;\n\tbool isCommon = 8; // 是否常用\n}",
       "doc": "国家/地区"
     },
     {
