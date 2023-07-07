@@ -380,8 +380,12 @@ message ListEnabledServersMatchRequest {
 	int64 nodeClusterId = 6;
 	int32 auditingFlag = 7;
 	string protocolFamily = 8;
-	bool trafficOutAsc = 9;
-	bool trafficOutDesc = 10;
+	bool trafficOutAsc = 9; // 是否流量正排序
+	bool trafficOutDesc = 10; // 是否流量倒排序
+	bool requestsAsc = 13; // 请求数正排序
+	bool requestsDesc = 14; // 请求数倒排序
+	bool attackRequestsAsc = 15; // 攻击请求数正排序
+	bool attackRequestsDesc = 16; // 攻击请求数倒排序
 	bool ignoreServerNames = 11; // 忽略域名
 	bool ignoreSSLCerts = 12; // 忽略证书
 }

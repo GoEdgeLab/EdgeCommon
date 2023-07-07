@@ -20191,7 +20191,7 @@
     },
     {
       "name": "ListEnabledServersMatchRequest",
-      "code": "message ListEnabledServersMatchRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n\tint64 serverGroupId = 3;  // 网站分组ID，如果为-1表示查找未分组\n\tstring keyword = 4;\n\tint64 userId = 5;\n\tint64 nodeClusterId = 6;\n\tint32 auditingFlag = 7;\n\tstring protocolFamily = 8;\n\tbool trafficOutAsc = 9;\n\tbool trafficOutDesc = 10;\n\tbool ignoreServerNames = 11; // 忽略域名\n\tbool ignoreSSLCerts = 12; // 忽略证书\n}",
+      "code": "message ListEnabledServersMatchRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n\tint64 serverGroupId = 3;  // 网站分组ID，如果为-1表示查找未分组\n\tstring keyword = 4;\n\tint64 userId = 5;\n\tint64 nodeClusterId = 6;\n\tint32 auditingFlag = 7;\n\tstring protocolFamily = 8;\n\tbool trafficOutAsc = 9; // 是否流量正排序\n\tbool trafficOutDesc = 10; // 是否流量倒排序\n\tbool requestsAsc = 13; // 请求数正排序\n\tbool requestsDesc = 14; // 请求数倒排序\n\tbool attackRequestsAsc = 15; // 攻击请求数正排序\n\tbool attackRequestsDesc = 16; // 攻击请求数倒排序\n\tbool ignoreServerNames = 11; // 忽略域名\n\tbool ignoreSSLCerts = 12; // 忽略证书\n}",
       "doc": "列出单页网站"
     },
     {
@@ -21246,7 +21246,7 @@
     },
     {
       "name": "Server",
-      "code": "message Server {\n\tint64 id = 1;\n\tbool isOn = 18;\n\tstring type = 2;\n\tstring name = 3;\n\tstring description = 4;\n\tbytes includeNodes = 5;\n\tbytes excludeNodes = 6;\n\tint64 createdAt = 7;\n\tstring dnsName = 19;\n\tbool supportCNAME = 23;\n\tint64 userPlanId = 24;\n\tint64 userId = 29; // 所属用户ID\n\n\t// 配置相关\n\tbytes config = 17;\n\tbytes serverNamesJSON = 8;\n\tstring firstServerName = 33;\n\tint32 countServerNames = 28;\n\tbool isAuditing = 20;\n\tint64 auditingAt = 25;\n\tbytes auditingServerNamesJSON = 21;\n\tServerNameAuditingResult auditingResult = 22;\n\n\tbytes httpJSON = 9;\n\tbytes httpsJSON = 10;\n\tbytes tcpJSON = 11;\n\tbytes tlsJSON = 12;\n\tbytes unixJSON = 13;\n\tbytes udpJSON = 14;\n\tint64 webId = 15;\n\tbytes reverseProxyJSON = 16;\n\n\tstring bandwidthTime = 26;\n\tint64 bandwidthBytes = 27;\n\n\tNodeCluster nodeCluster = 30;\n\trepeated ServerGroup serverGroups = 31;\n\tUser user = 32;\n}",
+      "code": "message Server {\n\tint64 id = 1;\n\tbool isOn = 18;\n\tstring type = 2;\n\tstring name = 3;\n\tstring description = 4;\n\tbytes includeNodes = 5;\n\tbytes excludeNodes = 6;\n\tint64 createdAt = 7;\n\tstring dnsName = 19;\n\tbool supportCNAME = 23;\n\tint64 userPlanId = 24;\n\tint64 userId = 29; // 所属用户ID\n\n\t// 配置相关\n\tbytes config = 17;\n\tbytes serverNamesJSON = 8;\n\tstring firstServerName = 33;\n\tint32 countServerNames = 28;\n\tbool isAuditing = 20;\n\tint64 auditingAt = 25;\n\tbytes auditingServerNamesJSON = 21;\n\tServerNameAuditingResult auditingResult = 22;\n\n\tbytes httpJSON = 9;\n\tbytes httpsJSON = 10;\n\tbytes tcpJSON = 11;\n\tbytes tlsJSON = 12;\n\tbytes unixJSON = 13;\n\tbytes udpJSON = 14;\n\tint64 webId = 15;\n\tbytes reverseProxyJSON = 16;\n\n\tstring bandwidthTime = 26; // 带宽时间\n\tint64 bandwidthBytes = 27; // 带宽字节数\n\tint64 countRequests = 34; // 最近（通常5分钟内）访问量\n\tint64 countAttackRequests = 35; // 最近识别到的攻击访问量\n\n\tNodeCluster nodeCluster = 30;\n\trepeated ServerGroup serverGroups = 31;\n\tUser user = 32;\n}",
       "doc": ""
     },
     {
