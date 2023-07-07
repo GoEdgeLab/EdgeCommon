@@ -19,6 +19,7 @@ type HTTPRemoteAddrConfig struct {
 
 // Init 初始化
 func (this *HTTPRemoteAddrConfig) Init() error {
+	this.Value = strings.TrimSpace(this.Value)
 	if len(this.Value) == 0 {
 		this.isEmpty = true
 	} else if regexp.MustCompile(`\s+`).ReplaceAllString(this.Value, "") == "${remoteAddr}" {
