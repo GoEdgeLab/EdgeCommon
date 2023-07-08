@@ -51,7 +51,6 @@ message CreateHTTPCachePolicyRequest {
 	string name = 2;
 	string description = 3;
 	bytes capacityJSON = 4;
-	int64 maxKeys = 5;
 	bytes maxSizeJSON = 6;
 	string type = 7;
 	bytes optionsJSON = 8;
@@ -69,7 +68,6 @@ message UpdateHTTPCachePolicyRequest {
 	string name = 3;
 	string description = 4;
 	bytes capacityJSON = 5;
-	int64 maxKeys = 6;
 	bytes maxSizeJSON = 7;
 	string type = 8;
 	bytes optionsJSON = 9;
