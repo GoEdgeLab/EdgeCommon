@@ -7,7 +7,7 @@ import "models/model_user.proto";
 import "models/model_http_cache_task_key.proto";
 
 message HTTPCacheTask {
-	int64 id = 1;
+	int64 id = 1; // 任务ID
 	int64 userId = 2;
 	string type = 3;
 	string keyType = 4;
@@ -17,6 +17,6 @@ message HTTPCacheTask {
 	bool isOk = 8;
 	string description = 9;
 
-	User user = 30;
-	repeated HTTPCacheTaskKey httpCacheTaskKeys = 31;
+	User user = 30; // 所属用户
+	repeated HTTPCacheTaskKey httpCacheTaskKeys = 31; // 包含的Key
 }

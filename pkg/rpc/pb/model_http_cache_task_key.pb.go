@@ -30,15 +30,15 @@ type HTTPCacheTaskKey struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id            int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	TaskId        int64  `protobuf:"varint,2,opt,name=taskId,proto3" json:"taskId,omitempty"`
-	Key           string `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
-	Type          string `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
-	KeyType       string `protobuf:"bytes,5,opt,name=keyType,proto3" json:"keyType,omitempty"`
-	IsDone        bool   `protobuf:"varint,6,opt,name=isDone,proto3" json:"isDone,omitempty"`   // 是否已完成
-	IsDoing       bool   `protobuf:"varint,9,opt,name=isDoing,proto3" json:"isDoing,omitempty"` // 是否执行中
-	ErrorsJSON    []byte `protobuf:"bytes,7,opt,name=errorsJSON,proto3" json:"errorsJSON,omitempty"`
-	NodeClusterId int64  `protobuf:"varint,8,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"`
+	Id            int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                       // 缓存键ID
+	TaskId        int64  `protobuf:"varint,2,opt,name=taskId,proto3" json:"taskId,omitempty"`               // 任务ID
+	Key           string `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`                      // 缓存键
+	Type          string `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`                    // 操作类型：purge|fetch
+	KeyType       string `protobuf:"bytes,5,opt,name=keyType,proto3" json:"keyType,omitempty"`              // 键类型：key|prefix
+	IsDone        bool   `protobuf:"varint,6,opt,name=isDone,proto3" json:"isDone,omitempty"`               // 是否已完成
+	IsDoing       bool   `protobuf:"varint,9,opt,name=isDoing,proto3" json:"isDoing,omitempty"`             // 是否执行中
+	ErrorsJSON    []byte `protobuf:"bytes,7,opt,name=errorsJSON,proto3" json:"errorsJSON,omitempty"`        // 错误信息
+	NodeClusterId int64  `protobuf:"varint,8,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"` // 所属集群ID
 }
 
 func (x *HTTPCacheTaskKey) Reset() {

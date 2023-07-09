@@ -19806,12 +19806,12 @@
     },
     {
       "name": "HTTPCacheTask",
-      "code": "message HTTPCacheTask {\n\tint64 id = 1;\n\tint64 userId = 2;\n\tstring type = 3;\n\tstring keyType = 4;\n\tint64 createdAt = 5;\n\tint64 doneAt = 6;\n\tbool isDone = 7;\n\tbool isOk = 8;\n\tstring description = 9;\n\n\tUser user = 30;\n\trepeated HTTPCacheTaskKey httpCacheTaskKeys = 31;\n}",
+      "code": "message HTTPCacheTask {\n\tint64 id = 1; // 任务ID\n\tint64 userId = 2;\n\tstring type = 3;\n\tstring keyType = 4;\n\tint64 createdAt = 5;\n\tint64 doneAt = 6;\n\tbool isDone = 7;\n\tbool isOk = 8;\n\tstring description = 9;\n\n\tUser user = 30; // 所属用户\n\trepeated HTTPCacheTaskKey httpCacheTaskKeys = 31; // 包含的Key\n}",
       "doc": ""
     },
     {
       "name": "HTTPCacheTaskKey",
-      "code": "message HTTPCacheTaskKey {\n\tint64 id = 1;\n\tint64 taskId = 2;\n\tstring key = 3;\n\tstring type = 4;\n\tstring keyType = 5;\n\tbool isDone = 6; // 是否已完成\n\tbool isDoing = 9; // 是否执行中\n\tbytes errorsJSON = 7;\n\tint64 nodeClusterId = 8;\n}",
+      "code": "message HTTPCacheTaskKey {\n\tint64 id = 1; // 缓存键ID\n\tint64 taskId = 2; // 任务ID\n\tstring key = 3; // 缓存键\n\tstring type = 4; // 操作类型：purge|fetch\n\tstring keyType = 5; // 键类型：key|prefix\n\tbool isDone = 6; // 是否已完成\n\tbool isDoing = 9; // 是否执行中\n\tbytes errorsJSON = 7; // 错误信息\n\tint64 nodeClusterId = 8; // 所属集群ID\n}",
       "doc": ""
     },
     {

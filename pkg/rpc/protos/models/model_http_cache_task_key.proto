@@ -4,13 +4,13 @@ option go_package = "./pb";
 package pb;
 
 message HTTPCacheTaskKey {
-	int64 id = 1;
-	int64 taskId = 2;
-	string key = 3;
-	string type = 4;
-	string keyType = 5;
+	int64 id = 1; // 缓存键ID
+	int64 taskId = 2; // 任务ID
+	string key = 3; // 缓存键
+	string type = 4; // 操作类型：purge|fetch
+	string keyType = 5; // 键类型：key|prefix
 	bool isDone = 6; // 是否已完成
 	bool isDoing = 9; // 是否执行中
-	bytes errorsJSON = 7;
-	int64 nodeClusterId = 8;
+	bytes errorsJSON = 7; // 错误信息
+	int64 nodeClusterId = 8; // 所属集群ID
 }

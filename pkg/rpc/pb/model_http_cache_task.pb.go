@@ -30,7 +30,7 @@ type HTTPCacheTask struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id                int64               `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id                int64               `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // 任务ID
 	UserId            int64               `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`
 	Type              string              `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
 	KeyType           string              `protobuf:"bytes,4,opt,name=keyType,proto3" json:"keyType,omitempty"`
@@ -39,8 +39,8 @@ type HTTPCacheTask struct {
 	IsDone            bool                `protobuf:"varint,7,opt,name=isDone,proto3" json:"isDone,omitempty"`
 	IsOk              bool                `protobuf:"varint,8,opt,name=isOk,proto3" json:"isOk,omitempty"`
 	Description       string              `protobuf:"bytes,9,opt,name=description,proto3" json:"description,omitempty"`
-	User              *User               `protobuf:"bytes,30,opt,name=user,proto3" json:"user,omitempty"`
-	HttpCacheTaskKeys []*HTTPCacheTaskKey `protobuf:"bytes,31,rep,name=httpCacheTaskKeys,proto3" json:"httpCacheTaskKeys,omitempty"`
+	User              *User               `protobuf:"bytes,30,opt,name=user,proto3" json:"user,omitempty"`                           // 所属用户
+	HttpCacheTaskKeys []*HTTPCacheTaskKey `protobuf:"bytes,31,rep,name=httpCacheTaskKeys,proto3" json:"httpCacheTaskKeys,omitempty"` // 包含的Key
 }
 
 func (x *HTTPCacheTask) Reset() {
