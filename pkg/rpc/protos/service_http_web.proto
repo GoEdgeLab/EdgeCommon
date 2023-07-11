@@ -23,6 +23,9 @@ service HTTPWebService {
 	// 更改压缩配置
 	rpc updateHTTPWebCompression (UpdateHTTPWebCompressionRequest) returns (RPCSuccess);
 
+	// 更改页面优化配置
+	rpc updateHTTPWebOptimization(UpdateHTTPWebOptimizationRequest) returns (RPCSuccess);
+
 	// 更改WebP配置
 	rpc updateHTTPWebWebP (UpdateHTTPWebWebPRequest) returns (RPCSuccess);
 
@@ -157,6 +160,12 @@ message UpdateHTTPWebRequest {
 message UpdateHTTPWebCompressionRequest {
 	int64 httpWebId = 1;
 	bytes compressionJSON = 2;
+}
+
+// 更改页面优化配置
+message UpdateHTTPWebOptimizationRequest {
+	int64 httpWebId = 1;
+	bytes optimizationJSON = 2;
 }
 
 // 更改WebP配置

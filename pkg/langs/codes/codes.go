@@ -507,6 +507,7 @@ const (
 	Server_MenuSettingHTTPProxy                                 langs.MessageCode = "server@menu_setting_http_proxy"                                      // HTTP代理
 	Server_MenuSettingHTTPS                                     langs.MessageCode = "server@menu_setting_https"                                           // HTTPS
 	Server_MenuSettingLocations                                 langs.MessageCode = "server@menu_setting_locations"                                       // 路由规则
+	Server_MenuSettingOptimization                              langs.MessageCode = "server@menu_setting_optimization"                                    // 页面优化
 	Server_MenuSettingOrigins                                   langs.MessageCode = "server@menu_setting_origins"                                         // 源站
 	Server_MenuSettingOthers                                    langs.MessageCode = "server@menu_setting_others"                                          // 其他设置
 	Server_MenuSettingPages                                     langs.MessageCode = "server@menu_setting_pages"                                           // 自定义页面
@@ -583,6 +584,7 @@ const (
 	ServerHTTPHeader_LogUpdateHTTPHeaders                       langs.MessageCode = "server_http_header@log_update_http_headers"                          // 修改Web %d 的报头设置
 	ServerHTTPHeader_LogUpdateSettingHeader                     langs.MessageCode = "server_http_header@log_update_setting_header"                        // 修改设置报头，HeaderId:%d, Name:%s, Value:%s
 	ServerHTTPS_LogUpdateHTTPSSettings                          langs.MessageCode = "server_https@log_update_https_settings"                              // 修改网站 %d 的HTTPS设置
+	ServerOptimization_LogUpdateOptimizationSettings            langs.MessageCode = "server_optimization@log_update_optimization_settings"                // 修改Web %d 的页面优化设置
 	ServerOrigin_LogCreateOrigin                                langs.MessageCode = "server_origin@log_create_origin"                                     // 创建源站 %d
 	ServerOrigin_LogDeleteOrigin                                langs.MessageCode = "server_origin@log_delete_origin"                                     // 删除源站 %d
 	ServerOrigin_LogUpdateOrigin                                langs.MessageCode = "server_origin@log_update_origin"                                     // 修改源站 %d

@@ -19,6 +19,7 @@ const (
 	ConfigCodeAccessLog      ConfigCode = "accessLog"
 	ConfigCodeStat           ConfigCode = "stat"
 	ConfigCodeCompression    ConfigCode = "compression"
+	ConfigCodeOptimization   ConfigCode = "optimization"
 	ConfigCodePages          ConfigCode = "pages"
 	ConfigCodeHeaders        ConfigCode = "headers"
 	ConfigCodeWebsocket      ConfigCode = "websocket"

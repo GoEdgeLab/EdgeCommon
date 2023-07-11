@@ -159,6 +159,7 @@ message FindEnabledServerGroupConfigInfoResponse {
 	bool hasCharsetConfig = 8;
 	bool hasStatConfig = 9;
 	bool hasCompressionConfig = 10;
+	bool hasOptimizationConfig = 20;
 	bool hasRequestHeadersConfig = 11;
 	bool hasResponseHeadersConfig = 12;
 	bool hasWebsocketConfig = 13;

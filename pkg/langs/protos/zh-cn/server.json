@@ -36,6 +36,7 @@
   "menu_setting_access_log": "访问日志",
   "menu_setting_stat": "统计",
   "menu_setting_compression": "内容压缩",
+  "menu_setting_optimization": "页面优化",
   "menu_setting_pages": "自定义页面",
   "menu_setting_http_headers": "HTTP报头",
   "menu_setting_websocket": "Websocket",

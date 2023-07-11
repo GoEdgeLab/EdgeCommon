@@ -12,6 +12,7 @@ type HTTPWebConfig struct {
 	Locations          []*HTTPLocationConfig               `yaml:"locations" json:"locations"`                   // 路径规则 TODO
 	LocationRefs       []*HTTPLocationRef                  `yaml:"locationRefs" json:"locationRefs"`             // 路径规则应用
 	Compression        *HTTPCompressionConfig              `yaml:"compression" json:"compression"`               // 压缩配置
+	Optimization       *HTTPPageOptimizationConfig         `yaml:"optimization" json:"optimization"`             // 页面优化配置
 	WebP               *WebPImageConfig                    `yaml:"webp" json:"webp"`                             // WebP配置
 	Charset            *HTTPCharsetConfig                  `yaml:"charset" json:"charset"`                       // 字符编码
 	Shutdown           *HTTPShutdownConfig                 `yaml:"shutdown" json:"shutdown"`                     // 临时关闭配置
@@ -77,6 +78,14 @@ func (this *HTTPWebConfig) Init(ctx context.Context) error {
 	// compression
 	if this.Compression != nil {
 		err := this.Compression.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// optimization
+	if this.Optimization != nil {
+		err := this.Optimization.Init()
 		if err != nil {
 			return err
 		}

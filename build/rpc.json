@@ -3149,6 +3149,15 @@
           "isDeprecated": false
         },
         {
+          "name": "updateHTTPWebOptimization",
+          "requestMessageName": "UpdateHTTPWebOptimizationRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateHTTPWebOptimization(UpdateHTTPWebOptimizationRequest) returns (RPCSuccess);",
+          "doc": "更改页面优化配置",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
           "name": "updateHTTPWebWebP",
           "requestMessageName": "UpdateHTTPWebWebPRequest",
           "responseMessageName": "RPCSuccess",
@@ -18371,7 +18380,7 @@
     },
     {
       "name": "FindEnabledServerGroupConfigInfoResponse",
-      "code": "message FindEnabledServerGroupConfigInfoResponse {\n\tbool hasHTTPReverseProxy = 1;\n\tbool hasTCPReverseProxy = 2;\n\tbool hasUDPReverseProxy = 3;\n\tint64 serverGroupId = 4;\n\tbool hasRootConfig = 5;\n\tbool hasWAFConfig = 6;\n\tbool hasCacheConfig = 7;\n\tbool hasCharsetConfig = 8;\n\tbool hasStatConfig = 9;\n\tbool hasCompressionConfig = 10;\n\tbool hasRequestHeadersConfig = 11;\n\tbool hasResponseHeadersConfig = 12;\n\tbool hasWebsocketConfig = 13;\n\tbool hasWebPConfig = 14;\n\tbool hasAccessLogConfig = 15;\n\tbool hasRemoteAddrConfig = 16;\n\tbool hasPagesConfig = 17;\n\tbool hasRequestLimitConfig = 18;\n\tbool hasRequestScriptsConfig = 19;\n}",
+      "code": "message FindEnabledServerGroupConfigInfoResponse {\n\tbool hasHTTPReverseProxy = 1;\n\tbool hasTCPReverseProxy = 2;\n\tbool hasUDPReverseProxy = 3;\n\tint64 serverGroupId = 4;\n\tbool hasRootConfig = 5;\n\tbool hasWAFConfig = 6;\n\tbool hasCacheConfig = 7;\n\tbool hasCharsetConfig = 8;\n\tbool hasStatConfig = 9;\n\tbool hasCompressionConfig = 10;\n\tbool hasOptimizationConfig = 20;\n\tbool hasRequestHeadersConfig = 11;\n\tbool hasResponseHeadersConfig = 12;\n\tbool hasWebsocketConfig = 13;\n\tbool hasWebPConfig = 14;\n\tbool hasAccessLogConfig = 15;\n\tbool hasRemoteAddrConfig = 16;\n\tbool hasPagesConfig = 17;\n\tbool hasRequestLimitConfig = 18;\n\tbool hasRequestScriptsConfig = 19;\n}",
       "doc": ""
     },
     {
@@ -21798,6 +21807,11 @@
       "name": "UpdateHTTPWebLocationsRequest",
       "code": "message UpdateHTTPWebLocationsRequest {\n\tint64 httpWebId = 1;\n\tbytes locationsJSON = 3;\n}",
       "doc": "更改路径规则配置"
+    },
+    {
+      "name": "UpdateHTTPWebOptimizationRequest",
+      "code": "message UpdateHTTPWebOptimizationRequest {\n\tint64 httpWebId = 1;\n\tbytes optimizationJSON = 2;\n}",
+      "doc": "更改页面优化配置"
     },
     {
       "name": "UpdateHTTPWebPagesRequest",
