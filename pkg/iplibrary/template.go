@@ -70,6 +70,11 @@ func (this *Template) Extract(text string, emptyValues []string) (values map[str
 		}
 	}
 
+	// 自动修复省略的城市名
+	if len(values["city"]) == 0 && len(values["province"]) > 0 && len(values["town"]) > 0 {
+		values["city"] = values["province"]
+	}
+
 	ok = true
 	return
 }
