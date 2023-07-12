@@ -35,9 +35,10 @@ type GlobalServerConfig struct {
 		DefaultDomain        string                `yaml:"defaultDomain" json:"defaultDomain"`               // 默认的域名
 		DomainMismatchAction *DomainMismatchAction `yaml:"domainMismatchAction" json:"domainMismatchAction"` // 不匹配时采取的动作
 
-		SupportsLowVersionHTTP  bool `yaml:"supportsLowVersionHTTP" json:"supportsLowVersionHTTP"`   // 是否启用低版本HTTP
-		MatchCertFromAllServers bool `yaml:"matchCertFromAllServers" json:"matchCertFromAllServers"` // 从所有服务中匹配证书（不要轻易开启！）
-		ForceLnRequest          bool `yaml:"forceLnRequest" json:"forceLnRequest"`                   // 强制从Ln请求内容
+		SupportsLowVersionHTTP  bool   `yaml:"supportsLowVersionHTTP" json:"supportsLowVersionHTTP"`   // 是否启用低版本HTTP
+		MatchCertFromAllServers bool   `yaml:"matchCertFromAllServers" json:"matchCertFromAllServers"` // 从所有服务中匹配证书（不要轻易开启！）
+		ForceLnRequest          bool   `yaml:"forceLnRequest" json:"forceLnRequest"`                   // 强制从Ln请求内容
+		ServerName              string `yaml:"serverName" json:"serverName"`                           // Server名称
 	} `yaml:"httpAll" json:"httpAll"` // HTTP统一配置
 
 	HTTPAccessLog struct {
