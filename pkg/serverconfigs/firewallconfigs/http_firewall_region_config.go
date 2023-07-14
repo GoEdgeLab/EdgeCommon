@@ -3,6 +3,7 @@ package firewallconfigs
 import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/regionconfigs"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
+	"strings"
 )
 
 type HTTPFirewallRegionConfig struct {
@@ -15,9 +16,11 @@ type HTTPFirewallRegionConfig struct {
 
 	CountryOnlyURLPatterns   []*shared.URLPattern `yaml:"countryOnlyURLPatterns" json:"countryOnlyURLPatterns"`     // 仅限的URL
 	CountryExceptURLPatterns []*shared.URLPattern `yaml:"countryExceptURLPatterns" json:"countryExceptURLPatterns"` // 排除的URL
+	CountryHTML              string               `yaml:"countryHTML" json:"countryHTML"`                           // 提示HTML
 
 	ProvinceOnlyURLPatterns   []*shared.URLPattern `yaml:"provinceOnlyURLPatterns" json:"provinceOnlyURLPatterns"`     // 仅限的URL
 	ProvinceExceptURLPatterns []*shared.URLPattern `yaml:"provinceExceptURLPatterns" json:"provinceExceptURLPatterns"` // 排除的URL
+	ProvinceHTML              string               `yaml:"provinceHTML" json:"provinceHTML"`                           // 提示HTML
 
 	isNotEmpty bool
 
@@ -40,6 +43,8 @@ func (this *HTTPFirewallRegionConfig) Init() error {
 		this.denyCountryIdMap[countryId] = true
 	}
 
+	this.CountryHTML = strings.TrimSpace(this.CountryHTML)
+
 	this.allowProvinceIdMap = map[int64]bool{}
 	for _, provinceId := range this.AllowProvinceIds {
 		this.allowProvinceIdMap[provinceId] = true
@@ -49,6 +54,8 @@ func (this *HTTPFirewallRegionConfig) Init() error {
 	for _, provinceId := range this.DenyProvinceIds {
 		this.denyProvinceIdMap[provinceId] = true
 	}
+
+	this.ProvinceHTML = strings.TrimSpace(this.ProvinceHTML)
 
 	// url patterns
 	for _, pattern := range this.CountryExceptURLPatterns {
