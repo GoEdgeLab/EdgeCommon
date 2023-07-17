@@ -16,7 +16,7 @@ type HTTPAuthTypeDefinition struct {
 	Description string `json:"description"`
 }
 
-func FindAllHTTPAuthTypes() []*HTTPAuthTypeDefinition {
+func FindAllHTTPAuthTypes(role string) []*HTTPAuthTypeDefinition {
 	return []*HTTPAuthTypeDefinition{
 		{
 			Name:        "基本认证",
