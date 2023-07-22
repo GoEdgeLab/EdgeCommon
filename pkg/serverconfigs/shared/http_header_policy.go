@@ -51,7 +51,11 @@ func (this *HTTPHeaderPolicy) Init() error {
 
 // IsEmpty 判断是否为空
 func (this *HTTPHeaderPolicy) IsEmpty() bool {
-	return len(this.SetHeaders) == 0 && this.Expires == nil && len(this.DeleteHeaders) == 0
+	return len(this.SetHeaders) == 0 &&
+		this.Expires == nil &&
+		len(this.DeleteHeaders) == 0 &&
+		len(this.NonStandardHeaders) == 0 &&
+		(this.CORS == nil || !this.CORS.IsOn)
 }
 
 // ContainsHeader 判断Add和Set中是否包含某个Header
