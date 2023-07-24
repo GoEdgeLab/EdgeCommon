@@ -199,6 +199,9 @@ service NodeService {
 
 	// 复制动作设置到集群
 	rpc copyNodeActionsToNodeCluster(CopyNodeActionsToNodeClusterRequest) returns (RPCSuccess);
+
+	// 查找节点的TOA配置
+	rpc findNodeTOAConfig(FindNodeTOAConfigRequest) returns (FindNodeTOAConfigResponse);
 }
 
 // 创建节点
@@ -695,7 +698,6 @@ message UpdateNodeAPIConfigRequest {
 
 // 查找节点的UAM策略
 message FindNodeUAMPoliciesRequest {
-	int64 nodeId = 1; // 节点ID
 }
 
 message FindNodeUAMPoliciesResponse {
@@ -709,7 +711,6 @@ message FindNodeUAMPoliciesResponse {
 
 // 查找节点的HTTP CC策略
 message FindNodeHTTPCCPoliciesRequest {
-	int64 nodeId = 1; // 节点ID
 }
 
 message FindNodeHTTPCCPoliciesResponse {
@@ -723,7 +724,6 @@ message FindNodeHTTPCCPoliciesResponse {
 
 // 查找节点的HTTP3策略
 message FindNodeHTTP3PoliciesRequest {
-	int64 nodeId = 1; // 节点ID
 }
 
 message FindNodeHTTP3PoliciesResponse {
@@ -737,7 +737,6 @@ message FindNodeHTTP3PoliciesResponse {
 
 // 查找节点的自定义页面策略
 message FindNodeHTTPPagesPoliciesRequest {
-	int64 nodeId = 1; // 节点ID
 }
 
 message FindNodeHTTPPagesPoliciesResponse {
@@ -803,10 +802,18 @@ message FindAllNodeScheduleInfoWithNodeClusterIdResponse {
 
 // 同步动作设置到分组
 message CopyNodeActionsToNodeGroupRequest {
-	int64 nodeId = 1;
+	int64 nodeId = 1; // 节点ID
 }
 
 // 同步动作设置到集群
 message CopyNodeActionsToNodeClusterRequest {
-	int64 nodeId = 1;
+	int64 nodeId = 1; // 节点ID
+}
+
+// 查找节点的TOA配置
+message FindNodeTOAConfigRequest {
+}
+
+message FindNodeTOAConfigResponse {
+	bytes toaJSON = 1; // TOA配置
 }

@@ -4,27 +4,26 @@ import (
 	"fmt"
 	"github.com/iwind/TeaGo/rands"
 	"net"
+	"runtime"
 )
 
-// 默认的TOA配置
+// DefaultTOAConfig 默认的TOA配置
 func DefaultTOAConfig() *TOAConfig {
 	return &TOAConfig{
 		IsOn:       false,
 		Debug:      false,
 		OptionType: 0xfe,
 		MinQueueId: 100,
-		MaxQueueId: 109,
 		AutoSetup:  true,
 	}
 }
 
-// TOA相关配置
+// TOAConfig TOA相关配置
 type TOAConfig struct {
 	IsOn         bool     `yaml:"isOn" json:"isOn"` // 是否启用
 	Debug        bool     `yaml:"debug" json:"debug"`
 	OptionType   uint8    `yaml:"optionType" json:"optionType"`
 	MinQueueId   uint8    `yaml:"minQueueId" json:"minQueueId"`
-	MaxQueueId   uint8    `yaml:"maxQueueId" json:"maxQueueId"`
 	AutoSetup    bool     `yaml:"autoSetup" json:"autoSetup"`
 	MinLocalPort uint16   `yaml:"minLocalPort" json:"minLocalPort"` // 本地可使用的最小端口 TODO
 	MaxLocalPort uint16   `yaml:"maxLocalPort" json:"maxLocalPort"` // 本地可使用的最大端口 TODO
@@ -51,15 +50,10 @@ func (this *TOAConfig) Init() error {
 	this.minLocalPort = int(minPort)
 	this.maxLocalPort = int(maxPort)
 
-	// QueueId
-	if this.MinQueueId > this.MaxQueueId {
-		this.MinQueueId, this.MaxQueueId = this.MaxQueueId, this.MinQueueId
-	}
-
 	return nil
 }
 
-// Sock路径
+// SockFile Sock路径
 func (this *TOAConfig) SockFile() string {
 	if len(this.SockPath) == 0 {
 		return "/tmp/edge-toa.sock"
@@ -67,7 +61,7 @@ func (this *TOAConfig) SockFile() string {
 	return this.SockPath
 }
 
-// 获取随机端口
+// RandLocalPort 获取随机端口
 func (this *TOAConfig) RandLocalPort() uint16 {
 	listener, err := net.Listen("tcp", ":0")
 	if err != nil {
@@ -77,12 +71,12 @@ func (this *TOAConfig) RandLocalPort() uint16 {
 	return uint16(listener.Addr().(*net.TCPAddr).Port)
 }
 
-// 转换为参数的形式
+// AsArgs 转换为参数的形式
 func (this *TOAConfig) AsArgs() (args []string) {
 	args = append(args, "run")
 	args = append(args, "-option-type="+fmt.Sprintf("%d", this.OptionType))
 	args = append(args, "-min-queue-id="+fmt.Sprintf("%d", this.MinQueueId))
-	args = append(args, "-max-queue-id="+fmt.Sprintf("%d", this.MaxQueueId))
+	args = append(args, "-max-queue-id="+fmt.Sprintf("%d", this.MaxQueueId()))
 	if this.AutoSetup {
 		args = append(args, "-auto-setup")
 	}
@@ -90,4 +84,13 @@ func (this *TOAConfig) AsArgs() (args []string) {
 		args = append(args, "-debug")
 	}
 	return
+}
+
+// MaxQueueId 获取队列ID最大值
+func (this *TOAConfig) MaxQueueId() uint8 {
+	var maxQueueId = int(this.MinQueueId) + runtime.NumCPU() - 1
+	if maxQueueId > 255 {
+		maxQueueId = 255
+	}
+	return uint8(maxQueueId)
 }

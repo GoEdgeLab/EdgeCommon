@@ -3154,7 +3154,10 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateHTTPWebOptimization(UpdateHTTPWebOptimizationRequest) returns (RPCSuccess);",
           "doc": "更改页面优化配置",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -5718,6 +5721,17 @@
           "doc": "复制动作设置到集群",
           "roles": [
             "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findNodeTOAConfig",
+          "requestMessageName": "FindNodeTOAConfigRequest",
+          "responseMessageName": "FindNodeTOAConfigResponse",
+          "code": "rpc findNodeTOAConfig(FindNodeTOAConfigRequest) returns (FindNodeTOAConfigResponse);",
+          "doc": "查找节点的TOA配置",
+          "roles": [
+            "node"
           ],
           "isDeprecated": false
         }
@@ -14045,12 +14059,12 @@
     },
     {
       "name": "CopyNodeActionsToNodeClusterRequest",
-      "code": "message CopyNodeActionsToNodeClusterRequest {\n\tint64 nodeId = 1;\n}",
+      "code": "message CopyNodeActionsToNodeClusterRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
       "doc": "同步动作设置到集群"
     },
     {
       "name": "CopyNodeActionsToNodeGroupRequest",
-      "code": "message CopyNodeActionsToNodeGroupRequest {\n\tint64 nodeId = 1;\n}",
+      "code": "message CopyNodeActionsToNodeGroupRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
       "doc": "同步动作设置到分组"
     },
     {
@@ -19274,29 +19288,14 @@
       "doc": ""
     },
     {
-      "name": "FindNodeHTTP3PoliciesRequest",
-      "code": "message FindNodeHTTP3PoliciesRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
-      "doc": "查找节点的HTTP3策略"
-    },
-    {
       "name": "FindNodeHTTP3PoliciesResponse",
       "code": "message FindNodeHTTP3PoliciesResponse {\n\trepeated HTTP3Policy http3Policies = 1; // HTTP3策略列表\n\n\n\tmessage HTTP3Policy {\n\t\tint64 nodeClusterId = 1; // 集群ID\n\t\tbytes http3PolicyJSON = 2; // HTTP3策略配置\n\t}\n}",
       "doc": ""
     },
     {
-      "name": "FindNodeHTTPCCPoliciesRequest",
-      "code": "message FindNodeHTTPCCPoliciesRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
-      "doc": "查找节点的HTTP CC策略"
-    },
-    {
       "name": "FindNodeHTTPCCPoliciesResponse",
       "code": "message FindNodeHTTPCCPoliciesResponse {\n\trepeated HTTPCCPolicy httpCCPolicies = 1; // HTTP CC策略列表\n\n\n\tmessage HTTPCCPolicy {\n\t\tint64 nodeClusterId = 1; // 集群ID\n\t\tbytes httpCCPolicyJSON = 2; // HTTP CC策略配置\n\t}\n}",
       "doc": ""
-    },
-    {
-      "name": "FindNodeHTTPPagesPoliciesRequest",
-      "code": "message FindNodeHTTPPagesPoliciesRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
-      "doc": "查找节点的自定义页面策略"
     },
     {
       "name": "FindNodeHTTPPagesPoliciesResponse",
@@ -19339,6 +19338,11 @@
       "doc": ""
     },
     {
+      "name": "FindNodeTOAConfigResponse",
+      "code": "message FindNodeTOAConfigResponse {\n\tbytes toaJSON = 1; // TOA配置\n}",
+      "doc": ""
+    },
+    {
       "name": "FindNodeTasksRequest",
       "code": "message FindNodeTasksRequest {\n\tint64 version = 1; // 上一次执行的版本\n}",
       "doc": "获取单节点同步任务"
@@ -19347,11 +19351,6 @@
       "name": "FindNodeTasksResponse",
       "code": "message FindNodeTasksResponse {\n\trepeated NodeTask nodeTasks = 1;\n}",
       "doc": ""
-    },
-    {
-      "name": "FindNodeUAMPoliciesRequest",
-      "code": "message FindNodeUAMPoliciesRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
-      "doc": "查找节点的UAM策略"
     },
     {
       "name": "FindNodeUAMPoliciesResponse",
