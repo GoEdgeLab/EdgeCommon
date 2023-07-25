@@ -16,3 +16,7 @@ type TOAConfig struct {
 func (this *TOAConfig) Init() error {
 	return nil
 }
+
+func (this *TOAConfig) RandLocalPort() uint16 {
+	return 0
+}
