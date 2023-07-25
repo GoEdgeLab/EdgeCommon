@@ -22,7 +22,7 @@ const (
 	DefaultTCPNewConnectionsSecondlyRate    = 300 // 单IP连接速率限制（按秒）
 	DefaultTCPNewConnectionsMinSecondlyRate = 3   // 单IP最小连接速率
 
-	DefaultTCPLinger           = 3 // 单节点TCP Linger值
+	DefaultTCPLinger           = 5 // 单节点TCP Linger值
 	DefaultTLSHandshakeTimeout = 3 // TLS握手超时时间
 )
 
