@@ -27,8 +27,9 @@ type HTTPCacheRef struct {
 	AllowChunkedEncoding           bool     `yaml:"allowChunkedEncoding" json:"allowChunkedEncoding"`         // 是否允许分片内容
 	AllowPartialContent            bool     `yaml:"allowPartialContent" json:"allowPartialContent"`           // 支持分段内容缓存
 	ForcePartialContent            bool     `yaml:"forcePartialContent" json:"forcePartialContent"`           // 强制分段内容优先
-	EnableIfNoneMatch              bool     `yaml:"enableIfNoneMatch" json:"enableIfNoneMatch"`
-	EnableIfModifiedSince          bool     `yaml:"enableIfModifiedSince" json:"enableIfModifiedSince"`
+	EnableIfNoneMatch              bool     `yaml:"enableIfNoneMatch" json:"enableIfNoneMatch"`               // 支持If-None-match
+	EnableIfModifiedSince          bool     `yaml:"enableIfModifiedSince" json:"enableIfModifiedSince"`       // 支持If-Modified-Since
+	EnableReadingOriginAsync       bool     `yaml:"enableReadingOriginAsync" json:"enableReadingOriginAsync"` // 允许异步读取源站
 
 	Conds      *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"`           // 复杂请求条件组合
 	SimpleCond *shared.HTTPRequestCond        `yaml:"simpleCond" json:"simpleCond"` // 简单条件
