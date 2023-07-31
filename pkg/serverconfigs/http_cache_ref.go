@@ -21,15 +21,16 @@ type HTTPCacheRef struct {
 	MaxSize     *shared.SizeCapacity   `yaml:"maxSize" json:"maxSize"`         // 能够缓存的最大尺寸
 	Methods     []string               `yaml:"methods" json:"methods"`         // 支持的请求方法
 
-	SkipResponseCacheControlValues []string `yaml:"skipCacheControlValues" json:"skipCacheControlValues"`     // 可以跳过的响应的Cache-Control值
-	SkipResponseSetCookie          bool     `yaml:"skipSetCookie" json:"skipSetCookie"`                       // 是否跳过响应的Set-Cookie Header
-	EnableRequestCachePragma       bool     `yaml:"enableRequestCachePragma" json:"enableRequestCachePragma"` // 是否支持客户端的Pragma: no-cache
-	AllowChunkedEncoding           bool     `yaml:"allowChunkedEncoding" json:"allowChunkedEncoding"`         // 是否允许分片内容
-	AllowPartialContent            bool     `yaml:"allowPartialContent" json:"allowPartialContent"`           // 支持分段内容缓存
-	ForcePartialContent            bool     `yaml:"forcePartialContent" json:"forcePartialContent"`           // 强制分段内容优先
-	EnableIfNoneMatch              bool     `yaml:"enableIfNoneMatch" json:"enableIfNoneMatch"`               // 支持If-None-match
-	EnableIfModifiedSince          bool     `yaml:"enableIfModifiedSince" json:"enableIfModifiedSince"`       // 支持If-Modified-Since
-	EnableReadingOriginAsync       bool     `yaml:"enableReadingOriginAsync" json:"enableReadingOriginAsync"` // 允许异步读取源站
+	SkipResponseCacheControlValues []string `yaml:"skipCacheControlValues" json:"skipCacheControlValues"`       // 可以跳过的响应的Cache-Control值
+	SkipResponseSetCookie          bool     `yaml:"skipSetCookie" json:"skipSetCookie"`                         // 是否跳过响应的Set-Cookie Header
+	EnableRequestCachePragma       bool     `yaml:"enableRequestCachePragma" json:"enableRequestCachePragma"`   // 是否支持客户端的Pragma: no-cache
+	AllowChunkedEncoding           bool     `yaml:"allowChunkedEncoding" json:"allowChunkedEncoding"`           // 是否允许分片内容
+	AllowPartialContent            bool     `yaml:"allowPartialContent" json:"allowPartialContent"`             // 支持分段内容缓存
+	ForcePartialContent            bool     `yaml:"forcePartialContent" json:"forcePartialContent"`             // 强制分段内容优先
+	AlwaysForwardRangeRequest      bool     `yaml:"alwaysForwardRangeRequest" json:"alwaysForwardRangeRequest"` // 强制Range请求回源
+	EnableIfNoneMatch              bool     `yaml:"enableIfNoneMatch" json:"enableIfNoneMatch"`                 // 支持If-None-match
+	EnableIfModifiedSince          bool     `yaml:"enableIfModifiedSince" json:"enableIfModifiedSince"`         // 支持If-Modified-Since
+	EnableReadingOriginAsync       bool     `yaml:"enableReadingOriginAsync" json:"enableReadingOriginAsync"`   // 允许异步读取源站
 
 	Conds      *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"`           // 复杂请求条件组合
 	SimpleCond *shared.HTTPRequestCond        `yaml:"simpleCond" json:"simpleCond"` // 简单条件
