@@ -21664,7 +21664,7 @@
     },
     {
       "name": "UpdateHTTPFirewallPolicyRequest",
-      "code": "message UpdateHTTPFirewallPolicyRequest {\n\tint64 httpFirewallPolicyId = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring description = 4;\n\trepeated string firewallGroupCodes = 5;\n\tbytes blockOptionsJSON = 6;\n\tbytes captchaOptionsJSON = 11;\n\tstring mode = 7;\n\tbool useLocalFirewall = 8;\n\tbytes synFloodJSON = 9;\n\tbytes LogJSON = 10;\n}",
+      "code": "message UpdateHTTPFirewallPolicyRequest {\n\tint64 httpFirewallPolicyId = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring description = 4;\n\trepeated string firewallGroupCodes = 5;\n\tbytes blockOptionsJSON = 6;\n\tbytes captchaOptionsJSON = 11;\n\tstring mode = 7;\n\tbool useLocalFirewall = 8; // 是否使用本地防火墙\n\tbytes synFloodJSON = 9; // SYN Flood相关配置\n\tbytes LogJSON = 10; // 日志相关配置\n\tint64 maxRequestBodySize = 12; // 最大文件尺寸，单位为字节\n}",
       "doc": "修改防火墙策略"
     },
     {

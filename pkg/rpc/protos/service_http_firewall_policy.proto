@@ -98,9 +98,10 @@ message UpdateHTTPFirewallPolicyRequest {
 	bytes blockOptionsJSON = 6;
 	bytes captchaOptionsJSON = 11;
 	string mode = 7;
-	bool useLocalFirewall = 8;
-	bytes synFloodJSON = 9;
-	bytes LogJSON = 10;
+	bool useLocalFirewall = 8; // 是否使用本地防火墙
+	bytes synFloodJSON = 9; // SYN Flood相关配置
+	bytes LogJSON = 10; // 日志相关配置
+	int64 maxRequestBodySize = 12; // 最大文件尺寸，单位为字节
 }
 
 // 修改分组信息
