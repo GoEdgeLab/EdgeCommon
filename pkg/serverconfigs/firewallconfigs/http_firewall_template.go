@@ -17,7 +17,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 	// xss
 	{
-		group := &HTTPFirewallRuleGroup{}
+		var group = &HTTPFirewallRuleGroup{}
 		group.IsOn = true
 		group.Name = "XSS"
 		group.Code = "xss"
@@ -25,7 +25,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		group.IsTemplate = true
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "Javascript事件"
 			set.Code = "1001"
@@ -46,7 +46,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		}
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "Javascript函数"
 			set.Code = "1002"
@@ -67,7 +67,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		}
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "HTML标签"
 			set.Code = "1003"
@@ -92,15 +92,15 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 	// upload
 	{
-		group := &HTTPFirewallRuleGroup{}
-		group.IsOn = true
+		var group = &HTTPFirewallRuleGroup{}
+		group.IsOn = false
 		group.Name = "文件上传"
 		group.Code = "upload"
 		group.Description = "防止上传可执行脚本文件到服务器"
 		group.IsTemplate = true
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "上传文件扩展名"
 			set.Code = "2001"
@@ -125,15 +125,15 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 	// web shell
 	{
-		group := &HTTPFirewallRuleGroup{}
-		group.IsOn = true
+		var group = &HTTPFirewallRuleGroup{}
+		group.IsOn = false
 		group.Name = "Web Shell"
 		group.Code = "webShell"
 		group.Description = "防止远程执行服务器命令"
 		group.IsTemplate = true
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "Web Shell"
 			set.Code = "3001"
@@ -158,14 +158,14 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 	// command injection
 	{
-		group := &HTTPFirewallRuleGroup{}
-		group.IsOn = true
+		var group = &HTTPFirewallRuleGroup{}
+		group.IsOn = false
 		group.Name = "命令注入"
 		group.Code = "commandInjection"
 		group.IsTemplate = true
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "命令注入"
 			set.Code = "4001"
@@ -197,7 +197,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 	// path traversal
 	{
-		group := &HTTPFirewallRuleGroup{}
+		var group = &HTTPFirewallRuleGroup{}
 		group.IsOn = true
 		group.Name = "路径穿越"
 		group.Code = "pathTraversal"
@@ -205,7 +205,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		group.IsTemplate = true
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "路径穿越"
 			set.Code = "5001"
@@ -230,7 +230,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 	// special dirs
 	{
-		group := &HTTPFirewallRuleGroup{}
+		var group = &HTTPFirewallRuleGroup{}
 		group.IsOn = true
 		group.Name = "特殊目录"
 		group.Code = "denyDirs"
@@ -238,7 +238,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		group.IsTemplate = true
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "特殊目录"
 			set.Code = "6001"
@@ -263,15 +263,15 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 	// sql injection
 	{
-		group := &HTTPFirewallRuleGroup{}
-		group.IsOn = true
+		var group = &HTTPFirewallRuleGroup{}
+		group.IsOn = false
 		group.Name = "SQL注入"
 		group.Code = "sqlInjection"
 		group.Description = "防止SQL注入漏洞"
 		group.IsTemplate = true
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "Union SQL Injection"
 			set.Code = "7001"
@@ -294,7 +294,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		}
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = false
 			set.Name = "SQL注释"
 			set.Code = "7002"
@@ -317,7 +317,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		}
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "SQL条件"
 			set.Code = "7003"
@@ -361,7 +361,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		}
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "SQL函数"
 			set.Code = "7004"
@@ -384,7 +384,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		}
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "SQL附加语句"
 			set.Code = "7005"
@@ -411,7 +411,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 	// bot
 	{
-		group := &HTTPFirewallRuleGroup{}
+		var group = &HTTPFirewallRuleGroup{}
 		group.IsOn = true
 		group.Name = "网络爬虫"
 		group.Code = "bot"
@@ -419,7 +419,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		group.IsTemplate = true
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = false
 			set.Name = "搜索引擎"
 			set.Code = "20001"
@@ -442,7 +442,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		}
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "爬虫工具"
 			set.Code = "20003"
@@ -473,7 +473,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		}
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "下载工具"
 			set.Code = "20004"
@@ -499,7 +499,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		}
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "空Agent"
 			set.Code = "20002"
@@ -527,7 +527,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 	// cc2
 	{
-		group := &HTTPFirewallRuleGroup{}
+		var group = &HTTPFirewallRuleGroup{}
 		group.IsOn = true
 		group.Name = "CC攻击"
 		group.Description = "Challenge Collapsar，防止短时间大量请求涌入，请谨慎开启和设置"
@@ -535,7 +535,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		group.IsTemplate = true
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "CC单URL请求数"
 			set.Description = "限制单IP在一定时间内对单URL的请求数"
@@ -594,7 +594,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			group.AddRuleSet(set)
 		}
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "CC请求数"
 			set.Description = "限制单IP在一定时间内的总体请求数"
@@ -654,7 +654,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		}
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "随机URL攻击"
 			set.Description = "限制用户使用随机URL访问网站"
@@ -685,7 +685,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 	// custom
 	{
-		group := &HTTPFirewallRuleGroup{}
+		var group = &HTTPFirewallRuleGroup{}
 		group.IsOn = true
 		group.Name = "防盗链"
 		group.Description = "防止第三方网站引用本站资源。"
@@ -693,7 +693,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		group.IsTemplate = true
 
 		{
-			set := &HTTPFirewallRuleSet{}
+			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
 			set.Name = "防盗链"
 			set.Description = "防止第三方网站引用本站资源"
@@ -729,7 +729,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 
 	// custom
 	{
-		group := &HTTPFirewallRuleGroup{}
+		var group = &HTTPFirewallRuleGroup{}
 		group.IsOn = true
 		group.Name = "自定义规则分组"
 		group.Description = "我的自定义规则分组，可以将自定义的规则放在这个分组下"
