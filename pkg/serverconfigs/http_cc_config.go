@@ -32,8 +32,9 @@ func DefaultHTTPCCConfig() *HTTPCCConfig {
 
 // HTTPCCConfig HTTP CC防护配置
 type HTTPCCConfig struct {
-	IsPrior bool `yaml:"isPrior" json:"isPrior"` // 是否覆盖父级
-	IsOn    bool `yaml:"isOn" json:"isOn"`       // 是否启用
+	IsPrior    bool               `yaml:"isPrior" json:"isPrior"`       // 是否覆盖父级
+	IsOn       bool               `yaml:"isOn" json:"isOn"`             // 是否启用
+	Thresholds []*HTTPCCThreshold `yaml:"thresholds" json:"thresholds"` // 阈值设置
 }
 
 func NewHTTPCCConfig() *HTTPCCConfig {
