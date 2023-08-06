@@ -2,6 +2,11 @@
 
 package serverconfigs
 
+import (
+	"errors"
+	"github.com/iwind/TeaGo/types"
+)
+
 type ProxyProtocolVersion = int
 
 const (
@@ -17,5 +22,11 @@ type ProxyProtocolConfig struct {
 
 // Init 初始化
 func (this *ProxyProtocolConfig) Init() error {
+	if this.IsOn {
+		if this.Version != ProxyProtocolVersion1 && this.Version != ProxyProtocolVersion2 {
+			return errors.New("invalid ProxyProtocol version '" + types.String(this.Version) + "'")
+		}
+	}
+
 	return nil
 }
