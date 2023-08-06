@@ -35,9 +35,9 @@ type CreateHTTPCacheTaskRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Type    string   `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`       // 类型：清理：purge，预热：fetch
-	KeyType string   `protobuf:"bytes,2,opt,name=keyType,proto3" json:"keyType,omitempty"` // Key类型：单个URL：key，目录：prefix；预热的时候只能为 key
-	Keys    []string `protobuf:"bytes,3,rep,name=keys,proto3" json:"keys,omitempty"`       // 要清理的Key
+	Type    string   `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`       // 任务类型，值为 purge 或者 fetch；purge：删除缓存，fetch：预热缓存
+	KeyType string   `protobuf:"bytes,2,opt,name=keyType,proto3" json:"keyType,omitempty"` // Key类型，值为 key 或者 prefix；如果是 key 表示处理的是URL，如果是 prefix 表示处理的是目录；预热的时候只能为 key
+	Keys    []string `protobuf:"bytes,3,rep,name=keys,proto3" json:"keys,omitempty"`       // 要清理的Key，根据Key类型（keyType）来输入不同的内容
 }
 
 func (x *CreateHTTPCacheTaskRequest) Reset() {
@@ -98,8 +98,8 @@ type CreateHTTPCacheTaskResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	HttpCacheTaskId int64 `protobuf:"varint,1,opt,name=httpCacheTaskId,proto3" json:"httpCacheTaskId,omitempty"`
-	CountKeys       int64 `protobuf:"varint,2,opt,name=countKeys,proto3" json:"countKeys,omitempty"`
+	HttpCacheTaskId int64 `protobuf:"varint,1,opt,name=httpCacheTaskId,proto3" json:"httpCacheTaskId,omitempty"` // 生成的任务ID
+	CountKeys       int64 `protobuf:"varint,2,opt,name=countKeys,proto3" json:"countKeys,omitempty"`             // 任务中包含的Key
 }
 
 func (x *CreateHTTPCacheTaskResponse) Reset() {
@@ -232,7 +232,7 @@ type FindEnabledHTTPCacheTaskRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	HttpCacheTaskId int64 `protobuf:"varint,1,opt,name=httpCacheTaskId,proto3" json:"httpCacheTaskId,omitempty"`
+	HttpCacheTaskId int64 `protobuf:"varint,1,opt,name=httpCacheTaskId,proto3" json:"httpCacheTaskId,omitempty"` // 任务ID
 }
 
 func (x *FindEnabledHTTPCacheTaskRequest) Reset() {
@@ -279,7 +279,7 @@ type FindEnabledHTTPCacheTaskResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	HttpCacheTask *HTTPCacheTask `protobuf:"bytes,1,opt,name=httpCacheTask,proto3" json:"httpCacheTask,omitempty"`
+	HttpCacheTask *HTTPCacheTask `protobuf:"bytes,1,opt,name=httpCacheTask,proto3" json:"httpCacheTask,omitempty"` // 任务信息
 }
 
 func (x *FindEnabledHTTPCacheTaskResponse) Reset() {
@@ -327,8 +327,8 @@ type ListHTTPCacheTasksRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Offset int64 `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
-	Size   int64 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	Offset int64 `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"` // 查询起始位置
+	Size   int64 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`     // 查询条数
 }
 
 func (x *ListHTTPCacheTasksRequest) Reset() {
@@ -382,7 +382,7 @@ type ListHTTPCacheTasksResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	HttpCacheTasks []*HTTPCacheTask `protobuf:"bytes,1,rep,name=httpCacheTasks,proto3" json:"httpCacheTasks,omitempty"`
+	HttpCacheTasks []*HTTPCacheTask `protobuf:"bytes,1,rep,name=httpCacheTasks,proto3" json:"httpCacheTasks,omitempty"` // 一组任务信息
 }
 
 func (x *ListHTTPCacheTasksResponse) Reset() {
@@ -430,7 +430,7 @@ type DeleteHTTPCacheTaskRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	HttpCacheTaskId int64 `protobuf:"varint,1,opt,name=httpCacheTaskId,proto3" json:"httpCacheTaskId,omitempty"`
+	HttpCacheTaskId int64 `protobuf:"varint,1,opt,name=httpCacheTaskId,proto3" json:"httpCacheTaskId,omitempty"` // 任务ID
 }
 
 func (x *DeleteHTTPCacheTaskRequest) Reset() {
@@ -478,7 +478,7 @@ type ResetHTTPCacheTaskRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	HttpCacheTaskId int64 `protobuf:"varint,1,opt,name=httpCacheTaskId,proto3" json:"httpCacheTaskId,omitempty"`
+	HttpCacheTaskId int64 `protobuf:"varint,1,opt,name=httpCacheTaskId,proto3" json:"httpCacheTaskId,omitempty"` // 任务ID
 }
 
 func (x *ResetHTTPCacheTaskRequest) Reset() {

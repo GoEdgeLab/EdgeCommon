@@ -14814,12 +14814,12 @@
     },
     {
       "name": "CreateHTTPCacheTaskRequest",
-      "code": "message CreateHTTPCacheTaskRequest {\n\tstring type = 1; // 类型：清理：purge，预热：fetch\n\tstring keyType = 2; // Key类型：单个URL：key，目录：prefix；预热的时候只能为 key\n\trepeated string keys = 3; // 要清理的Key\n}",
+      "code": "message CreateHTTPCacheTaskRequest {\n\tstring type = 1; // 任务类型，值为 purge 或者 fetch；purge：删除缓存，fetch：预热缓存\n\tstring keyType = 2; // Key类型，值为 key 或者 prefix；如果是 key 表示处理的是URL，如果是 prefix 表示处理的是目录；预热的时候只能为 key\n\trepeated string keys = 3; // 要清理的Key，根据Key类型（keyType）来输入不同的内容\n}",
       "doc": "创建任务"
     },
     {
       "name": "CreateHTTPCacheTaskResponse",
-      "code": "message CreateHTTPCacheTaskResponse {\n\tint64 httpCacheTaskId = 1;\n\tint64 countKeys = 2;\n}",
+      "code": "message CreateHTTPCacheTaskResponse {\n\tint64 httpCacheTaskId = 1; // 生成的任务ID\n\tint64 countKeys = 2; // 任务中包含的Key\n}",
       "doc": ""
     },
     {
@@ -15759,7 +15759,7 @@
     },
     {
       "name": "DeleteHTTPCacheTaskRequest",
-      "code": "message DeleteHTTPCacheTaskRequest {\n\tint64 httpCacheTaskId = 1;\n}",
+      "code": "message DeleteHTTPCacheTaskRequest {\n\tint64 httpCacheTaskId = 1; // 任务ID\n}",
       "doc": "删除任务"
     },
     {
@@ -17759,12 +17759,12 @@
     },
     {
       "name": "FindEnabledHTTPCacheTaskRequest",
-      "code": "message FindEnabledHTTPCacheTaskRequest {\n\tint64 httpCacheTaskId = 1;\n}",
+      "code": "message FindEnabledHTTPCacheTaskRequest {\n\tint64 httpCacheTaskId = 1; // 任务ID\n}",
       "doc": "查找单个任务"
     },
     {
       "name": "FindEnabledHTTPCacheTaskResponse",
-      "code": "message FindEnabledHTTPCacheTaskResponse {\n\tHTTPCacheTask httpCacheTask = 1;\n}",
+      "code": "message FindEnabledHTTPCacheTaskResponse {\n\tHTTPCacheTask httpCacheTask = 1; // 任务信息\n}",
       "doc": ""
     },
     {
@@ -20289,12 +20289,12 @@
     },
     {
       "name": "ListHTTPCacheTasksRequest",
-      "code": "message ListHTTPCacheTasksRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n}",
+      "code": "message ListHTTPCacheTasksRequest {\n\tint64 offset = 1; // 查询起始位置\n\tint64 size = 2; // 查询条数\n}",
       "doc": "列出单页任务"
     },
     {
       "name": "ListHTTPCacheTasksResponse",
-      "code": "message ListHTTPCacheTasksResponse {\n\trepeated HTTPCacheTask httpCacheTasks = 1;\n}",
+      "code": "message ListHTTPCacheTasksResponse {\n\trepeated HTTPCacheTask httpCacheTasks = 1; // 一组任务信息\n}",
       "doc": ""
     },
     {
@@ -21184,7 +21184,7 @@
     },
     {
       "name": "ResetHTTPCacheTaskRequest",
-      "code": "message ResetHTTPCacheTaskRequest {\n\tint64 httpCacheTaskId = 1;\n}",
+      "code": "message ResetHTTPCacheTaskRequest {\n\tint64 httpCacheTaskId = 1; // 任务ID\n}",
       "doc": "重置任务状态"
     },
     {
