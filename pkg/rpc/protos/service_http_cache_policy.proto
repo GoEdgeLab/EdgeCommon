@@ -55,6 +55,7 @@ message CreateHTTPCachePolicyRequest {
 	string type = 7;
 	bytes optionsJSON = 8;
 	bool syncCompressionCache = 9;
+	bytes fetchTimeoutJSON = 10; // 预热超时时间
 }
 
 message CreateHTTPCachePolicyResponse {
@@ -72,6 +73,7 @@ message UpdateHTTPCachePolicyRequest {
 	string type = 8;
 	bytes optionsJSON = 9;
 	bool syncCompressionCache = 10;
+	bytes fetchTimeoutJSON = 11; // 预热超时时间
 }
 
 // 删除缓存策略

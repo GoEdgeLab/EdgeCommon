@@ -4,7 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
+	"time"
 )
+
+const DefaultHTTPCachePolicyFetchTimeout = 20 * time.Minute
 
 // HTTPCachePolicy 缓存策略配置
 type HTTPCachePolicy struct {
@@ -15,11 +18,12 @@ type HTTPCachePolicy struct {
 	Capacity             *shared.SizeCapacity   `yaml:"capacity" json:"capacity"`                         // 最大内容容量
 	MaxSize              *shared.SizeCapacity   `yaml:"maxSize" json:"maxSize"`                           // 单个缓存最大尺寸
 	Type                 CachePolicyStorageType `yaml:"type" json:"type"`                                 // 类型
-	Options              map[string]interface{} `yaml:"options" json:"options"`                           // 选项
+	Options              map[string]any         `yaml:"options" json:"options"`                           // 选项
 	Life                 *shared.TimeDuration   `yaml:"life" json:"life"`                                 // 默认有效期 TODO 需要实现
 	MinLife              *shared.TimeDuration   `yaml:"minLife" json:"minLife"`                           // 最小有效期 TODO 需要实现
 	MaxLife              *shared.TimeDuration   `yaml:"maxLife" json:"maxLife"`                           // 最大有效期 TODO 需要实现
 	SyncCompressionCache bool                   `yaml:"syncCompressionCache" json:"syncCompressionCache"` // 同步写入压缩缓存
+	FetchTimeout         *shared.TimeDuration   `yaml:"fetchTimeout" json:"fetchTimeout"`                 // 预热超时时间
 
 	CacheRefs []*HTTPCacheRef `yaml:"cacheRefs" json:"cacheRefs"` // 缓存配置
 

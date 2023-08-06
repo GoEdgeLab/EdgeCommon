@@ -14804,7 +14804,7 @@
     },
     {
       "name": "CreateHTTPCachePolicyRequest",
-      "code": "message CreateHTTPCachePolicyRequest {\n\tbool isOn = 1;\n\tstring name = 2;\n\tstring description = 3;\n\tbytes capacityJSON = 4;\n\tbytes maxSizeJSON = 6;\n\tstring type = 7;\n\tbytes optionsJSON = 8;\n\tbool syncCompressionCache = 9;\n}",
+      "code": "message CreateHTTPCachePolicyRequest {\n\tbool isOn = 1;\n\tstring name = 2;\n\tstring description = 3;\n\tbytes capacityJSON = 4;\n\tbytes maxSizeJSON = 6;\n\tstring type = 7;\n\tbytes optionsJSON = 8;\n\tbool syncCompressionCache = 9;\n\tbytes fetchTimeoutJSON = 10; // 预热超时时间\n}",
       "doc": "创建缓存策略"
     },
     {
@@ -21639,7 +21639,7 @@
     },
     {
       "name": "UpdateHTTPCachePolicyRequest",
-      "code": "message UpdateHTTPCachePolicyRequest {\n\tint64 httpCachePolicyId = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring description = 4;\n\tbytes capacityJSON = 5;\n\tbytes maxSizeJSON = 7;\n\tstring type = 8;\n\tbytes optionsJSON = 9;\n\tbool syncCompressionCache = 10;\n}",
+      "code": "message UpdateHTTPCachePolicyRequest {\n\tint64 httpCachePolicyId = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring description = 4;\n\tbytes capacityJSON = 5;\n\tbytes maxSizeJSON = 7;\n\tstring type = 8;\n\tbytes optionsJSON = 9;\n\tbool syncCompressionCache = 10;\n\tbytes fetchTimeoutJSON = 11; // 预热超时时间\n}",
       "doc": "修改缓存策略"
     },
     {
