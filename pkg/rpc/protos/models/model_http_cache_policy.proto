@@ -4,7 +4,8 @@ option go_package = "./pb";
 package pb;
 
 message HTTPCachePolicy {
-	int64 id = 1;
-	string name = 2;
-	bool isOn = 3;
+	int64 id = 1; // ID
+	string name = 2; // 名称
+	bool isOn = 3; // 是否启用
+	bytes maxBytesJSON = 4; // 内容最大尺寸配置
 }

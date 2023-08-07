@@ -19809,7 +19809,7 @@
     },
     {
       "name": "HTTPCachePolicy",
-      "code": "message HTTPCachePolicy {\n\tint64 id = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n}",
+      "code": "message HTTPCachePolicy {\n\tint64 id = 1; // ID\n\tstring name = 2; // 名称\n\tbool isOn = 3; // 是否启用\n\tbytes maxBytesJSON = 4; // 内容最大尺寸配置\n}",
       "doc": ""
     },
     {
