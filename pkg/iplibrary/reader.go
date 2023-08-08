@@ -46,7 +46,7 @@ func NewReader(reader io.Reader) (*Reader, error) {
 // 从Reader中加载数据
 func (this *Reader) load(reader io.Reader) error {
 	var buf = make([]byte, 1024)
-	var metaLine = []byte{}
+	var metaLine []byte
 	var metaLineFound = false
 	var dataBuf = []byte{}
 	for {

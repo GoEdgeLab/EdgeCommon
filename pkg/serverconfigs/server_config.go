@@ -271,7 +271,7 @@ func (this *ServerConfig) Init(ctx context.Context) (results []error) {
 
 	this.isOk = true
 
-	return nil
+	return
 }
 
 func (this *ServerConfig) IsInitialized() bool {

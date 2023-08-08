@@ -252,7 +252,7 @@ func (this *SSLPolicy) certIsEqual(cert1 tls.Certificate, cert2 tls.Certificate)
 	}
 
 	for index, b := range b1 {
-		if bytes.Compare(b, b2[index]) != 0 {
+		if !bytes.Equal(b, b2[index]) {
 			return false
 		}
 	}

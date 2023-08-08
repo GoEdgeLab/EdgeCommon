@@ -52,7 +52,7 @@ func (this *RoundRobinScheduling) Next(call *shared.RequestCall) CandidateInterf
 	if this.index > this.count-1 {
 		this.index = 0
 	}
-	weight := this.currentWeights[this.index]
+	var weight = this.currentWeights[this.index]
 
 	// 已经一轮了，则重置状态
 	if weight == 0 {
@@ -60,11 +60,10 @@ func (this *RoundRobinScheduling) Next(call *shared.RequestCall) CandidateInterf
 			this.currentWeights = append([]uint{}, this.rawWeights...)
 		}
 		this.index = 0
-		weight = this.currentWeights[this.index]
 	}
 
 	c := this.Candidates[this.index]
-	this.currentWeights[this.index] --
+	this.currentWeights[this.index]--
 	this.index++
 	return c
 }

@@ -20,7 +20,7 @@ type MetricItemConfig struct {
 	Version       int32                `yaml:"version" json:"version"`
 	ExpiresPeriod int                  `yaml:"expiresPeriod" json:"expiresPeriod"` // 过期周期
 
-	sumType                string    // 统计类型
+	//sumType                string    // 统计类型
 	baseTime               time.Time // 基准时间
 	hasHTTPConnectionValue bool      // 是否有统计HTTP连接数的数值
 }

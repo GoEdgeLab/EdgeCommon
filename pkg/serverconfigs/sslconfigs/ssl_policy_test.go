@@ -3,6 +3,7 @@
 package sslconfigs_test
 
 import (
+	"context"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/sslconfigs"
 	"github.com/iwind/TeaGo/assert"
 	"testing"
@@ -120,7 +121,7 @@ Z3NIV2eNt6YBwkC69DzdazXT
 		OCSPExpiresAt: nowTime + 2,
 	})
 
-	err := policy.Init(nil)
+	err := policy.Init(context.TODO())
 	if err != nil {
 		t.Fatal(err)
 	}

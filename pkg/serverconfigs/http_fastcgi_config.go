@@ -2,8 +2,10 @@ package serverconfigs
 
 import (
 	"errors"
+	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/maps"
+	"net"
 	"path/filepath"
 	"regexp"
 	"time"
@@ -60,11 +62,11 @@ func (this *HTTPFastcgiConfig) Init() error {
 	}
 
 	// 校验地址
-	if regexp.MustCompile("^\\d+$").MatchString(this.Address) {
+	if regexp.MustCompile(`^\d+$`).MatchString(this.Address) {
 		this.network = "tcp"
 		this.address = "127.0.0.1:" + this.Address
-	} else if regexp.MustCompile("^(.*):(\\d+)$").MatchString(this.Address) {
-		matches := regexp.MustCompile("^(.*):(\\d+)$").FindStringSubmatch(this.Address)
+	} else if regexp.MustCompile(`^(.*):(\d+)$`).MatchString(this.Address) {
+		var matches = regexp.MustCompile(`^(.*):(\d+)$`).FindStringSubmatch(this.Address)
 		ip := matches[1]
 		port := matches[2]
 		if len(ip) == 0 {
@@ -72,9 +74,9 @@ func (this *HTTPFastcgiConfig) Init() error {
 		}
 		this.network = "tcp"
 		this.address = ip + ":" + port
-	} else if regexp.MustCompile("^\\d+\\.\\d+.\\d+.\\d+$").MatchString(this.Address) {
+	} else if net.ParseIP(this.address) != nil {
 		this.network = "tcp"
-		this.address = this.Address + ":9000"
+		this.address = configutils.QuoteIP(this.Address) + ":9000"
 	} else if regexp.MustCompile("^unix:(.+)$").MatchString(this.Address) {
 		matches := regexp.MustCompile("^unix:(.+)$").FindStringSubmatch(this.Address)
 		path := matches[1]

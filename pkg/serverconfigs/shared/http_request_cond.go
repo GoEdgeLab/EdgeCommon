@@ -214,12 +214,12 @@ func (this *HTTPRequestCond) match(formatter func(source string) string) bool {
 		return types.Int64(paramValue)%100 == types.Int64(this.Value)
 	case RequestCondOperatorEqString:
 		if this.IsCaseInsensitive {
-			return strings.ToUpper(paramValue) == strings.ToUpper(this.Value)
+			return strings.EqualFold(paramValue, this.Value)
 		}
 		return paramValue == this.Value
 	case RequestCondOperatorNeqString:
 		if this.IsCaseInsensitive {
-			return strings.ToUpper(paramValue) != strings.ToUpper(this.Value)
+			return !strings.EqualFold(paramValue, this.Value)
 		}
 		return paramValue != this.Value
 	case RequestCondOperatorHasPrefix:
@@ -243,11 +243,11 @@ func (this *HTTPRequestCond) match(formatter func(source string) string) bool {
 		}
 		return !strings.Contains(paramValue, this.Value)
 	case RequestCondOperatorEqIP:
-		ip := net.ParseIP(paramValue)
+		var ip = net.ParseIP(paramValue)
 		if ip == nil {
 			return false
 		}
-		return this.isIP && bytes.Compare(this.ipValue, ip) == 0
+		return this.isIP && ip.Equal(this.ipValue)
 	case RequestCondOperatorGtIP:
 		ip := net.ParseIP(paramValue)
 		if ip == nil {

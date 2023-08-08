@@ -9,5 +9,5 @@ var (
 	RegexpAllDigitNumber = regexp.MustCompile(`^[+-]?\d+$`)               // 整数，支持正负数
 	RegexpAllFloatNumber = regexp.MustCompile(`^[+-]?\d+(\.\d+)?$`)       // 浮点数，支持正负数，不支持e
 	RegexpExternalURL    = regexp.MustCompile("(?i)^(http|https|ftp)://") // URL
-	RegexpNamedVariable  = regexp.MustCompile("\\${[\\w.-]+}")            // 命名变量
+	RegexpNamedVariable  = regexp.MustCompile(`\${[\w.-]+}`)            // 命名变量
 )

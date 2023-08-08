@@ -1,6 +1,9 @@
 package serverconfigs
 
-import "testing"
+import (
+	"context"
+	"testing"
+)
 
 func TestServerConfig_Protocols(t *testing.T) {
 	{
@@ -65,7 +68,7 @@ func TestServerConfig_Protocols(t *testing.T) {
 				},
 			},
 		}}
-		err := server.Init(nil)
+		err := server.Init(context.TODO())
 		if err != nil {
 			t.Fatal(err)
 		}

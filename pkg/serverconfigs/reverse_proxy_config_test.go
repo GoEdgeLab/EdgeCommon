@@ -3,6 +3,7 @@
 package serverconfigs
 
 import (
+	"context"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"testing"
 )
@@ -30,7 +31,7 @@ func TestReverseProxyConfig_Init(t *testing.T) {
 		Addr: &NetworkAddressConfig{Host: "127.0.0.4"},
 		IsOn: true,
 	})
-	err := config.Init(nil)
+	err := config.Init(context.TODO())
 	if err != nil {
 		t.Fatal(err)
 	}

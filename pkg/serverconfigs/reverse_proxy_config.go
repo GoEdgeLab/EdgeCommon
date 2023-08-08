@@ -53,9 +53,9 @@ type ReverseProxyConfig struct {
 	schedulingGroupMap map[string]*SchedulingGroup // domain => *SchedulingGroup
 	schedulingLocker   sync.RWMutex
 
-	addXRealIPHeader         bool
-	addXForwardedForHeader   bool
-	addForwardedHeader       bool
+	addXRealIPHeader       bool
+	addXForwardedForHeader bool
+	//addForwardedHeader       bool
 	addXForwardedByHeader    bool
 	addXForwardedHostHeader  bool
 	addXForwardedProtoHeader bool
@@ -131,12 +131,8 @@ func (this *ReverseProxyConfig) Init(ctx context.Context) error {
 				if domain == "" {
 					continue
 				}
-				for _, origin := range defaultGroup.PrimaryOrigins {
-					group.PrimaryOrigins = append(group.PrimaryOrigins, origin)
-				}
-				for _, origin := range defaultGroup.BackupOrigins {
-					group.BackupOrigins = append(group.BackupOrigins, origin)
-				}
+				group.PrimaryOrigins = append(group.PrimaryOrigins, defaultGroup.PrimaryOrigins...)
+				group.BackupOrigins = append(group.BackupOrigins, defaultGroup.BackupOrigins...)
 			}
 		}
 	}

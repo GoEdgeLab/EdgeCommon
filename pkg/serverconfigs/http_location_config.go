@@ -301,13 +301,13 @@ func (this *HTTPLocationConfig) Match(path string, formatter func(source string)
 	if this.patternType == HTTPLocationPatternTypeExact {
 		if this.reverse {
 			if this.caseInsensitive {
-				return nil, strings.ToLower(path) != strings.ToLower(this.path)
+				return nil, !strings.EqualFold(path, this.path)
 			} else {
 				return nil, path != this.path
 			}
 		} else {
 			if this.caseInsensitive {
-				return nil, strings.ToLower(path) == strings.ToLower(this.path)
+				return nil, strings.EqualFold(path, this.path)
 			} else {
 				return nil, path == this.path
 			}

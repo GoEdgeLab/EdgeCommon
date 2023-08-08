@@ -304,7 +304,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 				RightLabel:  "秒",
 				MaxLength:   8,
 				Validate: func(value string) (ok bool, message string) {
-					if regexp.MustCompile("^\\d+$").MatchString(value) {
+					if regexp.MustCompile(`^\d+$`).MatchString(value) {
 						ok = true
 						return
 					}

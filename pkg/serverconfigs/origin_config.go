@@ -66,8 +66,8 @@ type OriginConfig struct {
 	requestPath   string
 	requestArgs   string
 
-	hasRequestHeaders  bool
-	hasResponseHeaders bool
+	//hasRequestHeaders  bool
+	//hasResponseHeaders bool
 
 	uniqueKey string
 

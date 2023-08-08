@@ -13,7 +13,7 @@ import (
 
 type FileReader struct {
 	rawReader *Reader
-	password  string
+	//password  string
 }
 
 func NewFileReader(path string, password string) (*FileReader, error) {
