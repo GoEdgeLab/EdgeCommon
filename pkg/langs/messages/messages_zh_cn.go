@@ -235,7 +235,7 @@ func init() {
 		"message_media_instance@log_create_message_media_instance":            "创建消息媒介 %d",
 		"message_media_instance@log_delete_message_media_instance":            "删除消息媒介 %d",
 		"message_media_instance@log_update_message_media_instance":            "修改消息媒介 %d",
-		"message_reciever@log_update_cluster_message_receivers":               "修改集群 %d 消息接收人",
+		"message_receiver@log_update_cluster_message_receivers":               "修改集群 %d 消息接收人",
 		"message_recipient@log_create_message_recipient":                      "创建媒介接收人 %d",
 		"message_recipient@log_delete_message_recipient":                      "删除媒介接收人 %d",
 		"message_recipient@log_update_message_recipient":                      "修改媒介接收人 %d",
