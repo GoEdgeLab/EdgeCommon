@@ -2,7 +2,7 @@ package firewallconfigs
 
 import "encoding/json"
 
-const DefaultMaxRequestBodySize int64 = 1 << 20
+const DefaultMaxRequestBodySize int64 = 512 << 10
 
 // HTTPFirewallPolicy 防火墙策略
 type HTTPFirewallPolicy struct {
