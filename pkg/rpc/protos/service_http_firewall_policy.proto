@@ -102,6 +102,8 @@ message UpdateHTTPFirewallPolicyRequest {
 	bytes synFloodJSON = 9; // SYN Flood相关配置
 	bytes LogJSON = 10; // 日志相关配置
 	int64 maxRequestBodySize = 12; // 最大文件尺寸，单位为字节
+	string denyCountryHTML = 13; // 区域封禁提示
+	string denyProvinceHTML = 14; // 省份封禁提示
 }
 
 // 修改分组信息

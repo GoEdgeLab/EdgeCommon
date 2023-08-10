@@ -19,6 +19,8 @@ type HTTPFirewallPolicy struct {
 	SYNFlood           *SYNFloodConfig              `yaml:"synFlood" json:"synFlood"`
 	Log                *HTTPFirewallPolicyLogConfig `yaml:"log" json:"log"`                               // 强制记录日志
 	MaxRequestBodySize int64                        `yaml:"maxRequestBodySize" json:"maxRequestBodySize"` // 读取的请求最大尺寸
+	DenyCountryHTML    string                       `yaml:"denyCountryHTML" json:"denyCountryHTML"`       // 默认地区禁用提示
+	DenyProvinceHTML   string                       `yaml:"denyProvinceHTML" json:"denyProvinceHTML"`     // 默认省份禁用提示
 }
 
 // Init 初始化
