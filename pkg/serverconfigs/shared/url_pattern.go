@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"errors"
+	"fmt"
 	"regexp"
 	"strings"
 )
@@ -50,7 +50,7 @@ func (this *URLPattern) Init() error {
 		}
 		reg, err := regexp.Compile(pattern)
 		if err != nil {
-			return errors.New("compile '" + pattern + "' failed: " + err.Error())
+			return fmt.Errorf("compile '%s' failed: %w", pattern, err)
 		}
 		this.reg = reg
 	}
