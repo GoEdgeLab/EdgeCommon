@@ -5,7 +5,7 @@ package iplibrary
 import (
 	"bytes"
 	"compress/gzip"
-	"errors"
+	"fmt"
 	"io"
 	"net"
 	"os"
@@ -45,7 +45,7 @@ func NewFileDataReader(dataReader io.Reader, password string) (*FileReader, erro
 
 	gzReader, err := gzip.NewReader(dataReader)
 	if err != nil {
-		return nil, errors.New("create gzip reader failed: " + err.Error())
+		return nil, fmt.Errorf("create gzip reader failed: %w", err)
 	}
 
 	reader, err := NewReader(gzReader)

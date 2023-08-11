@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/iwind/TeaGo/maps"
 	"time"
 )
@@ -26,7 +27,7 @@ func EncryptMap(nodeUniqueId string, nodeSecret string, data maps.Map, timeout i
 		"data":      data,
 	})
 	if err != nil {
-		return "", errors.New("marshal data to json failed: " + err.Error())
+		return "", fmt.Errorf("marshal data to json failed: %w", err)
 	}
 
 	var method = &AES256CFBMethod{}
@@ -52,7 +53,7 @@ func DecryptMap(nodeUniqueId string, nodeSecret string, encodedString string) (m
 
 	encodedData, err := base64.StdEncoding.DecodeString(encodedString)
 	if err != nil {
-		return nil, errors.New("base64 decode failed: " + err.Error())
+		return nil, fmt.Errorf("base64 decode failed: %w", err)
 	}
 
 	dataJSON, err := method.Decrypt(encodedData)
@@ -63,7 +64,7 @@ func DecryptMap(nodeUniqueId string, nodeSecret string, encodedString string) (m
 	var result = maps.Map{}
 	err = json.Unmarshal(dataJSON, &result)
 	if err != nil {
-		return nil, errors.New("unmarshal data failed: " + err.Error())
+		return nil, fmt.Errorf("unmarshal data failed: %w", err)
 	}
 
 	var expiresAt = result.GetInt64("expiresAt")
@@ -107,7 +108,7 @@ func DecryptData(nodeUniqueId string, nodeSecret string, encodedString string) (
 
 	encodedData, err := base64.StdEncoding.DecodeString(encodedString)
 	if err != nil {
-		return nil, errors.New("base64 decode failed: " + err.Error())
+		return nil, fmt.Errorf("base64 decode failed: %w", err)
 	}
 
 	return method.Decrypt(encodedData)

@@ -4,6 +4,7 @@ package langs
 
 import (
 	"errors"
+	"fmt"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"strings"
 )
@@ -51,7 +52,7 @@ func (this *Lang) Compile() error {
 	for code, oldMessage := range this.messageMap {
 		message, err := this.get(code, 0)
 		if err != nil {
-			return errors.New("compile '" + string(code) + "': '" + oldMessage + "' failed: " + err.Error())
+			return fmt.Errorf("compile '%s': '%s' failed: %w", string(code), oldMessage, err)
 		}
 		this.messageMap[code] = message
 	}

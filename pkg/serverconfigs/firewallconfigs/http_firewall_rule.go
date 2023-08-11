@@ -1,7 +1,7 @@
 package firewallconfigs
 
 import (
-	"errors"
+	"fmt"
 	"regexp"
 	"strings"
 )
@@ -28,12 +28,12 @@ func (this *HTTPFirewallRule) Init() error {
 	case HTTPFirewallRuleOperatorMatch:
 		_, err := regexp.Compile(this.Value)
 		if err != nil {
-			return errors.New("regexp validate failed: " + err.Error() + ", expression: " + this.Value)
+			return fmt.Errorf("regexp validate failed: %w, expression: %s", err, this.Value)
 		}
 	case HTTPFirewallRuleOperatorNotMatch:
 		_, err := regexp.Compile(this.Value)
 		if err != nil {
-			return errors.New("regexp validate failed: " + err.Error() + ", expression: " + this.Value)
+			return fmt.Errorf("regexp validate failed: %w, expression: %s", err, this.Value)
 		}
 	}
 

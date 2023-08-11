@@ -4,6 +4,7 @@ package iplibrary
 
 import (
 	"errors"
+	"fmt"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"io"
@@ -76,7 +77,7 @@ func (this *Updater) Init() error {
 			return nil
 		}
 
-		return errors.New("read ip library file failed '" + err.Error() + "'")
+		return fmt.Errorf("read ip library file failed '%w'", err)
 	}
 	defer func() {
 		_ = fp.Close()
@@ -167,7 +168,7 @@ func (this *Updater) Loop() error {
 	// write to file
 	fp, err := os.OpenFile(path, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0666)
 	if err != nil {
-		return errors.New("create ip library file failed: " + err.Error())
+		return fmt.Errorf("create ip library file failed: %w", err)
 	}
 
 	var isOk = false
@@ -195,7 +196,7 @@ func (this *Updater) Loop() error {
 	err = this.loadFile(fp)
 	_ = fp.Close()
 	if err != nil {
-		return errors.New("load file failed: " + err.Error())
+		return fmt.Errorf("load file failed: %w", err)
 	}
 
 	isOk = true
@@ -215,7 +216,7 @@ func (this *Updater) loadFile(fp *os.File) error {
 
 	fileReader, err := NewFileDataReader(fp, "")
 	if err != nil {
-		return errors.New("load ip library from reader failed: " + err.Error())
+		return fmt.Errorf("load ip library from reader failed: %w", err)
 	}
 
 	var reader = fileReader.RawReader()
@@ -227,7 +228,7 @@ func (this *Updater) loadFile(fp *os.File) error {
 func (this *Updater) createDefaultFile(sourcePath string, dir string) error {
 	sourceFp, err := os.Open(sourcePath)
 	if err != nil {
-		return errors.New("prepare to copy file to 'ip-library.db' failed: " + err.Error())
+		return fmt.Errorf("prepare to copy file to 'ip-library.db' failed: %w", err)
 	}
 	defer func() {
 		_ = sourceFp.Close()
@@ -235,14 +236,14 @@ func (this *Updater) createDefaultFile(sourcePath string, dir string) error {
 
 	dstFp, err := os.Create(dir + "/ip-library.db")
 	if err != nil {
-		return errors.New("prepare to copy file to 'ip-library.db' failed: " + err.Error())
+		return fmt.Errorf("prepare to copy file to 'ip-library.db' failed: %w", err)
 	}
 	defer func() {
 		_ = dstFp.Close()
 	}()
 	_, err = io.Copy(dstFp, sourceFp)
 	if err != nil {
-		return errors.New("copy file to 'ip-library.db' failed: " + err.Error())
+		return fmt.Errorf("copy file to 'ip-library.db' failed: %w", err)
 	}
 	return nil
 }

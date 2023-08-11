@@ -6,6 +6,7 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"errors"
+	"fmt"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"github.com/iwind/TeaGo/lists"
@@ -112,7 +113,7 @@ func (this *SSLCertConfig) Init(ctx context.Context) error {
 	} else { // 证书+私钥
 		cert, err := tls.X509KeyPair(this.CertData, this.KeyData)
 		if err != nil {
-			return errors.New("load certificate '" + strconv.FormatInt(this.Id, 10) + "' failed:" + err.Error())
+			return fmt.Errorf("load certificate '%s' failed: %w", strconv.FormatInt(this.Id, 10), err)
 		}
 
 		for index, data := range cert.Certificate {
