@@ -55,42 +55,6 @@ type RuleOperatorDefinition struct {
 
 var AllRuleOperators = []*RuleOperatorDefinition{
 	{
-		Name:            "数值大于",
-		Code:            HTTPFirewallRuleOperatorGt,
-		Description:     "使用数值对比大于，对比值需要是一个数字",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
-	},
-	{
-		Name:            "数值大于等于",
-		Code:            HTTPFirewallRuleOperatorGte,
-		Description:     "使用数值对比大于等于，对比值需要是一个数字",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
-	},
-	{
-		Name:            "数值小于",
-		Code:            HTTPFirewallRuleOperatorLt,
-		Description:     "使用数值对比小于，对比值需要是一个数字",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
-	},
-	{
-		Name:            "数值小于等于",
-		Code:            HTTPFirewallRuleOperatorLte,
-		Description:     "使用数值对比小于等于，对比值需要是一个数字",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
-	},
-	{
-		Name:            "数值等于",
-		Code:            HTTPFirewallRuleOperatorEq,
-		Description:     "使用数值对比等于，对比值需要是一个数字",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
-	},
-	{
-		Name:            "数值不等于",
-		Code:            HTTPFirewallRuleOperatorNeq,
-		Description:     "使用数值对比不等于，对比值需要是一个数字",
-		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
-	},
-	{
 		Name:            "字符串等于",
 		Code:            HTTPFirewallRuleOperatorEqString,
 		Description:     "使用字符串对比等于",
@@ -161,6 +125,42 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 		Code:            HTTPFirewallRuleOperatorNotContainsBinary,
 		Description:     "不包含一组二进制数据",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+	},
+	{
+		Name:            "数值大于",
+		Code:            HTTPFirewallRuleOperatorGt,
+		Description:     "使用数值对比大于，对比值需要是一个数字",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
+	},
+	{
+		Name:            "数值大于等于",
+		Code:            HTTPFirewallRuleOperatorGte,
+		Description:     "使用数值对比大于等于，对比值需要是一个数字",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
+	},
+	{
+		Name:            "数值小于",
+		Code:            HTTPFirewallRuleOperatorLt,
+		Description:     "使用数值对比小于，对比值需要是一个数字",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
+	},
+	{
+		Name:            "数值小于等于",
+		Code:            HTTPFirewallRuleOperatorLte,
+		Description:     "使用数值对比小于等于，对比值需要是一个数字",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
+	},
+	{
+		Name:            "数值等于",
+		Code:            HTTPFirewallRuleOperatorEq,
+		Description:     "使用数值对比等于，对比值需要是一个数字",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
+	},
+	{
+		Name:            "数值不等于",
+		Code:            HTTPFirewallRuleOperatorNeq,
+		Description:     "使用数值对比不等于，对比值需要是一个数字",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 	},
 	{
 		Name:            "包含索引",
