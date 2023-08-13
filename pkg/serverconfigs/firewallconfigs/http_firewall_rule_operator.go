@@ -4,26 +4,28 @@ type HTTPFirewallRuleOperator = string
 type HTTPFirewallRuleCaseInsensitive = string
 
 const (
-	HTTPFirewallRuleOperatorGt           HTTPFirewallRuleOperator = "gt"
-	HTTPFirewallRuleOperatorGte          HTTPFirewallRuleOperator = "gte"
-	HTTPFirewallRuleOperatorLt           HTTPFirewallRuleOperator = "lt"
-	HTTPFirewallRuleOperatorLte          HTTPFirewallRuleOperator = "lte"
-	HTTPFirewallRuleOperatorEq           HTTPFirewallRuleOperator = "eq"
-	HTTPFirewallRuleOperatorNeq          HTTPFirewallRuleOperator = "neq"
-	HTTPFirewallRuleOperatorEqString     HTTPFirewallRuleOperator = "eq string"
-	HTTPFirewallRuleOperatorNeqString    HTTPFirewallRuleOperator = "neq string"
-	HTTPFirewallRuleOperatorMatch        HTTPFirewallRuleOperator = "match"
-	HTTPFirewallRuleOperatorNotMatch     HTTPFirewallRuleOperator = "not match"
-	HTTPFirewallRuleOperatorContains     HTTPFirewallRuleOperator = "contains"
-	HTTPFirewallRuleOperatorNotContains  HTTPFirewallRuleOperator = "not contains"
-	HTTPFirewallRuleOperatorPrefix       HTTPFirewallRuleOperator = "prefix"
-	HTTPFirewallRuleOperatorSuffix       HTTPFirewallRuleOperator = "suffix"
-	HTTPFirewallRuleOperatorContainsAny  HTTPFirewallRuleOperator = "contains any"
-	HTTPFirewallRuleOperatorContainsAll  HTTPFirewallRuleOperator = "contains all"
-	HTTPFirewallRuleOperatorHasKey       HTTPFirewallRuleOperator = "has key" // has key in slice or map
-	HTTPFirewallRuleOperatorVersionGt    HTTPFirewallRuleOperator = "version gt"
-	HTTPFirewallRuleOperatorVersionLt    HTTPFirewallRuleOperator = "version lt"
-	HTTPFirewallRuleOperatorVersionRange HTTPFirewallRuleOperator = "version range"
+	HTTPFirewallRuleOperatorGt               HTTPFirewallRuleOperator = "gt"
+	HTTPFirewallRuleOperatorGte              HTTPFirewallRuleOperator = "gte"
+	HTTPFirewallRuleOperatorLt               HTTPFirewallRuleOperator = "lt"
+	HTTPFirewallRuleOperatorLte              HTTPFirewallRuleOperator = "lte"
+	HTTPFirewallRuleOperatorEq               HTTPFirewallRuleOperator = "eq"
+	HTTPFirewallRuleOperatorNeq              HTTPFirewallRuleOperator = "neq"
+	HTTPFirewallRuleOperatorEqString         HTTPFirewallRuleOperator = "eq string"
+	HTTPFirewallRuleOperatorNeqString        HTTPFirewallRuleOperator = "neq string"
+	HTTPFirewallRuleOperatorMatch            HTTPFirewallRuleOperator = "match"
+	HTTPFirewallRuleOperatorNotMatch         HTTPFirewallRuleOperator = "not match"
+	HTTPFirewallRuleOperatorWildcardMatch    HTTPFirewallRuleOperator = "wildcard match"
+	HTTPFirewallRuleOperatorWildcardNotMatch HTTPFirewallRuleOperator = "wildcard not match"
+	HTTPFirewallRuleOperatorContains         HTTPFirewallRuleOperator = "contains"
+	HTTPFirewallRuleOperatorNotContains      HTTPFirewallRuleOperator = "not contains"
+	HTTPFirewallRuleOperatorPrefix           HTTPFirewallRuleOperator = "prefix"
+	HTTPFirewallRuleOperatorSuffix           HTTPFirewallRuleOperator = "suffix"
+	HTTPFirewallRuleOperatorContainsAny      HTTPFirewallRuleOperator = "contains any"
+	HTTPFirewallRuleOperatorContainsAll      HTTPFirewallRuleOperator = "contains all"
+	HTTPFirewallRuleOperatorHasKey           HTTPFirewallRuleOperator = "has key" // has key in slice or map
+	HTTPFirewallRuleOperatorVersionGt        HTTPFirewallRuleOperator = "version gt"
+	HTTPFirewallRuleOperatorVersionLt        HTTPFirewallRuleOperator = "version lt"
+	HTTPFirewallRuleOperatorVersionRange     HTTPFirewallRuleOperator = "version range"
 
 	HTTPFirewallRuleOperatorContainsBinary    HTTPFirewallRuleOperator = "contains binary"     // contains binary
 	HTTPFirewallRuleOperatorNotContainsBinary HTTPFirewallRuleOperator = "not contains binary" // not contains binary
@@ -58,140 +60,154 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 	{
 		Name:            "正则匹配",
 		Code:            HTTPFirewallRuleOperatorMatch,
-		Description:     "使用正则表达式匹配，在头部使用(?i)表示不区分大小写，<a href=\"https://goedge.cn/docs/Appendix/Regexp/Index.md\" target=\"_blank\">正则表达式语法 &raquo;</a>",
+		Description:     "使用正则表达式匹配，在头部使用(?i)表示不区分大小写，<a href=\"https://goedge.cn/docs/Appendix/Regexp/Index.md\" target=\"_blank\">正则表达式语法 &raquo;</a>。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveYes,
 		DataType:        "regexp",
 	},
 	{
 		Name:            "正则不匹配",
 		Code:            HTTPFirewallRuleOperatorNotMatch,
-		Description:     "使用正则表达式不匹配，在头部使用(?i)表示不区分大小写，<a href=\"https://goedge.cn/docs/Appendix/Regexp/Index.md\" target=\"_blank\">正则表达式语法 &raquo;</a>",
+		Description:     "使用正则表达式不匹配，在头部使用(?i)表示不区分大小写，<a href=\"https://goedge.cn/docs/Appendix/Regexp/Index.md\" target=\"_blank\">正则表达式语法 &raquo;</a>。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveYes,
 		DataType:        "regexp",
 	},
 	{
+		Name:            "通配符匹配",
+		Code:            HTTPFirewallRuleOperatorWildcardMatch,
+		Description:     "判断是否和指定的通配符匹配，可以在对比值中使用星号通配符（*）表示任意字符。",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveYes,
+		DataType:        "wildcard",
+	},
+	{
+		Name:            "通配符不匹配",
+		Code:            HTTPFirewallRuleOperatorWildcardNotMatch,
+		Description:     "判断是否和指定的通配符不匹配，可以在对比值中使用星号通配符（*）表示任意字符。",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveYes,
+		DataType:        "wildcard",
+	},
+	{
 		Name:            "字符串等于",
 		Code:            HTTPFirewallRuleOperatorEqString,
-		Description:     "使用字符串对比等于",
+		Description:     "使用字符串对比等于。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 		DataType:        "string",
 	},
 	{
 		Name:            "字符串不等于",
 		Code:            HTTPFirewallRuleOperatorNeqString,
-		Description:     "使用字符串对比不等于",
+		Description:     "使用字符串对比不等于。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 		DataType:        "string",
 	},
 	{
 		Name:            "包含字符串",
 		Code:            HTTPFirewallRuleOperatorContains,
-		Description:     "包含某个字符串，比如Hello World包含了World",
+		Description:     "包含某个字符串，比如Hello World包含了World。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 		DataType:        "string",
 	},
 	{
 		Name:            "不包含字符串",
 		Code:            HTTPFirewallRuleOperatorNotContains,
-		Description:     "不包含某个字符串，比如Hello字符串中不包含Hi",
+		Description:     "不包含某个字符串，比如Hello字符串中不包含Hi。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 		DataType:        "string",
 	},
 	{
 		Name:            "包含任一字符串",
 		Code:            HTTPFirewallRuleOperatorContainsAny,
-		Description:     "包含字符串列表中的任意一个，比如/hello/world包含/hello和/hi中的/hello，对比值中每行一个字符串",
+		Description:     "包含字符串列表中的任意一个，比如/hello/world包含/hello和/hi中的/hello，对比值中每行一个字符串。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 		DataType:        "strings",
 	},
 	{
 		Name:            "包含所有字符串",
 		Code:            HTTPFirewallRuleOperatorContainsAll,
-		Description:     "包含字符串列表中的所有字符串，比如/hello/world必须包含/hello和/world，对比值中每行一个字符串",
+		Description:     "包含字符串列表中的所有字符串，比如/hello/world必须包含/hello和/world，对比值中每行一个字符串。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 		DataType:        "strings",
 	},
 	{
 		Name:            "包含前缀",
 		Code:            HTTPFirewallRuleOperatorPrefix,
-		Description:     "包含字符串前缀部分，比如/hello前缀会匹配/hello, /hello/world等",
+		Description:     "包含字符串前缀部分，比如/hello前缀会匹配/hello, /hello/world等。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 		DataType:        "string",
 	},
 	{
 		Name:            "包含后缀",
 		Code:            HTTPFirewallRuleOperatorSuffix,
-		Description:     "包含字符串后缀部分，比如/hello后缀会匹配/hello, /hi/hello等",
+		Description:     "包含字符串后缀部分，比如/hello后缀会匹配/hello, /hi/hello等。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 		DataType:        "string",
 	},
 	{
 		Name:            "包含二进制数据",
 		Code:            HTTPFirewallRuleOperatorContainsBinary,
-		Description:     "包含一组二进制数据",
+		Description:     "包含一组二进制数据。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 		DataType:        "string",
 	},
 	{
 		Name:            "不包含二进制数据",
 		Code:            HTTPFirewallRuleOperatorNotContainsBinary,
-		Description:     "不包含一组二进制数据",
+		Description:     "不包含一组二进制数据。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 		DataType:        "string",
 	},
 	{
 		Name:            "数值大于",
 		Code:            HTTPFirewallRuleOperatorGt,
-		Description:     "使用数值对比大于，对比值需要是一个数字",
+		Description:     "使用数值对比大于，对比值需要是一个数字。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "number",
 	},
 	{
 		Name:            "数值大于等于",
 		Code:            HTTPFirewallRuleOperatorGte,
-		Description:     "使用数值对比大于等于，对比值需要是一个数字",
+		Description:     "使用数值对比大于等于，对比值需要是一个数字。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "number",
 	},
 	{
 		Name:            "数值小于",
 		Code:            HTTPFirewallRuleOperatorLt,
-		Description:     "使用数值对比小于，对比值需要是一个数字",
+		Description:     "使用数值对比小于，对比值需要是一个数字。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "number",
 	},
 	{
 		Name:            "数值小于等于",
 		Code:            HTTPFirewallRuleOperatorLte,
-		Description:     "使用数值对比小于等于，对比值需要是一个数字",
+		Description:     "使用数值对比小于等于，对比值需要是一个数字。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "number",
 	},
 	{
 		Name:            "数值等于",
 		Code:            HTTPFirewallRuleOperatorEq,
-		Description:     "使用数值对比等于，对比值需要是一个数字",
+		Description:     "使用数值对比等于，对比值需要是一个数字。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "number",
 	},
 	{
 		Name:            "数值不等于",
 		Code:            HTTPFirewallRuleOperatorNeq,
-		Description:     "使用数值对比不等于，对比值需要是一个数字",
+		Description:     "使用数值对比不等于，对比值需要是一个数字。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "number",
 	},
 	{
 		Name:            "包含索引",
 		Code:            HTTPFirewallRuleOperatorHasKey,
-		Description:     "对于一组数据拥有某个键值或者索引",
+		Description:     "对于一组数据拥有某个键值或者索引。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 		DataType:        "string|number",
 	},
 	{
 		Name:            "版本号大于",
 		Code:            HTTPFirewallRuleOperatorVersionGt,
-		Description:     "对比版本号大于",
+		Description:     "对比版本号大于。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "version",
 	},
@@ -205,49 +221,49 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 	{
 		Name:            "版本号范围",
 		Code:            HTTPFirewallRuleOperatorVersionRange,
-		Description:     "判断版本号在某个范围内，格式为version1,version2",
+		Description:     "判断版本号在某个范围内，格式为 起始version1,结束version2。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
-		DataType:        "version",
+		DataType:        "versionRange",
 	},
 	{
 		Name:            "IP等于",
 		Code:            HTTPFirewallRuleOperatorEqIP,
-		Description:     "将参数转换为IP进行对比，只能对比单个IP",
+		Description:     "将参数转换为IP进行对比，只能对比单个IP。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "ip",
 	},
 	{
 		Name:            "在一组IP中",
 		Code:            HTTPFirewallRuleOperatorInIPList,
-		Description:     "判断参数IP在一组IP内，对比值中每行一个IP",
+		Description:     "判断参数IP在一组IP内，对比值中每行一个IP。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "ips",
 	},
 	{
 		Name:            "IP大于",
 		Code:            HTTPFirewallRuleOperatorGtIP,
-		Description:     "将参数转换为IP进行对比",
+		Description:     "将参数转换为IP进行对比。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "ip",
 	},
 	{
 		Name:            "IP大于等于",
 		Code:            HTTPFirewallRuleOperatorGteIP,
-		Description:     "将参数转换为IP进行对比",
+		Description:     "将参数转换为IP进行对比。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "ip",
 	},
 	{
 		Name:            "IP小于",
 		Code:            HTTPFirewallRuleOperatorLtIP,
-		Description:     "将参数转换为IP进行对比",
+		Description:     "将参数转换为IP进行对比。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "ip",
 	},
 	{
 		Name:            "IP小于等于",
 		Code:            HTTPFirewallRuleOperatorLteIP,
-		Description:     "将参数转换为IP进行对比",
+		Description:     "将参数转换为IP进行对比。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "ip",
 	},
@@ -268,21 +284,21 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 	{
 		Name:            "IP取模10",
 		Code:            HTTPFirewallRuleOperatorIPMod10,
-		Description:     "对IP参数值取模，除数为10，对比值为余数",
+		Description:     "对IP参数值取模，除数为10，对比值为余数。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "number",
 	},
 	{
 		Name:            "IP取模100",
 		Code:            HTTPFirewallRuleOperatorIPMod100,
-		Description:     "对IP参数值取模，除数为100，对比值为余数",
+		Description:     "对IP参数值取模，除数为100，对比值为余数。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "number",
 	},
 	{
 		Name:            "IP取模",
 		Code:            HTTPFirewallRuleOperatorIPMod,
-		Description:     "对IP参数值取模，对比值格式为：除数,余数，比如10,1",
+		Description:     "对IP参数值取模，对比值格式为：除数,余数，比如10,1。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "number",
 	},
