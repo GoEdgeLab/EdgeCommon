@@ -79,19 +79,20 @@ message UpdateReverseProxyBackupOriginsRequest {
 
 // 修改反向代理设置
 message UpdateReverseProxyRequest {
-	int64 reverseProxyId = 1;
-	int32 requestHostType = 6;
-	string requestHost = 2;
-	bool requestHostExcludingPort = 15;
-	string requestURI = 3;
-	string stripPrefix = 4;
-	bool autoFlush = 5;
-	repeated string addHeaders = 7;
-	bytes connTimeoutJSON = 8;
-	bytes readTimeoutJSON = 9;
-	bytes idleTimeoutJSON = 10;
-	int32 maxConns = 11;
-	int32 maxIdleConns = 12;
-	bytes proxyProtocolJSON = 13;
-	bool followRedirects = 14;
+	int64 reverseProxyId = 1; // 反向代理ID
+	int32 requestHostType = 6; // 可选参数，回源主机名类型：0 跟随CDN域名，1跟随源站，2自定义
+	string requestHost = 2; // 可选参数，自定义回源主机名
+	bool requestHostExcludingPort = 15; // 可选参数，回源主机名中去除端口
+	string requestURI = 3; // 可选参数，请求URI
+	string stripPrefix = 4; // 可选参数，去除URI前缀
+	bool autoFlush = 5; // 可选参数，自动刷新
+	repeated string addHeaders = 7; // 可选参数，可以添加的请求报头
+	bytes connTimeoutJSON = 8; // 可选参数，连接超时时间
+	bytes readTimeoutJSON = 9; // 可选参数，读取超时时间
+	bytes idleTimeoutJSON = 10; // 可选参数，空闲连接超时时间
+	int32 maxConns = 11; // 可选参数，最大连接数
+	int32 maxIdleConns = 12; // 可选参数，最大空闲连接数
+	bytes proxyProtocolJSON = 13; // 可选参数，PROXY Protocol设置
+	bool followRedirects = 14; // 可选参数，跳转跟随
+	bool retry50X = 16; // 可选参数，启用50X重试
 }

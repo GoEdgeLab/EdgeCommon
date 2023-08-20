@@ -16,6 +16,12 @@ const (
 	RequestHostTypeCustomized  RequestHostType = 2
 )
 
+func NewReverseProxyConfig() *ReverseProxyConfig {
+	return &ReverseProxyConfig{
+		Retry50X: true,
+	}
+}
+
 // ReverseProxyConfig 反向代理设置
 type ReverseProxyConfig struct {
 	Id                int64             `yaml:"id" json:"id"`                               // ID
@@ -38,6 +44,7 @@ type ReverseProxyConfig struct {
 	RequestHost              string          `yaml:"requestHost" json:"requestHost"`                           // 请求Host，支持变量
 	RequestURI               string          `yaml:"requestURI" json:"requestURI"`                             // 请求URI，支持变量，如果同时定义了StripPrefix，则先执行StripPrefix
 	RequestHostExcludingPort bool            `yaml:"requestHostExcludingPort" json:"requestHostExcludingPort"` // 请求Host不包括端口
+	Retry50X                 bool            `yaml:"retry50X" json:"retry50X"`                                 // 50x 错误重试
 
 	AddHeaders []string `yaml:"addHeaders" json:"addHeaders"` // 自动添加的Header
 
