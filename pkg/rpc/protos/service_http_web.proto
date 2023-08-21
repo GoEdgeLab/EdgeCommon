@@ -107,7 +107,7 @@ service HTTPWebService {
 	// 修改CC设置
 	rpc updateHTTPWebCC(UpdateHTTPWebCCRequest) returns (RPCSuccess);
 
-	// 查找UAM设置
+	// 查找CC设置
 	rpc findHTTPWebCC(FindHTTPWebCCRequest) returns (FindHTTPWebCCResponse);
 
 	// 修改防盗链设置
@@ -321,13 +321,13 @@ message FindHTTPWebRequestScriptsResponse {
 	bytes requestScriptsJSON = 1;
 }
 
-// 修改服务UAM设置
+// 修改网站UAM设置
 message UpdateHTTPWebUAMRequest {
 	int64 httpWebId = 1;
 	bytes uamJSON = 2;
 }
 
-// 查找服务UAM设置
+// 查找网站UAM设置
 message FindHTTPWebUAMRequest {
 	int64 httpWebId = 1;
 }
@@ -336,13 +336,13 @@ message FindHTTPWebUAMResponse {
 	bytes uamJSON = 1;
 }
 
-// 修改服务CC设置
+// 修改网站CC设置
 message UpdateHTTPWebCCRequest {
 	int64 httpWebId = 1;
 	bytes ccJSON = 2;
 }
 
-// 查找服务UAM设置
+// 查找网站CC设置
 message FindHTTPWebCCRequest {
 	int64 httpWebId = 1;
 }

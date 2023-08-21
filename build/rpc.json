@@ -3486,7 +3486,7 @@
           "requestMessageName": "FindHTTPWebCCRequest",
           "responseMessageName": "FindHTTPWebCCResponse",
           "code": "rpc findHTTPWebCC(FindHTTPWebCCRequest) returns (FindHTTPWebCCResponse);",
-          "doc": "查找UAM设置",
+          "doc": "查找CC设置",
           "roles": [
             "admin",
             "user"
@@ -18600,7 +18600,7 @@
     {
       "name": "FindHTTPWebCCRequest",
       "code": "message FindHTTPWebCCRequest {\n\tint64 httpWebId = 1;\n}",
-      "doc": "查找服务UAM设置"
+      "doc": "查找网站CC设置"
     },
     {
       "name": "FindHTTPWebCCResponse",
@@ -18650,7 +18650,7 @@
     {
       "name": "FindHTTPWebUAMRequest",
       "code": "message FindHTTPWebUAMRequest {\n\tint64 httpWebId = 1;\n}",
-      "doc": "查找服务UAM设置"
+      "doc": "查找网站UAM设置"
     },
     {
       "name": "FindHTTPWebUAMResponse",
@@ -21765,7 +21765,7 @@
     {
       "name": "UpdateHTTPWebCCRequest",
       "code": "message UpdateHTTPWebCCRequest {\n\tint64 httpWebId = 1;\n\tbytes ccJSON = 2;\n}",
-      "doc": "修改服务CC设置"
+      "doc": "修改网站CC设置"
     },
     {
       "name": "UpdateHTTPWebCacheRequest",
@@ -21875,7 +21875,7 @@
     {
       "name": "UpdateHTTPWebUAMRequest",
       "code": "message UpdateHTTPWebUAMRequest {\n\tint64 httpWebId = 1;\n\tbytes uamJSON = 2;\n}",
-      "doc": "修改服务UAM设置"
+      "doc": "修改网站UAM设置"
     },
     {
       "name": "UpdateHTTPWebUserAgentRequest",

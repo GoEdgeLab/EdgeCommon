@@ -1934,7 +1934,7 @@ func (x *FindHTTPWebRequestScriptsResponse) GetRequestScriptsJSON() []byte {
 	return nil
 }
 
-// 修改服务UAM设置
+// 修改网站UAM设置
 type UpdateHTTPWebUAMRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1990,7 +1990,7 @@ func (x *UpdateHTTPWebUAMRequest) GetUamJSON() []byte {
 	return nil
 }
 
-// 查找服务UAM设置
+// 查找网站UAM设置
 type FindHTTPWebUAMRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2085,7 +2085,7 @@ func (x *FindHTTPWebUAMResponse) GetUamJSON() []byte {
 	return nil
 }
 
-// 修改服务CC设置
+// 修改网站CC设置
 type UpdateHTTPWebCCRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2141,7 +2141,7 @@ func (x *UpdateHTTPWebCCRequest) GetCcJSON() []byte {
 	return nil
 }
 
-// 查找服务UAM设置
+// 查找网站CC设置
 type FindHTTPWebCCRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

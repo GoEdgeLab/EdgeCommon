@@ -129,7 +129,7 @@ type HTTPWebServiceClient interface {
 	FindHTTPWebUAM(ctx context.Context, in *FindHTTPWebUAMRequest, opts ...grpc.CallOption) (*FindHTTPWebUAMResponse, error)
 	// 修改CC设置
 	UpdateHTTPWebCC(ctx context.Context, in *UpdateHTTPWebCCRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
-	// 查找UAM设置
+	// 查找CC设置
 	FindHTTPWebCC(ctx context.Context, in *FindHTTPWebCCRequest, opts ...grpc.CallOption) (*FindHTTPWebCCResponse, error)
 	// 修改防盗链设置
 	UpdateHTTPWebReferers(ctx context.Context, in *UpdateHTTPWebReferersRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
@@ -561,7 +561,7 @@ type HTTPWebServiceServer interface {
 	FindHTTPWebUAM(context.Context, *FindHTTPWebUAMRequest) (*FindHTTPWebUAMResponse, error)
 	// 修改CC设置
 	UpdateHTTPWebCC(context.Context, *UpdateHTTPWebCCRequest) (*RPCSuccess, error)
-	// 查找UAM设置
+	// 查找CC设置
 	FindHTTPWebCC(context.Context, *FindHTTPWebCCRequest) (*FindHTTPWebCCResponse, error)
 	// 修改防盗链设置
 	UpdateHTTPWebReferers(context.Context, *UpdateHTTPWebReferersRequest) (*RPCSuccess, error)
