@@ -183,6 +183,33 @@ func (this *QueryResult) Summary() string {
 	return strings.Join(pieces, " ")
 }
 
+func (this *QueryResult) RegionSummary() string {
+	if this.item == nil {
+		return ""
+	}
+
+	var pieces = []string{}
+	var countryName = this.CountryName()
+	var provinceName = this.ProvinceName()
+	var cityName = this.CityName()
+	var townName = this.TownName()
+
+	if len(countryName) > 0 {
+		pieces = append(pieces, countryName)
+	}
+	if len(provinceName) > 0 && !lists.ContainsString(pieces, provinceName) {
+		pieces = append(pieces, provinceName)
+	}
+	if len(cityName) > 0 && !lists.ContainsString(pieces, cityName) && !lists.ContainsString(pieces, strings.TrimSuffix(cityName, "市")) {
+		pieces = append(pieces, cityName)
+	}
+	if len(townName) > 0 && !lists.ContainsString(pieces, townName) && !lists.ContainsString(pieces, strings.TrimSuffix(townName, "县")) {
+		pieces = append(pieces, townName)
+	}
+
+	return strings.Join(pieces, " ")
+}
+
 func (this *QueryResult) realCountryId() uint16 {
 	if this.item != nil {
 		switch item := this.item.(type) {

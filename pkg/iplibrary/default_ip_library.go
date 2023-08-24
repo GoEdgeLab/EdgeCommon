@@ -53,6 +53,18 @@ func LookupIP(ip string) *QueryResult {
 	return defaultLibrary.LookupIP(ip)
 }
 
+// LookupIPSummaries 查询一组IP对应的区域描述
+func LookupIPSummaries(ipList []string) map[string]string /** ip => summary **/ {
+	var result = map[string]string{}
+	for _, ip := range ipList {
+		var region = LookupIP(ip)
+		if region != nil && region.IsOk() {
+			result[ip] = region.Summary()
+		}
+	}
+	return result
+}
+
 type IPLibrary struct {
 	reader *Reader
 }
