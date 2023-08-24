@@ -39,3 +39,20 @@ func CheckRegionProvinceIsInChinaMainland(regionProvinceId RegionProvinceId) boo
 		regionProvinceId != RegionChinaProvinceIdMO &&
 		regionProvinceId != RegionChinaProvinceIdTW
 }
+
+func MatchUserRegion(userCountryId int64, userProvinceId int64, regionId int64) bool {
+	if userCountryId == RegionChinaId {
+		switch regionId {
+		case RegionChinaIdMainland: // china.mainland
+			return CheckRegionProvinceIsInChinaMainland(userProvinceId)
+		case RegionChinaIdHK: // china.hk
+			return userProvinceId == RegionChinaProvinceIdHK
+		case RegionChinaIdMO: // china.mo
+			return userProvinceId == RegionChinaProvinceIdMO
+		case RegionChinaIdTW: // china.tw
+			return userProvinceId == RegionChinaProvinceIdTW
+		}
+	}
+
+	return userCountryId == regionId
+}
