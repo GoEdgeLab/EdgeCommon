@@ -4802,7 +4802,7 @@ type CopyServerConfigRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	ServerId             int64   `protobuf:"varint,1,opt,name=serverId,proto3" json:"serverId,omitempty"`                                // 被复制网站ID
-	ConfigCode           string  `protobuf:"bytes,2,opt,name=configCode,proto3" json:"configCode,omitempty"`                             // 要拷贝的配置代号
+	ConfigCode           string  `protobuf:"bytes,2,opt,name=configCode,proto3" json:"configCode,omitempty"`                             // 要拷贝的配置代号：stat 统计；charset 字符编码；userAgent UA名单；referers 防盗链；webp WebP配置；accessLog 访问日志；cc CC配置；hostRedirects URL跳转；root ROOT配置；remoteAddr 访客设置；requestLimit 请求限制；compression 内容压缩设置；optimization 页面优化设置；cache 缓存设置；uam 五秒盾设置；websocket Websocket设置；pages 自定义页面设置；auth 访问鉴权；reverseProxy 反向代理设置
 	TargetType           string  `protobuf:"bytes,3,opt,name=targetType,proto3" json:"targetType,omitempty"`                             // 目标类型：servers, groups, cluster（当前集群下所有网站，只有管理员才有权限）、user（当前用户下所有网站）
 	TargetServerIds      []int64 `protobuf:"varint,4,rep,packed,name=targetServerIds,proto3" json:"targetServerIds,omitempty"`           // 目标网站ID列表
 	TargetServerGroupIds []int64 `protobuf:"varint,5,rep,packed,name=targetServerGroupIds,proto3" json:"targetServerGroupIds,omitempty"` // 目标网站分组ID列表

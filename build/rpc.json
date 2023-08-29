@@ -14069,7 +14069,7 @@
     },
     {
       "name": "CopyServerConfigRequest",
-      "code": "message CopyServerConfigRequest {\n\tint64 serverId = 1; // 被复制网站ID\n\tstring configCode = 2; // 要拷贝的配置代号\n\tstring targetType = 3; // 目标类型：servers, groups, cluster（当前集群下所有网站，只有管理员才有权限）、user（当前用户下所有网站）\n\trepeated int64 targetServerIds = 4; // 目标网站ID列表\n\trepeated int64 targetServerGroupIds = 5; // 目标网站分组ID列表\n\tint64 targetClusterId = 6; // 目标集群ID\n\tint64 targetUserId = 7; // 目标用户ID\n}",
+      "code": "message CopyServerConfigRequest {\n\tint64 serverId = 1; // 被复制网站ID\n\tstring configCode = 2; // 要拷贝的配置代号：stat 统计；charset 字符编码；userAgent UA名单；referers 防盗链；webp WebP配置；accessLog 访问日志；cc CC配置；hostRedirects URL跳转；root ROOT配置；remoteAddr 访客设置；requestLimit 请求限制；compression 内容压缩设置；optimization 页面优化设置；cache 缓存设置；uam 五秒盾设置；websocket Websocket设置；pages 自定义页面设置；auth 访问鉴权；reverseProxy 反向代理设置\n\tstring targetType = 3; // 目标类型：servers, groups, cluster（当前集群下所有网站，只有管理员才有权限）、user（当前用户下所有网站）\n\trepeated int64 targetServerIds = 4; // 目标网站ID列表\n\trepeated int64 targetServerGroupIds = 5; // 目标网站分组ID列表\n\tint64 targetClusterId = 6; // 目标集群ID\n\tint64 targetUserId = 7; // 目标用户ID\n}",
       "doc": "在网站之间复制配置"
     },
     {
