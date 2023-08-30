@@ -457,7 +457,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				IsOn:              true,
 				Param:             "${userAgent}",
 				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `python|pycurl|http-client|httpclient|apachebench|nethttp|http_request|java|perl|ruby|scrapy|php|rust`,
+				Value:             `python|pycurl|http-client|httpclient|apachebench|nethttp|http_request|java|perl|ruby|scrapy|php\b|rust`,
 				IsCaseInsensitive: true,
 			})
 			set.AddRule(&HTTPFirewallRule{
