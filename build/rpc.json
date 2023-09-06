@@ -10718,11 +10718,47 @@
           "isDeprecated": false
         },
         {
+          "name": "countAllServerNamesWithUserId",
+          "requestMessageName": "CountAllServerNamesWithUserIdRequest",
+          "responseMessageName": "RPCCountResponse",
+          "code": "rpc countAllServerNamesWithUserId (CountAllServerNamesWithUserIdRequest) returns (RPCCountResponse);",
+          "doc": "计算一个用户下的所有域名数量",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "countServerNames",
+          "requestMessageName": "CountServerNamesRequest",
+          "responseMessageName": "RPCCountResponse",
+          "code": "rpc countServerNames(CountServerNamesRequest) returns (RPCCountResponse);",
+          "doc": "计算某个网站下的域名数量",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
           "name": "findAllUserServers",
           "requestMessageName": "FindAllUserServersRequest",
           "responseMessageName": "FindAllUserServersResponse",
           "code": "rpc findAllUserServers(FindAllUserServersRequest) returns (FindAllUserServersResponse);",
           "doc": "查找一个用户下的所有网站",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "countAllUserServers",
+          "requestMessageName": "CountAllUserServersRequest",
+          "responseMessageName": "RPCCountResponse",
+          "code": "rpc countAllUserServers(CountAllUserServersRequest) returns (RPCCountResponse);",
+          "doc": "计算一个用户下的所有网站数量",
           "roles": [
             "admin",
             "user"
@@ -14299,7 +14335,7 @@
     },
     {
       "name": "CountAllEnabledServersMatchRequest",
-      "code": "message CountAllEnabledServersMatchRequest {\n\tint64 serverGroupId = 1; // 网站分组ID，如果为-1表示查找未分组\n\tstring keyword = 2;\n\tint64 userId = 3;\n\tint64 nodeClusterId = 4;\n\tint32 auditingFlag = 5;\n\tstring protocolFamily = 6;\n}",
+      "code": "message CountAllEnabledServersMatchRequest {\n\tint64 serverGroupId = 1; // 网站分组ID，如果为-1表示查找未分组\n\tstring keyword = 2;\n\tint64 userId = 3;\n\tint64 nodeClusterId = 4;\n\tint32 auditingFlag = 5;\n\tstring protocolFamily = 6;\n\tint64 userPlanId = 7; // 用户套餐ID\n}",
       "doc": "计算网站数量"
     },
     {
@@ -14428,6 +14464,11 @@
       "doc": "查询服务账单数量"
     },
     {
+      "name": "CountAllServerNamesWithUserIdRequest",
+      "code": "message CountAllServerNamesWithUserIdRequest {\n\tint64 userId = 1; // 用户ID\n\tint64 userPlanId = 2; // 用户套餐ID\n}",
+      "doc": "计算一个用户下的所有域名数量"
+    },
+    {
       "name": "CountAllUpgradeNSNodesWithNSClusterIdRequest",
       "code": "message CountAllUpgradeNSNodesWithNSClusterIdRequest {\n\tint64 nsClusterId = 1;\n}",
       "doc": "计算需要升级的NS节点数量"
@@ -14441,6 +14482,11 @@
       "name": "CountAllUserBillsRequest",
       "code": "message CountAllUserBillsRequest {\n\tint32 paidFlag = 1; // 可选，0|1|-1\n\tint64 userId = 2; // 可选，用户ID\n\tstring month = 3; // 可选，月份\n\tbool trafficRelated = 4; // 可选，是否为流量带宽相关\n\tint32 minDailyBillDays = 5; // 可选，按日计费账单生成最小天数\n\tint32 minMonthlyBillDays = 6; // 可选，按月计费账单生成最小天数\n}",
       "doc": "计算所有账单数量"
+    },
+    {
+      "name": "CountAllUserServersRequest",
+      "code": "message CountAllUserServersRequest {\n\tint64 userId = 1; // 用户ID\n\tint64 userPlanId = 2; // 用户套餐ID\n}",
+      "doc": "计算一个用户下的所有网站数量"
     },
     {
       "name": "CountDoingHTTPCacheTasksRequest",
@@ -14536,6 +14582,11 @@
       "name": "CountSSLCertRequest",
       "code": "message CountSSLCertRequest {\n\tbool isCA = 1; // 可选项，是否为CA证书\n\tbool isAvailable = 2; // 可选项，是否可用（在有效期内）\n\tbool isExpired = 3; // 可选项，是否已过期\n\tint32 expiringDays = 4; // 可选项，离过期日的天数\n\tstring keyword = 5; // 可选项，关键词\n\tint64 userId = 6; // 可选项，用户ID，不填则表示读取管理员上传的证书\n\trepeated string domains = 7; // 可选项，搜索使用的域名列表\n}",
       "doc": "计算匹配的证书数量"
+    },
+    {
+      "name": "CountServerNamesRequest",
+      "code": "message CountServerNamesRequest {\n\tint64 serverId = 1; // 网站ID\n}",
+      "doc": "计算某个网站下的域名数量"
     },
     {
       "name": "CountTrafficPackagePricesRequest",
@@ -15389,7 +15440,7 @@
     },
     {
       "name": "CreatePlanRequest",
-      "code": "message CreatePlanRequest {\n\tstring name = 1;\n\tint64 clusterId = 2;\n\tbytes trafficLimitJSON = 3;\n\tbytes featuresJSON = 4;\n\tstring priceType = 5;\n\tbytes trafficPriceJSON = 6;\n\tbytes bandwidthPriceJSON = 10;\n\tfloat monthlyPrice = 7;\n\tfloat seasonallyPrice = 8;\n\tfloat yearlyPrice = 9;\n}",
+      "code": "message CreatePlanRequest {\n\tstring name = 1;\n\tint64 clusterId = 2;\n\tbytes trafficLimitJSON = 3;\n\tbytes featuresJSON = 4;\n\tstring priceType = 5;\n\tbytes trafficPriceJSON = 6;\n\tbytes bandwidthPriceJSON = 10;\n\tfloat monthlyPrice = 7;\n\tfloat seasonallyPrice = 8;\n\tfloat yearlyPrice = 9;\n\tint32 totalServers = 11; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 13; // 可以添加的域名总数\n}",
       "doc": "创建套餐"
     },
     {
@@ -21024,7 +21075,7 @@
     },
     {
       "name": "Plan",
-      "code": "message Plan {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tdouble monthlyPrice = 9;\n\tdouble seasonallyPrice = 10;\n\tdouble yearlyPrice = 11;\n}",
+      "code": "message Plan {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tdouble monthlyPrice = 9;\n\tdouble seasonallyPrice = 10;\n\tdouble yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n}",
       "doc": ""
     },
     {
@@ -21259,7 +21310,7 @@
     },
     {
       "name": "ServerBandwidthStat",
-      "code": "message ServerBandwidthStat {\n\tint64 id = 1; // ID\n\tint64 userId = 2; // 用户ID\n\tint64 serverId = 3; //服务ID\n\tstring day = 4; // 日期，格式YYYYMMDD\n\tstring timeAt = 5; // 时间，格式HHII\n\tint64 bytes = 6; // 峰值带宽字节\n\tint64 totalBytes = 9; // 总流量\n\tint64 bits = 7; // 峰值带宽比特\n\tint64 nodeRegionId = 8; // 节点所在区域ID\n\tint64 cachedBytes = 10; // 总缓存流量\n\tint64 attackBytes = 11; // 总攻击流量\n\tint64 countRequests = 12; // 总请求数\n\tint64 countCachedRequests = 13; // 总缓存请求数\n\tint64 countAttackRequests = 14; // 总攻击请求数\n}",
+      "code": "message ServerBandwidthStat {\n\tint64 id = 1; // ID\n\tint64 userId = 2; // 用户ID\n\tint64 serverId = 3; //服务ID\n\tstring day = 4; // 日期，格式YYYYMMDD\n\tstring timeAt = 5; // 时间，格式HHII\n\tint64 bytes = 6; // 峰值带宽字节\n\tint64 totalBytes = 9; // 总流量\n\tint64 bits = 7; // 峰值带宽比特\n\tint64 nodeRegionId = 8; // 节点所在区域ID\n\tint64 cachedBytes = 10; // 总缓存流量\n\tint64 attackBytes = 11; // 总攻击流量\n\tint64 countRequests = 12; // 总请求数\n\tint64 countCachedRequests = 13; // 总缓存请求数\n\tint64 countAttackRequests = 14; // 总攻击请求数\n\tint64 userPlanId = 15; // 绑定的用户套餐ID\n}",
       "doc": "带宽统计数据"
     },
     {
@@ -22399,7 +22450,7 @@
     },
     {
       "name": "UpdatePlanRequest",
-      "code": "message UpdatePlanRequest {\n\tint64 planId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tfloat monthlyPrice = 9;\n\tfloat seasonallyPrice = 10;\n\tfloat yearlyPrice = 11;\n}",
+      "code": "message UpdatePlanRequest {\n\tint64 planId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tfloat monthlyPrice = 9;\n\tfloat seasonallyPrice = 10;\n\tfloat yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n}",
       "doc": "修改套餐"
     },
     {
@@ -22824,7 +22875,7 @@
     },
     {
       "name": "UserPlan",
-      "code": "message UserPlan {\n\tint64 id = 1;\n\tint64 userId = 2;\n\tint64 planId = 3;\n\tbool isOn = 4;\n\tstring dayTo = 5;\n\tstring name = 6;\n\n\tUser user = 30;\n\tPlan plan = 31;\n\tServer server = 32;\n}",
+      "code": "message UserPlan {\n\tint64 id = 1; // 套餐ID\n\tint64 userId = 2; // 用户ID\n\tint64 planId = 3; // 套餐定义ID\n\tbool isOn = 4; // 是否启用\n\tstring dayTo = 5; // 到期日期Y-m-d\n\tstring name = 6; // 自定义备注名称\n\n\tUser user = 30; // 用户信息\n\tPlan plan = 31; // 套餐定义信息\n\trepeated Server servers = 33; // 绑定的网站列表\n\n\tServer server = 32 [deprecated = true]; // 绑定的网站，已过期，使用 servers 代替\n}",
       "doc": ""
     },
     {

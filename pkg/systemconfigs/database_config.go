@@ -38,6 +38,12 @@ type DatabaseConfig struct {
 		} `json:"clean"`
 	} `json:"userBandwidthStat"`
 
+	UserPlanBandwidthStat struct {
+		Clean struct {
+			Days int `json:"days"`
+		} `json:"clean"`
+	} `json:"userPlanBandwidthStat"`
+
 	NodeClusterTrafficDailyStat struct {
 		Clean struct {
 			Days int `json:"days"`
@@ -77,6 +83,7 @@ func NewDatabaseConfig() *DatabaseConfig {
 	config.ServerBandwidthStat.Clean.Days = 100
 	config.ServerDailyStat.Clean.Days = 60
 	config.UserBandwidthStat.Clean.Days = 100
+	config.UserPlanBandwidthStat.Clean.Days = 100
 	config.NodeClusterTrafficDailyStat.Clean.Days = 30
 	config.NodeTrafficHourlyStat.Clean.Days = 15
 	config.ServerDomainHourlyStat.Clean.Days = 7

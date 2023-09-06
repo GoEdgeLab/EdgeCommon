@@ -8,7 +8,7 @@ import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 const DefaultTrafficLimitNoticePageBody = `<!DOCTYPE html>
 <html>
 <head>
-<title>Traffic Limit Exceeded Warning/title>
+<title>Traffic Limit Exceeded Warning</title>
 <body>
 
 <h1>Traffic Limit Exceeded Warning</h1>
@@ -57,4 +57,47 @@ func (this *TrafficLimitConfig) TotalBytes() int64 {
 // IsEmpty 检查是否有限制值
 func (this *TrafficLimitConfig) IsEmpty() bool {
 	return !this.IsOn || (this.DailyBytes() <= 0 && this.MonthlyBytes() <= 0 && this.TotalBytes() <= 0)
+}
+
+func (this *TrafficLimitConfig) Equals(another *TrafficLimitConfig) bool {
+	if another == nil {
+		return false
+	}
+
+	if this.IsOn != another.IsOn {
+		return false
+	}
+
+	if !this.equalCapacity(this.DailySize, another.DailySize) {
+		return false
+	}
+
+	if !this.equalCapacity(this.MonthlySize, another.MonthlySize) {
+		return false
+	}
+
+	if !this.equalCapacity(this.TotalSize, another.TotalSize) {
+		return false
+	}
+
+	if this.NoticePageBody != another.NoticePageBody {
+		return false
+	}
+
+	return true
+}
+
+func (this *TrafficLimitConfig) equalCapacity(size1 *shared.SizeCapacity, size2 *shared.SizeCapacity) bool {
+	if size1 == size2 { // all are nil
+		return true
+	}
+
+	if size1 != nil {
+		if size2 == nil {
+			return false
+		}
+		return size1.Bytes() == size2.Bytes()
+	}
+
+	return false
 }

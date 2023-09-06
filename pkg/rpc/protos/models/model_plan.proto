@@ -16,4 +16,7 @@ message Plan {
 	double monthlyPrice = 9;
 	double seasonallyPrice = 10;
 	double yearlyPrice = 11;
+	int32 totalServers = 13; // 可以添加的网站数
+	int32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数
+	int32 totalServerNames = 15; // 可以添加的域名总数
 }

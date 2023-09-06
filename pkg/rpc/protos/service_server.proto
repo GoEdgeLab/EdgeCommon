@@ -125,8 +125,17 @@ service ServerService {
 	// 查找一个用户下的所有域名列表
 	rpc findAllEnabledServerNamesWithUserId (FindAllEnabledServerNamesWithUserIdRequest) returns (FindAllEnabledServerNamesWithUserIdResponse);
 
+	// 计算一个用户下的所有域名数量
+	rpc countAllServerNamesWithUserId (CountAllServerNamesWithUserIdRequest) returns (RPCCountResponse);
+
+	// 计算某个网站下的域名数量
+	rpc countServerNames(CountServerNamesRequest) returns (RPCCountResponse);
+
 	// 查找一个用户下的所有网站
 	rpc findAllUserServers(FindAllUserServersRequest) returns (FindAllUserServersResponse);
+
+	// 计算一个用户下的所有网站数量
+	rpc countAllUserServers(CountAllUserServersRequest) returns (RPCCountResponse);
 
 	// 查找某个用户下的网站配置
 	rpc composeAllUserServersConfig(ComposeAllUserServersConfigRequest) returns (ComposeAllUserServersConfigResponse);
@@ -368,6 +377,7 @@ message CountAllEnabledServersMatchRequest {
 	int64 nodeClusterId = 4;
 	int32 auditingFlag = 5;
 	string protocolFamily = 6;
+	int64 userPlanId = 7; // 用户套餐ID
 }
 
 // 列出单页网站
@@ -519,6 +529,17 @@ message FindAllEnabledServerNamesWithUserIdResponse {
 	repeated string serverNames = 1;
 }
 
+// 计算一个用户下的所有域名数量
+message CountAllServerNamesWithUserIdRequest {
+	int64 userId = 1; // 用户ID
+	int64 userPlanId = 2; // 用户套餐ID
+}
+
+// 计算某个网站下的域名数量
+message CountServerNamesRequest {
+	int64 serverId = 1; // 网站ID
+}
+
 // 查找一个用户下的所有网站
 message FindAllUserServersRequest {
 	int64 userId = 1;
@@ -526,6 +547,12 @@ message FindAllUserServersRequest {
 
 message FindAllUserServersResponse {
 	repeated Server servers = 1; // 只返回一些简要信息
+}
+
+// 计算一个用户下的所有网站数量
+message CountAllUserServersRequest {
+	int64 userId = 1; // 用户ID
+	int64 userPlanId = 2; // 用户套餐ID
 }
 
 // 查找某个用户下的网站配置

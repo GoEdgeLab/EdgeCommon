@@ -57,7 +57,10 @@ const (
 	ServerService_FindEnabledServerDNS_FullMethodName                      = "/pb.ServerService/findEnabledServerDNS"
 	ServerService_CheckUserServer_FullMethodName                           = "/pb.ServerService/checkUserServer"
 	ServerService_FindAllEnabledServerNamesWithUserId_FullMethodName       = "/pb.ServerService/findAllEnabledServerNamesWithUserId"
+	ServerService_CountAllServerNamesWithUserId_FullMethodName             = "/pb.ServerService/countAllServerNamesWithUserId"
+	ServerService_CountServerNames_FullMethodName                          = "/pb.ServerService/countServerNames"
 	ServerService_FindAllUserServers_FullMethodName                        = "/pb.ServerService/findAllUserServers"
+	ServerService_CountAllUserServers_FullMethodName                       = "/pb.ServerService/countAllUserServers"
 	ServerService_ComposeAllUserServersConfig_FullMethodName               = "/pb.ServerService/composeAllUserServersConfig"
 	ServerService_FindEnabledUserServerBasic_FullMethodName                = "/pb.ServerService/findEnabledUserServerBasic"
 	ServerService_UpdateEnabledUserServerBasic_FullMethodName              = "/pb.ServerService/updateEnabledUserServerBasic"
@@ -158,8 +161,14 @@ type ServerServiceClient interface {
 	CheckUserServer(ctx context.Context, in *CheckUserServerRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 查找一个用户下的所有域名列表
 	FindAllEnabledServerNamesWithUserId(ctx context.Context, in *FindAllEnabledServerNamesWithUserIdRequest, opts ...grpc.CallOption) (*FindAllEnabledServerNamesWithUserIdResponse, error)
+	// 计算一个用户下的所有域名数量
+	CountAllServerNamesWithUserId(ctx context.Context, in *CountAllServerNamesWithUserIdRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
+	// 计算某个网站下的域名数量
+	CountServerNames(ctx context.Context, in *CountServerNamesRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 查找一个用户下的所有网站
 	FindAllUserServers(ctx context.Context, in *FindAllUserServersRequest, opts ...grpc.CallOption) (*FindAllUserServersResponse, error)
+	// 计算一个用户下的所有网站数量
+	CountAllUserServers(ctx context.Context, in *CountAllUserServersRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 查找某个用户下的网站配置
 	ComposeAllUserServersConfig(ctx context.Context, in *ComposeAllUserServersConfigRequest, opts ...grpc.CallOption) (*ComposeAllUserServersConfigResponse, error)
 	// 查找用户网站基本信息
@@ -548,9 +557,36 @@ func (c *serverServiceClient) FindAllEnabledServerNamesWithUserId(ctx context.Co
 	return out, nil
 }
 
+func (c *serverServiceClient) CountAllServerNamesWithUserId(ctx context.Context, in *CountAllServerNamesWithUserIdRequest, opts ...grpc.CallOption) (*RPCCountResponse, error) {
+	out := new(RPCCountResponse)
+	err := c.cc.Invoke(ctx, ServerService_CountAllServerNamesWithUserId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) CountServerNames(ctx context.Context, in *CountServerNamesRequest, opts ...grpc.CallOption) (*RPCCountResponse, error) {
+	out := new(RPCCountResponse)
+	err := c.cc.Invoke(ctx, ServerService_CountServerNames_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *serverServiceClient) FindAllUserServers(ctx context.Context, in *FindAllUserServersRequest, opts ...grpc.CallOption) (*FindAllUserServersResponse, error) {
 	out := new(FindAllUserServersResponse)
 	err := c.cc.Invoke(ctx, ServerService_FindAllUserServers_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) CountAllUserServers(ctx context.Context, in *CountAllUserServersRequest, opts ...grpc.CallOption) (*RPCCountResponse, error) {
+	out := new(RPCCountResponse)
+	err := c.cc.Invoke(ctx, ServerService_CountAllUserServers_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -799,8 +835,14 @@ type ServerServiceServer interface {
 	CheckUserServer(context.Context, *CheckUserServerRequest) (*RPCSuccess, error)
 	// 查找一个用户下的所有域名列表
 	FindAllEnabledServerNamesWithUserId(context.Context, *FindAllEnabledServerNamesWithUserIdRequest) (*FindAllEnabledServerNamesWithUserIdResponse, error)
+	// 计算一个用户下的所有域名数量
+	CountAllServerNamesWithUserId(context.Context, *CountAllServerNamesWithUserIdRequest) (*RPCCountResponse, error)
+	// 计算某个网站下的域名数量
+	CountServerNames(context.Context, *CountServerNamesRequest) (*RPCCountResponse, error)
 	// 查找一个用户下的所有网站
 	FindAllUserServers(context.Context, *FindAllUserServersRequest) (*FindAllUserServersResponse, error)
+	// 计算一个用户下的所有网站数量
+	CountAllUserServers(context.Context, *CountAllUserServersRequest) (*RPCCountResponse, error)
 	// 查找某个用户下的网站配置
 	ComposeAllUserServersConfig(context.Context, *ComposeAllUserServersConfigRequest) (*ComposeAllUserServersConfigResponse, error)
 	// 查找用户网站基本信息
@@ -957,8 +999,17 @@ func (UnimplementedServerServiceServer) CheckUserServer(context.Context, *CheckU
 func (UnimplementedServerServiceServer) FindAllEnabledServerNamesWithUserId(context.Context, *FindAllEnabledServerNamesWithUserIdRequest) (*FindAllEnabledServerNamesWithUserIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllEnabledServerNamesWithUserId not implemented")
 }
+func (UnimplementedServerServiceServer) CountAllServerNamesWithUserId(context.Context, *CountAllServerNamesWithUserIdRequest) (*RPCCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountAllServerNamesWithUserId not implemented")
+}
+func (UnimplementedServerServiceServer) CountServerNames(context.Context, *CountServerNamesRequest) (*RPCCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountServerNames not implemented")
+}
 func (UnimplementedServerServiceServer) FindAllUserServers(context.Context, *FindAllUserServersRequest) (*FindAllUserServersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllUserServers not implemented")
+}
+func (UnimplementedServerServiceServer) CountAllUserServers(context.Context, *CountAllUserServersRequest) (*RPCCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountAllUserServers not implemented")
 }
 func (UnimplementedServerServiceServer) ComposeAllUserServersConfig(context.Context, *ComposeAllUserServersConfigRequest) (*ComposeAllUserServersConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ComposeAllUserServersConfig not implemented")
@@ -1710,6 +1761,42 @@ func _ServerService_FindAllEnabledServerNamesWithUserId_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServerService_CountAllServerNamesWithUserId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountAllServerNamesWithUserIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).CountAllServerNamesWithUserId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ServerService_CountAllServerNamesWithUserId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).CountAllServerNamesWithUserId(ctx, req.(*CountAllServerNamesWithUserIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_CountServerNames_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountServerNamesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).CountServerNames(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ServerService_CountServerNames_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).CountServerNames(ctx, req.(*CountServerNamesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ServerService_FindAllUserServers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FindAllUserServersRequest)
 	if err := dec(in); err != nil {
@@ -1724,6 +1811,24 @@ func _ServerService_FindAllUserServers_Handler(srv interface{}, ctx context.Cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ServerServiceServer).FindAllUserServers(ctx, req.(*FindAllUserServersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_CountAllUserServers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountAllUserServersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).CountAllUserServers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ServerService_CountAllUserServers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).CountAllUserServers(ctx, req.(*CountAllUserServersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2212,8 +2317,20 @@ var ServerService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ServerService_FindAllEnabledServerNamesWithUserId_Handler,
 		},
 		{
+			MethodName: "countAllServerNamesWithUserId",
+			Handler:    _ServerService_CountAllServerNamesWithUserId_Handler,
+		},
+		{
+			MethodName: "countServerNames",
+			Handler:    _ServerService_CountServerNames_Handler,
+		},
+		{
 			MethodName: "findAllUserServers",
 			Handler:    _ServerService_FindAllUserServers_Handler,
+		},
+		{
+			MethodName: "countAllUserServers",
+			Handler:    _ServerService_CountAllUserServers_Handler,
 		},
 		{
 			MethodName: "composeAllUserServersConfig",

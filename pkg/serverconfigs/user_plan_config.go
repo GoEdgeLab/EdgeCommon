@@ -20,6 +20,7 @@ const DefaultPlanExpireNoticePageBody = `<!DOCTYPE html>
 
 // UserPlanConfig 用户套餐配置
 type UserPlanConfig struct {
+	Id    int64  `yaml:"id" json:"id"`       // 用户套餐ID
 	DayTo string `yaml:"dayTo" json:"dayTo"` // 有效期
 
 	Plan *PlanConfig `yaml:"plan" json:"plan"`

@@ -42,6 +42,9 @@ message CreatePlanRequest {
 	float monthlyPrice = 7;
 	float seasonallyPrice = 8;
 	float yearlyPrice = 9;
+	int32 totalServers = 11; // 可以添加的网站数
+	int32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数
+	int32 totalServerNames = 13; // 可以添加的域名总数
 }
 
 message CreatePlanResponse {
@@ -62,6 +65,9 @@ message UpdatePlanRequest {
 	float monthlyPrice = 9;
 	float seasonallyPrice = 10;
 	float yearlyPrice = 11;
+	int32 totalServers = 13; // 可以添加的网站数
+	int32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数
+	int32 totalServerNames = 15; // 可以添加的域名总数
 }
 
 // 删除套餐
