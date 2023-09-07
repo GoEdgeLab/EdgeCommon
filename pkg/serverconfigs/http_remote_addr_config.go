@@ -7,12 +7,23 @@ import (
 	"strings"
 )
 
+type HTTPRemoteAddrType = string
+
+const (
+	HTTPRemoteAddrTypeDefault       HTTPRemoteAddrType = "default"       // 默认（直连）
+	HTTPRemoteAddrTypeProxy         HTTPRemoteAddrType = "proxy"         // 代理
+	HTTPRemoteAddrTypeRequestHeader HTTPRemoteAddrType = "requestHeader" // 请求报头
+	HTTPRemoteAddrTypeVariable      HTTPRemoteAddrType = "variable"      // 变量
+)
+
 // HTTPRemoteAddrConfig HTTP获取客户端IP地址方式
 type HTTPRemoteAddrConfig struct {
-	IsPrior      bool   `yaml:"isPrior" json:"isPrior"`
-	IsOn         bool   `yaml:"isOn" json:"isOn"`
-	Value        string `yaml:"value" json:"value"`               // 值变量
-	IsCustomized bool   `yaml:"isCustomized" json:"isCustomized"` // 是否自定义
+	IsPrior bool               `yaml:"isPrior" json:"isPrior"`
+	IsOn    bool               `yaml:"isOn" json:"isOn"`
+	Value   string             `yaml:"value" json:"value"` // 值变量
+	Type    HTTPRemoteAddrType `yaml:"type" json:"type"`   // 类型
+
+	RequestHeaderName string `yaml:"requestHeaderName" json:"requestHeaderName"` // 请求报头名称（type = requestHeader时生效）
 
 	isEmpty bool
 }
@@ -25,8 +36,6 @@ func (this *HTTPRemoteAddrConfig) Init() error {
 	} else if regexp.MustCompile(`\s+`).ReplaceAllString(this.Value, "") == "${remoteAddr}" {
 		this.isEmpty = true
 	}
-
-	this.Value = strings.ReplaceAll(this.Value, "${remoteAddr}", "${remoteAddrValue}")
 
 	return nil
 }
