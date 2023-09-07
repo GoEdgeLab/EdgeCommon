@@ -15440,7 +15440,7 @@
     },
     {
       "name": "CreatePlanRequest",
-      "code": "message CreatePlanRequest {\n\tstring name = 1;\n\tint64 clusterId = 2;\n\tbytes trafficLimitJSON = 3;\n\tbytes featuresJSON = 4;\n\tstring priceType = 5;\n\tbytes trafficPriceJSON = 6;\n\tbytes bandwidthPriceJSON = 10;\n\tfloat monthlyPrice = 7;\n\tfloat seasonallyPrice = 8;\n\tfloat yearlyPrice = 9;\n\tint32 totalServers = 11; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 13; // 可以添加的域名总数\n}",
+      "code": "message CreatePlanRequest {\n\tstring name = 1;\n\tint64 clusterId = 2;\n\tbytes trafficLimitJSON = 3;\n\tbytes featuresJSON = 4;\n\tstring priceType = 5;\n\tbytes trafficPriceJSON = 6;\n\tbytes bandwidthPriceJSON = 10;\n\tfloat monthlyPrice = 7;\n\tfloat seasonallyPrice = 8;\n\tfloat yearlyPrice = 9;\n\tint32 totalServers = 11; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 13; // 可以添加的域名总数\n\tint64 dailyRequests = 14; // 每日访问量额度\n\tint64 monthlyRequests = 15; // 每月访问量额度\n}",
       "doc": "创建套餐"
     },
     {
@@ -21075,7 +21075,7 @@
     },
     {
       "name": "Plan",
-      "code": "message Plan {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tdouble monthlyPrice = 9;\n\tdouble seasonallyPrice = 10;\n\tdouble yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n}",
+      "code": "message Plan {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tdouble monthlyPrice = 9;\n\tdouble seasonallyPrice = 10;\n\tdouble yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n}",
       "doc": ""
     },
     {
@@ -22450,7 +22450,7 @@
     },
     {
       "name": "UpdatePlanRequest",
-      "code": "message UpdatePlanRequest {\n\tint64 planId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tfloat monthlyPrice = 9;\n\tfloat seasonallyPrice = 10;\n\tfloat yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n}",
+      "code": "message UpdatePlanRequest {\n\tint64 planId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tfloat monthlyPrice = 9;\n\tfloat seasonallyPrice = 10;\n\tfloat yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n}",
       "doc": "修改套餐"
     },
     {
