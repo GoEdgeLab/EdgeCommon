@@ -8,7 +8,7 @@ import (
 )
 
 func TestHTTPRemoteAddrConfig_IsEmpty(t *testing.T) {
-	a := assert.NewAssertion(t)
+	var a = assert.NewAssertion(t)
 
 	{
 		var config = &HTTPRemoteAddrConfig{}
@@ -50,5 +50,16 @@ func TestHTTPRemoteAddrConfig_IsEmpty(t *testing.T) {
 			t.Fatal(err)
 		}
 		a.IsFalse(config.IsEmpty())
+	}
+}
+
+func TestHTTPRemoteAddrConfig_Values(t *testing.T) {
+	for _, value := range []string{"${remoteAddr}", "${header.x-real-ip}", "${header.x-client-ip,x-real-ip,x-forwarded-for}"} {
+		var config = &HTTPRemoteAddrConfig{Value: value}
+		err := config.Init()
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Log(value, "=>", config.Values())
 	}
 }
