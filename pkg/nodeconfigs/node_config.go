@@ -74,7 +74,6 @@ type NodeConfig struct {
 	ParentNodes map[int64][]*ParentNodeConfig `yaml:"parentNodes" json:"parentNodes"` // clusterId => []*ParentNodeConfig
 
 	// 全局配置
-	GlobalConfig       *serverconfigs.GlobalConfig       `yaml:"globalConfig" json:"globalConfig"`             // 全局配置
 	GlobalServerConfig *serverconfigs.GlobalServerConfig `yaml:"globalServerConfig" json:"globalServerConfig"` // 服务全局配置，用来替代 GlobalConfig
 	ProductConfig      *ProductConfig                    `yaml:"productConfig" json:"productConfig"`
 
@@ -260,14 +259,6 @@ func (this *NodeConfig) Init(ctx context.Context) (err error, serverErrors []*Se
 		// 检查ACME支持
 		if server.IsOn && server.SupportCNAME {
 			this.SupportCNAME = true
-		}
-	}
-
-	// global config
-	if this.GlobalConfig != nil {
-		err = this.GlobalConfig.Init()
-		if err != nil {
-			return
 		}
 	}
 

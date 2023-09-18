@@ -61,6 +61,12 @@ type GlobalServerConfig struct {
 		DomainAuditingPrompt string `yaml:"domainAuditingPrompt" json:"domainAuditingPrompt"` // 域名审核的提示
 	} `yaml:"httpAll" json:"httpAll"` // HTTP统一配置
 
+	TCPAll struct {
+		PortRangeMin int   `yaml:"portRangeMin" json:"portRangeMin"` // 最小端口
+		PortRangeMax int   `yaml:"portRangeMax" json:"portRangeMax"` // 最大端口
+		DenyPorts    []int `yaml:"denyPorts" json:"denyPorts"`       // 禁止使用的端口
+	} `yaml:"tcpAll" json:"tcpAll"`
+
 	HTTPAccessLog struct {
 		IsOn                     bool `yaml:"isOn" json:"isOn"`                                         // 是否启用此功能
 		EnableRequestHeaders     bool `yaml:"enableRequestHeaders" json:"enableRequestHeaders"`         // 记录请求Header

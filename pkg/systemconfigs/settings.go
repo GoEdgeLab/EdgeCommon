@@ -3,7 +3,6 @@ package systemconfigs
 type SettingCode = string
 
 const (
-	SettingCodeServerGlobalConfig    SettingCode = "serverGlobalConfig"  // Deprecated 服务相关全局设置
 	SettingCodeNodeMonitor           SettingCode = "nodeMonitor"         // 监控节点状态
 	SettingCodeClusterHealthCheck    SettingCode = "clusterHealthCheck"  // 集群健康检查
 	SettingCodeIPListVersion         SettingCode = "ipListVersion"       // IP名单的版本号
