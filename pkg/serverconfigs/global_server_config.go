@@ -9,6 +9,11 @@ const (
 	LnRequestSchedulingMethodURLMapping LnRequestSchedulingMethod = "urlMapping"
 )
 
+const (
+	DefaultTCPPortRangeMin = 10000
+	DefaultTCPPortRangeMax = 40000
+)
+
 func NewGlobalServerConfig() *GlobalServerConfig {
 	var config = &GlobalServerConfig{}
 
@@ -51,6 +56,9 @@ type GlobalServerConfig struct {
 		LnRequestSchedulingMethod LnRequestSchedulingMethod `yaml:"lnRequestSchedulingMethod" json:"lnRequestSchedulingMethod"` // Ln请求调度方法
 		ServerName                string                    `yaml:"serverName" json:"serverName"`                               // Server名称
 		EnableServerAddrVariable  bool                      `yaml:"enableServerAddrVariable" json:"enableServerAddrVariable"`   // 是否支持${serverAddr}变量
+
+		DomainAuditingIsOn   bool   `yaml:"domainAuditingIsOn" json:"domainAuditingIsOn"`     // 域名是否需要审核
+		DomainAuditingPrompt string `yaml:"domainAuditingPrompt" json:"domainAuditingPrompt"` // 域名审核的提示
 	} `yaml:"httpAll" json:"httpAll"` // HTTP统一配置
 
 	HTTPAccessLog struct {

@@ -10973,6 +10973,15 @@
             "user"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findServerAuditingPrompt",
+          "requestMessageName": "FindServerAuditingPromptRequest",
+          "responseMessageName": "FindServerAuditingPromptResponse",
+          "code": "rpc findServerAuditingPrompt(FindServerAuditingPromptRequest) returns (FindServerAuditingPromptResponse);",
+          "doc": "获取域名审核时的提示文字",
+          "roles": [],
+          "isDeprecated": false
         }
       ],
       "filename": "service_server.proto",
@@ -18491,11 +18500,11 @@
     {
       "name": "FindEnabledServerUAMRequest",
       "code": "message FindEnabledServerUAMRequest {\n\tint64 serverId = 1; // 网站ID\n}",
-      "doc": "查找网站UAM设置"
+      "doc": "查找网站UAM（5秒盾）设置"
     },
     {
       "name": "FindEnabledServerUAMResponse",
-      "code": "message FindEnabledServerUAMResponse {\n\tbytes uamJSON = 1;\n}",
+      "code": "message FindEnabledServerUAMResponse {\n\tbytes uamJSON = 1; // UAM设置\n}",
       "doc": ""
     },
     {
@@ -19506,6 +19515,16 @@
     {
       "name": "FindServer5MinutelyStatsWithDayResponse",
       "code": "message FindServer5MinutelyStatsWithDayResponse {\n\trepeated Stat stats = 1;\n\n\n\tmessage Stat {\n\t\tstring day = 1;\n\t\tstring timeFrom = 2;\n\t\tstring timeTo = 3;\n\t\tint64 bytes = 4;\n\t\tint64 cachedBytes = 5;\n\t\tint64 countRequests = 6;\n\t\tint64 countCachedRequests = 7;\n\t}\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindServerAuditingPromptRequest",
+      "code": "message FindServerAuditingPromptRequest {\n\tint64 serverId = 1; // 网站ID\n}",
+      "doc": "获取域名审核时的提示文字"
+    },
+    {
+      "name": "FindServerAuditingPromptResponse",
+      "code": "message FindServerAuditingPromptResponse {\n\tstring promptText = 1; // 提示文字\n}",
       "doc": ""
     },
     {
@@ -22636,7 +22655,7 @@
     {
       "name": "UpdateServerUAMRequest",
       "code": "message UpdateServerUAMRequest {\n\tint64 serverId = 1; // 网站ID\n\tbytes uamJSON = 2;\n}",
-      "doc": "修改网站UAM设置"
+      "doc": "修改网站UAM（5秒盾）设置"
     },
     {
       "name": "UpdateServerUDPRequest",
@@ -22655,7 +22674,7 @@
     },
     {
       "name": "UpdateServerUserRequest",
-      "code": "message UpdateServerUserRequest {\n\tint64 serverId = 1; // 网站ID\n\tint64 userId = 2;\n}",
+      "code": "message UpdateServerUserRequest {\n\tint64 serverId = 1; // 网站ID\n\tint64 userId = 2; // 用户ID\n}",
       "doc": "修改网站所属用户"
     },
     {

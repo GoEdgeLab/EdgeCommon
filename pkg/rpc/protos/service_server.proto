@@ -190,6 +190,9 @@ service ServerService {
 
 	// 在网站之间复制配置
 	rpc copyServerConfig(CopyServerConfigRequest) returns (RPCSuccess);
+
+	// 获取域名审核时的提示文字
+	rpc findServerAuditingPrompt(FindServerAuditingPromptRequest) returns (FindServerAuditingPromptResponse);
 }
 
 // 创建网站
@@ -715,25 +718,25 @@ message ComposeServerConfigResponse {
 	bytes serverConfigJSON = 1;
 }
 
-// 修改网站UAM设置
+// 修改网站UAM（5秒盾）设置
 message UpdateServerUAMRequest {
 	int64 serverId = 1; // 网站ID
 	bytes uamJSON = 2;
 }
 
-// 查找网站UAM设置
+// 查找网站UAM（5秒盾）设置
 message FindEnabledServerUAMRequest {
 	int64 serverId = 1; // 网站ID
 }
 
 message FindEnabledServerUAMResponse {
-	bytes uamJSON = 1;
+	bytes uamJSON = 1; // UAM设置
 }
 
 // 修改网站所属用户
 message UpdateServerUserRequest {
 	int64 serverId = 1; // 网站ID
-	int64 userId = 2;
+	int64 userId = 2; // 用户ID
 }
 
 // 修改网站名称
@@ -751,4 +754,13 @@ message CopyServerConfigRequest {
 	repeated int64 targetServerGroupIds = 5; // 目标网站分组ID列表
 	int64 targetClusterId = 6; // 目标集群ID
 	int64 targetUserId = 7; // 目标用户ID
+}
+
+// 获取域名审核时的提示文字
+message FindServerAuditingPromptRequest {
+	int64 serverId = 1; // 网站ID
+}
+
+message FindServerAuditingPromptResponse {
+	string promptText = 1; // 提示文字
 }
