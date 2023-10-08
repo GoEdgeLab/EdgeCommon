@@ -87,6 +87,7 @@ type NodeConfig struct {
 	AutoOpenPorts        bool                                    `yaml:"autoOpenPorts" json:"autoOpenPorts"`             // 自动开放所需端口
 	Clock                *ClockConfig                            `yaml:"clock" json:"clock"`                             // 时钟配置
 	AutoInstallNftables  bool                                    `yaml:"autoInstallNftables" json:"autoInstallNftables"` // 自动安装nftables
+	AutoSystemTuning     bool                                    `yaml:"autoSystemTuning" json:"autoSystemTuning"`       // 自动调整系统参数
 
 	// 指标
 	MetricItems []*serverconfigs.MetricItemConfig `yaml:"metricItems" json:"metricItems"`

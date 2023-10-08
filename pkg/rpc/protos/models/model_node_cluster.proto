@@ -25,4 +25,5 @@ message NodeCluster {
 	bool autoRemoteStart = 19;
 	bool autoInstallNftables = 20;
 	bytes sshParamsJSON = 21;
+	bool autoSystemTuning = 23; // 是否自动调节系统参数
 }
