@@ -13,7 +13,7 @@ type SYNFloodConfig struct {
 
 func DefaultSYNFloodConfig() *SYNFloodConfig {
 	return &SYNFloodConfig{
-		IsOn:           true,
+		IsOn:           false,
 		MinAttempts:    10,
 		TimeoutSeconds: 1800,
 		IgnoreLocal:    true,
