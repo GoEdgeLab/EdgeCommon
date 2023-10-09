@@ -261,6 +261,17 @@
             "admin"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findACMETaskUser",
+          "requestMessageName": "FindACMETaskUserRequest",
+          "responseMessageName": "FindACMETaskUserResponse",
+          "code": "rpc findACMETaskUser(FindACMETaskUserRequest) returns (FindACMETaskUserResponse);",
+          "doc": "查找任务所属用户",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_acme_task.proto",
@@ -11764,7 +11775,9 @@
           "responseMessageName": "FindSSLCertUserResponse",
           "code": "rpc findSSLCertUser(FindSSLCertUserRequest) returns (FindSSLCertUserResponse);",
           "doc": "查找证书所属用户",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         }
       ],
@@ -14171,7 +14184,7 @@
     },
     {
       "name": "CountAllEnabledACMETasksRequest",
-      "code": "message CountAllEnabledACMETasksRequest {\n\tint64 adminId = 1;\n\tint64 userId = 2;\n\tbool isAvailable = 3;\n\tbool isExpired = 4;\n\tint32 expiringDays = 5;\n\tstring keyword = 6;\n}",
+      "code": "message CountAllEnabledACMETasksRequest {\n\tint64 adminId = 1;\n\tint64 userId = 2;\n\tbool isAvailable = 3;\n\tbool isExpired = 4;\n\tint32 expiringDays = 5;\n\tstring keyword = 6;\n\tbool userOnly = 7; // 可选项，是否只列出用户上传的证书\n}",
       "doc": "计算所有任务数量"
     },
     {
@@ -16357,6 +16370,16 @@
     {
       "name": "FindACMEProviderWithCodeResponse",
       "code": "message FindACMEProviderWithCodeResponse {\n\tACMEProvider acmeProvider = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindACMETaskUserRequest",
+      "code": "message FindACMETaskUserRequest {\n\tint64 acmeTaskId = 1; // 任务ID\n}",
+      "doc": "查找任务所属用户"
+    },
+    {
+      "name": "FindACMETaskUserResponse",
+      "code": "message FindACMETaskUserResponse {\n\tUser user = 1; // 用户信息，只包含几个基本的信息\n}",
       "doc": ""
     },
     {
@@ -20091,7 +20114,7 @@
     },
     {
       "name": "ListEnabledACMETasksRequest",
-      "code": "message ListEnabledACMETasksRequest {\n\tint64 adminId = 1;\n\tint64 userId = 2;\n\tint64 offset = 3;\n\tint64 size = 4;\n\tbool isAvailable = 5;\n\tbool isExpired = 6;\n\tint32 expiringDays = 7;\n\tstring keyword = 8;\n}",
+      "code": "message ListEnabledACMETasksRequest {\n\tint64 adminId = 1;\n\tint64 userId = 2;\n\tint64 offset = 3;\n\tint64 size = 4;\n\tbool isAvailable = 5;\n\tbool isExpired = 6;\n\tint32 expiringDays = 7;\n\tstring keyword = 8;\n\tbool userOnly = 9; // 可选项，是否只列出用户上传的证书\n}",
       "doc": "列出单页任务"
     },
     {

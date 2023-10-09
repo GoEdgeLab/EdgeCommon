@@ -5,6 +5,7 @@ package pb;
 
 import "models/rpc_messages.proto";
 import "models/model_acme_task.proto";
+import "models/model_user.proto";
 
 // ACME任务相关服务
 service ACMETaskService {
@@ -34,6 +35,9 @@ service ACMETaskService {
 
 	// 查找单个任务信息
 	rpc findEnabledACMETask (FindEnabledACMETaskRequest) returns (FindEnabledACMETaskResponse);
+
+	// 查找任务所属用户
+	rpc findACMETaskUser(FindACMETaskUserRequest) returns (FindACMETaskUserResponse);
 }
 
 // 计算某个ACME用户相关的任务数量
@@ -54,6 +58,7 @@ message CountAllEnabledACMETasksRequest {
 	bool isExpired = 4;
 	int32 expiringDays = 5;
 	string keyword = 6;
+	bool userOnly = 7; // 可选项，是否只列出用户上传的证书
 }
 
 // 列出单页任务
@@ -66,6 +71,7 @@ message ListEnabledACMETasksRequest {
 	bool isExpired = 6;
 	int32 expiringDays = 7;
 	string keyword = 8;
+	bool userOnly = 9; // 可选项，是否只列出用户上传的证书
 }
 
 message ListEnabledACMETasksResponse {
@@ -122,4 +128,13 @@ message FindEnabledACMETaskRequest {
 
 message FindEnabledACMETaskResponse {
 	ACMETask acmeTask = 1;
+}
+
+// 查找任务所属用户
+message FindACMETaskUserRequest {
+	int64 acmeTaskId = 1; // 任务ID
+}
+
+message FindACMETaskUserResponse {
+	User user = 1; // 用户信息，只包含几个基本的信息
 }

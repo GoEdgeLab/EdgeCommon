@@ -28,6 +28,7 @@ const (
 	ACMETaskService_DeleteACMETask_FullMethodName                         = "/pb.ACMETaskService/deleteACMETask"
 	ACMETaskService_RunACMETask_FullMethodName                            = "/pb.ACMETaskService/runACMETask"
 	ACMETaskService_FindEnabledACMETask_FullMethodName                    = "/pb.ACMETaskService/findEnabledACMETask"
+	ACMETaskService_FindACMETaskUser_FullMethodName                       = "/pb.ACMETaskService/findACMETaskUser"
 )
 
 // ACMETaskServiceClient is the client API for ACMETaskService service.
@@ -52,6 +53,8 @@ type ACMETaskServiceClient interface {
 	RunACMETask(ctx context.Context, in *RunACMETaskRequest, opts ...grpc.CallOption) (*RunACMETaskResponse, error)
 	// 查找单个任务信息
 	FindEnabledACMETask(ctx context.Context, in *FindEnabledACMETaskRequest, opts ...grpc.CallOption) (*FindEnabledACMETaskResponse, error)
+	// 查找任务所属用户
+	FindACMETaskUser(ctx context.Context, in *FindACMETaskUserRequest, opts ...grpc.CallOption) (*FindACMETaskUserResponse, error)
 }
 
 type aCMETaskServiceClient struct {
@@ -143,6 +146,15 @@ func (c *aCMETaskServiceClient) FindEnabledACMETask(ctx context.Context, in *Fin
 	return out, nil
 }
 
+func (c *aCMETaskServiceClient) FindACMETaskUser(ctx context.Context, in *FindACMETaskUserRequest, opts ...grpc.CallOption) (*FindACMETaskUserResponse, error) {
+	out := new(FindACMETaskUserResponse)
+	err := c.cc.Invoke(ctx, ACMETaskService_FindACMETaskUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ACMETaskServiceServer is the server API for ACMETaskService service.
 // All implementations should embed UnimplementedACMETaskServiceServer
 // for forward compatibility
@@ -165,6 +177,8 @@ type ACMETaskServiceServer interface {
 	RunACMETask(context.Context, *RunACMETaskRequest) (*RunACMETaskResponse, error)
 	// 查找单个任务信息
 	FindEnabledACMETask(context.Context, *FindEnabledACMETaskRequest) (*FindEnabledACMETaskResponse, error)
+	// 查找任务所属用户
+	FindACMETaskUser(context.Context, *FindACMETaskUserRequest) (*FindACMETaskUserResponse, error)
 }
 
 // UnimplementedACMETaskServiceServer should be embedded to have forward compatible implementations.
@@ -197,6 +211,9 @@ func (UnimplementedACMETaskServiceServer) RunACMETask(context.Context, *RunACMET
 }
 func (UnimplementedACMETaskServiceServer) FindEnabledACMETask(context.Context, *FindEnabledACMETaskRequest) (*FindEnabledACMETaskResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledACMETask not implemented")
+}
+func (UnimplementedACMETaskServiceServer) FindACMETaskUser(context.Context, *FindACMETaskUserRequest) (*FindACMETaskUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindACMETaskUser not implemented")
 }
 
 // UnsafeACMETaskServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -372,6 +389,24 @@ func _ACMETaskService_FindEnabledACMETask_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ACMETaskService_FindACMETaskUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindACMETaskUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ACMETaskServiceServer).FindACMETaskUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ACMETaskService_FindACMETaskUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ACMETaskServiceServer).FindACMETaskUser(ctx, req.(*FindACMETaskUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ACMETaskService_ServiceDesc is the grpc.ServiceDesc for ACMETaskService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -414,6 +449,10 @@ var ACMETaskService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findEnabledACMETask",
 			Handler:    _ACMETaskService_FindEnabledACMETask_Handler,
+		},
+		{
+			MethodName: "findACMETaskUser",
+			Handler:    _ACMETaskService_FindACMETaskUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
