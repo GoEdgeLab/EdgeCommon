@@ -26,20 +26,20 @@ type CreateIPItemRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	IpListId                      int64  `protobuf:"varint,1,opt,name=ipListId,proto3" json:"ipListId,omitempty"`    // IP列表ID
-	IpFrom                        string `protobuf:"bytes,2,opt,name=ipFrom,proto3" json:"ipFrom,omitempty"`         // 开始IP
-	IpTo                          string `protobuf:"bytes,3,opt,name=ipTo,proto3" json:"ipTo,omitempty"`             // 结束IP（可选）
-	ExpiredAt                     int64  `protobuf:"varint,4,opt,name=expiredAt,proto3" json:"expiredAt,omitempty"`  // 过期时间戳（可选）
-	Reason                        string `protobuf:"bytes,5,opt,name=reason,proto3" json:"reason,omitempty"`         // 加入理由（可选）
-	Type                          string `protobuf:"bytes,6,opt,name=type,proto3" json:"type,omitempty"`             // 类型
-	EventLevel                    string `protobuf:"bytes,7,opt,name=eventLevel,proto3" json:"eventLevel,omitempty"` // 级别
-	NodeId                        int64  `protobuf:"varint,8,opt,name=nodeId,proto3" json:"nodeId,omitempty"`        // 所属节点ID
-	ServerId                      int64  `protobuf:"varint,9,opt,name=serverId,proto3" json:"serverId,omitempty"`    // 所属服务ID
-	SourceNodeId                  int64  `protobuf:"varint,10,opt,name=sourceNodeId,proto3" json:"sourceNodeId,omitempty"`
-	SourceServerId                int64  `protobuf:"varint,11,opt,name=sourceServerId,proto3" json:"sourceServerId,omitempty"`
-	SourceHTTPFirewallPolicyId    int64  `protobuf:"varint,12,opt,name=sourceHTTPFirewallPolicyId,proto3" json:"sourceHTTPFirewallPolicyId,omitempty"`
-	SourceHTTPFirewallRuleGroupId int64  `protobuf:"varint,13,opt,name=sourceHTTPFirewallRuleGroupId,proto3" json:"sourceHTTPFirewallRuleGroupId,omitempty"`
-	SourceHTTPFirewallRuleSetId   int64  `protobuf:"varint,14,opt,name=sourceHTTPFirewallRuleSetId,proto3" json:"sourceHTTPFirewallRuleSetId,omitempty"`
+	IpListId                      int64  `protobuf:"varint,1,opt,name=ipListId,proto3" json:"ipListId,omitempty"`                                            // 所属IP列表ID
+	IpFrom                        string `protobuf:"bytes,2,opt,name=ipFrom,proto3" json:"ipFrom,omitempty"`                                                 // 开始IP
+	IpTo                          string `protobuf:"bytes,3,opt,name=ipTo,proto3" json:"ipTo,omitempty"`                                                     // 结束IP（可选）
+	ExpiredAt                     int64  `protobuf:"varint,4,opt,name=expiredAt,proto3" json:"expiredAt,omitempty"`                                          // 过期时间戳（可选）
+	Reason                        string `protobuf:"bytes,5,opt,name=reason,proto3" json:"reason,omitempty"`                                                 // 加入理由（可选）
+	Type                          string `protobuf:"bytes,6,opt,name=type,proto3" json:"type,omitempty"`                                                     // IP类型，值为ipv4或ipv6
+	EventLevel                    string `protobuf:"bytes,7,opt,name=eventLevel,proto3" json:"eventLevel,omitempty"`                                         // 级别：debug, notice, warning, error, critical, fatal
+	NodeId                        int64  `protobuf:"varint,8,opt,name=nodeId,proto3" json:"nodeId,omitempty"`                                                // 可选项，所属节点ID
+	ServerId                      int64  `protobuf:"varint,9,opt,name=serverId,proto3" json:"serverId,omitempty"`                                            // 可选项，所属网站ID
+	SourceNodeId                  int64  `protobuf:"varint,10,opt,name=sourceNodeId,proto3" json:"sourceNodeId,omitempty"`                                   // 可选项，来源节点
+	SourceServerId                int64  `protobuf:"varint,11,opt,name=sourceServerId,proto3" json:"sourceServerId,omitempty"`                               // 可选项，来源网站ID
+	SourceHTTPFirewallPolicyId    int64  `protobuf:"varint,12,opt,name=sourceHTTPFirewallPolicyId,proto3" json:"sourceHTTPFirewallPolicyId,omitempty"`       // 可选项，来源WAF策略ID
+	SourceHTTPFirewallRuleGroupId int64  `protobuf:"varint,13,opt,name=sourceHTTPFirewallRuleGroupId,proto3" json:"sourceHTTPFirewallRuleGroupId,omitempty"` // 可选项，来源WAF规则分组ID
+	SourceHTTPFirewallRuleSetId   int64  `protobuf:"varint,14,opt,name=sourceHTTPFirewallRuleSetId,proto3" json:"sourceHTTPFirewallRuleSetId,omitempty"`     // 可选项，来源WAF规则集ID
 }
 
 func (x *CreateIPItemRequest) Reset() {
