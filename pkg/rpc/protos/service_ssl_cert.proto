@@ -5,6 +5,7 @@ package pb;
 
 import "models/rpc_messages.proto";
 import "models/model_ssl_cert.proto";
+import "models/model_user.proto";
 
 // SSL证书管理服务
 service SSLCertService {
@@ -46,6 +47,9 @@ service SSLCertService {
 
 	// 读取证书的OCSP
 	rpc listUpdatedSSLCertOCSP(ListUpdatedSSLCertOCSPRequest) returns (ListUpdatedSSLCertOCSPResponse);
+
+	// 查找证书所属用户
+	rpc findSSLCertUser(FindSSLCertUserRequest) returns (FindSSLCertUserResponse);
 }
 
 // 创建证书
@@ -131,6 +135,7 @@ message CountSSLCertRequest {
 	string keyword = 5; // 可选项，关键词
 	int64 userId = 6; // 可选项，用户ID，不填则表示读取管理员上传的证书
 	repeated string domains = 7; // 可选项，搜索使用的域名列表
+	bool userOnly = 8; // 可选项，只列出用户上传的证书
 }
 
 // 列出单页匹配的证书
@@ -144,6 +149,7 @@ message ListSSLCertsRequest {
 	repeated string domains = 9; // 可选项，搜索使用的域名列表
 	int64 offset = 6; // 读取位置
 	int64 size = 7; // 读取长度，不能小于0
+	bool userOnly = 10; // 可选项，只列出用户上传的证书
 }
 
 message ListSSLCertsResponse {
@@ -196,4 +202,13 @@ message ListUpdatedSSLCertOCSPResponse {
 		int64 version = 3;
 		int64 expiresAt = 4;
 	}
+}
+
+// 查找证书所属用户
+message FindSSLCertUserRequest {
+	int64 sslCertId = 1; // 证书ID
+}
+
+message FindSSLCertUserResponse {
+	User user = 1; // 用户信息，只包含几个基本的信息
 }

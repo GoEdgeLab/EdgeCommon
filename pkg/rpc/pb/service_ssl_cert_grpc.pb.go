@@ -32,6 +32,7 @@ const (
 	SSLCertService_ResetSSLCertsWithOCSPError_FullMethodName    = "/pb.SSLCertService/resetSSLCertsWithOCSPError"
 	SSLCertService_ResetAllSSLCertsWithOCSPError_FullMethodName = "/pb.SSLCertService/resetAllSSLCertsWithOCSPError"
 	SSLCertService_ListUpdatedSSLCertOCSP_FullMethodName        = "/pb.SSLCertService/listUpdatedSSLCertOCSP"
+	SSLCertService_FindSSLCertUser_FullMethodName               = "/pb.SSLCertService/findSSLCertUser"
 )
 
 // SSLCertServiceClient is the client API for SSLCertService service.
@@ -64,6 +65,8 @@ type SSLCertServiceClient interface {
 	ResetAllSSLCertsWithOCSPError(ctx context.Context, in *ResetAllSSLCertsWithOCSPErrorRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 读取证书的OCSP
 	ListUpdatedSSLCertOCSP(ctx context.Context, in *ListUpdatedSSLCertOCSPRequest, opts ...grpc.CallOption) (*ListUpdatedSSLCertOCSPResponse, error)
+	// 查找证书所属用户
+	FindSSLCertUser(ctx context.Context, in *FindSSLCertUserRequest, opts ...grpc.CallOption) (*FindSSLCertUserResponse, error)
 }
 
 type sSLCertServiceClient struct {
@@ -191,6 +194,15 @@ func (c *sSLCertServiceClient) ListUpdatedSSLCertOCSP(ctx context.Context, in *L
 	return out, nil
 }
 
+func (c *sSLCertServiceClient) FindSSLCertUser(ctx context.Context, in *FindSSLCertUserRequest, opts ...grpc.CallOption) (*FindSSLCertUserResponse, error) {
+	out := new(FindSSLCertUserResponse)
+	err := c.cc.Invoke(ctx, SSLCertService_FindSSLCertUser_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SSLCertServiceServer is the server API for SSLCertService service.
 // All implementations should embed UnimplementedSSLCertServiceServer
 // for forward compatibility
@@ -221,6 +233,8 @@ type SSLCertServiceServer interface {
 	ResetAllSSLCertsWithOCSPError(context.Context, *ResetAllSSLCertsWithOCSPErrorRequest) (*RPCSuccess, error)
 	// 读取证书的OCSP
 	ListUpdatedSSLCertOCSP(context.Context, *ListUpdatedSSLCertOCSPRequest) (*ListUpdatedSSLCertOCSPResponse, error)
+	// 查找证书所属用户
+	FindSSLCertUser(context.Context, *FindSSLCertUserRequest) (*FindSSLCertUserResponse, error)
 }
 
 // UnimplementedSSLCertServiceServer should be embedded to have forward compatible implementations.
@@ -265,6 +279,9 @@ func (UnimplementedSSLCertServiceServer) ResetAllSSLCertsWithOCSPError(context.C
 }
 func (UnimplementedSSLCertServiceServer) ListUpdatedSSLCertOCSP(context.Context, *ListUpdatedSSLCertOCSPRequest) (*ListUpdatedSSLCertOCSPResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUpdatedSSLCertOCSP not implemented")
+}
+func (UnimplementedSSLCertServiceServer) FindSSLCertUser(context.Context, *FindSSLCertUserRequest) (*FindSSLCertUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindSSLCertUser not implemented")
 }
 
 // UnsafeSSLCertServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -512,6 +529,24 @@ func _SSLCertService_ListUpdatedSSLCertOCSP_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SSLCertService_FindSSLCertUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindSSLCertUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SSLCertServiceServer).FindSSLCertUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SSLCertService_FindSSLCertUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SSLCertServiceServer).FindSSLCertUser(ctx, req.(*FindSSLCertUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SSLCertService_ServiceDesc is the grpc.ServiceDesc for SSLCertService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -570,6 +605,10 @@ var SSLCertService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "listUpdatedSSLCertOCSP",
 			Handler:    _SSLCertService_ListUpdatedSSLCertOCSP_Handler,
+		},
+		{
+			MethodName: "findSSLCertUser",
+			Handler:    _SSLCertService_FindSSLCertUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

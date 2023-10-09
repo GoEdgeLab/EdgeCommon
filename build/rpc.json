@@ -11757,6 +11757,15 @@
             "node"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findSSLCertUser",
+          "requestMessageName": "FindSSLCertUserRequest",
+          "responseMessageName": "FindSSLCertUserResponse",
+          "code": "rpc findSSLCertUser(FindSSLCertUserRequest) returns (FindSSLCertUserResponse);",
+          "doc": "查找证书所属用户",
+          "roles": [],
+          "isDeprecated": false
         }
       ],
       "filename": "service_ssl_cert.proto",
@@ -14592,7 +14601,7 @@
     },
     {
       "name": "CountSSLCertRequest",
-      "code": "message CountSSLCertRequest {\n\tbool isCA = 1; // 可选项，是否为CA证书\n\tbool isAvailable = 2; // 可选项，是否可用（在有效期内）\n\tbool isExpired = 3; // 可选项，是否已过期\n\tint32 expiringDays = 4; // 可选项，离过期日的天数\n\tstring keyword = 5; // 可选项，关键词\n\tint64 userId = 6; // 可选项，用户ID，不填则表示读取管理员上传的证书\n\trepeated string domains = 7; // 可选项，搜索使用的域名列表\n}",
+      "code": "message CountSSLCertRequest {\n\tbool isCA = 1; // 可选项，是否为CA证书\n\tbool isAvailable = 2; // 可选项，是否可用（在有效期内）\n\tbool isExpired = 3; // 可选项，是否已过期\n\tint32 expiringDays = 4; // 可选项，离过期日的天数\n\tstring keyword = 5; // 可选项，关键词\n\tint64 userId = 6; // 可选项，用户ID，不填则表示读取管理员上传的证书\n\trepeated string domains = 7; // 可选项，搜索使用的域名列表\n\tbool userOnly = 8; // 可选项，只列出用户上传的证书\n}",
       "doc": "计算匹配的证书数量"
     },
     {
@@ -19501,6 +19510,16 @@
       "doc": ""
     },
     {
+      "name": "FindSSLCertUserRequest",
+      "code": "message FindSSLCertUserRequest {\n\tint64 sslCertId = 1; // 证书ID\n}",
+      "doc": "查找证书所属用户"
+    },
+    {
+      "name": "FindSSLCertUserResponse",
+      "code": "message FindSSLCertUserResponse {\n\tUser user = 1; // 用户信息，只包含几个基本的信息\n}",
+      "doc": ""
+    },
+    {
       "name": "FindSendingMessageTasksRequest",
       "code": "message FindSendingMessageTasksRequest {\n\tint64 size = 1;\n}",
       "doc": "查找要发送的消息任务"
@@ -20597,7 +20616,7 @@
     },
     {
       "name": "ListSSLCertsRequest",
-      "code": "message ListSSLCertsRequest {\n\tbool isCA = 1; // 可选项，是否为CA证书\n\tbool isAvailable = 2; // 可选项，是否可用（在有效期内）\n\tbool isExpired = 3; //可选项， 是否已过期\n\tint32 expiringDays = 4; // 可选项，离过期日的天数\n\tstring keyword = 5; // 可选项，关键词\n\tint64 userId = 8; // 可选项，用户ID，不填则表示读取管理员上传的证书\n\trepeated string domains = 9; // 可选项，搜索使用的域名列表\n\tint64 offset = 6; // 读取位置\n\tint64 size = 7; // 读取长度，不能小于0\n}",
+      "code": "message ListSSLCertsRequest {\n\tbool isCA = 1; // 可选项，是否为CA证书\n\tbool isAvailable = 2; // 可选项，是否可用（在有效期内）\n\tbool isExpired = 3; //可选项， 是否已过期\n\tint32 expiringDays = 4; // 可选项，离过期日的天数\n\tstring keyword = 5; // 可选项，关键词\n\tint64 userId = 8; // 可选项，用户ID，不填则表示读取管理员上传的证书\n\trepeated string domains = 9; // 可选项，搜索使用的域名列表\n\tint64 offset = 6; // 读取位置\n\tint64 size = 7; // 读取长度，不能小于0\n\tbool userOnly = 10; // 可选项，只列出用户上传的证书\n}",
       "doc": "列出单页匹配的证书"
     },
     {
