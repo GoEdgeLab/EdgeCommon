@@ -1013,7 +1013,6 @@
             "dns",
             "user",
             "node",
-            "monitor",
             "admin"
           ],
           "isDeprecated": false
@@ -4370,17 +4369,6 @@
           "isDeprecated": false
         },
         {
-          "name": "updateMessageMedias",
-          "requestMessageName": "UpdateMessageMediasRequest",
-          "responseMessageName": "RPCSuccess",
-          "code": "rpc updateMessageMedias (UpdateMessageMediasRequest) returns (RPCSuccess);",
-          "doc": "设置所有支持的媒介",
-          "roles": [
-            "monitor"
-          ],
-          "isDeprecated": false
-        },
-        {
           "name": "sendMediaMessage",
           "requestMessageName": "SendMediaMessageRequest",
           "responseMessageName": "RPCSuccess",
@@ -4669,28 +4657,6 @@
           "isDeprecated": false
         },
         {
-          "name": "findSendingMessageTasks",
-          "requestMessageName": "FindSendingMessageTasksRequest",
-          "responseMessageName": "FindSendingMessageTasksResponse",
-          "code": "rpc findSendingMessageTasks (FindSendingMessageTasksRequest) returns (FindSendingMessageTasksResponse);",
-          "doc": "查找要发送的消息任务",
-          "roles": [
-            "monitor"
-          ],
-          "isDeprecated": false
-        },
-        {
-          "name": "updateMessageTaskStatus",
-          "requestMessageName": "UpdateMessageTaskStatusRequest",
-          "responseMessageName": "RPCSuccess",
-          "code": "rpc updateMessageTaskStatus (UpdateMessageTaskStatusRequest) returns (RPCSuccess);",
-          "doc": "修改消息任务状态",
-          "roles": [
-            "monitor"
-          ],
-          "isDeprecated": false
-        },
-        {
           "name": "deleteMessageTask",
           "requestMessageName": "DeleteMessageTaskRequest",
           "responseMessageName": "RPCSuccess",
@@ -4729,6 +4695,17 @@
           "responseMessageName": "ListMessageTasksWithStatusResponse",
           "code": "rpc listMessageTasksWithStatus(ListMessageTasksWithStatusRequest) returns (ListMessageTasksWithStatusResponse);",
           "doc": "根据状态列出某页任务",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "sendMessageTask",
+          "requestMessageName": "SendMessageTaskRequest",
+          "responseMessageName": "SendMessageTaskResponse",
+          "code": "rpc sendMessageTask(SendMessageTaskRequest) returns (SendMessageTaskResponse);",
+          "doc": "发送某个消息任务",
           "roles": [
             "admin"
           ],
@@ -4952,112 +4929,6 @@
       ],
       "filename": "service_metric_stat.proto",
       "doc": "指标统计数据相关服务"
-    },
-    {
-      "name": "MonitorNodeService",
-      "methods": [
-        {
-          "name": "createMonitorNode",
-          "requestMessageName": "CreateMonitorNodeRequest",
-          "responseMessageName": "CreateMonitorNodeResponse",
-          "code": "rpc createMonitorNode (CreateMonitorNodeRequest) returns (CreateMonitorNodeResponse);",
-          "doc": "创建监控节点",
-          "roles": [
-            "admin"
-          ],
-          "isDeprecated": false
-        },
-        {
-          "name": "updateMonitorNode",
-          "requestMessageName": "UpdateMonitorNodeRequest",
-          "responseMessageName": "RPCSuccess",
-          "code": "rpc updateMonitorNode (UpdateMonitorNodeRequest) returns (RPCSuccess);",
-          "doc": "修改监控节点",
-          "roles": [
-            "admin"
-          ],
-          "isDeprecated": false
-        },
-        {
-          "name": "deleteMonitorNode",
-          "requestMessageName": "DeleteMonitorNodeRequest",
-          "responseMessageName": "RPCSuccess",
-          "code": "rpc deleteMonitorNode (DeleteMonitorNodeRequest) returns (RPCSuccess);",
-          "doc": "删除监控节点",
-          "roles": [
-            "admin"
-          ],
-          "isDeprecated": false
-        },
-        {
-          "name": "findAllEnabledMonitorNodes",
-          "requestMessageName": "FindAllEnabledMonitorNodesRequest",
-          "responseMessageName": "FindAllEnabledMonitorNodesResponse",
-          "code": "rpc findAllEnabledMonitorNodes (FindAllEnabledMonitorNodesRequest) returns (FindAllEnabledMonitorNodesResponse);",
-          "doc": "列出所有可用监控节点",
-          "roles": [
-            "admin"
-          ],
-          "isDeprecated": false
-        },
-        {
-          "name": "countAllEnabledMonitorNodes",
-          "requestMessageName": "CountAllEnabledMonitorNodesRequest",
-          "responseMessageName": "RPCCountResponse",
-          "code": "rpc countAllEnabledMonitorNodes (CountAllEnabledMonitorNodesRequest) returns (RPCCountResponse);",
-          "doc": "计算监控节点数量",
-          "roles": [
-            "admin"
-          ],
-          "isDeprecated": false
-        },
-        {
-          "name": "listEnabledMonitorNodes",
-          "requestMessageName": "ListEnabledMonitorNodesRequest",
-          "responseMessageName": "ListEnabledMonitorNodesResponse",
-          "code": "rpc listEnabledMonitorNodes (ListEnabledMonitorNodesRequest) returns (ListEnabledMonitorNodesResponse);",
-          "doc": "列出单页的监控节点",
-          "roles": [
-            "admin"
-          ],
-          "isDeprecated": false
-        },
-        {
-          "name": "findEnabledMonitorNode",
-          "requestMessageName": "FindEnabledMonitorNodeRequest",
-          "responseMessageName": "FindEnabledMonitorNodeResponse",
-          "code": "rpc findEnabledMonitorNode (FindEnabledMonitorNodeRequest) returns (FindEnabledMonitorNodeResponse);",
-          "doc": "根据ID查找节点",
-          "roles": [
-            "admin"
-          ],
-          "isDeprecated": false
-        },
-        {
-          "name": "findCurrentMonitorNode",
-          "requestMessageName": "FindCurrentMonitorNodeRequest",
-          "responseMessageName": "FindCurrentMonitorNodeResponse",
-          "code": "rpc findCurrentMonitorNode (FindCurrentMonitorNodeRequest) returns (FindCurrentMonitorNodeResponse);",
-          "doc": "获取当前监控节点信息",
-          "roles": [
-            "monitor"
-          ],
-          "isDeprecated": false
-        },
-        {
-          "name": "updateMonitorNodeStatus",
-          "requestMessageName": "UpdateMonitorNodeStatusRequest",
-          "responseMessageName": "RPCSuccess",
-          "code": "rpc updateMonitorNodeStatus (UpdateMonitorNodeStatusRequest) returns (RPCSuccess);",
-          "doc": "更新节点状态",
-          "roles": [
-            "monitor"
-          ],
-          "isDeprecated": false
-        }
-      ],
-      "filename": "service_monitor_node.proto",
-      "doc": "监控节点管理服务"
     },
     {
       "name": "NodeService",
@@ -11837,8 +11708,7 @@
           "code": "rpc SysLockerLock (SysLockerLockRequest) returns (SysLockerLockResponse);",
           "doc": "获得锁",
           "roles": [
-            "admin",
-            "monitor"
+            "admin"
           ],
           "isDeprecated": false
         },
@@ -11849,8 +11719,7 @@
           "code": "rpc SysLockerUnlock (SysLockerUnlockRequest) returns (RPCSuccess);",
           "doc": "释放锁",
           "roles": [
-            "admin",
-            "monitor"
+            "admin"
           ],
           "isDeprecated": false
         }
@@ -14004,7 +13873,7 @@
     },
     {
       "name": "ComposeAdminDashboardResponse",
-      "code": "message ComposeAdminDashboardResponse {\n\tint64 countNodeClusters = 1;\n\tint64 countNodes = 2;\n\tint64 countOfflineNodes = 9;\n\tint64 countServers = 3;\n\tint64 countAuditingServers = 13;\n\tint64 countUsers = 4;\n\tint64 countAPINodes = 5;\n\tint64 countOfflineAPINodes = 10;\n\tint64 countDBNodes = 6;\n\tint64 countOfflineDBNodes = 11;\n\tint64 countUserNodes = 7;\n\tint64 countOfflineUserNodes = 12;\n\tint64 defaultNodeClusterId = 8;\n\n\trepeated DailyTrafficStat dailyTrafficStats = 30;\n\trepeated HourlyTrafficStat hourlyTrafficStats = 31;\n\n\tUpgradeInfo nodeUpgradeInfo = 32;\n\tUpgradeInfo apiNodeUpgradeInfo = 33;\n\tUpgradeInfo monitorNodeUpgradeInfo = 34;\n\tUpgradeInfo userNodeUpgradeInfo = 35;\n\tUpgradeInfo authorityNodeUpgradeInfo = 36;\n\tUpgradeInfo nsNodeUpgradeInfo = 37;\n\tUpgradeInfo reportNodeUpgradeInfo = 41;\n\n\trepeated NodeStat topNodeStats = 38;\n\trepeated DomainStat topDomainStats = 39;\n\trepeated CountryStat topCountryStats = 42;\n\n\trepeated MetricDataChart metricDataCharts = 40;\n\n\n\tmessage DailyTrafficStat {\n\t\tstring day = 1;\n\t\tint64 bytes = 2;\n\t\tint64 cachedBytes = 3;\n\t\tint64 countRequests = 4;\n\t\tint64 countCachedRequests = 5;\n\t\tint64 countAttackRequests = 6;\n\t\tint64 attackBytes = 7;\n\t}\n\n\n\tmessage HourlyTrafficStat {\n\t\tstring hour = 1;\n\t\tint64 bytes = 2;\n\t\tint64 cachedBytes = 3;\n\t\tint64 countRequests = 4;\n\t\tint64 countCachedRequests = 5;\n\t\tint64 countAttackRequests = 6;\n\t\tint64 attackBytes = 7;\n\t}\n\n\n\tmessage NodeStat {\n\t\tint64 nodeId = 1;\n\t\tstring nodeName = 2;\n\t\tint64 countRequests = 3;\n\t\tint64 bytes = 4;\n\t}\n\n\n\tmessage DomainStat {\n\t\tint64 serverId = 1;\n\t\tstring domain = 2;\n\t\tint64 countRequests = 3;\n\t\tint64 bytes = 4;\n\t}\n\n\n\tmessage CountryStat {\n\t\tstring countryName = 1;\n\t\tint64 bytes = 2;\n\t\tint64 countRequests = 3;\n\t\tfloat percent = 4; // 流量占比\n\t\tint64 countAttackRequests = 6;\n\t\tint64 attackBytes = 7;\n\t}\n\n\t// 节点升级信息\n\n\tmessage UpgradeInfo {\n\t\tint64 countNodes = 1; // 节点数\n\t\tstring newVersion = 2; // 新版本\n\t}\n}",
+      "code": "message ComposeAdminDashboardResponse {\n\tint64 countNodeClusters = 1;\n\tint64 countNodes = 2;\n\tint64 countOfflineNodes = 9;\n\tint64 countServers = 3;\n\tint64 countAuditingServers = 13;\n\tint64 countUsers = 4;\n\tint64 countAPINodes = 5;\n\tint64 countOfflineAPINodes = 10;\n\tint64 countDBNodes = 6;\n\tint64 countOfflineDBNodes = 11;\n\tint64 countUserNodes = 7;\n\tint64 countOfflineUserNodes = 12;\n\tint64 defaultNodeClusterId = 8;\n\n\trepeated DailyTrafficStat dailyTrafficStats = 30;\n\trepeated HourlyTrafficStat hourlyTrafficStats = 31;\n\n\tUpgradeInfo nodeUpgradeInfo = 32;\n\tUpgradeInfo apiNodeUpgradeInfo = 33;\n\tUpgradeInfo userNodeUpgradeInfo = 35;\n\tUpgradeInfo authorityNodeUpgradeInfo = 36;\n\tUpgradeInfo nsNodeUpgradeInfo = 37;\n\tUpgradeInfo reportNodeUpgradeInfo = 41;\n\n\trepeated NodeStat topNodeStats = 38;\n\trepeated DomainStat topDomainStats = 39;\n\trepeated CountryStat topCountryStats = 42;\n\n\trepeated MetricDataChart metricDataCharts = 40;\n\n\n\tmessage DailyTrafficStat {\n\t\tstring day = 1;\n\t\tint64 bytes = 2;\n\t\tint64 cachedBytes = 3;\n\t\tint64 countRequests = 4;\n\t\tint64 countCachedRequests = 5;\n\t\tint64 countAttackRequests = 6;\n\t\tint64 attackBytes = 7;\n\t}\n\n\n\tmessage HourlyTrafficStat {\n\t\tstring hour = 1;\n\t\tint64 bytes = 2;\n\t\tint64 cachedBytes = 3;\n\t\tint64 countRequests = 4;\n\t\tint64 countCachedRequests = 5;\n\t\tint64 countAttackRequests = 6;\n\t\tint64 attackBytes = 7;\n\t}\n\n\n\tmessage NodeStat {\n\t\tint64 nodeId = 1;\n\t\tstring nodeName = 2;\n\t\tint64 countRequests = 3;\n\t\tint64 bytes = 4;\n\t}\n\n\n\tmessage DomainStat {\n\t\tint64 serverId = 1;\n\t\tstring domain = 2;\n\t\tint64 countRequests = 3;\n\t\tint64 bytes = 4;\n\t}\n\n\n\tmessage CountryStat {\n\t\tstring countryName = 1;\n\t\tint64 bytes = 2;\n\t\tint64 countRequests = 3;\n\t\tfloat percent = 4; // 流量占比\n\t\tint64 countAttackRequests = 6;\n\t\tint64 attackBytes = 7;\n\t}\n\n\t// 节点升级信息\n\n\tmessage UpgradeInfo {\n\t\tint64 countNodes = 1; // 节点数\n\t\tstring newVersion = 2; // 新版本\n\t}\n}",
       "doc": ""
     },
     {
@@ -14261,11 +14130,6 @@
       "name": "CountAllEnabledMetricItemsRequest",
       "code": "message CountAllEnabledMetricItemsRequest {\n\tstring category = 1;\n}",
       "doc": "计算指标数量"
-    },
-    {
-      "name": "CountAllEnabledMonitorNodesRequest",
-      "code": "message CountAllEnabledMonitorNodesRequest {\n\n}",
-      "doc": "计算监控节点数量"
     },
     {
       "name": "CountAllEnabledNodeClusterFirewallActionsRequest",
@@ -15119,12 +14983,12 @@
     },
     {
       "name": "CreateMessageTaskRequest",
-      "code": "message CreateMessageTaskRequest {\n\tint64 recipientId = 1;\n\tint64 instanceId = 2;\n\tstring user = 3;\n\tstring subject = 4;\n\tstring body = 5;\n\tbool isPrimary = 6;\n}",
+      "code": "message CreateMessageTaskRequest {\n\tint64 messageRecipientId = 1; // 接收人ID\n\tint64 messageMediaInstanceId = 2; // 媒介实例ID\n\tstring user = 3; // 用户标识\n\tstring subject = 4; // 标题\n\tstring body = 5; // 内容\n\tbool isPrimary = 6; // 是否优先发送\n}",
       "doc": "创建消息任务"
     },
     {
       "name": "CreateMessageTaskResponse",
-      "code": "message CreateMessageTaskResponse {\n\tint64 messageTaskId = 1;\n}",
+      "code": "message CreateMessageTaskResponse {\n\tint64 messageTaskId = 1; // 消息任务ID\n}",
       "doc": ""
     },
     {
@@ -15145,16 +15009,6 @@
     {
       "name": "CreateMetricItemResponse",
       "code": "message CreateMetricItemResponse {\n\tint64 metricItemId = 1;\n}",
-      "doc": ""
-    },
-    {
-      "name": "CreateMonitorNodeRequest",
-      "code": "message CreateMonitorNodeRequest {\n\tstring name = 1;\n\tstring description = 2;\n\tbool isOn = 3;\n}",
-      "doc": "创建监控节点"
-    },
-    {
-      "name": "CreateMonitorNodeResponse",
-      "code": "message CreateMonitorNodeResponse {\n\tint64 monitorNodeId = 1;\n}",
       "doc": ""
     },
     {
@@ -15936,11 +15790,6 @@
       "name": "DeleteMetricItemRequest",
       "code": "message DeleteMetricItemRequest {\n\tint64 metricItemId = 1;\n}",
       "doc": "删除指标"
-    },
-    {
-      "name": "DeleteMonitorNodeRequest",
-      "code": "message DeleteMonitorNodeRequest {\n\tint64 monitorNodeId = 1;\n}",
-      "doc": "删除监控节点"
     },
     {
       "name": "DeleteNSCluster",
@@ -16858,16 +16707,6 @@
       "doc": ""
     },
     {
-      "name": "FindAllEnabledMonitorNodesRequest",
-      "code": "message FindAllEnabledMonitorNodesRequest {\n\n}",
-      "doc": "列出所有可用监控节点"
-    },
-    {
-      "name": "FindAllEnabledMonitorNodesResponse",
-      "code": "message FindAllEnabledMonitorNodesResponse {\n\trepeated MonitorNode monitorNodes = 1;\n}",
-      "doc": ""
-    },
-    {
       "name": "FindAllEnabledNSPlansRequest",
       "code": "message FindAllEnabledNSPlansRequest {\n\n}",
       "doc": "查找所有可用DNS套餐"
@@ -17633,16 +17472,6 @@
       "doc": ""
     },
     {
-      "name": "FindCurrentMonitorNodeRequest",
-      "code": "message FindCurrentMonitorNodeRequest {\n\n}",
-      "doc": "获取当前监控节点"
-    },
-    {
-      "name": "FindCurrentMonitorNodeResponse",
-      "code": "message FindCurrentMonitorNodeResponse {\n\tMonitorNode monitorNode = 1;\n}",
-      "doc": ""
-    },
-    {
       "name": "FindCurrentNSNodeConfigRequest",
       "code": "message FindCurrentNSNodeConfigRequest {\n\n}",
       "doc": "获取当前NS节点信息"
@@ -18110,16 +17939,6 @@
     {
       "name": "FindEnabledMetricItemResponse",
       "code": "message FindEnabledMetricItemResponse {\n\tMetricItem metricItem = 1;\n}",
-      "doc": ""
-    },
-    {
-      "name": "FindEnabledMonitorNodeRequest",
-      "code": "message FindEnabledMonitorNodeRequest {\n\tint64 monitorNodeId = 1;\n}",
-      "doc": "根据ID查找节点"
-    },
-    {
-      "name": "FindEnabledMonitorNodeResponse",
-      "code": "message FindEnabledMonitorNodeResponse {\n\tMonitorNode monitorNode = 1;\n}",
       "doc": ""
     },
     {
@@ -19543,16 +19362,6 @@
       "doc": ""
     },
     {
-      "name": "FindSendingMessageTasksRequest",
-      "code": "message FindSendingMessageTasksRequest {\n\tint64 size = 1;\n}",
-      "doc": "查找要发送的消息任务"
-    },
-    {
-      "name": "FindSendingMessageTasksResponse",
-      "code": "message FindSendingMessageTasksResponse {\n\trepeated MessageTask messageTasks = 1;\n}",
-      "doc": ""
-    },
-    {
       "name": "FindServer5MinutelyStatsWithDayRequest",
       "code": "message FindServer5MinutelyStatsWithDayRequest {\n\tint64 serverId = 1;\n\tstring day = 2; // 必需，格式：YYYYMMDD\n\tstring timeFrom = 3; // 可选，开始时间，格式：HHIISS，比如 130000\n\tstring timeTo = 4; // 可选，结束时间，格式：HHIISS，比如 130459\n}",
       "doc": "读取某天的5分钟间隔流量"
@@ -20233,16 +20042,6 @@
       "doc": ""
     },
     {
-      "name": "ListEnabledMonitorNodesRequest",
-      "code": "message ListEnabledMonitorNodesRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n}",
-      "doc": "列出单页的监控节点"
-    },
-    {
-      "name": "ListEnabledMonitorNodesResponse",
-      "code": "message ListEnabledMonitorNodesResponse {\n\trepeated MonitorNode monitorNodes = 1;\n}",
-      "doc": ""
-    },
-    {
       "name": "ListEnabledNodeClustersRequest",
       "code": "message ListEnabledNodeClustersRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n\tstring keyword = 3;\n}",
       "doc": "列出单页集群"
@@ -20908,11 +20707,6 @@
       "doc": "统计数据"
     },
     {
-      "name": "MonitorNode",
-      "code": "message MonitorNode {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring uniqueId = 3;\n\tstring secret = 4;\n\tstring name = 5;\n\tstring description = 6;\n\tbytes statusJSON = 7;\n}",
-      "doc": ""
-    },
-    {
       "name": "NSAccessLog",
       "code": "message NSAccessLog {\n\tint64 nsNodeId = 1;\n\tint64 nsDomainId = 2;\n\tint64 nsRecordId = 3;\n\trepeated int64 nsRouteIds = 4 [deprecated = true];\n\trepeated string nsRouteCodes = 17;\n\trepeated NSRoute nsRoutes = 18; // 仅供查看访问日志时使用\n\tstring remoteAddr = 5;\n\tstring questionName = 6;\n\tstring questionType = 7;\n\tstring recordName = 8;\n\tstring recordType = 9;\n\tstring recordValue = 10;\n\tstring networking = 11;\n\tstring serverAddr = 12;\n\tint64 timestamp = 13;\n\tstring requestId = 14;\n\tstring timeLocal = 15;\n\tstring error = 16;\n\tbool isRecursive = 19;\n}",
       "doc": "域名服务访问记录"
@@ -21351,6 +21145,16 @@
       "name": "SendMediaMessageRequest",
       "code": "message SendMediaMessageRequest {\n\tstring mediaType = 1; // 媒介类型\n\tbytes optionsJSON = 2; // 媒介参数\n\tstring user = 3; // 接收用户\n\tstring subject = 4; // 标题\n\tstring body = 5; // 内容\n}",
       "doc": "发送媒介信息"
+    },
+    {
+      "name": "SendMessageTaskRequest",
+      "code": "message SendMessageTaskRequest {\n\tint64 messageMediaInstanceId = 1; // 媒介实例ID\n\tstring user = 2; // 用户标识\n\tstring subject = 3; // 标题\n\tstring body = 4; // 内容\n}",
+      "doc": "发送某个消息任务\n与创建消息任务放入到后台任务队列不同，此API是直接发送"
+    },
+    {
+      "name": "SendMessageTaskResponse",
+      "code": "message SendMessageTaskResponse {\n\tbool isOk = 1; // 是否成功\n\tstring error = 2; // 失败时的提示信息\n\tstring response = 3; // 发送成功后响应内容\n}",
+      "doc": ""
     },
     {
       "name": "SendUserEmailVerificationRequest",
@@ -22048,11 +21852,6 @@
       "doc": "修改接收人"
     },
     {
-      "name": "UpdateMessageMediasRequest",
-      "code": "message UpdateMessageMediasRequest {\n\trepeated MessageMedia messageMedias = 2;\n}",
-      "doc": "设置所有支持的媒介"
-    },
-    {
       "name": "UpdateMessageReadRequest",
       "code": "message UpdateMessageReadRequest {\n\tint64 messageId = 1;\n\tbool isRead = 2;\n}",
       "doc": "设置消息已读状态"
@@ -22073,11 +21872,6 @@
       "doc": "修改接收人"
     },
     {
-      "name": "UpdateMessageTaskStatusRequest",
-      "code": "message UpdateMessageTaskStatusRequest {\n\tint64 messageTaskId = 1;\n\tint32 status = 2;\n\tMessageTaskResult result = 3;\n}",
-      "doc": "修改消息任务状态"
-    },
-    {
       "name": "UpdateMessagesReadRequest",
       "code": "message UpdateMessagesReadRequest {\n\trepeated int64 messageIds = 1;\n\tbool isRead = 2;\n}",
       "doc": "设置一组消息已读状态"
@@ -22091,16 +21885,6 @@
       "name": "UpdateMetricItemRequest",
       "code": "message UpdateMetricItemRequest {\n\tint64 metricItemId = 1;\n\tstring name = 2;\n\trepeated string keys = 3;\n\tint32 period = 4;\n\tstring periodUnit = 5;\n\tint32 expiresPeriod = 9;\n\tstring value = 6;\n\tbool isOn = 7;\n\tbool isPublic = 8;\n}",
       "doc": "修改指标"
-    },
-    {
-      "name": "UpdateMonitorNodeRequest",
-      "code": "message UpdateMonitorNodeRequest {\n\tint64 monitorNodeId = 1;\n\tstring name = 2;\n\tstring description = 3;\n\tbool isOn = 4;\n}",
-      "doc": "修改监控节点"
-    },
-    {
-      "name": "UpdateMonitorNodeStatusRequest",
-      "code": "message UpdateMonitorNodeStatusRequest {\n\tint64 monitorNodeId = 1;\n\tbytes statusJSON = 2;\n}",
-      "doc": "更新监控状态"
     },
     {
       "name": "UpdateNSClusterAccessLogRequest",

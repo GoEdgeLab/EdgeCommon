@@ -227,7 +227,6 @@ message ComposeAdminDashboardResponse {
 
 	UpgradeInfo nodeUpgradeInfo = 32;
 	UpgradeInfo apiNodeUpgradeInfo = 33;
-	UpgradeInfo monitorNodeUpgradeInfo = 34;
 	UpgradeInfo userNodeUpgradeInfo = 35;
 	UpgradeInfo authorityNodeUpgradeInfo = 36;
 	UpgradeInfo nsNodeUpgradeInfo = 37;

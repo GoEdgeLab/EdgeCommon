@@ -11,12 +11,6 @@ service MessageTaskService {
 	// 创建消息任务
 	rpc createMessageTask (CreateMessageTaskRequest) returns (CreateMessageTaskResponse);
 
-	// 查找要发送的消息任务
-	rpc findSendingMessageTasks (FindSendingMessageTasksRequest) returns (FindSendingMessageTasksResponse);
-
-	// 修改消息任务状态
-	rpc updateMessageTaskStatus (UpdateMessageTaskStatusRequest) returns (RPCSuccess);
-
 	// 删除消息任务
 	rpc deleteMessageTask (DeleteMessageTaskRequest) returns (RPCSuccess);
 
@@ -28,36 +22,23 @@ service MessageTaskService {
 
 	// 根据状态列出某页任务
 	rpc listMessageTasksWithStatus(ListMessageTasksWithStatusRequest) returns (ListMessageTasksWithStatusResponse);
+
+	// 发送某个消息任务
+	rpc sendMessageTask(SendMessageTaskRequest) returns (SendMessageTaskResponse);
 }
 
 // 创建消息任务
 message CreateMessageTaskRequest {
-	int64 recipientId = 1;
-	int64 instanceId = 2;
-	string user = 3;
-	string subject = 4;
-	string body = 5;
-	bool isPrimary = 6;
+	int64 messageRecipientId = 1; // 接收人ID
+	int64 messageMediaInstanceId = 2; // 媒介实例ID
+	string user = 3; // 用户标识
+	string subject = 4; // 标题
+	string body = 5; // 内容
+	bool isPrimary = 6; // 是否优先发送
 }
 
 message CreateMessageTaskResponse {
-	int64 messageTaskId = 1;
-}
-
-// 查找要发送的消息任务
-message FindSendingMessageTasksRequest {
-	int64 size = 1;
-}
-
-message FindSendingMessageTasksResponse {
-	repeated MessageTask messageTasks = 1;
-}
-
-// 修改消息任务状态
-message UpdateMessageTaskStatusRequest {
-	int64 messageTaskId = 1;
-	int32 status = 2;
-	MessageTaskResult result = 3;
+	int64 messageTaskId = 1; // 消息任务ID
 }
 
 // 删除消息任务
@@ -102,4 +83,19 @@ message ListMessageTasksWithStatusRequest {
 
 message ListMessageTasksWithStatusResponse {
 	repeated MessageTask messageTasks = 1;
+}
+
+// 发送某个消息任务
+// 与创建消息任务放入到后台任务队列不同，此API是直接发送
+message SendMessageTaskRequest {
+	int64 messageMediaInstanceId = 1; // 媒介实例ID
+	string user = 2; // 用户标识
+	string subject = 3; // 标题
+	string body = 4; // 内容
+}
+
+message SendMessageTaskResponse {
+	bool isOk = 1; // 是否成功
+	string error = 2; // 失败时的提示信息
+	string response = 3; // 发送成功后响应内容
 }

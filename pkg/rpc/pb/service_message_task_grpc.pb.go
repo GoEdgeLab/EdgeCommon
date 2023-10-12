@@ -20,12 +20,11 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	MessageTaskService_CreateMessageTask_FullMethodName           = "/pb.MessageTaskService/createMessageTask"
-	MessageTaskService_FindSendingMessageTasks_FullMethodName     = "/pb.MessageTaskService/findSendingMessageTasks"
-	MessageTaskService_UpdateMessageTaskStatus_FullMethodName     = "/pb.MessageTaskService/updateMessageTaskStatus"
 	MessageTaskService_DeleteMessageTask_FullMethodName           = "/pb.MessageTaskService/deleteMessageTask"
 	MessageTaskService_FindEnabledMessageTask_FullMethodName      = "/pb.MessageTaskService/findEnabledMessageTask"
 	MessageTaskService_CountMessageTasksWithStatus_FullMethodName = "/pb.MessageTaskService/countMessageTasksWithStatus"
 	MessageTaskService_ListMessageTasksWithStatus_FullMethodName  = "/pb.MessageTaskService/listMessageTasksWithStatus"
+	MessageTaskService_SendMessageTask_FullMethodName             = "/pb.MessageTaskService/sendMessageTask"
 )
 
 // MessageTaskServiceClient is the client API for MessageTaskService service.
@@ -34,10 +33,6 @@ const (
 type MessageTaskServiceClient interface {
 	// 创建消息任务
 	CreateMessageTask(ctx context.Context, in *CreateMessageTaskRequest, opts ...grpc.CallOption) (*CreateMessageTaskResponse, error)
-	// 查找要发送的消息任务
-	FindSendingMessageTasks(ctx context.Context, in *FindSendingMessageTasksRequest, opts ...grpc.CallOption) (*FindSendingMessageTasksResponse, error)
-	// 修改消息任务状态
-	UpdateMessageTaskStatus(ctx context.Context, in *UpdateMessageTaskStatusRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 删除消息任务
 	DeleteMessageTask(ctx context.Context, in *DeleteMessageTaskRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 读取消息任务状态
@@ -46,6 +41,8 @@ type MessageTaskServiceClient interface {
 	CountMessageTasksWithStatus(ctx context.Context, in *CountMessageTasksWithStatusRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 根据状态列出某页任务
 	ListMessageTasksWithStatus(ctx context.Context, in *ListMessageTasksWithStatusRequest, opts ...grpc.CallOption) (*ListMessageTasksWithStatusResponse, error)
+	// 发送某个消息任务
+	SendMessageTask(ctx context.Context, in *SendMessageTaskRequest, opts ...grpc.CallOption) (*SendMessageTaskResponse, error)
 }
 
 type messageTaskServiceClient struct {
@@ -59,24 +56,6 @@ func NewMessageTaskServiceClient(cc grpc.ClientConnInterface) MessageTaskService
 func (c *messageTaskServiceClient) CreateMessageTask(ctx context.Context, in *CreateMessageTaskRequest, opts ...grpc.CallOption) (*CreateMessageTaskResponse, error) {
 	out := new(CreateMessageTaskResponse)
 	err := c.cc.Invoke(ctx, MessageTaskService_CreateMessageTask_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *messageTaskServiceClient) FindSendingMessageTasks(ctx context.Context, in *FindSendingMessageTasksRequest, opts ...grpc.CallOption) (*FindSendingMessageTasksResponse, error) {
-	out := new(FindSendingMessageTasksResponse)
-	err := c.cc.Invoke(ctx, MessageTaskService_FindSendingMessageTasks_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *messageTaskServiceClient) UpdateMessageTaskStatus(ctx context.Context, in *UpdateMessageTaskStatusRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
-	out := new(RPCSuccess)
-	err := c.cc.Invoke(ctx, MessageTaskService_UpdateMessageTaskStatus_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -119,16 +98,21 @@ func (c *messageTaskServiceClient) ListMessageTasksWithStatus(ctx context.Contex
 	return out, nil
 }
 
+func (c *messageTaskServiceClient) SendMessageTask(ctx context.Context, in *SendMessageTaskRequest, opts ...grpc.CallOption) (*SendMessageTaskResponse, error) {
+	out := new(SendMessageTaskResponse)
+	err := c.cc.Invoke(ctx, MessageTaskService_SendMessageTask_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MessageTaskServiceServer is the server API for MessageTaskService service.
 // All implementations should embed UnimplementedMessageTaskServiceServer
 // for forward compatibility
 type MessageTaskServiceServer interface {
 	// 创建消息任务
 	CreateMessageTask(context.Context, *CreateMessageTaskRequest) (*CreateMessageTaskResponse, error)
-	// 查找要发送的消息任务
-	FindSendingMessageTasks(context.Context, *FindSendingMessageTasksRequest) (*FindSendingMessageTasksResponse, error)
-	// 修改消息任务状态
-	UpdateMessageTaskStatus(context.Context, *UpdateMessageTaskStatusRequest) (*RPCSuccess, error)
 	// 删除消息任务
 	DeleteMessageTask(context.Context, *DeleteMessageTaskRequest) (*RPCSuccess, error)
 	// 读取消息任务状态
@@ -137,6 +121,8 @@ type MessageTaskServiceServer interface {
 	CountMessageTasksWithStatus(context.Context, *CountMessageTasksWithStatusRequest) (*RPCCountResponse, error)
 	// 根据状态列出某页任务
 	ListMessageTasksWithStatus(context.Context, *ListMessageTasksWithStatusRequest) (*ListMessageTasksWithStatusResponse, error)
+	// 发送某个消息任务
+	SendMessageTask(context.Context, *SendMessageTaskRequest) (*SendMessageTaskResponse, error)
 }
 
 // UnimplementedMessageTaskServiceServer should be embedded to have forward compatible implementations.
@@ -145,12 +131,6 @@ type UnimplementedMessageTaskServiceServer struct {
 
 func (UnimplementedMessageTaskServiceServer) CreateMessageTask(context.Context, *CreateMessageTaskRequest) (*CreateMessageTaskResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMessageTask not implemented")
-}
-func (UnimplementedMessageTaskServiceServer) FindSendingMessageTasks(context.Context, *FindSendingMessageTasksRequest) (*FindSendingMessageTasksResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindSendingMessageTasks not implemented")
-}
-func (UnimplementedMessageTaskServiceServer) UpdateMessageTaskStatus(context.Context, *UpdateMessageTaskStatusRequest) (*RPCSuccess, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateMessageTaskStatus not implemented")
 }
 func (UnimplementedMessageTaskServiceServer) DeleteMessageTask(context.Context, *DeleteMessageTaskRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMessageTask not implemented")
@@ -163,6 +143,9 @@ func (UnimplementedMessageTaskServiceServer) CountMessageTasksWithStatus(context
 }
 func (UnimplementedMessageTaskServiceServer) ListMessageTasksWithStatus(context.Context, *ListMessageTasksWithStatusRequest) (*ListMessageTasksWithStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMessageTasksWithStatus not implemented")
+}
+func (UnimplementedMessageTaskServiceServer) SendMessageTask(context.Context, *SendMessageTaskRequest) (*SendMessageTaskResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendMessageTask not implemented")
 }
 
 // UnsafeMessageTaskServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -190,42 +173,6 @@ func _MessageTaskService_CreateMessageTask_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MessageTaskServiceServer).CreateMessageTask(ctx, req.(*CreateMessageTaskRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MessageTaskService_FindSendingMessageTasks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindSendingMessageTasksRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MessageTaskServiceServer).FindSendingMessageTasks(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MessageTaskService_FindSendingMessageTasks_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MessageTaskServiceServer).FindSendingMessageTasks(ctx, req.(*FindSendingMessageTasksRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MessageTaskService_UpdateMessageTaskStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateMessageTaskStatusRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MessageTaskServiceServer).UpdateMessageTaskStatus(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MessageTaskService_UpdateMessageTaskStatus_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MessageTaskServiceServer).UpdateMessageTaskStatus(ctx, req.(*UpdateMessageTaskStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -302,6 +249,24 @@ func _MessageTaskService_ListMessageTasksWithStatus_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MessageTaskService_SendMessageTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendMessageTaskRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MessageTaskServiceServer).SendMessageTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MessageTaskService_SendMessageTask_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MessageTaskServiceServer).SendMessageTask(ctx, req.(*SendMessageTaskRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MessageTaskService_ServiceDesc is the grpc.ServiceDesc for MessageTaskService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -312,14 +277,6 @@ var MessageTaskService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "createMessageTask",
 			Handler:    _MessageTaskService_CreateMessageTask_Handler,
-		},
-		{
-			MethodName: "findSendingMessageTasks",
-			Handler:    _MessageTaskService_FindSendingMessageTasks_Handler,
-		},
-		{
-			MethodName: "updateMessageTaskStatus",
-			Handler:    _MessageTaskService_UpdateMessageTaskStatus_Handler,
 		},
 		{
 			MethodName: "deleteMessageTask",
@@ -336,6 +293,10 @@ var MessageTaskService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "listMessageTasksWithStatus",
 			Handler:    _MessageTaskService_ListMessageTasksWithStatus_Handler,
+		},
+		{
+			MethodName: "sendMessageTask",
+			Handler:    _MessageTaskService_SendMessageTask_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

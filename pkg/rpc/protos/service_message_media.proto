@@ -11,9 +11,6 @@ service MessageMediaService {
 	// 获取所有支持的媒介
 	rpc findAllMessageMedias (FindAllMessageMediasRequest) returns (FindAllMessageMediasResponse);
 
-	// 设置所有支持的媒介
-	rpc updateMessageMedias (UpdateMessageMediasRequest) returns (RPCSuccess);
-
 	// 发送媒介信息
 	rpc sendMediaMessage(SendMediaMessageRequest) returns (RPCSuccess);
 }
@@ -25,11 +22,6 @@ message FindAllMessageMediasRequest {
 
 message FindAllMessageMediasResponse {
 	repeated MessageMedia messageMedias = 1;
-}
-
-// 设置所有支持的媒介
-message UpdateMessageMediasRequest {
-	repeated MessageMedia messageMedias = 2;
 }
 
 // 发送媒介信息

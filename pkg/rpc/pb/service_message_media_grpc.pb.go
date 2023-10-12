@@ -20,7 +20,6 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	MessageMediaService_FindAllMessageMedias_FullMethodName = "/pb.MessageMediaService/findAllMessageMedias"
-	MessageMediaService_UpdateMessageMedias_FullMethodName  = "/pb.MessageMediaService/updateMessageMedias"
 	MessageMediaService_SendMediaMessage_FullMethodName     = "/pb.MessageMediaService/sendMediaMessage"
 )
 
@@ -30,8 +29,6 @@ const (
 type MessageMediaServiceClient interface {
 	// 获取所有支持的媒介
 	FindAllMessageMedias(ctx context.Context, in *FindAllMessageMediasRequest, opts ...grpc.CallOption) (*FindAllMessageMediasResponse, error)
-	// 设置所有支持的媒介
-	UpdateMessageMedias(ctx context.Context, in *UpdateMessageMediasRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 发送媒介信息
 	SendMediaMessage(ctx context.Context, in *SendMediaMessageRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
@@ -53,15 +50,6 @@ func (c *messageMediaServiceClient) FindAllMessageMedias(ctx context.Context, in
 	return out, nil
 }
 
-func (c *messageMediaServiceClient) UpdateMessageMedias(ctx context.Context, in *UpdateMessageMediasRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
-	out := new(RPCSuccess)
-	err := c.cc.Invoke(ctx, MessageMediaService_UpdateMessageMedias_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *messageMediaServiceClient) SendMediaMessage(ctx context.Context, in *SendMediaMessageRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
 	out := new(RPCSuccess)
 	err := c.cc.Invoke(ctx, MessageMediaService_SendMediaMessage_FullMethodName, in, out, opts...)
@@ -77,8 +65,6 @@ func (c *messageMediaServiceClient) SendMediaMessage(ctx context.Context, in *Se
 type MessageMediaServiceServer interface {
 	// 获取所有支持的媒介
 	FindAllMessageMedias(context.Context, *FindAllMessageMediasRequest) (*FindAllMessageMediasResponse, error)
-	// 设置所有支持的媒介
-	UpdateMessageMedias(context.Context, *UpdateMessageMediasRequest) (*RPCSuccess, error)
 	// 发送媒介信息
 	SendMediaMessage(context.Context, *SendMediaMessageRequest) (*RPCSuccess, error)
 }
@@ -89,9 +75,6 @@ type UnimplementedMessageMediaServiceServer struct {
 
 func (UnimplementedMessageMediaServiceServer) FindAllMessageMedias(context.Context, *FindAllMessageMediasRequest) (*FindAllMessageMediasResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllMessageMedias not implemented")
-}
-func (UnimplementedMessageMediaServiceServer) UpdateMessageMedias(context.Context, *UpdateMessageMediasRequest) (*RPCSuccess, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateMessageMedias not implemented")
 }
 func (UnimplementedMessageMediaServiceServer) SendMediaMessage(context.Context, *SendMediaMessageRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendMediaMessage not implemented")
@@ -126,24 +109,6 @@ func _MessageMediaService_FindAllMessageMedias_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MessageMediaService_UpdateMessageMedias_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateMessageMediasRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MessageMediaServiceServer).UpdateMessageMedias(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MessageMediaService_UpdateMessageMedias_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MessageMediaServiceServer).UpdateMessageMedias(ctx, req.(*UpdateMessageMediasRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MessageMediaService_SendMediaMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SendMediaMessageRequest)
 	if err := dec(in); err != nil {
@@ -172,10 +137,6 @@ var MessageMediaService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findAllMessageMedias",
 			Handler:    _MessageMediaService_FindAllMessageMedias_Handler,
-		},
-		{
-			MethodName: "updateMessageMedias",
-			Handler:    _MessageMediaService_UpdateMessageMedias_Handler,
 		},
 		{
 			MethodName: "sendMediaMessage",
