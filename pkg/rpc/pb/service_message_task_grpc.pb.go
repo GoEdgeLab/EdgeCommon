@@ -25,6 +25,7 @@ const (
 	MessageTaskService_CountMessageTasksWithStatus_FullMethodName = "/pb.MessageTaskService/countMessageTasksWithStatus"
 	MessageTaskService_ListMessageTasksWithStatus_FullMethodName  = "/pb.MessageTaskService/listMessageTasksWithStatus"
 	MessageTaskService_SendMessageTask_FullMethodName             = "/pb.MessageTaskService/sendMessageTask"
+	MessageTaskService_UpdateMessageTaskStatus_FullMethodName     = "/pb.MessageTaskService/updateMessageTaskStatus"
 )
 
 // MessageTaskServiceClient is the client API for MessageTaskService service.
@@ -43,6 +44,8 @@ type MessageTaskServiceClient interface {
 	ListMessageTasksWithStatus(ctx context.Context, in *ListMessageTasksWithStatusRequest, opts ...grpc.CallOption) (*ListMessageTasksWithStatusResponse, error)
 	// 发送某个消息任务
 	SendMessageTask(ctx context.Context, in *SendMessageTaskRequest, opts ...grpc.CallOption) (*SendMessageTaskResponse, error)
+	// 修改消息任务状态
+	UpdateMessageTaskStatus(ctx context.Context, in *UpdateMessageTaskStatusRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
 
 type messageTaskServiceClient struct {
@@ -107,6 +110,15 @@ func (c *messageTaskServiceClient) SendMessageTask(ctx context.Context, in *Send
 	return out, nil
 }
 
+func (c *messageTaskServiceClient) UpdateMessageTaskStatus(ctx context.Context, in *UpdateMessageTaskStatusRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, MessageTaskService_UpdateMessageTaskStatus_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MessageTaskServiceServer is the server API for MessageTaskService service.
 // All implementations should embed UnimplementedMessageTaskServiceServer
 // for forward compatibility
@@ -123,6 +135,8 @@ type MessageTaskServiceServer interface {
 	ListMessageTasksWithStatus(context.Context, *ListMessageTasksWithStatusRequest) (*ListMessageTasksWithStatusResponse, error)
 	// 发送某个消息任务
 	SendMessageTask(context.Context, *SendMessageTaskRequest) (*SendMessageTaskResponse, error)
+	// 修改消息任务状态
+	UpdateMessageTaskStatus(context.Context, *UpdateMessageTaskStatusRequest) (*RPCSuccess, error)
 }
 
 // UnimplementedMessageTaskServiceServer should be embedded to have forward compatible implementations.
@@ -146,6 +160,9 @@ func (UnimplementedMessageTaskServiceServer) ListMessageTasksWithStatus(context.
 }
 func (UnimplementedMessageTaskServiceServer) SendMessageTask(context.Context, *SendMessageTaskRequest) (*SendMessageTaskResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendMessageTask not implemented")
+}
+func (UnimplementedMessageTaskServiceServer) UpdateMessageTaskStatus(context.Context, *UpdateMessageTaskStatusRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMessageTaskStatus not implemented")
 }
 
 // UnsafeMessageTaskServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -267,6 +284,24 @@ func _MessageTaskService_SendMessageTask_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MessageTaskService_UpdateMessageTaskStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMessageTaskStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MessageTaskServiceServer).UpdateMessageTaskStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MessageTaskService_UpdateMessageTaskStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MessageTaskServiceServer).UpdateMessageTaskStatus(ctx, req.(*UpdateMessageTaskStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MessageTaskService_ServiceDesc is the grpc.ServiceDesc for MessageTaskService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -297,6 +332,10 @@ var MessageTaskService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "sendMessageTask",
 			Handler:    _MessageTaskService_SendMessageTask_Handler,
+		},
+		{
+			MethodName: "updateMessageTaskStatus",
+			Handler:    _MessageTaskService_UpdateMessageTaskStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

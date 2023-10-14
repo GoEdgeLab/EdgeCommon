@@ -241,6 +241,7 @@ const (
 	MessageRecipient_LogUpdateMessageRecipient                  langs.MessageCode = "message_recipient@log_update_message_recipient"                      // 修改媒介接收人 %d
 	MessageTask_LogCreateTestingMessageTask                     langs.MessageCode = "message_task@log_create_testing_message_task"                        // 创建媒介测试任务 %d
 	MessageTask_LogDeleteMessageTask                            langs.MessageCode = "message_task@log_delete_message_task"                                // 删除消息发送任务 %d
+	MessageTask_LogUpdateMessageTaskStatus                      langs.MessageCode = "message_task@log_update_message_task_status"                         // 修改消息任务 %d 状态为 %d
 	MetricChart_LogCreateMetricChart                            langs.MessageCode = "metric_chart@log_create_metric_chart"                                // 创建指标图表 %d
 	MetricChart_LogDeleteMetricChart                            langs.MessageCode = "metric_chart@log_delete_metric_chart"                                // 删除指标图表 %d
 	MetricChart_LogUpdateMetricChart                            langs.MessageCode = "metric_chart@log_update_metric_chart"                                // 修改指标图表 %d

@@ -4721,6 +4721,15 @@
             "admin"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "updateMessageTaskStatus",
+          "requestMessageName": "UpdateMessageTaskStatusRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateMessageTaskStatus(UpdateMessageTaskStatusRequest) returns (RPCSuccess);",
+          "doc": "修改消息任务状态",
+          "roles": [],
+          "isDeprecated": false
         }
       ],
       "filename": "service_message_task.proto",
@@ -15789,7 +15798,7 @@
     },
     {
       "name": "DeleteMessageTaskRequest",
-      "code": "message DeleteMessageTaskRequest {\n\tint64 messageTaskId = 1;\n}",
+      "code": "message DeleteMessageTaskRequest {\n\tint64 messageTaskId = 1; // 消息任务ID\n}",
       "doc": "删除消息任务"
     },
     {
@@ -17934,12 +17943,12 @@
     },
     {
       "name": "FindEnabledMessageTaskRequest",
-      "code": "message FindEnabledMessageTaskRequest {\n\tint64 messageTaskId = 1;\n}",
+      "code": "message FindEnabledMessageTaskRequest {\n\tint64 messageTaskId = 1; // 消息任务ID\n}",
       "doc": "读取消息任务状态"
     },
     {
       "name": "FindEnabledMessageTaskResponse",
-      "code": "message FindEnabledMessageTaskResponse {\n\tMessageTask messageTask = 1;\n}",
+      "code": "message FindEnabledMessageTaskResponse {\n\tMessageTask messageTask = 1; // 消息任务信息\n}",
       "doc": ""
     },
     {

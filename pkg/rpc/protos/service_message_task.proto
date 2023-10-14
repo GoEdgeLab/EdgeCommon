@@ -25,6 +25,9 @@ service MessageTaskService {
 
 	// 发送某个消息任务
 	rpc sendMessageTask(SendMessageTaskRequest) returns (SendMessageTaskResponse);
+
+	// 修改消息任务状态
+	rpc updateMessageTaskStatus(UpdateMessageTaskStatusRequest) returns (RPCSuccess);
 }
 
 // 创建消息任务
@@ -43,21 +46,21 @@ message CreateMessageTaskResponse {
 
 // 删除消息任务
 message DeleteMessageTaskRequest {
-	int64 messageTaskId = 1;
+	int64 messageTaskId = 1; // 消息任务ID
 }
 
 // 读取消息任务状态
 message FindEnabledMessageTaskRequest {
-	int64 messageTaskId = 1;
+	int64 messageTaskId = 1; // 消息任务ID
 }
 
 message FindEnabledMessageTaskResponse {
-	MessageTask messageTask = 1;
+	MessageTask messageTask = 1; // 消息任务信息
 }
 
 // 计算某个状态的消息任务数量
 message CountMessageTasksWithStatusRequest {
-	Status  status = 1;
+	Status  status = 1; // 任务状态
 
 	enum Status {
 		MessageTaskStatusNone = 0;
@@ -69,7 +72,7 @@ message CountMessageTasksWithStatusRequest {
 
 // 根据状态列出某页任务
 message ListMessageTasksWithStatusRequest {
-	Status status = 1;
+	Status status = 1; // 任务状态
 	int64 offset = 2;
 	int64 size = 3;
 
@@ -98,4 +101,17 @@ message SendMessageTaskResponse {
 	bool isOk = 1; // 是否成功
 	string error = 2; // 失败时的提示信息
 	string response = 3; // 发送成功后响应内容
+}
+
+// 修改消息任务状态
+message UpdateMessageTaskStatusRequest {
+	int64 messageTaskId = 1; // 消息任务ID
+	Status status = 2; // 新的状态
+
+	enum Status {
+		MessageTaskStatusNone = 0;
+		MessageTaskStatusSending = 1;
+		MessageTaskStatusSuccess = 2;
+		MessageTaskStatusFailed = 3;
+	}
 }
