@@ -4482,6 +4482,17 @@
           "isDeprecated": false
         },
         {
+          "name": "findAllEnabledMessageReceiversWithMessageRecipientId",
+          "requestMessageName": "FindAllEnabledMessageReceiversWithMessageRecipientIdRequest",
+          "responseMessageName": "FindAllEnabledMessageReceiversWithMessageRecipientIdResponse",
+          "code": "rpc findAllEnabledMessageReceiversWithMessageRecipientId (FindAllEnabledMessageReceiversWithMessageRecipientIdRequest) returns (FindAllEnabledMessageReceiversWithMessageRecipientIdResponse);",
+          "doc": "根据接收人查找关联的接收者",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
           "name": "deleteMessageReceiver",
           "requestMessageName": "DeleteMessageReceiverRequest",
           "responseMessageName": "RPCSuccess",
@@ -14118,7 +14129,7 @@
     },
     {
       "name": "CountAllEnabledMessageReceiversRequest",
-      "code": "message CountAllEnabledMessageReceiversRequest {\n\tstring role = 4;\n\tint64 nodeClusterId = 1;\n\tint64 nodeId = 2;\n\tint64 serverId = 3;\n}",
+      "code": "message CountAllEnabledMessageReceiversRequest {\n\tstring role = 4; // 集群角色：node 或 dns\n\tint64 nodeClusterId = 1; // 集群ID\n\tint64 nodeId = 2; // 节点ID\n\tint64 serverId = 3;  // 网站ID\n}",
       "doc": "计算接收者数量"
     },
     {
@@ -14973,7 +14984,7 @@
     },
     {
       "name": "CreateMessageRecipientRequest",
-      "code": "message CreateMessageRecipientRequest {\n\tint64 adminId = 1;\n\tint64 messageMediaInstanceId = 2;\n\trepeated int64 messageRecipientGroupIds = 3;\n\tstring description = 4;\n\tstring user = 5;\n\tstring timeFrom = 6;\n\tstring timeTo = 7;\n}",
+      "code": "message CreateMessageRecipientRequest {\n\tint64 adminId = 1; // 关联的管理员ID\n\tint64 messageMediaInstanceId = 2; // 媒介实例ID\n\trepeated int64 messageRecipientGroupIds = 3; // 所属分组ID列表\n\tstring description = 4; // 可选项，备注描述\n\tstring user = 5; // 用户标识\n\tstring timeFrom = 6; // 可选项，接收消息的，开始时间\n\tstring timeTo = 7; // 可选项，接收消息的，结束时间\n\n\trepeated int64  nodeClusterIds = 8; // 关联的CDN边缘节点集群ID列表\n}",
       "doc": "创建接收人"
     },
     {
@@ -15763,7 +15774,7 @@
     },
     {
       "name": "DeleteMessageReceiverRequest",
-      "code": "message DeleteMessageReceiverRequest {\n\tint64 messageReceiverId = 1;\n}",
+      "code": "message DeleteMessageReceiverRequest {\n\tint64 messageReceiverId = 1; // 接收者ID\n}",
       "doc": "删除接收者"
     },
     {
@@ -16688,12 +16699,22 @@
     },
     {
       "name": "FindAllEnabledMessageReceiversRequest",
-      "code": "message FindAllEnabledMessageReceiversRequest {\n\tstring role = 4;\n\tint64 nodeClusterId = 1;\n\tint64 nodeId = 2;\n\tint64 serverId = 3;\n}",
+      "code": "message FindAllEnabledMessageReceiversRequest {\n\tstring role = 4; // 集群角色：node 或 dns\n\tint64 nodeClusterId = 1; // 集群ID\n\tint64 nodeId = 2; // 节点ID\n\tint64 serverId = 3; // 网站ID\n}",
       "doc": "查找接收者"
     },
     {
       "name": "FindAllEnabledMessageReceiversResponse",
       "code": "message FindAllEnabledMessageReceiversResponse {\n\trepeated MessageReceiver messageReceivers = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAllEnabledMessageReceiversWithMessageRecipientIdRequest",
+      "code": "message FindAllEnabledMessageReceiversWithMessageRecipientIdRequest {\n\tint64 messageRecipientId = 1; // 关联的接收人ID\n}",
+      "doc": "根据接收人查找关联的接收者"
+    },
+    {
+      "name": "FindAllEnabledMessageReceiversWithMessageRecipientIdResponse",
+      "code": "message FindAllEnabledMessageReceiversWithMessageRecipientIdResponse {\n\trepeated MessageReceiver messageReceivers = 1;\n}",
       "doc": ""
     },
     {
@@ -20658,7 +20679,7 @@
     },
     {
       "name": "MessageReceiver",
-      "code": "message MessageReceiver {\n\tint64 id = 1;\n\tint64 clusterId = 2;\n\tint64 nodeId = 3;\n\tint64 serverId = 4;\n\tstring type = 5;\n\tbytes paramsJSON = 6;\n\tMessageRecipient messageRecipient = 7;\n\tMessageRecipientGroup messageRecipientGroup = 8;\n}",
+      "code": "message MessageReceiver {\n\tint64 id = 1;\n\tint64 clusterId = 2;\n\tint64 nodeId = 3;\n\tint64 serverId = 4;\n\tstring type = 5;\n\tbytes paramsJSON = 6;\n\tstring role = 9; // 集群角色：node 或 dns\n\n\tMessageRecipient messageRecipient = 7;\n\tMessageRecipientGroup messageRecipientGroup = 8;\n}",
       "doc": ""
     },
     {
@@ -21858,7 +21879,7 @@
     },
     {
       "name": "UpdateMessageReceiversRequest",
-      "code": "message UpdateMessageReceiversRequest {\n\tstring role = 7;\n\tint64 nodeClusterId = 1;\n\tint64 nodeId = 2;\n\tint64 serverId = 3;\n\tbytes paramsJSON = 5;\n\tmap\u003cstring, RecipientOptions\u003e recipientOptions = 6; // type =\u003e options\n\n\n\tmessage RecipientOption {\n\t\tint64 messageRecipientId = 1;\n\t\tint64 messageRecipientGroupId = 2;\n\t}\n\n\n\tmessage RecipientOptions {\n\t\trepeated RecipientOption recipientOptions = 1;\n\t}\n}",
+      "code": "message UpdateMessageReceiversRequest {\n\tstring role = 7;\n\tint64 nodeClusterId = 1;\n\tint64 nodeId = 2;\n\tint64 serverId = 3;\n\tbytes paramsJSON = 5;\n\tmap\u003cstring, RecipientOptions\u003e recipientOptions = 6; // type =\u003e options，type为recipient或者group\n\n\n\tmessage RecipientOption {\n\t\tint64 messageRecipientId = 1;\n\t\tint64 messageRecipientGroupId = 2;\n\t}\n\n\n\tmessage RecipientOptions {\n\t\trepeated RecipientOption recipientOptions = 1;\n\t}\n}",
       "doc": "修改接收者"
     },
     {
@@ -21868,7 +21889,7 @@
     },
     {
       "name": "UpdateMessageRecipientRequest",
-      "code": "message UpdateMessageRecipientRequest {\n\tint64 messageRecipientId = 1;\n\tint64 adminId = 2;\n\tint64 messageMediaInstanceId = 3;\n\trepeated int64 messageRecipientGroupIds = 4;\n\tstring description = 5;\n\tbool isOn = 6;\n\tstring user = 7;\n\tstring timeFrom = 8;\n\tstring timeTo = 9;\n}",
+      "code": "message UpdateMessageRecipientRequest {\n\tint64 messageRecipientId = 1;\n\tint64 adminId = 2;\n\tint64 messageMediaInstanceId = 3;\n\trepeated int64 messageRecipientGroupIds = 4;\n\tstring description = 5;\n\tbool isOn = 6;\n\tstring user = 7;\n\tstring timeFrom = 8;\n\tstring timeTo = 9;\n\n\trepeated int64  nodeClusterIds = 10; // 关联的CDN边缘节点集群ID列表\n}",
       "doc": "修改接收人"
     },
     {

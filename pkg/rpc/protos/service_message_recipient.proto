@@ -29,13 +29,15 @@ service MessageRecipientService {
 
 // 创建接收人
 message CreateMessageRecipientRequest {
-	int64 adminId = 1;
-	int64 messageMediaInstanceId = 2;
-	repeated int64 messageRecipientGroupIds = 3;
-	string description = 4;
-	string user = 5;
-	string timeFrom = 6;
-	string timeTo = 7;
+	int64 adminId = 1; // 关联的管理员ID
+	int64 messageMediaInstanceId = 2; // 媒介实例ID
+	repeated int64 messageRecipientGroupIds = 3; // 所属分组ID列表
+	string description = 4; // 可选项，备注描述
+	string user = 5; // 用户标识
+	string timeFrom = 6; // 可选项，接收消息的，开始时间
+	string timeTo = 7; // 可选项，接收消息的，结束时间
+
+	repeated int64  nodeClusterIds = 8; // 关联的CDN边缘节点集群ID列表
 }
 
 message CreateMessageRecipientResponse {
@@ -53,6 +55,8 @@ message UpdateMessageRecipientRequest {
 	string user = 7;
 	string timeFrom = 8;
 	string timeTo = 9;
+
+	repeated int64  nodeClusterIds = 10; // 关联的CDN边缘节点集群ID列表
 }
 
 // 删除接收人

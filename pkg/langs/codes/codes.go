@@ -234,6 +234,7 @@ const (
 	MessageMediaInstance_LogCreateMessageMediaInstance          langs.MessageCode = "message_media_instance@log_create_message_media_instance"            // 创建消息媒介 %d
 	MessageMediaInstance_LogDeleteMessageMediaInstance          langs.MessageCode = "message_media_instance@log_delete_message_media_instance"            // 删除消息媒介 %d
 	MessageMediaInstance_LogUpdateMessageMediaInstance          langs.MessageCode = "message_media_instance@log_update_message_media_instance"            // 修改消息媒介 %d
+	MessageReceiver_LogDeleteReceiver                           langs.MessageCode = "message_receiver@log_delete_receiver"                                // 删除接收人关联关系 %d
 	MessageReceiver_LogUpdateClusterMessageReceivers            langs.MessageCode = "message_receiver@log_update_cluster_message_receivers"               // 修改集群 %d 消息接收人
 	MessageRecipient_LogCreateMessageRecipient                  langs.MessageCode = "message_recipient@log_create_message_recipient"                      // 创建媒介接收人 %d
 	MessageRecipient_LogDeleteMessageRecipient                  langs.MessageCode = "message_recipient@log_delete_message_recipient"                      // 删除媒介接收人 %d

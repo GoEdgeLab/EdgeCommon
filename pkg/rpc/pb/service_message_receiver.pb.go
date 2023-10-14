@@ -31,7 +31,7 @@ type UpdateMessageReceiversRequest struct {
 	NodeId           int64                                                      `protobuf:"varint,2,opt,name=nodeId,proto3" json:"nodeId,omitempty"`
 	ServerId         int64                                                      `protobuf:"varint,3,opt,name=serverId,proto3" json:"serverId,omitempty"`
 	ParamsJSON       []byte                                                     `protobuf:"bytes,5,opt,name=paramsJSON,proto3" json:"paramsJSON,omitempty"`
-	RecipientOptions map[string]*UpdateMessageReceiversRequest_RecipientOptions `protobuf:"bytes,6,rep,name=recipientOptions,proto3" json:"recipientOptions,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"` // type => options
+	RecipientOptions map[string]*UpdateMessageReceiversRequest_RecipientOptions `protobuf:"bytes,6,rep,name=recipientOptions,proto3" json:"recipientOptions,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"` // type => options，type为recipient或者group
 }
 
 func (x *UpdateMessageReceiversRequest) Reset() {
@@ -114,10 +114,10 @@ type FindAllEnabledMessageReceiversRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Role          string `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`
-	NodeClusterId int64  `protobuf:"varint,1,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"`
-	NodeId        int64  `protobuf:"varint,2,opt,name=nodeId,proto3" json:"nodeId,omitempty"`
-	ServerId      int64  `protobuf:"varint,3,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Role          string `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`                    // 集群角色：node 或 dns
+	NodeClusterId int64  `protobuf:"varint,1,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"` // 集群ID
+	NodeId        int64  `protobuf:"varint,2,opt,name=nodeId,proto3" json:"nodeId,omitempty"`               // 节点ID
+	ServerId      int64  `protobuf:"varint,3,opt,name=serverId,proto3" json:"serverId,omitempty"`           // 网站ID
 }
 
 func (x *FindAllEnabledMessageReceiversRequest) Reset() {
@@ -227,19 +227,114 @@ func (x *FindAllEnabledMessageReceiversResponse) GetMessageReceivers() []*Messag
 	return nil
 }
 
+// 根据接收人查找关联的接收者
+type FindAllEnabledMessageReceiversWithMessageRecipientIdRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	MessageRecipientId int64 `protobuf:"varint,1,opt,name=messageRecipientId,proto3" json:"messageRecipientId,omitempty"` // 关联的接收人ID
+}
+
+func (x *FindAllEnabledMessageReceiversWithMessageRecipientIdRequest) Reset() {
+	*x = FindAllEnabledMessageReceiversWithMessageRecipientIdRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_message_receiver_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllEnabledMessageReceiversWithMessageRecipientIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllEnabledMessageReceiversWithMessageRecipientIdRequest) ProtoMessage() {}
+
+func (x *FindAllEnabledMessageReceiversWithMessageRecipientIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_message_receiver_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllEnabledMessageReceiversWithMessageRecipientIdRequest.ProtoReflect.Descriptor instead.
+func (*FindAllEnabledMessageReceiversWithMessageRecipientIdRequest) Descriptor() ([]byte, []int) {
+	return file_service_message_receiver_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *FindAllEnabledMessageReceiversWithMessageRecipientIdRequest) GetMessageRecipientId() int64 {
+	if x != nil {
+		return x.MessageRecipientId
+	}
+	return 0
+}
+
+type FindAllEnabledMessageReceiversWithMessageRecipientIdResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	MessageReceivers []*MessageReceiver `protobuf:"bytes,1,rep,name=messageReceivers,proto3" json:"messageReceivers,omitempty"`
+}
+
+func (x *FindAllEnabledMessageReceiversWithMessageRecipientIdResponse) Reset() {
+	*x = FindAllEnabledMessageReceiversWithMessageRecipientIdResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_message_receiver_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindAllEnabledMessageReceiversWithMessageRecipientIdResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindAllEnabledMessageReceiversWithMessageRecipientIdResponse) ProtoMessage() {}
+
+func (x *FindAllEnabledMessageReceiversWithMessageRecipientIdResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_service_message_receiver_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindAllEnabledMessageReceiversWithMessageRecipientIdResponse.ProtoReflect.Descriptor instead.
+func (*FindAllEnabledMessageReceiversWithMessageRecipientIdResponse) Descriptor() ([]byte, []int) {
+	return file_service_message_receiver_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *FindAllEnabledMessageReceiversWithMessageRecipientIdResponse) GetMessageReceivers() []*MessageReceiver {
+	if x != nil {
+		return x.MessageReceivers
+	}
+	return nil
+}
+
 // 删除接收者
 type DeleteMessageReceiverRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	MessageReceiverId int64 `protobuf:"varint,1,opt,name=messageReceiverId,proto3" json:"messageReceiverId,omitempty"`
+	MessageReceiverId int64 `protobuf:"varint,1,opt,name=messageReceiverId,proto3" json:"messageReceiverId,omitempty"` // 接收者ID
 }
 
 func (x *DeleteMessageReceiverRequest) Reset() {
 	*x = DeleteMessageReceiverRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_message_receiver_proto_msgTypes[3]
+		mi := &file_service_message_receiver_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -252,7 +347,7 @@ func (x *DeleteMessageReceiverRequest) String() string {
 func (*DeleteMessageReceiverRequest) ProtoMessage() {}
 
 func (x *DeleteMessageReceiverRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_message_receiver_proto_msgTypes[3]
+	mi := &file_service_message_receiver_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -265,7 +360,7 @@ func (x *DeleteMessageReceiverRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteMessageReceiverRequest.ProtoReflect.Descriptor instead.
 func (*DeleteMessageReceiverRequest) Descriptor() ([]byte, []int) {
-	return file_service_message_receiver_proto_rawDescGZIP(), []int{3}
+	return file_service_message_receiver_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *DeleteMessageReceiverRequest) GetMessageReceiverId() int64 {
@@ -281,16 +376,16 @@ type CountAllEnabledMessageReceiversRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Role          string `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`
-	NodeClusterId int64  `protobuf:"varint,1,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"`
-	NodeId        int64  `protobuf:"varint,2,opt,name=nodeId,proto3" json:"nodeId,omitempty"`
-	ServerId      int64  `protobuf:"varint,3,opt,name=serverId,proto3" json:"serverId,omitempty"`
+	Role          string `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`                    // 集群角色：node 或 dns
+	NodeClusterId int64  `protobuf:"varint,1,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"` // 集群ID
+	NodeId        int64  `protobuf:"varint,2,opt,name=nodeId,proto3" json:"nodeId,omitempty"`               // 节点ID
+	ServerId      int64  `protobuf:"varint,3,opt,name=serverId,proto3" json:"serverId,omitempty"`           // 网站ID
 }
 
 func (x *CountAllEnabledMessageReceiversRequest) Reset() {
 	*x = CountAllEnabledMessageReceiversRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_message_receiver_proto_msgTypes[4]
+		mi := &file_service_message_receiver_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -303,7 +398,7 @@ func (x *CountAllEnabledMessageReceiversRequest) String() string {
 func (*CountAllEnabledMessageReceiversRequest) ProtoMessage() {}
 
 func (x *CountAllEnabledMessageReceiversRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_message_receiver_proto_msgTypes[4]
+	mi := &file_service_message_receiver_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -316,7 +411,7 @@ func (x *CountAllEnabledMessageReceiversRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use CountAllEnabledMessageReceiversRequest.ProtoReflect.Descriptor instead.
 func (*CountAllEnabledMessageReceiversRequest) Descriptor() ([]byte, []int) {
-	return file_service_message_receiver_proto_rawDescGZIP(), []int{4}
+	return file_service_message_receiver_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *CountAllEnabledMessageReceiversRequest) GetRole() string {
@@ -359,7 +454,7 @@ type UpdateMessageReceiversRequest_RecipientOption struct {
 func (x *UpdateMessageReceiversRequest_RecipientOption) Reset() {
 	*x = UpdateMessageReceiversRequest_RecipientOption{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_message_receiver_proto_msgTypes[6]
+		mi := &file_service_message_receiver_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -372,7 +467,7 @@ func (x *UpdateMessageReceiversRequest_RecipientOption) String() string {
 func (*UpdateMessageReceiversRequest_RecipientOption) ProtoMessage() {}
 
 func (x *UpdateMessageReceiversRequest_RecipientOption) ProtoReflect() protoreflect.Message {
-	mi := &file_service_message_receiver_proto_msgTypes[6]
+	mi := &file_service_message_receiver_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -413,7 +508,7 @@ type UpdateMessageReceiversRequest_RecipientOptions struct {
 func (x *UpdateMessageReceiversRequest_RecipientOptions) Reset() {
 	*x = UpdateMessageReceiversRequest_RecipientOptions{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_service_message_receiver_proto_msgTypes[7]
+		mi := &file_service_message_receiver_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -426,7 +521,7 @@ func (x *UpdateMessageReceiversRequest_RecipientOptions) String() string {
 func (*UpdateMessageReceiversRequest_RecipientOptions) ProtoMessage() {}
 
 func (x *UpdateMessageReceiversRequest_RecipientOptions) ProtoReflect() protoreflect.Message {
-	mi := &file_service_message_receiver_proto_msgTypes[7]
+	mi := &file_service_message_receiver_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -514,6 +609,21 @@ var file_service_message_receiver_proto_rawDesc = []byte{
 	0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13,
 	0x2e, 0x70, 0x62, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65, 0x69,
 	0x76, 0x65, 0x72, 0x52, 0x10, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65,
+	0x69, 0x76, 0x65, 0x72, 0x73, 0x22, 0x6d, 0x0a, 0x3b, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65,
+	0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x52, 0x65, 0x63, 0x69, 0x70, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x2e, 0x0a, 0x12, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52,
+	0x65, 0x63, 0x69, 0x70, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x12, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x69, 0x70, 0x69, 0x65,
+	0x6e, 0x74, 0x49, 0x64, 0x22, 0x7f, 0x0a, 0x3c, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45,
+	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63,
+	0x65, 0x69, 0x76, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x52, 0x65, 0x63, 0x69, 0x70, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3f, 0x0a, 0x10, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52,
+	0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13,
+	0x2e, 0x70, 0x62, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65, 0x69,
+	0x76, 0x65, 0x72, 0x52, 0x10, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65,
 	0x69, 0x76, 0x65, 0x72, 0x73, 0x22, 0x4c, 0x0a, 0x1c, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d,
 	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x52, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2c, 0x0a, 0x11, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
@@ -528,7 +638,7 @@ var file_service_message_receiver_proto_rawDesc = []byte{
 	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x6f, 0x64, 0x65,
 	0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x6e, 0x6f, 0x64, 0x65, 0x49, 0x64,
 	0x12, 0x1a, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x18, 0x03, 0x20, 0x01,
-	0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x32, 0x8e, 0x03, 0x0a,
+	0x28, 0x03, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x32, 0xca, 0x04, 0x0a,
 	0x16, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72,
 	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x4b, 0x0a, 0x16, 0x75, 0x70, 0x64, 0x61, 0x74,
 	0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72,
@@ -542,19 +652,31 @@ var file_service_message_receiver_proto_rawDesc = []byte{
 	0x65, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
 	0x74, 0x1a, 0x2a, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e,
 	0x61, 0x62, 0x6c, 0x65, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65,
-	0x69, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x49, 0x0a,
-	0x15, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65,
-	0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65,
-	0x74, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65,
-	0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50,
-	0x43, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x63, 0x0a, 0x1f, 0x63, 0x6f, 0x75, 0x6e,
-	0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61,
-	0x67, 0x65, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x73, 0x12, 0x2a, 0x2e, 0x70, 0x62,
-	0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
+	0x69, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0xb9, 0x01,
+	0x0a, 0x34, 0x66, 0x69, 0x6e, 0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64,
 	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x73,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43,
-	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a,
-	0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x57, 0x69, 0x74, 0x68, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x69, 0x70,
+	0x69, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x3f, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e, 0x64,
+	0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x4d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x69, 0x70, 0x69, 0x65, 0x6e, 0x74, 0x49, 0x64,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x40, 0x2e, 0x70, 0x62, 0x2e, 0x46, 0x69, 0x6e,
+	0x64, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x73, 0x57, 0x69, 0x74, 0x68, 0x4d,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x69, 0x70, 0x69, 0x65, 0x6e, 0x74, 0x49,
+	0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x49, 0x0a, 0x15, 0x64, 0x65, 0x6c,
+	0x65, 0x74, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76,
+	0x65, 0x72, 0x12, 0x20, 0x2e, 0x70, 0x62, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x53, 0x75, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x12, 0x63, 0x0a, 0x1f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x41, 0x6c, 0x6c,
+	0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65,
+	0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x73, 0x12, 0x2a, 0x2e, 0x70, 0x62, 0x2e, 0x43, 0x6f, 0x75,
+	0x6e, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x4d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x52, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x50, 0x43, 0x43, 0x6f, 0x75, 0x6e,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70,
+	0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -569,38 +691,43 @@ func file_service_message_receiver_proto_rawDescGZIP() []byte {
 	return file_service_message_receiver_proto_rawDescData
 }
 
-var file_service_message_receiver_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_service_message_receiver_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_service_message_receiver_proto_goTypes = []interface{}{
-	(*UpdateMessageReceiversRequest)(nil),          // 0: pb.UpdateMessageReceiversRequest
-	(*FindAllEnabledMessageReceiversRequest)(nil),  // 1: pb.FindAllEnabledMessageReceiversRequest
-	(*FindAllEnabledMessageReceiversResponse)(nil), // 2: pb.FindAllEnabledMessageReceiversResponse
-	(*DeleteMessageReceiverRequest)(nil),           // 3: pb.DeleteMessageReceiverRequest
-	(*CountAllEnabledMessageReceiversRequest)(nil), // 4: pb.CountAllEnabledMessageReceiversRequest
-	nil, // 5: pb.UpdateMessageReceiversRequest.RecipientOptionsEntry
-	(*UpdateMessageReceiversRequest_RecipientOption)(nil),  // 6: pb.UpdateMessageReceiversRequest.RecipientOption
-	(*UpdateMessageReceiversRequest_RecipientOptions)(nil), // 7: pb.UpdateMessageReceiversRequest.RecipientOptions
-	(*MessageReceiver)(nil),                                // 8: pb.MessageReceiver
-	(*RPCSuccess)(nil),                                     // 9: pb.RPCSuccess
-	(*RPCCountResponse)(nil),                               // 10: pb.RPCCountResponse
+	(*UpdateMessageReceiversRequest)(nil),                                // 0: pb.UpdateMessageReceiversRequest
+	(*FindAllEnabledMessageReceiversRequest)(nil),                        // 1: pb.FindAllEnabledMessageReceiversRequest
+	(*FindAllEnabledMessageReceiversResponse)(nil),                       // 2: pb.FindAllEnabledMessageReceiversResponse
+	(*FindAllEnabledMessageReceiversWithMessageRecipientIdRequest)(nil),  // 3: pb.FindAllEnabledMessageReceiversWithMessageRecipientIdRequest
+	(*FindAllEnabledMessageReceiversWithMessageRecipientIdResponse)(nil), // 4: pb.FindAllEnabledMessageReceiversWithMessageRecipientIdResponse
+	(*DeleteMessageReceiverRequest)(nil),                                 // 5: pb.DeleteMessageReceiverRequest
+	(*CountAllEnabledMessageReceiversRequest)(nil),                       // 6: pb.CountAllEnabledMessageReceiversRequest
+	nil, // 7: pb.UpdateMessageReceiversRequest.RecipientOptionsEntry
+	(*UpdateMessageReceiversRequest_RecipientOption)(nil),  // 8: pb.UpdateMessageReceiversRequest.RecipientOption
+	(*UpdateMessageReceiversRequest_RecipientOptions)(nil), // 9: pb.UpdateMessageReceiversRequest.RecipientOptions
+	(*MessageReceiver)(nil),                                // 10: pb.MessageReceiver
+	(*RPCSuccess)(nil),                                     // 11: pb.RPCSuccess
+	(*RPCCountResponse)(nil),                               // 12: pb.RPCCountResponse
 }
 var file_service_message_receiver_proto_depIdxs = []int32{
-	5,  // 0: pb.UpdateMessageReceiversRequest.recipientOptions:type_name -> pb.UpdateMessageReceiversRequest.RecipientOptionsEntry
-	8,  // 1: pb.FindAllEnabledMessageReceiversResponse.messageReceivers:type_name -> pb.MessageReceiver
-	7,  // 2: pb.UpdateMessageReceiversRequest.RecipientOptionsEntry.value:type_name -> pb.UpdateMessageReceiversRequest.RecipientOptions
-	6,  // 3: pb.UpdateMessageReceiversRequest.RecipientOptions.recipientOptions:type_name -> pb.UpdateMessageReceiversRequest.RecipientOption
-	0,  // 4: pb.MessageReceiverService.updateMessageReceivers:input_type -> pb.UpdateMessageReceiversRequest
-	1,  // 5: pb.MessageReceiverService.findAllEnabledMessageReceivers:input_type -> pb.FindAllEnabledMessageReceiversRequest
-	3,  // 6: pb.MessageReceiverService.deleteMessageReceiver:input_type -> pb.DeleteMessageReceiverRequest
-	4,  // 7: pb.MessageReceiverService.countAllEnabledMessageReceivers:input_type -> pb.CountAllEnabledMessageReceiversRequest
-	9,  // 8: pb.MessageReceiverService.updateMessageReceivers:output_type -> pb.RPCSuccess
-	2,  // 9: pb.MessageReceiverService.findAllEnabledMessageReceivers:output_type -> pb.FindAllEnabledMessageReceiversResponse
-	9,  // 10: pb.MessageReceiverService.deleteMessageReceiver:output_type -> pb.RPCSuccess
-	10, // 11: pb.MessageReceiverService.countAllEnabledMessageReceivers:output_type -> pb.RPCCountResponse
-	8,  // [8:12] is the sub-list for method output_type
-	4,  // [4:8] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	7,  // 0: pb.UpdateMessageReceiversRequest.recipientOptions:type_name -> pb.UpdateMessageReceiversRequest.RecipientOptionsEntry
+	10, // 1: pb.FindAllEnabledMessageReceiversResponse.messageReceivers:type_name -> pb.MessageReceiver
+	10, // 2: pb.FindAllEnabledMessageReceiversWithMessageRecipientIdResponse.messageReceivers:type_name -> pb.MessageReceiver
+	9,  // 3: pb.UpdateMessageReceiversRequest.RecipientOptionsEntry.value:type_name -> pb.UpdateMessageReceiversRequest.RecipientOptions
+	8,  // 4: pb.UpdateMessageReceiversRequest.RecipientOptions.recipientOptions:type_name -> pb.UpdateMessageReceiversRequest.RecipientOption
+	0,  // 5: pb.MessageReceiverService.updateMessageReceivers:input_type -> pb.UpdateMessageReceiversRequest
+	1,  // 6: pb.MessageReceiverService.findAllEnabledMessageReceivers:input_type -> pb.FindAllEnabledMessageReceiversRequest
+	3,  // 7: pb.MessageReceiverService.findAllEnabledMessageReceiversWithMessageRecipientId:input_type -> pb.FindAllEnabledMessageReceiversWithMessageRecipientIdRequest
+	5,  // 8: pb.MessageReceiverService.deleteMessageReceiver:input_type -> pb.DeleteMessageReceiverRequest
+	6,  // 9: pb.MessageReceiverService.countAllEnabledMessageReceivers:input_type -> pb.CountAllEnabledMessageReceiversRequest
+	11, // 10: pb.MessageReceiverService.updateMessageReceivers:output_type -> pb.RPCSuccess
+	2,  // 11: pb.MessageReceiverService.findAllEnabledMessageReceivers:output_type -> pb.FindAllEnabledMessageReceiversResponse
+	4,  // 12: pb.MessageReceiverService.findAllEnabledMessageReceiversWithMessageRecipientId:output_type -> pb.FindAllEnabledMessageReceiversWithMessageRecipientIdResponse
+	11, // 13: pb.MessageReceiverService.deleteMessageReceiver:output_type -> pb.RPCSuccess
+	12, // 14: pb.MessageReceiverService.countAllEnabledMessageReceivers:output_type -> pb.RPCCountResponse
+	10, // [10:15] is the sub-list for method output_type
+	5,  // [5:10] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_service_message_receiver_proto_init() }
@@ -648,7 +775,7 @@ func file_service_message_receiver_proto_init() {
 			}
 		}
 		file_service_message_receiver_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteMessageReceiverRequest); i {
+			switch v := v.(*FindAllEnabledMessageReceiversWithMessageRecipientIdRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -660,7 +787,19 @@ func file_service_message_receiver_proto_init() {
 			}
 		}
 		file_service_message_receiver_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CountAllEnabledMessageReceiversRequest); i {
+			switch v := v.(*FindAllEnabledMessageReceiversWithMessageRecipientIdResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_message_receiver_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteMessageReceiverRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -672,6 +811,18 @@ func file_service_message_receiver_proto_init() {
 			}
 		}
 		file_service_message_receiver_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CountAllEnabledMessageReceiversRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_message_receiver_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateMessageReceiversRequest_RecipientOption); i {
 			case 0:
 				return &v.state
@@ -683,7 +834,7 @@ func file_service_message_receiver_proto_init() {
 				return nil
 			}
 		}
-		file_service_message_receiver_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_service_message_receiver_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateMessageReceiversRequest_RecipientOptions); i {
 			case 0:
 				return &v.state
@@ -702,7 +853,7 @@ func file_service_message_receiver_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_message_receiver_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

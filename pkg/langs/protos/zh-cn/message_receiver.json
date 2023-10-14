@@ -1,3 +1,4 @@
 {
-  "log_update_cluster_message_receivers": "修改集群 %d 消息接收人"
+  "log_update_cluster_message_receivers": "修改集群 %d 消息接收人",
+  "log_delete_receiver": "删除接收人关联关系 %d"
 }

@@ -13,6 +13,8 @@ message MessageReceiver {
 	int64 serverId = 4;
 	string type = 5;
 	bytes paramsJSON = 6;
+	string role = 9; // 集群角色：node 或 dns
+
 	MessageRecipient messageRecipient = 7;
 	MessageRecipientGroup messageRecipientGroup = 8;
 }

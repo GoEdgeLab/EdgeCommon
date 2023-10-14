@@ -19,10 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MessageReceiverService_UpdateMessageReceivers_FullMethodName          = "/pb.MessageReceiverService/updateMessageReceivers"
-	MessageReceiverService_FindAllEnabledMessageReceivers_FullMethodName  = "/pb.MessageReceiverService/findAllEnabledMessageReceivers"
-	MessageReceiverService_DeleteMessageReceiver_FullMethodName           = "/pb.MessageReceiverService/deleteMessageReceiver"
-	MessageReceiverService_CountAllEnabledMessageReceivers_FullMethodName = "/pb.MessageReceiverService/countAllEnabledMessageReceivers"
+	MessageReceiverService_UpdateMessageReceivers_FullMethodName                               = "/pb.MessageReceiverService/updateMessageReceivers"
+	MessageReceiverService_FindAllEnabledMessageReceivers_FullMethodName                       = "/pb.MessageReceiverService/findAllEnabledMessageReceivers"
+	MessageReceiverService_FindAllEnabledMessageReceiversWithMessageRecipientId_FullMethodName = "/pb.MessageReceiverService/findAllEnabledMessageReceiversWithMessageRecipientId"
+	MessageReceiverService_DeleteMessageReceiver_FullMethodName                                = "/pb.MessageReceiverService/deleteMessageReceiver"
+	MessageReceiverService_CountAllEnabledMessageReceivers_FullMethodName                      = "/pb.MessageReceiverService/countAllEnabledMessageReceivers"
 )
 
 // MessageReceiverServiceClient is the client API for MessageReceiverService service.
@@ -33,6 +34,8 @@ type MessageReceiverServiceClient interface {
 	UpdateMessageReceivers(ctx context.Context, in *UpdateMessageReceiversRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 查找接收者
 	FindAllEnabledMessageReceivers(ctx context.Context, in *FindAllEnabledMessageReceiversRequest, opts ...grpc.CallOption) (*FindAllEnabledMessageReceiversResponse, error)
+	// 根据接收人查找关联的接收者
+	FindAllEnabledMessageReceiversWithMessageRecipientId(ctx context.Context, in *FindAllEnabledMessageReceiversWithMessageRecipientIdRequest, opts ...grpc.CallOption) (*FindAllEnabledMessageReceiversWithMessageRecipientIdResponse, error)
 	// 删除接收者
 	DeleteMessageReceiver(ctx context.Context, in *DeleteMessageReceiverRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 计算接收者数量
@@ -65,6 +68,15 @@ func (c *messageReceiverServiceClient) FindAllEnabledMessageReceivers(ctx contex
 	return out, nil
 }
 
+func (c *messageReceiverServiceClient) FindAllEnabledMessageReceiversWithMessageRecipientId(ctx context.Context, in *FindAllEnabledMessageReceiversWithMessageRecipientIdRequest, opts ...grpc.CallOption) (*FindAllEnabledMessageReceiversWithMessageRecipientIdResponse, error) {
+	out := new(FindAllEnabledMessageReceiversWithMessageRecipientIdResponse)
+	err := c.cc.Invoke(ctx, MessageReceiverService_FindAllEnabledMessageReceiversWithMessageRecipientId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *messageReceiverServiceClient) DeleteMessageReceiver(ctx context.Context, in *DeleteMessageReceiverRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
 	out := new(RPCSuccess)
 	err := c.cc.Invoke(ctx, MessageReceiverService_DeleteMessageReceiver_FullMethodName, in, out, opts...)
@@ -91,6 +103,8 @@ type MessageReceiverServiceServer interface {
 	UpdateMessageReceivers(context.Context, *UpdateMessageReceiversRequest) (*RPCSuccess, error)
 	// 查找接收者
 	FindAllEnabledMessageReceivers(context.Context, *FindAllEnabledMessageReceiversRequest) (*FindAllEnabledMessageReceiversResponse, error)
+	// 根据接收人查找关联的接收者
+	FindAllEnabledMessageReceiversWithMessageRecipientId(context.Context, *FindAllEnabledMessageReceiversWithMessageRecipientIdRequest) (*FindAllEnabledMessageReceiversWithMessageRecipientIdResponse, error)
 	// 删除接收者
 	DeleteMessageReceiver(context.Context, *DeleteMessageReceiverRequest) (*RPCSuccess, error)
 	// 计算接收者数量
@@ -106,6 +120,9 @@ func (UnimplementedMessageReceiverServiceServer) UpdateMessageReceivers(context.
 }
 func (UnimplementedMessageReceiverServiceServer) FindAllEnabledMessageReceivers(context.Context, *FindAllEnabledMessageReceiversRequest) (*FindAllEnabledMessageReceiversResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllEnabledMessageReceivers not implemented")
+}
+func (UnimplementedMessageReceiverServiceServer) FindAllEnabledMessageReceiversWithMessageRecipientId(context.Context, *FindAllEnabledMessageReceiversWithMessageRecipientIdRequest) (*FindAllEnabledMessageReceiversWithMessageRecipientIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllEnabledMessageReceiversWithMessageRecipientId not implemented")
 }
 func (UnimplementedMessageReceiverServiceServer) DeleteMessageReceiver(context.Context, *DeleteMessageReceiverRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMessageReceiver not implemented")
@@ -161,6 +178,24 @@ func _MessageReceiverService_FindAllEnabledMessageReceivers_Handler(srv interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MessageReceiverService_FindAllEnabledMessageReceiversWithMessageRecipientId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllEnabledMessageReceiversWithMessageRecipientIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MessageReceiverServiceServer).FindAllEnabledMessageReceiversWithMessageRecipientId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MessageReceiverService_FindAllEnabledMessageReceiversWithMessageRecipientId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MessageReceiverServiceServer).FindAllEnabledMessageReceiversWithMessageRecipientId(ctx, req.(*FindAllEnabledMessageReceiversWithMessageRecipientIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MessageReceiverService_DeleteMessageReceiver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteMessageReceiverRequest)
 	if err := dec(in); err != nil {
@@ -211,6 +246,10 @@ var MessageReceiverService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findAllEnabledMessageReceivers",
 			Handler:    _MessageReceiverService_FindAllEnabledMessageReceivers_Handler,
+		},
+		{
+			MethodName: "findAllEnabledMessageReceiversWithMessageRecipientId",
+			Handler:    _MessageReceiverService_FindAllEnabledMessageReceiversWithMessageRecipientId_Handler,
 		},
 		{
 			MethodName: "deleteMessageReceiver",
