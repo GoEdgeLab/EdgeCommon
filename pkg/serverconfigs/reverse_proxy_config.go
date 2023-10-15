@@ -18,7 +18,7 @@ const (
 
 func NewReverseProxyConfig() *ReverseProxyConfig {
 	return &ReverseProxyConfig{
-		Retry50X: true,
+		Retry50X: false, // 不要改为true，太多人使用50x作为特殊业务代码使用了！
 	}
 }
 
