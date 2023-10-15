@@ -196,12 +196,14 @@ func (this *HTTPFirewallPolicyDAO) FindHTTPFirewallActionConfigs(ctx context.Con
 
 		switch action.Code {
 		case firewallconfigs.HTTPFirewallActionRecordIP:
-			listId := action.Options.GetInt64("ipListId")
+			var listId = action.Options.GetInt64("ipListId")
 			listResp, err := this.RPC().IPListRPC().FindEnabledIPList(ctx, &pb.FindEnabledIPListRequest{IpListId: listId})
 			if err != nil {
 				return nil, err
 			}
-			if listResp.IpList != nil {
+			if listId == 0 {
+				action.Options["ipListName"] = "全局黑名单"
+			} else if listResp.IpList != nil {
 				action.Options["ipListName"] = listResp.IpList.Name
 			} else {
 				action.Options["ipListName"] = action.Options.GetString("ipListName") + "(已删除)"
