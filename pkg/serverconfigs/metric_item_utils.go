@@ -98,11 +98,6 @@ func FindAllMetricKeyDefinitions(category MetricItemCategory) []*shared.Definiti
 			},
 
 			{
-				Name:        "请求协议Proto",
-				Code:        "${proto}",
-				Description: "包含版本的HTTP请求协议，类似于HTTP/1.0",
-			},
-			{
 				Name:        "HTTP协议",
 				Code:        "${proto}",
 				Description: "包含版本的HTTP请求协议，类似于HTTP/1.0",
