@@ -9,6 +9,7 @@
   "setting_webp": "${lang.admin_common@menu_setting_webp}",
   "setting_metrics": "${lang.admin_common@menu_setting_metrics}",
   "setting_ddos_protection": "${lang.admin_common@menu_setting_ddos_protection}",
+  "setting_security_policy": "${lang.admin_common@menu_setting_security_policy}",
   "setting_uam": "5秒盾",
   "setting_cc": "CC防护",
   "setting_pages": "自定义页面",

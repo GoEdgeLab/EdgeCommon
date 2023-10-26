@@ -158,6 +158,12 @@ service NodeClusterService {
 
 	// 修改集群的HTTP3设置
 	rpc updateNodeClusterHTTP3Policy(UpdateNodeClusterHTTP3PolicyRequest) returns (RPCSuccess);
+
+	// 获取集群的网络安全策略
+	rpc findNodeClusterNetworkSecurityPolicy(FindNodeClusterNetworkSecurityPolicyRequest) returns (FindNodeClusterNetworkSecurityPolicyResponse);
+
+	// 修改集群的网络安全策略
+	rpc updateNodeClusterNetworkSecurityPolicy(UpdateNodeClusterNetworkSecurityPolicyRequest) returns (RPCSuccess);
 }
 
 // 获取所有集群的信息
@@ -470,19 +476,20 @@ message FindEnabledNodeClusterConfigInfoRequest {
 }
 
 message FindEnabledNodeClusterConfigInfoResponse {
-	bool healthCheckIsOn = 1;
-	bool hasFirewallActions = 2;
-	bool hasThresholds = 3;
-	bool hasMessageReceivers = 4;
-	bool isTOAEnabled = 5;
-	bool hasMetricItems = 6;
+	bool healthCheckIsOn = 1; // 启用了健康检查
+	bool hasFirewallActions = 2; // 有防火墙动作设置
+	bool hasThresholds = 3; // 有节点阈值设置
+	bool hasMessageReceivers = 4; // 已设置消息通知接收人
+	bool isTOAEnabled = 5; // 启用了TOA
+	bool hasMetricItems = 6; // 有指标统计设置
 	bool webpIsOn = 7; // 是否定义了WebP策略
 	bool uamIsOn = 10; // 是否定义了UAM策略
 	bool httpCCIsOn = 12; // 是否定义了CC策略
-	bool hasSystemServices = 8;
-	bool hasDDoSProtection = 9;
+	bool hasSystemServices = 8; // 启用了系统服务
+	bool hasDDoSProtection = 9; // 启用了DDoS防护
 	bool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略
 	bool http3IsOn = 13; // 是否启用HTTP3
+	bool hasNetworkSecurityPolicy = 14; // 设置了网络安全策略
 }
 
 // 设置集群是否置顶
@@ -594,4 +601,19 @@ message FindNodeClusterHTTP3PolicyResponse {
 message UpdateNodeClusterHTTP3PolicyRequest {
 	int64 nodeClusterId = 1; // 集群ID
 	bytes http3PolicyJSON = 2; // HTTP3策略配置
+}
+
+// 获取集群的网络安全策略
+message FindNodeClusterNetworkSecurityPolicyRequest {
+	int64 nodeClusterId = 1; // 集群ID
+}
+
+message FindNodeClusterNetworkSecurityPolicyResponse {
+	bytes networkSecurityPolicyJSON = 1; // 网络安全策略配置
+}
+
+// 修改集群的网络安全策略
+message UpdateNodeClusterNetworkSecurityPolicyRequest {
+	int64 nodeClusterId = 1; // 集群ID
+	bytes networkSecurityPolicyJSON = 2; // 网络安全策略配置
 }

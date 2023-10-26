@@ -4728,7 +4728,9 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateMessageTaskStatus(UpdateMessageTaskStatusRequest) returns (RPCSuccess);",
           "doc": "修改消息任务状态",
-          "roles": [],
+          "roles": [
+            "admin"
+          ],
           "isDeprecated": false
         }
       ],
@@ -5636,6 +5638,17 @@
             "node"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findNodeNetworkSecurityPolicy",
+          "requestMessageName": "FindNodeNetworkSecurityPolicyRequest",
+          "responseMessageName": "FindNodeNetworkSecurityPolicyResponse",
+          "code": "rpc findNodeNetworkSecurityPolicy(FindNodeNetworkSecurityPolicyRequest) returns (FindNodeNetworkSecurityPolicyResponse);",
+          "doc": "查找节点的网络安全策略",
+          "roles": [
+            "node"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_node.proto",
@@ -6252,6 +6265,28 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateNodeClusterHTTP3Policy(UpdateNodeClusterHTTP3PolicyRequest) returns (RPCSuccess);",
           "doc": "修改集群的HTTP3设置",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findNodeClusterNetworkSecurityPolicy",
+          "requestMessageName": "FindNodeClusterNetworkSecurityPolicyRequest",
+          "responseMessageName": "FindNodeClusterNetworkSecurityPolicyResponse",
+          "code": "rpc findNodeClusterNetworkSecurityPolicy(FindNodeClusterNetworkSecurityPolicyRequest) returns (FindNodeClusterNetworkSecurityPolicyResponse);",
+          "doc": "获取集群的网络安全策略",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updateNodeClusterNetworkSecurityPolicy",
+          "requestMessageName": "UpdateNodeClusterNetworkSecurityPolicyRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateNodeClusterNetworkSecurityPolicy(UpdateNodeClusterNetworkSecurityPolicyRequest) returns (RPCSuccess);",
+          "doc": "修改集群的网络安全策略",
           "roles": [
             "admin"
           ],
@@ -13978,12 +14013,12 @@
     },
     {
       "name": "ComposeServerStatNodeBoardRequest",
-      "code": "message ComposeServerStatNodeBoardRequest {\n\tint64 nodeId = 1;\n}",
+      "code": "message ComposeServerStatNodeBoardRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
       "doc": "组合节点看板数据"
     },
     {
       "name": "ComposeServerStatNodeBoardResponse",
-      "code": "message ComposeServerStatNodeBoardResponse {\n\tbool isActive = 1;\n\tint64 trafficInBytes = 2;\n\tint64 trafficOutBytes = 3;\n\tint64 countRequests = 4;\n\tint64 countAttackRequests = 5;\n\tint64 countConnections = 6;\n\tint64 cacheDiskSize = 7;\n\tint64 cacheMemorySize = 8;\n\tfloat cpuUsage = 9;\n\tfloat memoryUsage = 10;\n\tint64 memoryTotalSize = 11;\n\tfloat load = 12;\n\tint64 monthlyTrafficBytes = 13; // 当月流量\n\tint64 dailyTrafficBytes = 14; // 当日流量\n\tint64 lastDailyTrafficBytes = 15; // 昨日流量\n\n\trepeated DailyTrafficStat dailyTrafficStats = 31;\n\trepeated HourlyTrafficStat hourlyTrafficStats = 32;\n\n\trepeated NodeValue cpuNodeValues = 34;\n\trepeated NodeValue memoryNodeValues = 35;\n\trepeated NodeValue loadNodeValues = 36;\n\trepeated NodeValue cacheDirsValues = 38;\n\n\trepeated MetricDataChart metricDataCharts = 37;\n\n\n\tmessage DailyTrafficStat {\n\t\tstring day = 1;\n\t\tint64 bytes = 2;\n\t\tint64 cachedBytes = 3;\n\t\tint64 countRequests = 4;\n\t\tint64 countCachedRequests = 5;\n\t\tint64 countAttackRequests = 6;\n\t\tint64 attackBytes = 7;\n\t}\n\n\n\tmessage HourlyTrafficStat {\n\t\tstring hour = 1;\n\t\tint64 bytes = 2;\n\t\tint64 cachedBytes = 3;\n\t\tint64 countRequests = 4;\n\t\tint64 countCachedRequests = 5;\n\t\tint64 countAttackRequests = 6;\n\t\tint64 attackBytes = 7;\n\t}\n}",
+      "code": "message ComposeServerStatNodeBoardResponse {\n\tbool isActive = 1;\n\tint64 trafficInBytes = 2;\n\tint64 trafficOutBytes = 3;\n\tint64 countRequests = 4;\n\tint64 countAttackRequests = 5;\n\tint64 countConnections = 6;\n\tint64 cacheDiskSize = 7;\n\tint64 cacheMemorySize = 8;\n\tfloat cpuUsage = 9;\n\tfloat memoryUsage = 10;\n\tint64 memoryTotalSize = 11;\n\tfloat load = 12;\n\tint64 monthlyTrafficBytes = 13; // 当月流量\n\tint64 dailyTrafficBytes = 14; // 当日流量\n\tint64 lastDailyTrafficBytes = 15; // 昨日流量\n\n\trepeated DailyTrafficStat dailyTrafficStats = 31;\n\trepeated HourlyTrafficStat hourlyTrafficStats = 32;\n\n\trepeated NodeValue cpuNodeValues = 34; // CPU数据\n\trepeated NodeValue memoryNodeValues = 35; // 内存数据\n\trepeated NodeValue loadNodeValues = 36; // 负载数据\n\trepeated NodeValue cacheDirsValues = 38; // 缓存目录数据\n\trepeated NodeValue networkPacketsValues = 39; // 网络数据包数据\n\n\trepeated MetricDataChart metricDataCharts = 37;\n\n\n\tmessage DailyTrafficStat {\n\t\tstring day = 1;\n\t\tint64 bytes = 2;\n\t\tint64 cachedBytes = 3;\n\t\tint64 countRequests = 4;\n\t\tint64 countCachedRequests = 5;\n\t\tint64 countAttackRequests = 6;\n\t\tint64 attackBytes = 7;\n\t}\n\n\n\tmessage HourlyTrafficStat {\n\t\tstring hour = 1;\n\t\tint64 bytes = 2;\n\t\tint64 cachedBytes = 3;\n\t\tint64 countRequests = 4;\n\t\tint64 countCachedRequests = 5;\n\t\tint64 countAttackRequests = 6;\n\t\tint64 attackBytes = 7;\n\t}\n}",
       "doc": ""
     },
     {
@@ -17978,7 +18013,7 @@
     },
     {
       "name": "FindEnabledNodeClusterConfigInfoResponse",
-      "code": "message FindEnabledNodeClusterConfigInfoResponse {\n\tbool healthCheckIsOn = 1;\n\tbool hasFirewallActions = 2;\n\tbool hasThresholds = 3;\n\tbool hasMessageReceivers = 4;\n\tbool isTOAEnabled = 5;\n\tbool hasMetricItems = 6;\n\tbool webpIsOn = 7; // 是否定义了WebP策略\n\tbool uamIsOn = 10; // 是否定义了UAM策略\n\tbool httpCCIsOn = 12; // 是否定义了CC策略\n\tbool hasSystemServices = 8;\n\tbool hasDDoSProtection = 9;\n\tbool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略\n\tbool http3IsOn = 13; // 是否启用HTTP3\n}",
+      "code": "message FindEnabledNodeClusterConfigInfoResponse {\n\tbool healthCheckIsOn = 1; // 启用了健康检查\n\tbool hasFirewallActions = 2; // 有防火墙动作设置\n\tbool hasThresholds = 3; // 有节点阈值设置\n\tbool hasMessageReceivers = 4; // 已设置消息通知接收人\n\tbool isTOAEnabled = 5; // 启用了TOA\n\tbool hasMetricItems = 6; // 有指标统计设置\n\tbool webpIsOn = 7; // 是否定义了WebP策略\n\tbool uamIsOn = 10; // 是否定义了UAM策略\n\tbool httpCCIsOn = 12; // 是否定义了CC策略\n\tbool hasSystemServices = 8; // 启用了系统服务\n\tbool hasDDoSProtection = 9; // 启用了DDoS防护\n\tbool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略\n\tbool http3IsOn = 13; // 是否启用HTTP3\n\tbool hasNetworkSecurityPolicy = 14; // 设置了网络安全策略\n}",
       "doc": ""
     },
     {
@@ -19182,6 +19217,16 @@
       "doc": ""
     },
     {
+      "name": "FindNodeClusterNetworkSecurityPolicyRequest",
+      "code": "message FindNodeClusterNetworkSecurityPolicyRequest {\n\tint64 nodeClusterId = 1; // 集群ID\n}",
+      "doc": "获取集群的网络安全策略"
+    },
+    {
+      "name": "FindNodeClusterNetworkSecurityPolicyResponse",
+      "code": "message FindNodeClusterNetworkSecurityPolicyResponse {\n\tbytes networkSecurityPolicyJSON = 1; // 网络安全策略配置\n}",
+      "doc": ""
+    },
+    {
       "name": "FindNodeClusterSystemServiceRequest",
       "code": "message FindNodeClusterSystemServiceRequest {\n\tint64 nodeClusterId = 1;\n\tstring type = 2;\n}",
       "doc": "查找集群的系统服务设置"
@@ -19269,6 +19314,11 @@
     {
       "name": "FindNodeLoginSuggestPortsResponse",
       "code": "message FindNodeLoginSuggestPortsResponse {\n\trepeated int32 ports = 1;\n\trepeated int32 availablePorts = 2;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindNodeNetworkSecurityPolicyResponse",
+      "code": "message FindNodeNetworkSecurityPolicyResponse {\n\tbytes networkSecurityPolicyJSON = 1; // 网络安全策略\n}",
       "doc": ""
     },
     {
@@ -22155,6 +22205,11 @@
       "name": "UpdateNodeClusterHealthCheckRequest",
       "code": "message UpdateNodeClusterHealthCheckRequest {\n\tint64 nodeClusterId = 1;\n\tbytes healthCheckJSON = 2;\n}",
       "doc": "修改集群健康检查设置"
+    },
+    {
+      "name": "UpdateNodeClusterNetworkSecurityPolicyRequest",
+      "code": "message UpdateNodeClusterNetworkSecurityPolicyRequest {\n\tint64 nodeClusterId = 1; // 集群ID\n\tbytes networkSecurityPolicyJSON = 2; // 网络安全策略配置\n}",
+      "doc": "修改集群的网络安全策略"
     },
     {
       "name": "UpdateNodeClusterPinnedRequest",

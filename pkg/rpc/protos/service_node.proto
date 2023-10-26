@@ -202,6 +202,9 @@ service NodeService {
 
 	// 查找节点的TOA配置
 	rpc findNodeTOAConfig(FindNodeTOAConfigRequest) returns (FindNodeTOAConfigResponse);
+
+	// 查找节点的网络安全策略
+	rpc findNodeNetworkSecurityPolicy(FindNodeNetworkSecurityPolicyRequest) returns (FindNodeNetworkSecurityPolicyResponse);
 }
 
 // 创建节点
@@ -816,4 +819,12 @@ message FindNodeTOAConfigRequest {
 
 message FindNodeTOAConfigResponse {
 	bytes toaJSON = 1; // TOA配置
+}
+
+// 查找节点的网络安全策略
+message FindNodeNetworkSecurityPolicyRequest {
+}
+
+message FindNodeNetworkSecurityPolicyResponse {
+	bytes networkSecurityPolicyJSON = 1; // 网络安全策略
 }

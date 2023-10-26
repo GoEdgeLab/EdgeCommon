@@ -23,6 +23,8 @@ const (
 	NodeValueItemAttackRequests NodeValueItem = "attackRequests" // 攻击请求访问量
 	NodeValueItemDisk           NodeValueItem = "disk"           // 磁盘
 	NodeValueItemCacheDir       NodeValueItem = "cacheDir"       // 缓存目录
+
+	NodeValueItemNetworkPackets NodeValueItem = "networkPackets" // 网络数据包统计
 )
 
 type nodeValueItemDefinition struct {
@@ -147,6 +149,24 @@ var nodeValueItemDefinitions = []*nodeValueItemDefinition{
 				Code:        "usage",
 				Name:        "使用比例",
 				Description: "一个不超过1的小数",
+			},
+		},
+	},
+	{
+		Code: NodeValueItemNetworkPackets,
+		Name: "网络数据包",
+		Params: []*nodeValueItemParamDefinition{
+			{
+				Code: "tcpInPPS",
+				Name: "TCP入口包速率（pps）",
+			},
+			{
+				Code: "udpInPPS",
+				Name: "UDP入口包速率（pps）",
+			},
+			{
+				Code: "icmpInPPS",
+				Name: "ICMP入口包速率（pps）",
 			},
 		},
 	},

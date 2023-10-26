@@ -43,6 +43,7 @@ const (
 	AdminCommon_MenuSettingDNS                                  langs.MessageCode = "admin_common@menu_setting_dns"                                       // DNS设置
 	AdminCommon_MenuSettingHealthCheck                          langs.MessageCode = "admin_common@menu_setting_health_check"                              // 健康检查
 	AdminCommon_MenuSettingMetrics                              langs.MessageCode = "admin_common@menu_setting_metrics"                                   // 统计指标
+	AdminCommon_MenuSettingSecurityPolicy                       langs.MessageCode = "admin_common@menu_setting_security_policy"                           // 网络安全
 	AdminCommon_MenuSettingWAFPolicy                            langs.MessageCode = "admin_common@menu_setting_waf_policy"                                // WAF策略
 	AdminCommon_MenuSettingWebP                                 langs.MessageCode = "admin_common@menu_setting_webp"                                      // WebP
 	AdminCommon_ServerError                                     langs.MessageCode = "admin_common@server_error"                                           // 服务器出了点小问题，请联系技术人员处理。
@@ -290,6 +291,7 @@ const (
 	NodeClusterMenu_SettingNotification                         langs.MessageCode = "node_cluster_menu@setting_notification"                              // 消息通知
 	NodeClusterMenu_SettingPages                                langs.MessageCode = "node_cluster_menu@setting_pages"                                     // 自定义页面
 	NodeClusterMenu_SettingSchedule                             langs.MessageCode = "node_cluster_menu@setting_schedule"                                  // 智能调度
+	NodeClusterMenu_SettingSecurityPolicy                       langs.MessageCode = "node_cluster_menu@setting_security_policy"                           // 网络安全
 	NodeClusterMenu_SettingServiceGlobal                        langs.MessageCode = "node_cluster_menu@setting_service_global"                            // 网站设置
 	NodeClusterMenu_SettingSystemService                        langs.MessageCode = "node_cluster_menu@setting_system_service"                            // 系统服务
 	NodeClusterMenu_SettingThresholds                           langs.MessageCode = "node_cluster_menu@setting_thresholds"                                // 阈值设置

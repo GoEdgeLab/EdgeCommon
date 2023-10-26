@@ -68,6 +68,8 @@ const (
 	NodeClusterService_UpdateNodeClusterHTTPPagesPolicy_FullMethodName                    = "/pb.NodeClusterService/updateNodeClusterHTTPPagesPolicy"
 	NodeClusterService_FindNodeClusterHTTP3Policy_FullMethodName                          = "/pb.NodeClusterService/findNodeClusterHTTP3Policy"
 	NodeClusterService_UpdateNodeClusterHTTP3Policy_FullMethodName                        = "/pb.NodeClusterService/updateNodeClusterHTTP3Policy"
+	NodeClusterService_FindNodeClusterNetworkSecurityPolicy_FullMethodName                = "/pb.NodeClusterService/findNodeClusterNetworkSecurityPolicy"
+	NodeClusterService_UpdateNodeClusterNetworkSecurityPolicy_FullMethodName              = "/pb.NodeClusterService/updateNodeClusterNetworkSecurityPolicy"
 )
 
 // NodeClusterServiceClient is the client API for NodeClusterService service.
@@ -172,6 +174,10 @@ type NodeClusterServiceClient interface {
 	FindNodeClusterHTTP3Policy(ctx context.Context, in *FindNodeClusterHTTP3PolicyRequest, opts ...grpc.CallOption) (*FindNodeClusterHTTP3PolicyResponse, error)
 	// 修改集群的HTTP3设置
 	UpdateNodeClusterHTTP3Policy(ctx context.Context, in *UpdateNodeClusterHTTP3PolicyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 获取集群的网络安全策略
+	FindNodeClusterNetworkSecurityPolicy(ctx context.Context, in *FindNodeClusterNetworkSecurityPolicyRequest, opts ...grpc.CallOption) (*FindNodeClusterNetworkSecurityPolicyResponse, error)
+	// 修改集群的网络安全策略
+	UpdateNodeClusterNetworkSecurityPolicy(ctx context.Context, in *UpdateNodeClusterNetworkSecurityPolicyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
 
 type nodeClusterServiceClient struct {
@@ -623,6 +629,24 @@ func (c *nodeClusterServiceClient) UpdateNodeClusterHTTP3Policy(ctx context.Cont
 	return out, nil
 }
 
+func (c *nodeClusterServiceClient) FindNodeClusterNetworkSecurityPolicy(ctx context.Context, in *FindNodeClusterNetworkSecurityPolicyRequest, opts ...grpc.CallOption) (*FindNodeClusterNetworkSecurityPolicyResponse, error) {
+	out := new(FindNodeClusterNetworkSecurityPolicyResponse)
+	err := c.cc.Invoke(ctx, NodeClusterService_FindNodeClusterNetworkSecurityPolicy_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *nodeClusterServiceClient) UpdateNodeClusterNetworkSecurityPolicy(ctx context.Context, in *UpdateNodeClusterNetworkSecurityPolicyRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, NodeClusterService_UpdateNodeClusterNetworkSecurityPolicy_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NodeClusterServiceServer is the server API for NodeClusterService service.
 // All implementations should embed UnimplementedNodeClusterServiceServer
 // for forward compatibility
@@ -725,6 +749,10 @@ type NodeClusterServiceServer interface {
 	FindNodeClusterHTTP3Policy(context.Context, *FindNodeClusterHTTP3PolicyRequest) (*FindNodeClusterHTTP3PolicyResponse, error)
 	// 修改集群的HTTP3设置
 	UpdateNodeClusterHTTP3Policy(context.Context, *UpdateNodeClusterHTTP3PolicyRequest) (*RPCSuccess, error)
+	// 获取集群的网络安全策略
+	FindNodeClusterNetworkSecurityPolicy(context.Context, *FindNodeClusterNetworkSecurityPolicyRequest) (*FindNodeClusterNetworkSecurityPolicyResponse, error)
+	// 修改集群的网络安全策略
+	UpdateNodeClusterNetworkSecurityPolicy(context.Context, *UpdateNodeClusterNetworkSecurityPolicyRequest) (*RPCSuccess, error)
 }
 
 // UnimplementedNodeClusterServiceServer should be embedded to have forward compatible implementations.
@@ -877,6 +905,12 @@ func (UnimplementedNodeClusterServiceServer) FindNodeClusterHTTP3Policy(context.
 }
 func (UnimplementedNodeClusterServiceServer) UpdateNodeClusterHTTP3Policy(context.Context, *UpdateNodeClusterHTTP3PolicyRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateNodeClusterHTTP3Policy not implemented")
+}
+func (UnimplementedNodeClusterServiceServer) FindNodeClusterNetworkSecurityPolicy(context.Context, *FindNodeClusterNetworkSecurityPolicyRequest) (*FindNodeClusterNetworkSecurityPolicyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindNodeClusterNetworkSecurityPolicy not implemented")
+}
+func (UnimplementedNodeClusterServiceServer) UpdateNodeClusterNetworkSecurityPolicy(context.Context, *UpdateNodeClusterNetworkSecurityPolicyRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateNodeClusterNetworkSecurityPolicy not implemented")
 }
 
 // UnsafeNodeClusterServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -1772,6 +1806,42 @@ func _NodeClusterService_UpdateNodeClusterHTTP3Policy_Handler(srv interface{}, c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NodeClusterService_FindNodeClusterNetworkSecurityPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindNodeClusterNetworkSecurityPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeClusterServiceServer).FindNodeClusterNetworkSecurityPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeClusterService_FindNodeClusterNetworkSecurityPolicy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeClusterServiceServer).FindNodeClusterNetworkSecurityPolicy(ctx, req.(*FindNodeClusterNetworkSecurityPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NodeClusterService_UpdateNodeClusterNetworkSecurityPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateNodeClusterNetworkSecurityPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeClusterServiceServer).UpdateNodeClusterNetworkSecurityPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeClusterService_UpdateNodeClusterNetworkSecurityPolicy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeClusterServiceServer).UpdateNodeClusterNetworkSecurityPolicy(ctx, req.(*UpdateNodeClusterNetworkSecurityPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NodeClusterService_ServiceDesc is the grpc.ServiceDesc for NodeClusterService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1974,6 +2044,14 @@ var NodeClusterService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "updateNodeClusterHTTP3Policy",
 			Handler:    _NodeClusterService_UpdateNodeClusterHTTP3Policy_Handler,
+		},
+		{
+			MethodName: "findNodeClusterNetworkSecurityPolicy",
+			Handler:    _NodeClusterService_FindNodeClusterNetworkSecurityPolicy_Handler,
+		},
+		{
+			MethodName: "updateNodeClusterNetworkSecurityPolicy",
+			Handler:    _NodeClusterService_UpdateNodeClusterNetworkSecurityPolicy_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

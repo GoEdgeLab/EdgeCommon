@@ -82,6 +82,7 @@ const (
 	NodeService_CopyNodeActionsToNodeGroup_FullMethodName                 = "/pb.NodeService/copyNodeActionsToNodeGroup"
 	NodeService_CopyNodeActionsToNodeCluster_FullMethodName               = "/pb.NodeService/copyNodeActionsToNodeCluster"
 	NodeService_FindNodeTOAConfig_FullMethodName                          = "/pb.NodeService/findNodeTOAConfig"
+	NodeService_FindNodeNetworkSecurityPolicy_FullMethodName              = "/pb.NodeService/findNodeNetworkSecurityPolicy"
 )
 
 // NodeServiceClient is the client API for NodeService service.
@@ -214,6 +215,8 @@ type NodeServiceClient interface {
 	CopyNodeActionsToNodeCluster(ctx context.Context, in *CopyNodeActionsToNodeClusterRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 查找节点的TOA配置
 	FindNodeTOAConfig(ctx context.Context, in *FindNodeTOAConfigRequest, opts ...grpc.CallOption) (*FindNodeTOAConfigResponse, error)
+	// 查找节点的网络安全策略
+	FindNodeNetworkSecurityPolicy(ctx context.Context, in *FindNodeNetworkSecurityPolicyRequest, opts ...grpc.CallOption) (*FindNodeNetworkSecurityPolicyResponse, error)
 }
 
 type nodeServiceClient struct {
@@ -813,6 +816,15 @@ func (c *nodeServiceClient) FindNodeTOAConfig(ctx context.Context, in *FindNodeT
 	return out, nil
 }
 
+func (c *nodeServiceClient) FindNodeNetworkSecurityPolicy(ctx context.Context, in *FindNodeNetworkSecurityPolicyRequest, opts ...grpc.CallOption) (*FindNodeNetworkSecurityPolicyResponse, error) {
+	out := new(FindNodeNetworkSecurityPolicyResponse)
+	err := c.cc.Invoke(ctx, NodeService_FindNodeNetworkSecurityPolicy_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NodeServiceServer is the server API for NodeService service.
 // All implementations should embed UnimplementedNodeServiceServer
 // for forward compatibility
@@ -943,6 +955,8 @@ type NodeServiceServer interface {
 	CopyNodeActionsToNodeCluster(context.Context, *CopyNodeActionsToNodeClusterRequest) (*RPCSuccess, error)
 	// 查找节点的TOA配置
 	FindNodeTOAConfig(context.Context, *FindNodeTOAConfigRequest) (*FindNodeTOAConfigResponse, error)
+	// 查找节点的网络安全策略
+	FindNodeNetworkSecurityPolicy(context.Context, *FindNodeNetworkSecurityPolicyRequest) (*FindNodeNetworkSecurityPolicyResponse, error)
 }
 
 // UnimplementedNodeServiceServer should be embedded to have forward compatible implementations.
@@ -1137,6 +1151,9 @@ func (UnimplementedNodeServiceServer) CopyNodeActionsToNodeCluster(context.Conte
 }
 func (UnimplementedNodeServiceServer) FindNodeTOAConfig(context.Context, *FindNodeTOAConfigRequest) (*FindNodeTOAConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindNodeTOAConfig not implemented")
+}
+func (UnimplementedNodeServiceServer) FindNodeNetworkSecurityPolicy(context.Context, *FindNodeNetworkSecurityPolicyRequest) (*FindNodeNetworkSecurityPolicyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindNodeNetworkSecurityPolicy not implemented")
 }
 
 // UnsafeNodeServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -2292,6 +2309,24 @@ func _NodeService_FindNodeTOAConfig_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NodeService_FindNodeNetworkSecurityPolicy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindNodeNetworkSecurityPolicyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeServiceServer).FindNodeNetworkSecurityPolicy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeService_FindNodeNetworkSecurityPolicy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeServiceServer).FindNodeNetworkSecurityPolicy(ctx, req.(*FindNodeNetworkSecurityPolicyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NodeService_ServiceDesc is the grpc.ServiceDesc for NodeService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2546,6 +2581,10 @@ var NodeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findNodeTOAConfig",
 			Handler:    _NodeService_FindNodeTOAConfig_Handler,
+		},
+		{
+			MethodName: "findNodeNetworkSecurityPolicy",
+			Handler:    _NodeService_FindNodeNetworkSecurityPolicy_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

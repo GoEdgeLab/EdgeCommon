@@ -98,11 +98,12 @@ type NodeConfig struct {
 	// 脚本
 	CommonScripts []*serverconfigs.CommonScript `yaml:"commonScripts" json:"commonScripts"`
 
-	WebPImagePolicies map[int64]*WebPImagePolicy `yaml:"webpImagePolicies" json:"webpImagePolicies"` // WebP相关配置，clusterId => *WebPImagePolicy
-	UAMPolicies       map[int64]*UAMPolicy       `yaml:"uamPolicies" json:"uamPolicies"`             // UAM相关配置，clusterId => *UAMPolicy
-	HTTPCCPolicies    map[int64]*HTTPCCPolicy    `yaml:"httpCCPolicies" json:"httpCCPolicies"`       // CC相关配置， clusterId => *HTTPCCPolicy
-	HTTP3Policies     map[int64]*HTTP3Policy     `yaml:"http3Policies" json:"http3Policies"`         // HTTP3相关配置， clusterId => *HTTP3Policy
-	HTTPPagesPolicies map[int64]*HTTPPagesPolicy `yaml:"httpPagesPolicies" json:"httpPagesPolicies"` // 自定义页面，clusterId => *HTTPPagesPolicy
+	WebPImagePolicies     map[int64]*WebPImagePolicy `yaml:"webpImagePolicies" json:"webpImagePolicies"`         // WebP相关配置，clusterId => *WebPImagePolicy
+	UAMPolicies           map[int64]*UAMPolicy       `yaml:"uamPolicies" json:"uamPolicies"`                     // UAM相关配置，clusterId => *UAMPolicy
+	HTTPCCPolicies        map[int64]*HTTPCCPolicy    `yaml:"httpCCPolicies" json:"httpCCPolicies"`               // CC相关配置， clusterId => *HTTPCCPolicy
+	HTTP3Policies         map[int64]*HTTP3Policy     `yaml:"http3Policies" json:"http3Policies"`                 // HTTP3相关配置， clusterId => *HTTP3Policy
+	HTTPPagesPolicies     map[int64]*HTTPPagesPolicy `yaml:"httpPagesPolicies" json:"httpPagesPolicies"`         // 自定义页面，clusterId => *HTTPPagesPolicy
+	NetworkSecurityPolicy *NetworkSecurityPolicy     `yaml:"networkSecurityPolicy" json:"networkSecurityPolicy"` // 网络安全策略
 
 	// DNS
 	DNSResolver *DNSResolverConfig `yaml:"dnsResolver" json:"dnsResolver"`
@@ -455,10 +456,18 @@ func (this *NodeConfig) Init(ctx context.Context) (err error, serverErrors []*Se
 	// api node addrs
 	if len(this.APINodeAddrs) > 0 {
 		for _, addr := range this.APINodeAddrs {
-			err := addr.Init()
+			err = addr.Init()
 			if err != nil {
 				return err, nil
 			}
+		}
+	}
+
+	// network security policy
+	if this.NetworkSecurityPolicy != nil {
+		err = this.NetworkSecurityPolicy.Init()
+		if err != nil {
+			return err, nil
 		}
 	}
 

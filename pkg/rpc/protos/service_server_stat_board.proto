@@ -92,7 +92,7 @@ message ComposeServerStatNodeClusterBoardResponse {
 
 // 组合节点看板数据
 message ComposeServerStatNodeBoardRequest {
-	int64 nodeId = 1;
+	int64 nodeId = 1; // 节点ID
 }
 
 message ComposeServerStatNodeBoardResponse {
@@ -115,10 +115,11 @@ message ComposeServerStatNodeBoardResponse {
 	repeated DailyTrafficStat dailyTrafficStats = 31;
 	repeated HourlyTrafficStat hourlyTrafficStats = 32;
 
-	repeated NodeValue cpuNodeValues = 34;
-	repeated NodeValue memoryNodeValues = 35;
-	repeated NodeValue loadNodeValues = 36;
-	repeated NodeValue cacheDirsValues = 38;
+	repeated NodeValue cpuNodeValues = 34; // CPU数据
+	repeated NodeValue memoryNodeValues = 35; // 内存数据
+	repeated NodeValue loadNodeValues = 36; // 负载数据
+	repeated NodeValue cacheDirsValues = 38; // 缓存目录数据
+	repeated NodeValue networkPacketsValues = 39; // 网络数据包数据
 
 	repeated MetricDataChart metricDataCharts = 37;
 
