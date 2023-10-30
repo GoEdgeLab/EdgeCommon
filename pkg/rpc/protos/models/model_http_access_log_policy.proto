@@ -4,12 +4,13 @@ option go_package = "./pb";
 package pb;
 
 message HTTPAccessLogPolicy {
-	int64 id = 1;
-	string name = 2;
-	bool isOn = 3;
-	string type = 4;
-	bytes optionsJSON = 5;
-	bytes condsJSON = 6;
-	bool isPublic = 7;
-	bool firewallOnly = 8;
+	int64 id = 1; // 策略ID
+	string name = 2; // 策略名称
+	bool isOn = 3; // 是否启用
+	string type = 4; // 策略类型
+	bytes optionsJSON = 5; // 策略选项
+	bytes condsJSON = 6; // 记录条件选项
+	bool isPublic = 7; // 是否公用
+	bool firewallOnly = 8; // 是否只记录WAF相关访问日志
+	bool disableDefaultDB = 9; // 停用默认数据库存储
 }

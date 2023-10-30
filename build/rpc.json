@@ -14778,7 +14778,7 @@
     },
     {
       "name": "CreateHTTPAccessLogPolicyRequest",
-      "code": "message CreateHTTPAccessLogPolicyRequest {\n\tstring name = 1;\n\tstring type = 2;\n\tbytes optionsJSON = 3;\n\tbytes condsJSON = 4;\n\tbool isPublic = 5;\n\tbool firewallOnly = 6;\n}",
+      "code": "message CreateHTTPAccessLogPolicyRequest {\n\tstring name = 1;\n\tstring type = 2;\n\tbytes optionsJSON = 3;\n\tbytes condsJSON = 4;\n\tbool isPublic = 5;\n\tbool firewallOnly = 6;\n\tbool disableDefaultDB = 7;\n}",
       "doc": "创建访问日志策略"
     },
     {
@@ -19803,7 +19803,7 @@
     },
     {
       "name": "HTTPAccessLogPolicy",
-      "code": "message HTTPAccessLogPolicy {\n\tint64 id = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tstring type = 4;\n\tbytes optionsJSON = 5;\n\tbytes condsJSON = 6;\n\tbool isPublic = 7;\n\tbool firewallOnly = 8;\n}",
+      "code": "message HTTPAccessLogPolicy {\n\tint64 id = 1; // 策略ID\n\tstring name = 2; // 策略名称\n\tbool isOn = 3; // 是否启用\n\tstring type = 4; // 策略类型\n\tbytes optionsJSON = 5; // 策略选项\n\tbytes condsJSON = 6; // 记录条件选项\n\tbool isPublic = 7; // 是否公用\n\tbool firewallOnly = 8; // 是否只记录WAF相关访问日志\n\tbool disableDefaultDB = 9; // 停用默认数据库存储\n}",
       "doc": ""
     },
     {
@@ -21623,7 +21623,7 @@
     },
     {
       "name": "UpdateHTTPAccessLogPolicyRequest",
-      "code": "message UpdateHTTPAccessLogPolicyRequest {\n\tint64 httpAccessLogPolicyId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tbytes optionsJSON = 4;\n\tbytes condsJSON = 5;\n\tbool isPublic = 6;\n\tbool firewallOnly = 7;\n}",
+      "code": "message UpdateHTTPAccessLogPolicyRequest {\n\tint64 httpAccessLogPolicyId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tbytes optionsJSON = 4;\n\tbytes condsJSON = 5;\n\tbool isPublic = 6;\n\tbool firewallOnly = 7;\n\tbool disableDefaultDB = 8;\n}",
       "doc": "修改访问日志策略"
     },
     {
