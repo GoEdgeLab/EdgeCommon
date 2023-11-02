@@ -35,6 +35,7 @@ message UpdateAuthorityKeyRequest {
 	string hostname = 4;
 	repeated string macAddresses = 5;
 	string company = 6;
+	string requestCode = 7;
 }
 
 // 读取Key
@@ -54,6 +55,7 @@ message ResetAuthorityKeyRequest {
 // 校验Key
 message ValidateAuthorityKeyRequest {
 	string key = 1;
+	string requestCode = 2;
 }
 
 message ValidateAuthorityKeyResponse {
