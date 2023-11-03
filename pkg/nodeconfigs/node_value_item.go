@@ -38,6 +38,7 @@ type nodeValueItemParamDefinition struct {
 	Code        string `json:"code"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
+	IsPercent   bool   `json:"isPercent"` // 是否支持百分比
 }
 
 var nodeValueItemDefinitions = []*nodeValueItemDefinition{
@@ -48,7 +49,8 @@ var nodeValueItemDefinitions = []*nodeValueItemDefinition{
 			{
 				Code:        "usage",
 				Name:        "使用比例",
-				Description: "一个不超过1的小数",
+				Description: "0到100之间的数字",
+				IsPercent:   true,
 			},
 		},
 	},
@@ -59,7 +61,8 @@ var nodeValueItemDefinitions = []*nodeValueItemDefinition{
 			{
 				Code:        "usage",
 				Name:        "使用比例",
-				Description: "一个不超过1的小数",
+				Description: "0到100之间的数字",
+				IsPercent:   true,
 			},
 		},
 	},
@@ -70,24 +73,24 @@ var nodeValueItemDefinitions = []*nodeValueItemDefinition{
 			{
 				Code:        "load1m",
 				Name:        "1分钟负载",
-				Description: "1分钟内的负载",
+				Description: "1分钟内的平均负载",
 			},
 			{
 				Code:        "load5m",
 				Name:        "5分钟负载",
-				Description: "5分钟内的负载",
+				Description: "5分钟内的平均负载",
 			},
 			{
 				Code:        "load15m",
 				Name:        "15分钟负载",
-				Description: "15分钟内的负载",
+				Description: "15分钟内的平均负载",
 			},
 		},
 	},
 	{
 		Code:        NodeValueItemTrafficIn,
 		Name:        "上行流量",
-		Description: "客户端发送到服务器端的流量。",
+		Description: "平均每分钟客户端发送到服务器端的流量。",
 		Params: []*nodeValueItemParamDefinition{
 			{
 				Code:        "total",
@@ -99,7 +102,7 @@ var nodeValueItemDefinitions = []*nodeValueItemDefinition{
 	{
 		Code:        NodeValueItemTrafficOut,
 		Name:        "下行流量",
-		Description: "服务器端发送到客户端的流量。",
+		Description: "平均每分钟服务器端发送到客户端的流量。",
 		Params: []*nodeValueItemParamDefinition{
 			{
 				Code:        "total",
@@ -109,8 +112,9 @@ var nodeValueItemDefinitions = []*nodeValueItemDefinition{
 		},
 	},
 	{
-		Code: NodeValueItemConnections,
-		Name: "连接数",
+		Code:        NodeValueItemConnections,
+		Name:        "连接数",
+		Description: "平均每分钟连接数",
 		Params: []*nodeValueItemParamDefinition{
 			{
 				Code:        "total",
@@ -120,8 +124,9 @@ var nodeValueItemDefinitions = []*nodeValueItemDefinition{
 		},
 	},
 	{
-		Code: NodeValueItemRequests,
-		Name: "请求数",
+		Code:        NodeValueItemRequests,
+		Name:        "请求数",
+		Description: "平均每分钟请求数",
 		Params: []*nodeValueItemParamDefinition{
 			{
 				Code:        "total",
@@ -131,8 +136,9 @@ var nodeValueItemDefinitions = []*nodeValueItemDefinition{
 		},
 	},
 	{
-		Code: NodeValueItemAttackRequests,
-		Name: "攻击请求数",
+		Code:        NodeValueItemAttackRequests,
+		Name:        "攻击请求数",
+		Description: "平均每分钟攻击请求数",
 		Params: []*nodeValueItemParamDefinition{
 			{
 				Code:        "total",
@@ -148,7 +154,8 @@ var nodeValueItemDefinitions = []*nodeValueItemDefinition{
 			{
 				Code:        "usage",
 				Name:        "使用比例",
-				Description: "一个不超过1的小数",
+				Description: "0到100之间的数字",
+				IsPercent:   true,
 			},
 		},
 	},
@@ -200,6 +207,21 @@ func FindNodeValueItemParamName(nodeCode NodeValueItem, paramCode string) string
 		}
 	}
 	return ""
+}
+
+// CheckNodeValueItemParamIsPercent 判断监控项某个参数是否支持百分比
+func CheckNodeValueItemParamIsPercent(nodeCode NodeValueItem, paramCode string) bool {
+	for _, def := range nodeValueItemDefinitions {
+		if def.Code == nodeCode {
+			for _, p := range def.Params {
+				if p.Code == paramCode {
+					return p.IsPercent
+				}
+			}
+			return false
+		}
+	}
+	return false
 }
 
 // NodeValueRange 值范围
