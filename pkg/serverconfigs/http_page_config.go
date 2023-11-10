@@ -2,6 +2,31 @@ package serverconfigs
 
 import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 
+type HTTPPageBodyType = string
+
+const (
+	HTTPPageBodyTypeHTML        HTTPPageBodyType = "html"
+	HTTPPageBodyTypeURL         HTTPPageBodyType = "url"
+	HTTPPageBodyTypeRedirectURL HTTPPageBodyType = "redirectURL"
+)
+
+func FindAllHTTPPageBodyTypes() []*shared.Definition {
+	return []*shared.Definition{
+		{
+			Name: "HTML",
+			Code: HTTPPageBodyTypeHTML,
+		},
+		{
+			Name: "读取URL",
+			Code: HTTPPageBodyTypeURL,
+		},
+		{
+			Name: "跳转URL",
+			Code: HTTPPageBodyTypeRedirectURL,
+		},
+	}
+}
+
 // HTTPPageConfig 特殊页面配置
 // TODO 需要支持Header定义
 type HTTPPageConfig struct {
@@ -10,9 +35,9 @@ type HTTPPageConfig struct {
 	Status    []string `yaml:"status" json:"status"`       // 响应支持40x, 50x, 3x2
 	NewStatus int      `yaml:"newStatus" json:"newStatus"` // 新状态码
 
-	BodyType shared.BodyType `yaml:"bodyType" json:"bodyType"` // 内容类型
-	URL      string          `yaml:"url" json:"url"`           // URL
-	Body     string          `yaml:"body" json:"body"`         // 输出的内容
+	BodyType HTTPPageBodyType `yaml:"bodyType" json:"bodyType"` // 内容类型
+	URL      string           `yaml:"url" json:"url"`           // URL
+	Body     string           `yaml:"body" json:"body"`         // 输出的内容
 
 	statusList    []*WildcardStatus
 	hasStatusList bool

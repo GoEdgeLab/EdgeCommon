@@ -1,15 +1,13 @@
 package serverconfigs
 
-import "github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
-
 // HTTPShutdownConfig 关闭页面配置
 type HTTPShutdownConfig struct {
 	IsPrior bool `yaml:"isPrior" json:"isPrior"`
 	IsOn    bool `yaml:"isOn" json:"isOn"`
 
-	BodyType shared.BodyType `yaml:"bodyType" json:"bodyType"` // 内容类型
-	URL      string          `yaml:"url" json:"url"`           // URL
-	Body     string          `yaml:"body" json:"body"`         // 输出的内容
+	BodyType HTTPPageBodyType `yaml:"bodyType" json:"bodyType"` // 内容类型
+	URL      string           `yaml:"url" json:"url"`           // URL
+	Body     string           `yaml:"body" json:"body"`         // 输出的内容
 
 	Status int `yaml:"status" json:"status"`
 
