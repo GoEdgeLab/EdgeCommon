@@ -54,6 +54,9 @@ type HTTPHostRedirectConfig struct {
 	PortAfter       int      `yaml:"port" json:"portAfter"`                  // 跳转之后的端口
 	PortAfterScheme string   `yaml:"portAfterScheme" json:"portAfterScheme"` // 跳转之后的协议
 
+	OnlyDomains   []string `yaml:"onlyDomains" json:"onlyDomains"`     // 限制域名
+	ExceptDomains []string `yaml:"exceptDomains" json:"exceptDomains"` // 排除域名
+
 	beforePortRanges [][2]int // [[from, to], {from2, to2}, ...]
 	beforeHasQuery   bool
 }
