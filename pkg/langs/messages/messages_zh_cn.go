@@ -117,6 +117,7 @@ func init() {
 		"admin_menu@settings":                                                 "系统设置",
 		"admin_menu@ticket_category":                                          "分类",
 		"admin_menu@tickets":                                                  "工单系统",
+		"admin_menu@user_list":                                                "用户列表",
 		"admin_menu@user_settings":                                            "用户设置",
 		"admin_menu@users":                                                    "平台用户",
 		"admin_profile@log_update_profile":                                    "修改个人资料",

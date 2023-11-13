@@ -116,6 +116,7 @@ const (
 	AdminMenu_Settings                                          langs.MessageCode = "admin_menu@settings"                                                 // 系统设置
 	AdminMenu_TicketCategory                                    langs.MessageCode = "admin_menu@ticket_category"                                          // 分类
 	AdminMenu_Tickets                                           langs.MessageCode = "admin_menu@tickets"                                                  // 工单系统
+	AdminMenu_UserList                                          langs.MessageCode = "admin_menu@user_list"                                                // 用户列表
 	AdminMenu_UserSettings                                      langs.MessageCode = "admin_menu@user_settings"                                            // 用户设置
 	AdminMenu_Users                                             langs.MessageCode = "admin_menu@users"                                                    // 平台用户
 	AdminProfile_LogUpdateProfile                               langs.MessageCode = "admin_profile@log_update_profile"                                    // 修改个人资料
