@@ -14898,7 +14898,7 @@
     },
     {
       "name": "CreateHTTPPageRequest",
-      "code": "message CreateHTTPPageRequest {\n\trepeated string statusList = 1;\n\tstring bodyType = 5;\n\tstring url = 2;\n\tstring body = 4;\n\tint32 newStatus = 3;\n}",
+      "code": "message CreateHTTPPageRequest {\n\trepeated string statusList = 1; // 状态码列表\n\tstring bodyType = 5; // 页面类型：html|url|redirectURL\n\tstring url = 2; // 读取或者跳转的URL\n\tstring body = 4; // HTML内容\n\tint32 newStatus = 3; // 新的状态码\n\tbytes exceptURLPatternsJSON = 6; // 例外URL列表\n\tbytes onlyURLPatternsJSON = 7; // 限制URL列表\n}",
       "doc": "创建Page"
     },
     {
@@ -21743,7 +21743,7 @@
     },
     {
       "name": "UpdateHTTPPageRequest",
-      "code": "message UpdateHTTPPageRequest {\n\tint64 httpPageId = 1;\n\trepeated string statusList = 2;\n\tstring bodyType = 6;\n\tstring url = 3;\n\tstring body = 5;\n\tint32 newStatus = 4;\n}",
+      "code": "message UpdateHTTPPageRequest {\n\tint64 httpPageId = 1;\n\trepeated string statusList = 2;\n\tstring bodyType = 6; // 页面类型：html|url|redirectURL\n\tstring url = 3;\n\tstring body = 5;\n\tint32 newStatus = 4;\n\tbytes exceptURLPatternsJSON = 7; // 例外URL列表\n\tbytes onlyURLPatternsJSON = 8; // 限制URL列表\n}",
       "doc": "修改Page"
     },
     {

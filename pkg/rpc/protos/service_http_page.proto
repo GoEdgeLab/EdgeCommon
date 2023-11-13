@@ -19,11 +19,13 @@ service HTTPPageService {
 
 // 创建Page
 message CreateHTTPPageRequest {
-	repeated string statusList = 1;
-	string bodyType = 5;
-	string url = 2;
-	string body = 4;
-	int32 newStatus = 3;
+	repeated string statusList = 1; // 状态码列表
+	string bodyType = 5; // 页面类型：html|url|redirectURL
+	string url = 2; // 读取或者跳转的URL
+	string body = 4; // HTML内容
+	int32 newStatus = 3; // 新的状态码
+	bytes exceptURLPatternsJSON = 6; // 例外URL列表
+	bytes onlyURLPatternsJSON = 7; // 限制URL列表
 }
 
 message CreateHTTPPageResponse {
@@ -34,10 +36,12 @@ message CreateHTTPPageResponse {
 message UpdateHTTPPageRequest {
 	int64 httpPageId = 1;
 	repeated string statusList = 2;
-	string bodyType = 6;
+	string bodyType = 6; // 页面类型：html|url|redirectURL
 	string url = 3;
 	string body = 5;
 	int32 newStatus = 4;
+	bytes exceptURLPatternsJSON = 7; // 例外URL列表
+	bytes onlyURLPatternsJSON = 8; // 限制URL列表
 }
 
 // 查找单个Page配置

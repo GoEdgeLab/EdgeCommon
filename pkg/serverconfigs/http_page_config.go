@@ -28,7 +28,6 @@ func FindAllHTTPPageBodyTypes() []*shared.Definition {
 }
 
 // HTTPPageConfig 特殊页面配置
-// TODO 需要支持Header定义
 type HTTPPageConfig struct {
 	Id        int64    `yaml:"id" json:"id"`               // 页面ID
 	IsOn      bool     `yaml:"isOn" json:"isOn"`           // 是否开启 TODO
@@ -38,6 +37,9 @@ type HTTPPageConfig struct {
 	BodyType HTTPPageBodyType `yaml:"bodyType" json:"bodyType"` // 内容类型
 	URL      string           `yaml:"url" json:"url"`           // URL
 	Body     string           `yaml:"body" json:"body"`         // 输出的内容
+
+	OnlyURLPatterns   []*shared.URLPattern `yaml:"onlyURLPatterns" json:"onlyURLPatterns"`     // 仅限的URL
+	ExceptURLPatterns []*shared.URLPattern `yaml:"exceptURLPatterns" json:"exceptURLPatterns"` // 排除的URL
 
 	statusList    []*WildcardStatus
 	hasStatusList bool
@@ -57,6 +59,21 @@ func (this *HTTPPageConfig) Init() error {
 		this.statusList = append(this.statusList, NewWildcardStatus(s))
 	}
 	this.hasStatusList = len(this.statusList) > 0
+
+	for _, urlPattern := range this.OnlyURLPatterns {
+		err := urlPattern.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	for _, urlPattern := range this.ExceptURLPatterns {
+		err := urlPattern.Init()
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -71,4 +88,26 @@ func (this *HTTPPageConfig) Match(status int) bool {
 		}
 	}
 	return false
+}
+
+func (this *HTTPPageConfig) MatchURL(url string) bool {
+	// except
+	if len(this.ExceptURLPatterns) > 0 {
+		for _, pattern := range this.ExceptURLPatterns {
+			if pattern.Match(url) {
+				return false
+			}
+		}
+	}
+
+	if len(this.OnlyURLPatterns) > 0 {
+		for _, pattern := range this.OnlyURLPatterns {
+			if pattern.Match(url) {
+				return true
+			}
+		}
+		return false
+	}
+
+	return true
 }
