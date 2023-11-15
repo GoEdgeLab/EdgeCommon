@@ -45,6 +45,7 @@ type ReverseProxyConfig struct {
 	RequestURI               string          `yaml:"requestURI" json:"requestURI"`                             // 请求URI，支持变量，如果同时定义了StripPrefix，则先执行StripPrefix
 	RequestHostExcludingPort bool            `yaml:"requestHostExcludingPort" json:"requestHostExcludingPort"` // 请求Host不包括端口
 	Retry50X                 bool            `yaml:"retry50X" json:"retry50X"`                                 // 50x 错误重试
+	Retry40X                 bool            `yaml:"retry40X" json:"retry40X"`                                 // 40x 内容重试源站
 
 	AddHeaders []string `yaml:"addHeaders" json:"addHeaders"` // 自动添加的Header
 

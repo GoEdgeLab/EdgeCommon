@@ -22448,7 +22448,7 @@
     },
     {
       "name": "UpdateReverseProxyRequest",
-      "code": "message UpdateReverseProxyRequest {\n\tint64 reverseProxyId = 1; // 反向代理ID\n\tint32 requestHostType = 6; // 可选参数，回源主机名类型：0 跟随CDN域名，1跟随源站，2自定义\n\tstring requestHost = 2; // 可选参数，自定义回源主机名\n\tbool requestHostExcludingPort = 15; // 可选参数，回源主机名中去除端口\n\tstring requestURI = 3; // 可选参数，请求URI\n\tstring stripPrefix = 4; // 可选参数，去除URI前缀\n\tbool autoFlush = 5; // 可选参数，自动刷新\n\trepeated string addHeaders = 7; // 可选参数，可以添加的请求报头\n\tbytes connTimeoutJSON = 8; // 可选参数，连接超时时间\n\tbytes readTimeoutJSON = 9; // 可选参数，读取超时时间\n\tbytes idleTimeoutJSON = 10; // 可选参数，空闲连接超时时间\n\tint32 maxConns = 11; // 可选参数，最大连接数\n\tint32 maxIdleConns = 12; // 可选参数，最大空闲连接数\n\tbytes proxyProtocolJSON = 13; // 可选参数，PROXY Protocol设置\n\tbool followRedirects = 14; // 可选参数，跳转跟随\n\tbool retry50X = 16; // 可选参数，启用50X重试\n}",
+      "code": "message UpdateReverseProxyRequest {\n\tint64 reverseProxyId = 1; // 反向代理ID\n\tint32 requestHostType = 6; // 可选参数，回源主机名类型：0 跟随CDN域名，1跟随源站，2自定义\n\tstring requestHost = 2; // 可选参数，自定义回源主机名\n\tbool requestHostExcludingPort = 15; // 可选参数，回源主机名中去除端口\n\tstring requestURI = 3; // 可选参数，请求URI\n\tstring stripPrefix = 4; // 可选参数，去除URI前缀\n\tbool autoFlush = 5; // 可选参数，自动刷新\n\trepeated string addHeaders = 7; // 可选参数，可以添加的请求报头\n\tbytes connTimeoutJSON = 8; // 可选参数，连接超时时间\n\tbytes readTimeoutJSON = 9; // 可选参数，读取超时时间\n\tbytes idleTimeoutJSON = 10; // 可选参数，空闲连接超时时间\n\tint32 maxConns = 11; // 可选参数，最大连接数\n\tint32 maxIdleConns = 12; // 可选参数，最大空闲连接数\n\tbytes proxyProtocolJSON = 13; // 可选参数，PROXY Protocol设置\n\tbool followRedirects = 14; // 可选参数，跳转跟随\n\tbool retry50X = 16; // 可选参数，是否启用50X重试\n\tbool retry40X = 17; // 可选参数，是否启用40X重试\n}",
       "doc": "修改反向代理设置"
     },
     {

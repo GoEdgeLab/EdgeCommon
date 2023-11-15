@@ -94,5 +94,6 @@ message UpdateReverseProxyRequest {
 	int32 maxIdleConns = 12; // 可选参数，最大空闲连接数
 	bytes proxyProtocolJSON = 13; // 可选参数，PROXY Protocol设置
 	bool followRedirects = 14; // 可选参数，跳转跟随
-	bool retry50X = 16; // 可选参数，启用50X重试
+	bool retry50X = 16; // 可选参数，是否启用50X重试
+	bool retry40X = 17; // 可选参数，是否启用40X重试
 }
