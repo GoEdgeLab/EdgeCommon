@@ -12,9 +12,9 @@ var AllActions = []*HTTPFirewallActionDefinition{
 		Category:    HTTPFirewallActionCategoryBlock,
 	},
 	{
-		Name:        "Captcha验证码",
+		Name:        "Captcha人机识别",
 		Code:        HTTPFirewallActionCaptcha,
-		Description: "在浏览器使用验证码来验证客户端。",
+		Description: "在浏览器使用人机识别机制（比如验证码）来验证客户端。",
 		Category:    HTTPFirewallActionCategoryVerify,
 	},
 	{
