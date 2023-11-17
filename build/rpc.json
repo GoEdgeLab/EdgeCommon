@@ -21319,7 +21319,7 @@
     },
     {
       "name": "SendSMSRequest",
-      "code": "message SendSMSRequest {\n\tstring mobile = 1; // 手机号\n\tstring body = 2; // 内容\n\tstring type = 3; // 渠道类型：webHook ...\n\tbytes paramsJSON = 4; // 参数\n}",
+      "code": "message SendSMSRequest {\n\tstring mobile = 1; // 手机号\n\tstring body = 2; // 内容\n\tstring code = 3; // 验证码\n\tstring type = 4; // 渠道类型：webHook ...\n\tbytes paramsJSON = 5; // 参数\n}",
       "doc": "发送短信"
     },
     {

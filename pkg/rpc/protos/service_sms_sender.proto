@@ -13,8 +13,9 @@ service SMSSenderService {
 message SendSMSRequest {
 	string mobile = 1; // 手机号
 	string body = 2; // 内容
-	string type = 3; // 渠道类型：webHook ...
-	bytes paramsJSON = 4; // 参数
+	string code = 3; // 验证码
+	string type = 4; // 渠道类型：webHook ...
+	bytes paramsJSON = 5; // 参数
 }
 
 message SendSMSResponse {
