@@ -11543,6 +11543,24 @@
       "doc": "统计看板条目"
     },
     {
+      "name": "SMSSenderService",
+      "methods": [
+        {
+          "name": "sendSMS",
+          "requestMessageName": "SendSMSRequest",
+          "responseMessageName": "SendSMSResponse",
+          "code": "rpc sendSMS(SendSMSRequest) returns (SendSMSResponse);",
+          "doc": "发送短信",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_sms_sender.proto",
+      "doc": "短信发送服务"
+    },
+    {
       "name": "SSLCertService",
       "methods": [
         {
@@ -12343,6 +12361,15 @@
           "isDeprecated": false
         },
         {
+          "name": "checkUserMobile",
+          "requestMessageName": "CheckUserMobileRequest",
+          "responseMessageName": "CheckUserMobileResponse",
+          "code": "rpc checkUserMobile(CheckUserMobileRequest) returns (CheckUserMobileResponse);",
+          "doc": "检查手机号码是否已被使用",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
           "name": "findUserVerifiedEmailWithUsername",
           "requestMessageName": "FindUserVerifiedEmailWithUsernameRequest",
           "responseMessageName": "FindUserVerifiedEmailWithUsernameResponse",
@@ -12871,6 +12898,40 @@
       ],
       "filename": "service_user_identity.proto",
       "doc": "用户实名认证服务"
+    },
+    {
+      "name": "UserMobileVerificationService",
+      "methods": [
+        {
+          "name": "verifyUserMobile",
+          "requestMessageName": "VerifyUserMobileRequest",
+          "responseMessageName": "VerifyUserMobileResponse",
+          "code": "rpc verifyUserMobile(VerifyUserMobileRequest) returns (VerifyUserMobileResponse);",
+          "doc": "认证手机号码",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "sendUserMobileVerification",
+          "requestMessageName": "SendUserMobileVerificationRequest",
+          "responseMessageName": "SendUserMobileVerificationResponse",
+          "code": "rpc sendUserMobileVerification(SendUserMobileVerificationRequest) returns (SendUserMobileVerificationResponse);",
+          "doc": "发送手机号码认证",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "findLatestUserMobileVerification",
+          "requestMessageName": "FindLatestUserMobileVerificationRequest",
+          "responseMessageName": "FindLatestUserMobileVerificationResponse",
+          "code": "rpc findLatestUserMobileVerification(FindLatestUserMobileVerificationRequest) returns (FindLatestUserMobileVerificationResponse);",
+          "doc": "查找用户正在等待激活的认证",
+          "roles": [],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_user_mobile_verification.proto",
+      "doc": "用户手机号码认证服务"
     },
     {
       "name": "UserNodeService",
@@ -13854,6 +13915,16 @@
     {
       "name": "CheckUserIdentityIsSubmittedResponse",
       "code": "message CheckUserIdentityIsSubmittedResponse {\n\tbool isSubmitted = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "CheckUserMobileRequest",
+      "code": "message CheckUserMobileRequest {\n\tstring mobile = 1; // 手机号码\n}",
+      "doc": "检查手机号码是否已被验证"
+    },
+    {
+      "name": "CheckUserMobileResponse",
+      "code": "message CheckUserMobileResponse {\n\tbool exists = 1; // 是否已被使用\n}",
       "doc": ""
     },
     {
@@ -18787,6 +18858,16 @@
       "doc": ""
     },
     {
+      "name": "FindLatestUserMobileVerificationRequest",
+      "code": "message FindLatestUserMobileVerificationRequest {\n\n}",
+      "doc": "查找用户正在等待激活的认证"
+    },
+    {
+      "name": "FindLatestUserMobileVerificationResponse",
+      "code": "message FindLatestUserMobileVerificationResponse {\n\tUserMobileVerification userMobileVerification = 1;\n}",
+      "doc": ""
+    },
+    {
       "name": "FindLoginSessionRequest",
       "code": "message FindLoginSessionRequest {\n\tstring sid = 1;\n}",
       "doc": "查找SESSION"
@@ -21237,9 +21318,29 @@
       "doc": ""
     },
     {
+      "name": "SendSMSRequest",
+      "code": "message SendSMSRequest {\n\tstring mobile = 1; // 手机号\n\tstring body = 2; // 内容\n\tstring type = 3; // 渠道类型：webHook ...\n\tbytes paramsJSON = 4; // 参数\n}",
+      "doc": "发送短信"
+    },
+    {
+      "name": "SendSMSResponse",
+      "code": "message SendSMSResponse {\n\tbool isOk = 1; // 是否成功\n\tstring result = 2; // 发送返回内容，只有失败时才会有数据\n}",
+      "doc": ""
+    },
+    {
       "name": "SendUserEmailVerificationRequest",
       "code": "message SendUserEmailVerificationRequest {\n\tstring email = 1; // 待验证邮箱\n}",
       "doc": "发送邮箱认证"
+    },
+    {
+      "name": "SendUserMobileVerificationRequest",
+      "code": "message SendUserMobileVerificationRequest {\n\tstring mobile = 1; // 待验证手机号码\n}",
+      "doc": "发送手机号码认证"
+    },
+    {
+      "name": "SendUserMobileVerificationResponse",
+      "code": "message SendUserMobileVerificationResponse {\n\tbool isOk = 1; // 是否发送成功\n\tstring errorCode = 2; // 错误代号\n}",
+      "doc": ""
     },
     {
       "name": "SendUserVerifyCodeRequest",
@@ -22743,7 +22844,7 @@
     },
     {
       "name": "User",
-      "code": "message User {\n\tint64 id = 1; // 用户ID\n\tstring username = 2; // 用户名\n\tstring fullname = 3; // 全称\n\tstring mobile = 4;\n\tstring tel = 5;\n\tstring email = 6;\n\tstring verifiedEmail = 20;\n\tstring remark = 7;\n\tbool isOn = 8;\n\tint64 createdAt = 9;\n\tstring registeredIP = 12;\n\tbool isVerified = 13;\n\tbool isRejected = 14;\n\tstring rejectReason = 15;\n\tbool isDeleted = 16;\n\tbool isIndividualIdentified = 17;\n\tbool isEnterpriseIdentified = 18;\n\tstring bandwidthAlgo = 21; // 带宽算法\n\tstring lang = 22; // 语言代号\n\n\tLogin otpLogin = 19; // OTP认证\n\n\tNodeCluster nodeCluster = 10;\n\trepeated UserFeature features = 11;\n}",
+      "code": "message User {\n\tint64 id = 1; // 用户ID\n\tstring username = 2; // 用户名\n\tstring fullname = 3; // 全称\n\tstring mobile = 4; // 手机号码\n\tstring tel = 5; // 联系电话\n\tstring email = 6; // 联系邮箱\n\tstring verifiedEmail = 20; // 已验证邮箱\n\tstring verifiedMobile = 23; // 已验证手机号码\n\tstring remark = 7;\n\tbool isOn = 8;\n\tint64 createdAt = 9;\n\tstring registeredIP = 12;\n\tbool isVerified = 13;\n\tbool isRejected = 14;\n\tstring rejectReason = 15;\n\tbool isDeleted = 16;\n\tbool isIndividualIdentified = 17; // 是否已通过个人验证\n\tbool isEnterpriseIdentified = 18; // 是否已通过企业验证\n\tstring bandwidthAlgo = 21; // 带宽算法\n\tstring lang = 22; // 语言代号\n\n\tLogin otpLogin = 19; // OTP认证\n\n\tNodeCluster nodeCluster = 10;\n\trepeated UserFeature features = 11;\n}",
       "doc": ""
     },
     {
@@ -22795,6 +22896,11 @@
       "name": "UserIdentity",
       "code": "message UserIdentity {\n\tint64 id = 1;\n\tstring orgType = 2;\n\tstring type = 3;\n\tstring realName = 4;\n\tstring number = 5;\n\trepeated int64 fileIds = 6;\n\tstring status = 7;\n\tint64 createdAt = 8;\n\tint64 updatedAt = 9;\n\tint64 submittedAt = 10;\n\tint64 rejectedAt = 11;\n\tint64 verifiedAt = 12;\n\tstring rejectReason = 13;\n}",
       "doc": ""
+    },
+    {
+      "name": "UserMobileVerification",
+      "code": "message UserMobileVerification {\n\tint64 id = 1; // ID\n\tstring mobile = 2; // 手机号码\n\tint64 userId = 3; // 用户ID\n\tstring code = 4; // 代号\n\tint64 createdAt = 5; // 创建时间\n\tbool isSent = 6; // 已发送\n\tbool isVerified = 7; // 已激活\n\tint64 expiresAt = 8; // 过期时间，动态计算而来\n}",
+      "doc": "手机号码认证"
     },
     {
       "name": "UserNode",
@@ -22880,6 +22986,16 @@
       "name": "VerifyUserIdentityRequest",
       "code": "message VerifyUserIdentityRequest {\n\tint64 userIdentityId = 1;\n}",
       "doc": "通过用户实名认证信息"
+    },
+    {
+      "name": "VerifyUserMobileRequest",
+      "code": "message VerifyUserMobileRequest {\n\tstring mobile = 1; // 手机号\n\tstring code = 2; // 激活码\n}",
+      "doc": "认证手机号码"
+    },
+    {
+      "name": "VerifyUserMobileResponse",
+      "code": "message VerifyUserMobileResponse {\n\tint64 userId = 1; // 手机号码对应的用户ID\n\tstring mobile = 2; // 手机号码\n\tstring errorCode = 3; // 错误代号，如果为空，说明没有错误\n\tstring errorMessage = 4; // 错误信息\n}",
+      "doc": ""
     },
     {
       "name": "VerifyUserRequest",

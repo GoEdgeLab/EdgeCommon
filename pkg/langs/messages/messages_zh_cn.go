@@ -652,6 +652,7 @@ func init() {
 		"user@log_update_user_price_period":                                   "修改计费周期为 %s",
 		"user@log_update_user_price_type":                                     "修改计费类型为 %s",
 		"user@log_update_user_profile":                                        "修改个人资料",
+		"user@log_update_user_sms_settings":                                   "修改用户短信设置",
 		"user@log_verify_user":                                                "审核用户：%d 结果：%s",
 		"user_access_key@log_create_user_access_key":                          "创建AccessKey %d",
 		"user_access_key@log_delete_user_access_key":                          "删除AccessKey %d",

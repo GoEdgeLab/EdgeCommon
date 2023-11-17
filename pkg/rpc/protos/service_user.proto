@@ -88,6 +88,9 @@ service UserService {
 	// 检查邮箱是否已被使用
 	rpc checkUserEmail(CheckUserEmailRequest) returns (CheckUserEmailResponse);
 
+	// 检查手机号码是否已被使用
+	rpc checkUserMobile(CheckUserMobileRequest) returns (CheckUserMobileResponse);
+
 	// 根据用户名查询用户绑定的邮箱
 	rpc findUserVerifiedEmailWithUsername(FindUserVerifiedEmailWithUsernameRequest) returns (FindUserVerifiedEmailWithUsernameResponse);
 }
@@ -375,6 +378,15 @@ message CheckUserEmailRequest {
 }
 
 message CheckUserEmailResponse {
+	bool exists = 1; // 是否已被使用
+}
+
+// 检查手机号码是否已被验证
+message CheckUserMobileRequest {
+	string mobile = 1; // 手机号码
+}
+
+message CheckUserMobileResponse {
 	bool exists = 1; // 是否已被使用
 }
 

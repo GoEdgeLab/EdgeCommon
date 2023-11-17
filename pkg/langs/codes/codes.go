@@ -651,6 +651,7 @@ const (
 	User_LogUpdateUserPricePeriod                               langs.MessageCode = "user@log_update_user_price_period"                                   // 修改计费周期为 %s
 	User_LogUpdateUserPriceType                                 langs.MessageCode = "user@log_update_user_price_type"                                     // 修改计费类型为 %s
 	User_LogUpdateUserProfile                                   langs.MessageCode = "user@log_update_user_profile"                                        // 修改个人资料
+	User_LogUpdateUserSmsSettings                               langs.MessageCode = "user@log_update_user_sms_settings"                                   // 修改用户短信设置
 	User_LogVerifyUser                                          langs.MessageCode = "user@log_verify_user"                                                // 审核用户：%d 结果：%s
 	UserAccessKey_LogCreateUserAccessKey                        langs.MessageCode = "user_access_key@log_create_user_access_key"                          // 创建AccessKey %d
 	UserAccessKey_LogDeleteUserAccessKey                        langs.MessageCode = "user_access_key@log_delete_user_access_key"                          // 删除AccessKey %d

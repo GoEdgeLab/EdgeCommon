@@ -45,6 +45,7 @@ const (
 	UserService_CheckUserServersState_FullMethodName             = "/pb.UserService/checkUserServersState"
 	UserService_RenewUserServersState_FullMethodName             = "/pb.UserService/renewUserServersState"
 	UserService_CheckUserEmail_FullMethodName                    = "/pb.UserService/checkUserEmail"
+	UserService_CheckUserMobile_FullMethodName                   = "/pb.UserService/checkUserMobile"
 	UserService_FindUserVerifiedEmailWithUsername_FullMethodName = "/pb.UserService/findUserVerifiedEmailWithUsername"
 )
 
@@ -104,6 +105,8 @@ type UserServiceClient interface {
 	RenewUserServersState(ctx context.Context, in *RenewUserServersStateRequest, opts ...grpc.CallOption) (*RenewUserServersStateResponse, error)
 	// 检查邮箱是否已被使用
 	CheckUserEmail(ctx context.Context, in *CheckUserEmailRequest, opts ...grpc.CallOption) (*CheckUserEmailResponse, error)
+	// 检查手机号码是否已被使用
+	CheckUserMobile(ctx context.Context, in *CheckUserMobileRequest, opts ...grpc.CallOption) (*CheckUserMobileResponse, error)
 	// 根据用户名查询用户绑定的邮箱
 	FindUserVerifiedEmailWithUsername(ctx context.Context, in *FindUserVerifiedEmailWithUsernameRequest, opts ...grpc.CallOption) (*FindUserVerifiedEmailWithUsernameResponse, error)
 }
@@ -350,6 +353,15 @@ func (c *userServiceClient) CheckUserEmail(ctx context.Context, in *CheckUserEma
 	return out, nil
 }
 
+func (c *userServiceClient) CheckUserMobile(ctx context.Context, in *CheckUserMobileRequest, opts ...grpc.CallOption) (*CheckUserMobileResponse, error) {
+	out := new(CheckUserMobileResponse)
+	err := c.cc.Invoke(ctx, UserService_CheckUserMobile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userServiceClient) FindUserVerifiedEmailWithUsername(ctx context.Context, in *FindUserVerifiedEmailWithUsernameRequest, opts ...grpc.CallOption) (*FindUserVerifiedEmailWithUsernameResponse, error) {
 	out := new(FindUserVerifiedEmailWithUsernameResponse)
 	err := c.cc.Invoke(ctx, UserService_FindUserVerifiedEmailWithUsername_FullMethodName, in, out, opts...)
@@ -415,6 +427,8 @@ type UserServiceServer interface {
 	RenewUserServersState(context.Context, *RenewUserServersStateRequest) (*RenewUserServersStateResponse, error)
 	// 检查邮箱是否已被使用
 	CheckUserEmail(context.Context, *CheckUserEmailRequest) (*CheckUserEmailResponse, error)
+	// 检查手机号码是否已被使用
+	CheckUserMobile(context.Context, *CheckUserMobileRequest) (*CheckUserMobileResponse, error)
 	// 根据用户名查询用户绑定的邮箱
 	FindUserVerifiedEmailWithUsername(context.Context, *FindUserVerifiedEmailWithUsernameRequest) (*FindUserVerifiedEmailWithUsernameResponse, error)
 }
@@ -500,6 +514,9 @@ func (UnimplementedUserServiceServer) RenewUserServersState(context.Context, *Re
 }
 func (UnimplementedUserServiceServer) CheckUserEmail(context.Context, *CheckUserEmailRequest) (*CheckUserEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckUserEmail not implemented")
+}
+func (UnimplementedUserServiceServer) CheckUserMobile(context.Context, *CheckUserMobileRequest) (*CheckUserMobileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckUserMobile not implemented")
 }
 func (UnimplementedUserServiceServer) FindUserVerifiedEmailWithUsername(context.Context, *FindUserVerifiedEmailWithUsernameRequest) (*FindUserVerifiedEmailWithUsernameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindUserVerifiedEmailWithUsername not implemented")
@@ -984,6 +1001,24 @@ func _UserService_CheckUserEmail_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_CheckUserMobile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckUserMobileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).CheckUserMobile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_CheckUserMobile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).CheckUserMobile(ctx, req.(*CheckUserMobileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _UserService_FindUserVerifiedEmailWithUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FindUserVerifiedEmailWithUsernameRequest)
 	if err := dec(in); err != nil {
@@ -1112,6 +1147,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "checkUserEmail",
 			Handler:    _UserService_CheckUserEmail_Handler,
+		},
+		{
+			MethodName: "checkUserMobile",
+			Handler:    _UserService_CheckUserMobile_Handler,
 		},
 		{
 			MethodName: "findUserVerifiedEmailWithUsername",

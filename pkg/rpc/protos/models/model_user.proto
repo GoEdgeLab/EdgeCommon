@@ -11,10 +11,11 @@ message User {
 	int64 id = 1; // 用户ID
 	string username = 2; // 用户名
 	string fullname = 3; // 全称
-	string mobile = 4;
-	string tel = 5;
-	string email = 6;
-	string verifiedEmail = 20;
+	string mobile = 4; // 手机号码
+	string tel = 5; // 联系电话
+	string email = 6; // 联系邮箱
+	string verifiedEmail = 20; // 已验证邮箱
+	string verifiedMobile = 23; // 已验证手机号码
 	string remark = 7;
 	bool isOn = 8;
 	int64 createdAt = 9;
@@ -23,8 +24,8 @@ message User {
 	bool isRejected = 14;
 	string rejectReason = 15;
 	bool isDeleted = 16;
-	bool isIndividualIdentified = 17;
-	bool isEnterpriseIdentified = 18;
+	bool isIndividualIdentified = 17; // 是否已通过个人验证
+	bool isEnterpriseIdentified = 18; // 是否已通过企业验证
 	string bandwidthAlgo = 21; // 带宽算法
 	string lang = 22; // 语言代号
 

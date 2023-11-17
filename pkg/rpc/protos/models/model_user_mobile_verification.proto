@@ -1,0 +1,16 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 手机号码认证
+message UserMobileVerification {
+	int64 id = 1; // ID
+	string mobile = 2; // 手机号码
+	int64 userId = 3; // 用户ID
+	string code = 4; // 代号
+	int64 createdAt = 5; // 创建时间
+	bool isSent = 6; // 已发送
+	bool isVerified = 7; // 已激活
+	int64 expiresAt = 8; // 过期时间，动态计算而来
+}

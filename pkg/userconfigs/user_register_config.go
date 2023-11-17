@@ -5,6 +5,9 @@ package userconfigs
 const (
 	EmailVerificationDefaultLife  = 86400 * 2 // 2 days
 	EmailResetPasswordDefaultLife = 3600      // 1 hour
+
+	MobileVerificationDefaultLife  = 1800 // 30 minutes
+	MobileResetPasswordDefaultLife = 1800 // 30 minutes
 )
 
 type UserRegisterConfig struct {
@@ -31,6 +34,15 @@ type UserRegisterConfig struct {
 		Body    string `yaml:"body" json:"body"`       // 内容
 		Life    int32  `yaml:"life" json:"life"`       // 有效期
 	} `yaml:"emailResetPassword" json:"emailResetPassword"`
+
+	// 手机号码激活设置
+	MobileVerification struct {
+		IsOn       bool   `yaml:"isOn" json:"isOn"`             // 是否启用
+		ShowNotice bool   `yaml:"showNotice" json:"showNotice"` // 提示用户未绑定
+		CanLogin   bool   `yaml:"canLogin" json:"canLogin"`     // 是否可以使用激活的邮箱登录
+		Body       string `yaml:"body" json:"body"`             // 内容
+		Life       int32  `yaml:"life" json:"life"`             // 有效期
+	} `yaml:"mobileVerification" json:"mobileVerification"`
 
 	// CDN
 	CDNIsOn   bool     `json:"cdnIsOn"`                    // 是否开启CDN服务
@@ -81,6 +93,8 @@ func DefaultUserRegisterConfig() *UserRegisterConfig {
 <p>${product.name} 管理团队</p>
 <p><a href="${url.home}" target="_blank">${url.home}</a></p>
 `
+	// 短信验证码
+	config.MobileVerification.Body = "你的短信验证码${code}"
 
 	return config
 }

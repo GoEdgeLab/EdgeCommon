@@ -1,0 +1,23 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+// 短信发送服务
+service SMSSenderService {
+	// 发送短信
+	rpc sendSMS(SendSMSRequest) returns (SendSMSResponse);
+}
+
+// 发送短信
+message SendSMSRequest {
+	string mobile = 1; // 手机号
+	string body = 2; // 内容
+	string type = 3; // 渠道类型：webHook ...
+	bytes paramsJSON = 4; // 参数
+}
+
+message SendSMSResponse {
+	bool isOk = 1; // 是否成功
+	string result = 2; // 发送返回内容，只有失败时才会有数据
+}
