@@ -92,8 +92,8 @@ type NodeConfig struct {
 	// 指标
 	MetricItems []*serverconfigs.MetricItemConfig `yaml:"metricItems" json:"metricItems"`
 
-	// 自动白名单
-	AllowedIPs []string `yaml:"allowedIPs" json:"allowedIPs"`
+	IPAddresses []string `yaml:"ipAddresses" json:"ipAddresses"` // IP地址
+	AllowedIPs  []string `yaml:"allowedIPs" json:"allowedIPs"`   // 自动IP白名单
 
 	// 脚本
 	CommonScripts []*serverconfigs.CommonScript `yaml:"commonScripts" json:"commonScripts"`
