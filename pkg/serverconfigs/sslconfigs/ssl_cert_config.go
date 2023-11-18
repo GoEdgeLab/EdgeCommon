@@ -132,6 +132,16 @@ func (this *SSLCertConfig) Init(ctx context.Context) error {
 				}
 			}
 
+			for _, ipAddress := range c.IPAddresses {
+				if ipAddress == nil {
+					continue
+				}
+				var ipAddressString = ipAddress.String()
+				if !lists.ContainsString(dnsNames, ipAddressString) {
+					dnsNames = append(dnsNames, ipAddressString)
+				}
+			}
+
 			commonNames = append(commonNames, c.Issuer.CommonName)
 
 			if index == 0 {
