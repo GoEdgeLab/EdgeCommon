@@ -6,10 +6,10 @@ package pb;
 import "models/model_user.proto";
 
 message UserAccount {
-	int64 id = 1;
-	int64 userId = 2;
-	double total = 3;
-	double totalFrozen = 4;
+	int64 id = 1; // 账户ID
+	int64 userId = 2; // 用户ID
+	double total = 3; // 总可用余额
+	double totalFrozen = 4; // 总冻结余额
 
-	User user = 30;
+	User user = 30; // 用户信息
 }

@@ -26,43 +26,43 @@ service UserAccountService {
 
 // 计算账户数量
 message CountUserAccountsRequest {
-	string keyword = 1;
+	string keyword = 1; // 关键词
 }
 
 // 列出单页账户
 message ListUserAccountsRequest  {
-	string keyword = 1;
+	string keyword = 1; // 关键词
 	int64 offset = 2;
 	int64 size = 3;
 }
 
 message ListUserAccountsResponse {
-	repeated UserAccount userAccounts = 1;
+	repeated UserAccount userAccounts = 1; // 用户账户列表
 }
 
 // 根据用户ID查找单个账户
 message FindEnabledUserAccountWithUserIdRequest {
-	int64 userId = 1;
+	int64 userId = 1; // 用户ID
 }
 
 message FindEnabledUserAccountWithUserIdResponse {
-	UserAccount userAccount = 1;
+	UserAccount userAccount = 1; // 用户账户
 }
 
 // 查找单个账户
 message FindEnabledUserAccountRequest {
-	int64 userAccountId = 1;
+	int64 userAccountId = 1; // 用户账户ID
 }
 
 message FindEnabledUserAccountResponse {
-	UserAccount userAccount = 1;
+	UserAccount userAccount = 1; // 用户账户
 }
 
 // 修改用户账户
 message UpdateUserAccountRequest {
-	int64 userAccountId = 1;
-	double delta = 2;
-	string eventType = 3;
-	string description = 4;
-	bytes paramsJSON = 5;
+	int64 userAccountId = 1; // 用户账户ID（非用户ID）
+	double delta = 2; // 操作的数值，正值表示增加，负值表示减少
+	string eventType = 3; // 事件类型：charge, award, buyPlan, payBill, refund, withdraw, buyNSPlan, buyTrafficPackage, buyAntiDDoSPackage, renewAntiDDoSPackage
+	string description = 4; // 描述
+	bytes paramsJSON = 5; // 相关参数
 }

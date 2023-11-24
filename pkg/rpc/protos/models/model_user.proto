@@ -16,14 +16,14 @@ message User {
 	string email = 6; // 联系邮箱
 	string verifiedEmail = 20; // 已验证邮箱
 	string verifiedMobile = 23; // 已验证手机号码
-	string remark = 7;
-	bool isOn = 8;
-	int64 createdAt = 9;
-	string registeredIP = 12;
-	bool isVerified = 13;
-	bool isRejected = 14;
-	string rejectReason = 15;
-	bool isDeleted = 16;
+	string remark = 7; // 备注
+	bool isOn = 8; // 是否启用
+	int64 createdAt = 9; // 创建时间
+	string registeredIP = 12; // 注册IP
+	bool isVerified = 13; // 是否已实名认证
+	bool isRejected = 14; // 实名认证是否已拒绝
+	string rejectReason = 15; // 实名认证拒绝理由
+	bool isDeleted = 16; // 是否已删除
 	bool isIndividualIdentified = 17; // 是否已通过个人验证
 	bool isEnterpriseIdentified = 18; // 是否已通过企业验证
 	string bandwidthAlgo = 21; // 带宽算法
@@ -31,6 +31,6 @@ message User {
 
 	Login otpLogin = 19; // OTP认证
 
-	NodeCluster nodeCluster = 10;
-	repeated UserFeature features = 11;
+	NodeCluster nodeCluster = 10; // 集群信息
+	repeated UserFeature features = 11; // 开通功能
 }

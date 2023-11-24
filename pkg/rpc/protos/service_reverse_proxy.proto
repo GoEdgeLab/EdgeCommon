@@ -38,43 +38,43 @@ message CreateReverseProxyRequest {
 }
 
 message CreateReverseProxyResponse {
-	int64 reverseProxyId = 1;
+	int64 reverseProxyId = 1; // 反向代理ID
 }
 
 // 查找反向代理
 message FindEnabledReverseProxyRequest {
-	int64 reverseProxyId = 1;
+	int64 reverseProxyId = 1; // 反向代理ID
 }
 
 message FindEnabledReverseProxyResponse {
-	ReverseProxy reverseProxy = 1;
+	ReverseProxy reverseProxy = 1; // 反向代理信息
 }
 
 // 查找反向代理配置
 message FindEnabledReverseProxyConfigRequest {
-	int64 reverseProxyId = 1;
+	int64 reverseProxyId = 1; // 反向代理ID
 }
 
 message FindEnabledReverseProxyConfigResponse {
-	bytes reverseProxyJSON = 1;
+	bytes reverseProxyJSON = 1; // 反向代理配置
 }
 
 // 修改反向代理调度算法
 message UpdateReverseProxySchedulingRequest {
-	int64 reverseProxyId = 1;
-	bytes schedulingJSON = 2;
+	int64 reverseProxyId = 1; // 反向代理ID
+	bytes schedulingJSON = 2; // 调度配置 @link json:scheduling
 }
 
 // 修改主要源站信息
 message UpdateReverseProxyPrimaryOriginsRequest {
-	int64 reverseProxyId = 1;
-	bytes originsJSON = 2;
+	int64 reverseProxyId = 1; // 反向代理ID
+	bytes originsJSON = 2; // 源站配置 @link json:origin_refs
 }
 
 // 修改备用源站信息
 message UpdateReverseProxyBackupOriginsRequest {
-	int64 reverseProxyId = 1;
-	bytes originsJSON = 2;
+	int64 reverseProxyId = 1; // 反向代理ID
+	bytes originsJSON = 2; // 源站配置 @link json:origin_refs
 }
 
 // 修改反向代理设置

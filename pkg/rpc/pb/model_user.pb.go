@@ -25,29 +25,29 @@ type User struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id                     int64          `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                         // 用户ID
-	Username               string         `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`              // 用户名
-	Fullname               string         `protobuf:"bytes,3,opt,name=fullname,proto3" json:"fullname,omitempty"`              // 全称
-	Mobile                 string         `protobuf:"bytes,4,opt,name=mobile,proto3" json:"mobile,omitempty"`                  // 手机号码
-	Tel                    string         `protobuf:"bytes,5,opt,name=tel,proto3" json:"tel,omitempty"`                        // 联系电话
-	Email                  string         `protobuf:"bytes,6,opt,name=email,proto3" json:"email,omitempty"`                    // 联系邮箱
-	VerifiedEmail          string         `protobuf:"bytes,20,opt,name=verifiedEmail,proto3" json:"verifiedEmail,omitempty"`   // 已验证邮箱
-	VerifiedMobile         string         `protobuf:"bytes,23,opt,name=verifiedMobile,proto3" json:"verifiedMobile,omitempty"` // 已验证手机号码
-	Remark                 string         `protobuf:"bytes,7,opt,name=remark,proto3" json:"remark,omitempty"`
-	IsOn                   bool           `protobuf:"varint,8,opt,name=isOn,proto3" json:"isOn,omitempty"`
-	CreatedAt              int64          `protobuf:"varint,9,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
-	RegisteredIP           string         `protobuf:"bytes,12,opt,name=registeredIP,proto3" json:"registeredIP,omitempty"`
-	IsVerified             bool           `protobuf:"varint,13,opt,name=isVerified,proto3" json:"isVerified,omitempty"`
-	IsRejected             bool           `protobuf:"varint,14,opt,name=isRejected,proto3" json:"isRejected,omitempty"`
-	RejectReason           string         `protobuf:"bytes,15,opt,name=rejectReason,proto3" json:"rejectReason,omitempty"`
-	IsDeleted              bool           `protobuf:"varint,16,opt,name=isDeleted,proto3" json:"isDeleted,omitempty"`
+	Id                     int64          `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                          // 用户ID
+	Username               string         `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`                               // 用户名
+	Fullname               string         `protobuf:"bytes,3,opt,name=fullname,proto3" json:"fullname,omitempty"`                               // 全称
+	Mobile                 string         `protobuf:"bytes,4,opt,name=mobile,proto3" json:"mobile,omitempty"`                                   // 手机号码
+	Tel                    string         `protobuf:"bytes,5,opt,name=tel,proto3" json:"tel,omitempty"`                                         // 联系电话
+	Email                  string         `protobuf:"bytes,6,opt,name=email,proto3" json:"email,omitempty"`                                     // 联系邮箱
+	VerifiedEmail          string         `protobuf:"bytes,20,opt,name=verifiedEmail,proto3" json:"verifiedEmail,omitempty"`                    // 已验证邮箱
+	VerifiedMobile         string         `protobuf:"bytes,23,opt,name=verifiedMobile,proto3" json:"verifiedMobile,omitempty"`                  // 已验证手机号码
+	Remark                 string         `protobuf:"bytes,7,opt,name=remark,proto3" json:"remark,omitempty"`                                   // 备注
+	IsOn                   bool           `protobuf:"varint,8,opt,name=isOn,proto3" json:"isOn,omitempty"`                                      // 是否启用
+	CreatedAt              int64          `protobuf:"varint,9,opt,name=createdAt,proto3" json:"createdAt,omitempty"`                            // 创建时间
+	RegisteredIP           string         `protobuf:"bytes,12,opt,name=registeredIP,proto3" json:"registeredIP,omitempty"`                      // 注册IP
+	IsVerified             bool           `protobuf:"varint,13,opt,name=isVerified,proto3" json:"isVerified,omitempty"`                         // 是否已实名认证
+	IsRejected             bool           `protobuf:"varint,14,opt,name=isRejected,proto3" json:"isRejected,omitempty"`                         // 实名认证是否已拒绝
+	RejectReason           string         `protobuf:"bytes,15,opt,name=rejectReason,proto3" json:"rejectReason,omitempty"`                      // 实名认证拒绝理由
+	IsDeleted              bool           `protobuf:"varint,16,opt,name=isDeleted,proto3" json:"isDeleted,omitempty"`                           // 是否已删除
 	IsIndividualIdentified bool           `protobuf:"varint,17,opt,name=isIndividualIdentified,proto3" json:"isIndividualIdentified,omitempty"` // 是否已通过个人验证
 	IsEnterpriseIdentified bool           `protobuf:"varint,18,opt,name=isEnterpriseIdentified,proto3" json:"isEnterpriseIdentified,omitempty"` // 是否已通过企业验证
 	BandwidthAlgo          string         `protobuf:"bytes,21,opt,name=bandwidthAlgo,proto3" json:"bandwidthAlgo,omitempty"`                    // 带宽算法
 	Lang                   string         `protobuf:"bytes,22,opt,name=lang,proto3" json:"lang,omitempty"`                                      // 语言代号
 	OtpLogin               *Login         `protobuf:"bytes,19,opt,name=otpLogin,proto3" json:"otpLogin,omitempty"`                              // OTP认证
-	NodeCluster            *NodeCluster   `protobuf:"bytes,10,opt,name=nodeCluster,proto3" json:"nodeCluster,omitempty"`
-	Features               []*UserFeature `protobuf:"bytes,11,rep,name=features,proto3" json:"features,omitempty"`
+	NodeCluster            *NodeCluster   `protobuf:"bytes,10,opt,name=nodeCluster,proto3" json:"nodeCluster,omitempty"`                        // 集群信息
+	Features               []*UserFeature `protobuf:"bytes,11,rep,name=features,proto3" json:"features,omitempty"`                              // 开通功能
 }
 
 func (x *User) Reset() {

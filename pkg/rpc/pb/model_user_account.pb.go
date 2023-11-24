@@ -25,11 +25,11 @@ type UserAccount struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id          int64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserId      int64   `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`
-	Total       float64 `protobuf:"fixed64,3,opt,name=total,proto3" json:"total,omitempty"`
-	TotalFrozen float64 `protobuf:"fixed64,4,opt,name=totalFrozen,proto3" json:"totalFrozen,omitempty"`
-	User        *User   `protobuf:"bytes,30,opt,name=user,proto3" json:"user,omitempty"`
+	Id          int64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                    // 账户ID
+	UserId      int64   `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`            // 用户ID
+	Total       float64 `protobuf:"fixed64,3,opt,name=total,proto3" json:"total,omitempty"`             // 总可用余额
+	TotalFrozen float64 `protobuf:"fixed64,4,opt,name=totalFrozen,proto3" json:"totalFrozen,omitempty"` // 总冻结余额
+	User        *User   `protobuf:"bytes,30,opt,name=user,proto3" json:"user,omitempty"`                // 用户信息
 }
 
 func (x *UserAccount) Reset() {

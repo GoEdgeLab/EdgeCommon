@@ -89,7 +89,7 @@ type CreateReverseProxyResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ReverseProxyId int64 `protobuf:"varint,1,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"`
+	ReverseProxyId int64 `protobuf:"varint,1,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"` // 反向代理ID
 }
 
 func (x *CreateReverseProxyResponse) Reset() {
@@ -137,7 +137,7 @@ type FindEnabledReverseProxyRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ReverseProxyId int64 `protobuf:"varint,1,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"`
+	ReverseProxyId int64 `protobuf:"varint,1,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"` // 反向代理ID
 }
 
 func (x *FindEnabledReverseProxyRequest) Reset() {
@@ -184,7 +184,7 @@ type FindEnabledReverseProxyResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ReverseProxy *ReverseProxy `protobuf:"bytes,1,opt,name=reverseProxy,proto3" json:"reverseProxy,omitempty"`
+	ReverseProxy *ReverseProxy `protobuf:"bytes,1,opt,name=reverseProxy,proto3" json:"reverseProxy,omitempty"` // 反向代理信息
 }
 
 func (x *FindEnabledReverseProxyResponse) Reset() {
@@ -232,7 +232,7 @@ type FindEnabledReverseProxyConfigRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ReverseProxyId int64 `protobuf:"varint,1,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"`
+	ReverseProxyId int64 `protobuf:"varint,1,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"` // 反向代理ID
 }
 
 func (x *FindEnabledReverseProxyConfigRequest) Reset() {
@@ -279,7 +279,7 @@ type FindEnabledReverseProxyConfigResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ReverseProxyJSON []byte `protobuf:"bytes,1,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"`
+	ReverseProxyJSON []byte `protobuf:"bytes,1,opt,name=reverseProxyJSON,proto3" json:"reverseProxyJSON,omitempty"` // 反向代理配置
 }
 
 func (x *FindEnabledReverseProxyConfigResponse) Reset() {
@@ -327,8 +327,8 @@ type UpdateReverseProxySchedulingRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ReverseProxyId int64  `protobuf:"varint,1,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"`
-	SchedulingJSON []byte `protobuf:"bytes,2,opt,name=schedulingJSON,proto3" json:"schedulingJSON,omitempty"`
+	ReverseProxyId int64  `protobuf:"varint,1,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"` // 反向代理ID
+	SchedulingJSON []byte `protobuf:"bytes,2,opt,name=schedulingJSON,proto3" json:"schedulingJSON,omitempty"`  // 调度配置 @link json:scheduling
 }
 
 func (x *UpdateReverseProxySchedulingRequest) Reset() {
@@ -383,8 +383,8 @@ type UpdateReverseProxyPrimaryOriginsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ReverseProxyId int64  `protobuf:"varint,1,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"`
-	OriginsJSON    []byte `protobuf:"bytes,2,opt,name=originsJSON,proto3" json:"originsJSON,omitempty"`
+	ReverseProxyId int64  `protobuf:"varint,1,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"` // 反向代理ID
+	OriginsJSON    []byte `protobuf:"bytes,2,opt,name=originsJSON,proto3" json:"originsJSON,omitempty"`        // 源站配置 @link json:origin_refs
 }
 
 func (x *UpdateReverseProxyPrimaryOriginsRequest) Reset() {
@@ -439,8 +439,8 @@ type UpdateReverseProxyBackupOriginsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ReverseProxyId int64  `protobuf:"varint,1,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"`
-	OriginsJSON    []byte `protobuf:"bytes,2,opt,name=originsJSON,proto3" json:"originsJSON,omitempty"`
+	ReverseProxyId int64  `protobuf:"varint,1,opt,name=reverseProxyId,proto3" json:"reverseProxyId,omitempty"` // 反向代理ID
+	OriginsJSON    []byte `protobuf:"bytes,2,opt,name=originsJSON,proto3" json:"originsJSON,omitempty"`        // 源站配置 @link json:origin_refs
 }
 
 func (x *UpdateReverseProxyBackupOriginsRequest) Reset() {

@@ -26,7 +26,7 @@ type CountUserAccountsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Keyword string `protobuf:"bytes,1,opt,name=keyword,proto3" json:"keyword,omitempty"`
+	Keyword string `protobuf:"bytes,1,opt,name=keyword,proto3" json:"keyword,omitempty"` // 关键词
 }
 
 func (x *CountUserAccountsRequest) Reset() {
@@ -74,7 +74,7 @@ type ListUserAccountsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Keyword string `protobuf:"bytes,1,opt,name=keyword,proto3" json:"keyword,omitempty"`
+	Keyword string `protobuf:"bytes,1,opt,name=keyword,proto3" json:"keyword,omitempty"` // 关键词
 	Offset  int64  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
 	Size    int64  `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
 }
@@ -137,7 +137,7 @@ type ListUserAccountsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserAccounts []*UserAccount `protobuf:"bytes,1,rep,name=userAccounts,proto3" json:"userAccounts,omitempty"`
+	UserAccounts []*UserAccount `protobuf:"bytes,1,rep,name=userAccounts,proto3" json:"userAccounts,omitempty"` // 用户账户列表
 }
 
 func (x *ListUserAccountsResponse) Reset() {
@@ -185,7 +185,7 @@ type FindEnabledUserAccountWithUserIdRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId int64 `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	UserId int64 `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"` // 用户ID
 }
 
 func (x *FindEnabledUserAccountWithUserIdRequest) Reset() {
@@ -232,7 +232,7 @@ type FindEnabledUserAccountWithUserIdResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserAccount *UserAccount `protobuf:"bytes,1,opt,name=userAccount,proto3" json:"userAccount,omitempty"`
+	UserAccount *UserAccount `protobuf:"bytes,1,opt,name=userAccount,proto3" json:"userAccount,omitempty"` // 用户账户
 }
 
 func (x *FindEnabledUserAccountWithUserIdResponse) Reset() {
@@ -280,7 +280,7 @@ type FindEnabledUserAccountRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserAccountId int64 `protobuf:"varint,1,opt,name=userAccountId,proto3" json:"userAccountId,omitempty"`
+	UserAccountId int64 `protobuf:"varint,1,opt,name=userAccountId,proto3" json:"userAccountId,omitempty"` // 用户账户ID
 }
 
 func (x *FindEnabledUserAccountRequest) Reset() {
@@ -327,7 +327,7 @@ type FindEnabledUserAccountResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserAccount *UserAccount `protobuf:"bytes,1,opt,name=userAccount,proto3" json:"userAccount,omitempty"`
+	UserAccount *UserAccount `protobuf:"bytes,1,opt,name=userAccount,proto3" json:"userAccount,omitempty"` // 用户账户
 }
 
 func (x *FindEnabledUserAccountResponse) Reset() {
@@ -375,11 +375,11 @@ type UpdateUserAccountRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserAccountId int64   `protobuf:"varint,1,opt,name=userAccountId,proto3" json:"userAccountId,omitempty"`
-	Delta         float64 `protobuf:"fixed64,2,opt,name=delta,proto3" json:"delta,omitempty"`
-	EventType     string  `protobuf:"bytes,3,opt,name=eventType,proto3" json:"eventType,omitempty"`
-	Description   string  `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
-	ParamsJSON    []byte  `protobuf:"bytes,5,opt,name=paramsJSON,proto3" json:"paramsJSON,omitempty"`
+	UserAccountId int64   `protobuf:"varint,1,opt,name=userAccountId,proto3" json:"userAccountId,omitempty"` // 用户账户ID（非用户ID）
+	Delta         float64 `protobuf:"fixed64,2,opt,name=delta,proto3" json:"delta,omitempty"`                // 操作的数值，正值表示增加，负值表示减少
+	EventType     string  `protobuf:"bytes,3,opt,name=eventType,proto3" json:"eventType,omitempty"`          // 事件类型：charge, award, buyPlan, payBill, refund, withdraw, buyNSPlan, buyTrafficPackage, buyAntiDDoSPackage, renewAntiDDoSPackage
+	Description   string  `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`      // 描述
+	ParamsJSON    []byte  `protobuf:"bytes,5,opt,name=paramsJSON,proto3" json:"paramsJSON,omitempty"`        // 相关参数
 }
 
 func (x *UpdateUserAccountRequest) Reset() {

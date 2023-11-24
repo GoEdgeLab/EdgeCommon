@@ -14634,7 +14634,7 @@
     },
     {
       "name": "CountUserAccountsRequest",
-      "code": "message CountUserAccountsRequest {\n\tstring keyword = 1;\n}",
+      "code": "message CountUserAccountsRequest {\n\tstring keyword = 1; // 关键词\n}",
       "doc": "计算账户数量"
     },
     {
@@ -15489,7 +15489,7 @@
     },
     {
       "name": "CreateReverseProxyResponse",
-      "code": "message CreateReverseProxyResponse {\n\tint64 reverseProxyId = 1;\n}",
+      "code": "message CreateReverseProxyResponse {\n\tint64 reverseProxyId = 1; // 反向代理ID\n}",
       "doc": ""
     },
     {
@@ -18369,22 +18369,22 @@
     },
     {
       "name": "FindEnabledReverseProxyConfigRequest",
-      "code": "message FindEnabledReverseProxyConfigRequest {\n\tint64 reverseProxyId = 1;\n}",
+      "code": "message FindEnabledReverseProxyConfigRequest {\n\tint64 reverseProxyId = 1; // 反向代理ID\n}",
       "doc": "查找反向代理配置"
     },
     {
       "name": "FindEnabledReverseProxyConfigResponse",
-      "code": "message FindEnabledReverseProxyConfigResponse {\n\tbytes reverseProxyJSON = 1;\n}",
+      "code": "message FindEnabledReverseProxyConfigResponse {\n\tbytes reverseProxyJSON = 1; // 反向代理配置\n}",
       "doc": ""
     },
     {
       "name": "FindEnabledReverseProxyRequest",
-      "code": "message FindEnabledReverseProxyRequest {\n\tint64 reverseProxyId = 1;\n}",
+      "code": "message FindEnabledReverseProxyRequest {\n\tint64 reverseProxyId = 1; // 反向代理ID\n}",
       "doc": "查找反向代理"
     },
     {
       "name": "FindEnabledReverseProxyResponse",
-      "code": "message FindEnabledReverseProxyResponse {\n\tReverseProxy reverseProxy = 1;\n}",
+      "code": "message FindEnabledReverseProxyResponse {\n\tReverseProxy reverseProxy = 1; // 反向代理信息\n}",
       "doc": ""
     },
     {
@@ -18499,22 +18499,22 @@
     },
     {
       "name": "FindEnabledUserAccountRequest",
-      "code": "message FindEnabledUserAccountRequest {\n\tint64 userAccountId = 1;\n}",
+      "code": "message FindEnabledUserAccountRequest {\n\tint64 userAccountId = 1; // 用户账户ID\n}",
       "doc": "查找单个账户"
     },
     {
       "name": "FindEnabledUserAccountResponse",
-      "code": "message FindEnabledUserAccountResponse {\n\tUserAccount userAccount = 1;\n}",
+      "code": "message FindEnabledUserAccountResponse {\n\tUserAccount userAccount = 1; // 用户账户\n}",
       "doc": ""
     },
     {
       "name": "FindEnabledUserAccountWithUserIdRequest",
-      "code": "message FindEnabledUserAccountWithUserIdRequest {\n\tint64 userId = 1;\n}",
+      "code": "message FindEnabledUserAccountWithUserIdRequest {\n\tint64 userId = 1; // 用户ID\n}",
       "doc": "根据用户ID查找单个账户"
     },
     {
       "name": "FindEnabledUserAccountWithUserIdResponse",
-      "code": "message FindEnabledUserAccountWithUserIdResponse {\n\tUserAccount userAccount = 1;\n}",
+      "code": "message FindEnabledUserAccountWithUserIdResponse {\n\tUserAccount userAccount = 1; // 用户账户\n}",
       "doc": ""
     },
     {
@@ -20699,12 +20699,12 @@
     },
     {
       "name": "ListUserAccountsRequest",
-      "code": "message ListUserAccountsRequest  {\n\tstring keyword = 1;\n\tint64 offset = 2;\n\tint64 size = 3;\n}",
+      "code": "message ListUserAccountsRequest  {\n\tstring keyword = 1; // 关键词\n\tint64 offset = 2;\n\tint64 size = 3;\n}",
       "doc": "列出单页账户"
     },
     {
       "name": "ListUserAccountsResponse",
-      "code": "message ListUserAccountsResponse {\n\trepeated UserAccount userAccounts = 1;\n}",
+      "code": "message ListUserAccountsResponse {\n\trepeated UserAccount userAccounts = 1; // 用户账户列表\n}",
       "doc": ""
     },
     {
@@ -22539,12 +22539,12 @@
     },
     {
       "name": "UpdateReverseProxyBackupOriginsRequest",
-      "code": "message UpdateReverseProxyBackupOriginsRequest {\n\tint64 reverseProxyId = 1;\n\tbytes originsJSON = 2;\n}",
+      "code": "message UpdateReverseProxyBackupOriginsRequest {\n\tint64 reverseProxyId = 1; // 反向代理ID\n\tbytes originsJSON = 2; // 源站配置 @link json:origin_refs\n}",
       "doc": "修改备用源站信息"
     },
     {
       "name": "UpdateReverseProxyPrimaryOriginsRequest",
-      "code": "message UpdateReverseProxyPrimaryOriginsRequest {\n\tint64 reverseProxyId = 1;\n\tbytes originsJSON = 2;\n}",
+      "code": "message UpdateReverseProxyPrimaryOriginsRequest {\n\tint64 reverseProxyId = 1; // 反向代理ID\n\tbytes originsJSON = 2; // 源站配置 @link json:origin_refs\n}",
       "doc": "修改主要源站信息"
     },
     {
@@ -22554,7 +22554,7 @@
     },
     {
       "name": "UpdateReverseProxySchedulingRequest",
-      "code": "message UpdateReverseProxySchedulingRequest {\n\tint64 reverseProxyId = 1;\n\tbytes schedulingJSON = 2;\n}",
+      "code": "message UpdateReverseProxySchedulingRequest {\n\tint64 reverseProxyId = 1; // 反向代理ID\n\tbytes schedulingJSON = 2; // 调度配置 @link json:scheduling\n}",
       "doc": "修改反向代理调度算法"
     },
     {
@@ -22729,7 +22729,7 @@
     },
     {
       "name": "UpdateUserAccountRequest",
-      "code": "message UpdateUserAccountRequest {\n\tint64 userAccountId = 1;\n\tdouble delta = 2;\n\tstring eventType = 3;\n\tstring description = 4;\n\tbytes paramsJSON = 5;\n}",
+      "code": "message UpdateUserAccountRequest {\n\tint64 userAccountId = 1; // 用户账户ID（非用户ID）\n\tdouble delta = 2; // 操作的数值，正值表示增加，负值表示减少\n\tstring eventType = 3; // 事件类型：charge, award, buyPlan, payBill, refund, withdraw, buyNSPlan, buyTrafficPackage, buyAntiDDoSPackage, renewAntiDDoSPackage\n\tstring description = 4; // 描述\n\tbytes paramsJSON = 5; // 相关参数\n}",
       "doc": "修改用户账户"
     },
     {
@@ -22844,7 +22844,7 @@
     },
     {
       "name": "User",
-      "code": "message User {\n\tint64 id = 1; // 用户ID\n\tstring username = 2; // 用户名\n\tstring fullname = 3; // 全称\n\tstring mobile = 4; // 手机号码\n\tstring tel = 5; // 联系电话\n\tstring email = 6; // 联系邮箱\n\tstring verifiedEmail = 20; // 已验证邮箱\n\tstring verifiedMobile = 23; // 已验证手机号码\n\tstring remark = 7;\n\tbool isOn = 8;\n\tint64 createdAt = 9;\n\tstring registeredIP = 12;\n\tbool isVerified = 13;\n\tbool isRejected = 14;\n\tstring rejectReason = 15;\n\tbool isDeleted = 16;\n\tbool isIndividualIdentified = 17; // 是否已通过个人验证\n\tbool isEnterpriseIdentified = 18; // 是否已通过企业验证\n\tstring bandwidthAlgo = 21; // 带宽算法\n\tstring lang = 22; // 语言代号\n\n\tLogin otpLogin = 19; // OTP认证\n\n\tNodeCluster nodeCluster = 10;\n\trepeated UserFeature features = 11;\n}",
+      "code": "message User {\n\tint64 id = 1; // 用户ID\n\tstring username = 2; // 用户名\n\tstring fullname = 3; // 全称\n\tstring mobile = 4; // 手机号码\n\tstring tel = 5; // 联系电话\n\tstring email = 6; // 联系邮箱\n\tstring verifiedEmail = 20; // 已验证邮箱\n\tstring verifiedMobile = 23; // 已验证手机号码\n\tstring remark = 7; // 备注\n\tbool isOn = 8; // 是否启用\n\tint64 createdAt = 9; // 创建时间\n\tstring registeredIP = 12; // 注册IP\n\tbool isVerified = 13; // 是否已实名认证\n\tbool isRejected = 14; // 实名认证是否已拒绝\n\tstring rejectReason = 15; // 实名认证拒绝理由\n\tbool isDeleted = 16; // 是否已删除\n\tbool isIndividualIdentified = 17; // 是否已通过个人验证\n\tbool isEnterpriseIdentified = 18; // 是否已通过企业验证\n\tstring bandwidthAlgo = 21; // 带宽算法\n\tstring lang = 22; // 语言代号\n\n\tLogin otpLogin = 19; // OTP认证\n\n\tNodeCluster nodeCluster = 10; // 集群信息\n\trepeated UserFeature features = 11; // 开通功能\n}",
       "doc": ""
     },
     {
@@ -22859,7 +22859,7 @@
     },
     {
       "name": "UserAccount",
-      "code": "message UserAccount {\n\tint64 id = 1;\n\tint64 userId = 2;\n\tdouble total = 3;\n\tdouble totalFrozen = 4;\n\n\tUser user = 30;\n}",
+      "code": "message UserAccount {\n\tint64 id = 1; // 账户ID\n\tint64 userId = 2; // 用户ID\n\tdouble total = 3; // 总可用余额\n\tdouble totalFrozen = 4; // 总冻结余额\n\n\tUser user = 30; // 用户信息\n}",
       "doc": ""
     },
     {
