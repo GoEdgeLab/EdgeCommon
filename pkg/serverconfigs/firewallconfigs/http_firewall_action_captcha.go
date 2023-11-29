@@ -1,5 +1,11 @@
 package firewallconfigs
 
+type GeeTestConfig struct {
+	IsOn       bool   `yaml:"isOn" json:"isOn"`
+	CaptchaId  string `yaml:"captchaId" json:"captchaId"`
+	CaptchaKey string `yaml:"captchaKey" json:"captchaKey"`
+}
+
 type HTTPFirewallCaptchaAction struct {
 	IsPrior bool `yaml:"isPrior" json:"isPrior"`
 
@@ -9,6 +15,8 @@ type HTTPFirewallCaptchaAction struct {
 	MaxFails          int   `yaml:"maxFails" json:"maxFails"`                   // 最大失败次数
 	FailBlockTimeout  int   `yaml:"failBlockTimeout" json:"failBlockTimeout"`   // 失败拦截时间
 	FailBlockScopeAll bool  `yaml:"failBlockScopeAll" json:"failBlockScopeAll"` // 是否全局有效
+
+	// 验证码相关配置
 
 	CountLetters int8 `yaml:"countLetters" json:"countLetters"` // 字符数量
 
@@ -24,6 +32,10 @@ type HTTPFirewallCaptchaAction struct {
 	CookieId string `yaml:"cookieId" json:"cookieId"` // TODO
 
 	Lang string `yaml:"lang" json:"lang"` // 语言，zh-CN, en-US ... TODO 需要实现，目前是根据浏览器Accept-Language动态获取
+
+	// 极验相关配置
+	// MUST be struct
+	GeeTestConfig GeeTestConfig `yaml:"geeTestConfig" json:"geeTestConfig"`
 }
 
 func DefaultHTTPFirewallCaptchaAction() *HTTPFirewallCaptchaAction {

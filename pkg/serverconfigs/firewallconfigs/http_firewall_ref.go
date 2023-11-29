@@ -7,6 +7,7 @@ const (
 	ServerCaptchaTypeDefault  ServerCaptchaType = CaptchaTypeDefault
 	ServerCaptchaTypeOneClick ServerCaptchaType = CaptchaTypeOneClick
 	ServerCaptchaTypeSlide    ServerCaptchaType = CaptchaTypeSlide
+	ServerCaptchaTypeGeeTest  ServerCaptchaType = CaptchaTypeGeeTest
 )
 
 type HTTPFirewallRef struct {

@@ -3,15 +3,18 @@ option go_package = "./pb";
 
 package pb;
 
+// WAF策略
 message HTTPFirewallPolicy {
-	int64 id = 1;
-	string name = 2;
-	string mode = 7;
-	bool isOn = 3;
-	string description = 4;
-	bytes inboundJSON = 5;
-	bytes outboundJSON = 6;
-	int64 serverId = 8;
-	bool useLocalFirewall = 9;
-	bytes synFloodJSON = 10;
+	int64 id = 1; // 策略ID
+	string name = 2; // 名称
+	string mode = 7; // 模式
+	bool isOn = 3; // 是否启用
+	string description = 4; // 描述
+	bytes inboundJSON = 5; // 入站配置
+	bytes outboundJSON = 6; // 出站配置
+	int64 serverId = 8; // 所属网站ID（如果为0表示公共策略）
+	bool useLocalFirewall = 9; // 是否使用本机防火墙
+	bytes synFloodJSON = 10; // synflood配置
+	bytes blockOptionsJSON = 11; // 拦截配置
+	bytes captchaOptionsJSON = 12; // 人机识别配置
 }

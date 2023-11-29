@@ -10,6 +10,7 @@ const (
 	CaptchaTypeDefault  CaptchaType = "default"
 	CaptchaTypeOneClick CaptchaType = "oneClick"
 	CaptchaTypeSlide    CaptchaType = "slide"
+	CaptchaTypeGeeTest  CaptchaType = "geetest"
 )
 
 // FindAllCaptchaTypes Find all captcha types
@@ -29,6 +30,11 @@ func FindAllCaptchaTypes() []*shared.Definition {
 			Code:        CaptchaTypeSlide,
 			Name:        "滑动解锁",
 			Description: "通过滑动方块解锁来验证人机。",
+		},
+		{
+			Code:        CaptchaTypeGeeTest,
+			Name:        "极验-行为验",
+			Description: "使用极验-行为验提供的人机验证方式。",
 		},
 	}
 }
