@@ -5,6 +5,8 @@ package serverconfigs
 import "github.com/tdewolff/minify/v2/js"
 
 type HTTPJavascriptOptimizationConfig struct {
+	HTTPBaseOptimizationConfig
+
 	IsOn bool `yaml:"isOn" json:"isOn"`
 
 	Precision    int  `yaml:"precision" json:"precision"`
@@ -17,6 +19,10 @@ func NewHTTPJavascriptOptimizationConfig() *HTTPJavascriptOptimizationConfig {
 }
 
 func (this *HTTPJavascriptOptimizationConfig) Init() error {
+	err := this.HTTPBaseOptimizationConfig.Init()
+	if err != nil {
+		return err
+	}
 	return nil
 }
 

@@ -94,7 +94,7 @@ func (this *HTTPPageOptimizationConfig) CheckIsOn() bool {
 		(this.CSS != nil && this.CSS.IsOn)
 }
 
-func (this *HTTPPageOptimizationConfig) FilterResponse(resp *http.Response) error {
+func (this *HTTPPageOptimizationConfig) FilterResponse(url string, resp *http.Response) error {
 	if !this.isOn || this.minifyInstance == nil {
 		return nil
 	}
@@ -113,15 +113,15 @@ func (this *HTTPPageOptimizationConfig) FilterResponse(resp *http.Response) erro
 	var mimeType = ""
 	switch contentType {
 	case "text/html":
-		if this.HTML != nil && this.HTML.IsOn {
+		if this.HTML != nil && this.HTML.IsOn && this.HTML.MatchURL(url) {
 			mimeType = HTTPPageOptimizationMimeTypeHTML
 		}
 	case "text/javascript", "application/javascript":
-		if this.Javascript != nil && this.Javascript.IsOn {
+		if this.Javascript != nil && this.Javascript.IsOn && this.Javascript.MatchURL(url) {
 			mimeType = HTTPPageOptimizationMimeTypeJavascript
 		}
 	case "text/css":
-		if this.CSS != nil && this.CSS.IsOn {
+		if this.CSS != nil && this.CSS.IsOn && this.CSS.MatchURL(url) {
 			mimeType = HTTPPageOptimizationMimeTypeCSS
 		}
 	default:

@@ -5,6 +5,8 @@ package serverconfigs
 import "github.com/tdewolff/minify/v2/css"
 
 type HTTPCSSOptimizationConfig struct {
+	HTTPBaseOptimizationConfig
+
 	IsOn bool `yaml:"isOn" json:"isOn"`
 
 	Precision int  `yaml:"precision" json:"precision"`
@@ -18,6 +20,10 @@ func NewHTTPCSSOptimizationConfig() *HTTPCSSOptimizationConfig {
 }
 
 func (this *HTTPCSSOptimizationConfig) Init() error {
+	err := this.HTTPBaseOptimizationConfig.Init()
+	if err != nil {
+		return err
+	}
 	return nil
 }
 

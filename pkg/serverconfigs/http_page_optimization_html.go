@@ -2,9 +2,13 @@
 
 package serverconfigs
 
-import "github.com/tdewolff/minify/v2/html"
+import (
+	"github.com/tdewolff/minify/v2/html"
+)
 
 type HTTPHTMLOptimizationConfig struct {
+	HTTPBaseOptimizationConfig
+
 	IsOn bool `yaml:"isOn" json:"isOn"`
 
 	KeepComments            bool `yaml:"keepComments" json:"keepComments"`
@@ -26,6 +30,10 @@ func NewHTTPHTMLOptimizationConfig() *HTTPHTMLOptimizationConfig {
 }
 
 func (this *HTTPHTMLOptimizationConfig) Init() error {
+	err := this.HTTPBaseOptimizationConfig.Init()
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
