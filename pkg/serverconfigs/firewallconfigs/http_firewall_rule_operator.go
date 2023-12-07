@@ -4,28 +4,31 @@ type HTTPFirewallRuleOperator = string
 type HTTPFirewallRuleCaseInsensitive = string
 
 const (
-	HTTPFirewallRuleOperatorGt               HTTPFirewallRuleOperator = "gt"
-	HTTPFirewallRuleOperatorGte              HTTPFirewallRuleOperator = "gte"
-	HTTPFirewallRuleOperatorLt               HTTPFirewallRuleOperator = "lt"
-	HTTPFirewallRuleOperatorLte              HTTPFirewallRuleOperator = "lte"
-	HTTPFirewallRuleOperatorEq               HTTPFirewallRuleOperator = "eq"
-	HTTPFirewallRuleOperatorNeq              HTTPFirewallRuleOperator = "neq"
-	HTTPFirewallRuleOperatorEqString         HTTPFirewallRuleOperator = "eq string"
-	HTTPFirewallRuleOperatorNeqString        HTTPFirewallRuleOperator = "neq string"
-	HTTPFirewallRuleOperatorMatch            HTTPFirewallRuleOperator = "match"
-	HTTPFirewallRuleOperatorNotMatch         HTTPFirewallRuleOperator = "not match"
-	HTTPFirewallRuleOperatorWildcardMatch    HTTPFirewallRuleOperator = "wildcard match"
-	HTTPFirewallRuleOperatorWildcardNotMatch HTTPFirewallRuleOperator = "wildcard not match"
-	HTTPFirewallRuleOperatorContains         HTTPFirewallRuleOperator = "contains"
-	HTTPFirewallRuleOperatorNotContains      HTTPFirewallRuleOperator = "not contains"
-	HTTPFirewallRuleOperatorPrefix           HTTPFirewallRuleOperator = "prefix"
-	HTTPFirewallRuleOperatorSuffix           HTTPFirewallRuleOperator = "suffix"
-	HTTPFirewallRuleOperatorContainsAny      HTTPFirewallRuleOperator = "contains any"
-	HTTPFirewallRuleOperatorContainsAll      HTTPFirewallRuleOperator = "contains all"
-	HTTPFirewallRuleOperatorHasKey           HTTPFirewallRuleOperator = "has key" // has key in slice or map
-	HTTPFirewallRuleOperatorVersionGt        HTTPFirewallRuleOperator = "version gt"
-	HTTPFirewallRuleOperatorVersionLt        HTTPFirewallRuleOperator = "version lt"
-	HTTPFirewallRuleOperatorVersionRange     HTTPFirewallRuleOperator = "version range"
+	HTTPFirewallRuleOperatorGt                 HTTPFirewallRuleOperator = "gt"
+	HTTPFirewallRuleOperatorGte                HTTPFirewallRuleOperator = "gte"
+	HTTPFirewallRuleOperatorLt                 HTTPFirewallRuleOperator = "lt"
+	HTTPFirewallRuleOperatorLte                HTTPFirewallRuleOperator = "lte"
+	HTTPFirewallRuleOperatorEq                 HTTPFirewallRuleOperator = "eq"
+	HTTPFirewallRuleOperatorNeq                HTTPFirewallRuleOperator = "neq"
+	HTTPFirewallRuleOperatorEqString           HTTPFirewallRuleOperator = "eq string"
+	HTTPFirewallRuleOperatorNeqString          HTTPFirewallRuleOperator = "neq string"
+	HTTPFirewallRuleOperatorMatch              HTTPFirewallRuleOperator = "match"
+	HTTPFirewallRuleOperatorNotMatch           HTTPFirewallRuleOperator = "not match"
+	HTTPFirewallRuleOperatorWildcardMatch      HTTPFirewallRuleOperator = "wildcard match"
+	HTTPFirewallRuleOperatorWildcardNotMatch   HTTPFirewallRuleOperator = "wildcard not match"
+	HTTPFirewallRuleOperatorContains           HTTPFirewallRuleOperator = "contains"
+	HTTPFirewallRuleOperatorNotContains        HTTPFirewallRuleOperator = "not contains"
+	HTTPFirewallRuleOperatorContainsAnyWord    HTTPFirewallRuleOperator = "contains any word"
+	HTTPFirewallRuleOperatorContainsAllWords   HTTPFirewallRuleOperator = "contains all word"
+	HTTPFirewallRuleOperatorNotContainsAnyWord HTTPFirewallRuleOperator = "not contains any word"
+	HTTPFirewallRuleOperatorPrefix             HTTPFirewallRuleOperator = "prefix"
+	HTTPFirewallRuleOperatorSuffix             HTTPFirewallRuleOperator = "suffix"
+	HTTPFirewallRuleOperatorContainsAny        HTTPFirewallRuleOperator = "contains any"
+	HTTPFirewallRuleOperatorContainsAll        HTTPFirewallRuleOperator = "contains all"
+	HTTPFirewallRuleOperatorHasKey             HTTPFirewallRuleOperator = "has key" // has key in slice or map
+	HTTPFirewallRuleOperatorVersionGt          HTTPFirewallRuleOperator = "version gt"
+	HTTPFirewallRuleOperatorVersionLt          HTTPFirewallRuleOperator = "version lt"
+	HTTPFirewallRuleOperatorVersionRange       HTTPFirewallRuleOperator = "version range"
 
 	HTTPFirewallRuleOperatorContainsBinary    HTTPFirewallRuleOperator = "contains binary"     // contains binary
 	HTTPFirewallRuleOperatorNotContainsBinary HTTPFirewallRuleOperator = "not contains binary" // not contains binary
@@ -140,6 +143,27 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 		Description:     "包含字符串后缀部分，比如/hello后缀会匹配/hello, /hi/hello等。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
 		DataType:        "string",
+	},
+	{
+		Name:            "包含任一单词",
+		Code:            HTTPFirewallRuleOperatorContainsAnyWord,
+		Description:     "包含某个独立单词，对比值中每行一个单词，比如mozilla firefox里包含了mozilla和firefox两个单词，但是不包含fire和fox这两个单词",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		DataType:        "strings",
+	},
+	{
+		Name:            "包含所有单词",
+		Code:            HTTPFirewallRuleOperatorContainsAllWords,
+		Description:     "包含所有的独立单词，对比值中每行一个单词，比如mozilla firefox里包含了mozilla和firefox两个单词，但是不包含fire和fox这两个单词",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		DataType:        "strings",
+	},
+	{
+		Name:            "不包含任一单词",
+		Code:            HTTPFirewallRuleOperatorNotContainsAnyWord,
+		Description:     "不包含某个独立单词，对比值中每行一个单词，比如mozilla firefox里包含了mozilla和firefox两个单词，但是不包含fire和fox这两个单词",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNo,
+		DataType:        "strings",
 	},
 	{
 		Name:            "包含二进制数据",
