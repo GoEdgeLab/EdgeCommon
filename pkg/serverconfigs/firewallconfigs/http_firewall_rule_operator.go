@@ -19,7 +19,7 @@ const (
 	HTTPFirewallRuleOperatorContains           HTTPFirewallRuleOperator = "contains"
 	HTTPFirewallRuleOperatorNotContains        HTTPFirewallRuleOperator = "not contains"
 	HTTPFirewallRuleOperatorContainsAnyWord    HTTPFirewallRuleOperator = "contains any word"
-	HTTPFirewallRuleOperatorContainsAllWords   HTTPFirewallRuleOperator = "contains all word"
+	HTTPFirewallRuleOperatorContainsAllWords   HTTPFirewallRuleOperator = "contains all words"
 	HTTPFirewallRuleOperatorNotContainsAnyWord HTTPFirewallRuleOperator = "not contains any word"
 	HTTPFirewallRuleOperatorPrefix             HTTPFirewallRuleOperator = "prefix"
 	HTTPFirewallRuleOperatorSuffix             HTTPFirewallRuleOperator = "suffix"
