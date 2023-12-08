@@ -8,17 +8,17 @@ import (
 // AllCheckpoints all check points list
 var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
-		Name:        "通用请求Header长度限制",
+		Name:        "通用请求报头长度限制",
 		Prefix:      "requestGeneralHeaderLength",
-		Description: "通用Header比如Cache-Control、Accept之类的长度限制，防止缓冲区溢出攻击。",
+		Description: "通用报头比如Cache-Control、Accept之类的长度限制，防止缓冲区溢出攻击。",
 		IsRequest:   true,
 		IsComposed:  true,
 		Priority:    100,
 	},
 	{
-		Name:        "通用响应Header长度限制",
+		Name:        "通用响应报头长度限制",
 		Prefix:      "responseGeneralHeaderLength",
-		Description: "通用Header比如Cache-Control、Date之类的长度限制，防止缓冲区溢出攻击。",
+		Description: "通用报头比如Cache-Control、Date之类的长度限制，防止缓冲区溢出攻击。",
 		IsRequest:   false,
 		IsComposed:  true,
 		Priority:    100,
@@ -26,7 +26,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "客户端地址（IP）",
 		Prefix:      "remoteAddr",
-		Description: "试图通过分析X-Forwarded-For等Header获取的客户端地址，比如192.168.1.100，存在伪造的可能。",
+		Description: "试图通过分析X-Forwarded-For等报头获取的客户端地址，比如192.168.1.100，存在伪造的可能。",
 		IsRequest:   true,
 		Priority:    100,
 	},
@@ -75,7 +75,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "请求内容长度",
 		Prefix:      "requestLength",
-		Description: "请求Header中的Content-Length。",
+		Description: "请求报头中的Content-Length。",
 		IsRequest:   true,
 		Priority:    100,
 	},
@@ -170,7 +170,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "请求来源URL",
 		Prefix:      "referer",
-		Description: "请求Header中的Referer值。",
+		Description: "请求报头中的Referer值。",
 		IsRequest:   true,
 		Priority:    100,
 	},
@@ -184,7 +184,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "内容类型",
 		Prefix:      "contentType",
-		Description: "请求Header的Content-Type。",
+		Description: "请求报头的Content-Type。",
 		IsRequest:   true,
 		Priority:    100,
 	},
@@ -219,16 +219,16 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		Priority:    100,
 	},
 	{
-		Name:        "所有Header信息",
+		Name:        "所有报头信息",
 		Prefix:      "headers",
-		Description: "使用换行符（\\n）隔开的Header信息字符串，每行均为\"NAME: VALUE格式\"。",
+		Description: "使用换行符（\\n）隔开的报头信息字符串，每行均为\"NAME: VALUE格式\"。",
 		IsRequest:   true,
 		Priority:    100,
 	},
 	{
-		Name:        "单个Header值",
+		Name:        "单个报头值",
 		Prefix:      "header",
-		Description: "单个Header值。",
+		Description: "单个报头值。",
 		IsRequest:   true,
 		HasParams:   true,
 		Priority:    100,
@@ -371,9 +371,9 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		Priority:    100,
 	},
 	{
-		Name:        "响应Header",
+		Name:        "响应报头",
 		Prefix:      "responseHeader",
-		Description: "响应Header值。",
+		Description: "响应报头值。",
 		IsRequest:   false,
 		HasParams:   true,
 		Priority:    100,
@@ -388,7 +388,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "响应内容长度",
 		Prefix:      "bytesSent",
-		Description: "响应内容长度，通过响应的Header Content-Length获取。",
+		Description: "响应内容长度，通过响应的报头Content-Length获取。",
 		IsRequest:   false,
 		Priority:    100,
 	},
