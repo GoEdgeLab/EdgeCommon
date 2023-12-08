@@ -148,14 +148,14 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "主机名",
 		Prefix:      "host",
-		Description: "比如goedge.cn。",
+		Description: "比如example.com。",
 		IsRequest:   true,
 		Priority:    100,
 	},
 	{
 		Name:        "CNAME",
 		Prefix:      "cname",
-		Description: "当前网站服务CNAME，比如38b48e4f.goedge.cn。",
+		Description: "当前网站服务CNAME，比如38b48e4f.example.com。",
 		IsRequest:   true,
 		Priority:    100,
 	},
@@ -219,14 +219,21 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		Priority:    100,
 	},
 	{
-		Name:        "所有报头信息",
+		Name:        "所有请求报头内容",
 		Prefix:      "headers",
-		Description: "使用换行符（\\n）隔开的报头信息字符串，每行均为\"NAME: VALUE格式\"。",
+		Description: "使用换行符（\\n）隔开的报头内容字符串，每行均为\"NAME: VALUE格式\"。",
 		IsRequest:   true,
 		Priority:    100,
 	},
 	{
-		Name:        "单个报头值",
+		Name:        "所有请求报头名称",
+		Prefix:      "headerNames",
+		Description: "使用换行符（\\n）隔开的报头名称字符串，每行一个名称。",
+		IsRequest:   true,
+		Priority:    100,
+	},
+	{
+		Name:        "单个请求报头值",
 		Prefix:      "header",
 		Description: "单个报头值。",
 		IsRequest:   true,
@@ -236,7 +243,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "国家/地区名称",
 		Prefix:      "geoCountryName",
-		Description: "当前访问者国家/地区名称。",
+		Description: "当前客户端所处国家/地区名称。",
 		IsRequest:   true,
 		HasParams:   false,
 		Priority:    90,
@@ -244,7 +251,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "省份名称",
 		Prefix:      "geoProvinceName",
-		Description: "当前访问者中国省份名称。",
+		Description: "当前客户端所处中国省份名称。",
 		IsRequest:   true,
 		HasParams:   false,
 		Priority:    90,
@@ -252,7 +259,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "城市名称",
 		Prefix:      "geoCityName",
-		Description: "当前访问者中国城市名称。",
+		Description: "当前客户端所处中国城市名称。",
 		IsRequest:   true,
 		HasParams:   false,
 		Priority:    90,
@@ -260,7 +267,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 	{
 		Name:        "ISP名称",
 		Prefix:      "ispName",
-		Description: "当前访问者ISP名称。",
+		Description: "当前客户端所处ISP名称。",
 		IsRequest:   true,
 		HasParams:   false,
 		Priority:    90,
