@@ -26,6 +26,7 @@ const (
 	HTTPFirewallRuleOperatorContainsAny          HTTPFirewallRuleOperator = "contains any"
 	HTTPFirewallRuleOperatorContainsAll          HTTPFirewallRuleOperator = "contains all"
 	HTTPFirewallRuleOperatorContainsSQLInjection HTTPFirewallRuleOperator = "contains sql injection"
+	HTTPFirewallRuleOperatorContainsXSS          HTTPFirewallRuleOperator = "contains xss"
 	HTTPFirewallRuleOperatorHasKey               HTTPFirewallRuleOperator = "has key" // has key in slice or map
 	HTTPFirewallRuleOperatorVersionGt            HTTPFirewallRuleOperator = "version gt"
 	HTTPFirewallRuleOperatorVersionLt            HTTPFirewallRuleOperator = "version lt"
@@ -171,6 +172,13 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 		Name:            "包含SQL注入",
 		Code:            HTTPFirewallRuleOperatorContainsSQLInjection,
 		Description:     "检测字符串内容是否包含SQL注入",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
+		DataType:        "none",
+	},
+	{
+		Name:            "包含XSS注入",
+		Code:            HTTPFirewallRuleOperatorContainsXSS,
+		Description:     "检测字符串内容是否包含XSS注入",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "none",
 	},
