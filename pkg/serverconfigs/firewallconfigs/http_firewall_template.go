@@ -66,7 +66,8 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Connector = HTTPFirewallRuleConnectorOr
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
-					Code: HTTPFirewallActionBlock,
+					Code:    HTTPFirewallActionPage,
+					Options: maps.Map{"status": 403, "body": ""},
 				},
 			}
 			set.AddRule(&HTTPFirewallRule{
@@ -99,7 +100,8 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Connector = HTTPFirewallRuleConnectorOr
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
-					Code: HTTPFirewallActionBlock,
+					Code:    HTTPFirewallActionPage,
+					Options: maps.Map{"status": 403, "body": ""},
 				},
 			}
 			set.AddRule(&HTTPFirewallRule{
@@ -131,7 +133,8 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Connector = HTTPFirewallRuleConnectorOr
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
-					Code: HTTPFirewallActionBlock,
+					Code:    HTTPFirewallActionPage,
+					Options: maps.Map{"status": 403, "body": ""},
 				},
 			}
 			set.AddRule(&HTTPFirewallRule{
@@ -171,14 +174,15 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Connector = HTTPFirewallRuleConnectorOr
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
-					Code: HTTPFirewallActionBlock,
+					Code:    HTTPFirewallActionPage,
+					Options: maps.Map{"status": 403, "body": ""},
 				},
 			}
 			set.AddRule(&HTTPFirewallRule{
 				IsOn:              true,
 				Param:             "${requestURI}",
 				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `((\.+)(/+)){2,}`, // TODO more keywords here
+				Value:             `((\.+)(/+)){2,}`,
 				IsCaseInsensitive: false,
 			})
 			group.AddRuleSet(set)
@@ -459,10 +463,8 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Connector = HTTPFirewallRuleConnectorAnd
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
-					Code: HTTPFirewallActionBlock,
-					Options: maps.Map{
-						"timeout": 1800,
-					},
+					Code:    HTTPFirewallActionPage,
+					Options: maps.Map{"status": 403, "body": ""},
 				},
 			}
 
@@ -498,10 +500,8 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Connector = HTTPFirewallRuleConnectorAnd
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
-					Code: HTTPFirewallActionBlock,
-					Options: maps.Map{
-						"timeout": 60,
-					},
+					Code:    HTTPFirewallActionPage,
+					Options: maps.Map{"status": 403, "body": ""},
 				},
 			}
 
