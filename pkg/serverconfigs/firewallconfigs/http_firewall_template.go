@@ -278,7 +278,8 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Connector = HTTPFirewallRuleConnectorOr
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
-					Code: HTTPFirewallActionBlock,
+					Code:    HTTPFirewallActionPage,
+					Options: maps.Map{"status": 403, "body": ""},
 				},
 			}
 
