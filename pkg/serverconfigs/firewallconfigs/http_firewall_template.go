@@ -204,14 +204,15 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Connector = HTTPFirewallRuleConnectorOr
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
-					Code: HTTPFirewallActionBlock,
+					Code:    HTTPFirewallActionPage,
+					Options: maps.Map{"status": 403, "body": ""},
 				},
 			}
 			set.AddRule(&HTTPFirewallRule{
 				IsOn:              true,
 				Param:             "${requestPath}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `/\.(git|svn|htaccess|idea|env)\b`, // TODO more keywords here
+				Operator:          HTTPFirewallRuleOperatorContainsAnyWord,
+				Value:             "/.git\n/.svn\n/.htaccess\n/.idea\n/.env\n/.vscode",
 				IsCaseInsensitive: true,
 			})
 			group.AddRuleSet(set)
@@ -273,15 +274,16 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Connector = HTTPFirewallRuleConnectorOr
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
-					Code: HTTPFirewallActionBlock,
+					Code:    HTTPFirewallActionPage,
+					Options: maps.Map{"status": 403, "body": ""},
 				},
 			}
 
 			set.AddRule(&HTTPFirewallRule{
 				IsOn:              true,
 				Param:             "${userAgent}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `360spider|adldxbot|adsbot-google|applebot|admantx|alexa|baidu|bingbot|bingpreview|facebookexternalhit|googlebot|proximic|slurp|sogou|twitterbot|yandex|spider`,
+				Operator:          HTTPFirewallRuleOperatorContainsAnyWord,
+				Value:             "360spider\nadldxbot\nadsbot-google\napplebot\nadmantx\nalexa\nbaidu\nbingbot\nbingpreview\nfacebookexternalhit\ngooglebot\nproximic\nslurp\nsogou\ntwitterbot\nyandex\nspider",
 				IsCaseInsensitive: true,
 			})
 
@@ -296,22 +298,23 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Connector = HTTPFirewallRuleConnectorAnd
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
-					Code: HTTPFirewallActionBlock,
+					Code:    HTTPFirewallActionPage,
+					Options: maps.Map{"status": 403, "body": ""},
 				},
 			}
 
 			set.AddRule(&HTTPFirewallRule{
 				IsOn:              true,
 				Param:             "${userAgent}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `python|pycurl|http-client|httpclient|apachebench|nethttp|http_request|java|perl|ruby|scrapy|php\b|rust`,
+				Operator:          HTTPFirewallRuleOperatorContainsAnyWord,
+				Value:             "python\npycurl\nhttp-client\nhttpclient\napachebench\nnethttp\nhttp_request\njava\nperl\nruby\nscrapy\nphp\nrust",
 				IsCaseInsensitive: true,
 			})
 			set.AddRule(&HTTPFirewallRule{
 				IsOn:              true,
 				Param:             "${userAgent}",
-				Operator:          HTTPFirewallRuleOperatorNotMatch,
-				Value:             `goedge`,
+				Operator:          HTTPFirewallRuleOperatorNotContainsAnyWord,
+				Value:             "goedge",
 				IsCaseInsensitive: true,
 				Description:       "User-Agent白名单",
 			})
@@ -337,8 +340,8 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.AddRule(&HTTPFirewallRule{
 				IsOn:              true,
 				Param:             "${userAgent}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `wget|curl`,
+				Operator:          HTTPFirewallRuleOperatorContainsAnyWord,
+				Value:             "wget\ncurl",
 				IsCaseInsensitive: true,
 			})
 
@@ -353,7 +356,8 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Connector = HTTPFirewallRuleConnectorOr
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
-					Code: HTTPFirewallActionBlock,
+					Code:    HTTPFirewallActionPage,
+					Options: maps.Map{"status": 403, "body": ""},
 				},
 			}
 
@@ -396,6 +400,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 					},
 				},
 			}
+			set.IgnoreLocal = true
 			set.AddRule(&HTTPFirewallRule{
 				IsOn:     true,
 				Param:    "${cc2}",
@@ -409,34 +414,6 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 				},
 				IsCaseInsensitive: false,
 			})
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${remoteAddr}",
-				Operator:          HTTPFirewallRuleOperatorNotIPRange,
-				Value:             `127.0.0.1/8`,
-				IsCaseInsensitive: false,
-			})
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${remoteAddr}",
-				Operator:          HTTPFirewallRuleOperatorNotIPRange,
-				Value:             `192.168.0.1/16`,
-				IsCaseInsensitive: false,
-			})
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${remoteAddr}",
-				Operator:          HTTPFirewallRuleOperatorNotIPRange,
-				Value:             `10.0.0.1/8`,
-				IsCaseInsensitive: false,
-			})
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${remoteAddr}",
-				Operator:          HTTPFirewallRuleOperatorNotIPRange,
-				Value:             `172.16.0.1/12`,
-				IsCaseInsensitive: false,
-			})
 
 			group.AddRuleSet(set)
 		}
@@ -447,6 +424,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.Description = "限制单IP在一定时间内的总体请求数"
 			set.Code = "8002"
 			set.Connector = HTTPFirewallRuleConnectorAnd
+			set.IgnoreLocal = true
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
 					Code: HTTPFirewallActionBlock,
@@ -466,34 +444,6 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 					"threshold":         1200,
 					"enableFingerprint": true,
 				},
-				IsCaseInsensitive: false,
-			})
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${remoteAddr}",
-				Operator:          HTTPFirewallRuleOperatorNotIPRange,
-				Value:             `127.0.0.1/8`,
-				IsCaseInsensitive: false,
-			})
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${remoteAddr}",
-				Operator:          HTTPFirewallRuleOperatorNotIPRange,
-				Value:             `192.168.0.1/16`,
-				IsCaseInsensitive: false,
-			})
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${remoteAddr}",
-				Operator:          HTTPFirewallRuleOperatorNotIPRange,
-				Value:             `10.0.0.1/8`,
-				IsCaseInsensitive: false,
-			})
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${remoteAddr}",
-				Operator:          HTTPFirewallRuleOperatorNotIPRange,
-				Value:             `172.16.0.1/12`,
 				IsCaseInsensitive: false,
 			})
 
