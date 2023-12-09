@@ -27,62 +27,21 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		{
 			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
-			set.Name = "Javascript事件"
-			set.Code = "1001"
+			set.Name = "XSS攻击检测"
+			set.Code = "1010"
 			set.Connector = HTTPFirewallRuleConnectorOr
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
-					Code: HTTPFirewallActionBlock,
+					Code:    HTTPFirewallActionPage,
+					Options: maps.Map{"status": 403, "body": ""},
 				},
 			}
 			set.AddRule(&HTTPFirewallRule{
 				IsOn:              true,
-				Param:             "${requestURI}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `(onmouseover|onmousemove|onmousedown|onmouseup|onerror|onload|onclick|ondblclick|onkeydown|onkeyup|onkeypress)\s*=`, // TODO more keywords here
-				IsCaseInsensitive: true,
-			})
-			group.AddRuleSet(set)
-		}
-
-		{
-			var set = &HTTPFirewallRuleSet{}
-			set.IsOn = true
-			set.Name = "Javascript函数"
-			set.Code = "1002"
-			set.Connector = HTTPFirewallRuleConnectorOr
-			set.Actions = []*HTTPFirewallActionConfig{
-				{
-					Code: HTTPFirewallActionBlock,
-				},
-			}
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${requestURI}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `(alert|eval|prompt|confirm)\s*\(`, // TODO more keywords here
-				IsCaseInsensitive: true,
-			})
-			group.AddRuleSet(set)
-		}
-
-		{
-			var set = &HTTPFirewallRuleSet{}
-			set.IsOn = true
-			set.Name = "HTML标签"
-			set.Code = "1003"
-			set.Connector = HTTPFirewallRuleConnectorOr
-			set.Actions = []*HTTPFirewallActionConfig{
-				{
-					Code: HTTPFirewallActionBlock,
-				},
-			}
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${requestURI}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `<(script|iframe|link)`, // TODO more keywords here
-				IsCaseInsensitive: true,
+				Param:             "${requestAll}",
+				Operator:          HTTPFirewallRuleOperatorContainsXSS,
+				Value:             "",
+				IsCaseInsensitive: false,
 			})
 			group.AddRuleSet(set)
 		}
@@ -273,7 +232,7 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		{
 			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
-			set.Name = "检测SQL注入"
+			set.Name = "SQL注入检测"
 			set.Code = "7010"
 			set.Connector = HTTPFirewallRuleConnectorOr
 			set.Actions = []*HTTPFirewallActionConfig{
