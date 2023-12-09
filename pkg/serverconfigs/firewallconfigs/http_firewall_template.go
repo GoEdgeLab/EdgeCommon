@@ -273,8 +273,8 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 		{
 			var set = &HTTPFirewallRuleSet{}
 			set.IsOn = true
-			set.Name = "Union SQL Injection"
-			set.Code = "7001"
+			set.Name = "检测SQL注入"
+			set.Code = "7010"
 			set.Connector = HTTPFirewallRuleConnectorOr
 			set.Actions = []*HTTPFirewallActionConfig{
 				{
@@ -285,122 +285,9 @@ func HTTPFirewallTemplate() *HTTPFirewallPolicy {
 			set.AddRule(&HTTPFirewallRule{
 				IsOn:              true,
 				Param:             "${requestAll}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `union[\s/\*]+select`,
-				IsCaseInsensitive: true,
-			})
-
-			group.AddRuleSet(set)
-		}
-
-		{
-			var set = &HTTPFirewallRuleSet{}
-			set.IsOn = false
-			set.Name = "SQL注释"
-			set.Code = "7002"
-			set.Connector = HTTPFirewallRuleConnectorOr
-			set.Actions = []*HTTPFirewallActionConfig{
-				{
-					Code: HTTPFirewallActionBlock,
-				},
-			}
-
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${requestAll}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `/\*(!|\x00)`,
-				IsCaseInsensitive: true,
-			})
-
-			group.AddRuleSet(set)
-		}
-
-		{
-			var set = &HTTPFirewallRuleSet{}
-			set.IsOn = true
-			set.Name = "SQL条件"
-			set.Code = "7003"
-			set.Connector = HTTPFirewallRuleConnectorOr
-			set.Actions = []*HTTPFirewallActionConfig{
-				{
-					Code: HTTPFirewallActionBlock,
-				},
-			}
-
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${requestAll}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `\s(and|or|rlike)\s+(if|updatexml)\s*\(`,
-				IsCaseInsensitive: true,
-			})
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${requestAll}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `\s+(and|or|rlike)\s+(select|case)\s+`,
-				IsCaseInsensitive: true,
-			})
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${requestAll}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `\s+(and|or|procedure)\s+[\w\p{L}]+\s*=\s*[\w\p{L}]+(\s|$|--|#)`,
-				IsCaseInsensitive: true,
-			})
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${requestAll}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `\(\s*case\s+when\s+[\w\p{L}]+\s*=\s*[\w\p{L}]+\s+then\s+`,
-				IsCaseInsensitive: true,
-			})
-
-			group.AddRuleSet(set)
-		}
-
-		{
-			var set = &HTTPFirewallRuleSet{}
-			set.IsOn = true
-			set.Name = "SQL函数"
-			set.Code = "7004"
-			set.Connector = HTTPFirewallRuleConnectorOr
-			set.Actions = []*HTTPFirewallActionConfig{
-				{
-					Code: HTTPFirewallActionBlock,
-				},
-			}
-
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${requestAll}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `\b(updatexml|extractvalue|ascii|ord|char|chr|count|concat|rand|floor|substr|length|len|user|database|benchmark|analyse)\s*\(.*\)`,
-				IsCaseInsensitive: true,
-			})
-
-			group.AddRuleSet(set)
-		}
-
-		{
-			var set = &HTTPFirewallRuleSet{}
-			set.IsOn = true
-			set.Name = "SQL附加语句"
-			set.Code = "7005"
-			set.Connector = HTTPFirewallRuleConnectorOr
-			set.Actions = []*HTTPFirewallActionConfig{
-				{
-					Code: HTTPFirewallActionBlock,
-				},
-			}
-
-			set.AddRule(&HTTPFirewallRule{
-				IsOn:              true,
-				Param:             "${requestAll}",
-				Operator:          HTTPFirewallRuleOperatorMatch,
-				Value:             `;\s*(declare|use|drop|create|exec|delete|update|insert)\s`,
-				IsCaseInsensitive: true,
+				Operator:          HTTPFirewallRuleOperatorContainsSQLInjection,
+				Value:             "",
+				IsCaseInsensitive: false,
 			})
 
 			group.AddRuleSet(set)
