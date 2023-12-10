@@ -489,7 +489,7 @@ const (
 	Server_LogUpdateServerBasic                                 langs.MessageCode = "server@log_update_server_basic"                                      // 修改网站 %d 基本信息
 	Server_LogUpdateServerGroups                                langs.MessageCode = "server@log_update_server_groups"                                     // 修改网站 %d 所属分组
 	Server_LogUpdateServerIsOn                                  langs.MessageCode = "server@log_update_server_is_on"                                      // 修改网站 %d 启用状态
-	Server_LogUpdateServerName                                  langs.MessageCode = "server@log_update_server_name"                                       // 修改网站名称
+	Server_LogUpdateServerName                                  langs.MessageCode = "server@log_update_server_name"                                       // 修改网站 %d 名称
 	Server_MenuAccesslogHistory                                 langs.MessageCode = "server@menu_accesslog_history"                                       // 历史
 	Server_MenuAccesslogRealtime                                langs.MessageCode = "server@menu_accesslog_realtime"                                      // 实时
 	Server_MenuAccesslogToday                                   langs.MessageCode = "server@menu_accesslog_today"                                         // 今天

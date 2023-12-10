@@ -490,7 +490,7 @@ func init() {
 		"server@log_update_server_basic":                                      "修改网站 %d 基本信息",
 		"server@log_update_server_groups":                                     "修改网站 %d 所属分组",
 		"server@log_update_server_is_on":                                      "修改网站 %d 启用状态",
-		"server@log_update_server_name":                                       "修改网站名称",
+		"server@log_update_server_name":                                       "修改网站 %d 名称",
 		"server@menu_accesslog_history":                                       "历史",
 		"server@menu_accesslog_realtime":                                      "实时",
 		"server@menu_accesslog_today":                                         "今天",
