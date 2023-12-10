@@ -147,6 +147,7 @@ const (
 	AdminUpdate_LogIgnoreVersion                                langs.MessageCode = "admin_update@log_ignore_version"                                     // 忽略升级版本 %s
 	AdminUpdate_LogResetIgnoreVersion                           langs.MessageCode = "admin_update@log_reset_ignore_version"                               // 重置忽略升级版本
 	AdminUpdate_LogUpdateCheckSettings                          langs.MessageCode = "admin_update@log_update_check_settings"                              // 修改检查更新设置
+	AdminUserUI_LogUpdateUISettings                             langs.MessageCode = "admin_user_ui@log_update_ui_settings"                                // 修改用户界面设置
 	APINode_LogCreateAPINode                                    langs.MessageCode = "api_node@log_create_api_node"                                        // 创建API节点 %d
 	APINode_LogDeleteAPINode                                    langs.MessageCode = "api_node@log_delete_api_node"                                        // 删除API节点 %d
 	APINode_LogUpdateAPINode                                    langs.MessageCode = "api_node@log_update_api_node"                                        // 修改API节点 %d

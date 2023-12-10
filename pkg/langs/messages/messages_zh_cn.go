@@ -148,6 +148,7 @@ func init() {
 		"admin_update@log_ignore_version":                                     "忽略升级版本 %s",
 		"admin_update@log_reset_ignore_version":                               "重置忽略升级版本",
 		"admin_update@log_update_check_settings":                              "修改检查更新设置",
+		"admin_user_ui@log_update_ui_settings":                                "修改用户界面设置",
 		"api_node@log_create_api_node":                                        "创建API节点 %d",
 		"api_node@log_delete_api_node":                                        "删除API节点 %d",
 		"api_node@log_update_api_node":                                        "修改API节点 %d",
