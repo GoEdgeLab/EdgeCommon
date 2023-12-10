@@ -16,6 +16,8 @@ type SecurityConfig struct {
 	CheckClientFingerprint bool     `json:"checkClientFingerprint"` // 在登录状态下检查客户端指纹
 	CheckClientRegion      bool     `json:"checkClientRegion"`      // 在登录状态下检查客户端区域
 
+	ClientIPHeaderNames string `json:"clientIPHeaderNames"` // 客户端IP获取报头名称列表
+
 	allowIPRanges []*shared.IPRangeConfig
 }
 
