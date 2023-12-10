@@ -19,6 +19,8 @@ type UserUIConfig struct {
 	LogoFileId     int64  `json:"logoFileId"`     // Logo文件ID
 	TimeZone       string `json:"timeZone"`       // 时区
 
+	ClientIPHeaderNames string `json:"clientIPHeaderNames"` // 客户端IP获取报头名称列表
+
 	Server struct {
 		CheckCNAME bool `json:"checkCNAME"` // 是否检查CNAME
 	} `json:"server"` // 服务相关设置
