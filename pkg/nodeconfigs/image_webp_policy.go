@@ -21,6 +21,7 @@ type WebPImagePolicy struct {
 	RequireCache bool                 `yaml:"requireCache" json:"requireCache"` // 需要在缓存条件下进行
 	MinLength    *shared.SizeCapacity `yaml:"minLength" json:"minLength"`       // 最小压缩对象比如4m, 24k
 	MaxLength    *shared.SizeCapacity `yaml:"maxLength" json:"maxLength"`       // 最大压缩对象
+	Quality      int                  `yaml:"quality" json:"quality"`           // 生成的图片质量：0-100
 
 	minLength int64
 	maxLength int64

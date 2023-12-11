@@ -12,8 +12,6 @@ type WebPImageConfig struct {
 	IsPrior bool `yaml:"isPrior" json:"isPrior"`
 	IsOn    bool `yaml:"isOn" json:"isOn"`
 
-	Quality int `yaml:"quality" json:"quality"` // 0-100
-
 	MinLength  *shared.SizeCapacity           `yaml:"minLength" json:"minLength"`   // 最小压缩对象比如4m, 24k
 	MaxLength  *shared.SizeCapacity           `yaml:"maxLength" json:"maxLength"`   // 最大压缩对象
 	MimeTypes  []string                       `yaml:"mimeTypes" json:"mimeTypes"`   // 支持的MimeType，支持image/*这样的通配符使用
