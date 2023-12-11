@@ -205,6 +205,9 @@ service NodeService {
 
 	// 查找节点的网络安全策略
 	rpc findNodeNetworkSecurityPolicy(FindNodeNetworkSecurityPolicyRequest) returns (FindNodeNetworkSecurityPolicyResponse);
+
+	// 查找节点的WebP策略
+	rpc findNodeWebPPolicies(FindNodeWebPPoliciesRequest) returns (FindNodeWebPPoliciesResponse);
 }
 
 // 创建节点
@@ -827,4 +830,18 @@ message FindNodeNetworkSecurityPolicyRequest {
 
 message FindNodeNetworkSecurityPolicyResponse {
 	bytes networkSecurityPolicyJSON = 1; // 网络安全策略
+}
+
+// 查找节点的WebP策略
+message FindNodeWebPPoliciesRequest {
+
+}
+
+message FindNodeWebPPoliciesResponse {
+	repeated WebPPolicy webPPolicies = 1; // WebP策略列表
+
+	message WebPPolicy {
+		int64 nodeClusterId = 1; // 集群ID
+		bytes webPPolicyJSON = 2; // WebP策略配置
+	}
 }

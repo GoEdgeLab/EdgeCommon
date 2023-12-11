@@ -28,6 +28,7 @@ var uamPolicyLocker = &sync.RWMutex{}
 var httpCCPolicyLocker = &sync.RWMutex{}
 var http3PolicyLocker = &sync.RWMutex{}
 var httpPagesPolicyLocker = &sync.RWMutex{}
+var webPPolicyLocker = &sync.RWMutex{}
 
 type ServerError struct {
 	Id      int64
@@ -210,6 +211,9 @@ func CloneNodeConfig(nodeConfig *NodeConfig) (*NodeConfig, error) {
 	httpPagesPolicyLocker.RLock()
 	defer httpPagesPolicyLocker.RUnlock()
 
+	webPPolicyLocker.RLock()
+	defer webPPolicyLocker.RUnlock()
+
 	var newConfigValue = reflect.Indirect(reflect.ValueOf(&NodeConfig{}))
 	var oldValue = reflect.Indirect(reflect.ValueOf(nodeConfig))
 	var valueType = oldValue.Type()
@@ -376,14 +380,17 @@ func (this *NodeConfig) Init(ctx context.Context) (err error, serverErrors []*Se
 	}
 
 	// webp image policy
+	webPPolicyLocker.RLock()
 	if this.WebPImagePolicies != nil {
 		for _, policy := range this.WebPImagePolicies {
 			err = policy.Init()
 			if err != nil {
+				webPPolicyLocker.RUnlock()
 				return
 			}
 		}
 	}
+	webPPolicyLocker.RUnlock()
 
 	// uam policy
 	uamPolicyLocker.RLock()
@@ -675,10 +682,20 @@ func (this *NodeConfig) UpdateCertOCSP(certId int64, ocsp []byte, expiresAt int6
 
 // FindWebPImagePolicyWithClusterId 使用集群ID查找WebP策略
 func (this *NodeConfig) FindWebPImagePolicyWithClusterId(clusterId int64) *WebPImagePolicy {
+	webPPolicyLocker.RLock()
+	defer webPPolicyLocker.RUnlock()
+
 	if this.WebPImagePolicies == nil {
 		return nil
 	}
 	return this.WebPImagePolicies[clusterId]
+}
+
+// UpdateWebPImagePolicies 修改集群WebP策略
+func (this *NodeConfig) UpdateWebPImagePolicies(policies map[int64]*WebPImagePolicy) {
+	webPPolicyLocker.Lock()
+	defer webPPolicyLocker.Unlock()
+	this.WebPImagePolicies = policies
 }
 
 // FindUAMPolicyWithClusterId 使用集群ID查找UAM策略

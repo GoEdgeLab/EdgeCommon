@@ -8,11 +8,15 @@ func init() {
 	_ = DefaultWebPImagePolicy.Init()
 }
 
-var DefaultWebPImagePolicy = &WebPImagePolicy{
-	IsOn:         true,
-	RequireCache: true,
-	MinLength:    shared.NewSizeCapacity(0, shared.SizeCapacityUnitKB),
-	MaxLength:    shared.NewSizeCapacity(128, shared.SizeCapacityUnitMB),
+var DefaultWebPImagePolicy = NewWebPImagePolicy()
+
+func NewWebPImagePolicy() *WebPImagePolicy {
+	return &WebPImagePolicy{
+		IsOn:         true,
+		RequireCache: true,
+		MinLength:    shared.NewSizeCapacity(0, shared.SizeCapacityUnitKB),
+		MaxLength:    shared.NewSizeCapacity(128, shared.SizeCapacityUnitMB),
+	}
 }
 
 // WebPImagePolicy WebP策略

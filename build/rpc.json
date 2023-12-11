@@ -5649,6 +5649,15 @@
             "node"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findNodeWebPPolicies",
+          "requestMessageName": "FindNodeWebPPoliciesRequest",
+          "responseMessageName": "FindNodeWebPPoliciesResponse",
+          "code": "rpc findNodeWebPPolicies(FindNodeWebPPoliciesRequest) returns (FindNodeWebPPoliciesResponse);",
+          "doc": "查找节点的WebP策略",
+          "roles": [],
+          "isDeprecated": false
         }
       ],
       "filename": "service_node.proto",
@@ -18084,7 +18093,7 @@
     },
     {
       "name": "FindEnabledNodeClusterConfigInfoResponse",
-      "code": "message FindEnabledNodeClusterConfigInfoResponse {\n\tbool healthCheckIsOn = 1; // 启用了健康检查\n\tbool hasFirewallActions = 2; // 有防火墙动作设置\n\tbool hasThresholds = 3; // 有节点阈值设置\n\tbool hasMessageReceivers = 4; // 已设置消息通知接收人\n\tbool isTOAEnabled = 5; // 启用了TOA\n\tbool hasMetricItems = 6; // 有指标统计设置\n\tbool webpIsOn = 7; // 是否定义了WebP策略\n\tbool uamIsOn = 10; // 是否定义了UAM策略\n\tbool httpCCIsOn = 12; // 是否定义了CC策略\n\tbool hasSystemServices = 8; // 启用了系统服务\n\tbool hasDDoSProtection = 9; // 启用了DDoS防护\n\tbool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略\n\tbool http3IsOn = 13; // 是否启用HTTP3\n\tbool hasNetworkSecurityPolicy = 14; // 设置了网络安全策略\n}",
+      "code": "message FindEnabledNodeClusterConfigInfoResponse {\n\tbool healthCheckIsOn = 1; // 启用了健康检查\n\tbool hasFirewallActions = 2; // 有防火墙动作设置\n\tbool hasThresholds = 3; // 有节点阈值设置\n\tbool hasMessageReceivers = 4; // 已设置消息通知接收人\n\tbool isTOAEnabled = 5; // 启用了TOA\n\tbool hasMetricItems = 6; // 有指标统计设置\n\tbool webPIsOn = 7; // 是否定义了WebP策略\n\tbool uamIsOn = 10; // 是否定义了UAM策略\n\tbool httpCCIsOn = 12; // 是否定义了CC策略\n\tbool hasSystemServices = 8; // 启用了系统服务\n\tbool hasDDoSProtection = 9; // 启用了DDoS防护\n\tbool hasHTTPPagesPolicy = 11; // 是否设置了自定义页面策略\n\tbool http3IsOn = 13; // 是否启用HTTP3\n\tbool hasNetworkSecurityPolicy = 14; // 设置了网络安全策略\n}",
       "doc": ""
     },
     {
@@ -19430,6 +19439,16 @@
     {
       "name": "FindNodeUAMPoliciesResponse",
       "code": "message FindNodeUAMPoliciesResponse {\n\trepeated UAMPolicy uamPolicies = 1; // UAM策略列表\n\n\n\tmessage UAMPolicy {\n\t\tint64 nodeClusterId = 1; // 集群ID\n\t\tbytes uamPolicyJSON = 2; // UAM策略配置\n\t}\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindNodeWebPPoliciesRequest",
+      "code": "message FindNodeWebPPoliciesRequest {\n\n}",
+      "doc": "查找节点的WebP策略"
+    },
+    {
+      "name": "FindNodeWebPPoliciesResponse",
+      "code": "message FindNodeWebPPoliciesResponse {\n\trepeated WebPPolicy webPPolicies = 1; // WebP策略列表\n\n\n\tmessage WebPPolicy {\n\t\tint64 nodeClusterId = 1; // 集群ID\n\t\tbytes webPPolicyJSON = 2; // WebP策略配置\n\t}\n}",
       "doc": ""
     },
     {
@@ -22339,7 +22358,7 @@
     },
     {
       "name": "UpdateNodeClusterWebPPolicyRequest",
-      "code": "message UpdateNodeClusterWebPPolicyRequest {\n\tint64 nodeClusterId = 1;\n\tbytes webpPolicyJSON = 2;\n}",
+      "code": "message UpdateNodeClusterWebPPolicyRequest {\n\tint64 nodeClusterId = 1;\n\tbytes webPPolicyJSON = 2;\n}",
       "doc": "设置集群WebP策略"
     },
     {

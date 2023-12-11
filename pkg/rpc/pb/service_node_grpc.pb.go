@@ -83,6 +83,7 @@ const (
 	NodeService_CopyNodeActionsToNodeCluster_FullMethodName               = "/pb.NodeService/copyNodeActionsToNodeCluster"
 	NodeService_FindNodeTOAConfig_FullMethodName                          = "/pb.NodeService/findNodeTOAConfig"
 	NodeService_FindNodeNetworkSecurityPolicy_FullMethodName              = "/pb.NodeService/findNodeNetworkSecurityPolicy"
+	NodeService_FindNodeWebPPolicies_FullMethodName                       = "/pb.NodeService/findNodeWebPPolicies"
 )
 
 // NodeServiceClient is the client API for NodeService service.
@@ -217,6 +218,8 @@ type NodeServiceClient interface {
 	FindNodeTOAConfig(ctx context.Context, in *FindNodeTOAConfigRequest, opts ...grpc.CallOption) (*FindNodeTOAConfigResponse, error)
 	// 查找节点的网络安全策略
 	FindNodeNetworkSecurityPolicy(ctx context.Context, in *FindNodeNetworkSecurityPolicyRequest, opts ...grpc.CallOption) (*FindNodeNetworkSecurityPolicyResponse, error)
+	// 查找节点的WebP策略
+	FindNodeWebPPolicies(ctx context.Context, in *FindNodeWebPPoliciesRequest, opts ...grpc.CallOption) (*FindNodeWebPPoliciesResponse, error)
 }
 
 type nodeServiceClient struct {
@@ -825,6 +828,15 @@ func (c *nodeServiceClient) FindNodeNetworkSecurityPolicy(ctx context.Context, i
 	return out, nil
 }
 
+func (c *nodeServiceClient) FindNodeWebPPolicies(ctx context.Context, in *FindNodeWebPPoliciesRequest, opts ...grpc.CallOption) (*FindNodeWebPPoliciesResponse, error) {
+	out := new(FindNodeWebPPoliciesResponse)
+	err := c.cc.Invoke(ctx, NodeService_FindNodeWebPPolicies_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NodeServiceServer is the server API for NodeService service.
 // All implementations should embed UnimplementedNodeServiceServer
 // for forward compatibility
@@ -957,6 +969,8 @@ type NodeServiceServer interface {
 	FindNodeTOAConfig(context.Context, *FindNodeTOAConfigRequest) (*FindNodeTOAConfigResponse, error)
 	// 查找节点的网络安全策略
 	FindNodeNetworkSecurityPolicy(context.Context, *FindNodeNetworkSecurityPolicyRequest) (*FindNodeNetworkSecurityPolicyResponse, error)
+	// 查找节点的WebP策略
+	FindNodeWebPPolicies(context.Context, *FindNodeWebPPoliciesRequest) (*FindNodeWebPPoliciesResponse, error)
 }
 
 // UnimplementedNodeServiceServer should be embedded to have forward compatible implementations.
@@ -1154,6 +1168,9 @@ func (UnimplementedNodeServiceServer) FindNodeTOAConfig(context.Context, *FindNo
 }
 func (UnimplementedNodeServiceServer) FindNodeNetworkSecurityPolicy(context.Context, *FindNodeNetworkSecurityPolicyRequest) (*FindNodeNetworkSecurityPolicyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindNodeNetworkSecurityPolicy not implemented")
+}
+func (UnimplementedNodeServiceServer) FindNodeWebPPolicies(context.Context, *FindNodeWebPPoliciesRequest) (*FindNodeWebPPoliciesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindNodeWebPPolicies not implemented")
 }
 
 // UnsafeNodeServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -2327,6 +2344,24 @@ func _NodeService_FindNodeNetworkSecurityPolicy_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NodeService_FindNodeWebPPolicies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindNodeWebPPoliciesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeServiceServer).FindNodeWebPPolicies(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeService_FindNodeWebPPolicies_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeServiceServer).FindNodeWebPPolicies(ctx, req.(*FindNodeWebPPoliciesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NodeService_ServiceDesc is the grpc.ServiceDesc for NodeService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2585,6 +2620,10 @@ var NodeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findNodeNetworkSecurityPolicy",
 			Handler:    _NodeService_FindNodeNetworkSecurityPolicy_Handler,
+		},
+		{
+			MethodName: "findNodeWebPPolicies",
+			Handler:    _NodeService_FindNodeWebPPolicies_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

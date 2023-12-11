@@ -482,7 +482,7 @@ message FindEnabledNodeClusterConfigInfoResponse {
 	bool hasMessageReceivers = 4; // 已设置消息通知接收人
 	bool isTOAEnabled = 5; // 启用了TOA
 	bool hasMetricItems = 6; // 有指标统计设置
-	bool webpIsOn = 7; // 是否定义了WebP策略
+	bool webPIsOn = 7; // 是否定义了WebP策略
 	bool uamIsOn = 10; // 是否定义了UAM策略
 	bool httpCCIsOn = 12; // 是否定义了CC策略
 	bool hasSystemServices = 8; // 启用了系统服务
@@ -510,7 +510,7 @@ message FindEnabledNodeClusterWebPPolicyResponse {
 // 设置集群WebP策略
 message UpdateNodeClusterWebPPolicyRequest {
 	int64 nodeClusterId = 1;
-	bytes webpPolicyJSON = 2;
+	bytes webPPolicyJSON = 2;
 }
 
 // 读取集群的UAM策略
