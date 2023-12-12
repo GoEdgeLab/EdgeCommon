@@ -1,0 +1,72 @@
+{
+  "dashboard": "Dashboard",
+  "servers": "Sites",
+  "server_access_logs": "Access Logs",
+  "server_groups": "Site Groups",
+  "server_certs": "Certificates",
+  "server_traffic_stats": "Traffic Statistics",
+  "server_cache_policies": "Cache Policies",
+  "server_purge_fetch_caches": "Cache Management",
+  "server_waf_policies": "WAF Policies",
+  "server_ip_lists": "IP List",
+  "server_access_log_policies": "Access Log Policies",
+  "server_metrics": "Metrics",
+  "server_scripts": "Javascript Scripts",
+  "server_global_settings": "Global Settings",
+
+  "nodes": "Edge Nodes",
+  "node_clusters": "Clusters",
+  "node_logs": "Node Logs",
+  "node_ip_list": "Node IPs",
+  "node_regions": "Regions",
+  "node_ssh_grants": "SSH Grants",
+  "node_distributed_monitors": "Distributed Monitors",
+  "node_anti_ddos_products": "Anti-DDoS Product",
+
+  "dns": "DNS Service",
+  "dns_clusters": "Clusters",
+  "dns_providers": "DNS Providers",
+  "dns_issues": "Issues",
+
+  "ns": "Edge DNS",
+  "ns_domains": "Domains",
+  "ns_domain_groups": "Domain Groups",
+  "ns_domain_batch_operations": "Batch",
+  "ns_clusters": "Clusters",
+  "ns_routes": "Routes",
+  "ns_settings": "Settings",
+  "ns_user_plans": "User Plans",
+  "ns_plans": "Plans",
+  "ns_access_logs": "Access Logs",
+  "ns_node_logs": "Node Logs",
+  "ns_resolve_test": "Testing",
+
+  "users": "Users",
+  "user_list": "Users",
+  "user_settings": "User Settings",
+
+  "finance": "Finance",
+  "finance_bills": "Bills",
+  "finance_accounts": "Accounts",
+  "finance_logs": "Logs",
+  "finance_orders": "Orders",
+  "finance_income": "Reports",
+  "finance_fee": "Fee Settings",
+  "finance_packages": "Traffic Packages",
+
+  "plans": "Plans",
+  "plan_user_plans": "User Plans",
+
+  "tickets": "Tickets",
+  "ticket_category": "Categories",
+
+  "admins": "System Users",
+  "admin_recipients": "Notification Medias",
+
+  "logs": "Audit Logs",
+
+  "settings": "Settings",
+  "setting_basic_settings": "Basic Settings",
+  "setting_advanced_settings": "Advanced Settings",
+  "setting_authority": "Authority"
+}

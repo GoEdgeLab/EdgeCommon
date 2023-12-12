@@ -5656,7 +5656,9 @@
           "responseMessageName": "FindNodeWebPPoliciesResponse",
           "code": "rpc findNodeWebPPolicies(FindNodeWebPPoliciesRequest) returns (FindNodeWebPPoliciesResponse);",
           "doc": "查找节点的WebP策略",
-          "roles": [],
+          "roles": [
+            "node"
+          ],
           "isDeprecated": false
         }
       ],
