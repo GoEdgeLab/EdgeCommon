@@ -36,6 +36,7 @@ const (
 	AdminService_CheckAdminOTPWithUsername_FullMethodName = "/pb.AdminService/checkAdminOTPWithUsername"
 	AdminService_ComposeAdminDashboard_FullMethodName     = "/pb.AdminService/composeAdminDashboard"
 	AdminService_UpdateAdminTheme_FullMethodName          = "/pb.AdminService/updateAdminTheme"
+	AdminService_UpdateAdminLang_FullMethodName           = "/pb.AdminService/updateAdminLang"
 )
 
 // AdminServiceClient is the client API for AdminService service.
@@ -76,6 +77,8 @@ type AdminServiceClient interface {
 	ComposeAdminDashboard(ctx context.Context, in *ComposeAdminDashboardRequest, opts ...grpc.CallOption) (*ComposeAdminDashboardResponse, error)
 	// 修改管理员使用的界面风格
 	UpdateAdminTheme(ctx context.Context, in *UpdateAdminThemeRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 修改管理员使用的语言
+	UpdateAdminLang(ctx context.Context, in *UpdateAdminLangRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
 
 type adminServiceClient struct {
@@ -239,6 +242,15 @@ func (c *adminServiceClient) UpdateAdminTheme(ctx context.Context, in *UpdateAdm
 	return out, nil
 }
 
+func (c *adminServiceClient) UpdateAdminLang(ctx context.Context, in *UpdateAdminLangRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, AdminService_UpdateAdminLang_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminServiceServer is the server API for AdminService service.
 // All implementations should embed UnimplementedAdminServiceServer
 // for forward compatibility
@@ -277,6 +289,8 @@ type AdminServiceServer interface {
 	ComposeAdminDashboard(context.Context, *ComposeAdminDashboardRequest) (*ComposeAdminDashboardResponse, error)
 	// 修改管理员使用的界面风格
 	UpdateAdminTheme(context.Context, *UpdateAdminThemeRequest) (*RPCSuccess, error)
+	// 修改管理员使用的语言
+	UpdateAdminLang(context.Context, *UpdateAdminLangRequest) (*RPCSuccess, error)
 }
 
 // UnimplementedAdminServiceServer should be embedded to have forward compatible implementations.
@@ -333,6 +347,9 @@ func (UnimplementedAdminServiceServer) ComposeAdminDashboard(context.Context, *C
 }
 func (UnimplementedAdminServiceServer) UpdateAdminTheme(context.Context, *UpdateAdminThemeRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAdminTheme not implemented")
+}
+func (UnimplementedAdminServiceServer) UpdateAdminLang(context.Context, *UpdateAdminLangRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAdminLang not implemented")
 }
 
 // UnsafeAdminServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -652,6 +669,24 @@ func _AdminService_UpdateAdminTheme_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminService_UpdateAdminLang_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAdminLangRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).UpdateAdminLang(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_UpdateAdminLang_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).UpdateAdminLang(ctx, req.(*UpdateAdminLangRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminService_ServiceDesc is the grpc.ServiceDesc for AdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -726,6 +761,10 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "updateAdminTheme",
 			Handler:    _AdminService_UpdateAdminTheme_Handler,
+		},
+		{
+			MethodName: "updateAdminLang",
+			Handler:    _AdminService_UpdateAdminLang_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

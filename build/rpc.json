@@ -946,6 +946,17 @@
             "admin"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "updateAdminLang",
+          "requestMessageName": "UpdateAdminLangRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateAdminLang(UpdateAdminLangRequest) returns (RPCSuccess);",
+          "doc": "修改管理员使用的语言",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_admin.proto",
@@ -21674,6 +21685,11 @@
       "doc": "修改管理员信息"
     },
     {
+      "name": "UpdateAdminLangRequest",
+      "code": "message UpdateAdminLangRequest {\n\tstring langCode = 1; // 语言代号：en-us, zh-cn, ...，如果为空表示默认\n}",
+      "doc": "修改管理员使用的语言"
+    },
+    {
       "name": "UpdateAdminLoginRequest",
       "code": "message UpdateAdminLoginRequest {\n\tint64 adminId = 1;\n\tstring username = 2;\n\tstring password = 3;\n}",
       "doc": "修改管理员登录信息"
@@ -21685,7 +21701,7 @@
     },
     {
       "name": "UpdateAdminThemeRequest",
-      "code": "message UpdateAdminThemeRequest {\n\tint64 adminId = 1;\n\tstring theme = 2;\n}",
+      "code": "message UpdateAdminThemeRequest {\n\tint64 adminId = 1;\n\tstring theme = 2; // 风格代号\n}",
       "doc": "修改管理员使用的界面风格"
     },
     {

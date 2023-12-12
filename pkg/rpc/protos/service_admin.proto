@@ -60,6 +60,9 @@ service AdminService {
 
 	// 修改管理员使用的界面风格
 	rpc updateAdminTheme (UpdateAdminThemeRequest) returns (RPCSuccess);
+
+	// 修改管理员使用的语言
+	rpc updateAdminLang(UpdateAdminLangRequest) returns (RPCSuccess);
 }
 
 // 登录
@@ -291,5 +294,10 @@ message ComposeAdminDashboardResponse {
 // 修改管理员使用的界面风格
 message UpdateAdminThemeRequest {
 	int64 adminId = 1;
-	string theme = 2;
+	string theme = 2; // 风格代号
+}
+
+// 修改管理员使用的语言
+message UpdateAdminLangRequest {
+	string langCode = 1; // 语言代号：en-us, zh-cn, ...，如果为空表示默认
 }
