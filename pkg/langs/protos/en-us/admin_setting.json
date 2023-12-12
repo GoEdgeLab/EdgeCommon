@@ -1,0 +1,20 @@
+{
+  "tab_admin_server": "Admin Server Settings",
+  "tab_admin_ui": "Admin System UI",
+  "tab_user_ui": "User System UI",
+  "tab_admin_security_settings": "Security Settings",
+  "tab_updates": "Updates",
+  "tab_profile": "My Profile",
+  "tab_login": "My Login",
+  "tab_database": "Database",
+  "tab_api_nodes": "API Nodes",
+  "tab_user_nodes": "User Nodes",
+  "tab_monitor_nodes": "Monitor Nodes", // deprecated
+  "tab_ip_library": "IP Library",
+  "tab_client_operation_systems": "OS Management",
+  "tab_client_browsers": "Browser Management",
+  "tab_authority": "Commercial Authority",
+  "tab_access_log_databases": "Log Databases",
+  "tab_transfer": "Transfer",
+  "tab_backup": "Backup"
+}
