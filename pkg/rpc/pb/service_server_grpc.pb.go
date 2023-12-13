@@ -66,6 +66,7 @@ const (
 	ServerService_UpdateEnabledUserServerBasic_FullMethodName              = "/pb.ServerService/updateEnabledUserServerBasic"
 	ServerService_UploadServerHTTPRequestStat_FullMethodName               = "/pb.ServerService/uploadServerHTTPRequestStat"
 	ServerService_CheckServerNameDuplicationInNodeCluster_FullMethodName   = "/pb.ServerService/checkServerNameDuplicationInNodeCluster"
+	ServerService_CheckServerNameInServer_FullMethodName                   = "/pb.ServerService/checkServerNameInServer"
 	ServerService_FindLatestServers_FullMethodName                         = "/pb.ServerService/findLatestServers"
 	ServerService_FindNearbyServers_FullMethodName                         = "/pb.ServerService/findNearbyServers"
 	ServerService_PurgeServerCache_FullMethodName                          = "/pb.ServerService/purgeServerCache"
@@ -178,8 +179,10 @@ type ServerServiceClient interface {
 	UpdateEnabledUserServerBasic(ctx context.Context, in *UpdateEnabledUserServerBasicRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 上传HTTP请求待统计数据
 	UploadServerHTTPRequestStat(ctx context.Context, in *UploadServerHTTPRequestStatRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
-	// 检查域名是否已经存在
+	// 检查域名是否在集群中已经存在
 	CheckServerNameDuplicationInNodeCluster(ctx context.Context, in *CheckServerNameDuplicationInNodeClusterRequest, opts ...grpc.CallOption) (*CheckServerNameDuplicationInNodeClusterResponse, error)
+	// 检查域名是否在网站中已经绑定
+	CheckServerNameInServer(ctx context.Context, in *CheckServerNameInServerRequest, opts ...grpc.CallOption) (*CheckServerNameInServerResponse, error)
 	// 查找最近访问的网站
 	FindLatestServers(ctx context.Context, in *FindLatestServersRequest, opts ...grpc.CallOption) (*FindLatestServersResponse, error)
 	// 查找某个网站附近的网站
@@ -641,6 +644,15 @@ func (c *serverServiceClient) CheckServerNameDuplicationInNodeCluster(ctx contex
 	return out, nil
 }
 
+func (c *serverServiceClient) CheckServerNameInServer(ctx context.Context, in *CheckServerNameInServerRequest, opts ...grpc.CallOption) (*CheckServerNameInServerResponse, error) {
+	out := new(CheckServerNameInServerResponse)
+	err := c.cc.Invoke(ctx, ServerService_CheckServerNameInServer_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *serverServiceClient) FindLatestServers(ctx context.Context, in *FindLatestServersRequest, opts ...grpc.CallOption) (*FindLatestServersResponse, error) {
 	out := new(FindLatestServersResponse)
 	err := c.cc.Invoke(ctx, ServerService_FindLatestServers_FullMethodName, in, out, opts...)
@@ -863,8 +875,10 @@ type ServerServiceServer interface {
 	UpdateEnabledUserServerBasic(context.Context, *UpdateEnabledUserServerBasicRequest) (*RPCSuccess, error)
 	// 上传HTTP请求待统计数据
 	UploadServerHTTPRequestStat(context.Context, *UploadServerHTTPRequestStatRequest) (*RPCSuccess, error)
-	// 检查域名是否已经存在
+	// 检查域名是否在集群中已经存在
 	CheckServerNameDuplicationInNodeCluster(context.Context, *CheckServerNameDuplicationInNodeClusterRequest) (*CheckServerNameDuplicationInNodeClusterResponse, error)
+	// 检查域名是否在网站中已经绑定
+	CheckServerNameInServer(context.Context, *CheckServerNameInServerRequest) (*CheckServerNameInServerResponse, error)
 	// 查找最近访问的网站
 	FindLatestServers(context.Context, *FindLatestServersRequest) (*FindLatestServersResponse, error)
 	// 查找某个网站附近的网站
@@ -1039,6 +1053,9 @@ func (UnimplementedServerServiceServer) UploadServerHTTPRequestStat(context.Cont
 }
 func (UnimplementedServerServiceServer) CheckServerNameDuplicationInNodeCluster(context.Context, *CheckServerNameDuplicationInNodeClusterRequest) (*CheckServerNameDuplicationInNodeClusterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckServerNameDuplicationInNodeCluster not implemented")
+}
+func (UnimplementedServerServiceServer) CheckServerNameInServer(context.Context, *CheckServerNameInServerRequest) (*CheckServerNameInServerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckServerNameInServer not implemented")
 }
 func (UnimplementedServerServiceServer) FindLatestServers(context.Context, *FindLatestServersRequest) (*FindLatestServersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindLatestServers not implemented")
@@ -1940,6 +1957,24 @@ func _ServerService_CheckServerNameDuplicationInNodeCluster_Handler(srv interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServerService_CheckServerNameInServer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckServerNameInServerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).CheckServerNameInServer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ServerService_CheckServerNameInServer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).CheckServerNameInServer(ctx, req.(*CheckServerNameInServerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ServerService_FindLatestServers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FindLatestServersRequest)
 	if err := dec(in); err != nil {
@@ -2386,6 +2421,10 @@ var ServerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "checkServerNameDuplicationInNodeCluster",
 			Handler:    _ServerService_CheckServerNameDuplicationInNodeCluster_Handler,
+		},
+		{
+			MethodName: "checkServerNameInServer",
+			Handler:    _ServerService_CheckServerNameInServer_Handler,
 		},
 		{
 			MethodName: "findLatestServers",

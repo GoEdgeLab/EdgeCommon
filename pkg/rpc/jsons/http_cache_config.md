@@ -11,11 +11,13 @@
   "purgeIsOn": "是否允许使用Purge方法清理",
   "purgeKey": "Purge时使用的X-Edge-Purge-Key",
   "stale": "陈旧缓存使用策略",
+  "key": "主域名配置",
   "cacheRefs": ["缓存条件1", "缓存条件2", ...]
 }
 ~~~
 其中：
 * `缓存条件` - 参考 {json:http_cache_ref}
+* `主域名配置` 参考本文“主域名”配置部分
 
 ## 示例
 ### 无缓存条件
@@ -90,3 +92,32 @@
   ]
 }
 ~~~
+
+
+## 主域名配置
+~~~json
+{
+  "isOn": "true|false",
+  "scheme": "https|http",
+  "host": "域名，必须是当前网站已绑定的域名"
+}
+~~~
+
+### 示例
+#### 不使用主域名
+~~~json
+{
+  "isOn": false
+}
+~~~
+
+#### 使用主域名
+~~~json
+{
+  "isOn": true,
+  "scheme": "https",
+  "host": "example.com"
+}
+~~~
+
+如果启用主域名，则缓存键值中的域名会被自动换成主域名，清理缓存的时候也需要使用此主域名。

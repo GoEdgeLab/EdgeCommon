@@ -57,6 +57,7 @@ const (
 	HTTPWebService_FindHTTPWebReferers_FullMethodName          = "/pb.HTTPWebService/findHTTPWebReferers"
 	HTTPWebService_UpdateHTTPWebUserAgent_FullMethodName       = "/pb.HTTPWebService/updateHTTPWebUserAgent"
 	HTTPWebService_FindHTTPWebUserAgent_FullMethodName         = "/pb.HTTPWebService/findHTTPWebUserAgent"
+	HTTPWebService_FindServerIdWithHTTPWebId_FullMethodName    = "/pb.HTTPWebService/findServerIdWithHTTPWebId"
 )
 
 // HTTPWebServiceClient is the client API for HTTPWebService service.
@@ -139,6 +140,8 @@ type HTTPWebServiceClient interface {
 	UpdateHTTPWebUserAgent(ctx context.Context, in *UpdateHTTPWebUserAgentRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 查找UserAgent设置
 	FindHTTPWebUserAgent(ctx context.Context, in *FindHTTPWebUserAgentRequest, opts ...grpc.CallOption) (*FindHTTPWebUserAgentResponse, error)
+	// 根据WebId查找ServerId
+	FindServerIdWithHTTPWebId(ctx context.Context, in *FindServerIdWithHTTPWebIdRequest, opts ...grpc.CallOption) (*FindServerIdWithHTTPWebIdResponse, error)
 }
 
 type hTTPWebServiceClient struct {
@@ -491,6 +494,15 @@ func (c *hTTPWebServiceClient) FindHTTPWebUserAgent(ctx context.Context, in *Fin
 	return out, nil
 }
 
+func (c *hTTPWebServiceClient) FindServerIdWithHTTPWebId(ctx context.Context, in *FindServerIdWithHTTPWebIdRequest, opts ...grpc.CallOption) (*FindServerIdWithHTTPWebIdResponse, error) {
+	out := new(FindServerIdWithHTTPWebIdResponse)
+	err := c.cc.Invoke(ctx, HTTPWebService_FindServerIdWithHTTPWebId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HTTPWebServiceServer is the server API for HTTPWebService service.
 // All implementations should embed UnimplementedHTTPWebServiceServer
 // for forward compatibility
@@ -571,6 +583,8 @@ type HTTPWebServiceServer interface {
 	UpdateHTTPWebUserAgent(context.Context, *UpdateHTTPWebUserAgentRequest) (*RPCSuccess, error)
 	// 查找UserAgent设置
 	FindHTTPWebUserAgent(context.Context, *FindHTTPWebUserAgentRequest) (*FindHTTPWebUserAgentResponse, error)
+	// 根据WebId查找ServerId
+	FindServerIdWithHTTPWebId(context.Context, *FindServerIdWithHTTPWebIdRequest) (*FindServerIdWithHTTPWebIdResponse, error)
 }
 
 // UnimplementedHTTPWebServiceServer should be embedded to have forward compatible implementations.
@@ -690,6 +704,9 @@ func (UnimplementedHTTPWebServiceServer) UpdateHTTPWebUserAgent(context.Context,
 }
 func (UnimplementedHTTPWebServiceServer) FindHTTPWebUserAgent(context.Context, *FindHTTPWebUserAgentRequest) (*FindHTTPWebUserAgentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindHTTPWebUserAgent not implemented")
+}
+func (UnimplementedHTTPWebServiceServer) FindServerIdWithHTTPWebId(context.Context, *FindServerIdWithHTTPWebIdRequest) (*FindServerIdWithHTTPWebIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindServerIdWithHTTPWebId not implemented")
 }
 
 // UnsafeHTTPWebServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -1387,6 +1404,24 @@ func _HTTPWebService_FindHTTPWebUserAgent_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HTTPWebService_FindServerIdWithHTTPWebId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindServerIdWithHTTPWebIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPWebServiceServer).FindServerIdWithHTTPWebId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HTTPWebService_FindServerIdWithHTTPWebId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPWebServiceServer).FindServerIdWithHTTPWebId(ctx, req.(*FindServerIdWithHTTPWebIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // HTTPWebService_ServiceDesc is the grpc.ServiceDesc for HTTPWebService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1545,6 +1580,10 @@ var HTTPWebService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findHTTPWebUserAgent",
 			Handler:    _HTTPWebService_FindHTTPWebUserAgent_Handler,
+		},
+		{
+			MethodName: "findServerIdWithHTTPWebId",
+			Handler:    _HTTPWebService_FindServerIdWithHTTPWebId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

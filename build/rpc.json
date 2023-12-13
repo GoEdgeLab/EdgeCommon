@@ -3561,6 +3561,18 @@
             "user"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findServerIdWithHTTPWebId",
+          "requestMessageName": "FindServerIdWithHTTPWebIdRequest",
+          "responseMessageName": "FindServerIdWithHTTPWebIdResponse",
+          "code": "rpc findServerIdWithHTTPWebId(FindServerIdWithHTTPWebIdRequest) returns (FindServerIdWithHTTPWebIdResponse);",
+          "doc": "根据WebId查找ServerId",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_http_web.proto",
@@ -10775,11 +10787,20 @@
           "requestMessageName": "CheckServerNameDuplicationInNodeClusterRequest",
           "responseMessageName": "CheckServerNameDuplicationInNodeClusterResponse",
           "code": "rpc checkServerNameDuplicationInNodeCluster (CheckServerNameDuplicationInNodeClusterRequest) returns (CheckServerNameDuplicationInNodeClusterResponse);",
-          "doc": "检查域名是否已经存在",
+          "doc": "检查域名是否在集群中已经存在",
           "roles": [
             "admin",
             "user"
           ],
+          "isDeprecated": false
+        },
+        {
+          "name": "checkServerNameInServer",
+          "requestMessageName": "CheckServerNameInServerRequest",
+          "responseMessageName": "CheckServerNameInServerResponse",
+          "code": "rpc checkServerNameInServer(CheckServerNameInServerRequest) returns (CheckServerNameInServerResponse);",
+          "doc": "检查域名是否在网站中已经绑定",
+          "roles": [],
           "isDeprecated": false
         },
         {
@@ -13902,11 +13923,21 @@
     {
       "name": "CheckServerNameDuplicationInNodeClusterRequest",
       "code": "message CheckServerNameDuplicationInNodeClusterRequest {\n\tint64 nodeClusterId = 1;\n\trepeated string serverNames = 2; // 可以同时检查一批域名\n\tint64 excludeServerId = 3; // 要排除的网站ID\n\tbool supportWildcard = 4;// 支持泛解析\n}",
-      "doc": "检查域名是否已经存在"
+      "doc": "检查域名是否在集群中已经存在"
     },
     {
       "name": "CheckServerNameDuplicationInNodeClusterResponse",
       "code": "message CheckServerNameDuplicationInNodeClusterResponse {\n\trepeated string duplicatedServerNames = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "CheckServerNameInServerRequest",
+      "code": "message CheckServerNameInServerRequest {\n\tint64 serverId = 1; // 网站ID\n\tstring serverName = 2; // 域名\n}",
+      "doc": "检查域名是否在网站中已经绑定"
+    },
+    {
+      "name": "CheckServerNameInServerResponse",
+      "code": "message CheckServerNameInServerResponse {\n\tbool exists = 1; // 是否存在\n}",
       "doc": ""
     },
     {
@@ -19602,6 +19633,16 @@
     {
       "name": "FindServerIdWithDNSNameResponse",
       "code": "message FindServerIdWithDNSNameResponse {\n\tint64 serverId = 1; // 网站ID\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindServerIdWithHTTPWebIdRequest",
+      "code": "message FindServerIdWithHTTPWebIdRequest {\n\tint64 httpWebId = 1; // Web设置ID\n}",
+      "doc": "根据WebId查找ServerId"
+    },
+    {
+      "name": "FindServerIdWithHTTPWebIdResponse",
+      "code": "message FindServerIdWithHTTPWebIdResponse {\n\tint64 serverId = 1; // 网站ID\n}",
       "doc": ""
     },
     {

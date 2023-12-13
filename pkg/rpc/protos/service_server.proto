@@ -149,8 +149,11 @@ service ServerService {
 	// 上传HTTP请求待统计数据
 	rpc uploadServerHTTPRequestStat (UploadServerHTTPRequestStatRequest) returns (RPCSuccess);
 
-	// 检查域名是否已经存在
+	// 检查域名是否在集群中已经存在
 	rpc checkServerNameDuplicationInNodeCluster (CheckServerNameDuplicationInNodeClusterRequest) returns (CheckServerNameDuplicationInNodeClusterResponse);
+
+	// 检查域名是否在网站中已经绑定
+	rpc checkServerNameInServer(CheckServerNameInServerRequest) returns (CheckServerNameInServerResponse);
 
 	// 查找最近访问的网站
 	rpc findLatestServers (FindLatestServersRequest) returns (FindLatestServersResponse);
@@ -631,7 +634,7 @@ message UploadServerHTTPRequestStatRequest {
 	}
 }
 
-// 检查域名是否已经存在
+// 检查域名是否在集群中已经存在
 message CheckServerNameDuplicationInNodeClusterRequest {
 	int64 nodeClusterId = 1;
 	repeated string serverNames = 2; // 可以同时检查一批域名
@@ -641,6 +644,17 @@ message CheckServerNameDuplicationInNodeClusterRequest {
 
 message CheckServerNameDuplicationInNodeClusterResponse {
 	repeated string duplicatedServerNames = 1;
+}
+
+
+// 检查域名是否在网站中已经绑定
+message CheckServerNameInServerRequest {
+	int64 serverId = 1; // 网站ID
+	string serverName = 2; // 域名
+}
+
+message CheckServerNameInServerResponse {
+	bool exists = 1; // 是否存在
 }
 
 // 查找最近访问的网站

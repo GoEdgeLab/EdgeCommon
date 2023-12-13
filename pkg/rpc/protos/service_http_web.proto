@@ -121,6 +121,9 @@ service HTTPWebService {
 
 	// 查找UserAgent设置
 	rpc findHTTPWebUserAgent(FindHTTPWebUserAgentRequest) returns (FindHTTPWebUserAgentResponse);
+
+	// 根据WebId查找ServerId
+	rpc findServerIdWithHTTPWebId(FindServerIdWithHTTPWebIdRequest) returns (FindServerIdWithHTTPWebIdResponse);
 }
 
 // 创建Web配置
@@ -379,4 +382,13 @@ message FindHTTPWebUserAgentRequest {
 
 message FindHTTPWebUserAgentResponse {
 	bytes userAgentJSON = 1;
+}
+
+// 根据WebId查找ServerId
+message FindServerIdWithHTTPWebIdRequest {
+	int64 httpWebId = 1; // Web设置ID
+}
+
+message FindServerIdWithHTTPWebIdResponse {
+	int64 serverId = 1; // 网站ID
 }
