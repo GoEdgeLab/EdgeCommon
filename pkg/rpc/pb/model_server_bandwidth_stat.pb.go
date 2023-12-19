@@ -26,21 +26,22 @@ type ServerBandwidthStat struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id                  int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                    // ID
-	UserId              int64  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`                            // 用户ID
-	ServerId            int64  `protobuf:"varint,3,opt,name=serverId,proto3" json:"serverId,omitempty"`                        //服务ID
-	Day                 string `protobuf:"bytes,4,opt,name=day,proto3" json:"day,omitempty"`                                   // 日期，格式YYYYMMDD
-	TimeAt              string `protobuf:"bytes,5,opt,name=timeAt,proto3" json:"timeAt,omitempty"`                             // 时间，格式HHII
-	Bytes               int64  `protobuf:"varint,6,opt,name=bytes,proto3" json:"bytes,omitempty"`                              // 峰值带宽字节
-	TotalBytes          int64  `protobuf:"varint,9,opt,name=totalBytes,proto3" json:"totalBytes,omitempty"`                    // 总流量
-	Bits                int64  `protobuf:"varint,7,opt,name=bits,proto3" json:"bits,omitempty"`                                // 峰值带宽比特
-	NodeRegionId        int64  `protobuf:"varint,8,opt,name=nodeRegionId,proto3" json:"nodeRegionId,omitempty"`                // 节点所在区域ID
-	CachedBytes         int64  `protobuf:"varint,10,opt,name=cachedBytes,proto3" json:"cachedBytes,omitempty"`                 // 总缓存流量
-	AttackBytes         int64  `protobuf:"varint,11,opt,name=attackBytes,proto3" json:"attackBytes,omitempty"`                 // 总攻击流量
-	CountRequests       int64  `protobuf:"varint,12,opt,name=countRequests,proto3" json:"countRequests,omitempty"`             // 总请求数
-	CountCachedRequests int64  `protobuf:"varint,13,opt,name=countCachedRequests,proto3" json:"countCachedRequests,omitempty"` // 总缓存请求数
-	CountAttackRequests int64  `protobuf:"varint,14,opt,name=countAttackRequests,proto3" json:"countAttackRequests,omitempty"` // 总攻击请求数
-	UserPlanId          int64  `protobuf:"varint,15,opt,name=userPlanId,proto3" json:"userPlanId,omitempty"`                   // 绑定的用户套餐ID
+	Id                        int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                                // ID
+	UserId                    int64  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`                                        // 用户ID
+	ServerId                  int64  `protobuf:"varint,3,opt,name=serverId,proto3" json:"serverId,omitempty"`                                    //服务ID
+	Day                       string `protobuf:"bytes,4,opt,name=day,proto3" json:"day,omitempty"`                                               // 日期，格式YYYYMMDD
+	TimeAt                    string `protobuf:"bytes,5,opt,name=timeAt,proto3" json:"timeAt,omitempty"`                                         // 时间，格式HHII
+	Bytes                     int64  `protobuf:"varint,6,opt,name=bytes,proto3" json:"bytes,omitempty"`                                          // 峰值带宽字节
+	TotalBytes                int64  `protobuf:"varint,9,opt,name=totalBytes,proto3" json:"totalBytes,omitempty"`                                // 总流量
+	Bits                      int64  `protobuf:"varint,7,opt,name=bits,proto3" json:"bits,omitempty"`                                            // 峰值带宽比特
+	NodeRegionId              int64  `protobuf:"varint,8,opt,name=nodeRegionId,proto3" json:"nodeRegionId,omitempty"`                            // 节点所在区域ID
+	CachedBytes               int64  `protobuf:"varint,10,opt,name=cachedBytes,proto3" json:"cachedBytes,omitempty"`                             // 总缓存流量
+	AttackBytes               int64  `protobuf:"varint,11,opt,name=attackBytes,proto3" json:"attackBytes,omitempty"`                             // 总攻击流量
+	CountRequests             int64  `protobuf:"varint,12,opt,name=countRequests,proto3" json:"countRequests,omitempty"`                         // 总请求数
+	CountCachedRequests       int64  `protobuf:"varint,13,opt,name=countCachedRequests,proto3" json:"countCachedRequests,omitempty"`             // 总缓存请求数
+	CountAttackRequests       int64  `protobuf:"varint,14,opt,name=countAttackRequests,proto3" json:"countAttackRequests,omitempty"`             // 总攻击请求数
+	UserPlanId                int64  `protobuf:"varint,15,opt,name=userPlanId,proto3" json:"userPlanId,omitempty"`                               // 绑定的用户套餐ID
+	CountWebsocketConnections int64  `protobuf:"varint,16,opt,name=countWebsocketConnections,proto3" json:"countWebsocketConnections,omitempty"` // Websocket连接数
 }
 
 func (x *ServerBandwidthStat) Reset() {
@@ -180,13 +181,20 @@ func (x *ServerBandwidthStat) GetUserPlanId() int64 {
 	return 0
 }
 
+func (x *ServerBandwidthStat) GetCountWebsocketConnections() int64 {
+	if x != nil {
+		return x.CountWebsocketConnections
+	}
+	return 0
+}
+
 var File_models_model_server_bandwidth_stat_proto protoreflect.FileDescriptor
 
 var file_models_model_server_bandwidth_stat_proto_rawDesc = []byte{
 	0x0a, 0x28, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x73,
 	0x65, 0x72, 0x76, 0x65, 0x72, 0x5f, 0x62, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x5f,
-	0x73, 0x74, 0x61, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x22, 0xdf,
-	0x03, 0x0a, 0x13, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64,
+	0x73, 0x74, 0x61, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x22, 0x9d,
+	0x04, 0x0a, 0x13, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64,
 	0x74, 0x68, 0x53, 0x74, 0x61, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64,
 	0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1a,
@@ -216,7 +224,11 @@ var file_models_model_server_bandwidth_stat_proto_rawDesc = []byte{
 	0x6e, 0x74, 0x41, 0x74, 0x74, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x73,
 	0x12, 0x1e, 0x0a, 0x0a, 0x75, 0x73, 0x65, 0x72, 0x50, 0x6c, 0x61, 0x6e, 0x49, 0x64, 0x18, 0x0f,
 	0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x75, 0x73, 0x65, 0x72, 0x50, 0x6c, 0x61, 0x6e, 0x49, 0x64,
-	0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x3c, 0x0a, 0x19, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x57, 0x65, 0x62, 0x73, 0x6f, 0x63, 0x6b,
+	0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x10, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x19, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x57, 0x65, 0x62, 0x73, 0x6f, 0x63,
+	0x6b, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x42, 0x06,
+	0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

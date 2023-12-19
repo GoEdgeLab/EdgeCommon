@@ -7,8 +7,9 @@ import timeutil "github.com/iwind/TeaGo/utils/time"
 type TrafficLimitTarget = string
 
 const (
-	TrafficLimitTargetTraffic TrafficLimitTarget = "traffic"
-	TrafficLimitTargetRequest TrafficLimitTarget = "request"
+	TrafficLimitTargetTraffic              TrafficLimitTarget = "traffic"
+	TrafficLimitTargetRequest              TrafficLimitTarget = "request"
+	TrafficLimitTargetWebsocketConnections TrafficLimitTarget = "websocketConnections"
 )
 
 // TrafficLimitStatus 流量限制状态

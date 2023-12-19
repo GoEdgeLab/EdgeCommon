@@ -21,4 +21,6 @@ message Plan {
 	int32 totalServerNames = 15; // 可以添加的域名总数
 	int64 dailyRequests = 16; // 每日访问量额度
 	int64 monthlyRequests = 17; // 每月访问量额度
+	int64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度
+	int64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度
 }

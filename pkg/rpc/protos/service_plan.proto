@@ -39,14 +39,16 @@ message CreatePlanRequest {
 	string priceType = 5;
 	bytes trafficPriceJSON = 6;
 	bytes bandwidthPriceJSON = 10;
-	float monthlyPrice = 7;
-	float seasonallyPrice = 8;
-	float yearlyPrice = 9;
+	float monthlyPrice = 7; // 月度价格
+	float seasonallyPrice = 8; // 季度价格
+	float yearlyPrice = 9; // 年度价格
 	int32 totalServers = 11; // 可以添加的网站数
 	int32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数
 	int32 totalServerNames = 13; // 可以添加的域名总数
 	int64 dailyRequests = 14; // 每日访问量额度
 	int64 monthlyRequests = 15; // 每月访问量额度
+	int64 dailyWebsocketConnections = 16; // 每日Websocket连接数额度
+	int64 monthlyWebsocketConnections = 17; // 每月Websocket连接数额度
 }
 
 message CreatePlanResponse {
@@ -72,6 +74,8 @@ message UpdatePlanRequest {
 	int32 totalServerNames = 15; // 可以添加的域名总数
 	int64 dailyRequests = 16; // 每日访问量额度
 	int64 monthlyRequests = 17; // 每月访问量额度
+	int64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度
+	int64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度
 }
 
 // 删除套餐

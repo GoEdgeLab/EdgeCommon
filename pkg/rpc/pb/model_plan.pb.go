@@ -25,23 +25,25 @@ type Plan struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id                        int64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	IsOn                      bool    `protobuf:"varint,2,opt,name=isOn,proto3" json:"isOn,omitempty"`
-	Name                      string  `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	ClusterId                 int64   `protobuf:"varint,4,opt,name=clusterId,proto3" json:"clusterId,omitempty"`
-	TrafficLimitJSON          []byte  `protobuf:"bytes,5,opt,name=trafficLimitJSON,proto3" json:"trafficLimitJSON,omitempty"`
-	FeaturesJSON              []byte  `protobuf:"bytes,6,opt,name=featuresJSON,proto3" json:"featuresJSON,omitempty"`
-	PriceType                 string  `protobuf:"bytes,7,opt,name=priceType,proto3" json:"priceType,omitempty"`
-	TrafficPriceJSON          []byte  `protobuf:"bytes,8,opt,name=trafficPriceJSON,proto3" json:"trafficPriceJSON,omitempty"`
-	BandwidthPriceJSON        []byte  `protobuf:"bytes,12,opt,name=bandwidthPriceJSON,proto3" json:"bandwidthPriceJSON,omitempty"`
-	MonthlyPrice              float64 `protobuf:"fixed64,9,opt,name=monthlyPrice,proto3" json:"monthlyPrice,omitempty"`
-	SeasonallyPrice           float64 `protobuf:"fixed64,10,opt,name=seasonallyPrice,proto3" json:"seasonallyPrice,omitempty"`
-	YearlyPrice               float64 `protobuf:"fixed64,11,opt,name=yearlyPrice,proto3" json:"yearlyPrice,omitempty"`
-	TotalServers              int32   `protobuf:"varint,13,opt,name=totalServers,proto3" json:"totalServers,omitempty"`                           // 可以添加的网站数
-	TotalServerNamesPerServer int32   `protobuf:"varint,14,opt,name=totalServerNamesPerServer,proto3" json:"totalServerNamesPerServer,omitempty"` // 每个网站可以添加的域名数
-	TotalServerNames          int32   `protobuf:"varint,15,opt,name=totalServerNames,proto3" json:"totalServerNames,omitempty"`                   // 可以添加的域名总数
-	DailyRequests             int64   `protobuf:"varint,16,opt,name=dailyRequests,proto3" json:"dailyRequests,omitempty"`                         // 每日访问量额度
-	MonthlyRequests           int64   `protobuf:"varint,17,opt,name=monthlyRequests,proto3" json:"monthlyRequests,omitempty"`                     // 每月访问量额度
+	Id                          int64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	IsOn                        bool    `protobuf:"varint,2,opt,name=isOn,proto3" json:"isOn,omitempty"`
+	Name                        string  `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	ClusterId                   int64   `protobuf:"varint,4,opt,name=clusterId,proto3" json:"clusterId,omitempty"`
+	TrafficLimitJSON            []byte  `protobuf:"bytes,5,opt,name=trafficLimitJSON,proto3" json:"trafficLimitJSON,omitempty"`
+	FeaturesJSON                []byte  `protobuf:"bytes,6,opt,name=featuresJSON,proto3" json:"featuresJSON,omitempty"`
+	PriceType                   string  `protobuf:"bytes,7,opt,name=priceType,proto3" json:"priceType,omitempty"`
+	TrafficPriceJSON            []byte  `protobuf:"bytes,8,opt,name=trafficPriceJSON,proto3" json:"trafficPriceJSON,omitempty"`
+	BandwidthPriceJSON          []byte  `protobuf:"bytes,12,opt,name=bandwidthPriceJSON,proto3" json:"bandwidthPriceJSON,omitempty"`
+	MonthlyPrice                float64 `protobuf:"fixed64,9,opt,name=monthlyPrice,proto3" json:"monthlyPrice,omitempty"`
+	SeasonallyPrice             float64 `protobuf:"fixed64,10,opt,name=seasonallyPrice,proto3" json:"seasonallyPrice,omitempty"`
+	YearlyPrice                 float64 `protobuf:"fixed64,11,opt,name=yearlyPrice,proto3" json:"yearlyPrice,omitempty"`
+	TotalServers                int32   `protobuf:"varint,13,opt,name=totalServers,proto3" json:"totalServers,omitempty"`                               // 可以添加的网站数
+	TotalServerNamesPerServer   int32   `protobuf:"varint,14,opt,name=totalServerNamesPerServer,proto3" json:"totalServerNamesPerServer,omitempty"`     // 每个网站可以添加的域名数
+	TotalServerNames            int32   `protobuf:"varint,15,opt,name=totalServerNames,proto3" json:"totalServerNames,omitempty"`                       // 可以添加的域名总数
+	DailyRequests               int64   `protobuf:"varint,16,opt,name=dailyRequests,proto3" json:"dailyRequests,omitempty"`                             // 每日访问量额度
+	MonthlyRequests             int64   `protobuf:"varint,17,opt,name=monthlyRequests,proto3" json:"monthlyRequests,omitempty"`                         // 每月访问量额度
+	DailyWebsocketConnections   int64   `protobuf:"varint,18,opt,name=dailyWebsocketConnections,proto3" json:"dailyWebsocketConnections,omitempty"`     // 每日Websocket连接数额度
+	MonthlyWebsocketConnections int64   `protobuf:"varint,19,opt,name=monthlyWebsocketConnections,proto3" json:"monthlyWebsocketConnections,omitempty"` // 每月Websocket连接数额度
 }
 
 func (x *Plan) Reset() {
@@ -195,11 +197,25 @@ func (x *Plan) GetMonthlyRequests() int64 {
 	return 0
 }
 
+func (x *Plan) GetDailyWebsocketConnections() int64 {
+	if x != nil {
+		return x.DailyWebsocketConnections
+	}
+	return 0
+}
+
+func (x *Plan) GetMonthlyWebsocketConnections() int64 {
+	if x != nil {
+		return x.MonthlyWebsocketConnections
+	}
+	return 0
+}
+
 var File_models_model_plan_proto protoreflect.FileDescriptor
 
 var file_models_model_plan_proto_rawDesc = []byte{
 	0x0a, 0x17, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x5f, 0x70,
-	0x6c, 0x61, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x22, 0xf4, 0x04,
+	0x6c, 0x61, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x02, 0x70, 0x62, 0x22, 0xf4, 0x05,
 	0x0a, 0x04, 0x50, 0x6c, 0x61, 0x6e, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x08, 0x52, 0x04, 0x69, 0x73, 0x4f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
@@ -239,7 +255,15 @@ var file_models_model_plan_proto_rawDesc = []byte{
 	0x6c, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x73, 0x12, 0x28, 0x0a, 0x0f, 0x6d, 0x6f,
 	0x6e, 0x74, 0x68, 0x6c, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x73, 0x18, 0x11, 0x20,
 	0x01, 0x28, 0x03, 0x52, 0x0f, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x6c, 0x79, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72,
+	0x65, 0x73, 0x74, 0x73, 0x12, 0x3c, 0x0a, 0x19, 0x64, 0x61, 0x69, 0x6c, 0x79, 0x57, 0x65, 0x62,
+	0x73, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x18, 0x12, 0x20, 0x01, 0x28, 0x03, 0x52, 0x19, 0x64, 0x61, 0x69, 0x6c, 0x79, 0x57, 0x65,
+	0x62, 0x73, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x12, 0x40, 0x0a, 0x1b, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x6c, 0x79, 0x57, 0x65, 0x62,
+	0x73, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x18, 0x13, 0x20, 0x01, 0x28, 0x03, 0x52, 0x1b, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x6c, 0x79,
+	0x57, 0x65, 0x62, 0x73, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x73, 0x42, 0x06, 0x5a, 0x04, 0x2e, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x33,
 }
 

@@ -20,4 +20,5 @@ message ServerBandwidthStat {
 	int64 countCachedRequests = 13; // 总缓存请求数
 	int64 countAttackRequests = 14; // 总攻击请求数
 	int64 userPlanId = 15; // 绑定的用户套餐ID
+	int64 countWebsocketConnections = 16; // Websocket连接数
 }

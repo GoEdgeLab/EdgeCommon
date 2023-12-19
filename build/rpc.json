@@ -10800,7 +10800,10 @@
           "responseMessageName": "CheckServerNameInServerResponse",
           "code": "rpc checkServerNameInServer(CheckServerNameInServerRequest) returns (CheckServerNameInServerResponse);",
           "doc": "检查域名是否在网站中已经绑定",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -15507,7 +15510,7 @@
     },
     {
       "name": "CreatePlanRequest",
-      "code": "message CreatePlanRequest {\n\tstring name = 1;\n\tint64 clusterId = 2;\n\tbytes trafficLimitJSON = 3;\n\tbytes featuresJSON = 4;\n\tstring priceType = 5;\n\tbytes trafficPriceJSON = 6;\n\tbytes bandwidthPriceJSON = 10;\n\tfloat monthlyPrice = 7;\n\tfloat seasonallyPrice = 8;\n\tfloat yearlyPrice = 9;\n\tint32 totalServers = 11; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 13; // 可以添加的域名总数\n\tint64 dailyRequests = 14; // 每日访问量额度\n\tint64 monthlyRequests = 15; // 每月访问量额度\n}",
+      "code": "message CreatePlanRequest {\n\tstring name = 1;\n\tint64 clusterId = 2;\n\tbytes trafficLimitJSON = 3;\n\tbytes featuresJSON = 4;\n\tstring priceType = 5;\n\tbytes trafficPriceJSON = 6;\n\tbytes bandwidthPriceJSON = 10;\n\tfloat monthlyPrice = 7; // 月度价格\n\tfloat seasonallyPrice = 8; // 季度价格\n\tfloat yearlyPrice = 9; // 年度价格\n\tint32 totalServers = 11; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 13; // 可以添加的域名总数\n\tint64 dailyRequests = 14; // 每日访问量额度\n\tint64 monthlyRequests = 15; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 16; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 17; // 每月Websocket连接数额度\n}",
       "doc": "创建套餐"
     },
     {
@@ -21167,7 +21170,7 @@
     },
     {
       "name": "Plan",
-      "code": "message Plan {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tdouble monthlyPrice = 9;\n\tdouble seasonallyPrice = 10;\n\tdouble yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n}",
+      "code": "message Plan {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tdouble monthlyPrice = 9;\n\tdouble seasonallyPrice = 10;\n\tdouble yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
       "doc": ""
     },
     {
@@ -21432,7 +21435,7 @@
     },
     {
       "name": "ServerBandwidthStat",
-      "code": "message ServerBandwidthStat {\n\tint64 id = 1; // ID\n\tint64 userId = 2; // 用户ID\n\tint64 serverId = 3; //服务ID\n\tstring day = 4; // 日期，格式YYYYMMDD\n\tstring timeAt = 5; // 时间，格式HHII\n\tint64 bytes = 6; // 峰值带宽字节\n\tint64 totalBytes = 9; // 总流量\n\tint64 bits = 7; // 峰值带宽比特\n\tint64 nodeRegionId = 8; // 节点所在区域ID\n\tint64 cachedBytes = 10; // 总缓存流量\n\tint64 attackBytes = 11; // 总攻击流量\n\tint64 countRequests = 12; // 总请求数\n\tint64 countCachedRequests = 13; // 总缓存请求数\n\tint64 countAttackRequests = 14; // 总攻击请求数\n\tint64 userPlanId = 15; // 绑定的用户套餐ID\n}",
+      "code": "message ServerBandwidthStat {\n\tint64 id = 1; // ID\n\tint64 userId = 2; // 用户ID\n\tint64 serverId = 3; //服务ID\n\tstring day = 4; // 日期，格式YYYYMMDD\n\tstring timeAt = 5; // 时间，格式HHII\n\tint64 bytes = 6; // 峰值带宽字节\n\tint64 totalBytes = 9; // 总流量\n\tint64 bits = 7; // 峰值带宽比特\n\tint64 nodeRegionId = 8; // 节点所在区域ID\n\tint64 cachedBytes = 10; // 总缓存流量\n\tint64 attackBytes = 11; // 总攻击流量\n\tint64 countRequests = 12; // 总请求数\n\tint64 countCachedRequests = 13; // 总缓存请求数\n\tint64 countAttackRequests = 14; // 总攻击请求数\n\tint64 userPlanId = 15; // 绑定的用户套餐ID\n\tint64 countWebsocketConnections = 16; // Websocket连接数\n}",
       "doc": "带宽统计数据"
     },
     {
@@ -22562,7 +22565,7 @@
     },
     {
       "name": "UpdatePlanRequest",
-      "code": "message UpdatePlanRequest {\n\tint64 planId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tfloat monthlyPrice = 9;\n\tfloat seasonallyPrice = 10;\n\tfloat yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n}",
+      "code": "message UpdatePlanRequest {\n\tint64 planId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tfloat monthlyPrice = 9;\n\tfloat seasonallyPrice = 10;\n\tfloat yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
       "doc": "修改套餐"
     },
     {
@@ -23102,7 +23105,7 @@
     },
     {
       "name": "json:http_cache_config",
-      "content": "# HTTP缓存配置\n## 定义\n~~~json\n{\n  \"isPrior\": \"是否覆盖上级配置\",\n  \"isOn\": \"是否启用配置\",\n  \"addStatusHeader\": \"是否增加命中状态Header（X-Cache）\",\n  \"addAgeHeader\": \"是否增加Age Header\",\n  \"enableCacheControlMaxAge\": \"是否支持Cache-Control: max-age=...\",\n  \"disablePolicyRefs\": \"是否停用策略中定义的条件\",\n  \"purgeIsOn\": \"是否允许使用Purge方法清理\",\n  \"purgeKey\": \"Purge时使用的X-Edge-Purge-Key\",\n  \"stale\": \"陈旧缓存使用策略\",\n  \"cacheRefs\": [\"缓存条件1\", \"缓存条件2\", ...]\n}\n~~~\n其中：\n* `缓存条件` - 参考 {json:http_cache_ref}\n\n## 示例\n### 无缓存条件\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"addStatusHeader\": true,\n  \"addAgeHeader\": true,\n  \"enableCacheControlMaxAge\": true,\n  \"disablePolicyRefs\": false,\n  \"purgeIsOn\": false,\n  \"purgeKey\": \"\",\n  \"stale\": null,\n  \"cacheRefs\": []\n}\n~~~\n\n### 加入缓存条件\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"addStatusHeader\": true,\n  \"addAgeHeader\": true,\n  \"enableCacheControlMaxAge\": true,\n  \"disablePolicyRefs\": false,\n  \"purgeIsOn\": false,\n  \"purgeKey\": \"\",\n  \"stale\": null,\n  \"cacheRefs\": [\n    {\n\t  \"id\": 0,\n\t  \"isOn\": true,\n\t  \"key\": \"${scheme}://${host}${requestPath}${isArgs}${args}\",\n\t  \"life\": {\"count\": 2, \"unit\": \"hour\"},\n\t  \"status\": [200],\n      \"maxSize\": {\"count\": 32, \"unit\": \"mb\"},\n      \"minSize\": {\"count\": 0, \"unit\": \"kb\"},\n      \"skipCacheControlValues\": [\"private\", \"no-cache\", \"no-store\"],\n      \"skipSetCookie\": true,\n      \"enableRequestCachePragma\": false,\n      \"conds\": {\n        \"isOn\": true,\n        \"connector\": \"or\",\n        \"groups\": [\n          {\n            \"isOn\": true,\n            \"connector\": \"and\",\n            \"conds\": [\n              {\n                \"type\": \"url-extension\",\n                \"isRequest\": true,\n                \"param\": \"${requestPathLowerExtension}\",\n                \"operator\": \"in\",\n                \"value\": \"[\\\".css\\\",\\\".png\\\",\\\".js\\\",\\\".woff2\\\"]\",\n                \"isReverse\": false,\n                \"isCaseInsensitive\": false,\n                \"typeName\": \"URL扩展名\"\n              }\n            ],\n            \"isReverse\": false,\n            \"description\": \"\"\n          }\n        ]\n      },\n      \"allowChunkedEncoding\": true,\n      \"allowPartialContent\": false,\n      \"isReverse\": false,\n      \"methods\": []\n\t}\n  ]\n}\n~~~\n"
+      "content": "# HTTP缓存配置\n## 定义\n~~~json\n{\n  \"isPrior\": \"是否覆盖上级配置\",\n  \"isOn\": \"是否启用配置\",\n  \"addStatusHeader\": \"是否增加命中状态Header（X-Cache）\",\n  \"addAgeHeader\": \"是否增加Age Header\",\n  \"enableCacheControlMaxAge\": \"是否支持Cache-Control: max-age=...\",\n  \"disablePolicyRefs\": \"是否停用策略中定义的条件\",\n  \"purgeIsOn\": \"是否允许使用Purge方法清理\",\n  \"purgeKey\": \"Purge时使用的X-Edge-Purge-Key\",\n  \"stale\": \"陈旧缓存使用策略\",\n  \"key\": \"主域名配置\",\n  \"cacheRefs\": [\"缓存条件1\", \"缓存条件2\", ...]\n}\n~~~\n其中：\n* `缓存条件` - 参考 {json:http_cache_ref}\n* `主域名配置` 参考本文“主域名”配置部分\n\n## 示例\n### 无缓存条件\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"addStatusHeader\": true,\n  \"addAgeHeader\": true,\n  \"enableCacheControlMaxAge\": true,\n  \"disablePolicyRefs\": false,\n  \"purgeIsOn\": false,\n  \"purgeKey\": \"\",\n  \"stale\": null,\n  \"cacheRefs\": []\n}\n~~~\n\n### 加入缓存条件\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"addStatusHeader\": true,\n  \"addAgeHeader\": true,\n  \"enableCacheControlMaxAge\": true,\n  \"disablePolicyRefs\": false,\n  \"purgeIsOn\": false,\n  \"purgeKey\": \"\",\n  \"stale\": null,\n  \"cacheRefs\": [\n    {\n\t  \"id\": 0,\n\t  \"isOn\": true,\n\t  \"key\": \"${scheme}://${host}${requestPath}${isArgs}${args}\",\n\t  \"life\": {\"count\": 2, \"unit\": \"hour\"},\n\t  \"status\": [200],\n      \"maxSize\": {\"count\": 32, \"unit\": \"mb\"},\n      \"minSize\": {\"count\": 0, \"unit\": \"kb\"},\n      \"skipCacheControlValues\": [\"private\", \"no-cache\", \"no-store\"],\n      \"skipSetCookie\": true,\n      \"enableRequestCachePragma\": false,\n      \"conds\": {\n        \"isOn\": true,\n        \"connector\": \"or\",\n        \"groups\": [\n          {\n            \"isOn\": true,\n            \"connector\": \"and\",\n            \"conds\": [\n              {\n                \"type\": \"url-extension\",\n                \"isRequest\": true,\n                \"param\": \"${requestPathLowerExtension}\",\n                \"operator\": \"in\",\n                \"value\": \"[\\\".css\\\",\\\".png\\\",\\\".js\\\",\\\".woff2\\\"]\",\n                \"isReverse\": false,\n                \"isCaseInsensitive\": false,\n                \"typeName\": \"URL扩展名\"\n              }\n            ],\n            \"isReverse\": false,\n            \"description\": \"\"\n          }\n        ]\n      },\n      \"allowChunkedEncoding\": true,\n      \"allowPartialContent\": false,\n      \"isReverse\": false,\n      \"methods\": []\n\t}\n  ]\n}\n~~~\n\n\n## 主域名配置\n~~~json\n{\n  \"isOn\": \"true|false\",\n  \"scheme\": \"https|http\",\n  \"host\": \"域名，必须是当前网站已绑定的域名\"\n}\n~~~\n\n### 示例\n#### 不使用主域名\n~~~json\n{\n  \"isOn\": false\n}\n~~~\n\n#### 使用主域名\n~~~json\n{\n  \"isOn\": true,\n  \"scheme\": \"https\",\n  \"host\": \"example.com\"\n}\n~~~\n\n如果启用主域名，则缓存键值中的域名会被自动换成主域名，清理缓存的时候也需要使用此主域名。"
     },
     {
       "name": "json:http_cache_ref",
