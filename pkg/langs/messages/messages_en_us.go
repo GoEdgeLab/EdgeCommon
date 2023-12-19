@@ -96,6 +96,7 @@ func init() {
 		"admin_menu@ns_routes":                                                "Routes",
 		"admin_menu@ns_settings":                                              "Settings",
 		"admin_menu@ns_user_plans":                                            "User Plans",
+		"admin_menu@plan_list":                                                "Plans",
 		"admin_menu@plan_user_plans":                                          "User Plans",
 		"admin_menu@plans":                                                    "Plans",
 		"admin_menu@server_access_log_policies":                               "Access Log Policies",

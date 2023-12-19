@@ -95,6 +95,7 @@ const (
 	AdminMenu_NSRoutes                                          langs.MessageCode = "admin_menu@ns_routes"                                                // 线路管理
 	AdminMenu_NSSettings                                        langs.MessageCode = "admin_menu@ns_settings"                                              // 全局配置
 	AdminMenu_NSUserPlans                                       langs.MessageCode = "admin_menu@ns_user_plans"                                            // 用户套餐
+	AdminMenu_PlanList                                          langs.MessageCode = "admin_menu@plan_list"                                                // 套餐列表
 	AdminMenu_PlanUserPlans                                     langs.MessageCode = "admin_menu@plan_user_plans"                                          // 已购套餐
 	AdminMenu_Plans                                             langs.MessageCode = "admin_menu@plans"                                                    // 套餐管理
 	AdminMenu_ServerAccessLogPolicies                           langs.MessageCode = "admin_menu@server_access_log_policies"                               // 日志策略

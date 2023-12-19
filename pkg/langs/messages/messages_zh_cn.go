@@ -96,6 +96,7 @@ func init() {
 		"admin_menu@ns_routes":                                                "线路管理",
 		"admin_menu@ns_settings":                                              "全局配置",
 		"admin_menu@ns_user_plans":                                            "用户套餐",
+		"admin_menu@plan_list":                                                "套餐列表",
 		"admin_menu@plan_user_plans":                                          "已购套餐",
 		"admin_menu@plans":                                                    "套餐管理",
 		"admin_menu@server_access_log_policies":                               "日志策略",
