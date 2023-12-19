@@ -90,7 +90,12 @@ func (this *Manager) GetMessage(langCode string, messageCode MessageCode, args .
 		if lang.code != this.defaultLangCode {
 			var defaultLang = this.langMap[this.defaultLangCode]
 			if defaultLang != nil {
-				return defaultLang.Get(messageCode)
+				message = defaultLang.Get(messageCode)
+				if len(args) == 0 {
+					return message
+				}
+
+				return fmt.Sprintf(message, args...)
 			}
 		}
 
