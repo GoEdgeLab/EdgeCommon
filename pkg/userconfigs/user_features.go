@@ -16,7 +16,7 @@ const (
 	UserFeatureCodeServerUDPPort       UserFeatureCode = "server.udp.port"
 	UserFeatureCodeServerAccessLog     UserFeatureCode = "server.accessLog"
 	UserFeatureCodeServerViewAccessLog UserFeatureCode = "server.viewAccessLog"
-	UserFeatureCodeScript              UserFeatureCode = "server.script"
+	UserFeatureCodeServerScript        UserFeatureCode = "server.script"
 	UserFeatureCodeServerWAF           UserFeatureCode = "server.waf"
 	UserFeatureCodeServerOptimization  UserFeatureCode = "server.optimization"
 	UserFeatureCodeServerUAM           UserFeatureCode = "server.uam"
@@ -26,6 +26,14 @@ const (
 	UserFeatureCodeServerAuth          UserFeatureCode = "server.auth"
 	UserFeatureCodeServerWebsocket     UserFeatureCode = "server.websocket"
 	UserFeatureCodeServerHTTP3         UserFeatureCode = "server.http3"
+	UserFeatureCodeServerReferers      UserFeatureCode = "server.referers"
+	UserFeatureCodeServerUserAgent     UserFeatureCode = "server.userAgent"
+	UserFeatureCodeServerRequestLimit  UserFeatureCode = "server.requestLimit"
+	UserFeatureCodeServerCompression   UserFeatureCode = "server.compression"
+	UserFeatureCodeServerRewriteRules  UserFeatureCode = "server.rewriteRules"
+	UserFeatureCodeServerHostRedirects UserFeatureCode = "server.hostRedirects"
+	UserFeatureCodeServerHTTPHeaders   UserFeatureCode = "server.httpHeaders"
+	UserFeatureCodeServerPages         UserFeatureCode = "server.pages"
 )
 
 // UserFeature 用户功能
@@ -70,7 +78,7 @@ func FindAllUserFeatures() []*UserFeature {
 			Name:        "TCP负载均衡",
 			Code:        UserFeatureCodeServerTCP,
 			Description: "用户可以添加TCP/TLS负载均衡服务。",
-			SupportPlan: true,
+			SupportPlan: false,
 		},
 		{
 			Name:        "自定义TCP负载均衡端口",
@@ -82,7 +90,7 @@ func FindAllUserFeatures() []*UserFeature {
 			Name:        "UDP负载均衡",
 			Code:        UserFeatureCodeServerUDP,
 			Description: "用户可以添加UDP负载均衡服务。",
-			SupportPlan: true,
+			SupportPlan: false,
 		},
 		{
 			Name:        "自定义UDP负载均衡端口",
@@ -104,7 +112,7 @@ func FindAllUserFeatures() []*UserFeature {
 		},
 		{
 			Name:        "边缘脚本",
-			Code:        UserFeatureCodeScript,
+			Code:        UserFeatureCodeServerScript,
 			Description: "用户可以在使用边缘脚本过滤请求。",
 			SupportPlan: true,
 		},
@@ -145,9 +153,57 @@ func FindAllUserFeatures() []*UserFeature {
 			SupportPlan: true,
 		},
 		{
+			Name:        "防盗链",
+			Code:        UserFeatureCodeServerReferers,
+			Description: "用户可以开启防盗链功能。",
+			SupportPlan: true,
+		},
+		{
+			Name:        "UA名单",
+			Code:        UserFeatureCodeServerUserAgent,
+			Description: "用户可以开启UserAgent允许和禁止的名单。",
+			SupportPlan: true,
+		},
+		{
 			Name:        "HTTP/3",
 			Code:        UserFeatureCodeServerHTTP3,
 			Description: "用户可以开启HTTP/3功能。",
+			SupportPlan: true,
+		},
+		{
+			Name:        "请求限制",
+			Code:        UserFeatureCodeServerRequestLimit,
+			Description: "用户可以限制单网站并发连接数、带宽等。",
+			SupportPlan: true,
+		},
+		{
+			Name:        "内容压缩",
+			Code:        UserFeatureCodeServerCompression,
+			Description: "用户可以使用内容压缩功能。",
+			SupportPlan: true,
+		},
+		{
+			Name:        "URL跳转",
+			Code:        UserFeatureCodeServerHostRedirects,
+			Description: "用户可以使用URL跳转功能。",
+			SupportPlan: true,
+		},
+		{
+			Name:        "重写规则",
+			Code:        UserFeatureCodeServerRewriteRules,
+			Description: "用户可以使用重写规则功能。",
+			SupportPlan: true,
+		},
+		{
+			Name:        "HTTP报头",
+			Code:        UserFeatureCodeServerHTTPHeaders,
+			Description: "用户可以管理网站相关请求和响应报头。",
+			SupportPlan: true,
+		},
+		{
+			Name:        "自定义页面",
+			Code:        UserFeatureCodeServerPages,
+			Description: "用户可以自定义404、50x等页面。",
 			SupportPlan: true,
 		},
 		{
