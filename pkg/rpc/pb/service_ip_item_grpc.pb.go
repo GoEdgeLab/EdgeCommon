@@ -19,20 +19,21 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	IPItemService_CreateIPItem_FullMethodName            = "/pb.IPItemService/createIPItem"
-	IPItemService_CreateIPItems_FullMethodName           = "/pb.IPItemService/createIPItems"
-	IPItemService_UpdateIPItem_FullMethodName            = "/pb.IPItemService/updateIPItem"
-	IPItemService_DeleteIPItem_FullMethodName            = "/pb.IPItemService/deleteIPItem"
-	IPItemService_DeleteIPItems_FullMethodName           = "/pb.IPItemService/deleteIPItems"
-	IPItemService_CountIPItemsWithListId_FullMethodName  = "/pb.IPItemService/countIPItemsWithListId"
-	IPItemService_ListIPItemsWithListId_FullMethodName   = "/pb.IPItemService/listIPItemsWithListId"
-	IPItemService_FindEnabledIPItem_FullMethodName       = "/pb.IPItemService/findEnabledIPItem"
-	IPItemService_ListIPItemsAfterVersion_FullMethodName = "/pb.IPItemService/listIPItemsAfterVersion"
-	IPItemService_CheckIPItemStatus_FullMethodName       = "/pb.IPItemService/checkIPItemStatus"
-	IPItemService_ExistsEnabledIPItem_FullMethodName     = "/pb.IPItemService/existsEnabledIPItem"
-	IPItemService_CountAllEnabledIPItems_FullMethodName  = "/pb.IPItemService/countAllEnabledIPItems"
-	IPItemService_ListAllEnabledIPItems_FullMethodName   = "/pb.IPItemService/listAllEnabledIPItems"
-	IPItemService_UpdateIPItemsRead_FullMethodName       = "/pb.IPItemService/updateIPItemsRead"
+	IPItemService_CreateIPItem_FullMethodName             = "/pb.IPItemService/createIPItem"
+	IPItemService_CreateIPItems_FullMethodName            = "/pb.IPItemService/createIPItems"
+	IPItemService_UpdateIPItem_FullMethodName             = "/pb.IPItemService/updateIPItem"
+	IPItemService_DeleteIPItem_FullMethodName             = "/pb.IPItemService/deleteIPItem"
+	IPItemService_DeleteIPItems_FullMethodName            = "/pb.IPItemService/deleteIPItems"
+	IPItemService_CountIPItemsWithListId_FullMethodName   = "/pb.IPItemService/countIPItemsWithListId"
+	IPItemService_ListIPItemsWithListId_FullMethodName    = "/pb.IPItemService/listIPItemsWithListId"
+	IPItemService_FindEnabledIPItem_FullMethodName        = "/pb.IPItemService/findEnabledIPItem"
+	IPItemService_ListIPItemsAfterVersion_FullMethodName  = "/pb.IPItemService/listIPItemsAfterVersion"
+	IPItemService_CheckIPItemStatus_FullMethodName        = "/pb.IPItemService/checkIPItemStatus"
+	IPItemService_ExistsEnabledIPItem_FullMethodName      = "/pb.IPItemService/existsEnabledIPItem"
+	IPItemService_CountAllEnabledIPItems_FullMethodName   = "/pb.IPItemService/countAllEnabledIPItems"
+	IPItemService_ListAllEnabledIPItems_FullMethodName    = "/pb.IPItemService/listAllEnabledIPItems"
+	IPItemService_UpdateIPItemsRead_FullMethodName        = "/pb.IPItemService/updateIPItemsRead"
+	IPItemService_FindServerIdWithIPItemId_FullMethodName = "/pb.IPItemService/findServerIdWithIPItemId"
 )
 
 // IPItemServiceClient is the client API for IPItemService service.
@@ -67,6 +68,8 @@ type IPItemServiceClient interface {
 	ListAllEnabledIPItems(ctx context.Context, in *ListAllEnabledIPItemsRequest, opts ...grpc.CallOption) (*ListAllEnabledIPItemsResponse, error)
 	// 设置所有为已读
 	UpdateIPItemsRead(ctx context.Context, in *UpdateIPItemsReadRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 查找IP对应的名单所属网站ID
+	FindServerIdWithIPItemId(ctx context.Context, in *FindServerIdWithIPItemIdRequest, opts ...grpc.CallOption) (*FindServerIdWithIPItemIdResponse, error)
 }
 
 type iPItemServiceClient struct {
@@ -203,6 +206,15 @@ func (c *iPItemServiceClient) UpdateIPItemsRead(ctx context.Context, in *UpdateI
 	return out, nil
 }
 
+func (c *iPItemServiceClient) FindServerIdWithIPItemId(ctx context.Context, in *FindServerIdWithIPItemIdRequest, opts ...grpc.CallOption) (*FindServerIdWithIPItemIdResponse, error) {
+	out := new(FindServerIdWithIPItemIdResponse)
+	err := c.cc.Invoke(ctx, IPItemService_FindServerIdWithIPItemId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IPItemServiceServer is the server API for IPItemService service.
 // All implementations should embed UnimplementedIPItemServiceServer
 // for forward compatibility
@@ -235,6 +247,8 @@ type IPItemServiceServer interface {
 	ListAllEnabledIPItems(context.Context, *ListAllEnabledIPItemsRequest) (*ListAllEnabledIPItemsResponse, error)
 	// 设置所有为已读
 	UpdateIPItemsRead(context.Context, *UpdateIPItemsReadRequest) (*RPCSuccess, error)
+	// 查找IP对应的名单所属网站ID
+	FindServerIdWithIPItemId(context.Context, *FindServerIdWithIPItemIdRequest) (*FindServerIdWithIPItemIdResponse, error)
 }
 
 // UnimplementedIPItemServiceServer should be embedded to have forward compatible implementations.
@@ -282,6 +296,9 @@ func (UnimplementedIPItemServiceServer) ListAllEnabledIPItems(context.Context, *
 }
 func (UnimplementedIPItemServiceServer) UpdateIPItemsRead(context.Context, *UpdateIPItemsReadRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateIPItemsRead not implemented")
+}
+func (UnimplementedIPItemServiceServer) FindServerIdWithIPItemId(context.Context, *FindServerIdWithIPItemIdRequest) (*FindServerIdWithIPItemIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindServerIdWithIPItemId not implemented")
 }
 
 // UnsafeIPItemServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -547,6 +564,24 @@ func _IPItemService_UpdateIPItemsRead_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IPItemService_FindServerIdWithIPItemId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindServerIdWithIPItemIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IPItemServiceServer).FindServerIdWithIPItemId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IPItemService_FindServerIdWithIPItemId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IPItemServiceServer).FindServerIdWithIPItemId(ctx, req.(*FindServerIdWithIPItemIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // IPItemService_ServiceDesc is the grpc.ServiceDesc for IPItemService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -609,6 +644,10 @@ var IPItemService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "updateIPItemsRead",
 			Handler:    _IPItemService_UpdateIPItemsRead_Handler,
+		},
+		{
+			MethodName: "findServerIdWithIPItemId",
+			Handler:    _IPItemService_FindServerIdWithIPItemId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

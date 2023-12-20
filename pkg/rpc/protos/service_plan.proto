@@ -35,7 +35,8 @@ message CreatePlanRequest {
 	string name = 1;
 	int64 clusterId = 2;
 	bytes trafficLimitJSON = 3;
-	bytes featuresJSON = 4;
+	bool hasFullFeatures = 18; // 是否有所有权限
+	bytes featuresJSON = 4; // 权限列表，[code1, code2, ...]
 	string priceType = 5;
 	bytes trafficPriceJSON = 6;
 	bytes bandwidthPriceJSON = 10;
@@ -62,7 +63,8 @@ message UpdatePlanRequest {
 	bool isOn = 3;
 	int64 clusterId = 4;
 	bytes trafficLimitJSON = 5;
-	bytes featuresJSON = 6;
+	bool hasFullFeatures = 20; // 是否有所有权限
+	bytes featuresJSON = 6; // 权限列表，[code1, code2, ...]
 	string priceType = 7;
 	bytes trafficPriceJSON = 8;
 	bytes bandwidthPriceJSON = 12;

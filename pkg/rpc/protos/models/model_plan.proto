@@ -9,7 +9,8 @@ message Plan {
 	string name = 3;
 	int64 clusterId = 4;
 	bytes trafficLimitJSON = 5;
-	bytes featuresJSON = 6;
+	bool hasFullFeatures = 20; // 是否有所有权限
+	bytes featuresJSON = 6; // 权限列表，[code1, code2, ...]
 	string priceType = 7;
 	bytes trafficPriceJSON = 8;
 	bytes bandwidthPriceJSON = 12;

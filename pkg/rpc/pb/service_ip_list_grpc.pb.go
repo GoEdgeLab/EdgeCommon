@@ -27,6 +27,7 @@ const (
 	IPListService_DeleteIPList_FullMethodName                = "/pb.IPListService/deleteIPList"
 	IPListService_ExistsEnabledIPList_FullMethodName         = "/pb.IPListService/existsEnabledIPList"
 	IPListService_FindEnabledIPListContainsIP_FullMethodName = "/pb.IPListService/findEnabledIPListContainsIP"
+	IPListService_FindServerIdWithIPListId_FullMethodName    = "/pb.IPListService/findServerIdWithIPListId"
 )
 
 // IPListServiceClient is the client API for IPListService service.
@@ -49,6 +50,8 @@ type IPListServiceClient interface {
 	ExistsEnabledIPList(ctx context.Context, in *ExistsEnabledIPListRequest, opts ...grpc.CallOption) (*ExistsEnabledIPListResponse, error)
 	// 根据IP来搜索IP名单
 	FindEnabledIPListContainsIP(ctx context.Context, in *FindEnabledIPListContainsIPRequest, opts ...grpc.CallOption) (*FindEnabledIPListContainsIPResponse, error)
+	// 查找IP名单对应的网站ID
+	FindServerIdWithIPListId(ctx context.Context, in *FindServerIdWithIPListIdRequest, opts ...grpc.CallOption) (*FindServerIdWithIPListIdResponse, error)
 }
 
 type iPListServiceClient struct {
@@ -131,6 +134,15 @@ func (c *iPListServiceClient) FindEnabledIPListContainsIP(ctx context.Context, i
 	return out, nil
 }
 
+func (c *iPListServiceClient) FindServerIdWithIPListId(ctx context.Context, in *FindServerIdWithIPListIdRequest, opts ...grpc.CallOption) (*FindServerIdWithIPListIdResponse, error) {
+	out := new(FindServerIdWithIPListIdResponse)
+	err := c.cc.Invoke(ctx, IPListService_FindServerIdWithIPListId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IPListServiceServer is the server API for IPListService service.
 // All implementations should embed UnimplementedIPListServiceServer
 // for forward compatibility
@@ -151,6 +163,8 @@ type IPListServiceServer interface {
 	ExistsEnabledIPList(context.Context, *ExistsEnabledIPListRequest) (*ExistsEnabledIPListResponse, error)
 	// 根据IP来搜索IP名单
 	FindEnabledIPListContainsIP(context.Context, *FindEnabledIPListContainsIPRequest) (*FindEnabledIPListContainsIPResponse, error)
+	// 查找IP名单对应的网站ID
+	FindServerIdWithIPListId(context.Context, *FindServerIdWithIPListIdRequest) (*FindServerIdWithIPListIdResponse, error)
 }
 
 // UnimplementedIPListServiceServer should be embedded to have forward compatible implementations.
@@ -180,6 +194,9 @@ func (UnimplementedIPListServiceServer) ExistsEnabledIPList(context.Context, *Ex
 }
 func (UnimplementedIPListServiceServer) FindEnabledIPListContainsIP(context.Context, *FindEnabledIPListContainsIPRequest) (*FindEnabledIPListContainsIPResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledIPListContainsIP not implemented")
+}
+func (UnimplementedIPListServiceServer) FindServerIdWithIPListId(context.Context, *FindServerIdWithIPListIdRequest) (*FindServerIdWithIPListIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindServerIdWithIPListId not implemented")
 }
 
 // UnsafeIPListServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -337,6 +354,24 @@ func _IPListService_FindEnabledIPListContainsIP_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IPListService_FindServerIdWithIPListId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindServerIdWithIPListIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IPListServiceServer).FindServerIdWithIPListId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IPListService_FindServerIdWithIPListId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IPListServiceServer).FindServerIdWithIPListId(ctx, req.(*FindServerIdWithIPListIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // IPListService_ServiceDesc is the grpc.ServiceDesc for IPListService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -375,6 +410,10 @@ var IPListService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findEnabledIPListContainsIP",
 			Handler:    _IPListService_FindEnabledIPListContainsIP_Handler,
+		},
+		{
+			MethodName: "findServerIdWithIPListId",
+			Handler:    _IPListService_FindServerIdWithIPListId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

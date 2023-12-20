@@ -52,6 +52,9 @@ service IPItemService {
 
 	// 设置所有为已读
 	rpc updateIPItemsRead(UpdateIPItemsReadRequest) returns (RPCSuccess);
+
+	// 查找IP对应的名单所属网站ID
+	rpc findServerIdWithIPItemId(FindServerIdWithIPItemIdRequest) returns (FindServerIdWithIPItemIdResponse);
 }
 
 // 创建IP
@@ -236,4 +239,13 @@ message ListAllEnabledIPItemsResponse {
 // 设置所有为已读
 message UpdateIPItemsReadRequest {
 
+}
+
+// 查找IP对应的名单所属网站ID
+message FindServerIdWithIPItemIdRequest {
+	int64 ipItemId = 1; // IP ID
+}
+
+message FindServerIdWithIPItemIdResponse {
+	int64 serverId = 1; // 网站ID
 }

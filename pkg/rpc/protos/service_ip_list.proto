@@ -31,6 +31,9 @@ service IPListService {
 
 	// 根据IP来搜索IP名单
 	rpc findEnabledIPListContainsIP(FindEnabledIPListContainsIPRequest) returns (FindEnabledIPListContainsIPResponse);
+
+	// 查找IP名单对应的网站ID
+	rpc findServerIdWithIPListId(FindServerIdWithIPListIdRequest) returns (FindServerIdWithIPListIdResponse);
 }
 
 // 创建IP列表
@@ -108,4 +111,13 @@ message FindEnabledIPListContainsIPRequest {
 
 message FindEnabledIPListContainsIPResponse {
 	repeated IPList ipLists = 1;
+}
+
+// 查找IP名单对应的网站ID
+message FindServerIdWithIPListIdRequest {
+	int64 ipListId = 1; // IP名单ID
+}
+
+message FindServerIdWithIPListIdResponse {
+	int64 serverId = 1; // 网站ID（如果是公共IP名单，则对应的网站ID为0）
 }

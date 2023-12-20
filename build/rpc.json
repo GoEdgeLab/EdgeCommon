@@ -2603,6 +2603,18 @@
             "admin"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findServerIdWithHTTPFirewallPolicyId",
+          "requestMessageName": "FindServerIdWithHTTPFirewallPolicyIdRequest",
+          "responseMessageName": "FindServerIdWithHTTPFirewallPolicyIdResponse",
+          "code": "rpc findServerIdWithHTTPFirewallPolicyId(FindServerIdWithHTTPFirewallPolicyIdRequest) returns (FindServerIdWithHTTPFirewallPolicyIdResponse);",
+          "doc": "获取防火墙对应的网站ID",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_http_firewall_policy.proto",
@@ -3781,6 +3793,15 @@
             "user"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findServerIdWithIPItemId",
+          "requestMessageName": "FindServerIdWithIPItemIdRequest",
+          "responseMessageName": "FindServerIdWithIPItemIdResponse",
+          "code": "rpc findServerIdWithIPItemId(FindServerIdWithIPItemIdRequest) returns (FindServerIdWithIPItemIdResponse);",
+          "doc": "查找IP对应的名单所属网站ID",
+          "roles": [],
+          "isDeprecated": false
         }
       ],
       "filename": "service_ip_item.proto",
@@ -4131,6 +4152,18 @@
           "doc": "根据IP来搜索IP名单",
           "roles": [
             "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findServerIdWithIPListId",
+          "requestMessageName": "FindServerIdWithIPListIdRequest",
+          "responseMessageName": "FindServerIdWithIPListIdResponse",
+          "code": "rpc findServerIdWithIPListId(FindServerIdWithIPListIdRequest) returns (FindServerIdWithIPListIdResponse);",
+          "doc": "查找IP名单对应的网站ID",
+          "roles": [
+            "admin",
+            "user"
           ],
           "isDeprecated": false
         }
@@ -13830,7 +13863,7 @@
     },
     {
       "name": "CheckHTTPFirewallPolicyIPStatusResponse",
-      "code": "message CheckHTTPFirewallPolicyIPStatusResponse {\n\tbool isOk = 1; // 是否查询成功\n\tstring error = 2;\n\tbool isFound = 3; // 是否找到\n\tbool isAllowed = 4; // 是否允许\n\tIPList ipList = 5; // 匹配的IPList\n\tIPItem ipItem = 6; // 匹配的IPItem\n\tRegionCountry regionCountry = 7; // 匹配到封禁的地区\n\tRegionProvince regionProvince = 8; // 匹配到封禁的省份\n}",
+      "code": "message CheckHTTPFirewallPolicyIPStatusResponse {\n\tbool isOk = 1; // 是否查询成功\n\tstring error = 2; // 错误信息\n\tbool isFound = 3; // 是否找到\n\tbool isAllowed = 4; // 是否允许\n\tIPList ipList = 5; // 匹配的IPList\n\tIPItem ipItem = 6; // 匹配的IPItem\n\tRegionCountry regionCountry = 7; // 匹配到封禁的地区\n\tRegionProvince regionProvince = 8; // 匹配到封禁的省份\n}",
       "doc": ""
     },
     {
@@ -15510,7 +15543,7 @@
     },
     {
       "name": "CreatePlanRequest",
-      "code": "message CreatePlanRequest {\n\tstring name = 1;\n\tint64 clusterId = 2;\n\tbytes trafficLimitJSON = 3;\n\tbytes featuresJSON = 4;\n\tstring priceType = 5;\n\tbytes trafficPriceJSON = 6;\n\tbytes bandwidthPriceJSON = 10;\n\tfloat monthlyPrice = 7; // 月度价格\n\tfloat seasonallyPrice = 8; // 季度价格\n\tfloat yearlyPrice = 9; // 年度价格\n\tint32 totalServers = 11; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 13; // 可以添加的域名总数\n\tint64 dailyRequests = 14; // 每日访问量额度\n\tint64 monthlyRequests = 15; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 16; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 17; // 每月Websocket连接数额度\n}",
+      "code": "message CreatePlanRequest {\n\tstring name = 1;\n\tint64 clusterId = 2;\n\tbytes trafficLimitJSON = 3;\n\tbool hasFullFeatures = 18; // 是否有所有权限\n\tbytes featuresJSON = 4; // 权限列表，[code1, code2, ...]\n\tstring priceType = 5;\n\tbytes trafficPriceJSON = 6;\n\tbytes bandwidthPriceJSON = 10;\n\tfloat monthlyPrice = 7; // 月度价格\n\tfloat seasonallyPrice = 8; // 季度价格\n\tfloat yearlyPrice = 9; // 年度价格\n\tint32 totalServers = 11; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 13; // 可以添加的域名总数\n\tint64 dailyRequests = 14; // 每日访问量额度\n\tint64 monthlyRequests = 15; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 16; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 17; // 每月Websocket连接数额度\n}",
       "doc": "创建套餐"
     },
     {
@@ -19639,6 +19672,16 @@
       "doc": ""
     },
     {
+      "name": "FindServerIdWithHTTPFirewallPolicyIdRequest",
+      "code": "message FindServerIdWithHTTPFirewallPolicyIdRequest {\n\tint64 httpFirewallPolicyId = 1; // 防火墙策略ID\n}",
+      "doc": "获取防火墙对应的网站ID"
+    },
+    {
+      "name": "FindServerIdWithHTTPFirewallPolicyIdResponse",
+      "code": "message FindServerIdWithHTTPFirewallPolicyIdResponse {\n\tint64 serverId = 1; // 防火墙策略对应的网站ID，公共的防火墙策略的网站ID为0\n}",
+      "doc": ""
+    },
+    {
       "name": "FindServerIdWithHTTPWebIdRequest",
       "code": "message FindServerIdWithHTTPWebIdRequest {\n\tint64 httpWebId = 1; // Web设置ID\n}",
       "doc": "根据WebId查找ServerId"
@@ -19646,6 +19689,26 @@
     {
       "name": "FindServerIdWithHTTPWebIdResponse",
       "code": "message FindServerIdWithHTTPWebIdResponse {\n\tint64 serverId = 1; // 网站ID\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindServerIdWithIPItemIdRequest",
+      "code": "message FindServerIdWithIPItemIdRequest {\n\tint64 ipItemId = 1; // IP ID\n}",
+      "doc": "查找IP对应的名单所属网站ID"
+    },
+    {
+      "name": "FindServerIdWithIPItemIdResponse",
+      "code": "message FindServerIdWithIPItemIdResponse {\n\tint64 serverId = 1; // 网站ID\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindServerIdWithIPListIdRequest",
+      "code": "message FindServerIdWithIPListIdRequest {\n\tint64 ipListId = 1; // IP名单ID\n}",
+      "doc": "查找IP名单对应的网站ID"
+    },
+    {
+      "name": "FindServerIdWithIPListIdResponse",
+      "code": "message FindServerIdWithIPListIdResponse {\n\tint64 serverId = 1; // 网站ID（如果是公共IP名单，则对应的网站ID为0）\n}",
       "doc": ""
     },
     {
@@ -21170,7 +21233,7 @@
     },
     {
       "name": "Plan",
-      "code": "message Plan {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tdouble monthlyPrice = 9;\n\tdouble seasonallyPrice = 10;\n\tdouble yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
+      "code": "message Plan {\n\tint64 id = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbool hasFullFeatures = 20; // 是否有所有权限\n\tbytes featuresJSON = 6; // 权限列表，[code1, code2, ...]\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tdouble monthlyPrice = 9;\n\tdouble seasonallyPrice = 10;\n\tdouble yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
       "doc": ""
     },
     {
@@ -22565,7 +22628,7 @@
     },
     {
       "name": "UpdatePlanRequest",
-      "code": "message UpdatePlanRequest {\n\tint64 planId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbytes featuresJSON = 6;\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tfloat monthlyPrice = 9;\n\tfloat seasonallyPrice = 10;\n\tfloat yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
+      "code": "message UpdatePlanRequest {\n\tint64 planId = 1;\n\tstring name = 2;\n\tbool isOn = 3;\n\tint64 clusterId = 4;\n\tbytes trafficLimitJSON = 5;\n\tbool hasFullFeatures = 20; // 是否有所有权限\n\tbytes featuresJSON = 6; // 权限列表，[code1, code2, ...]\n\tstring priceType = 7;\n\tbytes trafficPriceJSON = 8;\n\tbytes bandwidthPriceJSON = 12;\n\tfloat monthlyPrice = 9;\n\tfloat seasonallyPrice = 10;\n\tfloat yearlyPrice = 11;\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
       "doc": "修改套餐"
     },
     {
@@ -22970,8 +23033,8 @@
     },
     {
       "name": "UserFeature",
-      "code": "message UserFeature {\n\tstring code = 1;\n\tstring name = 2;\n\tstring description = 3;\n}",
-      "doc": ""
+      "code": "message UserFeature {\n\tstring code = 1; // 代号\n\tstring name = 2; // 名称\n\tstring description = 3; // 描述\n\tbool supportPlan = 4; // 是否支持套餐\n}",
+      "doc": "用户功能定义"
     },
     {
       "name": "UserIdentity",

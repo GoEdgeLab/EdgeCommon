@@ -19,19 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	HTTPFirewallPolicyService_FindAllEnabledHTTPFirewallPolicies_FullMethodName  = "/pb.HTTPFirewallPolicyService/findAllEnabledHTTPFirewallPolicies"
-	HTTPFirewallPolicyService_CreateHTTPFirewallPolicy_FullMethodName            = "/pb.HTTPFirewallPolicyService/createHTTPFirewallPolicy"
-	HTTPFirewallPolicyService_CreateEmptyHTTPFirewallPolicy_FullMethodName       = "/pb.HTTPFirewallPolicyService/createEmptyHTTPFirewallPolicy"
-	HTTPFirewallPolicyService_UpdateHTTPFirewallPolicy_FullMethodName            = "/pb.HTTPFirewallPolicyService/updateHTTPFirewallPolicy"
-	HTTPFirewallPolicyService_UpdateHTTPFirewallPolicyGroups_FullMethodName      = "/pb.HTTPFirewallPolicyService/updateHTTPFirewallPolicyGroups"
-	HTTPFirewallPolicyService_UpdateHTTPFirewallInboundConfig_FullMethodName     = "/pb.HTTPFirewallPolicyService/updateHTTPFirewallInboundConfig"
-	HTTPFirewallPolicyService_CountAllEnabledHTTPFirewallPolicies_FullMethodName = "/pb.HTTPFirewallPolicyService/countAllEnabledHTTPFirewallPolicies"
-	HTTPFirewallPolicyService_ListEnabledHTTPFirewallPolicies_FullMethodName     = "/pb.HTTPFirewallPolicyService/listEnabledHTTPFirewallPolicies"
-	HTTPFirewallPolicyService_DeleteHTTPFirewallPolicy_FullMethodName            = "/pb.HTTPFirewallPolicyService/deleteHTTPFirewallPolicy"
-	HTTPFirewallPolicyService_FindEnabledHTTPFirewallPolicyConfig_FullMethodName = "/pb.HTTPFirewallPolicyService/findEnabledHTTPFirewallPolicyConfig"
-	HTTPFirewallPolicyService_FindEnabledHTTPFirewallPolicy_FullMethodName       = "/pb.HTTPFirewallPolicyService/findEnabledHTTPFirewallPolicy"
-	HTTPFirewallPolicyService_ImportHTTPFirewallPolicy_FullMethodName            = "/pb.HTTPFirewallPolicyService/importHTTPFirewallPolicy"
-	HTTPFirewallPolicyService_CheckHTTPFirewallPolicyIPStatus_FullMethodName     = "/pb.HTTPFirewallPolicyService/checkHTTPFirewallPolicyIPStatus"
+	HTTPFirewallPolicyService_FindAllEnabledHTTPFirewallPolicies_FullMethodName   = "/pb.HTTPFirewallPolicyService/findAllEnabledHTTPFirewallPolicies"
+	HTTPFirewallPolicyService_CreateHTTPFirewallPolicy_FullMethodName             = "/pb.HTTPFirewallPolicyService/createHTTPFirewallPolicy"
+	HTTPFirewallPolicyService_CreateEmptyHTTPFirewallPolicy_FullMethodName        = "/pb.HTTPFirewallPolicyService/createEmptyHTTPFirewallPolicy"
+	HTTPFirewallPolicyService_UpdateHTTPFirewallPolicy_FullMethodName             = "/pb.HTTPFirewallPolicyService/updateHTTPFirewallPolicy"
+	HTTPFirewallPolicyService_UpdateHTTPFirewallPolicyGroups_FullMethodName       = "/pb.HTTPFirewallPolicyService/updateHTTPFirewallPolicyGroups"
+	HTTPFirewallPolicyService_UpdateHTTPFirewallInboundConfig_FullMethodName      = "/pb.HTTPFirewallPolicyService/updateHTTPFirewallInboundConfig"
+	HTTPFirewallPolicyService_CountAllEnabledHTTPFirewallPolicies_FullMethodName  = "/pb.HTTPFirewallPolicyService/countAllEnabledHTTPFirewallPolicies"
+	HTTPFirewallPolicyService_ListEnabledHTTPFirewallPolicies_FullMethodName      = "/pb.HTTPFirewallPolicyService/listEnabledHTTPFirewallPolicies"
+	HTTPFirewallPolicyService_DeleteHTTPFirewallPolicy_FullMethodName             = "/pb.HTTPFirewallPolicyService/deleteHTTPFirewallPolicy"
+	HTTPFirewallPolicyService_FindEnabledHTTPFirewallPolicyConfig_FullMethodName  = "/pb.HTTPFirewallPolicyService/findEnabledHTTPFirewallPolicyConfig"
+	HTTPFirewallPolicyService_FindEnabledHTTPFirewallPolicy_FullMethodName        = "/pb.HTTPFirewallPolicyService/findEnabledHTTPFirewallPolicy"
+	HTTPFirewallPolicyService_ImportHTTPFirewallPolicy_FullMethodName             = "/pb.HTTPFirewallPolicyService/importHTTPFirewallPolicy"
+	HTTPFirewallPolicyService_CheckHTTPFirewallPolicyIPStatus_FullMethodName      = "/pb.HTTPFirewallPolicyService/checkHTTPFirewallPolicyIPStatus"
+	HTTPFirewallPolicyService_FindServerIdWithHTTPFirewallPolicyId_FullMethodName = "/pb.HTTPFirewallPolicyService/findServerIdWithHTTPFirewallPolicyId"
 )
 
 // HTTPFirewallPolicyServiceClient is the client API for HTTPFirewallPolicyService service.
@@ -64,6 +65,8 @@ type HTTPFirewallPolicyServiceClient interface {
 	ImportHTTPFirewallPolicy(ctx context.Context, in *ImportHTTPFirewallPolicyRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 检查IP状态
 	CheckHTTPFirewallPolicyIPStatus(ctx context.Context, in *CheckHTTPFirewallPolicyIPStatusRequest, opts ...grpc.CallOption) (*CheckHTTPFirewallPolicyIPStatusResponse, error)
+	// 获取防火墙对应的网站ID
+	FindServerIdWithHTTPFirewallPolicyId(ctx context.Context, in *FindServerIdWithHTTPFirewallPolicyIdRequest, opts ...grpc.CallOption) (*FindServerIdWithHTTPFirewallPolicyIdResponse, error)
 }
 
 type hTTPFirewallPolicyServiceClient struct {
@@ -191,6 +194,15 @@ func (c *hTTPFirewallPolicyServiceClient) CheckHTTPFirewallPolicyIPStatus(ctx co
 	return out, nil
 }
 
+func (c *hTTPFirewallPolicyServiceClient) FindServerIdWithHTTPFirewallPolicyId(ctx context.Context, in *FindServerIdWithHTTPFirewallPolicyIdRequest, opts ...grpc.CallOption) (*FindServerIdWithHTTPFirewallPolicyIdResponse, error) {
+	out := new(FindServerIdWithHTTPFirewallPolicyIdResponse)
+	err := c.cc.Invoke(ctx, HTTPFirewallPolicyService_FindServerIdWithHTTPFirewallPolicyId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HTTPFirewallPolicyServiceServer is the server API for HTTPFirewallPolicyService service.
 // All implementations should embed UnimplementedHTTPFirewallPolicyServiceServer
 // for forward compatibility
@@ -221,6 +233,8 @@ type HTTPFirewallPolicyServiceServer interface {
 	ImportHTTPFirewallPolicy(context.Context, *ImportHTTPFirewallPolicyRequest) (*RPCSuccess, error)
 	// 检查IP状态
 	CheckHTTPFirewallPolicyIPStatus(context.Context, *CheckHTTPFirewallPolicyIPStatusRequest) (*CheckHTTPFirewallPolicyIPStatusResponse, error)
+	// 获取防火墙对应的网站ID
+	FindServerIdWithHTTPFirewallPolicyId(context.Context, *FindServerIdWithHTTPFirewallPolicyIdRequest) (*FindServerIdWithHTTPFirewallPolicyIdResponse, error)
 }
 
 // UnimplementedHTTPFirewallPolicyServiceServer should be embedded to have forward compatible implementations.
@@ -265,6 +279,9 @@ func (UnimplementedHTTPFirewallPolicyServiceServer) ImportHTTPFirewallPolicy(con
 }
 func (UnimplementedHTTPFirewallPolicyServiceServer) CheckHTTPFirewallPolicyIPStatus(context.Context, *CheckHTTPFirewallPolicyIPStatusRequest) (*CheckHTTPFirewallPolicyIPStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckHTTPFirewallPolicyIPStatus not implemented")
+}
+func (UnimplementedHTTPFirewallPolicyServiceServer) FindServerIdWithHTTPFirewallPolicyId(context.Context, *FindServerIdWithHTTPFirewallPolicyIdRequest) (*FindServerIdWithHTTPFirewallPolicyIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindServerIdWithHTTPFirewallPolicyId not implemented")
 }
 
 // UnsafeHTTPFirewallPolicyServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -512,6 +529,24 @@ func _HTTPFirewallPolicyService_CheckHTTPFirewallPolicyIPStatus_Handler(srv inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HTTPFirewallPolicyService_FindServerIdWithHTTPFirewallPolicyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindServerIdWithHTTPFirewallPolicyIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPFirewallPolicyServiceServer).FindServerIdWithHTTPFirewallPolicyId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HTTPFirewallPolicyService_FindServerIdWithHTTPFirewallPolicyId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPFirewallPolicyServiceServer).FindServerIdWithHTTPFirewallPolicyId(ctx, req.(*FindServerIdWithHTTPFirewallPolicyIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // HTTPFirewallPolicyService_ServiceDesc is the grpc.ServiceDesc for HTTPFirewallPolicyService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -570,6 +605,10 @@ var HTTPFirewallPolicyService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "checkHTTPFirewallPolicyIPStatus",
 			Handler:    _HTTPFirewallPolicyService_CheckHTTPFirewallPolicyIPStatus_Handler,
+		},
+		{
+			MethodName: "findServerIdWithHTTPFirewallPolicyId",
+			Handler:    _HTTPFirewallPolicyService_FindServerIdWithHTTPFirewallPolicyId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -3,8 +3,10 @@ option go_package = "./pb";
 
 package pb;
 
+// 用户功能定义
 message UserFeature {
-	string code = 1;
-	string name = 2;
-	string description = 3;
+	string code = 1; // 代号
+	string name = 2; // 名称
+	string description = 3; // 描述
+	bool supportPlan = 4; // 是否支持套餐
 }

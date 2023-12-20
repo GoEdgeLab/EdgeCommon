@@ -50,6 +50,9 @@ service HTTPFirewallPolicyService {
 
 	// 检查IP状态
 	rpc checkHTTPFirewallPolicyIPStatus (CheckHTTPFirewallPolicyIPStatusRequest) returns (CheckHTTPFirewallPolicyIPStatusResponse);
+
+	// 获取防火墙对应的网站ID
+	rpc findServerIdWithHTTPFirewallPolicyId(FindServerIdWithHTTPFirewallPolicyIdRequest) returns (FindServerIdWithHTTPFirewallPolicyIdResponse);
 }
 
 // 获取所有可用策略
@@ -174,11 +177,20 @@ message CheckHTTPFirewallPolicyIPStatusRequest {
 
 message CheckHTTPFirewallPolicyIPStatusResponse {
 	bool isOk = 1; // 是否查询成功
-	string error = 2;
+	string error = 2; // 错误信息
 	bool isFound = 3; // 是否找到
 	bool isAllowed = 4; // 是否允许
 	IPList ipList = 5; // 匹配的IPList
 	IPItem ipItem = 6; // 匹配的IPItem
 	RegionCountry regionCountry = 7; // 匹配到封禁的地区
 	RegionProvince regionProvince = 8; // 匹配到封禁的省份
+}
+
+// 获取防火墙对应的网站ID
+message FindServerIdWithHTTPFirewallPolicyIdRequest {
+	int64 httpFirewallPolicyId = 1; // 防火墙策略ID
+}
+
+message FindServerIdWithHTTPFirewallPolicyIdResponse {
+	int64 serverId = 1; // 防火墙策略对应的网站ID，公共的防火墙策略的网站ID为0
 }

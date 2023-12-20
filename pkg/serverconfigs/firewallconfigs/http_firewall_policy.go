@@ -8,6 +8,7 @@ const DefaultMaxRequestBodySize int64 = 256 << 10
 type HTTPFirewallPolicy struct {
 	Id                 int64                        `yaml:"id" json:"id"`
 	IsOn               bool                         `yaml:"isOn" json:"isOn"`
+	ServerId           int64                        `yaml:"serverId" json:"serverId"` // 所属网站ID
 	Name               string                       `yaml:"name" json:"name"`
 	Description        string                       `yaml:"description" json:"description"`
 	Inbound            *HTTPFirewallInboundConfig   `yaml:"inbound" json:"inbound"`
