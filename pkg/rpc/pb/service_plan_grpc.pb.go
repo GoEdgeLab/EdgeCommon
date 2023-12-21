@@ -19,13 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PlanService_CreatePlan_FullMethodName           = "/pb.PlanService/createPlan"
-	PlanService_UpdatePlan_FullMethodName           = "/pb.PlanService/updatePlan"
-	PlanService_DeletePlan_FullMethodName           = "/pb.PlanService/deletePlan"
-	PlanService_FindEnabledPlan_FullMethodName      = "/pb.PlanService/findEnabledPlan"
-	PlanService_CountAllEnabledPlans_FullMethodName = "/pb.PlanService/countAllEnabledPlans"
-	PlanService_ListEnabledPlans_FullMethodName     = "/pb.PlanService/listEnabledPlans"
-	PlanService_SortPlans_FullMethodName            = "/pb.PlanService/sortPlans"
+	PlanService_CreatePlan_FullMethodName            = "/pb.PlanService/createPlan"
+	PlanService_UpdatePlan_FullMethodName            = "/pb.PlanService/updatePlan"
+	PlanService_DeletePlan_FullMethodName            = "/pb.PlanService/deletePlan"
+	PlanService_FindEnabledPlan_FullMethodName       = "/pb.PlanService/findEnabledPlan"
+	PlanService_CountAllEnabledPlans_FullMethodName  = "/pb.PlanService/countAllEnabledPlans"
+	PlanService_ListEnabledPlans_FullMethodName      = "/pb.PlanService/listEnabledPlans"
+	PlanService_FindAllAvailablePlans_FullMethodName = "/pb.PlanService/findAllAvailablePlans"
+	PlanService_SortPlans_FullMethodName             = "/pb.PlanService/sortPlans"
 )
 
 // PlanServiceClient is the client API for PlanService service.
@@ -44,6 +45,8 @@ type PlanServiceClient interface {
 	CountAllEnabledPlans(ctx context.Context, in *CountAllEnabledPlansRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 列出单页套餐
 	ListEnabledPlans(ctx context.Context, in *ListEnabledPlansRequest, opts ...grpc.CallOption) (*ListEnabledPlansResponse, error)
+	// 列出所有可用的套餐
+	FindAllAvailablePlans(ctx context.Context, in *FindAllAvailablePlansRequest, opts ...grpc.CallOption) (*FindAllAvailablePlansResponse, error)
 	// 对套餐进行排序
 	SortPlans(ctx context.Context, in *SortPlansRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
@@ -110,6 +113,15 @@ func (c *planServiceClient) ListEnabledPlans(ctx context.Context, in *ListEnable
 	return out, nil
 }
 
+func (c *planServiceClient) FindAllAvailablePlans(ctx context.Context, in *FindAllAvailablePlansRequest, opts ...grpc.CallOption) (*FindAllAvailablePlansResponse, error) {
+	out := new(FindAllAvailablePlansResponse)
+	err := c.cc.Invoke(ctx, PlanService_FindAllAvailablePlans_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *planServiceClient) SortPlans(ctx context.Context, in *SortPlansRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
 	out := new(RPCSuccess)
 	err := c.cc.Invoke(ctx, PlanService_SortPlans_FullMethodName, in, out, opts...)
@@ -135,6 +147,8 @@ type PlanServiceServer interface {
 	CountAllEnabledPlans(context.Context, *CountAllEnabledPlansRequest) (*RPCCountResponse, error)
 	// 列出单页套餐
 	ListEnabledPlans(context.Context, *ListEnabledPlansRequest) (*ListEnabledPlansResponse, error)
+	// 列出所有可用的套餐
+	FindAllAvailablePlans(context.Context, *FindAllAvailablePlansRequest) (*FindAllAvailablePlansResponse, error)
 	// 对套餐进行排序
 	SortPlans(context.Context, *SortPlansRequest) (*RPCSuccess, error)
 }
@@ -160,6 +174,9 @@ func (UnimplementedPlanServiceServer) CountAllEnabledPlans(context.Context, *Cou
 }
 func (UnimplementedPlanServiceServer) ListEnabledPlans(context.Context, *ListEnabledPlansRequest) (*ListEnabledPlansResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListEnabledPlans not implemented")
+}
+func (UnimplementedPlanServiceServer) FindAllAvailablePlans(context.Context, *FindAllAvailablePlansRequest) (*FindAllAvailablePlansResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllAvailablePlans not implemented")
 }
 func (UnimplementedPlanServiceServer) SortPlans(context.Context, *SortPlansRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SortPlans not implemented")
@@ -284,6 +301,24 @@ func _PlanService_ListEnabledPlans_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PlanService_FindAllAvailablePlans_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllAvailablePlansRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlanServiceServer).FindAllAvailablePlans(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlanService_FindAllAvailablePlans_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlanServiceServer).FindAllAvailablePlans(ctx, req.(*FindAllAvailablePlansRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PlanService_SortPlans_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SortPlansRequest)
 	if err := dec(in); err != nil {
@@ -332,6 +367,10 @@ var PlanService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "listEnabledPlans",
 			Handler:    _PlanService_ListEnabledPlans_Handler,
+		},
+		{
+			MethodName: "findAllAvailablePlans",
+			Handler:    _PlanService_FindAllAvailablePlans_Handler,
 		},
 		{
 			MethodName: "sortPlans",

@@ -26,20 +26,24 @@ service PlanService {
 	// 列出单页套餐
 	rpc listEnabledPlans(ListEnabledPlansRequest) returns (ListEnabledPlansResponse);
 
+	// 列出所有可用的套餐
+	rpc findAllAvailablePlans(FindAllAvailablePlansRequest) returns (FindAllAvailablePlansResponse);
+
 	// 对套餐进行排序
 	rpc sortPlans(SortPlansRequest) returns (RPCSuccess);
 }
 
 // 创建套餐
 message CreatePlanRequest {
-	string name = 1;
-	int64 clusterId = 2;
-	bytes trafficLimitJSON = 3;
+	string name = 1; // 套餐名称
+	string description = 19; // 套餐简介
+	int64 clusterId = 2; // 集群ID
+	bytes trafficLimitJSON = 3; // 流量限制
 	bool hasFullFeatures = 18; // 是否有所有权限
 	bytes featuresJSON = 4; // 权限列表，[code1, code2, ...]
-	string priceType = 5;
-	bytes trafficPriceJSON = 6;
-	bytes bandwidthPriceJSON = 10;
+	string priceType = 5; // 价格类型：traffic, bandwidth, period
+	bytes trafficPriceJSON = 6; // 流量价格配置
+	bytes bandwidthPriceJSON = 10; // 带宽价格配置
 	float monthlyPrice = 7; // 月度价格
 	float seasonallyPrice = 8; // 季度价格
 	float yearlyPrice = 9; // 年度价格
@@ -58,19 +62,20 @@ message CreatePlanResponse {
 
 // 修改套餐
 message UpdatePlanRequest {
-	int64 planId = 1;
-	string name = 2;
-	bool isOn = 3;
-	int64 clusterId = 4;
-	bytes trafficLimitJSON = 5;
+	int64 planId = 1; // 套餐ID
+	string name = 2; // 套餐名称
+	string description = 21; // 套餐简介
+	bool isOn = 3; // 是否启用
+	int64 clusterId = 4; // 集群ID
+	bytes trafficLimitJSON = 5; // 流量限制
 	bool hasFullFeatures = 20; // 是否有所有权限
 	bytes featuresJSON = 6; // 权限列表，[code1, code2, ...]
-	string priceType = 7;
-	bytes trafficPriceJSON = 8;
-	bytes bandwidthPriceJSON = 12;
-	float monthlyPrice = 9;
-	float seasonallyPrice = 10;
-	float yearlyPrice = 11;
+	string priceType = 7; // 价格类型：traffic, bandwidth, period
+	bytes trafficPriceJSON = 8; // 流量价格配置
+	bytes bandwidthPriceJSON = 12; // 带宽价格配置
+	float monthlyPrice = 9; // 月费用
+	float seasonallyPrice = 10; // 季度费用
+	float yearlyPrice = 11; // 年度费用
 	int32 totalServers = 13; // 可以添加的网站数
 	int32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数
 	int32 totalServerNames = 15; // 可以添加的域名总数
@@ -82,16 +87,16 @@ message UpdatePlanRequest {
 
 // 删除套餐
 message DeletePlanRequest {
-	int64 planId = 1;
+	int64 planId = 1; // 套餐ID
 }
 
 // 查找单个套餐
 message FindEnabledPlanRequest {
-	int64 planId = 1;
+	int64 planId = 1; // 套餐ID
 }
 
 message FindEnabledPlanResponse {
-	Plan plan = 1;
+	Plan plan = 1; // 套餐信息
 }
 
 // 计算套餐数量
@@ -106,10 +111,19 @@ message ListEnabledPlansRequest {
 }
 
 message ListEnabledPlansResponse {
-	repeated Plan plans = 1;
+	repeated Plan plans = 1; // 套餐列表
+}
+
+// 列出所有可用的套餐
+message FindAllAvailablePlansRequest {
+
+}
+
+message FindAllAvailablePlansResponse {
+	repeated Plan plans = 1; // 套餐列表
 }
 
 // 对套餐进行排序
 message SortPlansRequest {
-	repeated int64 planIds = 1;
+	repeated int64 planIds = 1; // 排序后的套餐ID列表
 }
