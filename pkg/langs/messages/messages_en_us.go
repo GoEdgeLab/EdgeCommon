@@ -620,6 +620,8 @@ func init() {
 		"server_uam@log_update_uam_settings":                                  "",
 		"server_udp@log_update_udp_settings":                                  "",
 		"server_user_agent@log_update_user_agents":                            "",
+		"server_user_script@log_pass_user_script":                             "",
+		"server_user_script@log_reject_user_script":                           "",
 		"server_waf@log_update_waf_settings":                                  "",
 		"server_webp@log_update_cluster_webp_policy":                          "",
 		"server_websocket@log_update_websocket_settings":                      "",

@@ -13339,6 +13339,77 @@
       "doc": "用户购买的套餐管理服务"
     },
     {
+      "name": "UserScriptService",
+      "methods": [
+        {
+          "name": "findUserScript",
+          "requestMessageName": "FindUserScriptRequest",
+          "responseMessageName": "FindUserScriptResponse",
+          "code": "rpc findUserScript(FindUserScriptRequest) returns (FindUserScriptResponse);",
+          "doc": "查找单个用户脚本信息",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findUserScriptWithMD5",
+          "requestMessageName": "FindUserScriptWithMD5Request",
+          "responseMessageName": "FindUserScriptWithMD5Response",
+          "code": "rpc findUserScriptWithMD5(FindUserScriptWithMD5Request) returns (FindUserScriptWithMD5Response);",
+          "doc": "根据代码MD5查找脚本",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "countUserScripts",
+          "requestMessageName": "CountUserScriptsRequest",
+          "responseMessageName": "RPCCountResponse",
+          "code": "rpc countUserScripts(CountUserScriptsRequest) returns (RPCCountResponse);",
+          "doc": "计算用户脚本数量",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "listUserScripts",
+          "requestMessageName": "ListUserScriptsRequest",
+          "responseMessageName": "ListUserScriptsResponse",
+          "code": "rpc listUserScripts(ListUserScriptsRequest) returns (ListUserScriptsResponse);",
+          "doc": "列出单页用户脚本",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "passUserScript",
+          "requestMessageName": "PassUserScriptRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc passUserScript(PassUserScriptRequest) returns (RPCSuccess);",
+          "doc": "审核并通过用户脚本",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "rejectUserScript",
+          "requestMessageName": "RejectUserScriptRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc rejectUserScript(RejectUserScriptRequest) returns (RPCSuccess);",
+          "doc": "审核并驳回用户脚本",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_user_script.proto",
+      "doc": "用户脚本服务"
+    },
+    {
       "name": "UserTicketService",
       "methods": [
         {
@@ -14739,6 +14810,11 @@
       "name": "CountUserAccountsRequest",
       "code": "message CountUserAccountsRequest {\n\tstring keyword = 1; // 关键词\n}",
       "doc": "计算账户数量"
+    },
+    {
+      "name": "CountUserScriptsRequest",
+      "code": "message CountUserScriptsRequest {\n\tint64 userId = 1; // 所属用户ID\n\tbool isAuditing = 2; // 是否正在审核\n}",
+      "doc": "计算用户脚本数量"
     },
     {
       "name": "CountUserTicketLogsRequest",
@@ -19946,6 +20022,26 @@
       "doc": ""
     },
     {
+      "name": "FindUserScriptRequest",
+      "code": "message FindUserScriptRequest {\n\tint64 userScriptId = 1; // 用户脚本ID\n}",
+      "doc": "查找单个用户脚本信息"
+    },
+    {
+      "name": "FindUserScriptResponse",
+      "code": "message FindUserScriptResponse {\n\tUserScript userScript = 1; // 用户脚本信息\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindUserScriptWithMD5Request",
+      "code": "message FindUserScriptWithMD5Request {\n\tstring codeMD5 = 1; // 代码MD5（32位）\n}",
+      "doc": "根据代码MD5查找脚本"
+    },
+    {
+      "name": "FindUserScriptWithMD5Response",
+      "code": "message FindUserScriptWithMD5Response {\n\tUserScript userScript = 1; // 用户脚本信息\n}",
+      "doc": ""
+    },
+    {
       "name": "FindUserTicketCategoryRequest",
       "code": "message FindUserTicketCategoryRequest {\n\tint64 userTicketCategoryId = 1;\n}",
       "doc": "查询单个分类"
@@ -20881,6 +20977,16 @@
       "doc": ""
     },
     {
+      "name": "ListUserScriptsRequest",
+      "code": "message ListUserScriptsRequest {\n\tint64 userId = 1; // 所属用户ID\n\tbool isAuditing = 2; // 是否正在审核\n\tint64 offset = 3; // 开始读取位置\n\tint64 size = 4; // 读取数量\n}",
+      "doc": "列出单页用户脚本"
+    },
+    {
+      "name": "ListUserScriptsResponse",
+      "code": "message ListUserScriptsResponse {\n\trepeated UserScript userScripts = 1; // 用户脚本列表\n}",
+      "doc": ""
+    },
+    {
       "name": "ListUserTicketLogsRequest",
       "code": "message ListUserTicketLogsRequest {\n\tint64 userTicketId = 1;\n\tint64 offset = 2;\n\tint64 size = 3;\n}",
       "doc": "列出单页日志"
@@ -21241,6 +21347,11 @@
       "doc": ""
     },
     {
+      "name": "PassUserScriptRequest",
+      "code": "message PassUserScriptRequest {\n\tint64 userScriptId = 1; // 用户脚本ID\n}",
+      "doc": "审核并通过用户脚本"
+    },
+    {
       "name": "PayUserBillRequest",
       "code": "message PayUserBillRequest {\n\tint64 userBillId = 1;\n}",
       "doc": "支付账单"
@@ -21364,6 +21475,11 @@
       "name": "RejectUserIdentityRequest",
       "code": "message RejectUserIdentityRequest {\n\tint64 userIdentityId = 1;\n\tstring reason = 2;\n}",
       "doc": "拒绝用户实名认证信息"
+    },
+    {
+      "name": "RejectUserScriptRequest",
+      "code": "message RejectUserScriptRequest {\n\tint64 userScriptId = 1; // 用户脚本ID\n\tstring reason = 2; // 驳回理由\n}",
+      "doc": "审核并驳回用户脚本"
     },
     {
       "name": "RenewUserADInstanceRequest",
@@ -23084,6 +23200,11 @@
       "name": "UserPlan",
       "code": "message UserPlan {\n\tint64 id = 1; // 套餐ID\n\tint64 userId = 2; // 用户ID\n\tint64 planId = 3; // 套餐定义ID\n\tbool isOn = 4; // 是否启用\n\tstring dayTo = 5; // 到期日期Y-m-d\n\tstring name = 6; // 自定义备注名称\n\n\tUser user = 30; // 用户信息\n\tPlan plan = 31; // 套餐定义信息\n\trepeated Server servers = 33; // 绑定的网站列表\n\n\tServer server = 32 [deprecated = true]; // 绑定的网站，已过期，使用 servers 代替\n}",
       "doc": ""
+    },
+    {
+      "name": "UserScript",
+      "code": "message UserScript {\n\tint64 id = 1; // 用户脚本ID\n\tint64 userId = 2; // 用户ID\n\tint64 adminId = 3; // 审核的管理员\n\tstring code = 4; // 脚本代码\n\tstring codeMD5 = 5; // 脚本代码MD5\n\tint64 createdAt = 6; // 创建时间\n\tbool isRejected = 7; // 是否被驳回\n\tint64 rejectedAt = 8; // 驳回时间\n\tstring rejectedReason = 9; // 驳回原因\n\tbool isPassed = 10; // 是否被通过\n\tint64 passedAt = 11; // 通过时间\n\n\tUser user = 30; // 用户信息\n}",
+      "doc": "用户脚本"
     },
     {
       "name": "UserTicket",

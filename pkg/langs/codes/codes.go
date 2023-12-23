@@ -619,6 +619,8 @@ const (
 	ServerUAM_LogUpdateUAMSettings                              langs.MessageCode = "server_uam@log_update_uam_settings"                                  // 修改Web %d 全站防护模式
 	ServerUDP_LogUpdateUDPSettings                              langs.MessageCode = "server_udp@log_update_udp_settings"                                  // 修改网站 %d UDP设置
 	ServerUserAgent_LogUpdateUserAgents                         langs.MessageCode = "server_user_agent@log_update_user_agents"                            // 修改Web %d User-Agent设置
+	ServerUserScript_LogPassUserScript                          langs.MessageCode = "server_user_script@log_pass_user_script"                             // 通过用户脚本 %d
+	ServerUserScript_LogRejectUserScript                        langs.MessageCode = "server_user_script@log_reject_user_script"                           // 驳回用户脚本 %d
 	ServerWAF_LogUpdateWAFSettings                              langs.MessageCode = "server_waf@log_update_waf_settings"                                  // 修改Web %d 的WAF设置
 	ServerWebP_LogUpdateClusterWebPPolicy                       langs.MessageCode = "server_webp@log_update_cluster_webp_policy"                          // 修改集群 %d 的WebP设置
 	ServerWebsocket_LogUpdateWebsocketSettings                  langs.MessageCode = "server_websocket@log_update_websocket_settings"                      // 修改Web %d 的Websocket设置

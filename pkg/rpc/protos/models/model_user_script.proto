@@ -1,0 +1,23 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_user.proto";
+
+// 用户脚本
+message UserScript {
+	int64 id = 1; // 用户脚本ID
+	int64 userId = 2; // 用户ID
+	int64 adminId = 3; // 审核的管理员
+	string code = 4; // 脚本代码
+	string codeMD5 = 5; // 脚本代码MD5
+	int64 createdAt = 6; // 创建时间
+	bool isRejected = 7; // 是否被驳回
+	int64 rejectedAt = 8; // 驳回时间
+	string rejectedReason = 9; // 驳回原因
+	bool isPassed = 10; // 是否被通过
+	int64 passedAt = 11; // 通过时间
+
+	User user = 30; // 用户信息
+}

@@ -1,0 +1,75 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_user_script.proto";
+import "models/rpc_messages.proto";
+
+// 用户脚本服务
+service UserScriptService {
+	// 查找单个用户脚本信息
+	rpc findUserScript(FindUserScriptRequest) returns (FindUserScriptResponse);
+
+	// 根据代码MD5查找脚本
+	rpc findUserScriptWithMD5(FindUserScriptWithMD5Request) returns (FindUserScriptWithMD5Response);
+
+	// 计算用户脚本数量
+	rpc countUserScripts(CountUserScriptsRequest) returns (RPCCountResponse);
+
+	// 列出单页用户脚本
+	rpc listUserScripts(ListUserScriptsRequest) returns (ListUserScriptsResponse);
+
+	// 审核并通过用户脚本
+	rpc passUserScript(PassUserScriptRequest) returns (RPCSuccess);
+
+	// 审核并驳回用户脚本
+	rpc rejectUserScript(RejectUserScriptRequest) returns (RPCSuccess);
+}
+
+// 查找单个用户脚本信息
+message FindUserScriptRequest {
+	int64 userScriptId = 1; // 用户脚本ID
+}
+
+message FindUserScriptResponse {
+	UserScript userScript = 1; // 用户脚本信息
+}
+
+// 根据代码MD5查找脚本
+message FindUserScriptWithMD5Request {
+	string codeMD5 = 1; // 代码MD5（32位）
+}
+
+message FindUserScriptWithMD5Response {
+	UserScript userScript = 1; // 用户脚本信息
+}
+
+// 计算用户脚本数量
+message CountUserScriptsRequest {
+	int64 userId = 1; // 所属用户ID
+	bool isAuditing = 2; // 是否正在审核
+}
+
+// 列出单页用户脚本
+message ListUserScriptsRequest {
+	int64 userId = 1; // 所属用户ID
+	bool isAuditing = 2; // 是否正在审核
+	int64 offset = 3; // 开始读取位置
+	int64 size = 4; // 读取数量
+}
+
+message ListUserScriptsResponse {
+	repeated UserScript userScripts = 1; // 用户脚本列表
+}
+
+// 审核并通过用户脚本
+message PassUserScriptRequest {
+	int64 userScriptId = 1; // 用户脚本ID
+}
+
+// 审核并驳回用户脚本
+message RejectUserScriptRequest {
+	int64 userScriptId = 1; // 用户脚本ID
+	string reason = 2; // 驳回理由
+}

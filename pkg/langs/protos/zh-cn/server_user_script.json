@@ -1,0 +1,4 @@
+{
+  "log_pass_user_script": "通过用户脚本 %d",
+  "log_reject_user_script": "驳回用户脚本 %d"
+}
