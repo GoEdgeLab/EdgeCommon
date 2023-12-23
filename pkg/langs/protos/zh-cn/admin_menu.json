@@ -12,6 +12,7 @@
   "server_access_log_policies": "日志策略",
   "server_metrics": "统计指标",
   "server_scripts": "脚本库",
+  "user_scripts": "用户脚本",
   "server_global_settings": "通用设置",
 
   "nodes": "边缘节点",

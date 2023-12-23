@@ -11,7 +11,8 @@
   "server_ip_lists": "IP List",
   "server_access_log_policies": "Access Log Policies",
   "server_metrics": "Metrics",
-  "server_scripts": "Javascript Scripts",
+  "server_scripts": "Script Libraries",
+  "user_scripts": "User Scripts",
   "server_global_settings": "Global Settings",
 
   "nodes": "Edge Nodes",

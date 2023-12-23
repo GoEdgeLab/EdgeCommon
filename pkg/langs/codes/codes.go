@@ -46,6 +46,7 @@ const (
 	AdminCommon_MenuSettingSecurityPolicy                       langs.MessageCode = "admin_common@menu_setting_security_policy"                           // 网络安全
 	AdminCommon_MenuSettingWAFPolicy                            langs.MessageCode = "admin_common@menu_setting_waf_policy"                                // WAF策略
 	AdminCommon_MenuSettingWebP                                 langs.MessageCode = "admin_common@menu_setting_webp"                                      // WebP
+	AdminCommon_MenuSettingWebPPolicy                           langs.MessageCode = "admin_common@menu_setting_webp_policy"                               // WebP策略
 	AdminCommon_ServerError                                     langs.MessageCode = "admin_common@server_error"                                           // 服务器出了点小问题，请联系技术人员处理。
 	AdminCommon_System                                          langs.MessageCode = "admin_common@system"                                                 // 系统
 	AdminDashboard_DiskUsageWarning                             langs.MessageCode = "admin_dashboard@disk_usage_warning"                                  // 当前服务器磁盘空间不足，请立即扩充容量，文件路径：%s，已使用：%dG，已使用比例：%.2f%%，仅剩余空间：%.2f%%。<br/>如果是因为本机数据库数据过多，你可以：<a href="/settings/database/clean">[清理访问日志]</a> &nbsp; &nbsp; <a href="https://goedge.cn/docs/APINode/QA.md" target="_blank">[调整数据库binlog设置]</a>
@@ -118,6 +119,7 @@ const (
 	AdminMenu_TicketCategory                                    langs.MessageCode = "admin_menu@ticket_category"                                          // 分类
 	AdminMenu_Tickets                                           langs.MessageCode = "admin_menu@tickets"                                                  // 工单系统
 	AdminMenu_UserList                                          langs.MessageCode = "admin_menu@user_list"                                                // 用户列表
+	AdminMenu_UserScripts                                       langs.MessageCode = "admin_menu@user_scripts"                                             // 用户脚本
 	AdminMenu_UserSettings                                      langs.MessageCode = "admin_menu@user_settings"                                            // 用户设置
 	AdminMenu_Users                                             langs.MessageCode = "admin_menu@users"                                                    // 平台用户
 	AdminProfile_LogUpdateProfile                               langs.MessageCode = "admin_profile@log_update_profile"                                    // 修改个人资料
@@ -302,7 +304,7 @@ const (
 	NodeClusterMenu_SettingUAM                                  langs.MessageCode = "node_cluster_menu@setting_uam"                                       // 5秒盾
 	NodeClusterMenu_SettingWAFActions                           langs.MessageCode = "node_cluster_menu@setting_waf_actions"                               // WAF动作
 	NodeClusterMenu_SettingWAFPolicy                            langs.MessageCode = "node_cluster_menu@setting_waf_policy"                                // WAF策略
-	NodeClusterMenu_SettingWebP                                 langs.MessageCode = "node_cluster_menu@setting_webp"                                      // WebP
+	NodeClusterMenu_SettingWebP                                 langs.MessageCode = "node_cluster_menu@setting_webp"                                      // WebP策略
 	NodeClusterMenu_TabClusterDashboard                         langs.MessageCode = "node_cluster_menu@tab_cluster_dashboard"                             // 集群看板
 	NodeClusterMenu_TabClusterDelete                            langs.MessageCode = "node_cluster_menu@tab_cluster_delete"                                // 删除集群
 	NodeClusterMenu_TabClusterNodes                             langs.MessageCode = "node_cluster_menu@tab_cluster_nodes"                                 // 节点列表

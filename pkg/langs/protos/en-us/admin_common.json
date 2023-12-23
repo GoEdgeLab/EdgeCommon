@@ -1,0 +1,19 @@
+{
+  "menu_setting_basic": "Basic Settings",
+  "menu_setting_dns": "DNS Settings",
+  "menu_setting_health_check": "Health Check",
+  "menu_setting_cache_policy": "Cache Policy",
+  "menu_setting_waf_policy": "WAF Policy",
+  "menu_setting_webp": "WebP",
+  "menu_setting_webp_policy": "WebP Policy",
+  "menu_setting_metrics": "Metrics",
+  "menu_setting_ddos_protection": "DDoS Protection",
+  "menu_setting_security_policy": "Networking Security",
+  "menu_setting_cache": "Cache Settings",
+
+  "system": "System",
+  "canceled": "Canceled",
+
+  "server_error": "There is a internal error, please report to administrator.",
+  "log_system_error": "system error: %s"
+}

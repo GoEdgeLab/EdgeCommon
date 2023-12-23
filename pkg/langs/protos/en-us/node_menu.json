@@ -1,0 +1,18 @@
+{
+  "create_single_node": "Create",
+  "create_multiple_nodes": "Create Batch",
+  "install_manually": "Manually",
+  "install_auto_register": "Auto-Register",
+  "install_remote": "Install Remotely(%d)", // Args: [Nodes Count]
+  "install_remote_upgrade": "Upgrade Remotely(%d)", // Args: [Nodes Count]
+
+  "setting_basic": "${lang.admin_common@menu_setting_basic}",
+  "setting_dns": "${lang.admin_common@menu_setting_dns}",
+  "setting_cache": "${lang.admin_common@menu_setting_cache}",
+  "setting_ddos_protection": "${lang.admin_common@menu_setting_ddos_protection}",
+  "setting_ssh": "SSH",
+  "setting_system": "System Settings",
+
+  "setting_schedule": "Scheduling",
+  "setting_thresholds": "Thresholds"
+}
