@@ -1,1 +1,0 @@
-After change the messages, remember to run 'langs generate' to generate Go codes.
