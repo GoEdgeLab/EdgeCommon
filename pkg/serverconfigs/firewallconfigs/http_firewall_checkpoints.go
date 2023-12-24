@@ -168,7 +168,15 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		DataType:    "bool",
 	},
 	{
-		Name:        "请求来源URL",
+		Name:        "请求来源",
+		Prefix:      "refererOrigin",
+		Description: "请求报头中的Referer和Origin值。",
+		IsRequest:   true,
+		Priority:    100,
+		Version:     "1.3.2",
+	},
+	{
+		Name:        "请求来源Referer",
 		Prefix:      "referer",
 		Description: "请求报头中的Referer值。",
 		IsRequest:   true,
@@ -231,6 +239,7 @@ var AllCheckpoints = []*HTTPFirewallCheckpointDefinition{
 		Description: "使用换行符（\\n）隔开的报头名称字符串，每行一个名称。",
 		IsRequest:   true,
 		Priority:    100,
+		Version:     "1.3.2",
 	},
 	{
 		Name:        "单个请求报头值",

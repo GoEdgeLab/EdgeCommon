@@ -24,4 +24,5 @@ type HTTPFirewallCheckpointDefinition struct {
 	IsComposed  bool              `json:"isComposed"`  // 是否为组合的checkpoint
 	Priority    int               `json:"priority"`    // 优先级
 	DataType    string            `json:"dataType"`    // 数据类型：number, bool等
+	Version     string            `json:"version"`     // 被加入的版本号
 }
