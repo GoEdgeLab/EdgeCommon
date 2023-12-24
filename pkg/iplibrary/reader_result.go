@@ -215,7 +215,11 @@ func (this *QueryResult) realCountryId() uint16 {
 		switch item := this.item.(type) {
 		case *ipv4Item:
 			return item.Region.CountryId
+		case ipv4Item:
+			return item.Region.CountryId
 		case *ipv6Item:
+			return item.Region.CountryId
+		case ipv6Item:
 			return item.Region.CountryId
 		}
 
@@ -228,7 +232,11 @@ func (this *QueryResult) realProvinceId() uint16 {
 		switch item := this.item.(type) {
 		case *ipv4Item:
 			return item.Region.ProvinceId
+		case ipv4Item:
+			return item.Region.ProvinceId
 		case *ipv6Item:
+			return item.Region.ProvinceId
+		case ipv6Item:
 			return item.Region.ProvinceId
 		}
 
@@ -241,7 +249,11 @@ func (this *QueryResult) realCityId() uint32 {
 		switch item := this.item.(type) {
 		case *ipv4Item:
 			return item.Region.CityId
+		case ipv4Item:
+			return item.Region.CityId
 		case *ipv6Item:
+			return item.Region.CityId
+		case ipv6Item:
 			return item.Region.CityId
 		}
 
@@ -254,7 +266,11 @@ func (this *QueryResult) realTownId() uint32 {
 		switch item := this.item.(type) {
 		case *ipv4Item:
 			return item.Region.TownId
+		case ipv4Item:
+			return item.Region.TownId
 		case *ipv6Item:
+			return item.Region.TownId
+		case ipv6Item:
 			return item.Region.TownId
 		}
 
@@ -267,7 +283,11 @@ func (this *QueryResult) realProviderId() uint16 {
 		switch item := this.item.(type) {
 		case *ipv4Item:
 			return item.Region.ProviderId
+		case ipv4Item:
+			return item.Region.ProviderId
 		case *ipv6Item:
+			return item.Region.ProviderId
+		case ipv6Item:
 			return item.Region.ProviderId
 		}
 

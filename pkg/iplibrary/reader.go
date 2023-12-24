@@ -20,8 +20,8 @@ type Reader struct {
 
 	regionMap map[string]*ipRegion // 缓存重复的区域用来节约内存
 
-	ipV4Items []*ipv4Item
-	ipV6Items []*ipv6Item
+	ipV4Items []ipv4Item
+	ipV6Items []ipv6Item
 
 	lastIPFrom     uint64
 	lastCountryId  uint16
@@ -162,11 +162,11 @@ func (this *Reader) Meta() *Meta {
 	return this.meta
 }
 
-func (this *Reader) IPv4Items() []*ipv4Item {
+func (this *Reader) IPv4Items() []ipv4Item {
 	return this.ipV4Items
 }
 
-func (this *Reader) IPv6Items() []*ipv6Item {
+func (this *Reader) IPv6Items() []ipv6Item {
 	return this.ipV6Items
 }
 
@@ -296,13 +296,13 @@ func (this *Reader) parseLine(line []byte) error {
 	}
 
 	if version == "4" {
-		this.ipV4Items = append(this.ipV4Items, &ipv4Item{
+		this.ipV4Items = append(this.ipV4Items, ipv4Item{
 			IPFrom: uint32(ipFrom),
 			IPTo:   uint32(ipTo),
 			Region: region,
 		})
 	} else {
-		this.ipV6Items = append(this.ipV6Items, &ipv6Item{
+		this.ipV6Items = append(this.ipV6Items, ipv6Item{
 			IPFrom: ipFrom,
 			IPTo:   ipTo,
 			Region: region,
