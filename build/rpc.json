@@ -3463,7 +3463,8 @@
           "code": "rpc updateHTTPWebRequestScripts(UpdateHTTPWebRequestScriptsRequest) returns (RPCSuccess);",
           "doc": "修改请求脚本",
           "roles": [
-            "admin"
+            "admin",
+            "user"
           ],
           "isDeprecated": false
         },
@@ -3780,6 +3781,15 @@
             "admin",
             "user"
           ],
+          "isDeprecated": false
+        },
+        {
+          "name": "listAllIPItemIds",
+          "requestMessageName": "ListAllIPItemIdsRequest",
+          "responseMessageName": "ListAllIPItemIdsResponse",
+          "code": "rpc listAllIPItemIds(ListAllIPItemIdsRequest) returns (ListAllIPItemIdsResponse);",
+          "doc": "列出所有名单中的IP ID",
+          "roles": [],
           "isDeprecated": false
         },
         {
@@ -13358,7 +13368,10 @@
           "responseMessageName": "FindUserScriptWithMD5Response",
           "code": "rpc findUserScriptWithMD5(FindUserScriptWithMD5Request) returns (FindUserScriptWithMD5Response);",
           "doc": "根据代码MD5查找脚本",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -20309,6 +20322,16 @@
     {
       "name": "ListAllEnabledIPItemsResponse",
       "code": "message ListAllEnabledIPItemsResponse {\n\trepeated Result results = 1;\n\n\n\tmessage Result {\n\t\tIPList ipList = 1; // 所属名单\n\t\tIPItem ipItem = 2; // IP信息\n\t\tServer server = 3; // 所属服务\n\t\tHTTPFirewallPolicy httpFirewallPolicy = 4; // 所属WAF策略\n\t}\n}",
+      "doc": ""
+    },
+    {
+      "name": "ListAllIPItemIdsRequest",
+      "code": "message ListAllIPItemIdsRequest {\n\tstring keyword = 8; // 关键词\n\tstring ip = 1; // 单个IP，搜索单个IP时需要\n\tbool globalOnly = 2;  // 是否为自动添加的IP\n\tbool unread = 5; // 是否未读\n\tstring eventLevel = 6; // 事件级别\n\tstring listType = 7; // 列表类型：black|white\n\tint64 userId = 9; // 用户ID，只有管理员才有权限指定用户ID\n\tint64 offset = 3; // 读取位置，从0开始\n\tint64 size = 4; // 每次读取数量\n}",
+      "doc": "列出所有名单中的IP ID"
+    },
+    {
+      "name": "ListAllIPItemIdsResponse",
+      "code": "message ListAllIPItemIdsResponse {\n\trepeated int64 ipItemIds = 1; // IP ID列表\n}",
       "doc": ""
     },
     {

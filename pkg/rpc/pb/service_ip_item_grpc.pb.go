@@ -32,6 +32,7 @@ const (
 	IPItemService_ExistsEnabledIPItem_FullMethodName      = "/pb.IPItemService/existsEnabledIPItem"
 	IPItemService_CountAllEnabledIPItems_FullMethodName   = "/pb.IPItemService/countAllEnabledIPItems"
 	IPItemService_ListAllEnabledIPItems_FullMethodName    = "/pb.IPItemService/listAllEnabledIPItems"
+	IPItemService_ListAllIPItemIds_FullMethodName         = "/pb.IPItemService/listAllIPItemIds"
 	IPItemService_UpdateIPItemsRead_FullMethodName        = "/pb.IPItemService/updateIPItemsRead"
 	IPItemService_FindServerIdWithIPItemId_FullMethodName = "/pb.IPItemService/findServerIdWithIPItemId"
 )
@@ -66,6 +67,8 @@ type IPItemServiceClient interface {
 	CountAllEnabledIPItems(ctx context.Context, in *CountAllEnabledIPItemsRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 列出所有名单中的IP
 	ListAllEnabledIPItems(ctx context.Context, in *ListAllEnabledIPItemsRequest, opts ...grpc.CallOption) (*ListAllEnabledIPItemsResponse, error)
+	// 列出所有名单中的IP ID
+	ListAllIPItemIds(ctx context.Context, in *ListAllIPItemIdsRequest, opts ...grpc.CallOption) (*ListAllIPItemIdsResponse, error)
 	// 设置所有为已读
 	UpdateIPItemsRead(ctx context.Context, in *UpdateIPItemsReadRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 查找IP对应的名单所属网站ID
@@ -197,6 +200,15 @@ func (c *iPItemServiceClient) ListAllEnabledIPItems(ctx context.Context, in *Lis
 	return out, nil
 }
 
+func (c *iPItemServiceClient) ListAllIPItemIds(ctx context.Context, in *ListAllIPItemIdsRequest, opts ...grpc.CallOption) (*ListAllIPItemIdsResponse, error) {
+	out := new(ListAllIPItemIdsResponse)
+	err := c.cc.Invoke(ctx, IPItemService_ListAllIPItemIds_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *iPItemServiceClient) UpdateIPItemsRead(ctx context.Context, in *UpdateIPItemsReadRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
 	out := new(RPCSuccess)
 	err := c.cc.Invoke(ctx, IPItemService_UpdateIPItemsRead_FullMethodName, in, out, opts...)
@@ -245,6 +257,8 @@ type IPItemServiceServer interface {
 	CountAllEnabledIPItems(context.Context, *CountAllEnabledIPItemsRequest) (*RPCCountResponse, error)
 	// 列出所有名单中的IP
 	ListAllEnabledIPItems(context.Context, *ListAllEnabledIPItemsRequest) (*ListAllEnabledIPItemsResponse, error)
+	// 列出所有名单中的IP ID
+	ListAllIPItemIds(context.Context, *ListAllIPItemIdsRequest) (*ListAllIPItemIdsResponse, error)
 	// 设置所有为已读
 	UpdateIPItemsRead(context.Context, *UpdateIPItemsReadRequest) (*RPCSuccess, error)
 	// 查找IP对应的名单所属网站ID
@@ -293,6 +307,9 @@ func (UnimplementedIPItemServiceServer) CountAllEnabledIPItems(context.Context, 
 }
 func (UnimplementedIPItemServiceServer) ListAllEnabledIPItems(context.Context, *ListAllEnabledIPItemsRequest) (*ListAllEnabledIPItemsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAllEnabledIPItems not implemented")
+}
+func (UnimplementedIPItemServiceServer) ListAllIPItemIds(context.Context, *ListAllIPItemIdsRequest) (*ListAllIPItemIdsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAllIPItemIds not implemented")
 }
 func (UnimplementedIPItemServiceServer) UpdateIPItemsRead(context.Context, *UpdateIPItemsReadRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateIPItemsRead not implemented")
@@ -546,6 +563,24 @@ func _IPItemService_ListAllEnabledIPItems_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IPItemService_ListAllIPItemIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAllIPItemIdsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IPItemServiceServer).ListAllIPItemIds(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IPItemService_ListAllIPItemIds_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IPItemServiceServer).ListAllIPItemIds(ctx, req.(*ListAllIPItemIdsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _IPItemService_UpdateIPItemsRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateIPItemsReadRequest)
 	if err := dec(in); err != nil {
@@ -640,6 +675,10 @@ var IPItemService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "listAllEnabledIPItems",
 			Handler:    _IPItemService_ListAllEnabledIPItems_Handler,
+		},
+		{
+			MethodName: "listAllIPItemIds",
+			Handler:    _IPItemService_ListAllIPItemIds_Handler,
 		},
 		{
 			MethodName: "updateIPItemsRead",
