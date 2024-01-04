@@ -27,6 +27,7 @@ const (
 	HTTPFirewallRuleOperatorContainsAll          HTTPFirewallRuleOperator = "contains all"
 	HTTPFirewallRuleOperatorContainsSQLInjection HTTPFirewallRuleOperator = "contains sql injection"
 	HTTPFirewallRuleOperatorContainsXSS          HTTPFirewallRuleOperator = "contains xss"
+	HTTPFirewallRuleOperatorContainsXSSStrictly    HTTPFirewallRuleOperator = "contains xss strictly"
 	HTTPFirewallRuleOperatorHasKey               HTTPFirewallRuleOperator = "has key" // has key in slice or map
 	HTTPFirewallRuleOperatorVersionGt            HTTPFirewallRuleOperator = "version gt"
 	HTTPFirewallRuleOperatorVersionLt            HTTPFirewallRuleOperator = "version lt"
@@ -179,6 +180,13 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 		Name:            "包含XSS注入",
 		Code:            HTTPFirewallRuleOperatorContainsXSS,
 		Description:     "检测字符串内容是否包含XSS注入。",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
+		DataType:        "none",
+	},
+	{
+		Name:            "包含XSS注入-严格模式",
+		Code:            HTTPFirewallRuleOperatorContainsXSSStrictly,
+		Description:     "更加严格地检测字符串内容是否包含XSS注入，相对于非严格模式，此时xml、audio、video等标签也会被匹配。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "none",
 	},
