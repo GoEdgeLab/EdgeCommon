@@ -1,0 +1,8 @@
+{
+  "product_global": "全站",
+
+  "log_create_post": "创建文章 %d",
+  "log_publish_post": "发布文章 %d",
+  "log_delete_post": "删除文章 %d",
+  "log_update_post": "修改文章 %d"
+}

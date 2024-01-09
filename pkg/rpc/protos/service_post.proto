@@ -1,0 +1,99 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_post.proto";
+import "models/rpc_messages.proto";
+
+// 文章管理服务
+service PostService {
+	// 创建文章
+	rpc createPost(CreatePostRequest) returns (CreatePostResponse);
+
+	// 修改文章
+	rpc updatePost(UpdatePostRequest) returns (RPCSuccess);
+
+	// 删除文章
+	rpc deletePost(DeletePostRequest) returns (RPCSuccess);
+
+	// 发布文章
+	rpc publishPost(PublishPostRequest) returns (RPCSuccess);
+
+	// 计算文章数量
+	rpc countPosts(CountPostsRequest) returns (RPCCountResponse);
+
+	// 列出单页文章
+	rpc listPosts(ListPostsRequest) returns (ListPostsResponse);
+
+	// 查询单篇文章
+	rpc findPost(FindPostRequest) returns (FindPostResponse);
+}
+
+// 创建文章
+message CreatePostRequest {
+	int64 postCategoryId = 1; // 文章分类ID
+	string type = 2; // 类型：normal, url
+	string productCode = 3; // 产品代号
+	string subject = 4; // 标题
+	string url = 5; // 跳转的URL（type=url）
+	string body = 6; // 文章内容（type=normal）
+}
+
+message CreatePostResponse {
+	int64 postId = 1; // 文章ID
+}
+
+// 修改文章
+message UpdatePostRequest {
+	int64 postId = 1; // 文章ID
+	int64 postCategoryId = 2; // 文章分类ID
+	string productCode = 3; // 产品代号
+	string subject = 4; // 标题
+	string type = 5; // 类型：normal, url
+	string url = 6; // 跳转的URL（type=url）
+	string body = 7; // 文章内容（type=normal）
+}
+
+// 删除文章
+message DeletePostRequest {
+	int64 postId = 1; // 文章ID
+}
+
+// 发布文章
+message PublishPostRequest {
+	int64 postId = 1; // 文章ID
+}
+
+// 计算文章数量
+message CountPostsRequest {
+	int64 postCategoryId = 1; // 分类ID
+	string productCode = 2; // 产品代号
+	bool publishedOnly = 3; // 只列出已发布的
+}
+
+// 列出单页文章
+message ListPostsRequest {
+	int64 offset = 1;
+	int64 size = 2;
+
+	string productCode = 3; // 产品代号
+	int64 postCategoryId = 4; // 分类ID
+	string postCategoryCode = 5; // 分类代号
+	string excludingPostCategoryCode = 6; // 排除的分类代号
+	bool publishedOnly = 7; // 只列出已发布的
+	bool containsBody = 8; // 是否包含文章内容
+}
+
+message ListPostsResponse {
+	repeated Post posts = 1; // 文章列表
+}
+
+// 查询单篇文章
+message FindPostRequest {
+	int64 postId = 1; // 文章ID
+}
+
+message FindPostResponse {
+	Post post = 1; // 文章信息
+}

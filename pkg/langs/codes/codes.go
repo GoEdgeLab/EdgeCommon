@@ -449,6 +449,11 @@ const (
 	Plan_LogDeletePlan                                          langs.MessageCode = "plan@log_delete_plan"                                                // 删除套餐 %d
 	Plan_LogSortPlans                                           langs.MessageCode = "plan@log_sort_plans"                                                 // 对套餐进行排序
 	Plan_LogUpdatePlan                                          langs.MessageCode = "plan@log_update_plan"                                                // 修改套餐 %d
+	Post_LogCreatePost                                          langs.MessageCode = "post@log_create_post"                                                // 创建文章 %d
+	Post_LogDeletePost                                          langs.MessageCode = "post@log_delete_post"                                                // 删除文章 %d
+	Post_LogPublishPost                                         langs.MessageCode = "post@log_publish_post"                                               // 发布文章 %d
+	Post_LogUpdatePost                                          langs.MessageCode = "post@log_update_post"                                                // 修改文章 %d
+	Post_ProductGlobal                                          langs.MessageCode = "post@product_global"                                                 // 全站
 	RegionCity_LogAddRegionCityCode                             langs.MessageCode = "region_city@log_add_region_city_code"                                // 添加城市/市 %d 别名 %s
 	RegionCity_LogUpdateRegionCityCustom                        langs.MessageCode = "region_city@log_update_region_city_custom"                           // 定制城市 %d 信息
 	RegionCountry_LogAddRegionCountryCode                       langs.MessageCode = "region_country@log_add_region_country_code"                          // 添加国家/地区 %d 别名 %s

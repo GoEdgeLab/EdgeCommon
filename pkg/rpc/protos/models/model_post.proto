@@ -1,0 +1,22 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_post_category.proto";
+
+// 文章
+message Post {
+	int64 id = 1; // ID
+	int64 postCategoryId = 2; // 分类ID
+	string productCode = 3; // 产品代号
+	string type = 4; // 类型：normal, url
+	string subject = 5; // 标题
+	string url = 6; // URL
+	string body = 7; // 内容
+	int64 createdAt = 8; // 创建时间
+	bool isPublished = 9; // 是否已发布
+	int64 publishedAt = 10; // 发布时间
+
+	PostCategory postCategory = 30; // 分类信息
+}

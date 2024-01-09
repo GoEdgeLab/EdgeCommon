@@ -16,8 +16,9 @@ type UserUIConfig struct {
 	Version        string `json:"version"`        // 显示的版本号
 	ShowFinance    bool   `json:"showFinance"`    // 是否显示财务相关信息
 	FaviconFileId  int64  `json:"faviconFileId"`  // Favicon文件ID
-	LogoFileId     int64  `json:"logoFileId"`     // Logo文件ID
-	TimeZone       string `json:"timeZone"`       // 时区
+	LogoFileId     int64  `json:"logoFileId"`     // 控制面板Logo文件ID
+
+	TimeZone string `json:"timeZone"` // 时区
 
 	ClientIPHeaderNames string `json:"clientIPHeaderNames"` // 客户端IP获取报头名称列表
 
@@ -35,6 +36,11 @@ type UserUIConfig struct {
 		DefaultBandwidthDateRange string        `json:"defaultBandwidthDateRange"` // 默认带宽周期
 		BandwidthAlgo             BandwidthAlgo `json:"bandwidthAlgo"`             // 带宽算法
 	} `json:"trafficStats"` // 流量统计相关设置
+
+	Portal struct {
+		IsOn       bool  `json:"isOn"`       // 是否启用
+		LogoFileId int64 `json:"logoFileId"` // Logo文件ID
+	} `json:"portal"` // 门户页面相关设置
 
 	Theme ThemeConfig `yaml:"theme" json:"theme"` // 风格模板
 }

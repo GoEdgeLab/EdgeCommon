@@ -1,0 +1,86 @@
+syntax = "proto3";
+option go_package = "./pb";
+
+package pb;
+
+import "models/model_post_category.proto";
+import "models/rpc_messages.proto";
+
+// 文章分类管理服务
+service PostCategoryService {
+	// 创建分类
+	rpc createPostCategory(CreatePostCategoryRequest) returns (CreatePostCategoryResponse);
+
+	// 修改分类
+	rpc updatePostCategory(UpdatePostCategoryRequest) returns (RPCSuccess);
+
+	// 删除分类
+	rpc deletePostCategory(DeletePostCategoryRequest) returns (RPCSuccess);
+
+	// 列出所有分类
+	rpc findAllPostCategories(FindAllPostCategoriesRequest) returns (FindAllPostCategoriesResponse);
+
+	// 列出所有可用分类
+	rpc findAllAvailablePostCategories(FindAllAvailablePostCategoriesRequest) returns (FindAllAvailablePostCategoriesResponse);
+
+	// 查询单个分类
+	rpc findPostCategory(FindPostCategoryRequest) returns (FindPostCategoryResponse);
+
+	// 对分类进行排序
+	rpc sortPostCategories(SortPostCategoriesRequest) returns (RPCSuccess);
+}
+
+// 创建分类
+message CreatePostCategoryRequest {
+	string name = 1; // 分类名称
+	string code = 2; // 分类代号
+}
+
+message CreatePostCategoryResponse {
+	int64 postCategoryId = 1; // 分类ID
+}
+
+// 修改分类
+message UpdatePostCategoryRequest {
+	int64 postCategoryId = 1; // 分类ID
+	string name = 2; // 分类名称
+	string code = 3; // 分类代号
+	bool isOn = 4; // 是否启用
+}
+
+// 删除分类
+message DeletePostCategoryRequest {
+	int64 postCategoryId = 1; // 分类ID
+}
+
+// 列出所有分类
+message FindAllPostCategoriesRequest {
+
+}
+
+message FindAllPostCategoriesResponse {
+	repeated PostCategory postCategories = 1; // 分类列表
+}
+
+// 列出所有可用分类
+message FindAllAvailablePostCategoriesRequest {
+
+}
+
+message FindAllAvailablePostCategoriesResponse {
+	repeated PostCategory postCategories = 1; // 分类列表
+}
+
+// 查询单个分类
+message FindPostCategoryRequest {
+	int64 postCategoryId = 1; // 分类ID
+}
+
+message FindPostCategoryResponse {
+	PostCategory postCategory = 1; // 分类信息
+}
+
+// 对分类进行排序
+message SortPostCategoriesRequest {
+	repeated int64 postCategoryIds = 1; // 分类ID列表
+}

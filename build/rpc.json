@@ -3789,7 +3789,10 @@
           "responseMessageName": "ListAllIPItemIdsResponse",
           "code": "rpc listAllIPItemIds(ListAllIPItemIdsRequest) returns (ListAllIPItemIdsResponse);",
           "doc": "列出所有名单中的IP ID",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -9554,6 +9557,174 @@
       "doc": "套餐相关服务"
     },
     {
+      "name": "PostService",
+      "methods": [
+        {
+          "name": "createPost",
+          "requestMessageName": "CreatePostRequest",
+          "responseMessageName": "CreatePostResponse",
+          "code": "rpc createPost(CreatePostRequest) returns (CreatePostResponse);",
+          "doc": "创建文章",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updatePost",
+          "requestMessageName": "UpdatePostRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updatePost(UpdatePostRequest) returns (RPCSuccess);",
+          "doc": "修改文章",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "deletePost",
+          "requestMessageName": "DeletePostRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deletePost(DeletePostRequest) returns (RPCSuccess);",
+          "doc": "删除文章",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "publishPost",
+          "requestMessageName": "PublishPostRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc publishPost(PublishPostRequest) returns (RPCSuccess);",
+          "doc": "发布文章",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "countPosts",
+          "requestMessageName": "CountPostsRequest",
+          "responseMessageName": "RPCCountResponse",
+          "code": "rpc countPosts(CountPostsRequest) returns (RPCCountResponse);",
+          "doc": "计算文章数量",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "listPosts",
+          "requestMessageName": "ListPostsRequest",
+          "responseMessageName": "ListPostsResponse",
+          "code": "rpc listPosts(ListPostsRequest) returns (ListPostsResponse);",
+          "doc": "列出单页文章",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findPost",
+          "requestMessageName": "FindPostRequest",
+          "responseMessageName": "FindPostResponse",
+          "code": "rpc findPost(FindPostRequest) returns (FindPostResponse);",
+          "doc": "查询单篇文章",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_post.proto",
+      "doc": "文章管理服务"
+    },
+    {
+      "name": "PostCategoryService",
+      "methods": [
+        {
+          "name": "createPostCategory",
+          "requestMessageName": "CreatePostCategoryRequest",
+          "responseMessageName": "CreatePostCategoryResponse",
+          "code": "rpc createPostCategory(CreatePostCategoryRequest) returns (CreatePostCategoryResponse);",
+          "doc": "创建分类",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "updatePostCategory",
+          "requestMessageName": "UpdatePostCategoryRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updatePostCategory(UpdatePostCategoryRequest) returns (RPCSuccess);",
+          "doc": "修改分类",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "deletePostCategory",
+          "requestMessageName": "DeletePostCategoryRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deletePostCategory(DeletePostCategoryRequest) returns (RPCSuccess);",
+          "doc": "删除分类",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findAllPostCategories",
+          "requestMessageName": "FindAllPostCategoriesRequest",
+          "responseMessageName": "FindAllPostCategoriesResponse",
+          "code": "rpc findAllPostCategories(FindAllPostCategoriesRequest) returns (FindAllPostCategoriesResponse);",
+          "doc": "列出所有分类",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findAllAvailablePostCategories",
+          "requestMessageName": "FindAllAvailablePostCategoriesRequest",
+          "responseMessageName": "FindAllAvailablePostCategoriesResponse",
+          "code": "rpc findAllAvailablePostCategories(FindAllAvailablePostCategoriesRequest) returns (FindAllAvailablePostCategoriesResponse);",
+          "doc": "列出所有可用分类",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "findPostCategory",
+          "requestMessageName": "FindPostCategoryRequest",
+          "responseMessageName": "FindPostCategoryResponse",
+          "code": "rpc findPostCategory(FindPostCategoryRequest) returns (FindPostCategoryResponse);",
+          "doc": "查询单个分类",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "sortPostCategories",
+          "requestMessageName": "SortPostCategoriesRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc sortPostCategories(SortPostCategoriesRequest) returns (RPCSuccess);",
+          "doc": "对分类进行排序",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        }
+      ],
+      "filename": "service_post_category.proto",
+      "doc": "文章分类管理服务"
+    },
+    {
       "name": "PriceService",
       "methods": [
         {
@@ -14790,6 +14961,11 @@
       "doc": "查询日志数量"
     },
     {
+      "name": "CountPostsRequest",
+      "code": "message CountPostsRequest {\n\tint64 postCategoryId = 1; // 分类ID\n\tstring productCode = 2; // 产品代号\n\tbool publishedOnly = 3; // 只列出已发布的\n}",
+      "doc": "计算文章数量"
+    },
+    {
       "name": "CountSSLCertRequest",
       "code": "message CountSSLCertRequest {\n\tbool isCA = 1; // 可选项，是否为CA证书\n\tbool isAvailable = 2; // 可选项，是否可用（在有效期内）\n\tbool isExpired = 3; // 可选项，是否已过期\n\tint32 expiringDays = 4; // 可选项，离过期日的天数\n\tstring keyword = 5; // 可选项，关键词\n\tint64 userId = 6; // 可选项，用户ID，不填则表示读取管理员上传的证书\n\trepeated string domains = 7; // 可选项，搜索使用的域名列表\n\tbool userOnly = 8; // 可选项，只列出用户上传的证书\n}",
       "doc": "计算匹配的证书数量"
@@ -15655,6 +15831,26 @@
       "doc": ""
     },
     {
+      "name": "CreatePostCategoryRequest",
+      "code": "message CreatePostCategoryRequest {\n\tstring name = 1; // 分类名称\n\tstring code = 2; // 分类代号\n}",
+      "doc": "创建分类"
+    },
+    {
+      "name": "CreatePostCategoryResponse",
+      "code": "message CreatePostCategoryResponse {\n\tint64 postCategoryId = 1; // 分类ID\n}",
+      "doc": ""
+    },
+    {
+      "name": "CreatePostRequest",
+      "code": "message CreatePostRequest {\n\tint64 postCategoryId = 1; // 文章分类ID\n\tstring type = 2; // 类型：normal, url\n\tstring productCode = 3; // 产品代号\n\tstring subject = 4; // 标题\n\tstring url = 5; // 跳转的URL（type=url）\n\tstring body = 6; // 文章内容（type=normal）\n}",
+      "doc": "创建文章"
+    },
+    {
+      "name": "CreatePostResponse",
+      "code": "message CreatePostResponse {\n\tint64 postId = 1; // 文章ID\n}",
+      "doc": ""
+    },
+    {
       "name": "CreateReportNodeGroupRequest",
       "code": "message CreateReportNodeGroupRequest {\n\tstring name = 1;\n}",
       "doc": "创建分组"
@@ -16250,6 +16446,16 @@
       "doc": "删除套餐"
     },
     {
+      "name": "DeletePostCategoryRequest",
+      "code": "message DeletePostCategoryRequest {\n\tint64 postCategoryId = 1; // 分类ID\n}",
+      "doc": "删除分类"
+    },
+    {
+      "name": "DeletePostRequest",
+      "code": "message DeletePostRequest {\n\tint64 postId = 1; // 文章ID\n}",
+      "doc": "删除文章"
+    },
+    {
       "name": "DeleteReportNodeGroupRequest",
       "code": "message DeleteReportNodeGroupRequest {\n\tint64 reportNodeGroupId = 1;\n}",
       "doc": "删除分组"
@@ -16797,6 +17003,16 @@
     {
       "name": "FindAllAvailablePlansResponse",
       "code": "message FindAllAvailablePlansResponse {\n\trepeated Plan plans = 1; // 套餐列表\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAllAvailablePostCategoriesRequest",
+      "code": "message FindAllAvailablePostCategoriesRequest {\n\n}",
+      "doc": "列出所有可用分类"
+    },
+    {
+      "name": "FindAllAvailablePostCategoriesResponse",
+      "code": "message FindAllAvailablePostCategoriesResponse {\n\trepeated PostCategory postCategories = 1; // 分类列表\n}",
       "doc": ""
     },
     {
@@ -17522,6 +17738,16 @@
     {
       "name": "FindAllNotInstalledNodesWithNodeClusterIdResponse",
       "code": "message FindAllNotInstalledNodesWithNodeClusterIdResponse {\n\trepeated Node nodes = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAllPostCategoriesRequest",
+      "code": "message FindAllPostCategoriesRequest {\n\n}",
+      "doc": "列出所有分类"
+    },
+    {
+      "name": "FindAllPostCategoriesResponse",
+      "code": "message FindAllPostCategoriesResponse {\n\trepeated PostCategory postCategories = 1; // 分类列表\n}",
       "doc": ""
     },
     {
@@ -19655,6 +19881,26 @@
       "doc": ""
     },
     {
+      "name": "FindPostCategoryRequest",
+      "code": "message FindPostCategoryRequest {\n\tint64 postCategoryId = 1; // 分类ID\n}",
+      "doc": "查询单个分类"
+    },
+    {
+      "name": "FindPostCategoryResponse",
+      "code": "message FindPostCategoryResponse {\n\tPostCategory postCategory = 1; // 分类信息\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindPostRequest",
+      "code": "message FindPostRequest {\n\tint64 postId = 1; // 文章ID\n}",
+      "doc": "查询单篇文章"
+    },
+    {
+      "name": "FindPostResponse",
+      "code": "message FindPostResponse {\n\tPost post = 1; // 文章信息\n}",
+      "doc": ""
+    },
+    {
       "name": "FindPublicIPLibraryArtifactRequest",
       "code": "message FindPublicIPLibraryArtifactRequest {\n\n}",
       "doc": "查找当前正在使用的制品"
@@ -20860,6 +21106,16 @@
       "doc": ""
     },
     {
+      "name": "ListPostsRequest",
+      "code": "message ListPostsRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n\n\tstring productCode = 3; // 产品代号\n\tint64 postCategoryId = 4; // 分类ID\n\tstring postCategoryCode = 5; // 分类代号\n\tstring excludingPostCategoryCode = 6; // 排除的分类代号\n\tbool publishedOnly = 7; // 只列出已发布的\n\tbool containsBody = 8; // 是否包含文章内容\n}",
+      "doc": "列出单页文章"
+    },
+    {
+      "name": "ListPostsResponse",
+      "code": "message ListPostsResponse {\n\trepeated Post posts = 1; // 文章列表\n}",
+      "doc": ""
+    },
+    {
       "name": "ListReportNodeTasksRequest",
       "code": "message ListReportNodeTasksRequest {\n\tstring role = 1;\n\tint64 nodeClusterId = 2;\n\tstring type = 3;\n\tint64 offset = 4;\n\tint64 size = 5;\n}",
       "doc": "列出单页任务"
@@ -21395,6 +21651,21 @@
       "doc": ""
     },
     {
+      "name": "Post",
+      "code": "message Post {\n\tint64 id = 1; // ID\n\tint64 postCategoryId = 2; // 分类ID\n\tstring productCode = 3; // 产品代号\n\tstring type = 4; // 类型：normal, url\n\tstring subject = 5; // 标题\n\tstring url = 6; // URL\n\tstring body = 7; // 内容\n\tint64 createdAt = 8; // 创建时间\n\tbool isPublished = 9; // 是否已发布\n\tint64 publishedAt = 10; // 发布时间\n\n\tPostCategory postCategory = 30; // 分类信息\n}",
+      "doc": "文章"
+    },
+    {
+      "name": "PostCategory",
+      "code": "message PostCategory {\n\tint64 id = 1; // ID\n\tstring name = 2; // 名称\n\tstring code = 3; // 文章代号\n\tbool isOn = 4; // 是否启用\n}",
+      "doc": "文章分类"
+    },
+    {
+      "name": "PublishPostRequest",
+      "code": "message PublishPostRequest {\n\tint64 postId = 1; // 文章ID\n}",
+      "doc": "发布文章"
+    },
+    {
       "name": "PublishScriptsRequest",
       "code": "message PublishScriptsRequest {\n\tint64  userId = 1;\n}",
       "doc": "发布脚本"
@@ -21718,6 +21989,11 @@
       "name": "SortPlansRequest",
       "code": "message SortPlansRequest {\n\trepeated int64 planIds = 1; // 排序后的套餐ID列表\n}",
       "doc": "对套餐进行排序"
+    },
+    {
+      "name": "SortPostCategoriesRequest",
+      "code": "message SortPostCategoriesRequest {\n\trepeated int64 postCategoryIds = 1; // 分类ID列表\n}",
+      "doc": "对分类进行排序"
     },
     {
       "name": "StartNSNodeRequest",
@@ -22793,6 +23069,16 @@
       "name": "UpdatePlanRequest",
       "code": "message UpdatePlanRequest {\n\tint64 planId = 1; // 套餐ID\n\tstring name = 2; // 套餐名称\n\tstring description = 21; // 套餐简介\n\tbool isOn = 3; // 是否启用\n\tint64 clusterId = 4; // 集群ID\n\tbytes trafficLimitJSON = 5; // 流量限制\n\tbool hasFullFeatures = 20; // 是否有所有权限\n\tbytes featuresJSON = 6; // 权限列表，[code1, code2, ...]\n\tstring priceType = 7; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 8; // 流量价格配置\n\tbytes bandwidthPriceJSON = 12; // 带宽价格配置\n\tfloat monthlyPrice = 9; // 月费用\n\tfloat seasonallyPrice = 10; // 季度费用\n\tfloat yearlyPrice = 11; // 年度费用\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
       "doc": "修改套餐"
+    },
+    {
+      "name": "UpdatePostCategoryRequest",
+      "code": "message UpdatePostCategoryRequest {\n\tint64 postCategoryId = 1; // 分类ID\n\tstring name = 2; // 分类名称\n\tstring code = 3; // 分类代号\n\tbool isOn = 4; // 是否启用\n}",
+      "doc": "修改分类"
+    },
+    {
+      "name": "UpdatePostRequest",
+      "code": "message UpdatePostRequest {\n\tint64 postId = 1; // 文章ID\n\tint64 postCategoryId = 2; // 文章分类ID\n\tstring productCode = 3; // 产品代号\n\tstring subject = 4; // 标题\n\tstring type = 5; // 类型：normal, url\n\tstring url = 6; // 跳转的URL（type=url）\n\tstring body = 7; // 文章内容（type=normal）\n}",
+      "doc": "修改文章"
     },
     {
       "name": "UpdateRegionCityCustomRequest",
