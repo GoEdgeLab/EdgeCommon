@@ -491,6 +491,7 @@ const (
 	Server_LogCopyServerConfigs                                 langs.MessageCode = "server@log_copy_server_configs"                                      // 从网站 %d 中同步配置 %s
 	Server_LogCreateServer                                      langs.MessageCode = "server@log_create_server"                                            // 创建网站 %d
 	Server_LogDeleteServer                                      langs.MessageCode = "server@log_delete_server"                                            // 删除网站 %d
+	Server_LogDeleteServers                                     langs.MessageCode = "server@log_delete_servers"                                           // 批量删除网站
 	Server_LogDisableServer                                     langs.MessageCode = "server@log_disable_server"                                           // 停用网站 %d
 	Server_LogEnableServer                                      langs.MessageCode = "server@log_enable_server"                                            // 启用网站 %d
 	Server_LogSubmitAuditingServer                              langs.MessageCode = "server@log_submit_auditing_server"                                   // 提交网站 %d 域名审核

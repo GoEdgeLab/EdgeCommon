@@ -9508,6 +9508,15 @@
           "isDeprecated": false
         },
         {
+          "name": "findBasicPlan",
+          "requestMessageName": "FindBasicPlanRequest",
+          "responseMessageName": "FindBasicPlanResponse",
+          "code": "rpc findBasicPlan(FindBasicPlanRequest) returns (FindBasicPlanResponse);",
+          "doc": "查找套餐基本信息",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
           "name": "countAllEnabledPlans",
           "requestMessageName": "CountAllEnabledPlansRequest",
           "responseMessageName": "RPCCountResponse",
@@ -9547,7 +9556,9 @@
           "responseMessageName": "FindAllAvailableBasicPlansResponse",
           "code": "rpc findAllAvailableBasicPlans(FindAllAvailableBasicPlansRequest) returns (FindAllAvailableBasicPlansResponse);",
           "doc": "列出所有可用的套餐的基本信息",
-          "roles": [],
+          "roles": [
+            "node"
+          ],
           "isDeprecated": false
         },
         {
@@ -10754,7 +10765,19 @@
           "requestMessageName": "DeleteServerRequest",
           "responseMessageName": "RPCSuccess",
           "code": "rpc deleteServer (DeleteServerRequest) returns (RPCSuccess);",
-          "doc": "禁用某网站",
+          "doc": "删除某网站",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "deleteServers",
+          "requestMessageName": "DeleteServersRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deleteServers(DeleteServersRequest) returns (RPCSuccess);",
+          "doc": "删除一组网站",
           "roles": [
             "admin",
             "user"
@@ -16492,7 +16515,12 @@
     {
       "name": "DeleteServerRequest",
       "code": "message DeleteServerRequest {\n\tint64 serverId = 1; // 网站ID\n}",
-      "doc": "禁用网站"
+      "doc": "删除某网站"
+    },
+    {
+      "name": "DeleteServersRequest",
+      "code": "message DeleteServersRequest {\n\trepeated int64 serverIds = 1; // 网站ID列表：[1, 2, ...]\n}",
+      "doc": "删除一组网站"
     },
     {
       "name": "DeleteTrafficPackagePeriodRequest",
@@ -18040,6 +18068,16 @@
       "doc": ""
     },
     {
+      "name": "FindBasicPlanRequest",
+      "code": "message FindBasicPlanRequest {\n\tint64 planId = 1; // 套餐ID\n}",
+      "doc": "查找套餐基本信息"
+    },
+    {
+      "name": "FindBasicPlanResponse",
+      "code": "message FindBasicPlanResponse {\n\tPlan plan = 1; // 套餐信息（只读取基本信息）\n}",
+      "doc": ""
+    },
+    {
       "name": "FindCurrentAPINodeResponse",
       "code": "message FindCurrentAPINodeResponse {\n\tAPINode apiNode = 1;\n}",
       "doc": ""
@@ -18911,7 +18949,7 @@
     },
     {
       "name": "FindEnabledServerResponse",
-      "code": "message FindEnabledServerResponse {\n\tServer server = 1;\n}",
+      "code": "message FindEnabledServerResponse {\n\tServer server = 1; // 网站信息\n}",
       "doc": ""
     },
     {

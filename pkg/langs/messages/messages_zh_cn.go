@@ -492,6 +492,7 @@ func init() {
 		"server@log_copy_server_configs":                                      "从网站 %d 中同步配置 %s",
 		"server@log_create_server":                                            "创建网站 %d",
 		"server@log_delete_server":                                            "删除网站 %d",
+		"server@log_delete_servers":                                           "批量删除网站",
 		"server@log_disable_server":                                           "停用网站 %d",
 		"server@log_enable_server":                                            "启用网站 %d",
 		"server@log_submit_auditing_server":                                   "提交网站 %d 域名审核",

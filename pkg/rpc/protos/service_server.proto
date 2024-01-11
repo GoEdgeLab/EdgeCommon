@@ -80,8 +80,11 @@ service ServerService {
 	// 列出单页网站
 	rpc listEnabledServersMatch (ListEnabledServersMatchRequest) returns (ListEnabledServersMatchResponse);
 
-	// 禁用某网站
+	// 删除某网站
 	rpc deleteServer (DeleteServerRequest) returns (RPCSuccess);
+
+	// 删除一组网站
+	rpc deleteServers(DeleteServersRequest) returns (RPCSuccess);
 
 	// 查找单个网站
 	rpc findEnabledServer (FindEnabledServerRequest) returns (FindEnabledServerResponse);
@@ -410,9 +413,14 @@ message ListEnabledServersMatchResponse {
 	repeated Server servers = 1;
 }
 
-// 禁用网站
+// 删除某网站
 message DeleteServerRequest {
 	int64 serverId = 1; // 网站ID
+}
+
+// 删除一组网站
+message DeleteServersRequest {
+	repeated int64 serverIds = 1; // 网站ID列表：[1, 2, ...]
 }
 
 // 查找单个网站
@@ -422,7 +430,7 @@ message FindEnabledServerRequest {
 }
 
 message FindEnabledServerResponse {
-	Server server = 1;
+	Server server = 1; // 网站信息
 }
 
 // 查找网站配置

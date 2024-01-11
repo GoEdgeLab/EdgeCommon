@@ -43,6 +43,7 @@ const (
 	ServerService_CountAllEnabledServersMatch_FullMethodName               = "/pb.ServerService/countAllEnabledServersMatch"
 	ServerService_ListEnabledServersMatch_FullMethodName                   = "/pb.ServerService/listEnabledServersMatch"
 	ServerService_DeleteServer_FullMethodName                              = "/pb.ServerService/deleteServer"
+	ServerService_DeleteServers_FullMethodName                             = "/pb.ServerService/deleteServers"
 	ServerService_FindEnabledServer_FullMethodName                         = "/pb.ServerService/findEnabledServer"
 	ServerService_FindEnabledServerConfig_FullMethodName                   = "/pb.ServerService/findEnabledServerConfig"
 	ServerService_FindEnabledServerType_FullMethodName                     = "/pb.ServerService/findEnabledServerType"
@@ -133,8 +134,10 @@ type ServerServiceClient interface {
 	CountAllEnabledServersMatch(ctx context.Context, in *CountAllEnabledServersMatchRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 列出单页网站
 	ListEnabledServersMatch(ctx context.Context, in *ListEnabledServersMatchRequest, opts ...grpc.CallOption) (*ListEnabledServersMatchResponse, error)
-	// 禁用某网站
+	// 删除某网站
 	DeleteServer(ctx context.Context, in *DeleteServerRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 删除一组网站
+	DeleteServers(ctx context.Context, in *DeleteServersRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 查找单个网站
 	FindEnabledServer(ctx context.Context, in *FindEnabledServerRequest, opts ...grpc.CallOption) (*FindEnabledServerResponse, error)
 	// 查找网站配置
@@ -431,6 +434,15 @@ func (c *serverServiceClient) ListEnabledServersMatch(ctx context.Context, in *L
 func (c *serverServiceClient) DeleteServer(ctx context.Context, in *DeleteServerRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
 	out := new(RPCSuccess)
 	err := c.cc.Invoke(ctx, ServerService_DeleteServer_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) DeleteServers(ctx context.Context, in *DeleteServersRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, ServerService_DeleteServers_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -829,8 +841,10 @@ type ServerServiceServer interface {
 	CountAllEnabledServersMatch(context.Context, *CountAllEnabledServersMatchRequest) (*RPCCountResponse, error)
 	// 列出单页网站
 	ListEnabledServersMatch(context.Context, *ListEnabledServersMatchRequest) (*ListEnabledServersMatchResponse, error)
-	// 禁用某网站
+	// 删除某网站
 	DeleteServer(context.Context, *DeleteServerRequest) (*RPCSuccess, error)
+	// 删除一组网站
+	DeleteServers(context.Context, *DeleteServersRequest) (*RPCSuccess, error)
 	// 查找单个网站
 	FindEnabledServer(context.Context, *FindEnabledServerRequest) (*FindEnabledServerResponse, error)
 	// 查找网站配置
@@ -984,6 +998,9 @@ func (UnimplementedServerServiceServer) ListEnabledServersMatch(context.Context,
 }
 func (UnimplementedServerServiceServer) DeleteServer(context.Context, *DeleteServerRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteServer not implemented")
+}
+func (UnimplementedServerServiceServer) DeleteServers(context.Context, *DeleteServersRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteServers not implemented")
 }
 func (UnimplementedServerServiceServer) FindEnabledServer(context.Context, *FindEnabledServerRequest) (*FindEnabledServerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledServer not implemented")
@@ -1539,6 +1556,24 @@ func _ServerService_DeleteServer_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ServerServiceServer).DeleteServer(ctx, req.(*DeleteServerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_DeleteServers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteServersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).DeleteServers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ServerService_DeleteServers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).DeleteServers(ctx, req.(*DeleteServersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2329,6 +2364,10 @@ var ServerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "deleteServer",
 			Handler:    _ServerService_DeleteServer_Handler,
+		},
+		{
+			MethodName: "deleteServers",
+			Handler:    _ServerService_DeleteServers_Handler,
 		},
 		{
 			MethodName: "findEnabledServer",
