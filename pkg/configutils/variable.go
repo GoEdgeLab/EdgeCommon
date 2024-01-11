@@ -1,21 +1,30 @@
 package configutils
 
 import (
+	"crypto/sha1"
+	"crypto/sha256"
+	"encoding/base64"
+	"fmt"
+	stringutil "github.com/iwind/TeaGo/utils/string"
+	"net/url"
 	"regexp"
 	"strings"
 	"sync"
 )
 
 // VariableHolder 变量信息存储类型
-type VariableHolder string
-type VariableHolders = []interface{}
+type VariableHolder struct {
+	Param     string
+	Modifiers []string
+}
+type VariableHolders = []any
 
-var variableMapping = map[string][]interface{}{} // source => [holder1, ...]
-var variableLocker = sync.RWMutex{}
-var regexpNamedVariable = regexp.MustCompile(`\${[@\w.-]+}`)
+var variableMapping = map[string][]any{} // source => [holder1, ...]
+var variableLocker = &sync.RWMutex{}
+var regexpNamedVariable = regexp.MustCompile(`\${[@\w.|-]+}`)
 
 var stringBuilderPool = sync.Pool{
-	New: func() interface{} {
+	New: func() any {
 		return &strings.Builder{}
 	},
 }
@@ -46,7 +55,11 @@ func ParseVariables(source string, replacer func(varName string) (value string))
 		var h = holders[0]
 		holder, ok := h.(VariableHolder)
 		if ok {
-			return replacer(string(holder))
+			var value = replacer(holder.Param)
+			if holder.Modifiers != nil {
+				value = doStringModifiers(value, holder.Modifiers)
+			}
+			return replacer(value)
 		}
 		return source
 	}
@@ -58,7 +71,11 @@ func ParseVariables(source string, replacer func(varName string) (value string))
 	for _, h := range holders {
 		holder, ok := h.(VariableHolder)
 		if ok {
-			builder.WriteString(replacer(string(holder)))
+			var value = replacer(holder.Param)
+			if holder.Modifiers != nil {
+				value = doStringModifiers(value, holder.Modifiers)
+			}
+			builder.WriteString(value)
 		} else {
 			builder.Write(h.([]byte))
 		}
@@ -86,11 +103,15 @@ func ParseVariablesFromHolders(holders VariableHolders, replacer func(varName st
 	}
 
 	// replace
-	result := strings.Builder{}
+	var result = strings.Builder{}
 	for _, h := range holders {
 		holder, ok := h.(VariableHolder)
 		if ok {
-			result.WriteString(replacer(string(holder)))
+			var value = replacer(holder.Param)
+			if holder.Modifiers != nil {
+				value = doStringModifiers(value, holder.Modifiers)
+			}
+			result.WriteString(value)
 		} else {
 			result.Write(h.([]byte))
 		}
@@ -100,12 +121,24 @@ func ParseVariablesFromHolders(holders VariableHolders, replacer func(varName st
 
 // ParseHolders 分析占位
 func ParseHolders(source string) (holders VariableHolders) {
-	indexes := regexpNamedVariable.FindAllStringIndex(source, -1)
-	before := 0
+	var indexes = regexpNamedVariable.FindAllStringIndex(source, -1)
+	var before = 0
 	for _, loc := range indexes {
 		holders = append(holders, []byte(source[before:loc[0]]))
-		holder := source[loc[0]+2 : loc[1]-1]
-		holders = append(holders, VariableHolder(holder))
+		var holder = source[loc[0]+2 : loc[1]-1]
+
+		if strings.Contains(holder, "|") {
+			var holderPieces = strings.Split(holder, "|")
+			holders = append(holders, VariableHolder{
+				Param:     holderPieces[0],
+				Modifiers: holderPieces[1:],
+			})
+		} else {
+			holders = append(holders, VariableHolder{
+				Param:     holder,
+				Modifiers: nil,
+			})
+		}
 		before = loc[1]
 	}
 	if before < len(source) {
@@ -120,4 +153,37 @@ func HasVariables(source string) bool {
 		return false
 	}
 	return regexpNamedVariable.MatchString(source)
+}
+
+// 执行变量后的修饰符
+func doStringModifiers(value string, modifiers []string) string {
+	for _, modifier := range modifiers {
+		switch modifier {
+		case "urlEncode":
+			value = url.QueryEscape(value)
+		case "urlDecode":
+			value2, err := url.QueryUnescape(value)
+			if err == nil {
+				value = value2
+			}
+		case "base64Encode":
+			value = base64.StdEncoding.EncodeToString([]byte(value))
+		case "base64Decode":
+			value2, err := base64.StdEncoding.DecodeString(value)
+			if err == nil {
+				value = string(value2)
+			}
+		case "md5":
+			value = stringutil.Md5(value)
+		case "sha1":
+			value = fmt.Sprintf("%x", sha1.Sum([]byte(value)))
+		case "sha256":
+			value = fmt.Sprintf("%x", sha256.Sum256([]byte(value)))
+		case "toLowerCase":
+			value = strings.ToLower(value)
+		case "toUpperCase":
+			value = strings.ToUpper(value)
+		}
+	}
+	return value
 }
