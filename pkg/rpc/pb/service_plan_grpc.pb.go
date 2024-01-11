@@ -23,6 +23,7 @@ const (
 	PlanService_UpdatePlan_FullMethodName                 = "/pb.PlanService/updatePlan"
 	PlanService_DeletePlan_FullMethodName                 = "/pb.PlanService/deletePlan"
 	PlanService_FindEnabledPlan_FullMethodName            = "/pb.PlanService/findEnabledPlan"
+	PlanService_FindBasicPlan_FullMethodName              = "/pb.PlanService/findBasicPlan"
 	PlanService_CountAllEnabledPlans_FullMethodName       = "/pb.PlanService/countAllEnabledPlans"
 	PlanService_ListEnabledPlans_FullMethodName           = "/pb.PlanService/listEnabledPlans"
 	PlanService_FindAllAvailablePlans_FullMethodName      = "/pb.PlanService/findAllAvailablePlans"
@@ -42,6 +43,8 @@ type PlanServiceClient interface {
 	DeletePlan(ctx context.Context, in *DeletePlanRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 查找单个套餐
 	FindEnabledPlan(ctx context.Context, in *FindEnabledPlanRequest, opts ...grpc.CallOption) (*FindEnabledPlanResponse, error)
+	// 查找套餐基本信息
+	FindBasicPlan(ctx context.Context, in *FindBasicPlanRequest, opts ...grpc.CallOption) (*FindBasicPlanResponse, error)
 	// 计算套餐数量
 	CountAllEnabledPlans(ctx context.Context, in *CountAllEnabledPlansRequest, opts ...grpc.CallOption) (*RPCCountResponse, error)
 	// 列出单页套餐
@@ -92,6 +95,15 @@ func (c *planServiceClient) DeletePlan(ctx context.Context, in *DeletePlanReques
 func (c *planServiceClient) FindEnabledPlan(ctx context.Context, in *FindEnabledPlanRequest, opts ...grpc.CallOption) (*FindEnabledPlanResponse, error) {
 	out := new(FindEnabledPlanResponse)
 	err := c.cc.Invoke(ctx, PlanService_FindEnabledPlan_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *planServiceClient) FindBasicPlan(ctx context.Context, in *FindBasicPlanRequest, opts ...grpc.CallOption) (*FindBasicPlanResponse, error) {
+	out := new(FindBasicPlanResponse)
+	err := c.cc.Invoke(ctx, PlanService_FindBasicPlan_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -155,6 +167,8 @@ type PlanServiceServer interface {
 	DeletePlan(context.Context, *DeletePlanRequest) (*RPCSuccess, error)
 	// 查找单个套餐
 	FindEnabledPlan(context.Context, *FindEnabledPlanRequest) (*FindEnabledPlanResponse, error)
+	// 查找套餐基本信息
+	FindBasicPlan(context.Context, *FindBasicPlanRequest) (*FindBasicPlanResponse, error)
 	// 计算套餐数量
 	CountAllEnabledPlans(context.Context, *CountAllEnabledPlansRequest) (*RPCCountResponse, error)
 	// 列出单页套餐
@@ -182,6 +196,9 @@ func (UnimplementedPlanServiceServer) DeletePlan(context.Context, *DeletePlanReq
 }
 func (UnimplementedPlanServiceServer) FindEnabledPlan(context.Context, *FindEnabledPlanRequest) (*FindEnabledPlanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledPlan not implemented")
+}
+func (UnimplementedPlanServiceServer) FindBasicPlan(context.Context, *FindBasicPlanRequest) (*FindBasicPlanResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindBasicPlan not implemented")
 }
 func (UnimplementedPlanServiceServer) CountAllEnabledPlans(context.Context, *CountAllEnabledPlansRequest) (*RPCCountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CountAllEnabledPlans not implemented")
@@ -278,6 +295,24 @@ func _PlanService_FindEnabledPlan_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlanServiceServer).FindEnabledPlan(ctx, req.(*FindEnabledPlanRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PlanService_FindBasicPlan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindBasicPlanRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlanServiceServer).FindBasicPlan(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlanService_FindBasicPlan_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlanServiceServer).FindBasicPlan(ctx, req.(*FindBasicPlanRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -394,6 +429,10 @@ var PlanService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findEnabledPlan",
 			Handler:    _PlanService_FindEnabledPlan_Handler,
+		},
+		{
+			MethodName: "findBasicPlan",
+			Handler:    _PlanService_FindBasicPlan_Handler,
 		},
 		{
 			MethodName: "countAllEnabledPlans",

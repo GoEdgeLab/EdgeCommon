@@ -20,6 +20,9 @@ service PlanService {
 	// 查找单个套餐
 	rpc findEnabledPlan(FindEnabledPlanRequest) returns (FindEnabledPlanResponse);
 
+	// 查找套餐基本信息
+	rpc findBasicPlan(FindBasicPlanRequest) returns (FindBasicPlanResponse);
+
 	// 计算套餐数量
 	rpc countAllEnabledPlans(CountAllEnabledPlansRequest) returns (RPCCountResponse);
 
@@ -102,6 +105,15 @@ message FindEnabledPlanRequest {
 
 message FindEnabledPlanResponse {
 	Plan plan = 1; // 套餐信息
+}
+
+// 查找套餐基本信息
+message FindBasicPlanRequest {
+	int64 planId = 1; // 套餐ID
+}
+
+message FindBasicPlanResponse {
+	Plan plan = 1; // 套餐信息（只读取基本信息）
 }
 
 // 计算套餐数量
