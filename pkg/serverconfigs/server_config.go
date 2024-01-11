@@ -256,9 +256,7 @@ func (this *ServerConfig) Init(ctx context.Context) (results []error) {
 			results = append(results, err)
 		}
 
-		if this.UserPlan.Plan != nil {
-			this.planId = this.UserPlan.Plan.Id
-		}
+		this.planId = this.UserPlan.PlanId
 	}
 
 	// UAM

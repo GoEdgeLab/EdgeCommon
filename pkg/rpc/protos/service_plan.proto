@@ -29,6 +29,9 @@ service PlanService {
 	// 列出所有可用的套餐
 	rpc findAllAvailablePlans(FindAllAvailablePlansRequest) returns (FindAllAvailablePlansResponse);
 
+	// 列出所有可用的套餐的基本信息
+	rpc findAllAvailableBasicPlans(FindAllAvailableBasicPlansRequest) returns (FindAllAvailableBasicPlansResponse);
+
 	// 对套餐进行排序
 	rpc sortPlans(SortPlansRequest) returns (RPCSuccess);
 }
@@ -39,6 +42,7 @@ message CreatePlanRequest {
 	string description = 19; // 套餐简介
 	int64 clusterId = 2; // 集群ID
 	bytes trafficLimitJSON = 3; // 流量限制
+	bytes bandwidthLimitPerNodeJSON = 20; // 单节点带宽限制
 	bool hasFullFeatures = 18; // 是否有所有权限
 	bytes featuresJSON = 4; // 权限列表，[code1, code2, ...]
 	string priceType = 5; // 价格类型：traffic, bandwidth, period
@@ -68,6 +72,7 @@ message UpdatePlanRequest {
 	bool isOn = 3; // 是否启用
 	int64 clusterId = 4; // 集群ID
 	bytes trafficLimitJSON = 5; // 流量限制
+	bytes bandwidthLimitPerNodeJSON = 22; // 单节点带宽限制
 	bool hasFullFeatures = 20; // 是否有所有权限
 	bytes featuresJSON = 6; // 权限列表，[code1, code2, ...]
 	string priceType = 7; // 价格类型：traffic, bandwidth, period
@@ -120,6 +125,15 @@ message FindAllAvailablePlansRequest {
 }
 
 message FindAllAvailablePlansResponse {
+	repeated Plan plans = 1; // 套餐列表
+}
+
+// 列出所有可用的套餐的基本信息
+message FindAllAvailableBasicPlansRequest {
+
+}
+
+message FindAllAvailableBasicPlansResponse {
 	repeated Plan plans = 1; // 套餐列表
 }
 

@@ -29,6 +29,10 @@ type TrafficLimitConfig struct {
 	NoticePageBody string `yaml:"noticePageBody" json:"noticePageBody"` // 超出限制时的提醒，支持请求变量
 }
 
+func (this *TrafficLimitConfig) Init() error {
+	return nil
+}
+
 // DailyBytes 每天限制
 // 不使用Init()来初始化数据，是为了让其他地方不经过Init()也能得到计算值
 func (this *TrafficLimitConfig) DailyBytes() int64 {

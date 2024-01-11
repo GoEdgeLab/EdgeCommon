@@ -9542,6 +9542,15 @@
           "isDeprecated": false
         },
         {
+          "name": "findAllAvailableBasicPlans",
+          "requestMessageName": "FindAllAvailableBasicPlansRequest",
+          "responseMessageName": "FindAllAvailableBasicPlansResponse",
+          "code": "rpc findAllAvailableBasicPlans(FindAllAvailableBasicPlansRequest) returns (FindAllAvailableBasicPlansResponse);",
+          "doc": "列出所有可用的套餐的基本信息",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
           "name": "sortPlans",
           "requestMessageName": "SortPlansRequest",
           "responseMessageName": "RPCSuccess",
@@ -15822,7 +15831,7 @@
     },
     {
       "name": "CreatePlanRequest",
-      "code": "message CreatePlanRequest {\n\tstring name = 1; // 套餐名称\n\tstring description = 19; // 套餐简介\n\tint64 clusterId = 2; // 集群ID\n\tbytes trafficLimitJSON = 3; // 流量限制\n\tbool hasFullFeatures = 18; // 是否有所有权限\n\tbytes featuresJSON = 4; // 权限列表，[code1, code2, ...]\n\tstring priceType = 5; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 6; // 流量价格配置\n\tbytes bandwidthPriceJSON = 10; // 带宽价格配置\n\tfloat monthlyPrice = 7; // 月度价格\n\tfloat seasonallyPrice = 8; // 季度价格\n\tfloat yearlyPrice = 9; // 年度价格\n\tint32 totalServers = 11; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 13; // 可以添加的域名总数\n\tint64 dailyRequests = 14; // 每日访问量额度\n\tint64 monthlyRequests = 15; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 16; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 17; // 每月Websocket连接数额度\n}",
+      "code": "message CreatePlanRequest {\n\tstring name = 1; // 套餐名称\n\tstring description = 19; // 套餐简介\n\tint64 clusterId = 2; // 集群ID\n\tbytes trafficLimitJSON = 3; // 流量限制\n\tbytes bandwidthLimitPerNodeJSON = 20; // 单节点带宽限制\n\tbool hasFullFeatures = 18; // 是否有所有权限\n\tbytes featuresJSON = 4; // 权限列表，[code1, code2, ...]\n\tstring priceType = 5; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 6; // 流量价格配置\n\tbytes bandwidthPriceJSON = 10; // 带宽价格配置\n\tfloat monthlyPrice = 7; // 月度价格\n\tfloat seasonallyPrice = 8; // 季度价格\n\tfloat yearlyPrice = 9; // 年度价格\n\tint32 totalServers = 11; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 13; // 可以添加的域名总数\n\tint64 dailyRequests = 14; // 每日访问量额度\n\tint64 monthlyRequests = 15; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 16; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 17; // 每月Websocket连接数额度\n}",
       "doc": "创建套餐"
     },
     {
@@ -16953,6 +16962,16 @@
     {
       "name": "FindAllAvailableADPackagePeriodsResponse",
       "code": "message FindAllAvailableADPackagePeriodsResponse {\n\trepeated ADPackagePeriod adPackagePeriods = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAllAvailableBasicPlansRequest",
+      "code": "message FindAllAvailableBasicPlansRequest {\n\n}",
+      "doc": "列出所有可用的套餐的基本信息"
+    },
+    {
+      "name": "FindAllAvailableBasicPlansResponse",
+      "code": "message FindAllAvailableBasicPlansResponse {\n\trepeated Plan plans = 1; // 套餐列表\n}",
       "doc": ""
     },
     {
@@ -21647,7 +21666,7 @@
     },
     {
       "name": "Plan",
-      "code": "message Plan {\n\tint64 id = 1; // 套餐ID\n\tbool isOn = 2; // 是否启用\n\tstring name = 3; // 套餐名称\n\tstring description = 21; // 套餐简介\n\tint64 clusterId = 4;  // 集群ID\n\tbytes trafficLimitJSON = 5; // 流量限制\n\tbool hasFullFeatures = 20; // 是否有所有权限\n\tbytes featuresJSON = 6; // 权限列表，[code1, code2, ...]\n\tstring priceType = 7; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 8; // 流量价格配置\n\tbytes bandwidthPriceJSON = 12; // 带宽价格配置\n\tdouble monthlyPrice = 9; // 月度价格\n\tdouble seasonallyPrice = 10;  // 季度价格\n\tdouble yearlyPrice = 11;  // 年度价格\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
+      "code": "message Plan {\n\tint64 id = 1; // 套餐ID\n\tbool isOn = 2; // 是否启用\n\tstring name = 3; // 套餐名称\n\tstring description = 21; // 套餐简介\n\tint64 clusterId = 4;  // 集群ID\n\tbytes trafficLimitJSON = 5; // 流量限制\n\tbytes bandwidthLimitPerNodeJSON = 22; // 单节点带宽限制\n\tbool hasFullFeatures = 20; // 是否有所有权限\n\tbytes featuresJSON = 6; // 权限列表，[code1, code2, ...]\n\tstring priceType = 7; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 8; // 流量价格配置\n\tbytes bandwidthPriceJSON = 12; // 带宽价格配置\n\tdouble monthlyPrice = 9; // 月度价格\n\tdouble seasonallyPrice = 10;  // 季度价格\n\tdouble yearlyPrice = 11;  // 年度价格\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
       "doc": ""
     },
     {
@@ -23067,7 +23086,7 @@
     },
     {
       "name": "UpdatePlanRequest",
-      "code": "message UpdatePlanRequest {\n\tint64 planId = 1; // 套餐ID\n\tstring name = 2; // 套餐名称\n\tstring description = 21; // 套餐简介\n\tbool isOn = 3; // 是否启用\n\tint64 clusterId = 4; // 集群ID\n\tbytes trafficLimitJSON = 5; // 流量限制\n\tbool hasFullFeatures = 20; // 是否有所有权限\n\tbytes featuresJSON = 6; // 权限列表，[code1, code2, ...]\n\tstring priceType = 7; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 8; // 流量价格配置\n\tbytes bandwidthPriceJSON = 12; // 带宽价格配置\n\tfloat monthlyPrice = 9; // 月费用\n\tfloat seasonallyPrice = 10; // 季度费用\n\tfloat yearlyPrice = 11; // 年度费用\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
+      "code": "message UpdatePlanRequest {\n\tint64 planId = 1; // 套餐ID\n\tstring name = 2; // 套餐名称\n\tstring description = 21; // 套餐简介\n\tbool isOn = 3; // 是否启用\n\tint64 clusterId = 4; // 集群ID\n\tbytes trafficLimitJSON = 5; // 流量限制\n\tbytes bandwidthLimitPerNodeJSON = 22; // 单节点带宽限制\n\tbool hasFullFeatures = 20; // 是否有所有权限\n\tbytes featuresJSON = 6; // 权限列表，[code1, code2, ...]\n\tstring priceType = 7; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 8; // 流量价格配置\n\tbytes bandwidthPriceJSON = 12; // 带宽价格配置\n\tfloat monthlyPrice = 9; // 月费用\n\tfloat seasonallyPrice = 10; // 季度费用\n\tfloat yearlyPrice = 11; // 年度费用\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
       "doc": "修改套餐"
     },
     {

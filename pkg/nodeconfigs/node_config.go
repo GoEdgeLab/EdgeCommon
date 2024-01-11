@@ -29,6 +29,7 @@ var httpCCPolicyLocker = &sync.RWMutex{}
 var http3PolicyLocker = &sync.RWMutex{}
 var httpPagesPolicyLocker = &sync.RWMutex{}
 var webPPolicyLocker = &sync.RWMutex{}
+var plansLocker = &sync.RWMutex{}
 
 type ServerError struct {
 	Id      int64
@@ -99,12 +100,13 @@ type NodeConfig struct {
 	// 脚本
 	CommonScripts []*serverconfigs.CommonScript `yaml:"commonScripts" json:"commonScripts"`
 
-	WebPImagePolicies     map[int64]*WebPImagePolicy `yaml:"webpImagePolicies" json:"webpImagePolicies"`         // WebP相关配置，clusterId => *WebPImagePolicy
-	UAMPolicies           map[int64]*UAMPolicy       `yaml:"uamPolicies" json:"uamPolicies"`                     // UAM相关配置，clusterId => *UAMPolicy
-	HTTPCCPolicies        map[int64]*HTTPCCPolicy    `yaml:"httpCCPolicies" json:"httpCCPolicies"`               // CC相关配置， clusterId => *HTTPCCPolicy
-	HTTP3Policies         map[int64]*HTTP3Policy     `yaml:"http3Policies" json:"http3Policies"`                 // HTTP3相关配置， clusterId => *HTTP3Policy
-	HTTPPagesPolicies     map[int64]*HTTPPagesPolicy `yaml:"httpPagesPolicies" json:"httpPagesPolicies"`         // 自定义页面，clusterId => *HTTPPagesPolicy
-	NetworkSecurityPolicy *NetworkSecurityPolicy     `yaml:"networkSecurityPolicy" json:"networkSecurityPolicy"` // 网络安全策略
+	WebPImagePolicies     map[int64]*WebPImagePolicy          `yaml:"webpImagePolicies" json:"webpImagePolicies"`         // WebP相关配置，clusterId => *WebPImagePolicy
+	UAMPolicies           map[int64]*UAMPolicy                `yaml:"uamPolicies" json:"uamPolicies"`                     // UAM相关配置，clusterId => *UAMPolicy
+	HTTPCCPolicies        map[int64]*HTTPCCPolicy             `yaml:"httpCCPolicies" json:"httpCCPolicies"`               // CC相关配置， clusterId => *HTTPCCPolicy
+	HTTP3Policies         map[int64]*HTTP3Policy              `yaml:"http3Policies" json:"http3Policies"`                 // HTTP3相关配置， clusterId => *HTTP3Policy
+	HTTPPagesPolicies     map[int64]*HTTPPagesPolicy          `yaml:"httpPagesPolicies" json:"httpPagesPolicies"`         // 自定义页面，clusterId => *HTTPPagesPolicy
+	NetworkSecurityPolicy *NetworkSecurityPolicy              `yaml:"networkSecurityPolicy" json:"networkSecurityPolicy"` // 网络安全策略
+	Plans                 map[int64]*serverconfigs.PlanConfig `yaml:"plans" json:"plans"`                                 // 套餐 plan id => *serverconfigs.PlanConfig
 
 	// DNS
 	DNSResolver *DNSResolverConfig `yaml:"dnsResolver" json:"dnsResolver"`
@@ -213,6 +215,9 @@ func CloneNodeConfig(nodeConfig *NodeConfig) (*NodeConfig, error) {
 
 	webPPolicyLocker.RLock()
 	defer webPPolicyLocker.RUnlock()
+
+	plansLocker.RLock()
+	defer plansLocker.RUnlock()
 
 	var newConfigValue = reflect.Indirect(reflect.ValueOf(&NodeConfig{}))
 	var oldValue = reflect.Indirect(reflect.ValueOf(nodeConfig))
@@ -443,6 +448,19 @@ func (this *NodeConfig) Init(ctx context.Context) (err error, serverErrors []*Se
 		}
 	}
 	httpPagesPolicyLocker.RUnlock()
+
+	// plans
+	plansLocker.RLock()
+	if len(this.Plans) > 0 {
+		for _, plan := range this.Plans {
+			err = plan.Init()
+			if err != nil {
+				plansLocker.RUnlock()
+				return
+			}
+		}
+	}
+	plansLocker.RUnlock()
 
 	// dns resolver
 	if this.DNSResolver != nil {
@@ -782,6 +800,27 @@ func (this *NodeConfig) FindHTTPPagesPolicyWithClusterId(clusterId int64) *HTTPP
 		return nil
 	}
 	return this.HTTPPagesPolicies[clusterId]
+}
+
+// UpdatePlans 更新套餐
+func (this *NodeConfig) UpdatePlans(planMap map[int64]*serverconfigs.PlanConfig) {
+	plansLocker.Lock()
+	this.Plans = planMap
+	plansLocker.Unlock()
+}
+
+// FindAllPlans 查找所有套餐
+func (this *NodeConfig) FindAllPlans() map[int64]*serverconfigs.PlanConfig {
+	plansLocker.RLock()
+	defer plansLocker.RUnlock()
+	return this.Plans
+}
+
+// 查找单个套餐
+func (this *NodeConfig) FindPlan(planId int64) *serverconfigs.PlanConfig {
+	plansLocker.RLock()
+	defer plansLocker.RUnlock()
+	return this.Plans[planId]
 }
 
 // SecretHash 对Id和Secret的Hash计算

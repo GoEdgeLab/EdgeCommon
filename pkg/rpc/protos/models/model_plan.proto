@@ -10,6 +10,7 @@ message Plan {
 	string description = 21; // 套餐简介
 	int64 clusterId = 4;  // 集群ID
 	bytes trafficLimitJSON = 5; // 流量限制
+	bytes bandwidthLimitPerNodeJSON = 22; // 单节点带宽限制
 	bool hasFullFeatures = 20; // 是否有所有权限
 	bytes featuresJSON = 6; // 权限列表，[code1, code2, ...]
 	string priceType = 7; // 价格类型：traffic, bandwidth, period
