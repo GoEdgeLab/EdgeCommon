@@ -9513,7 +9513,10 @@
           "responseMessageName": "FindBasicPlanResponse",
           "code": "rpc findBasicPlan(FindBasicPlanRequest) returns (FindBasicPlanResponse);",
           "doc": "查找套餐基本信息",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -10521,6 +10524,30 @@
           "responseMessageName": "CreateBasicTCPServerResponse",
           "code": "rpc createBasicTCPServer(CreateBasicTCPServerRequest) returns (CreateBasicTCPServerResponse);",
           "doc": "快速创建基本的TCP网站",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "addServerOrigin",
+          "requestMessageName": "AddServerOriginRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc addServerOrigin(AddServerOriginRequest) returns (RPCSuccess);",
+          "doc": "为网站添加源站",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "deleteServerOrigin",
+          "requestMessageName": "DeleteServerOriginRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc deleteServerOrigin(DeleteServerOriginRequest) returns (RPCSuccess);",
+          "doc": "从网站中删除某个源站",
           "roles": [
             "admin",
             "user"
@@ -14008,6 +14035,11 @@
       "doc": "添加规则集"
     },
     {
+      "name": "AddServerOriginRequest",
+      "code": "message AddServerOriginRequest {\n\tint64 serverId = 1; // 网站ID\n\tint64 originId = 2; // 源站ID，通过 OriginService 创建和查询\n\tbool isPrimary = 3; // 是否为主要源站\n}",
+      "doc": "为网站添加源站"
+    },
+    {
       "name": "Admin",
       "code": "message Admin {\n\tint64 id = 1; // ID\n\tstring fullname = 2; // 全称\n\tstring username = 3; // 用户名\n\tbool isOn = 4; // 是否启用\n\tbool isSuper = 5; // 是否为超级用户\n\tint64 createdAt = 6; // 创建时间\n\trepeated AdminModule Modules = 7; // 有权限的模块\n\tLogin otpLogin = 8; // OTP认证\n\tbool canLogin = 9; // 是否可以登录\n\tbool hasWeakPassword = 10; // 是否设置了弱密码，只有超级管理员能看到此项\n}",
       "doc": ""
@@ -15844,7 +15876,7 @@
     },
     {
       "name": "CreateOriginRequest",
-      "code": "message CreateOriginRequest {\n\tstring name = 1; // 名称，为可选项\n\tNetworkAddress addr = 2; // 源站网络地址\n\tbytes ossJSON = 15; // OSS配置信息，源站网络地址中protocol为oss:开头时需要设置此项\n\tstring description = 3; // 描述，为可选项\n\tint32 weight = 4; // 权重，不小于0，一般设置为10\n\tbool isOn = 5; // 是否启用\n\tbytes connTimeoutJSON = 6; // 可选项，连接超时时间\n\tbytes readTimeoutJSON = 7; // 可选项，读取超时时间\n\tbytes idleTimeoutJSON = 8; // 可选项，空闲超时时间\n\tint32 maxConns = 9; // 可选项，最大连接数\n\tint32 maxIdleConns = 10; // 可选项，最大空闲连接数\n\trepeated string domains = 11; // 可选项，专属域名列表\n\tbytes certRefJSON = 12; // 可选项，证书设置\n\tstring host = 13; // 可选项，回源主机名\n\tbool followPort = 14; // 可选项，是否跟随端口\n\tbool http2Enabled = 16; // 可选项，是否支持HTTP/2，只在HTTPS源站时生效\n}",
+      "code": "message CreateOriginRequest {\n\tstring name = 1; // 名称，为可选项\n\tNetworkAddress addr = 2; // 源站网络地址\n\tbytes ossJSON = 15; // OSS配置信息，源站网络地址中protocol为oss:开头时需要设置此项\n\tstring description = 3; // 描述，为可选项\n\tint32 weight = 4; // 权重，不小于0，一般设置为10\n\tbool isOn = 5; // 是否启用，一般为true\n\tbytes connTimeoutJSON = 6; // 可选项，连接超时时间\n\tbytes readTimeoutJSON = 7; // 可选项，读取超时时间\n\tbytes idleTimeoutJSON = 8; // 可选项，空闲超时时间\n\tint32 maxConns = 9; // 可选项，最大连接数\n\tint32 maxIdleConns = 10; // 可选项，最大空闲连接数\n\trepeated string domains = 11; // 可选项，专属域名列表\n\tbytes certRefJSON = 12; // 可选项，证书设置\n\tstring host = 13; // 可选项，回源主机名\n\tbool followPort = 14; // 可选项，是否跟随端口\n\tbool http2Enabled = 16; // 可选项，是否支持HTTP/2，只在HTTPS源站时生效\n}",
       "doc": "创建源站"
     },
     {
@@ -16511,6 +16543,11 @@
       "name": "DeleteServerGroupRequest",
       "code": "message DeleteServerGroupRequest {\n\tint64 serverGroupId = 1;\n}",
       "doc": "删除分组"
+    },
+    {
+      "name": "DeleteServerOriginRequest",
+      "code": "message DeleteServerOriginRequest {\n\tint64 serverId = 1; // 网站ID\n\tint64 originId = 2; // 源站ID，通过 OriginService 创建和查询\n}",
+      "doc": "从网站中删除某个源站"
     },
     {
       "name": "DeleteServerRequest",
@@ -18764,22 +18801,22 @@
     },
     {
       "name": "FindEnabledOriginConfigRequest",
-      "code": "message FindEnabledOriginConfigRequest {\n\tint64 originId = 1;\n}",
+      "code": "message FindEnabledOriginConfigRequest {\n\tint64 originId = 1; // 源站ID\n}",
       "doc": "查找源站配置"
     },
     {
       "name": "FindEnabledOriginConfigResponse",
-      "code": "message FindEnabledOriginConfigResponse {\n\tbytes originJSON = 1;\n}",
+      "code": "message FindEnabledOriginConfigResponse {\n\tbytes originJSON = 1; // 源站信息\n}",
       "doc": ""
     },
     {
       "name": "FindEnabledOriginRequest",
-      "code": "message FindEnabledOriginRequest {\n\tint64 originId = 1;\n}",
+      "code": "message FindEnabledOriginRequest {\n\tint64 originId = 1; // 源站ID\n}",
       "doc": "查找单个源站信息"
     },
     {
       "name": "FindEnabledOriginResponse",
-      "code": "message FindEnabledOriginResponse {\n\tOrigin Origin = 1;\n}",
+      "code": "message FindEnabledOriginResponse {\n\tOrigin Origin = 1; // 源站信息\n}",
       "doc": ""
     },
     {

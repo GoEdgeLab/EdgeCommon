@@ -20,6 +20,12 @@ service ServerService {
 	// 快速创建基本的TCP网站
 	rpc createBasicTCPServer(CreateBasicTCPServerRequest) returns (CreateBasicTCPServerResponse);
 
+	// 为网站添加源站
+	rpc addServerOrigin(AddServerOriginRequest) returns (RPCSuccess);
+
+	// 从网站中删除某个源站
+	rpc deleteServerOrigin(DeleteServerOriginRequest) returns (RPCSuccess);
+
 	// 修改网站基本信息
 	rpc updateServerBasic (UpdateServerBasicRequest) returns (RPCSuccess);
 
@@ -259,6 +265,19 @@ message CreateBasicTCPServerRequest {
 
 message CreateBasicTCPServerResponse {
 	int64 serverId = 1; // 所创建的网站ID
+}
+
+// 为网站添加源站
+message AddServerOriginRequest {
+	int64 serverId = 1; // 网站ID
+	int64 originId = 2; // 源站ID，通过 OriginService 创建和查询
+	bool isPrimary = 3; // 是否为主要源站
+}
+
+// 从网站中删除某个源站
+message DeleteServerOriginRequest {
+	int64 serverId = 1; // 网站ID
+	int64 originId = 2; // 源站ID，通过 OriginService 创建和查询
 }
 
 // 修改网站基本信息

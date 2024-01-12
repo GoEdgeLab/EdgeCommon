@@ -29,7 +29,7 @@ message CreateOriginRequest {
 	bytes ossJSON = 15; // OSS配置信息，源站网络地址中protocol为oss:开头时需要设置此项
 	string description = 3; // 描述，为可选项
 	int32 weight = 4; // 权重，不小于0，一般设置为10
-	bool isOn = 5; // 是否启用
+	bool isOn = 5; // 是否启用，一般为true
 	bytes connTimeoutJSON = 6; // 可选项，连接超时时间
 	bytes readTimeoutJSON = 7; // 可选项，读取超时时间
 	bytes idleTimeoutJSON = 8; // 可选项，空闲超时时间
@@ -69,18 +69,18 @@ message UpdateOriginRequest {
 
 // 查找单个源站信息
 message FindEnabledOriginRequest {
-	int64 originId = 1;
+	int64 originId = 1; // 源站ID
 }
 
 message FindEnabledOriginResponse {
-	Origin Origin = 1;
+	Origin Origin = 1; // 源站信息
 }
 
 // 查找源站配置
 message FindEnabledOriginConfigRequest {
-	int64 originId = 1;
+	int64 originId = 1; // 源站ID
 }
 
 message FindEnabledOriginConfigResponse {
-	bytes originJSON = 1;
+	bytes originJSON = 1; // 源站信息
 }

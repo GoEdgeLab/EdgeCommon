@@ -22,6 +22,8 @@ const (
 	ServerService_CreateServer_FullMethodName                              = "/pb.ServerService/createServer"
 	ServerService_CreateBasicHTTPServer_FullMethodName                     = "/pb.ServerService/createBasicHTTPServer"
 	ServerService_CreateBasicTCPServer_FullMethodName                      = "/pb.ServerService/createBasicTCPServer"
+	ServerService_AddServerOrigin_FullMethodName                           = "/pb.ServerService/addServerOrigin"
+	ServerService_DeleteServerOrigin_FullMethodName                        = "/pb.ServerService/deleteServerOrigin"
 	ServerService_UpdateServerBasic_FullMethodName                         = "/pb.ServerService/updateServerBasic"
 	ServerService_UpdateServerGroupIds_FullMethodName                      = "/pb.ServerService/updateServerGroupIds"
 	ServerService_UpdateServerIsOn_FullMethodName                          = "/pb.ServerService/updateServerIsOn"
@@ -94,6 +96,10 @@ type ServerServiceClient interface {
 	CreateBasicHTTPServer(ctx context.Context, in *CreateBasicHTTPServerRequest, opts ...grpc.CallOption) (*CreateBasicHTTPServerResponse, error)
 	// 快速创建基本的TCP网站
 	CreateBasicTCPServer(ctx context.Context, in *CreateBasicTCPServerRequest, opts ...grpc.CallOption) (*CreateBasicTCPServerResponse, error)
+	// 为网站添加源站
+	AddServerOrigin(ctx context.Context, in *AddServerOriginRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 从网站中删除某个源站
+	DeleteServerOrigin(ctx context.Context, in *DeleteServerOriginRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 修改网站基本信息
 	UpdateServerBasic(ctx context.Context, in *UpdateServerBasicRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 修改网站所在分组
@@ -245,6 +251,24 @@ func (c *serverServiceClient) CreateBasicHTTPServer(ctx context.Context, in *Cre
 func (c *serverServiceClient) CreateBasicTCPServer(ctx context.Context, in *CreateBasicTCPServerRequest, opts ...grpc.CallOption) (*CreateBasicTCPServerResponse, error) {
 	out := new(CreateBasicTCPServerResponse)
 	err := c.cc.Invoke(ctx, ServerService_CreateBasicTCPServer_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) AddServerOrigin(ctx context.Context, in *AddServerOriginRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, ServerService_AddServerOrigin_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serverServiceClient) DeleteServerOrigin(ctx context.Context, in *DeleteServerOriginRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, ServerService_DeleteServerOrigin_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -801,6 +825,10 @@ type ServerServiceServer interface {
 	CreateBasicHTTPServer(context.Context, *CreateBasicHTTPServerRequest) (*CreateBasicHTTPServerResponse, error)
 	// 快速创建基本的TCP网站
 	CreateBasicTCPServer(context.Context, *CreateBasicTCPServerRequest) (*CreateBasicTCPServerResponse, error)
+	// 为网站添加源站
+	AddServerOrigin(context.Context, *AddServerOriginRequest) (*RPCSuccess, error)
+	// 从网站中删除某个源站
+	DeleteServerOrigin(context.Context, *DeleteServerOriginRequest) (*RPCSuccess, error)
 	// 修改网站基本信息
 	UpdateServerBasic(context.Context, *UpdateServerBasicRequest) (*RPCSuccess, error)
 	// 修改网站所在分组
@@ -935,6 +963,12 @@ func (UnimplementedServerServiceServer) CreateBasicHTTPServer(context.Context, *
 }
 func (UnimplementedServerServiceServer) CreateBasicTCPServer(context.Context, *CreateBasicTCPServerRequest) (*CreateBasicTCPServerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBasicTCPServer not implemented")
+}
+func (UnimplementedServerServiceServer) AddServerOrigin(context.Context, *AddServerOriginRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddServerOrigin not implemented")
+}
+func (UnimplementedServerServiceServer) DeleteServerOrigin(context.Context, *DeleteServerOriginRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteServerOrigin not implemented")
 }
 func (UnimplementedServerServiceServer) UpdateServerBasic(context.Context, *UpdateServerBasicRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerBasic not implemented")
@@ -1178,6 +1212,42 @@ func _ServerService_CreateBasicTCPServer_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ServerServiceServer).CreateBasicTCPServer(ctx, req.(*CreateBasicTCPServerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_AddServerOrigin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddServerOriginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).AddServerOrigin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ServerService_AddServerOrigin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).AddServerOrigin(ctx, req.(*AddServerOriginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServerService_DeleteServerOrigin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteServerOriginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServerServiceServer).DeleteServerOrigin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ServerService_DeleteServerOrigin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServerServiceServer).DeleteServerOrigin(ctx, req.(*DeleteServerOriginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2280,6 +2350,14 @@ var ServerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "createBasicTCPServer",
 			Handler:    _ServerService_CreateBasicTCPServer_Handler,
+		},
+		{
+			MethodName: "addServerOrigin",
+			Handler:    _ServerService_AddServerOrigin_Handler,
+		},
+		{
+			MethodName: "deleteServerOrigin",
+			Handler:    _ServerService_DeleteServerOrigin_Handler,
 		},
 		{
 			MethodName: "updateServerBasic",

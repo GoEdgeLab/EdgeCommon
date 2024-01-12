@@ -31,7 +31,7 @@ type CreateOriginRequest struct {
 	OssJSON         []byte          `protobuf:"bytes,15,opt,name=ossJSON,proto3" json:"ossJSON,omitempty"`                // OSS配置信息，源站网络地址中protocol为oss:开头时需要设置此项
 	Description     string          `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`         // 描述，为可选项
 	Weight          int32           `protobuf:"varint,4,opt,name=weight,proto3" json:"weight,omitempty"`                  // 权重，不小于0，一般设置为10
-	IsOn            bool            `protobuf:"varint,5,opt,name=isOn,proto3" json:"isOn,omitempty"`                      // 是否启用
+	IsOn            bool            `protobuf:"varint,5,opt,name=isOn,proto3" json:"isOn,omitempty"`                      // 是否启用，一般为true
 	ConnTimeoutJSON []byte          `protobuf:"bytes,6,opt,name=connTimeoutJSON,proto3" json:"connTimeoutJSON,omitempty"` // 可选项，连接超时时间
 	ReadTimeoutJSON []byte          `protobuf:"bytes,7,opt,name=readTimeoutJSON,proto3" json:"readTimeoutJSON,omitempty"` // 可选项，读取超时时间
 	IdleTimeoutJSON []byte          `protobuf:"bytes,8,opt,name=idleTimeoutJSON,proto3" json:"idleTimeoutJSON,omitempty"` // 可选项，空闲超时时间
@@ -417,7 +417,7 @@ type FindEnabledOriginRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OriginId int64 `protobuf:"varint,1,opt,name=originId,proto3" json:"originId,omitempty"`
+	OriginId int64 `protobuf:"varint,1,opt,name=originId,proto3" json:"originId,omitempty"` // 源站ID
 }
 
 func (x *FindEnabledOriginRequest) Reset() {
@@ -464,7 +464,7 @@ type FindEnabledOriginResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Origin *Origin `protobuf:"bytes,1,opt,name=Origin,proto3" json:"Origin,omitempty"`
+	Origin *Origin `protobuf:"bytes,1,opt,name=Origin,proto3" json:"Origin,omitempty"` // 源站信息
 }
 
 func (x *FindEnabledOriginResponse) Reset() {
@@ -512,7 +512,7 @@ type FindEnabledOriginConfigRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OriginId int64 `protobuf:"varint,1,opt,name=originId,proto3" json:"originId,omitempty"`
+	OriginId int64 `protobuf:"varint,1,opt,name=originId,proto3" json:"originId,omitempty"` // 源站ID
 }
 
 func (x *FindEnabledOriginConfigRequest) Reset() {
@@ -559,7 +559,7 @@ type FindEnabledOriginConfigResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OriginJSON []byte `protobuf:"bytes,1,opt,name=originJSON,proto3" json:"originJSON,omitempty"`
+	OriginJSON []byte `protobuf:"bytes,1,opt,name=originJSON,proto3" json:"originJSON,omitempty"` // 源站信息
 }
 
 func (x *FindEnabledOriginConfigResponse) Reset() {
