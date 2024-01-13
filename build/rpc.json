@@ -15886,7 +15886,7 @@
     },
     {
       "name": "CreatePlanRequest",
-      "code": "message CreatePlanRequest {\n\tstring name = 1; // 套餐名称\n\tstring description = 19; // 套餐简介\n\tint64 clusterId = 2; // 集群ID\n\tbytes trafficLimitJSON = 3; // 流量限制\n\tbytes bandwidthLimitPerNodeJSON = 20; // 单节点带宽限制\n\tbool hasFullFeatures = 18; // 是否有所有权限\n\tbytes featuresJSON = 4; // 权限列表，[code1, code2, ...]\n\tstring priceType = 5; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 6; // 流量价格配置\n\tbytes bandwidthPriceJSON = 10; // 带宽价格配置\n\tfloat monthlyPrice = 7; // 月度价格\n\tfloat seasonallyPrice = 8; // 季度价格\n\tfloat yearlyPrice = 9; // 年度价格\n\tint32 totalServers = 11; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 13; // 可以添加的域名总数\n\tint64 dailyRequests = 14; // 每日访问量额度\n\tint64 monthlyRequests = 15; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 16; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 17; // 每月Websocket连接数额度\n}",
+      "code": "message CreatePlanRequest {\n\tstring name = 1; // 套餐名称\n\tstring description = 19; // 套餐简介\n\tint64 clusterId = 2; // 集群ID\n\tbytes trafficLimitJSON = 3; // 流量限制\n\tbytes bandwidthLimitPerNodeJSON = 20; // 单节点带宽限制 @link json:bit_size_capacity\n\tbool hasFullFeatures = 18; // 是否有所有权限\n\tbytes featuresJSON = 4; // 权限列表，[code1, code2, ...]\n\tstring priceType = 5; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 6; // 流量价格配置\n\tbytes bandwidthPriceJSON = 10; // 带宽价格配置\n\tfloat monthlyPrice = 7; // 月度价格\n\tfloat seasonallyPrice = 8; // 季度价格\n\tfloat yearlyPrice = 9; // 年度价格\n\tint32 totalServers = 11; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 12; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 13; // 可以添加的域名总数\n\tint64 dailyRequests = 14; // 每日访问量额度\n\tint64 monthlyRequests = 15; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 16; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 17; // 每月Websocket连接数额度\n\tbytes maxUploadSizeJSON = 21; // 文件最大上传尺寸 @link json:size_capacity\n}",
       "doc": "创建套餐"
     },
     {
@@ -21741,7 +21741,7 @@
     },
     {
       "name": "Plan",
-      "code": "message Plan {\n\tint64 id = 1; // 套餐ID\n\tbool isOn = 2; // 是否启用\n\tstring name = 3; // 套餐名称\n\tstring description = 21; // 套餐简介\n\tint64 clusterId = 4;  // 集群ID\n\tbytes trafficLimitJSON = 5; // 流量限制\n\tbytes bandwidthLimitPerNodeJSON = 22; // 单节点带宽限制\n\tbool hasFullFeatures = 20; // 是否有所有权限\n\tbytes featuresJSON = 6; // 权限列表，[code1, code2, ...]\n\tstring priceType = 7; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 8; // 流量价格配置\n\tbytes bandwidthPriceJSON = 12; // 带宽价格配置\n\tdouble monthlyPrice = 9; // 月度价格\n\tdouble seasonallyPrice = 10;  // 季度价格\n\tdouble yearlyPrice = 11;  // 年度价格\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
+      "code": "message Plan {\n\tint64 id = 1; // 套餐ID\n\tbool isOn = 2; // 是否启用\n\tstring name = 3; // 套餐名称\n\tstring description = 21; // 套餐简介\n\tint64 clusterId = 4;  // 集群ID\n\tbytes trafficLimitJSON = 5; // 流量限制\n\tbytes bandwidthLimitPerNodeJSON = 22; // 单节点带宽限制\n\tbool hasFullFeatures = 20; // 是否有所有权限\n\tbytes featuresJSON = 6; // 权限列表，[code1, code2, ...]\n\tstring priceType = 7; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 8; // 流量价格配置\n\tbytes bandwidthPriceJSON = 12; // 带宽价格配置\n\tdouble monthlyPrice = 9; // 月度价格\n\tdouble seasonallyPrice = 10;  // 季度价格\n\tdouble yearlyPrice = 11;  // 年度价格\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n\tbytes maxUploadSizeJSON = 23; // 文件最大上传尺寸 @link json:size_capacity\n}",
       "doc": ""
     },
     {
@@ -23161,7 +23161,7 @@
     },
     {
       "name": "UpdatePlanRequest",
-      "code": "message UpdatePlanRequest {\n\tint64 planId = 1; // 套餐ID\n\tstring name = 2; // 套餐名称\n\tstring description = 21; // 套餐简介\n\tbool isOn = 3; // 是否启用\n\tint64 clusterId = 4; // 集群ID\n\tbytes trafficLimitJSON = 5; // 流量限制\n\tbytes bandwidthLimitPerNodeJSON = 22; // 单节点带宽限制\n\tbool hasFullFeatures = 20; // 是否有所有权限\n\tbytes featuresJSON = 6; // 权限列表，[code1, code2, ...]\n\tstring priceType = 7; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 8; // 流量价格配置\n\tbytes bandwidthPriceJSON = 12; // 带宽价格配置\n\tfloat monthlyPrice = 9; // 月费用\n\tfloat seasonallyPrice = 10; // 季度费用\n\tfloat yearlyPrice = 11; // 年度费用\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n}",
+      "code": "message UpdatePlanRequest {\n\tint64 planId = 1; // 套餐ID\n\tstring name = 2; // 套餐名称\n\tstring description = 21; // 套餐简介\n\tbool isOn = 3; // 是否启用\n\tint64 clusterId = 4; // 集群ID\n\tbytes trafficLimitJSON = 5; // 流量限制\n\tbytes bandwidthLimitPerNodeJSON = 22; // 单节点带宽限制\n\tbool hasFullFeatures = 20; // 是否有所有权限\n\tbytes featuresJSON = 6; // 权限列表，[code1, code2, ...]\n\tstring priceType = 7; // 价格类型：traffic, bandwidth, period\n\tbytes trafficPriceJSON = 8; // 流量价格配置\n\tbytes bandwidthPriceJSON = 12; // 带宽价格配置\n\tfloat monthlyPrice = 9; // 月费用\n\tfloat seasonallyPrice = 10; // 季度费用\n\tfloat yearlyPrice = 11; // 年度费用\n\tint32 totalServers = 13; // 可以添加的网站数\n\tint32 totalServerNamesPerServer = 14; // 每个网站可以添加的域名数\n\tint32 totalServerNames = 15; // 可以添加的域名总数\n\tint64 dailyRequests = 16; // 每日访问量额度\n\tint64 monthlyRequests = 17; // 每月访问量额度\n\tint64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度\n\tint64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度\n\tbytes maxUploadSizeJSON = 23; // 文件最大上传尺寸 @link json:size_capacity\n}",
       "doc": "修改套餐"
     },
     {
@@ -23707,6 +23707,10 @@
   ],
   "links": [
     {
+      "name": "json:bit_size_capacity",
+      "content": "# 比特位尺寸\n## 定义\n~~~json\n{\n  \"count\": \"数量\",\n  \"unit\": \"单位\"\n}\n~~~\n\n其中：\n* `数量` - 必须是一个整数数字\n* `单位` - 有以下几个值：\n  * `b` - 比特\n  * `kb` - Kb\n  * `mb` - Mb\n  * `gb` - Gb\n  * `tb` - Tb\n  * `pb` - Pb\n  * `eb` - Eb\n\n## 示例\n100Mb：\n~~~\n{\n  \"count\": 100,\n  \"unit\": \"mb\"\n}\n~~~\n\n\n32Gb：\n~~~\n{\n  \"count\": 32,\n  \"unit\": \"gb\"\n}\n~~~"
+    },
+    {
       "name": "json:hsts",
       "content": "# HSTS\n\n## 定义\n~~~json\n{\n  \"isOn\": \"是否启用\",\n  \"maxAge\": \"最大有效期，单位秒\",\n  \"includeSubDomains\": \"可选项，是否包含子域名\",\n  \"preload\": \"可选项，是否预加载\",\n  \"domains\": [\"可选项，支持的域名1\", \"可选项，支持的域名2\" ...]\n}\n~~~\n\n其中：\n* `maxAge` 可以填写一天（86400秒）或者更长时间\n* 如果不填写 `domains` 则支持所有域名\n\n## 示例\n### 不限制任何域名\n~~~json\n{\n  \"isOn\": true,\n  \"maxAge\": 86400,\n  \"includeSubDomains\":false, \n  \"preload\":false,\n  \"domains\":[]\n}\n~~~\n\n### 限制域名\n~~~json\n{\n  \"isOn\": true,\n  \"maxAge\": 86400,\n  \"includeSubDomains\":false, \n  \"preload\":false,\n  \"domains\":[\"example.com\", \"www.example.com\"]\n}\n~~~"
     },
@@ -23769,6 +23773,10 @@
     {
       "name": "json:server_names",
       "content": "# 域名信息列表\n\n## 定义\n~~~\n[ 域名信息1, 域名信息2, ... ]\n~~~\n其中 `域名信息N` 等是单个域名信息定义，具体请参考 {json:server_name}\n\n## 示例\n### 示例1：单个域名\n~~~json\n[\n\t{\n\t\t\"name\": \"example.com\",\n\t\t\"type\": \"full\"\n\t}\n]\n~~~\n\n### 示例2：多个域名\n~~~json\n[\n\t{\n\t\t\"name\": \"example.com\",\n\t\t\"type\": \"full\"\n\t},\n\t{\n      \t\"name\": \"google.com\",\n      \t\"type\": \"full\"\n  \t},\n  \t{\n\t\t\"name\": \"facebook.com\",\n\t  \t\"type\": \"full\"\n  \t}\n]\n~~~\n\n### 示例3：域名合集\n域名合集效果跟多个域名是一样的，只不过在界面上以一个目录的形式呈现。\n~~~json\n[\n  \t{\n\t\t\"name\": \"\",\n\t  \t\"type\": \"full\",\n\t  \t\"subNames\": [\"example.com\", \"google.com\", \"facebook.com\"]\n  \t}\n]\n~~~\n"
+    },
+    {
+      "name": "json:size_capacity",
+      "content": "# 容量\n## 定义\n~~~json\n{\n  \"count\": \"数量\",\n  \"unit\": \"单位\"\n}\n~~~\n\n其中：\n* `数量` - 必须是一个整数数字\n* `单位` - 有以下几个值：\n  * `byte` - 字节\n  * `kb` - KB\n  * `mb` - MB\n  * `gb` - GB\n  * `tb` - TB\n  * `pb` - PB\n  * `eb` - EB\n\n## 示例\n100MB：\n~~~\n{\n  \"count\": 100,\n  \"unit\": \"mb\"\n}\n~~~\n\n\n32GB：\n~~~\n{\n  \"count\": 32,\n  \"unit\": \"gb\"\n}\n~~~"
     },
     {
       "name": "json:ssl_cert_refs",

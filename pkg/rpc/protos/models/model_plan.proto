@@ -26,4 +26,5 @@ message Plan {
 	int64 monthlyRequests = 17; // 每月访问量额度
 	int64 dailyWebsocketConnections = 18; // 每日Websocket连接数额度
 	int64 monthlyWebsocketConnections = 19; // 每月Websocket连接数额度
+	bytes maxUploadSizeJSON = 23; // 文件最大上传尺寸 @link json:size_capacity
 }
