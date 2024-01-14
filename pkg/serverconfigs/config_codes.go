@@ -31,4 +31,5 @@ const (
 	ConfigCodeTraffic        ConfigCode = "traffic"
 	ConfigCodeRequestScripts ConfigCode = "requestScripts"
 	ConfigCodeReverseProxy   ConfigCode = "reverseProxy"
+	ConfigCodeMultimedia     ConfigCode = "multimedia"
 )
