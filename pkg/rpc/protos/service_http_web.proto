@@ -122,6 +122,12 @@ service HTTPWebService {
 	// 查找UserAgent设置
 	rpc findHTTPWebUserAgent(FindHTTPWebUserAgentRequest) returns (FindHTTPWebUserAgentResponse);
 
+	// 修改HLS设置
+	rpc updateHTTPWebHLS(UpdateHTTPWebHLSRequest) returns (RPCSuccess);
+
+	// 查找HLS设置
+	rpc findHTTPWebHLS(FindHTTPWebHLSRequest) returns (FindHTTPWebHLSResponse);
+
 	// 根据WebId查找ServerId
 	rpc findServerIdWithHTTPWebId(FindServerIdWithHTTPWebIdRequest) returns (FindServerIdWithHTTPWebIdResponse);
 }
@@ -382,6 +388,21 @@ message FindHTTPWebUserAgentRequest {
 
 message FindHTTPWebUserAgentResponse {
 	bytes userAgentJSON = 1;
+}
+
+// 修改HLS设置
+message UpdateHTTPWebHLSRequest {
+	int64 httpWebId = 1; // Web配置ID
+	bytes hlsJSON = 2; // HLS配置
+}
+
+// 查找HLS设置
+message FindHTTPWebHLSRequest {
+	int64 httpWebId = 1; // Web配置ID
+}
+
+message FindHTTPWebHLSResponse {
+	bytes hlsJSON = 1; // HLS配置
 }
 
 // 根据WebId查找ServerId

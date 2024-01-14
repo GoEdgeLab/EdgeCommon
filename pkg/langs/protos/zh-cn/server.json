@@ -56,6 +56,7 @@
   "menu_setting_udp_proxy": "UDP代理", // 网站分组中使用
   "menu_setting_plan": "套餐",
   "menu_setting_group": "分组",
+  "menu_setting_multimedia": "音视频设置",
 
   "menu_setting_uam": "5秒盾",
   "menu_setting_cc": "CC防护",

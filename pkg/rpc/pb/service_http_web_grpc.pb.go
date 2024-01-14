@@ -57,6 +57,8 @@ const (
 	HTTPWebService_FindHTTPWebReferers_FullMethodName          = "/pb.HTTPWebService/findHTTPWebReferers"
 	HTTPWebService_UpdateHTTPWebUserAgent_FullMethodName       = "/pb.HTTPWebService/updateHTTPWebUserAgent"
 	HTTPWebService_FindHTTPWebUserAgent_FullMethodName         = "/pb.HTTPWebService/findHTTPWebUserAgent"
+	HTTPWebService_UpdateHTTPWebHLS_FullMethodName             = "/pb.HTTPWebService/updateHTTPWebHLS"
+	HTTPWebService_FindHTTPWebHLS_FullMethodName               = "/pb.HTTPWebService/findHTTPWebHLS"
 	HTTPWebService_FindServerIdWithHTTPWebId_FullMethodName    = "/pb.HTTPWebService/findServerIdWithHTTPWebId"
 )
 
@@ -140,6 +142,10 @@ type HTTPWebServiceClient interface {
 	UpdateHTTPWebUserAgent(ctx context.Context, in *UpdateHTTPWebUserAgentRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 查找UserAgent设置
 	FindHTTPWebUserAgent(ctx context.Context, in *FindHTTPWebUserAgentRequest, opts ...grpc.CallOption) (*FindHTTPWebUserAgentResponse, error)
+	// 修改HLS设置
+	UpdateHTTPWebHLS(ctx context.Context, in *UpdateHTTPWebHLSRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 查找HLS设置
+	FindHTTPWebHLS(ctx context.Context, in *FindHTTPWebHLSRequest, opts ...grpc.CallOption) (*FindHTTPWebHLSResponse, error)
 	// 根据WebId查找ServerId
 	FindServerIdWithHTTPWebId(ctx context.Context, in *FindServerIdWithHTTPWebIdRequest, opts ...grpc.CallOption) (*FindServerIdWithHTTPWebIdResponse, error)
 }
@@ -494,6 +500,24 @@ func (c *hTTPWebServiceClient) FindHTTPWebUserAgent(ctx context.Context, in *Fin
 	return out, nil
 }
 
+func (c *hTTPWebServiceClient) UpdateHTTPWebHLS(ctx context.Context, in *UpdateHTTPWebHLSRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, HTTPWebService_UpdateHTTPWebHLS_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPWebServiceClient) FindHTTPWebHLS(ctx context.Context, in *FindHTTPWebHLSRequest, opts ...grpc.CallOption) (*FindHTTPWebHLSResponse, error) {
+	out := new(FindHTTPWebHLSResponse)
+	err := c.cc.Invoke(ctx, HTTPWebService_FindHTTPWebHLS_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *hTTPWebServiceClient) FindServerIdWithHTTPWebId(ctx context.Context, in *FindServerIdWithHTTPWebIdRequest, opts ...grpc.CallOption) (*FindServerIdWithHTTPWebIdResponse, error) {
 	out := new(FindServerIdWithHTTPWebIdResponse)
 	err := c.cc.Invoke(ctx, HTTPWebService_FindServerIdWithHTTPWebId_FullMethodName, in, out, opts...)
@@ -583,6 +607,10 @@ type HTTPWebServiceServer interface {
 	UpdateHTTPWebUserAgent(context.Context, *UpdateHTTPWebUserAgentRequest) (*RPCSuccess, error)
 	// 查找UserAgent设置
 	FindHTTPWebUserAgent(context.Context, *FindHTTPWebUserAgentRequest) (*FindHTTPWebUserAgentResponse, error)
+	// 修改HLS设置
+	UpdateHTTPWebHLS(context.Context, *UpdateHTTPWebHLSRequest) (*RPCSuccess, error)
+	// 查找HLS设置
+	FindHTTPWebHLS(context.Context, *FindHTTPWebHLSRequest) (*FindHTTPWebHLSResponse, error)
 	// 根据WebId查找ServerId
 	FindServerIdWithHTTPWebId(context.Context, *FindServerIdWithHTTPWebIdRequest) (*FindServerIdWithHTTPWebIdResponse, error)
 }
@@ -704,6 +732,12 @@ func (UnimplementedHTTPWebServiceServer) UpdateHTTPWebUserAgent(context.Context,
 }
 func (UnimplementedHTTPWebServiceServer) FindHTTPWebUserAgent(context.Context, *FindHTTPWebUserAgentRequest) (*FindHTTPWebUserAgentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindHTTPWebUserAgent not implemented")
+}
+func (UnimplementedHTTPWebServiceServer) UpdateHTTPWebHLS(context.Context, *UpdateHTTPWebHLSRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebHLS not implemented")
+}
+func (UnimplementedHTTPWebServiceServer) FindHTTPWebHLS(context.Context, *FindHTTPWebHLSRequest) (*FindHTTPWebHLSResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindHTTPWebHLS not implemented")
 }
 func (UnimplementedHTTPWebServiceServer) FindServerIdWithHTTPWebId(context.Context, *FindServerIdWithHTTPWebIdRequest) (*FindServerIdWithHTTPWebIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindServerIdWithHTTPWebId not implemented")
@@ -1404,6 +1438,42 @@ func _HTTPWebService_FindHTTPWebUserAgent_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HTTPWebService_UpdateHTTPWebHLS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPWebHLSRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebHLS(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HTTPWebService_UpdateHTTPWebHLS_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebHLS(ctx, req.(*UpdateHTTPWebHLSRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPWebService_FindHTTPWebHLS_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindHTTPWebHLSRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPWebServiceServer).FindHTTPWebHLS(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HTTPWebService_FindHTTPWebHLS_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPWebServiceServer).FindHTTPWebHLS(ctx, req.(*FindHTTPWebHLSRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _HTTPWebService_FindServerIdWithHTTPWebId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FindServerIdWithHTTPWebIdRequest)
 	if err := dec(in); err != nil {
@@ -1580,6 +1650,14 @@ var HTTPWebService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findHTTPWebUserAgent",
 			Handler:    _HTTPWebService_FindHTTPWebUserAgent_Handler,
+		},
+		{
+			MethodName: "updateHTTPWebHLS",
+			Handler:    _HTTPWebService_UpdateHTTPWebHLS_Handler,
+		},
+		{
+			MethodName: "findHTTPWebHLS",
+			Handler:    _HTTPWebService_FindHTTPWebHLS_Handler,
 		},
 		{
 			MethodName: "findServerIdWithHTTPWebId",

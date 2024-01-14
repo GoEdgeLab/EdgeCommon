@@ -56,6 +56,7 @@
   "menu_setting_udp_proxy": "UDP Reverse Proxy", // in site groups
   "menu_setting_plan": "Plan",
   "menu_setting_group": "Group",
+  "menu_setting_multimedia": "Audios & Videos",
 
   "menu_setting_uam": "UAM",
   "menu_setting_cc": "CC Protection",

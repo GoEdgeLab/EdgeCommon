@@ -3576,6 +3576,24 @@
           "isDeprecated": false
         },
         {
+          "name": "updateHTTPWebHLS",
+          "requestMessageName": "UpdateHTTPWebHLSRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateHTTPWebHLS(UpdateHTTPWebHLSRequest) returns (RPCSuccess);",
+          "doc": "修改HLS设置",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "findHTTPWebHLS",
+          "requestMessageName": "FindHTTPWebHLSRequest",
+          "responseMessageName": "FindHTTPWebHLSResponse",
+          "code": "rpc findHTTPWebHLS(FindHTTPWebHLSRequest) returns (FindHTTPWebHLSResponse);",
+          "doc": "查找HLS设置",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
           "name": "findServerIdWithHTTPWebId",
           "requestMessageName": "FindServerIdWithHTTPWebIdRequest",
           "responseMessageName": "FindServerIdWithHTTPWebIdResponse",
@@ -19180,6 +19198,16 @@
       "doc": ""
     },
     {
+      "name": "FindHTTPWebHLSRequest",
+      "code": "message FindHTTPWebHLSRequest {\n\tint64 httpWebId = 1; // Web配置ID\n}",
+      "doc": "查找HLS设置"
+    },
+    {
+      "name": "FindHTTPWebHLSResponse",
+      "code": "message FindHTTPWebHLSResponse {\n\tbytes hlsJSON = 1; // HLS配置\n}",
+      "doc": ""
+    },
+    {
       "name": "FindHTTPWebHostRedirectsRequest",
       "code": "message FindHTTPWebHostRedirectsRequest {\n\tint64 httpWebId = 1;\n}",
       "doc": "查找主机跳转设置"
@@ -22573,6 +22601,11 @@
       "name": "UpdateHTTPWebFirewallRequest",
       "code": "message UpdateHTTPWebFirewallRequest {\n\tint64 httpWebId = 1;\n\tbytes firewallJSON = 2; // @link json:http_firewall_ref\n}",
       "doc": "更改防火墙设置"
+    },
+    {
+      "name": "UpdateHTTPWebHLSRequest",
+      "code": "message UpdateHTTPWebHLSRequest {\n\tint64 httpWebId = 1; // Web配置ID\n\tbytes hlsJSON = 2; // HLS配置\n}",
+      "doc": "修改HLS设置"
     },
     {
       "name": "UpdateHTTPWebHostRedirectsRequest",

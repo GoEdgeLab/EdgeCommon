@@ -522,6 +522,7 @@ const (
 	Server_MenuSettingHTTPProxy                                 langs.MessageCode = "server@menu_setting_http_proxy"                                      // HTTP代理
 	Server_MenuSettingHTTPS                                     langs.MessageCode = "server@menu_setting_https"                                           // HTTPS
 	Server_MenuSettingLocations                                 langs.MessageCode = "server@menu_setting_locations"                                       // 路由规则
+	Server_MenuSettingMultimedia                                langs.MessageCode = "server@menu_setting_multimedia"                                      // 音视频设置
 	Server_MenuSettingOptimization                              langs.MessageCode = "server@menu_setting_optimization"                                    // 页面优化
 	Server_MenuSettingOrigins                                   langs.MessageCode = "server@menu_setting_origins"                                         // 源站
 	Server_MenuSettingOthers                                    langs.MessageCode = "server@menu_setting_others"                                          // 其他设置
@@ -587,6 +588,7 @@ const (
 	ServerGroup_LogDeleteServerGroup                            langs.MessageCode = "server_group@log_delete_server_group"                                // 删除网站分组 %d
 	ServerGroup_LogSortServerGroups                             langs.MessageCode = "server_group@log_sort_server_groups"                                 // 修改网站分组排序
 	ServerGroup_LogUpdateServerGroup                            langs.MessageCode = "server_group@log_update_server_group"                                // 修改网站分组 %d
+	ServerHls_LogUpdateHls                                      langs.MessageCode = "server_hls@log_update_hls"                                           // 修改Web %d 的HLS设置
 	ServerHTTP3_LogUpdateClusterHTTP3Policy                     langs.MessageCode = "server_http3@log_update_cluster_http3_policy"                        // 修改集群 %d 的HTTP3策略设置
 	ServerHTTP_LogUpdateHTTPSettings                            langs.MessageCode = "server_http@log_update_http_settings"                                // 修改网站 %d 的HTTP设置
 	ServerHTTPHeader_LogCreateDeletingHeader                    langs.MessageCode = "server_http_header@log_create_deleting_header"                       // 添加删除的报头 HeaderPolicyId: %d, Name: %s

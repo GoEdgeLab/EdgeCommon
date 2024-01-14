@@ -32,6 +32,7 @@ type HTTPWebConfig struct {
 	FastcgiRef         *HTTPFastcgiRef                     `yaml:"fastcgiRef" json:"fastcgiRef"`                 // Fastcgi引用
 	FastcgiList        []*HTTPFastcgiConfig                `yaml:"fastcgiList" json:"fastcgiList"`               // Fastcgi配置
 	UserAgent          *UserAgentConfig                    `yaml:"userAgent" json:"userAgent"`                   // UserAgent配置
+	HLS                *HLSConfig                          `yaml:"hls" json:"hls"`                               // HLS配置
 
 	RequestHeaderPolicyRef  *shared.HTTPHeaderPolicyRef `yaml:"requestHeaderPolicyRef" json:"requestHeaderPolicyRef"`   // 请求Header
 	RequestHeaderPolicy     *shared.HTTPHeaderPolicy    `yaml:"requestHeaderPolicy" json:"requestHeaderPolicy"`         // 请求Header策略
@@ -306,6 +307,14 @@ func (this *HTTPWebConfig) Init(ctx context.Context) error {
 	// user agent
 	if this.UserAgent != nil {
 		err := this.UserAgent.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	// hls
+	if this.HLS != nil {
+		err := this.HLS.Init()
 		if err != nil {
 			return err
 		}
