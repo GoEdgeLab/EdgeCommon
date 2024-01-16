@@ -4,34 +4,35 @@ type HTTPFirewallRuleOperator = string
 type HTTPFirewallRuleCaseInsensitive = string
 
 const (
-	HTTPFirewallRuleOperatorGt                   HTTPFirewallRuleOperator = "gt"
-	HTTPFirewallRuleOperatorGte                  HTTPFirewallRuleOperator = "gte"
-	HTTPFirewallRuleOperatorLt                   HTTPFirewallRuleOperator = "lt"
-	HTTPFirewallRuleOperatorLte                  HTTPFirewallRuleOperator = "lte"
-	HTTPFirewallRuleOperatorEq                   HTTPFirewallRuleOperator = "eq"
-	HTTPFirewallRuleOperatorNeq                  HTTPFirewallRuleOperator = "neq"
-	HTTPFirewallRuleOperatorEqString             HTTPFirewallRuleOperator = "eq string"
-	HTTPFirewallRuleOperatorNeqString            HTTPFirewallRuleOperator = "neq string"
-	HTTPFirewallRuleOperatorMatch                HTTPFirewallRuleOperator = "match"
-	HTTPFirewallRuleOperatorNotMatch             HTTPFirewallRuleOperator = "not match"
-	HTTPFirewallRuleOperatorWildcardMatch        HTTPFirewallRuleOperator = "wildcard match"
-	HTTPFirewallRuleOperatorWildcardNotMatch     HTTPFirewallRuleOperator = "wildcard not match"
-	HTTPFirewallRuleOperatorContains             HTTPFirewallRuleOperator = "contains"
-	HTTPFirewallRuleOperatorNotContains          HTTPFirewallRuleOperator = "not contains"
-	HTTPFirewallRuleOperatorContainsAnyWord      HTTPFirewallRuleOperator = "contains any word"
-	HTTPFirewallRuleOperatorContainsAllWords     HTTPFirewallRuleOperator = "contains all words"
-	HTTPFirewallRuleOperatorNotContainsAnyWord   HTTPFirewallRuleOperator = "not contains any word"
-	HTTPFirewallRuleOperatorPrefix               HTTPFirewallRuleOperator = "prefix"
-	HTTPFirewallRuleOperatorSuffix               HTTPFirewallRuleOperator = "suffix"
-	HTTPFirewallRuleOperatorContainsAny          HTTPFirewallRuleOperator = "contains any"
-	HTTPFirewallRuleOperatorContainsAll          HTTPFirewallRuleOperator = "contains all"
-	HTTPFirewallRuleOperatorContainsSQLInjection HTTPFirewallRuleOperator = "contains sql injection"
-	HTTPFirewallRuleOperatorContainsXSS          HTTPFirewallRuleOperator = "contains xss"
-	HTTPFirewallRuleOperatorContainsXSSStrictly    HTTPFirewallRuleOperator = "contains xss strictly"
-	HTTPFirewallRuleOperatorHasKey               HTTPFirewallRuleOperator = "has key" // has key in slice or map
-	HTTPFirewallRuleOperatorVersionGt            HTTPFirewallRuleOperator = "version gt"
-	HTTPFirewallRuleOperatorVersionLt            HTTPFirewallRuleOperator = "version lt"
-	HTTPFirewallRuleOperatorVersionRange         HTTPFirewallRuleOperator = "version range"
+	HTTPFirewallRuleOperatorGt                           HTTPFirewallRuleOperator = "gt"
+	HTTPFirewallRuleOperatorGte                          HTTPFirewallRuleOperator = "gte"
+	HTTPFirewallRuleOperatorLt                           HTTPFirewallRuleOperator = "lt"
+	HTTPFirewallRuleOperatorLte                          HTTPFirewallRuleOperator = "lte"
+	HTTPFirewallRuleOperatorEq                           HTTPFirewallRuleOperator = "eq"
+	HTTPFirewallRuleOperatorNeq                          HTTPFirewallRuleOperator = "neq"
+	HTTPFirewallRuleOperatorEqString                     HTTPFirewallRuleOperator = "eq string"
+	HTTPFirewallRuleOperatorNeqString                    HTTPFirewallRuleOperator = "neq string"
+	HTTPFirewallRuleOperatorMatch                        HTTPFirewallRuleOperator = "match"
+	HTTPFirewallRuleOperatorNotMatch                     HTTPFirewallRuleOperator = "not match"
+	HTTPFirewallRuleOperatorWildcardMatch                HTTPFirewallRuleOperator = "wildcard match"
+	HTTPFirewallRuleOperatorWildcardNotMatch             HTTPFirewallRuleOperator = "wildcard not match"
+	HTTPFirewallRuleOperatorContains                     HTTPFirewallRuleOperator = "contains"
+	HTTPFirewallRuleOperatorNotContains                  HTTPFirewallRuleOperator = "not contains"
+	HTTPFirewallRuleOperatorContainsAnyWord              HTTPFirewallRuleOperator = "contains any word"
+	HTTPFirewallRuleOperatorContainsAllWords             HTTPFirewallRuleOperator = "contains all words"
+	HTTPFirewallRuleOperatorNotContainsAnyWord           HTTPFirewallRuleOperator = "not contains any word"
+	HTTPFirewallRuleOperatorPrefix                       HTTPFirewallRuleOperator = "prefix"
+	HTTPFirewallRuleOperatorSuffix                       HTTPFirewallRuleOperator = "suffix"
+	HTTPFirewallRuleOperatorContainsAny                  HTTPFirewallRuleOperator = "contains any"
+	HTTPFirewallRuleOperatorContainsAll                  HTTPFirewallRuleOperator = "contains all"
+	HTTPFirewallRuleOperatorContainsSQLInjection         HTTPFirewallRuleOperator = "contains sql injection"
+	HTTPFirewallRuleOperatorContainsSQLInjectionStrictly HTTPFirewallRuleOperator = "contains sql injection strictly"
+	HTTPFirewallRuleOperatorContainsXSS                  HTTPFirewallRuleOperator = "contains xss"
+	HTTPFirewallRuleOperatorContainsXSSStrictly          HTTPFirewallRuleOperator = "contains xss strictly"
+	HTTPFirewallRuleOperatorHasKey                       HTTPFirewallRuleOperator = "has key" // has key in slice or map
+	HTTPFirewallRuleOperatorVersionGt                    HTTPFirewallRuleOperator = "version gt"
+	HTTPFirewallRuleOperatorVersionLt                    HTTPFirewallRuleOperator = "version lt"
+	HTTPFirewallRuleOperatorVersionRange                 HTTPFirewallRuleOperator = "version range"
 
 	HTTPFirewallRuleOperatorContainsBinary    HTTPFirewallRuleOperator = "contains binary"     // contains binary
 	HTTPFirewallRuleOperatorNotContainsBinary HTTPFirewallRuleOperator = "not contains binary" // not contains binary
@@ -173,6 +174,13 @@ var AllRuleOperators = []*RuleOperatorDefinition{
 		Name:            "包含SQL注入",
 		Code:            HTTPFirewallRuleOperatorContainsSQLInjection,
 		Description:     "检测字符串内容是否包含SQL注入。",
+		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
+		DataType:        "none",
+	},
+	{
+		Name:            "包含SQL注入-严格模式",
+		Code:            HTTPFirewallRuleOperatorContainsSQLInjectionStrictly,
+		Description:     "更加严格地检测字符串内容是否包含SQL注入，相对于非严格模式，有一定的误报几率。",
 		CaseInsensitive: HTTPFirewallRuleCaseInsensitiveNone,
 		DataType:        "none",
 	},
