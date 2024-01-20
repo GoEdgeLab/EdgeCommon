@@ -18,7 +18,7 @@ func NewGlobalServerConfig() *GlobalServerConfig {
 	var config = &GlobalServerConfig{}
 
 	config.HTTPAll.SupportsLowVersionHTTP = true
-	config.HTTPAll.EnableServerAddrVariable = true
+	config.HTTPAll.EnableServerAddrVariable = false
 	config.HTTPAll.LnRequestSchedulingMethod = LnRequestSchedulingMethodURLMapping
 
 	config.HTTPAccessLog.IsOn = true
