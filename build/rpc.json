@@ -3581,7 +3581,10 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateHTTPWebHLS(UpdateHTTPWebHLSRequest) returns (RPCSuccess);",
           "doc": "修改HLS设置",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -3590,7 +3593,10 @@
           "responseMessageName": "FindHTTPWebHLSResponse",
           "code": "rpc findHTTPWebHLS(FindHTTPWebHLSRequest) returns (FindHTTPWebHLSResponse);",
           "doc": "查找HLS设置",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
