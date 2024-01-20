@@ -2,7 +2,7 @@ package firewallconfigs
 
 import "net/http"
 
-// HTTPFirewallBlockAction url client configure
+// HTTPFirewallBlockAction default block action
 type HTTPFirewallBlockAction struct {
 	IsPrior bool `yaml:"isPrior" json:"isPrior"`
 

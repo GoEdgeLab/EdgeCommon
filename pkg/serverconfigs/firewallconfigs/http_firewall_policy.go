@@ -15,6 +15,7 @@ type HTTPFirewallPolicy struct {
 	Outbound           *HTTPFirewallOutboundConfig  `yaml:"outbound" json:"outbound"`
 	BlockOptions       *HTTPFirewallBlockAction     `yaml:"blockOptions" json:"blockOptions"`
 	CaptchaOptions     *HTTPFirewallCaptchaAction   `yaml:"captchaOptions" json:"captchaOptions"`
+	PageOptions        *HTTPFirewallPageAction      `yaml:"pageOptions" json:"pageOptions"`
 	Mode               FirewallMode                 `yaml:"mode" json:"mode"`
 	UseLocalFirewall   bool                         `yaml:"useLocalFirewall" json:"useLocalFirewall"`
 	SYNFlood           *SYNFloodConfig              `yaml:"synFlood" json:"synFlood"`

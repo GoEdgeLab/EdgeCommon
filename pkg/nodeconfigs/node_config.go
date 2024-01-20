@@ -624,6 +624,9 @@ func (this *NodeConfig) lookupWeb(server *serverconfigs.ServerConfig, web *serve
 			if (web.FirewallPolicy.BlockOptions == nil || !web.FirewallPolicy.BlockOptions.IsPrior) && server.HTTPFirewallPolicy.BlockOptions != nil {
 				web.FirewallPolicy.BlockOptions = server.HTTPFirewallPolicy.BlockOptions
 			}
+			if (web.FirewallPolicy.PageOptions == nil || !web.FirewallPolicy.PageOptions.IsPrior) && server.HTTPFirewallPolicy.PageOptions != nil {
+				web.FirewallPolicy.PageOptions = server.HTTPFirewallPolicy.PageOptions
+			}
 			if (web.FirewallPolicy.CaptchaOptions == nil || !web.FirewallPolicy.CaptchaOptions.IsPrior) && server.HTTPFirewallPolicy.CaptchaOptions != nil {
 				web.FirewallPolicy.CaptchaOptions = server.HTTPFirewallPolicy.CaptchaOptions
 			}

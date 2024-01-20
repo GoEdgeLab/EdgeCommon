@@ -15,6 +15,7 @@ message HTTPFirewallPolicy {
 	int64 serverId = 8; // 所属网站ID（如果为0表示公共策略）
 	bool useLocalFirewall = 9; // 是否使用本机防火墙
 	bytes synFloodJSON = 10; // synflood配置
-	bytes blockOptionsJSON = 11; // 拦截配置
+	bytes blockOptionsJSON = 11; // 阻止动作配置
+	bytes pageOptionsJSON = 13; // 显示网页动作配置
 	bytes captchaOptionsJSON = 12; // 人机识别配置
 }

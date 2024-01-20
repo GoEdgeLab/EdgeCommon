@@ -6,6 +6,12 @@ import (
 
 var AllActions = []*HTTPFirewallActionDefinition{
 	{
+		Name:        "显示网页",
+		Code:        HTTPFirewallActionPage,
+		Description: "显示请求被拦截的网页。",
+		Category:    HTTPFirewallActionCategoryBlock,
+	},
+	{
 		Name:        "阻止",
 		Code:        HTTPFirewallActionBlock,
 		Description: "阻止请求并中断当前连接，并自动将当前客户端IP加入到系统黑名单；使用此动作时，请先自行严格测试设置的规则是否正确，避免因错误封禁而导致用户无法正常访问的严重后果！",
@@ -27,12 +33,6 @@ var AllActions = []*HTTPFirewallActionDefinition{
 		Name:        "记录IP",
 		Code:        HTTPFirewallActionRecordIP,
 		Description: "将此IP记录到某个IP名单中。",
-		Category:    HTTPFirewallActionCategoryBlock,
-	},
-	{
-		Name:        "显示网页",
-		Code:        HTTPFirewallActionPage,
-		Description: "在网页中显示提示文字。",
 		Category:    HTTPFirewallActionCategoryBlock,
 	},
 	{
