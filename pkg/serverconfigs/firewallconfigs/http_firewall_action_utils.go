@@ -44,7 +44,7 @@ var AllActions = []*HTTPFirewallActionDefinition{
 	{
 		Name:        "允许通过",
 		Code:        HTTPFirewallActionAllow,
-		Description: "允许正常通过，不记录到日志。",
+		Description: "允许跳过规则集正常通过防火墙。",
 		Category:    HTTPFirewallActionCategoryAllow,
 	},
 	{
