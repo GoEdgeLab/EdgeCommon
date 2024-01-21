@@ -5756,6 +5756,17 @@
             "node"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "updateNodeIsOn",
+          "requestMessageName": "UpdateNodeIsOnRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateNodeIsOn(UpdateNodeIsOnRequest) returns (RPCSuccess);",
+          "doc": "修改节点的启用状态",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_node.proto",
@@ -23117,6 +23128,11 @@
       "name": "UpdateNodeIsInstalledRequest",
       "code": "message UpdateNodeIsInstalledRequest {\n\tint64 nodeId = 1;\n\tbool isInstalled = 2;\n}",
       "doc": "修改节点安装状态"
+    },
+    {
+      "name": "UpdateNodeIsOnRequest",
+      "code": "message UpdateNodeIsOnRequest {\n\tint64 nodeId = 1; // 节点ID\n\tbool isOn = 2; // 是否启用\n}",
+      "doc": "修改节点的启用状态"
     },
     {
       "name": "UpdateNodeLoginRequest",

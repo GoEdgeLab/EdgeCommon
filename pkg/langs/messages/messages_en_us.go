@@ -270,6 +270,8 @@ func init() {
 		"node@log_up_node":                                                    "",
 		"node@log_update_node":                                                "",
 		"node@log_update_node_installation_status":                            "",
+		"node@log_update_node_off":                                            "",
+		"node@log_update_node_on":                                             "",
 		"node@log_upgrade_node_remotely":                                      "",
 		"node@ungrouped_label":                                                "",
 		"node_action@log_copy_node_actions_to_cluster":                        "",

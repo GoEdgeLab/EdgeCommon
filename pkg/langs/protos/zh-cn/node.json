@@ -11,5 +11,7 @@
   "log_update_node": "修改节点 %d 基本信息",
   "log_update_node_installation_status": "修改节点安装状态 %d",
   "log_up_node": "手动上线节点 %d",
+  "log_update_node_on": "启用节点 %d",
+  "log_update_node_off": "停用节点 %d",
   "log_delete_node_from_cluster": "从集群 %d 中删除节点 %d"
 }

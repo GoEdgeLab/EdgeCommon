@@ -270,6 +270,8 @@ func init() {
 		"node@log_up_node":                                                    "手动上线节点 %d",
 		"node@log_update_node":                                                "修改节点 %d 基本信息",
 		"node@log_update_node_installation_status":                            "修改节点安装状态 %d",
+		"node@log_update_node_off":                                            "停用节点 %d",
+		"node@log_update_node_on":                                             "启用节点 %d",
 		"node@log_upgrade_node_remotely":                                      "远程升级节点 %d",
 		"node@ungrouped_label":                                                "未分组",
 		"node_action@log_copy_node_actions_to_cluster":                        "复制节点 %d 调度动作到集群",

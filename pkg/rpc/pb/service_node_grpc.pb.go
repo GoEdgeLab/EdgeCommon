@@ -84,6 +84,7 @@ const (
 	NodeService_FindNodeTOAConfig_FullMethodName                          = "/pb.NodeService/findNodeTOAConfig"
 	NodeService_FindNodeNetworkSecurityPolicy_FullMethodName              = "/pb.NodeService/findNodeNetworkSecurityPolicy"
 	NodeService_FindNodeWebPPolicies_FullMethodName                       = "/pb.NodeService/findNodeWebPPolicies"
+	NodeService_UpdateNodeIsOn_FullMethodName                             = "/pb.NodeService/updateNodeIsOn"
 )
 
 // NodeServiceClient is the client API for NodeService service.
@@ -220,6 +221,8 @@ type NodeServiceClient interface {
 	FindNodeNetworkSecurityPolicy(ctx context.Context, in *FindNodeNetworkSecurityPolicyRequest, opts ...grpc.CallOption) (*FindNodeNetworkSecurityPolicyResponse, error)
 	// 查找节点的WebP策略
 	FindNodeWebPPolicies(ctx context.Context, in *FindNodeWebPPoliciesRequest, opts ...grpc.CallOption) (*FindNodeWebPPoliciesResponse, error)
+	// 修改节点的启用状态
+	UpdateNodeIsOn(ctx context.Context, in *UpdateNodeIsOnRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
 
 type nodeServiceClient struct {
@@ -837,6 +840,15 @@ func (c *nodeServiceClient) FindNodeWebPPolicies(ctx context.Context, in *FindNo
 	return out, nil
 }
 
+func (c *nodeServiceClient) UpdateNodeIsOn(ctx context.Context, in *UpdateNodeIsOnRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, NodeService_UpdateNodeIsOn_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NodeServiceServer is the server API for NodeService service.
 // All implementations should embed UnimplementedNodeServiceServer
 // for forward compatibility
@@ -971,6 +983,8 @@ type NodeServiceServer interface {
 	FindNodeNetworkSecurityPolicy(context.Context, *FindNodeNetworkSecurityPolicyRequest) (*FindNodeNetworkSecurityPolicyResponse, error)
 	// 查找节点的WebP策略
 	FindNodeWebPPolicies(context.Context, *FindNodeWebPPoliciesRequest) (*FindNodeWebPPoliciesResponse, error)
+	// 修改节点的启用状态
+	UpdateNodeIsOn(context.Context, *UpdateNodeIsOnRequest) (*RPCSuccess, error)
 }
 
 // UnimplementedNodeServiceServer should be embedded to have forward compatible implementations.
@@ -1171,6 +1185,9 @@ func (UnimplementedNodeServiceServer) FindNodeNetworkSecurityPolicy(context.Cont
 }
 func (UnimplementedNodeServiceServer) FindNodeWebPPolicies(context.Context, *FindNodeWebPPoliciesRequest) (*FindNodeWebPPoliciesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindNodeWebPPolicies not implemented")
+}
+func (UnimplementedNodeServiceServer) UpdateNodeIsOn(context.Context, *UpdateNodeIsOnRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateNodeIsOn not implemented")
 }
 
 // UnsafeNodeServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -2362,6 +2379,24 @@ func _NodeService_FindNodeWebPPolicies_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NodeService_UpdateNodeIsOn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateNodeIsOnRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeServiceServer).UpdateNodeIsOn(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NodeService_UpdateNodeIsOn_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeServiceServer).UpdateNodeIsOn(ctx, req.(*UpdateNodeIsOnRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NodeService_ServiceDesc is the grpc.ServiceDesc for NodeService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2624,6 +2659,10 @@ var NodeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findNodeWebPPolicies",
 			Handler:    _NodeService_FindNodeWebPPolicies_Handler,
+		},
+		{
+			MethodName: "updateNodeIsOn",
+			Handler:    _NodeService_UpdateNodeIsOn_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
