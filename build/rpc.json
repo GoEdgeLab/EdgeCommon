@@ -20860,7 +20860,7 @@
     },
     {
       "name": "ListEnabledNodeClustersRequest",
-      "code": "message ListEnabledNodeClustersRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n\tstring keyword = 3;\n}",
+      "code": "message ListEnabledNodeClustersRequest {\n\tint64 offset = 1;\n\tint64 size = 2;\n\tstring keyword = 3; // 可选项，搜索关键词\n\tbool idDesc = 4; // 可选项，是否按照ID倒序排列\n\tbool idAsc = 5; // 可选项，是否按照ID正序排列\n}",
       "doc": "列出单页集群"
     },
     {

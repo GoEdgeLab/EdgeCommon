@@ -244,7 +244,9 @@ message CountAllEnabledNodeClustersRequest {
 message ListEnabledNodeClustersRequest {
 	int64 offset = 1;
 	int64 size = 2;
-	string keyword = 3;
+	string keyword = 3; // 可选项，搜索关键词
+	bool idDesc = 4; // 可选项，是否按照ID倒序排列
+	bool idAsc = 5; // 可选项，是否按照ID正序排列
 }
 
 message ListEnabledNodeClustersResponse {
