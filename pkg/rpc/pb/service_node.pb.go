@@ -26,14 +26,14 @@ type CreateNodeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name          string     `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	NodeClusterId int64      `protobuf:"varint,2,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"`
-	NodeLogin     *NodeLogin `protobuf:"bytes,3,opt,name=nodeLogin,proto3" json:"nodeLogin,omitempty"`
-	NodeGroupId   int64      `protobuf:"varint,4,opt,name=nodeGroupId,proto3" json:"nodeGroupId,omitempty"`
+	Name          string     `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`                    // 节点名称
+	NodeClusterId int64      `protobuf:"varint,2,opt,name=nodeClusterId,proto3" json:"nodeClusterId,omitempty"` // 节点所属集群
+	NodeLogin     *NodeLogin `protobuf:"bytes,3,opt,name=nodeLogin,proto3" json:"nodeLogin,omitempty"`          // 节点登录信息
+	NodeGroupId   int64      `protobuf:"varint,4,opt,name=nodeGroupId,proto3" json:"nodeGroupId,omitempty"`     // 节点所属分组
 	// Deprecated: Marked as deprecated in service_node.proto.
-	DnsDomainId  int64    `protobuf:"varint,5,opt,name=dnsDomainId,proto3" json:"dnsDomainId,omitempty"`
-	DnsRoutes    []string `protobuf:"bytes,6,rep,name=dnsRoutes,proto3" json:"dnsRoutes,omitempty"`
-	NodeRegionId int64    `protobuf:"varint,7,opt,name=nodeRegionId,proto3" json:"nodeRegionId,omitempty"`
+	DnsDomainId  int64    `protobuf:"varint,5,opt,name=dnsDomainId,proto3" json:"dnsDomainId,omitempty"`   // 节点域名ID，此参数已过期，请不要再使用
+	DnsRoutes    []string `protobuf:"bytes,6,rep,name=dnsRoutes,proto3" json:"dnsRoutes,omitempty"`        // 节点DNS线路列表
+	NodeRegionId int64    `protobuf:"varint,7,opt,name=nodeRegionId,proto3" json:"nodeRegionId,omitempty"` // 节点所属区域
 }
 
 func (x *CreateNodeRequest) Reset() {
@@ -123,7 +123,7 @@ type CreateNodeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NodeId int64 `protobuf:"varint,1,opt,name=nodeId,proto3" json:"nodeId,omitempty"`
+	NodeId int64 `protobuf:"varint,1,opt,name=nodeId,proto3" json:"nodeId,omitempty"` // 节点ID
 }
 
 func (x *CreateNodeResponse) Reset() {
@@ -903,7 +903,7 @@ type FindEnabledNodeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NodeId int64 `protobuf:"varint,1,opt,name=nodeId,proto3" json:"nodeId,omitempty"`
+	NodeId int64 `protobuf:"varint,1,opt,name=nodeId,proto3" json:"nodeId,omitempty"` // 节点ID
 }
 
 func (x *FindEnabledNodeRequest) Reset() {
@@ -950,7 +950,7 @@ type FindEnabledNodeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Node *Node `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
+	Node *Node `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"` // 节点信息
 }
 
 func (x *FindEnabledNodeResponse) Reset() {
@@ -998,7 +998,7 @@ type FindEnabledBasicNodeRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	NodeId int64 `protobuf:"varint,1,opt,name=nodeId,proto3" json:"nodeId,omitempty"`
+	NodeId int64 `protobuf:"varint,1,opt,name=nodeId,proto3" json:"nodeId,omitempty"` // 节点ID
 }
 
 func (x *FindEnabledBasicNodeRequest) Reset() {
@@ -1045,7 +1045,7 @@ type FindEnabledBasicNodeResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Node *BasicNode `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
+	Node *BasicNode `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"` // 节点基本信息
 }
 
 func (x *FindEnabledBasicNodeResponse) Reset() {

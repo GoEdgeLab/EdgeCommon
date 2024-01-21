@@ -212,17 +212,17 @@ service NodeService {
 
 // 创建节点
 message CreateNodeRequest {
-	string name = 1;
-	int64 nodeClusterId = 2;
-	NodeLogin nodeLogin = 3;
-	int64 nodeGroupId = 4;
-	int64 dnsDomainId = 5 [deprecated = true];
-	repeated string dnsRoutes = 6;
-	int64 nodeRegionId = 7;
+	string name = 1; // 节点名称
+	int64 nodeClusterId = 2; // 节点所属集群
+	NodeLogin nodeLogin = 3; // 节点登录信息
+	int64 nodeGroupId = 4; // 节点所属分组
+	int64 dnsDomainId = 5 [deprecated = true]; // 节点域名ID，此参数已过期，请不要再使用
+	repeated string dnsRoutes = 6; // 节点DNS线路列表
+	int64 nodeRegionId = 7; // 节点所属区域
 }
 
 message CreateNodeResponse {
-	int64 nodeId = 1;
+	int64 nodeId = 1; // 节点ID
 }
 
 // 注册集群节点
@@ -308,20 +308,20 @@ message UpdateNodeRequest {
 
 // 获取单个节点信息
 message FindEnabledNodeRequest {
-	int64 nodeId = 1;
+	int64 nodeId = 1; // 节点ID
 }
 
 message FindEnabledNodeResponse {
-	Node node = 1;
+	Node node = 1; // 节点信息
 }
 
 // 获取单个节点基本信息
 message FindEnabledBasicNodeRequest {
-	int64 nodeId = 1;
+	int64 nodeId = 1; // 节点ID
 }
 
 message FindEnabledBasicNodeResponse {
-	BasicNode node = 1;
+	BasicNode node = 1; // 节点基本信息
 }
 
 // 组合单个节点配置

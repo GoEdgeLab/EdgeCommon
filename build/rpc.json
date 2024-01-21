@@ -15845,12 +15845,12 @@
     },
     {
       "name": "CreateNodeRequest",
-      "code": "message CreateNodeRequest {\n\tstring name = 1;\n\tint64 nodeClusterId = 2;\n\tNodeLogin nodeLogin = 3;\n\tint64 nodeGroupId = 4;\n\tint64 dnsDomainId = 5 [deprecated = true];\n\trepeated string dnsRoutes = 6;\n\tint64 nodeRegionId = 7;\n}",
+      "code": "message CreateNodeRequest {\n\tstring name = 1; // 节点名称\n\tint64 nodeClusterId = 2; // 节点所属集群\n\tNodeLogin nodeLogin = 3; // 节点登录信息\n\tint64 nodeGroupId = 4; // 节点所属分组\n\tint64 dnsDomainId = 5 [deprecated = true]; // 节点域名ID，此参数已过期，请不要再使用\n\trepeated string dnsRoutes = 6; // 节点DNS线路列表\n\tint64 nodeRegionId = 7; // 节点所属区域\n}",
       "doc": "创建节点"
     },
     {
       "name": "CreateNodeResponse",
-      "code": "message CreateNodeResponse {\n\tint64 nodeId = 1;\n}",
+      "code": "message CreateNodeResponse {\n\tint64 nodeId = 1; // 节点ID\n}",
       "doc": ""
     },
     {
@@ -18285,12 +18285,12 @@
     },
     {
       "name": "FindEnabledBasicNodeRequest",
-      "code": "message FindEnabledBasicNodeRequest {\n\tint64 nodeId = 1;\n}",
+      "code": "message FindEnabledBasicNodeRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
       "doc": "获取单个节点基本信息"
     },
     {
       "name": "FindEnabledBasicNodeResponse",
-      "code": "message FindEnabledBasicNodeResponse {\n\tBasicNode node = 1;\n}",
+      "code": "message FindEnabledBasicNodeResponse {\n\tBasicNode node = 1; // 节点基本信息\n}",
       "doc": ""
     },
     {
@@ -18775,12 +18775,12 @@
     },
     {
       "name": "FindEnabledNodeRequest",
-      "code": "message FindEnabledNodeRequest {\n\tint64 nodeId = 1;\n}",
+      "code": "message FindEnabledNodeRequest {\n\tint64 nodeId = 1; // 节点ID\n}",
       "doc": "获取单个节点信息"
     },
     {
       "name": "FindEnabledNodeResponse",
-      "code": "message FindEnabledNodeResponse {\n\tNode node = 1;\n}",
+      "code": "message FindEnabledNodeResponse {\n\tNode node = 1; // 节点信息\n}",
       "doc": ""
     },
     {
