@@ -9,6 +9,7 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"io"
 	"net"
+	"runtime"
 	"sort"
 	"strconv"
 	"strings"
@@ -36,6 +37,13 @@ func NewReader(reader io.Reader) (*Reader, error) {
 	var libReader = &Reader{
 		regionMap: map[string]*ipRegion{},
 	}
+
+	if runtime.NumCPU() >= 4 /** CPU数量较多的通常有着大内存 **/ {
+		libReader.ipV4Items = make([]ipv4Item, 0, 6_000_000)
+	} else {
+		libReader.ipV4Items = make([]ipv4Item, 0, 600_000)
+	}
+
 	err := libReader.load(reader)
 	if err != nil {
 		return nil, err
