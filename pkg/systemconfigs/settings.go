@@ -15,4 +15,6 @@ const (
 	SettingCodeUserServerConfig   SettingCode = "userServerConfig"   // 用户服务设置
 	SettingCodeUserRegisterConfig SettingCode = "userRegisterConfig" // 用户注册配置
 	SettingCodeUserUIConfig       SettingCode = "userUIConfig"       // 用户界面配置
+
+	SettingCodeStandaloneInstanceInitialized SettingCode = "standaloneInstanceInitialized" // 单体实例是否已经被初始化：0 未被初始化, 1 已经成功初始化
 )
