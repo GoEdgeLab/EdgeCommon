@@ -16,8 +16,11 @@ service AdminService {
 	// 检查管理员是否存在
 	rpc checkAdminExists (CheckAdminExistsRequest) returns (CheckAdminExistsResponse);
 
-	// 检查用户名是否存在
+	// 检查管理员用户名是否存在
 	rpc checkAdminUsername (CheckAdminUsernameRequest) returns (CheckAdminUsernameResponse);
+
+	// 使用用管理员户名查找管理员信息
+	rpc findAdminWithUsername(FindAdminWithUsernameRequest) returns (FindAdminWithUsernameResponse);
 
 	// 获取管理员名称
 	rpc findAdminFullname (FindAdminFullnameRequest) returns (FindAdminFullnameResponse);
@@ -87,7 +90,7 @@ message CheckAdminExistsResponse {
 	string message = 2;
 }
 
-// 检查用户名是否存在
+// 检查管理员用户名是否存在
 message CheckAdminUsernameRequest {
 	int64 adminId = 1;
 	string username = 2;
@@ -95,6 +98,15 @@ message CheckAdminUsernameRequest {
 
 message CheckAdminUsernameResponse {
 	bool exists = 1;
+}
+
+// 使用用管理员户名查找管理员信息
+message FindAdminWithUsernameRequest {
+	string username = 1; // 管理员用户名
+}
+
+message FindAdminWithUsernameResponse {
+	Admin admin = 1; // 管理员信息
 }
 
 // 获取管理员名称

@@ -22,6 +22,7 @@ const (
 	AdminService_LoginAdmin_FullMethodName                = "/pb.AdminService/loginAdmin"
 	AdminService_CheckAdminExists_FullMethodName          = "/pb.AdminService/checkAdminExists"
 	AdminService_CheckAdminUsername_FullMethodName        = "/pb.AdminService/checkAdminUsername"
+	AdminService_FindAdminWithUsername_FullMethodName     = "/pb.AdminService/findAdminWithUsername"
 	AdminService_FindAdminFullname_FullMethodName         = "/pb.AdminService/findAdminFullname"
 	AdminService_FindEnabledAdmin_FullMethodName          = "/pb.AdminService/findEnabledAdmin"
 	AdminService_CreateOrUpdateAdmin_FullMethodName       = "/pb.AdminService/createOrUpdateAdmin"
@@ -47,8 +48,10 @@ type AdminServiceClient interface {
 	LoginAdmin(ctx context.Context, in *LoginAdminRequest, opts ...grpc.CallOption) (*LoginAdminResponse, error)
 	// 检查管理员是否存在
 	CheckAdminExists(ctx context.Context, in *CheckAdminExistsRequest, opts ...grpc.CallOption) (*CheckAdminExistsResponse, error)
-	// 检查用户名是否存在
+	// 检查管理员用户名是否存在
 	CheckAdminUsername(ctx context.Context, in *CheckAdminUsernameRequest, opts ...grpc.CallOption) (*CheckAdminUsernameResponse, error)
+	// 使用用管理员户名查找管理员信息
+	FindAdminWithUsername(ctx context.Context, in *FindAdminWithUsernameRequest, opts ...grpc.CallOption) (*FindAdminWithUsernameResponse, error)
 	// 获取管理员名称
 	FindAdminFullname(ctx context.Context, in *FindAdminFullnameRequest, opts ...grpc.CallOption) (*FindAdminFullnameResponse, error)
 	// 获取管理员信息
@@ -110,6 +113,15 @@ func (c *adminServiceClient) CheckAdminExists(ctx context.Context, in *CheckAdmi
 func (c *adminServiceClient) CheckAdminUsername(ctx context.Context, in *CheckAdminUsernameRequest, opts ...grpc.CallOption) (*CheckAdminUsernameResponse, error) {
 	out := new(CheckAdminUsernameResponse)
 	err := c.cc.Invoke(ctx, AdminService_CheckAdminUsername_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminServiceClient) FindAdminWithUsername(ctx context.Context, in *FindAdminWithUsernameRequest, opts ...grpc.CallOption) (*FindAdminWithUsernameResponse, error) {
+	out := new(FindAdminWithUsernameResponse)
+	err := c.cc.Invoke(ctx, AdminService_FindAdminWithUsername_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -259,8 +271,10 @@ type AdminServiceServer interface {
 	LoginAdmin(context.Context, *LoginAdminRequest) (*LoginAdminResponse, error)
 	// 检查管理员是否存在
 	CheckAdminExists(context.Context, *CheckAdminExistsRequest) (*CheckAdminExistsResponse, error)
-	// 检查用户名是否存在
+	// 检查管理员用户名是否存在
 	CheckAdminUsername(context.Context, *CheckAdminUsernameRequest) (*CheckAdminUsernameResponse, error)
+	// 使用用管理员户名查找管理员信息
+	FindAdminWithUsername(context.Context, *FindAdminWithUsernameRequest) (*FindAdminWithUsernameResponse, error)
 	// 获取管理员名称
 	FindAdminFullname(context.Context, *FindAdminFullnameRequest) (*FindAdminFullnameResponse, error)
 	// 获取管理员信息
@@ -305,6 +319,9 @@ func (UnimplementedAdminServiceServer) CheckAdminExists(context.Context, *CheckA
 }
 func (UnimplementedAdminServiceServer) CheckAdminUsername(context.Context, *CheckAdminUsernameRequest) (*CheckAdminUsernameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckAdminUsername not implemented")
+}
+func (UnimplementedAdminServiceServer) FindAdminWithUsername(context.Context, *FindAdminWithUsernameRequest) (*FindAdminWithUsernameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAdminWithUsername not implemented")
 }
 func (UnimplementedAdminServiceServer) FindAdminFullname(context.Context, *FindAdminFullnameRequest) (*FindAdminFullnameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAdminFullname not implemented")
@@ -413,6 +430,24 @@ func _AdminService_CheckAdminUsername_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdminServiceServer).CheckAdminUsername(ctx, req.(*CheckAdminUsernameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminService_FindAdminWithUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAdminWithUsernameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).FindAdminWithUsername(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminService_FindAdminWithUsername_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).FindAdminWithUsername(ctx, req.(*FindAdminWithUsernameRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -705,6 +740,10 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "checkAdminUsername",
 			Handler:    _AdminService_CheckAdminUsername_Handler,
+		},
+		{
+			MethodName: "findAdminWithUsername",
+			Handler:    _AdminService_FindAdminWithUsername_Handler,
 		},
 		{
 			MethodName: "findAdminFullname",

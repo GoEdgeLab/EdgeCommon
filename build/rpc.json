@@ -787,10 +787,19 @@
           "requestMessageName": "CheckAdminUsernameRequest",
           "responseMessageName": "CheckAdminUsernameResponse",
           "code": "rpc checkAdminUsername (CheckAdminUsernameRequest) returns (CheckAdminUsernameResponse);",
-          "doc": "检查用户名是否存在",
+          "doc": "检查管理员用户名是否存在",
           "roles": [
             "admin"
           ],
+          "isDeprecated": false
+        },
+        {
+          "name": "findAdminWithUsername",
+          "requestMessageName": "FindAdminWithUsernameRequest",
+          "responseMessageName": "FindAdminWithUsernameResponse",
+          "code": "rpc findAdminWithUsername(FindAdminWithUsernameRequest) returns (FindAdminWithUsernameResponse);",
+          "doc": "使用用管理员户名查找管理员信息",
+          "roles": [],
           "isDeprecated": false
         },
         {
@@ -14187,7 +14196,7 @@
     {
       "name": "CheckAdminUsernameRequest",
       "code": "message CheckAdminUsernameRequest {\n\tint64 adminId = 1;\n\tstring username = 2;\n}",
-      "doc": "检查用户名是否存在"
+      "doc": "检查管理员用户名是否存在"
     },
     {
       "name": "CheckAdminUsernameResponse",
@@ -16952,6 +16961,16 @@
     {
       "name": "FindAdminFullnameResponse",
       "code": "message FindAdminFullnameResponse {\n\tstring fullname = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindAdminWithUsernameRequest",
+      "code": "message FindAdminWithUsernameRequest {\n\tstring username = 1; // 管理员用户名\n}",
+      "doc": "使用用管理员户名查找管理员信息"
+    },
+    {
+      "name": "FindAdminWithUsernameResponse",
+      "code": "message FindAdminWithUsernameResponse {\n\tAdmin admin = 1; // 管理员信息\n}",
       "doc": ""
     },
     {
