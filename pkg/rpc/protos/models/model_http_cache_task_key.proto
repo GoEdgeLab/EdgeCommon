@@ -3,6 +3,8 @@ option go_package = "./pb";
 
 package pb;
 
+import "models/model_node_cluster.proto";
+
 message HTTPCacheTaskKey {
 	int64 id = 1; // 缓存键ID
 	int64 taskId = 2; // 任务ID
@@ -13,4 +15,6 @@ message HTTPCacheTaskKey {
 	bool isDoing = 9; // 是否执行中
 	bytes errorsJSON = 7; // 错误信息
 	int64 nodeClusterId = 8; // 所属集群ID
+
+	NodeCluster nodeCluster = 30; // 所属集群，不一定有内容
 }
