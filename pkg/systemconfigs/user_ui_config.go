@@ -45,7 +45,7 @@ type UserUIConfig struct {
 	Theme ThemeConfig `yaml:"theme" json:"theme"` // 风格模板
 }
 
-func DefaultUserUIConfig() *UserUIConfig {
+func NewUserUIConfig() *UserUIConfig {
 	var config = &UserUIConfig{
 		ProductName:         "GoEdge",
 		UserSystemName:      "GoEdge用户系统",
@@ -55,6 +55,7 @@ func DefaultUserUIConfig() *UserUIConfig {
 		BandwidthUnit:       BandwidthUnitBit,
 		ShowBandwidthCharts: true,
 		ShowTrafficCharts:   true,
+		TimeZone:            "Asia/Shanghai",
 	}
 
 	// 服务相关
