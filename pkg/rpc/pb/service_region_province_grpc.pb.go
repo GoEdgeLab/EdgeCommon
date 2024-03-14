@@ -22,6 +22,7 @@ const (
 	RegionProvinceService_FindAllEnabledRegionProvincesWithCountryId_FullMethodName = "/pb.RegionProvinceService/findAllEnabledRegionProvincesWithCountryId"
 	RegionProvinceService_FindEnabledRegionProvince_FullMethodName                  = "/pb.RegionProvinceService/findEnabledRegionProvince"
 	RegionProvinceService_FindAllRegionProvincesWithRegionCountryId_FullMethodName  = "/pb.RegionProvinceService/findAllRegionProvincesWithRegionCountryId"
+	RegionProvinceService_FindAllRegionProvinces_FullMethodName                     = "/pb.RegionProvinceService/findAllRegionProvinces"
 	RegionProvinceService_FindRegionProvince_FullMethodName                         = "/pb.RegionProvinceService/findRegionProvince"
 	RegionProvinceService_UpdateRegionProvinceCustom_FullMethodName                 = "/pb.RegionProvinceService/updateRegionProvinceCustom"
 )
@@ -31,13 +32,15 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RegionProvinceServiceClient interface {
 	// Deprecated: Do not use.
-	// 查找所有省份
+	// 根据国家|地区ID查找所有省份
 	FindAllEnabledRegionProvincesWithCountryId(ctx context.Context, in *FindAllEnabledRegionProvincesWithCountryIdRequest, opts ...grpc.CallOption) (*FindAllEnabledRegionProvincesWithCountryIdResponse, error)
 	// Deprecated: Do not use.
 	// 查找单个省份信息
 	FindEnabledRegionProvince(ctx context.Context, in *FindEnabledRegionProvinceRequest, opts ...grpc.CallOption) (*FindEnabledRegionProvinceResponse, error)
-	// 查找所有省份
+	// 根据国家|地区ID查找所有省份
 	FindAllRegionProvincesWithRegionCountryId(ctx context.Context, in *FindAllRegionProvincesWithRegionCountryIdRequest, opts ...grpc.CallOption) (*FindAllRegionProvincesWithRegionCountryIdResponse, error)
+	// 查找所有国家|地区的所有省份
+	FindAllRegionProvinces(ctx context.Context, in *FindAllRegionProvincesRequest, opts ...grpc.CallOption) (*FindAllRegionProvincesResponse, error)
 	// 查找单个省份信息
 	FindRegionProvince(ctx context.Context, in *FindRegionProvinceRequest, opts ...grpc.CallOption) (*FindRegionProvinceResponse, error)
 	// 修改国家/地区定制信息
@@ -81,6 +84,15 @@ func (c *regionProvinceServiceClient) FindAllRegionProvincesWithRegionCountryId(
 	return out, nil
 }
 
+func (c *regionProvinceServiceClient) FindAllRegionProvinces(ctx context.Context, in *FindAllRegionProvincesRequest, opts ...grpc.CallOption) (*FindAllRegionProvincesResponse, error) {
+	out := new(FindAllRegionProvincesResponse)
+	err := c.cc.Invoke(ctx, RegionProvinceService_FindAllRegionProvinces_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *regionProvinceServiceClient) FindRegionProvince(ctx context.Context, in *FindRegionProvinceRequest, opts ...grpc.CallOption) (*FindRegionProvinceResponse, error) {
 	out := new(FindRegionProvinceResponse)
 	err := c.cc.Invoke(ctx, RegionProvinceService_FindRegionProvince_FullMethodName, in, out, opts...)
@@ -104,13 +116,15 @@ func (c *regionProvinceServiceClient) UpdateRegionProvinceCustom(ctx context.Con
 // for forward compatibility
 type RegionProvinceServiceServer interface {
 	// Deprecated: Do not use.
-	// 查找所有省份
+	// 根据国家|地区ID查找所有省份
 	FindAllEnabledRegionProvincesWithCountryId(context.Context, *FindAllEnabledRegionProvincesWithCountryIdRequest) (*FindAllEnabledRegionProvincesWithCountryIdResponse, error)
 	// Deprecated: Do not use.
 	// 查找单个省份信息
 	FindEnabledRegionProvince(context.Context, *FindEnabledRegionProvinceRequest) (*FindEnabledRegionProvinceResponse, error)
-	// 查找所有省份
+	// 根据国家|地区ID查找所有省份
 	FindAllRegionProvincesWithRegionCountryId(context.Context, *FindAllRegionProvincesWithRegionCountryIdRequest) (*FindAllRegionProvincesWithRegionCountryIdResponse, error)
+	// 查找所有国家|地区的所有省份
+	FindAllRegionProvinces(context.Context, *FindAllRegionProvincesRequest) (*FindAllRegionProvincesResponse, error)
 	// 查找单个省份信息
 	FindRegionProvince(context.Context, *FindRegionProvinceRequest) (*FindRegionProvinceResponse, error)
 	// 修改国家/地区定制信息
@@ -129,6 +143,9 @@ func (UnimplementedRegionProvinceServiceServer) FindEnabledRegionProvince(contex
 }
 func (UnimplementedRegionProvinceServiceServer) FindAllRegionProvincesWithRegionCountryId(context.Context, *FindAllRegionProvincesWithRegionCountryIdRequest) (*FindAllRegionProvincesWithRegionCountryIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAllRegionProvincesWithRegionCountryId not implemented")
+}
+func (UnimplementedRegionProvinceServiceServer) FindAllRegionProvinces(context.Context, *FindAllRegionProvincesRequest) (*FindAllRegionProvincesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAllRegionProvinces not implemented")
 }
 func (UnimplementedRegionProvinceServiceServer) FindRegionProvince(context.Context, *FindRegionProvinceRequest) (*FindRegionProvinceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindRegionProvince not implemented")
@@ -202,6 +219,24 @@ func _RegionProvinceService_FindAllRegionProvincesWithRegionCountryId_Handler(sr
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RegionProvinceService_FindAllRegionProvinces_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindAllRegionProvincesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RegionProvinceServiceServer).FindAllRegionProvinces(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RegionProvinceService_FindAllRegionProvinces_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RegionProvinceServiceServer).FindAllRegionProvinces(ctx, req.(*FindAllRegionProvincesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _RegionProvinceService_FindRegionProvince_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FindRegionProvinceRequest)
 	if err := dec(in); err != nil {
@@ -256,6 +291,10 @@ var RegionProvinceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findAllRegionProvincesWithRegionCountryId",
 			Handler:    _RegionProvinceService_FindAllRegionProvincesWithRegionCountryId_Handler,
+		},
+		{
+			MethodName: "findAllRegionProvinces",
+			Handler:    _RegionProvinceService_FindAllRegionProvinces_Handler,
 		},
 		{
 			MethodName: "findRegionProvince",

@@ -3,6 +3,9 @@ option go_package = "./pb";
 
 package pb;
 
+import "models/model_region_country.proto";
+
+// 省份｜州|区域信息
 message RegionProvince {
 	int64 id = 1;
 	string name = 2;
@@ -11,4 +14,6 @@ message RegionProvince {
 	string customName = 5;
 	repeated string customCodes = 6;
 	string displayName = 7;
+
+	RegionCountry regionCountry = 30; // 国家|地区信息
 }

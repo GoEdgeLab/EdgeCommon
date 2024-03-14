@@ -13,4 +13,5 @@ message RegionCountry {
 	repeated string customCodes = 6;
 	string displayName = 7;
 	bool isCommon = 8; // 是否常用
+	string routeCode = 9; // 线路代号
 }

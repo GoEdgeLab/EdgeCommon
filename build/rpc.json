@@ -9964,7 +9964,7 @@
           "requestMessageName": "FindAllEnabledRegionProvincesWithCountryIdRequest",
           "responseMessageName": "FindAllEnabledRegionProvincesWithCountryIdResponse",
           "code": "rpc findAllEnabledRegionProvincesWithCountryId (FindAllEnabledRegionProvincesWithCountryIdRequest) returns (FindAllEnabledRegionProvincesWithCountryIdResponse) {\n\t\toption deprecated = true;\n\t};\n\n\t// 查找单个省份信息\n\trpc findEnabledRegionProvince (FindEnabledRegionProvinceRequest) returns (FindEnabledRegionProvinceResponse) {\n\t\toption deprecated = true;\n\t};",
-          "doc": "查找所有省份",
+          "doc": "根据国家|地区ID查找所有省份",
           "roles": [],
           "isDeprecated": true
         },
@@ -9973,8 +9973,20 @@
           "requestMessageName": "FindAllRegionProvincesWithRegionCountryIdRequest",
           "responseMessageName": "FindAllRegionProvincesWithRegionCountryIdResponse",
           "code": "rpc findAllRegionProvincesWithRegionCountryId (FindAllRegionProvincesWithRegionCountryIdRequest) returns (FindAllRegionProvincesWithRegionCountryIdResponse);",
-          "doc": "查找所有省份",
+          "doc": "根据国家|地区ID查找所有省份",
           "roles": [],
+          "isDeprecated": false
+        },
+        {
+          "name": "findAllRegionProvinces",
+          "requestMessageName": "FindAllRegionProvincesRequest",
+          "responseMessageName": "FindAllRegionProvincesResponse",
+          "code": "rpc findAllRegionProvinces(FindAllRegionProvincesRequest) returns (FindAllRegionProvincesResponse);",
+          "doc": "查找所有国家|地区的所有省份",
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -17612,12 +17624,12 @@
     },
     {
       "name": "FindAllEnabledRegionProvincesWithCountryIdRequest",
-      "code": "message FindAllEnabledRegionProvincesWithCountryIdRequest {\n\tint64 regionCountryId = 1;\n}",
-      "doc": "查找所有省份"
+      "code": "message FindAllEnabledRegionProvincesWithCountryIdRequest {\n\tint64 regionCountryId = 1; // 国家|地区ID\n}",
+      "doc": "根据国家|地区ID查找所有省份"
     },
     {
       "name": "FindAllEnabledRegionProvincesWithCountryIdResponse",
-      "code": "message FindAllEnabledRegionProvincesWithCountryIdResponse {\n\trepeated RegionProvince regionProvinces = 1;\n}",
+      "code": "message FindAllEnabledRegionProvincesWithCountryIdResponse {\n\trepeated RegionProvince regionProvinces = 1; // 省份列表\n}",
       "doc": ""
     },
     {
@@ -17941,13 +17953,23 @@
       "doc": ""
     },
     {
+      "name": "FindAllRegionProvincesRequest",
+      "code": "message FindAllRegionProvincesRequest {\n\n}",
+      "doc": "查找所有国家|地区的所有省份"
+    },
+    {
+      "name": "FindAllRegionProvincesResponse",
+      "code": "message FindAllRegionProvincesResponse {\n\trepeated RegionProvince regionProvinces = 1; // 省份列表\n}",
+      "doc": ""
+    },
+    {
       "name": "FindAllRegionProvincesWithRegionCountryIdRequest",
-      "code": "message FindAllRegionProvincesWithRegionCountryIdRequest {\n\tint64 regionCountryId = 1;\n}",
-      "doc": "查找所有省份"
+      "code": "message FindAllRegionProvincesWithRegionCountryIdRequest {\n\tint64 regionCountryId = 1; // 国家|地区ID\n}",
+      "doc": "根据国家|地区ID查找所有省份"
     },
     {
       "name": "FindAllRegionProvincesWithRegionCountryIdResponse",
-      "code": "message FindAllRegionProvincesWithRegionCountryIdResponse {\n\trepeated RegionProvince regionProvinces = 1;\n}",
+      "code": "message FindAllRegionProvincesWithRegionCountryIdResponse {\n\trepeated RegionProvince regionProvinces = 1; // 省份列表\n}",
       "doc": ""
     },
     {
@@ -18917,12 +18939,12 @@
     },
     {
       "name": "FindEnabledRegionProvinceRequest",
-      "code": "message FindEnabledRegionProvinceRequest {\n\tint64 regionProvinceId = 1;\n}",
+      "code": "message FindEnabledRegionProvinceRequest {\n\tint64 regionProvinceId = 1; // 省份ID\n}",
       "doc": "查找单个省份信息"
     },
     {
       "name": "FindEnabledRegionProvinceResponse",
-      "code": "message FindEnabledRegionProvinceResponse {\n\tRegionProvince regionProvince = 1;\n}",
+      "code": "message FindEnabledRegionProvinceResponse {\n\tRegionProvince regionProvince = 1; // 省份信息\n}",
       "doc": ""
     },
     {
@@ -20102,12 +20124,12 @@
     },
     {
       "name": "FindRegionProvinceRequest",
-      "code": "message FindRegionProvinceRequest {\n\tint64 regionProvinceId = 1;\n}",
+      "code": "message FindRegionProvinceRequest {\n\tint64 regionProvinceId = 1; // 省份ID\n}",
       "doc": "查找单个省份信息"
     },
     {
       "name": "FindRegionProvinceResponse",
-      "code": "message FindRegionProvinceResponse {\n\tRegionProvince regionProvince = 1;\n}",
+      "code": "message FindRegionProvinceResponse {\n\tRegionProvince regionProvince = 1; // 省份信息\n}",
       "doc": ""
     },
     {
@@ -21887,7 +21909,7 @@
     },
     {
       "name": "RegionCountry",
-      "code": "message RegionCountry {\n\tint64 id = 1;\n\tstring name = 2;\n\trepeated string codes = 3;\n\trepeated string pinyin = 4;\n\tstring customName = 5;\n\trepeated string customCodes = 6;\n\tstring displayName = 7;\n\tbool isCommon = 8; // 是否常用\n}",
+      "code": "message RegionCountry {\n\tint64 id = 1;\n\tstring name = 2;\n\trepeated string codes = 3;\n\trepeated string pinyin = 4;\n\tstring customName = 5;\n\trepeated string customCodes = 6;\n\tstring displayName = 7;\n\tbool isCommon = 8; // 是否常用\n\tstring routeCode = 9; // 线路代号\n}",
       "doc": "国家/地区"
     },
     {
@@ -21897,8 +21919,8 @@
     },
     {
       "name": "RegionProvince",
-      "code": "message RegionProvince {\n\tint64 id = 1;\n\tstring name = 2;\n\trepeated string codes = 3;\n\tint64 regionCountryId = 4;\n\tstring customName = 5;\n\trepeated string customCodes = 6;\n\tstring displayName = 7;\n}",
-      "doc": ""
+      "code": "message RegionProvince {\n\tint64 id = 1;\n\tstring name = 2;\n\trepeated string codes = 3;\n\tint64 regionCountryId = 4;\n\tstring customName = 5;\n\trepeated string customCodes = 6;\n\tstring displayName = 7;\n\n\tRegionCountry regionCountry = 30; // 国家|地区信息\n}",
+      "doc": "省份｜州|区域信息"
     },
     {
       "name": "RegionTown",
@@ -23267,7 +23289,7 @@
     },
     {
       "name": "UpdateRegionProvinceCustomRequest",
-      "code": "message UpdateRegionProvinceCustomRequest {\n\tint64 regionProvinceId = 1;\n\tstring customName = 2;\n\trepeated string customCodes = 3;\n}",
+      "code": "message UpdateRegionProvinceCustomRequest {\n\tint64 regionProvinceId = 1; // 省份ID\n\tstring customName = 2; // 自定义名称\n\trepeated string customCodes = 3; // 自定义代号\n}",
       "doc": "修改省份定制信息"
     },
     {
