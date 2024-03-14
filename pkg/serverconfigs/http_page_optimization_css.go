@@ -2,8 +2,6 @@
 
 package serverconfigs
 
-import "github.com/tdewolff/minify/v2/css"
-
 type HTTPCSSOptimizationConfig struct {
 	HTTPBaseOptimizationConfig
 
@@ -25,11 +23,4 @@ func (this *HTTPCSSOptimizationConfig) Init() error {
 		return err
 	}
 	return nil
-}
-
-func (this *HTTPCSSOptimizationConfig) AsMinifier() *css.Minifier {
-	return &css.Minifier{
-		KeepCSS2:  this.KeepCSS2,
-		Precision: this.Precision,
-	}
 }

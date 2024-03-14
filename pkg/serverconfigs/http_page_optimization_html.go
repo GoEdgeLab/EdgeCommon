@@ -2,10 +2,6 @@
 
 package serverconfigs
 
-import (
-	"github.com/tdewolff/minify/v2/html"
-)
-
 type HTTPHTMLOptimizationConfig struct {
 	HTTPBaseOptimizationConfig
 
@@ -35,16 +31,4 @@ func (this *HTTPHTMLOptimizationConfig) Init() error {
 		return err
 	}
 	return nil
-}
-
-func (this *HTTPHTMLOptimizationConfig) AsMinifier() *html.Minifier {
-	return &html.Minifier{
-		KeepComments:            this.KeepComments,
-		KeepConditionalComments: this.KeepConditionalComments,
-		KeepDefaultAttrVals:     this.KeepDefaultAttrVals,
-		KeepDocumentTags:        this.KeepDocumentTags,
-		KeepEndTags:             this.KeepEndTags,
-		KeepQuotes:              this.KeepQuotes,
-		KeepWhitespace:          this.KeepWhitespace,
-	}
 }

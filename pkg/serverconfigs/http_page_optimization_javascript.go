@@ -2,8 +2,6 @@
 
 package serverconfigs
 
-import "github.com/tdewolff/minify/v2/js"
-
 type HTTPJavascriptOptimizationConfig struct {
 	HTTPBaseOptimizationConfig
 
@@ -24,12 +22,4 @@ func (this *HTTPJavascriptOptimizationConfig) Init() error {
 		return err
 	}
 	return nil
-}
-
-func (this *HTTPJavascriptOptimizationConfig) AsMinifier() *js.Minifier {
-	return &js.Minifier{
-		Precision:    this.Precision,
-		KeepVarNames: this.KeepVarNames,
-		Version:      this.Version,
-	}
 }
