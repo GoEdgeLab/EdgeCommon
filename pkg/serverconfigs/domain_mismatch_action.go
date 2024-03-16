@@ -3,8 +3,9 @@ package serverconfigs
 import "github.com/iwind/TeaGo/maps"
 
 const (
-	DomainMismatchActionPage  = "page"
-	DomainMismatchActionClose = "close"
+	DomainMismatchActionPage     = "page"
+	DomainMismatchActionClose    = "close"
+	DomainMismatchActionRedirect = "redirect"
 )
 
 type DomainMismatchPageOptions struct {
@@ -13,6 +14,10 @@ type DomainMismatchPageOptions struct {
 }
 
 type DomainMismatchCloseOptions struct {
+}
+
+type DomainMismatchRedirectOptions struct {
+	URL string `yaml:"url" json:"url"`
 }
 
 type DomainMismatchAction struct {
