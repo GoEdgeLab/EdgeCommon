@@ -18359,12 +18359,12 @@
     },
     {
       "name": "FindEnabledDNSProviderRequest",
-      "code": "message FindEnabledDNSProviderRequest {\n\tint64 dnsProviderId = 1;\n}",
+      "code": "message FindEnabledDNSProviderRequest {\n\tint64 dnsProviderId = 1; // DNS服务商ID\n\tbool maskParams = 2; // 是否对参数中的密钥进行掩码\n}",
       "doc": "查找单个服务商"
     },
     {
       "name": "FindEnabledDNSProviderResponse",
-      "code": "message FindEnabledDNSProviderResponse {\n\tDNSProvider dnsProvider = 1;\n}",
+      "code": "message FindEnabledDNSProviderResponse {\n\tDNSProvider dnsProvider = 1; // DNS服务商信息\n}",
       "doc": ""
     },
     {
@@ -23826,7 +23826,7 @@
     },
     {
       "name": "json:http_firewall_ref",
-      "content": "# HTTP防火墙（即WAF）引用\n## 定义\n~~~json\n{\n  \"isPrior\": \"是否覆盖上级配置\",\n  \"isOn\": \"是否启用配置\",\n  \"firewallPolicyId\": \"WAF策略ID\"\n}\n~~~\n\n## 示例\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"firewallPolicyId\": 123\n}\n~~~"
+      "content": "# HTTP防火墙（即WAF）引用\n## 定义\n~~~json\n{\n  \"isPrior\": \"是否覆盖上级配置\",\n  \"isOn\": \"是否启用配置\",\n  \"firewallPolicyId\": \"WAF策略ID\",\n  \"ignoreGlobalRules\": \"是否忽略系统定义的全局规则\",\n  \"defaultCaptchaType\": \"默认人机识别方式，可以选none（不设置）、default（默认）、oneClick（单击验证）、slide（滑动解锁）、geetest（极验）\"\n}\n~~~\n\n## 示例\n~~~json\n{\n  \"isPrior\": true,\n  \"isOn\": true,\n  \"firewallPolicyId\": 123,\n  \"ignoreGlobalRules\": false,\n  \"defaultCaptchaType\": \"none\"\n}\n~~~"
     },
     {
       "name": "json:http_protocol",

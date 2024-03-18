@@ -95,11 +95,12 @@ message DeleteDNSProviderRequest {
 
 // 查找单个服务商
 message FindEnabledDNSProviderRequest {
-	int64 dnsProviderId = 1;
+	int64 dnsProviderId = 1; // DNS服务商ID
+	bool maskParams = 2; // 是否对参数中的密钥进行掩码
 }
 
 message FindEnabledDNSProviderResponse {
-	DNSProvider dnsProvider = 1;
+	DNSProvider dnsProvider = 1; // DNS服务商信息
 }
 
 // 取得所有服务商类型
