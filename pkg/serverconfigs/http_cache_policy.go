@@ -96,7 +96,7 @@ func (this *HTTPCachePolicy) UpdateDiskDir(dir string, subDirs []*CacheDir) {
 			return
 		}
 
-		var options = &HTTPFileCacheStorage{}
+		var options = NewHTTPFileCacheStorage()
 		err = json.Unmarshal(oldOptionsJSON, options)
 		if err != nil {
 			return

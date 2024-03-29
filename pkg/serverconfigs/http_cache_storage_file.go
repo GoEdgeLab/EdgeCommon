@@ -16,6 +16,14 @@ type HTTPFileCacheStorage struct {
 
 	OpenFileCache  *OpenFileCacheConfig `yaml:"openFileCache" json:"openFileCache"`   // open file cache配置
 	EnableSendfile bool                 `yaml:"enableSendFile" json:"enableSendfile"` // 是否启用Sendfile
+
+	EnableMMAP bool `yaml:"enableMMAP" json:"enableMMAP"` // 是否启用MMAP
+}
+
+func NewHTTPFileCacheStorage() *HTTPFileCacheStorage {
+	return &HTTPFileCacheStorage{
+		EnableMMAP: true,
+	}
 }
 
 func (this *HTTPFileCacheStorage) Init() error {
