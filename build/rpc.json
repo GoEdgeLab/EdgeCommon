@@ -23599,7 +23599,7 @@
     },
     {
       "name": "UploadMetricStatsRequest",
-      "code": "message UploadMetricStatsRequest {\n\tint64 serverId = 1;\n\tstring time = 2;\n\tint64 count = 3;\n\tfloat total = 4;\n\tint32 version = 5;\n\tint64 itemId = 6;\n\trepeated UploadingMetricStat metricStats = 7;\n}",
+      "code": "message UploadMetricStatsRequest {\n\tint64 serverId = 1; // 网站ID\n\tstring time = 2; // 时间\n\tint64 count = 3; // 数量\n\tfloat total = 4; // 总数\n\tint32 version = 5; // 版本号\n\tint64 itemId = 6; // 指标ID\n\trepeated UploadingMetricStat metricStats = 7; // 指标统计数据\n\trepeated string keepKeys = 8; // 需要保留的指标值\n}",
       "doc": "上传统计数据"
     },
     {

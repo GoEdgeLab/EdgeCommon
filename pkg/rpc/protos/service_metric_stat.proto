@@ -19,13 +19,14 @@ service MetricStatService {
 
 // 上传统计数据
 message UploadMetricStatsRequest {
-	int64 serverId = 1;
-	string time = 2;
-	int64 count = 3;
-	float total = 4;
-	int32 version = 5;
-	int64 itemId = 6;
-	repeated UploadingMetricStat metricStats = 7;
+	int64 serverId = 1; // 网站ID
+	string time = 2; // 时间
+	int64 count = 3; // 数量
+	float total = 4; // 总数
+	int32 version = 5; // 版本号
+	int64 itemId = 6; // 指标ID
+	repeated UploadingMetricStat metricStats = 7; // 指标统计数据
+	repeated string keepKeys = 8; // 需要保留的指标值
 }
 
 // 计算指标数据数量
