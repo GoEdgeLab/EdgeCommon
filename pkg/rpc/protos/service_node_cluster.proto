@@ -189,6 +189,7 @@ message CreateNodeClusterRequest {
 	bytes globalServerConfigJSON = 10; // 服务全局设置
 	bool autoInstallNftables = 11; // 自动安装nftables
 	bool autoSystemTuning = 12; // 是否自动调节系统参数
+	bool autoTrimDisks = 13; // 是否自动TRIM硬盘
 }
 
 message CreateNodeClusterResponse {
@@ -209,6 +210,7 @@ message UpdateNodeClusterRequest {
 	bool autoInstallNftables = 11;
 	bytes sshParamsJSON = 12;
 	bool autoSystemTuning = 13; // 是否自动调节系统参数
+	bool autoTrimDisks = 14; // 是否自动TRIM硬盘
 }
 
 // 删除集群

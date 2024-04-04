@@ -90,6 +90,7 @@ type NodeConfig struct {
 	Clock                *ClockConfig                            `yaml:"clock" json:"clock"`                             // 时钟配置
 	AutoInstallNftables  bool                                    `yaml:"autoInstallNftables" json:"autoInstallNftables"` // 自动安装nftables
 	AutoSystemTuning     bool                                    `yaml:"autoSystemTuning" json:"autoSystemTuning"`       // 自动调整系统参数
+	AutoTrimDisks        bool                                    `yaml:"autoTrimDisks" json:"autoTrimDisks"`             // 自动执行TRIM
 
 	// 指标
 	MetricItems []*serverconfigs.MetricItemConfig `yaml:"metricItems" json:"metricItems"`
