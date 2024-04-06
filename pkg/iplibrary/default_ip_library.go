@@ -33,7 +33,7 @@ func InitDefault() error {
 	}
 
 	var library = NewIPLibrary()
-	err := library.InitFromData(ipLibraryData, "")
+	err := library.InitFromData(ipLibraryData, "", ReaderVersionV1)
 	if err != nil {
 		return err
 	}
@@ -66,18 +66,18 @@ func LookupIPSummaries(ipList []string) map[string]string /** ip => summary **/ 
 }
 
 type IPLibrary struct {
-	reader *Reader
+	reader ReaderInterface
 }
 
 func NewIPLibrary() *IPLibrary {
 	return &IPLibrary{}
 }
 
-func NewIPLibraryWithReader(reader *Reader) *IPLibrary {
+func NewIPLibraryWithReader(reader ReaderInterface) *IPLibrary {
 	return &IPLibrary{reader: reader}
 }
 
-func (this *IPLibrary) InitFromData(data []byte, password string) error {
+func (this *IPLibrary) InitFromData(data []byte, password string, version ReaderVersion) error {
 	if len(data) == 0 || this.reader != nil {
 		return nil
 	}
@@ -99,7 +99,12 @@ func (this *IPLibrary) InitFromData(data []byte, password string) error {
 		_ = gzipReader.Close()
 	}()
 
-	libReader, err := NewReader(gzipReader)
+	var libReader ReaderInterface
+	if version == ReaderVersionV2 {
+		libReader, err = NewReaderV2(gzipReader)
+	} else {
+		libReader, err = NewReaderV1(gzipReader)
+	}
 	if err != nil {
 		return err
 	}

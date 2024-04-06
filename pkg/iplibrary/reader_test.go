@@ -16,7 +16,7 @@ import (
 
 func TestNewReader(t *testing.T) {
 	var buf = &bytes.Buffer{}
-	var writer = iplibrary.NewWriter(buf, &iplibrary.Meta{
+	var writer = iplibrary.NewWriterV1(buf, &iplibrary.Meta{
 		Author: "GoEdge <https://goedge.cn>",
 	})
 
@@ -63,7 +63,7 @@ func TestNewReader(t *testing.T) {
 
 	var stat = &runtime.MemStats{}
 	runtime.ReadMemStats(stat)
-	reader, err := iplibrary.NewReader(buf)
+	reader, err := iplibrary.NewReaderV2(buf)
 
 	var stat2 = &runtime.MemStats{}
 	runtime.ReadMemStats(stat2)
@@ -115,7 +115,7 @@ func BenchmarkNewReader(b *testing.B) {
 	runtime.GOMAXPROCS(1)
 
 	var buf = &bytes.Buffer{}
-	var writer = iplibrary.NewWriter(buf, &iplibrary.Meta{
+	var writer = iplibrary.NewWriterV1(buf, &iplibrary.Meta{
 		Author: "GoEdge <https://goedge.cn>",
 	})
 
@@ -135,7 +135,7 @@ func BenchmarkNewReader(b *testing.B) {
 		}
 	}
 
-	reader, err := iplibrary.NewReader(buf)
+	reader, err := iplibrary.NewReaderV2(buf)
 	if err != nil {
 		b.Fatal(err)
 	}

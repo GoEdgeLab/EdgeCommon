@@ -3,23 +3,45 @@
 package iplibrary
 
 import (
-	"encoding/binary"
+	"bytes"
+	"crypto/md5"
 	"encoding/json"
 	"errors"
-	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
+	"fmt"
+	"hash"
 	"io"
-	"math/big"
 	"net"
 	"strconv"
 	"strings"
 	"time"
 )
 
-type WriterV1 struct {
+type hashWriter struct {
+	rawWriter io.Writer
+	hash      hash.Hash
+}
+
+func newHashWriter(writer io.Writer) *hashWriter {
+	return &hashWriter{
+		rawWriter: writer,
+		hash:      md5.New(),
+	}
+}
+
+func (this *hashWriter) Write(p []byte) (n int, err error) {
+	n, err = this.rawWriter.Write(p)
+	this.hash.Write(p)
+	return
+}
+
+func (this *hashWriter) Sum() string {
+	return fmt.Sprintf("%x", this.hash.Sum(nil))
+}
+
+type WriterV2 struct {
 	writer *hashWriter
 	meta   *Meta
 
-	lastIPFrom     uint64 // 上一次的IP
 	lastCountryId  int64
 	lastProvinceId int64
 	lastCityId     int64
@@ -27,21 +49,21 @@ type WriterV1 struct {
 	lastProviderId int64
 }
 
-func NewWriterV1(writer io.Writer, meta *Meta) *WriterV1 {
+func NewWriterV2(writer io.Writer, meta *Meta) *WriterV2 {
 	if meta == nil {
 		meta = &Meta{}
 	}
 	meta.Version = Version2
 	meta.CreatedAt = time.Now().Unix()
 
-	var libWriter = &WriterV1{
+	var libWriter = &WriterV2{
 		writer: newHashWriter(writer),
 		meta:   meta,
 	}
 	return libWriter
 }
 
-func (this *WriterV1) WriteMeta() error {
+func (this *WriterV2) WriteMeta() error {
 	metaJSON, err := json.Marshal(this.meta)
 	if err != nil {
 		return err
@@ -54,18 +76,18 @@ func (this *WriterV1) WriteMeta() error {
 	return err
 }
 
-func (this *WriterV1) Write(ipFrom string, ipTo string, countryId int64, provinceId int64, cityId int64, townId int64, providerId int64) error {
+func (this *WriterV2) Write(ipFrom string, ipTo string, countryId int64, provinceId int64, cityId int64, townId int64, providerId int64) error {
 	// validate IP
 	var fromIP = net.ParseIP(ipFrom)
 	if fromIP == nil {
 		return errors.New("invalid 'ipFrom': '" + ipFrom + "'")
 	}
-	var fromIsIPv4 = configutils.IsIPv4(fromIP)
+	var fromIsIPv4 = fromIP.To4() != nil
 	var toIP = net.ParseIP(ipTo)
 	if toIP == nil {
 		return errors.New("invalid 'ipTo': " + ipTo)
 	}
-	var toIsIPv4 = configutils.IsIPv4(toIP)
+	var toIsIPv4 = toIP.To4() != nil
 	if fromIsIPv4 != toIsIPv4 {
 		return errors.New("'ipFrom(" + ipFrom + ")' and 'ipTo(" + ipTo + ")' should have the same IP version")
 	}
@@ -77,34 +99,20 @@ func (this *WriterV1) Write(ipFrom string, ipTo string, countryId int64, provinc
 		pieces = append(pieces, "")
 	} else {
 		pieces = append(pieces, "6")
-
-		// we do NOT support v6 yet
-		return nil
 	}
 
 	// 1
-	var fromIPLong = this.ip2long(fromIP)
-	var toIPLong = this.ip2long(toIP)
-
-	if toIPLong < fromIPLong {
-		fromIPLong, toIPLong = toIPLong, fromIPLong
+	if bytes.Compare(fromIP, toIP) > 0 {
+		fromIP, toIP = toIP, fromIP
 	}
 
-	if this.lastIPFrom > 0 && fromIPLong > this.lastIPFrom {
-		pieces = append(pieces, "+"+this.formatUint64(fromIPLong-this.lastIPFrom))
+	if fromIsIPv4 {
+		pieces = append(pieces, string(fromIP.To4())+string(toIP.To4()))
 	} else {
-		pieces = append(pieces, this.formatUint64(fromIPLong))
-	}
-	this.lastIPFrom = fromIPLong
-	if ipFrom == ipTo {
-		// 2
-		pieces = append(pieces, "")
-	} else {
-		// 2
-		pieces = append(pieces, this.formatUint64(toIPLong-fromIPLong))
+		pieces = append(pieces, string(fromIP.To16())+string(toIP.To16()))
 	}
 
-	// 3
+	// 2
 	if countryId > 0 {
 		if countryId == this.lastCountryId {
 			pieces = append(pieces, "+")
@@ -116,7 +124,7 @@ func (this *WriterV1) Write(ipFrom string, ipTo string, countryId int64, provinc
 	}
 	this.lastCountryId = countryId
 
-	// 4
+	// 3
 	if provinceId > 0 {
 		if provinceId == this.lastProvinceId {
 			pieces = append(pieces, "+")
@@ -128,7 +136,7 @@ func (this *WriterV1) Write(ipFrom string, ipTo string, countryId int64, provinc
 	}
 	this.lastProvinceId = provinceId
 
-	// 5
+	// 4
 	if cityId > 0 {
 		if cityId == this.lastCityId {
 			pieces = append(pieces, "+")
@@ -140,7 +148,7 @@ func (this *WriterV1) Write(ipFrom string, ipTo string, countryId int64, provinc
 	}
 	this.lastCityId = cityId
 
-	// 6
+	// 5
 	if townId > 0 {
 		if townId == this.lastTownId {
 			pieces = append(pieces, "+")
@@ -152,7 +160,7 @@ func (this *WriterV1) Write(ipFrom string, ipTo string, countryId int64, provinc
 	}
 	this.lastTownId = townId
 
-	// 7
+	// 6
 	if providerId > 0 {
 		if providerId == this.lastProviderId {
 			pieces = append(pieces, "+")
@@ -173,25 +181,10 @@ func (this *WriterV1) Write(ipFrom string, ipTo string, countryId int64, provinc
 	return err
 }
 
-func (this *WriterV1) Sum() string {
+func (this *WriterV2) Sum() string {
 	return this.writer.Sum()
 }
 
-func (this *WriterV1) formatUint64(i uint64) string {
+func (this *WriterV2) formatUint64(i uint64) string {
 	return strconv.FormatUint(i, 32)
-}
-
-func (this *WriterV1) ip2long(netIP net.IP) uint64 {
-	if len(netIP) == 0 {
-		return 0
-	}
-
-	var b4 = netIP.To4()
-	if b4 != nil {
-		return uint64(binary.BigEndian.Uint32(b4.To4()))
-	}
-
-	var i = big.NewInt(0)
-	i.SetBytes(netIP.To16())
-	return i.Uint64()
 }

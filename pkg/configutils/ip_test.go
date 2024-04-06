@@ -3,7 +3,6 @@
 package configutils_test
 
 import (
-	"fmt"
 	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"github.com/iwind/TeaGo/assert"
 	"net"
@@ -14,12 +13,6 @@ func TestParseCIDR(t *testing.T) {
 	t.Log(configutils.ParseCIDR("192.168.1.1/32"))
 	t.Log(configutils.ParseCIDR("192.168.1.1/24"))
 	t.Log(configutils.ParseCIDR("192.168.1.1/16"))
-}
-
-func TestIPString2Long(t *testing.T) {
-	for _, ip := range []string{"127.0.0.1", "192.168.1.100", "::1", "fd00:6868:6868:0:10ac:d056:3bf6:7452", "fd00:6868:6868:0:10ac:d056:3bf6:7453", "2001:0db8:85a3:0000:0000:8a2e:0370:7334", "wrong ip"} {
-		t.Log(fmt.Sprintf("%42s", ip), "=>", configutils.IPString2Long(ip))
-	}
 }
 
 func TestIsIPv4(t *testing.T) {
@@ -39,7 +32,6 @@ func TestIPVersion(t *testing.T) {
 	a.IsTrue(configutils.IPVersion(net.ParseIP("::1")) == 6)
 	a.IsTrue(configutils.IPVersion(net.ParseIP("2001:0db8:85a3:0000:0000:8a2e:0370:7334")) == 6)
 }
-
 
 func TestQuoteIP(t *testing.T) {
 	t.Log(configutils.QuoteIP(configutils.QuoteIP("2001:da8:22::10")))

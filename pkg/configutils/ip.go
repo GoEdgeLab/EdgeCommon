@@ -1,40 +1,9 @@
 package configutils
 
 import (
-	"encoding/binary"
-	"math/big"
 	"net"
 	"strings"
 )
-
-// IPString2Long 将IP转换为整型
-// 注意IPv6没有顺序
-func IPString2Long(ip string) uint64 {
-	if len(ip) == 0 {
-		return 0
-	}
-	var netIP = net.ParseIP(ip)
-	if len(netIP) == 0 {
-		return 0
-	}
-	return IP2Long(netIP)
-}
-
-// IP2Long 将IP对象转换为整型
-func IP2Long(netIP net.IP) uint64 {
-	if len(netIP) == 0 {
-		return 0
-	}
-
-	var b4 = netIP.To4()
-	if b4 != nil {
-		return uint64(binary.BigEndian.Uint32(b4.To4()))
-	}
-
-	var i = big.NewInt(0)
-	i.SetBytes(netIP.To16())
-	return i.Uint64()
-}
 
 // IsIPv4 检查是否为IPv4
 func IsIPv4(netIP net.IP) bool {

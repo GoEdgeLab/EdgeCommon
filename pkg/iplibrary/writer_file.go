@@ -12,7 +12,7 @@ type FileWriter struct {
 	gzWriter *gzip.Writer
 	password string
 
-	rawWriter *Writer
+	rawWriter WriterInterface
 }
 
 func NewFileWriter(path string, meta *Meta, password string) (*FileWriter, error) {
@@ -29,7 +29,7 @@ func NewFileWriter(path string, meta *Meta, password string) (*FileWriter, error
 	var writer = &FileWriter{
 		fp:        fp,
 		gzWriter:  gzWriter,
-		rawWriter: NewWriter(gzWriter, meta),
+		rawWriter: NewWriterV1(gzWriter, meta),
 		password:  password,
 	}
 	return writer, nil
@@ -64,11 +64,13 @@ func (this *FileWriter) Close() error {
 		if err != nil {
 			return err
 		}
+
 		if len(data) > 0 {
-			encodedData, err := NewEncrypt().Encode(data, this.password)
-			if err != nil {
-				return err
+			encodedData, encodeErr := NewEncrypt().Encode(data, this.password)
+			if encodeErr != nil {
+				return encodeErr
 			}
+			_ = os.Remove(filePath)
 			err = os.WriteFile(filePath, encodedData, 0666)
 			if err != nil {
 				return err

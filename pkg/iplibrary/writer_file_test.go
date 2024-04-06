@@ -6,13 +6,14 @@ import (
 	"github.com/TeaOSLab/EdgeCommon/pkg/iplibrary"
 	"github.com/iwind/TeaGo/rands"
 	"github.com/iwind/TeaGo/types"
+	stringutil "github.com/iwind/TeaGo/utils/string"
 	"testing"
 )
 
 func TestNewFileWriter(t *testing.T) {
 	writer, err := iplibrary.NewFileWriter("./internal-ip-library-test.db", &iplibrary.Meta{
 		Author: "GoEdge",
-	}, "")
+	}, stringutil.Md5("123456"))
 	if err != nil {
 		t.Fatal(err)
 	}

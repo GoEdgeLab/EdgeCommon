@@ -6,16 +6,30 @@ import (
 	"github.com/iwind/TeaGo/types"
 )
 
-type ipv4Item struct {
+type ipv4ItemV1 struct {
 	IPFrom uint32
 	IPTo   uint32
 
 	Region *ipRegion
 }
 
-type ipv6Item struct {
+type ipv6ItemV1 struct {
 	IPFrom uint64
 	IPTo   uint64
+
+	Region *ipRegion
+}
+
+type ipv4ItemV2 struct {
+	IPFrom [4]byte
+	IPTo   [4]byte
+
+	Region *ipRegion
+}
+
+type ipv6ItemV2 struct {
+	IPFrom [16]byte
+	IPTo   [16]byte
 
 	Region *ipRegion
 }

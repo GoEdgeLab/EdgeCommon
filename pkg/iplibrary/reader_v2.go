@@ -4,12 +4,9 @@ package iplibrary
 
 import (
 	"bytes"
-	"encoding/binary"
 	"encoding/json"
 	"errors"
-	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
 	"io"
-	"math/big"
 	"net"
 	"runtime"
 	"sort"
@@ -17,16 +14,15 @@ import (
 	"strings"
 )
 
-// Reader IP库Reader
-type Reader struct {
+// ReaderV2 IP库Reader V2
+type ReaderV2 struct {
 	meta *Meta
 
 	regionMap map[string]*ipRegion // 缓存重复的区域用来节约内存
 
-	ipV4Items []ipv4ItemV1
-	ipV6Items []ipv6ItemV1
+	ipV4Items []ipv4ItemV2
+	ipV6Items []ipv6ItemV2
 
-	lastIPFrom     uint64
 	lastCountryId  uint16
 	lastProvinceId uint16
 	lastCityId     uint32
@@ -34,16 +30,16 @@ type Reader struct {
 	lastProviderId uint16
 }
 
-// NewReaderV1 创建新Reader对象
-func NewReaderV1(reader io.Reader) (*Reader, error) {
-	var libReader = &Reader{
+// NewReaderV2 创建新Reader对象
+func NewReaderV2(reader io.Reader) (*ReaderV2, error) {
+	var libReader = &ReaderV2{
 		regionMap: map[string]*ipRegion{},
 	}
 
 	if runtime.NumCPU() >= 4 /** CPU数量较多的通常有着大内存 **/ {
-		libReader.ipV4Items = make([]ipv4ItemV1, 0, 6_000_000)
+		libReader.ipV4Items = make([]ipv4ItemV2, 0, 6_000_000)
 	} else {
-		libReader.ipV4Items = make([]ipv4ItemV1, 0, 600_000)
+		libReader.ipV4Items = make([]ipv4ItemV2, 0, 600_000)
 	}
 
 	err := libReader.load(reader)
@@ -54,7 +50,7 @@ func NewReaderV1(reader io.Reader) (*Reader, error) {
 }
 
 // 从Reader中加载数据
-func (this *Reader) load(reader io.Reader) error {
+func (this *ReaderV2) load(reader io.Reader) error {
 	var buf = make([]byte, 1024)
 	var metaLine []byte
 	var metaLineFound = false
@@ -106,9 +102,9 @@ func (this *Reader) load(reader io.Reader) error {
 		var from1 = this.ipV4Items[j].IPFrom
 		var to1 = this.ipV4Items[j].IPTo
 		if from0 == from1 {
-			return to0 < to1
+			return bytes.Compare(to0[:], to1[:]) < 0
 		}
-		return from0 < from1
+		return bytes.Compare(from0[:], from1[:]) < 0
 	})
 
 	sort.Slice(this.ipV6Items, func(i, j int) bool {
@@ -117,9 +113,9 @@ func (this *Reader) load(reader io.Reader) error {
 		var from1 = this.ipV6Items[j].IPFrom
 		var to1 = this.ipV6Items[j].IPTo
 		if from0 == from1 {
-			return to0 < to1
+			return bytes.Compare(to0[:], to1[:]) < 0
 		}
-		return from0 < from1
+		return bytes.Compare(from0[:], from1[:]) < 0
 	})
 
 	// 清理内存
@@ -128,19 +124,18 @@ func (this *Reader) load(reader io.Reader) error {
 	return nil
 }
 
-func (this *Reader) Lookup(ip net.IP) *QueryResult {
+func (this *ReaderV2) Lookup(ip net.IP) *QueryResult {
 	if ip == nil {
 		return &QueryResult{}
 	}
 
-	var ipLong = this.ip2long(ip)
-	var isV4 = configutils.IsIPv4(ip)
+	var isV4 = ip.To4() != nil
 	var resultItem any
 	if isV4 {
 		sort.Search(len(this.ipV4Items), func(i int) bool {
 			var item = this.ipV4Items[i]
-			if item.IPFrom <= uint32(ipLong) {
-				if item.IPTo >= uint32(ipLong) {
+			if bytes.Compare(item.IPFrom[:], ip) <= 0 {
+				if bytes.Compare(item.IPTo[:], ip) >= 0 {
 					resultItem = item
 					return false
 				}
@@ -151,8 +146,8 @@ func (this *Reader) Lookup(ip net.IP) *QueryResult {
 	} else {
 		sort.Search(len(this.ipV6Items), func(i int) bool {
 			var item = this.ipV6Items[i]
-			if item.IPFrom <= ipLong {
-				if item.IPTo >= ipLong {
+			if bytes.Compare(item.IPFrom[:], ip) <= 0 {
+				if bytes.Compare(item.IPTo[:], ip) >= 0 {
 					resultItem = item
 					return false
 				}
@@ -168,19 +163,19 @@ func (this *Reader) Lookup(ip net.IP) *QueryResult {
 	}
 }
 
-func (this *Reader) Meta() *Meta {
+func (this *ReaderV2) Meta() *Meta {
 	return this.meta
 }
 
-func (this *Reader) IPv4Items() []ipv4ItemV1 {
+func (this *ReaderV2) IPv4Items() []ipv4ItemV2 {
 	return this.ipV4Items
 }
 
-func (this *Reader) IPv6Items() []ipv6ItemV1 {
+func (this *ReaderV2) IPv6Items() []ipv6ItemV2 {
 	return this.ipV6Items
 }
 
-func (this *Reader) Destroy() {
+func (this *ReaderV2) Destroy() {
 	this.meta = nil
 	this.regionMap = nil
 	this.ipV4Items = nil
@@ -188,14 +183,28 @@ func (this *Reader) Destroy() {
 }
 
 // 分析数据
-func (this *Reader) parse(data []byte) (left []byte, err error) {
+func (this *ReaderV2) parse(data []byte) (left []byte, err error) {
 	if len(data) == 0 {
 		return
 	}
 
 	for {
-		var index = bytes.IndexByte(data, '\n')
+		if len(data) == 0 {
+			break
+		}
+
+		var offset int
+		if data[0] == '|' {
+			offset = 1 + 8 + 1
+		} else if data[0] == '4' {
+			offset = 2 + 8 + 1
+		} else if data[0] == '6' {
+			offset = 2 + 32 + 1
+		}
+
+		var index = bytes.IndexByte(data[offset:], '\n')
 		if index >= 0 {
+			index += offset
 			var line = data[:index]
 			err = this.parseLine(line)
 			if err != nil {
@@ -211,9 +220,28 @@ func (this *Reader) parse(data []byte) (left []byte, err error) {
 }
 
 // 单行分析
-func (this *Reader) parseLine(line []byte) error {
+func (this *ReaderV2) parseLine(line []byte) error {
+	if len(line) == 0 {
+		return nil
+	}
+
 	const maxPieces = 8
-	var pieces = strings.Split(string(line), "|")
+	var pieces []string
+
+	var offset int
+	if line[0] == '|' {
+		offset = 1 + 8 + 1
+		pieces = append(pieces, "", string(line[1:5]), string(line[5:9]))
+	} else if line[0] == '4' {
+		offset = 2 + 8 + 1
+		pieces = append(pieces, "", string(line[2:6]), string(line[6:10]))
+	} else if line[0] == '6' {
+		offset = 2 + 32 + 1
+		pieces = append(pieces, "6", string(line[2:18]), string(line[18:34]))
+	}
+
+	pieces = append(pieces, strings.Split(string(line[offset:]), "|")...)
+
 	var countPieces = len(pieces)
 	if countPieces < maxPieces { // 补足一行
 		for i := 0; i < maxPieces-countPieces; i++ {
@@ -233,19 +261,19 @@ func (this *Reader) parseLine(line []byte) error {
 	}
 
 	// ip range
-	var ipFrom uint64
-	var ipTo uint64
-	if strings.HasPrefix(pieces[1], "+") {
-		ipFrom = this.lastIPFrom + this.decodeUint64(pieces[1][1:])
+	var ipFromV4 [4]byte
+	var ipToV4 [4]byte
+
+	var ipFromV6 [16]byte
+	var ipToV6 [16]byte
+
+	if version == "6" {
+		ipFromV6 = [16]byte([]byte(pieces[1]))
+		ipToV6 = [16]byte([]byte(pieces[2]))
 	} else {
-		ipFrom = this.decodeUint64(pieces[1])
+		ipFromV4 = [4]byte([]byte(pieces[1]))
+		ipToV4 = [4]byte([]byte(pieces[2]))
 	}
-	if len(pieces[2]) == 0 {
-		ipTo = ipFrom
-	} else {
-		ipTo = this.decodeUint64(pieces[2]) + ipFrom
-	}
-	this.lastIPFrom = ipFrom
 
 	// country
 	var countryId uint16
@@ -306,15 +334,15 @@ func (this *Reader) parseLine(line []byte) error {
 	}
 
 	if version == "4" {
-		this.ipV4Items = append(this.ipV4Items, ipv4ItemV1{
-			IPFrom: uint32(ipFrom),
-			IPTo:   uint32(ipTo),
+		this.ipV4Items = append(this.ipV4Items, ipv4ItemV2{
+			IPFrom: ipFromV4,
+			IPTo:   ipToV4,
 			Region: region,
 		})
 	} else {
-		this.ipV6Items = append(this.ipV6Items, ipv6ItemV1{
-			IPFrom: ipFrom,
-			IPTo:   ipTo,
+		this.ipV6Items = append(this.ipV6Items, ipv6ItemV2{
+			IPFrom: ipFromV6,
+			IPTo:   ipToV6,
 			Region: region,
 		})
 	}
@@ -322,26 +350,11 @@ func (this *Reader) parseLine(line []byte) error {
 	return nil
 }
 
-func (this *Reader) decodeUint64(s string) uint64 {
+func (this *ReaderV2) decodeUint64(s string) uint64 {
 	if this.meta != nil && this.meta.Version == Version2 {
 		i, _ := strconv.ParseUint(s, 32, 64)
 		return i
 	}
 	i, _ := strconv.ParseUint(s, 10, 64)
 	return i
-}
-
-func (this *Reader) ip2long(netIP net.IP) uint64 {
-	if len(netIP) == 0 {
-		return 0
-	}
-
-	var b4 = netIP.To4()
-	if b4 != nil {
-		return uint64(binary.BigEndian.Uint32(b4.To4()))
-	}
-
-	var i = big.NewInt(0)
-	i.SetBytes(netIP.To16())
-	return i.Uint64()
 }
