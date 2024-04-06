@@ -3,6 +3,7 @@
 package iputils
 
 import (
+	"bytes"
 	"encoding/binary"
 	"encoding/hex"
 	"math"
@@ -51,6 +52,10 @@ func IsIPv4(ipString string) bool {
 func IsIPv6(ipString string) bool {
 	var rawIP = net.ParseIP(ipString)
 	return rawIP != nil && rawIP.To4() == nil && rawIP.To16() != nil
+}
+
+func IsValid(ipString string) bool {
+	return net.ParseIP(ipString) != nil
 }
 
 func CompareLong(i1 string, i2 string) int {
@@ -105,6 +110,9 @@ func ToLong(ip string) string {
 }
 
 func ToHex(ip string) string {
+	if len(ip) == 0 {
+		return ""
+	}
 	var rawIP = net.ParseIP(ip)
 	if rawIP == nil {
 		return ""
@@ -115,6 +123,38 @@ func ToHex(ip string) string {
 	}
 
 	return hex.EncodeToString(rawIP.To16())
+}
+
+func ToBytes(ip string) []byte {
+	if len(ip) == 0 {
+		return nil
+	}
+	var rawIP = net.ParseIP(ip)
+	if rawIP == nil {
+		return nil
+	}
+
+	if rawIP.To4() != nil {
+		return rawIP.To4()
+	}
+
+	return rawIP.To16()
+}
+
+func CompareBytes(b1 []byte, b2 []byte) int {
+	var l1 = len(b1)
+	var l2 = len(b2)
+	if l1 < l2 {
+		return -1
+	}
+	if l1 > l2 {
+		return 1
+	}
+	return bytes.Compare(b1, b2)
+}
+
+func CompareIP(ip1 string, ip2 string) int {
+	return CompareBytes(ToBytes(ip1), ToBytes(ip2))
 }
 
 func ToLittleLong(ip string) string {

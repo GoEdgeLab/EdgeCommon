@@ -21,6 +21,7 @@ func TestIP_ParseIP(t *testing.T) {
 		a.IsFalse(iputils.IsIPv6("127.0.0.1"))
 		t.Log(i.String(), i.ToLong())
 		t.Log("raw:", i.Raw())
+		a.IsTrue(iputils.IsValid("127.0.0.1"))
 	}
 
 	{
@@ -63,6 +64,7 @@ func TestIP_ParseIP(t *testing.T) {
 			a.IsFalse(i.IsIPv4())
 			a.IsTrue(i.IsIPv6())
 			a.IsTrue(i.IsValid())
+			a.IsTrue(iputils.IsValid("2001:db8:0:1::2:101"))
 		}
 	}
 
@@ -72,6 +74,7 @@ func TestIP_ParseIP(t *testing.T) {
 		a.IsFalse(i.IsIPv4())
 		a.IsFalse(i.IsIPv6())
 		a.IsFalse(i.IsValid())
+		a.IsFalse(iputils.IsValid("WRONG IP"))
 		a.IsFalse(iputils.IsIPv4("WRONG IP"))
 		a.IsFalse(iputils.IsIPv6("WRONG IP"))
 	}
@@ -206,6 +209,24 @@ func TestIP_Memory(t *testing.T) {
 	for _, v := range list {
 		_ = v
 	}
+}
+
+func TestToBytes(t *testing.T) {
+	var a = assert.NewAssertion(t)
+	a.IsTrue(len(iputils.ToBytes("a")) == 0)
+	a.IsTrue(len(iputils.ToBytes("192.168.1.100")) == 4)
+	a.IsTrue(len(iputils.ToBytes("::1")) == 16)
+}
+
+func TestCompareIP(t *testing.T) {
+	var a = assert.NewAssertion(t)
+	a.IsTrue(iputils.CompareIP("a", "b") == 0)
+	a.IsTrue(iputils.CompareIP("192.168.1.100", "192.168.1.1") > 0)
+	a.IsTrue(iputils.CompareIP("192.168.1.100", "10.168.1.1") > 0)
+	a.IsTrue(iputils.CompareIP("192.168.1.100", "192.168.2.1") < 0)
+	a.IsTrue(iputils.CompareIP("192.168.1.100", "::1") < 0)
+	a.IsTrue(iputils.CompareIP("::1", "192.168.1.100") > 0)
+	a.IsTrue(iputils.CompareIP("192.168.1.100", "192.168.1.100") == 0)
 }
 
 func BenchmarkParse(b *testing.B) {
