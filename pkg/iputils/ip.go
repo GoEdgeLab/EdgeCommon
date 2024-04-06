@@ -4,7 +4,7 @@ package iputils
 
 import (
 	"encoding/binary"
-	"fmt"
+	"encoding/hex"
 	"math"
 	"math/big"
 	"net"
@@ -111,10 +111,10 @@ func ToHex(ip string) string {
 	}
 
 	if rawIP.To4() != nil {
-		return fmt.Sprintf("%x", rawIP.To4())
+		return hex.EncodeToString(rawIP.To4())
 	}
 
-	return fmt.Sprintf("%x", rawIP.To16())
+	return hex.EncodeToString(rawIP.To16())
 }
 
 func ToLittleLong(ip string) string {
