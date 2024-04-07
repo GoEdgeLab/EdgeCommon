@@ -38,7 +38,7 @@ type HTTPFirewallCaptchaAction struct {
 	GeeTestConfig GeeTestConfig `yaml:"geeTestConfig" json:"geeTestConfig"`
 }
 
-func DefaultHTTPFirewallCaptchaAction() *HTTPFirewallCaptchaAction {
+func NewHTTPFirewallCaptchaAction() *HTTPFirewallCaptchaAction {
 	return &HTTPFirewallCaptchaAction{
 		Life:              600,
 		MaxFails:          100,

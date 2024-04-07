@@ -12,12 +12,15 @@ type HTTPFirewallBlockAction struct {
 	Timeout    int32         `yaml:"timeout" json:"timeout"`       // 最小封禁时长
 	TimeoutMax int32         `yaml:"timeoutMax" json:"timeoutMax"` // 最大封禁时长
 	Scope      FirewallScope `yaml:"scope" json:"scope"`
+
+	FailBlockScopeAll bool `yaml:"failBlockScopeAll" json:"failBlockScopeAll"`
 }
 
-func DefaultHTTPFirewallBlockAction() *HTTPFirewallBlockAction {
+func NewHTTPFirewallBlockAction() *HTTPFirewallBlockAction {
 	return &HTTPFirewallBlockAction{
-		StatusCode: http.StatusForbidden,
-		Body:       "Blocked By WAF",
-		Timeout:    300,
+		StatusCode:        http.StatusForbidden,
+		Body:              "Blocked By WAF",
+		Timeout:           300,
+		FailBlockScopeAll: true,
 	}
 }

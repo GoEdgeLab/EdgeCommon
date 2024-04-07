@@ -18,4 +18,5 @@ message HTTPFirewallPolicy {
 	bytes blockOptionsJSON = 11; // 阻止动作配置
 	bytes pageOptionsJSON = 13; // 显示网页动作配置
 	bytes captchaOptionsJSON = 12; // 人机识别配置
+	bytes jsCookieOptionsJSON = 14; // JSCookie动作配置
 }

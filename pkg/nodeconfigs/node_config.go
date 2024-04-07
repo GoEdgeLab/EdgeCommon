@@ -631,6 +631,15 @@ func (this *NodeConfig) lookupWeb(server *serverconfigs.ServerConfig, web *serve
 			if (web.FirewallPolicy.CaptchaOptions == nil || !web.FirewallPolicy.CaptchaOptions.IsPrior) && server.HTTPFirewallPolicy.CaptchaOptions != nil {
 				web.FirewallPolicy.CaptchaOptions = server.HTTPFirewallPolicy.CaptchaOptions
 			}
+			if (web.FirewallPolicy.Get302Options == nil || !web.FirewallPolicy.Get302Options.IsPrior) && server.HTTPFirewallPolicy.Get302Options != nil {
+				web.FirewallPolicy.Get302Options = server.HTTPFirewallPolicy.Get302Options
+			}
+			if (web.FirewallPolicy.Post307Options == nil || !web.FirewallPolicy.Post307Options.IsPrior) && server.HTTPFirewallPolicy.Post307Options != nil {
+				web.FirewallPolicy.Post307Options = server.HTTPFirewallPolicy.Post307Options
+			}
+			if (web.FirewallPolicy.JSCookieOptions == nil || !web.FirewallPolicy.JSCookieOptions.IsPrior) && server.HTTPFirewallPolicy.JSCookieOptions != nil {
+				web.FirewallPolicy.JSCookieOptions = server.HTTPFirewallPolicy.JSCookieOptions
+			}
 			if (web.FirewallPolicy.SYNFlood == nil || !web.FirewallPolicy.SYNFlood.IsPrior) && server.HTTPFirewallPolicy.SYNFlood != nil {
 				web.FirewallPolicy.SYNFlood = server.HTTPFirewallPolicy.SYNFlood
 			}

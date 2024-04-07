@@ -13,7 +13,7 @@ type HTTPFirewallPageAction struct {
 }
 
 
-func DefaultHTTPFirewallPageAction() *HTTPFirewallPageAction {
+func NewHTTPFirewallPageAction() *HTTPFirewallPageAction {
 	return &HTTPFirewallPageAction{
 		Status:  http.StatusForbidden,
 		Body:    `<!DOCTYPE html>

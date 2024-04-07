@@ -2611,7 +2611,8 @@
           "code": "rpc checkHTTPFirewallPolicyIPStatus (CheckHTTPFirewallPolicyIPStatusRequest) returns (CheckHTTPFirewallPolicyIPStatusResponse);",
           "doc": "检查IP状态",
           "roles": [
-            "admin"
+            "admin",
+            "user"
           ],
           "isDeprecated": false
         },
@@ -20614,7 +20615,7 @@
     },
     {
       "name": "HTTPFirewallPolicy",
-      "code": "message HTTPFirewallPolicy {\n\tint64 id = 1; // 策略ID\n\tstring name = 2; // 名称\n\tstring mode = 7; // 模式\n\tbool isOn = 3; // 是否启用\n\tstring description = 4; // 描述\n\tbytes inboundJSON = 5; // 入站配置\n\tbytes outboundJSON = 6; // 出站配置\n\tint64 serverId = 8; // 所属网站ID（如果为0表示公共策略）\n\tbool useLocalFirewall = 9; // 是否使用本机防火墙\n\tbytes synFloodJSON = 10; // synflood配置\n\tbytes blockOptionsJSON = 11; // 阻止动作配置\n\tbytes pageOptionsJSON = 13; // 显示网页动作配置\n\tbytes captchaOptionsJSON = 12; // 人机识别配置\n}",
+      "code": "message HTTPFirewallPolicy {\n\tint64 id = 1; // 策略ID\n\tstring name = 2; // 名称\n\tstring mode = 7; // 模式\n\tbool isOn = 3; // 是否启用\n\tstring description = 4; // 描述\n\tbytes inboundJSON = 5; // 入站配置\n\tbytes outboundJSON = 6; // 出站配置\n\tint64 serverId = 8; // 所属网站ID（如果为0表示公共策略）\n\tbool useLocalFirewall = 9; // 是否使用本机防火墙\n\tbytes synFloodJSON = 10; // synflood配置\n\tbytes blockOptionsJSON = 11; // 阻止动作配置\n\tbytes pageOptionsJSON = 13; // 显示网页动作配置\n\tbytes captchaOptionsJSON = 12; // 人机识别配置\n\tbytes jsCookieOptionsJSON = 14; // JSCookie动作配置\n}",
       "doc": "WAF策略"
     },
     {
@@ -22529,7 +22530,7 @@
     },
     {
       "name": "UpdateHTTPFirewallPolicyRequest",
-      "code": "message UpdateHTTPFirewallPolicyRequest {\n\tint64 httpFirewallPolicyId = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring description = 4;\n\trepeated string firewallGroupCodes = 5;\n\tbytes blockOptionsJSON = 6; // 阻止动作配置\n\tbytes pageOptionsJSON = 15; // 显示网页动作配置\n\tbytes captchaOptionsJSON = 11; // 验证码动作配置\n\tstring mode = 7;\n\tbool useLocalFirewall = 8; // 是否使用本地防火墙\n\tbytes synFloodJSON = 9; // SYN Flood相关配置\n\tbytes LogJSON = 10; // 日志相关配置\n\tint64 maxRequestBodySize = 12; // 最大文件尺寸，单位为字节\n\tstring denyCountryHTML = 13; // 区域封禁提示\n\tstring denyProvinceHTML = 14; // 省份封禁提示\n}",
+      "code": "message UpdateHTTPFirewallPolicyRequest {\n\tint64 httpFirewallPolicyId = 1;\n\tbool isOn = 2;\n\tstring name = 3;\n\tstring description = 4;\n\trepeated string firewallGroupCodes = 5;\n\tbytes blockOptionsJSON = 6; // 阻止动作配置\n\tbytes pageOptionsJSON = 15; // 显示网页动作配置\n\tbytes captchaOptionsJSON = 11; // 验证码动作配置\n\tbytes jsCookieOptionsJSON = 16; // JSCookie动作配置\n\tstring mode = 7;\n\tbool useLocalFirewall = 8; // 是否使用本地防火墙\n\tbytes synFloodJSON = 9; // SYN Flood相关配置\n\tbytes LogJSON = 10; // 日志相关配置\n\tint64 maxRequestBodySize = 12; // 最大文件尺寸，单位为字节\n\tstring denyCountryHTML = 13; // 区域封禁提示\n\tstring denyProvinceHTML = 14; // 省份封禁提示\n}",
       "doc": "修改防火墙策略"
     },
     {

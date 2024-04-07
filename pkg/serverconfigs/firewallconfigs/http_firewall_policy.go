@@ -6,16 +6,20 @@ const DefaultMaxRequestBodySize int64 = 256 << 10
 
 // HTTPFirewallPolicy 防火墙策略
 type HTTPFirewallPolicy struct {
-	Id                 int64                        `yaml:"id" json:"id"`
-	IsOn               bool                         `yaml:"isOn" json:"isOn"`
-	ServerId           int64                        `yaml:"serverId" json:"serverId"` // 所属网站ID
-	Name               string                       `yaml:"name" json:"name"`
-	Description        string                       `yaml:"description" json:"description"`
-	Inbound            *HTTPFirewallInboundConfig   `yaml:"inbound" json:"inbound"`
-	Outbound           *HTTPFirewallOutboundConfig  `yaml:"outbound" json:"outbound"`
-	BlockOptions       *HTTPFirewallBlockAction     `yaml:"blockOptions" json:"blockOptions"`
-	CaptchaOptions     *HTTPFirewallCaptchaAction   `yaml:"captchaOptions" json:"captchaOptions"`
-	PageOptions        *HTTPFirewallPageAction      `yaml:"pageOptions" json:"pageOptions"`
+	Id              int64                               `yaml:"id" json:"id"`
+	IsOn            bool                                `yaml:"isOn" json:"isOn"`
+	ServerId        int64                               `yaml:"serverId" json:"serverId"` // 所属网站ID
+	Name            string                              `yaml:"name" json:"name"`
+	Description     string                              `yaml:"description" json:"description"`
+	Inbound         *HTTPFirewallInboundConfig          `yaml:"inbound" json:"inbound"`
+	Outbound        *HTTPFirewallOutboundConfig         `yaml:"outbound" json:"outbound"`
+	BlockOptions    *HTTPFirewallBlockAction            `yaml:"blockOptions" json:"blockOptions"`
+	CaptchaOptions  *HTTPFirewallCaptchaAction          `yaml:"captchaOptions" json:"captchaOptions"`
+	PageOptions     *HTTPFirewallPageAction             `yaml:"pageOptions" json:"pageOptions"`
+	Get302Options   *HTTPFirewallGet302Action           `yaml:"get302Options" json:"get302Options"`
+	Post307Options  *HTTPFirewallPost307Action          `yaml:"post307Options" json:"post307Options"`
+	JSCookieOptions *HTTPFirewallJavascriptCookieAction `yaml:"jsCookieOptions" json:"jsCookieOptions"`
+
 	Mode               FirewallMode                 `yaml:"mode" json:"mode"`
 	UseLocalFirewall   bool                         `yaml:"useLocalFirewall" json:"useLocalFirewall"`
 	SYNFlood           *SYNFloodConfig              `yaml:"synFlood" json:"synFlood"`
