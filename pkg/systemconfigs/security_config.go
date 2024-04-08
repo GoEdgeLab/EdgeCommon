@@ -17,6 +17,7 @@ type SecurityConfig struct {
 	CheckClientRegion      bool     `json:"checkClientRegion"`      // 在登录状态下检查客户端区域
 
 	ClientIPHeaderNames string `json:"clientIPHeaderNames"` // 客户端IP获取报头名称列表
+	ClientIPHeaderOnly  bool   `json:"clientIPHeaderOnly"`  // 是否仅从报头中获取IP
 
 	allowIPRanges []*shared.IPRangeConfig
 }
