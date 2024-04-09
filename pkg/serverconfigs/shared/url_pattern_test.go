@@ -77,6 +77,18 @@ func TestURLPattern_Match(t *testing.T) {
 			result:      false, // because don't have https://HOST in url
 		},
 		{
+			patternType: "wildcard",
+			pattern:     "*.jpg",
+			url:         "https://example.com/index.jpg",
+			result:      true,
+		},
+		{
+			patternType: "wildcard",
+			pattern:     "*.jpg",
+			url:         "https://example.com/index.js",
+			result:      false,
+		},
+		{
 			patternType: "regexp",
 			pattern:     ".*",
 			url:         "https://example.com",
