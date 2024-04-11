@@ -112,6 +112,9 @@ type NodeConfig struct {
 	// DNS
 	DNSResolver *DNSResolverConfig `yaml:"dnsResolver" json:"dnsResolver"`
 
+	// Cluster
+	ClusterSecret string `yaml:"clusterSecret" json:"clusterSecret"`
+
 	paddedId string
 
 	// firewall
