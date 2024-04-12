@@ -16,9 +16,10 @@ message ServerDailyStat {
 	int64 countAttackRequests = 8;
 	int64 attackBytes = 9;
 	bool checkTrafficLimiting = 10;
-	int64 planId = 11;
-	string day = 12;
+	int64 planId = 11; // 套餐ID
+	string day = 12; // 日期 YYYYMMDD
 	string hour = 13;
 	string timeFrom = 14;
 	string timeTo = 15;
+	int64 countIPs = 17; // 独立IP数量
 }

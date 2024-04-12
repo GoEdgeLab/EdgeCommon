@@ -154,6 +154,8 @@ message ComposeServerStatBoardResponse {
 	int64 dailyPeekBandwidthBytes = 2; // 当天带宽峰值
 	int64 monthlyPeekBandwidthBytes = 3; // 当月带宽峰值
 	int64 lastMonthlyPeekBandwidthBytes = 4; // 上个月带宽峰值
+	int64 dailyCountIPs = 9; // 当天独立IP
+	int64 dailyTrafficBytes = 10; // 当天流量
 
 	int32 bandwidthPercentile = 7;
 	repeated ServerBandwidthStat minutelyBandwidthStats = 1; // 分钟级的带宽统计
