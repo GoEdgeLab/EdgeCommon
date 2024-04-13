@@ -63,6 +63,7 @@ service IPItemService {
 // 创建IP
 message CreateIPItemRequest {
 	int64 ipListId = 1; // 所属IP列表ID
+	string value = 15; // IP原始值，比如单个IP、IP范围或者CIDR，指定了原始值后，无需设置ipFrom和ipTo两个参数
 	string ipFrom = 2; // 开始IP
 	string ipTo = 3; // 结束IP（可选）
 	int64 expiredAt = 4; // 过期时间戳（可选）
@@ -90,6 +91,7 @@ message CreateIPItemsRequest {
 
 	message IPItem {
 		int64 ipListId = 1; // IP列表ID
+		string value = 15; // IP原始值，比如单个IP、IP范围或者CIDR，指定了原始值后，无需设置ipFrom和ipTo两个参数
 		string ipFrom = 2; // 开始IP
 		string ipTo = 3; // 结束IP（可选）
 		int64 expiredAt = 4; // 过期时间戳（可选）
@@ -115,8 +117,9 @@ message CreateIPItemsResponse {
 // 修改IP
 message UpdateIPItemRequest {
 	int64 ipItemId = 1;
-	string ipFrom = 2;
-	string ipTo = 3;
+	string value = 8; // IP原始值，比如单个IP、IP范围或者CIDR，指定了原始值后，无需设置ipFrom和ipTo两个参数
+	string ipFrom = 2; // 开始IP
+	string ipTo = 3; // 结束IP（可选）
 	int64 expiredAt = 4;
 	string reason = 5;
 	string type = 6; // 类型
@@ -128,6 +131,7 @@ message UpdateIPItemRequest {
 message DeleteIPItemRequest {
 	int64 ipItemId = 1; // IP条目的ID
 
+	string value = 5; // IP原始值，比如单个IP、IP范围或者CIDR，指定了原始值后，无需设置ipFrom和ipTo两个参数
 	string ipFrom = 2; // v0.4.8新增，开始IP，和ipItemId二选一
 	string ipTo = 3; // v0.4.8新增，结束IP，和ipItemId二选一
 	int64 ipListId = 4; // v0.4.8新增，IP列表，IP所在的IP列表，如果不指定，则会删除所有IP列表中的相关IP信息

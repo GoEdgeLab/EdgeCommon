@@ -11,6 +11,7 @@ import "models/model_node.proto";
 
 message IPItem {
 	int64 id = 1;
+	string value = 22; // 原始值，比如单个IP、IP范围或者CIDR
 	string ipFrom = 2;
 	string ipTo = 3;
 	int64 version = 4;

@@ -9,12 +9,6 @@ import (
 	"testing"
 )
 
-func TestParseCIDR(t *testing.T) {
-	t.Log(configutils.ParseCIDR("192.168.1.1/32"))
-	t.Log(configutils.ParseCIDR("192.168.1.1/24"))
-	t.Log(configutils.ParseCIDR("192.168.1.1/16"))
-}
-
 func TestIsIPv4(t *testing.T) {
 	t.Log(configutils.IsIPv4(net.ParseIP("192.168.1.100")))
 	t.Log(configutils.IsIPv4(net.ParseIP("::1")))

@@ -229,6 +229,13 @@ func TestCompareIP(t *testing.T) {
 	a.IsTrue(iputils.CompareIP("192.168.1.100", "192.168.1.100") == 0)
 }
 
+func TestIsSameVersion(t *testing.T) {
+	var a = assert.NewAssertion(t)
+	a.IsTrue(iputils.IsSameVersion("192.168.1.1", "10.0.0.1"))
+	a.IsTrue(iputils.IsSameVersion("::1", "::5"))
+	a.IsFalse(iputils.IsSameVersion("192.168.1.1", "::5"))
+}
+
 func BenchmarkParse(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		iputils.ParseIP("fd00:6868:6868:0:10ac:d056:3bf6:7452")

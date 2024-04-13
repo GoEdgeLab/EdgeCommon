@@ -54,6 +54,10 @@ func IsIPv6(ipString string) bool {
 	return rawIP != nil && rawIP.To4() == nil && rawIP.To16() != nil
 }
 
+func IsSameVersion(ip1 string, ip2 string) bool {
+	return IsIPv4(ip1) == IsIPv4(ip2)
+}
+
 func IsValid(ipString string) bool {
 	return net.ParseIP(ipString) != nil
 }

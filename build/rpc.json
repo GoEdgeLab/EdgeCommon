@@ -15500,7 +15500,7 @@
     },
     {
       "name": "CreateIPItemRequest",
-      "code": "message CreateIPItemRequest {\n\tint64 ipListId = 1; // 所属IP列表ID\n\tstring ipFrom = 2; // 开始IP\n\tstring ipTo = 3; // 结束IP（可选）\n\tint64 expiredAt = 4; // 过期时间戳（可选）\n\tstring reason = 5; // 加入理由（可选）\n\tstring type = 6; // IP类型，值为ipv4或ipv6\n\tstring eventLevel = 7; // 级别：debug, notice, warning, error, critical, fatal\n\n\tint64 nodeId = 8; // 可选项，所属节点ID\n\tint64 serverId = 9; // 可选项，所属网站ID\n\n\tint64 sourceNodeId = 10; // 可选项，来源节点\n\tint64 sourceServerId = 11;  // 可选项，来源网站ID\n\tint64 sourceHTTPFirewallPolicyId = 12; // 可选项，来源WAF策略ID\n\tint64 sourceHTTPFirewallRuleGroupId = 13; // 可选项，来源WAF规则分组ID\n\tint64 sourceHTTPFirewallRuleSetId = 14; // 可选项，来源WAF规则集ID\n}",
+      "code": "message CreateIPItemRequest {\n\tint64 ipListId = 1; // 所属IP列表ID\n\tstring value = 15; // IP原始值，比如单个IP、IP范围或者CIDR，指定了原始值后，无需设置ipFrom和ipTo两个参数\n\tstring ipFrom = 2; // 开始IP\n\tstring ipTo = 3; // 结束IP（可选）\n\tint64 expiredAt = 4; // 过期时间戳（可选）\n\tstring reason = 5; // 加入理由（可选）\n\tstring type = 6; // IP类型，值为ipv4或ipv6\n\tstring eventLevel = 7; // 级别：debug, notice, warning, error, critical, fatal\n\n\tint64 nodeId = 8; // 可选项，所属节点ID\n\tint64 serverId = 9; // 可选项，所属网站ID\n\n\tint64 sourceNodeId = 10; // 可选项，来源节点\n\tint64 sourceServerId = 11;  // 可选项，来源网站ID\n\tint64 sourceHTTPFirewallPolicyId = 12; // 可选项，来源WAF策略ID\n\tint64 sourceHTTPFirewallRuleGroupId = 13; // 可选项，来源WAF规则分组ID\n\tint64 sourceHTTPFirewallRuleSetId = 14; // 可选项，来源WAF规则集ID\n}",
       "doc": "创建IP"
     },
     {
@@ -15510,7 +15510,7 @@
     },
     {
       "name": "CreateIPItemsRequest",
-      "code": "message CreateIPItemsRequest {\n\trepeated IPItem ipItems = 1; // 要创建的IP列表\n\n\n\tmessage IPItem {\n\t\tint64 ipListId = 1; // IP列表ID\n\t\tstring ipFrom = 2; // 开始IP\n\t\tstring ipTo = 3; // 结束IP（可选）\n\t\tint64 expiredAt = 4; // 过期时间戳（可选）\n\t\tstring reason = 5; // 加入理由（可选）\n\t\tstring type = 6; // 类型\n\t\tstring eventLevel = 7; // 级别\n\n\t\tint64 nodeId = 8; // 所属节点ID\n\t\tint64 serverId = 9; // 所属服务ID\n\n\t\tint64 sourceNodeId = 10;\n\t\tint64 sourceServerId = 11;\n\t\tint64 sourceHTTPFirewallPolicyId = 12;\n\t\tint64 sourceHTTPFirewallRuleGroupId = 13;\n\t\tint64 sourceHTTPFirewallRuleSetId = 14;\n\t}\n}",
+      "code": "message CreateIPItemsRequest {\n\trepeated IPItem ipItems = 1; // 要创建的IP列表\n\n\n\tmessage IPItem {\n\t\tint64 ipListId = 1; // IP列表ID\n\t\tstring value = 15; // IP原始值，比如单个IP、IP范围或者CIDR，指定了原始值后，无需设置ipFrom和ipTo两个参数\n\t\tstring ipFrom = 2; // 开始IP\n\t\tstring ipTo = 3; // 结束IP（可选）\n\t\tint64 expiredAt = 4; // 过期时间戳（可选）\n\t\tstring reason = 5; // 加入理由（可选）\n\t\tstring type = 6; // 类型\n\t\tstring eventLevel = 7; // 级别\n\n\t\tint64 nodeId = 8; // 所属节点ID\n\t\tint64 serverId = 9; // 所属服务ID\n\n\t\tint64 sourceNodeId = 10;\n\t\tint64 sourceServerId = 11;\n\t\tint64 sourceHTTPFirewallPolicyId = 12;\n\t\tint64 sourceHTTPFirewallRuleGroupId = 13;\n\t\tint64 sourceHTTPFirewallRuleSetId = 14;\n\t}\n}",
       "doc": "创建一组IP"
     },
     {
@@ -16350,7 +16350,7 @@
     },
     {
       "name": "DeleteIPItemRequest",
-      "code": "message DeleteIPItemRequest {\n\tint64 ipItemId = 1; // IP条目的ID\n\n\tstring ipFrom = 2; // v0.4.8新增，开始IP，和ipItemId二选一\n\tstring ipTo = 3; // v0.4.8新增，结束IP，和ipItemId二选一\n\tint64 ipListId = 4; // v0.4.8新增，IP列表，IP所在的IP列表，如果不指定，则会删除所有IP列表中的相关IP信息\n}",
+      "code": "message DeleteIPItemRequest {\n\tint64 ipItemId = 1; // IP条目的ID\n\n\tstring value = 5; // IP原始值，比如单个IP、IP范围或者CIDR，指定了原始值后，无需设置ipFrom和ipTo两个参数\n\tstring ipFrom = 2; // v0.4.8新增，开始IP，和ipItemId二选一\n\tstring ipTo = 3; // v0.4.8新增，结束IP，和ipItemId二选一\n\tint64 ipListId = 4; // v0.4.8新增，IP列表，IP所在的IP列表，如果不指定，则会删除所有IP列表中的相关IP信息\n}",
       "doc": "删除IP\n可以使用 ipItemId 删除，也可以使用 ipFrom+ipTo+ipListId 删除，如果只是单个IP，则不需要指定ipTo"
     },
     {
@@ -20645,7 +20645,7 @@
     },
     {
       "name": "IPItem",
-      "code": "message IPItem {\n\tint64 id = 1;\n\tstring ipFrom = 2;\n\tstring ipTo = 3;\n\tint64 version = 4;\n\tint64 expiredAt = 5;\n\tstring reason = 6;\n\tint64 listId = 7;\n\tbool isDeleted = 8;\n\tstring type = 9;\n\tstring eventLevel = 10; // 级别\n\tstring listType = 11; // 所在名单类型，来自名单\n\tbool isGlobal = 20; // 是否全局，来自名单\n\tint64 createdAt = 12;\n\n\tint64 nodeId = 13;\n\tint64 serverId = 14;\n\n\tint64 sourceNodeId = 15;\n\tint64 sourceServerId = 16;\n\tint64 sourceHTTPFirewallPolicyId = 17;\n\tint64 sourceHTTPFirewallRuleGroupId = 18;\n\tint64 sourceHTTPFirewallRuleSetId = 19;\n\n\tbool isRead = 21;\n\n\tServer sourceServer = 30;\n\tServer server = 34;\n\tHTTPFirewallPolicy  sourceHTTPFirewallPolicy = 31;\n\tHTTPFirewallRuleGroup sourceHTTPFirewallRuleGroup = 32;\n\tHTTPFirewallRuleSet sourceHTTPFirewallRuleSet = 33;\n\tNode sourceNode = 35;\n\n}",
+      "code": "message IPItem {\n\tint64 id = 1;\n\tstring value = 22; // 原始值，比如单个IP、IP范围或者CIDR\n\tstring ipFrom = 2;\n\tstring ipTo = 3;\n\tint64 version = 4;\n\tint64 expiredAt = 5;\n\tstring reason = 6;\n\tint64 listId = 7;\n\tbool isDeleted = 8;\n\tstring type = 9;\n\tstring eventLevel = 10; // 级别\n\tstring listType = 11; // 所在名单类型，来自名单\n\tbool isGlobal = 20; // 是否全局，来自名单\n\tint64 createdAt = 12;\n\n\tint64 nodeId = 13;\n\tint64 serverId = 14;\n\n\tint64 sourceNodeId = 15;\n\tint64 sourceServerId = 16;\n\tint64 sourceHTTPFirewallPolicyId = 17;\n\tint64 sourceHTTPFirewallRuleGroupId = 18;\n\tint64 sourceHTTPFirewallRuleSetId = 19;\n\n\tbool isRead = 21;\n\n\tServer sourceServer = 30;\n\tServer server = 34;\n\tHTTPFirewallPolicy  sourceHTTPFirewallPolicy = 31;\n\tHTTPFirewallRuleGroup sourceHTTPFirewallRuleGroup = 32;\n\tHTTPFirewallRuleSet sourceHTTPFirewallRuleSet = 33;\n\tNode sourceNode = 35;\n\n}",
       "doc": ""
     },
     {
@@ -22770,7 +22770,7 @@
     },
     {
       "name": "UpdateIPItemRequest",
-      "code": "message UpdateIPItemRequest {\n\tint64 ipItemId = 1;\n\tstring ipFrom = 2;\n\tstring ipTo = 3;\n\tint64 expiredAt = 4;\n\tstring reason = 5;\n\tstring type = 6; // 类型\n\tstring eventLevel = 7; // 级别\n}",
+      "code": "message UpdateIPItemRequest {\n\tint64 ipItemId = 1;\n\tstring value = 8; // IP原始值，比如单个IP、IP范围或者CIDR，指定了原始值后，无需设置ipFrom和ipTo两个参数\n\tstring ipFrom = 2; // 开始IP\n\tstring ipTo = 3; // 结束IP（可选）\n\tint64 expiredAt = 4;\n\tstring reason = 5;\n\tstring type = 6; // 类型\n\tstring eventLevel = 7; // 级别\n}",
       "doc": "修改IP"
     },
     {
