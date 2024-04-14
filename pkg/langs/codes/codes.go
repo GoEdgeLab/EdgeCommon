@@ -544,7 +544,6 @@ const (
 	Server_MenuSettingUAM                                       langs.MessageCode = "server@menu_setting_uam"                                             // 5秒盾
 	Server_MenuSettingUDP                                       langs.MessageCode = "server@menu_setting_udp"                                             // UDP
 	Server_MenuSettingUDPProxy                                  langs.MessageCode = "server@menu_setting_udp_proxy"                                       // UDP代理
-	Server_MenuSettingUnix                                      langs.MessageCode = "server@menu_setting_unix"                                            // Unix
 	Server_MenuSettingUserAgents                                langs.MessageCode = "server@menu_setting_user_agents"                                     // UA名单
 	Server_MenuSettingWAF                                       langs.MessageCode = "server@menu_setting_waf"                                             // WAF
 	Server_MenuSettingWebP                                      langs.MessageCode = "server@menu_setting_webp"                                            // WebP

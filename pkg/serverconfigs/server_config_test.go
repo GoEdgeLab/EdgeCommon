@@ -22,16 +22,6 @@ func TestServerConfig_Protocols(t *testing.T) {
 				},
 			},
 		}}
-		server.HTTPS = &HTTPSProtocolConfig{BaseProtocol: BaseProtocol{
-			IsOn: true,
-			Listen: []*NetworkAddressConfig{
-				{
-					Protocol:  ProtocolUnix,
-					Host:      "/hello.sock",
-					PortRange: "1235",
-				},
-			},
-		}}
 		server.TCP = &TCPProtocolConfig{BaseProtocol: BaseProtocol{
 			IsOn: true,
 			Listen: []*NetworkAddressConfig{
@@ -46,15 +36,6 @@ func TestServerConfig_Protocols(t *testing.T) {
 			Listen: []*NetworkAddressConfig{
 				{
 					Protocol:  ProtocolTCP,
-					PortRange: "1234",
-				},
-			},
-		}}
-		server.Unix = &UnixProtocolConfig{BaseProtocol: BaseProtocol{
-			IsOn: true,
-			Listen: []*NetworkAddressConfig{
-				{
-					Protocol:  ProtocolTLS,
 					PortRange: "1234",
 				},
 			},

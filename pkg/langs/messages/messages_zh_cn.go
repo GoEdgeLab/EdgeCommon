@@ -545,7 +545,6 @@ func init() {
 		"server@menu_setting_uam":                                             "5秒盾",
 		"server@menu_setting_udp":                                             "UDP",
 		"server@menu_setting_udp_proxy":                                       "UDP代理",
-		"server@menu_setting_unix":                                            "Unix",
 		"server@menu_setting_user_agents":                                     "UA名单",
 		"server@menu_setting_waf":                                             "WAF",
 		"server@menu_setting_webp":                                            "WebP",

@@ -48,7 +48,6 @@
   "menu_setting_others": "Others",
   "menu_setting_tcp": "TCP",
   "menu_setting_tls": "TLS",
-  "menu_setting_unix": "Unix",
   "menu_setting_udp": "UDP",
   "menu_setting_delete": "Delete",
   "menu_setting_http_proxy": "HTTP Reverse Proxy", // in site groups

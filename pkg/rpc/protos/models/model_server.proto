@@ -36,7 +36,6 @@ message Server {
 	bytes httpsJSON = 10;
 	bytes tcpJSON = 11;
 	bytes tlsJSON = 12;
-	bytes unixJSON = 13;
 	bytes udpJSON = 14;
 	int64 webId = 15;
 	bytes reverseProxyJSON = 16;

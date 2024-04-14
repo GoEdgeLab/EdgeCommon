@@ -73,10 +73,6 @@ func (this *NetworkAddressConfig) Init() error {
 
 // Addresses 所有的地址列表，不包括scheme
 func (this *NetworkAddressConfig) Addresses() []string {
-	if this.Protocol == ProtocolUnix {
-		return []string{this.Host}
-	}
-
 	result := []string{}
 	for i := this.MinPort; i <= this.MaxPort; i++ {
 		host := this.Host
@@ -87,10 +83,6 @@ func (this *NetworkAddressConfig) Addresses() []string {
 
 // FullAddresses 所有的地址列表，包含scheme
 func (this *NetworkAddressConfig) FullAddresses() []string {
-	if this.Protocol == ProtocolUnix {
-		return []string{this.Protocol.String() + ":" + this.Host}
-	}
-
 	result := []string{}
 	for i := this.MinPort; i <= this.MaxPort; i++ {
 		host := this.Host

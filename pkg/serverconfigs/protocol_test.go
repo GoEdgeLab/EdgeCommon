@@ -17,6 +17,5 @@ func TestProtocol_IsHTTPFamily(t *testing.T) {
 	a.IsTrue(ProtocolTCP.IsTCPFamily())
 	a.IsTrue(ProtocolTCP.IsTCPFamily())
 	a.IsTrue(ProtocolTCP6.IsTCPFamily())
-	a.IsTrue(ProtocolUnix.IsUnixFamily())
 	a.IsTrue(ProtocolUDP.IsUDPFamily())
 }

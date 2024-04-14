@@ -31,7 +31,6 @@ const (
 	ServerService_UpdateServerHTTPS_FullMethodName                         = "/pb.ServerService/updateServerHTTPS"
 	ServerService_UpdateServerTCP_FullMethodName                           = "/pb.ServerService/updateServerTCP"
 	ServerService_UpdateServerTLS_FullMethodName                           = "/pb.ServerService/updateServerTLS"
-	ServerService_UpdateServerUnix_FullMethodName                          = "/pb.ServerService/updateServerUnix"
 	ServerService_UpdateServerUDP_FullMethodName                           = "/pb.ServerService/updateServerUDP"
 	ServerService_UpdateServerWeb_FullMethodName                           = "/pb.ServerService/updateServerWeb"
 	ServerService_UpdateServerReverseProxy_FullMethodName                  = "/pb.ServerService/updateServerReverseProxy"
@@ -114,8 +113,6 @@ type ServerServiceClient interface {
 	UpdateServerTCP(ctx context.Context, in *UpdateServerTCPRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 修改网站的TLS设置
 	UpdateServerTLS(ctx context.Context, in *UpdateServerTLSRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
-	// 修改网站的Unix设置
-	UpdateServerUnix(ctx context.Context, in *UpdateServerUnixRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 修改网站的UDP设置
 	UpdateServerUDP(ctx context.Context, in *UpdateServerUDPRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 修改网站的Web设置
@@ -332,15 +329,6 @@ func (c *serverServiceClient) UpdateServerTCP(ctx context.Context, in *UpdateSer
 func (c *serverServiceClient) UpdateServerTLS(ctx context.Context, in *UpdateServerTLSRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
 	out := new(RPCSuccess)
 	err := c.cc.Invoke(ctx, ServerService_UpdateServerTLS_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *serverServiceClient) UpdateServerUnix(ctx context.Context, in *UpdateServerUnixRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
-	out := new(RPCSuccess)
-	err := c.cc.Invoke(ctx, ServerService_UpdateServerUnix_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -843,8 +831,6 @@ type ServerServiceServer interface {
 	UpdateServerTCP(context.Context, *UpdateServerTCPRequest) (*RPCSuccess, error)
 	// 修改网站的TLS设置
 	UpdateServerTLS(context.Context, *UpdateServerTLSRequest) (*RPCSuccess, error)
-	// 修改网站的Unix设置
-	UpdateServerUnix(context.Context, *UpdateServerUnixRequest) (*RPCSuccess, error)
 	// 修改网站的UDP设置
 	UpdateServerUDP(context.Context, *UpdateServerUDPRequest) (*RPCSuccess, error)
 	// 修改网站的Web设置
@@ -990,9 +976,6 @@ func (UnimplementedServerServiceServer) UpdateServerTCP(context.Context, *Update
 }
 func (UnimplementedServerServiceServer) UpdateServerTLS(context.Context, *UpdateServerTLSRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerTLS not implemented")
-}
-func (UnimplementedServerServiceServer) UpdateServerUnix(context.Context, *UpdateServerUnixRequest) (*RPCSuccess, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerUnix not implemented")
 }
 func (UnimplementedServerServiceServer) UpdateServerUDP(context.Context, *UpdateServerUDPRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateServerUDP not implemented")
@@ -1374,24 +1357,6 @@ func _ServerService_UpdateServerTLS_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ServerServiceServer).UpdateServerTLS(ctx, req.(*UpdateServerTLSRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ServerService_UpdateServerUnix_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateServerUnixRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServerServiceServer).UpdateServerUnix(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ServerService_UpdateServerUnix_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServerServiceServer).UpdateServerUnix(ctx, req.(*UpdateServerUnixRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2386,10 +2351,6 @@ var ServerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "updateServerTLS",
 			Handler:    _ServerService_UpdateServerTLS_Handler,
-		},
-		{
-			MethodName: "updateServerUnix",
-			Handler:    _ServerService_UpdateServerUnix_Handler,
 		},
 		{
 			MethodName: "updateServerUDP",

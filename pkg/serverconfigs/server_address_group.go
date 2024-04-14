@@ -86,9 +86,6 @@ func (this *ServerAddressGroup) Protocol() Protocol {
 // Addr 获取当前分组的地址
 func (this *ServerAddressGroup) Addr() string {
 	protocol := this.Protocol()
-	if protocol == ProtocolUnix {
-		return strings.TrimPrefix(this.fullAddr, protocol.String()+":")
-	}
 	return strings.TrimPrefix(this.fullAddr, protocol.String()+"://")
 }
 
@@ -119,12 +116,6 @@ func (this *ServerAddressGroup) IsTCP() bool {
 func (this *ServerAddressGroup) IsTLS() bool {
 	p := this.Protocol()
 	return p == ProtocolTLS || p == ProtocolTLS4 || p == ProtocolTLS6
-}
-
-// IsUnix 判断当前分组是否为Unix
-func (this *ServerAddressGroup) IsUnix() bool {
-	p := this.Protocol()
-	return p == ProtocolUnix
 }
 
 // IsUDP 判断当前分组是否为UDP

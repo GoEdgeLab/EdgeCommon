@@ -27,12 +27,6 @@ func TestServerAddressGroup_Protocol(t *testing.T) {
 		a.IsTrue(group.Protocol() == ProtocolHTTP)
 		a.IsTrue(group.Addr() == "127.0.0.1:1234")
 	}
-
-	{
-		group := NewServerAddressGroup("unix:/tmp/my.sock")
-		a.IsTrue(group.Protocol() == ProtocolUnix)
-		a.IsTrue(group.Addr() == "/tmp/my.sock")
-	}
 }
 
 func TestServerAddressGroup_MatchServerName(t *testing.T) {

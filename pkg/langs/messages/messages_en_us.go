@@ -545,7 +545,6 @@ func init() {
 		"server@menu_setting_uam":                                             "UAM",
 		"server@menu_setting_udp":                                             "UDP",
 		"server@menu_setting_udp_proxy":                                       "UDP Reverse Proxy",
-		"server@menu_setting_unix":                                            "Unix",
 		"server@menu_setting_user_agents":                                     "UA List",
 		"server@menu_setting_waf":                                             "WAF",
 		"server@menu_setting_webp":                                            "WebP",
