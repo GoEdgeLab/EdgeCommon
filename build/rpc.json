@@ -9485,6 +9485,18 @@
             "user"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "updateOriginIsOn",
+          "requestMessageName": "UpdateOriginIsOnRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateOriginIsOn(UpdateOriginIsOnRequest) returns (RPCSuccess);",
+          "doc": "设置源站是否启用",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "isDeprecated": false
         }
       ],
       "filename": "service_origin.proto",
@@ -23252,6 +23264,11 @@
       "name": "UpdateOrderMethodRequest",
       "code": "message UpdateOrderMethodRequest {\n\tint64 orderMethodId = 1;\n\tstring name = 2;\n\tstring code = 3;\n\tstring description = 4;\n\n\tstring url = 5;\n\n\tbytes paramsJSON = 7; // 预设支付方式参数\n\n\tbool isOn = 6;\n\tstring clientType = 8;\n\tstring qrcodeTitle = 9;\n}",
       "doc": "修改支付方式\n不允许修改父级支付方式"
+    },
+    {
+      "name": "UpdateOriginIsOnRequest",
+      "code": "message UpdateOriginIsOnRequest {\n\tint64 originId = 1; // 源站ID\n\tbool isOn = 2; // 是否启用\n}",
+      "doc": "设置源站是否启用"
     },
     {
       "name": "UpdateOriginRequest",

@@ -23,6 +23,7 @@ const (
 	OriginService_UpdateOrigin_FullMethodName            = "/pb.OriginService/updateOrigin"
 	OriginService_FindEnabledOrigin_FullMethodName       = "/pb.OriginService/findEnabledOrigin"
 	OriginService_FindEnabledOriginConfig_FullMethodName = "/pb.OriginService/findEnabledOriginConfig"
+	OriginService_UpdateOriginIsOn_FullMethodName        = "/pb.OriginService/updateOriginIsOn"
 )
 
 // OriginServiceClient is the client API for OriginService service.
@@ -37,6 +38,8 @@ type OriginServiceClient interface {
 	FindEnabledOrigin(ctx context.Context, in *FindEnabledOriginRequest, opts ...grpc.CallOption) (*FindEnabledOriginResponse, error)
 	// 查找源站配置
 	FindEnabledOriginConfig(ctx context.Context, in *FindEnabledOriginConfigRequest, opts ...grpc.CallOption) (*FindEnabledOriginConfigResponse, error)
+	// 设置源站是否启用
+	UpdateOriginIsOn(ctx context.Context, in *UpdateOriginIsOnRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
 
 type originServiceClient struct {
@@ -83,6 +86,15 @@ func (c *originServiceClient) FindEnabledOriginConfig(ctx context.Context, in *F
 	return out, nil
 }
 
+func (c *originServiceClient) UpdateOriginIsOn(ctx context.Context, in *UpdateOriginIsOnRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, OriginService_UpdateOriginIsOn_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OriginServiceServer is the server API for OriginService service.
 // All implementations should embed UnimplementedOriginServiceServer
 // for forward compatibility
@@ -95,6 +107,8 @@ type OriginServiceServer interface {
 	FindEnabledOrigin(context.Context, *FindEnabledOriginRequest) (*FindEnabledOriginResponse, error)
 	// 查找源站配置
 	FindEnabledOriginConfig(context.Context, *FindEnabledOriginConfigRequest) (*FindEnabledOriginConfigResponse, error)
+	// 设置源站是否启用
+	UpdateOriginIsOn(context.Context, *UpdateOriginIsOnRequest) (*RPCSuccess, error)
 }
 
 // UnimplementedOriginServiceServer should be embedded to have forward compatible implementations.
@@ -112,6 +126,9 @@ func (UnimplementedOriginServiceServer) FindEnabledOrigin(context.Context, *Find
 }
 func (UnimplementedOriginServiceServer) FindEnabledOriginConfig(context.Context, *FindEnabledOriginConfigRequest) (*FindEnabledOriginConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindEnabledOriginConfig not implemented")
+}
+func (UnimplementedOriginServiceServer) UpdateOriginIsOn(context.Context, *UpdateOriginIsOnRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOriginIsOn not implemented")
 }
 
 // UnsafeOriginServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -197,6 +214,24 @@ func _OriginService_FindEnabledOriginConfig_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OriginService_UpdateOriginIsOn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOriginIsOnRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OriginServiceServer).UpdateOriginIsOn(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OriginService_UpdateOriginIsOn_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OriginServiceServer).UpdateOriginIsOn(ctx, req.(*UpdateOriginIsOnRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OriginService_ServiceDesc is the grpc.ServiceDesc for OriginService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -219,6 +254,10 @@ var OriginService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findEnabledOriginConfig",
 			Handler:    _OriginService_FindEnabledOriginConfig_Handler,
+		},
+		{
+			MethodName: "updateOriginIsOn",
+			Handler:    _OriginService_UpdateOriginIsOn_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

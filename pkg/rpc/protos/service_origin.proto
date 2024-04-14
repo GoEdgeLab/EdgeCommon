@@ -20,6 +20,9 @@ service OriginService {
 
 	// 查找源站配置
 	rpc findEnabledOriginConfig (FindEnabledOriginConfigRequest) returns (FindEnabledOriginConfigResponse);
+
+	// 设置源站是否启用
+	rpc updateOriginIsOn(UpdateOriginIsOnRequest) returns (RPCSuccess);
 }
 
 // 创建源站
@@ -83,4 +86,10 @@ message FindEnabledOriginConfigRequest {
 
 message FindEnabledOriginConfigResponse {
 	bytes originJSON = 1; // 源站信息
+}
+
+// 设置源站是否启用
+message UpdateOriginIsOnRequest {
+	int64 originId = 1; // 源站ID
+	bool isOn = 2; // 是否启用
 }

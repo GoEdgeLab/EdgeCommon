@@ -1,5 +1,6 @@
 {
   "log_create_origin": "创建源站 %d",
   "log_delete_origin": "删除源站 %d",
-  "log_update_origin": "修改源站 %d"
+  "log_update_origin": "修改源站 %d",
+  "log_update_origin_is_on": "修改源站 %d 启用状态"
 }

@@ -608,6 +608,7 @@ func init() {
 		"server_origin@log_create_origin":                                     "",
 		"server_origin@log_delete_origin":                                     "",
 		"server_origin@log_update_origin":                                     "",
+		"server_origin@log_update_origin_is_on":                               "",
 		"server_page@log_create_page":                                         "",
 		"server_page@log_update_cluster_pages":                                "",
 		"server_page@log_update_page":                                         "",

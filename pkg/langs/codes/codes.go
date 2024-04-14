@@ -607,6 +607,7 @@ const (
 	ServerOrigin_LogCreateOrigin                                langs.MessageCode = "server_origin@log_create_origin"                                     // 创建源站 %d
 	ServerOrigin_LogDeleteOrigin                                langs.MessageCode = "server_origin@log_delete_origin"                                     // 删除源站 %d
 	ServerOrigin_LogUpdateOrigin                                langs.MessageCode = "server_origin@log_update_origin"                                     // 修改源站 %d
+	ServerOrigin_LogUpdateOriginIsOn                            langs.MessageCode = "server_origin@log_update_origin_is_on"                               // 修改源站 %d 启用状态
 	ServerPage_LogCreatePage                                    langs.MessageCode = "server_page@log_create_page"                                         // 创建自定义页面 %d
 	ServerPage_LogUpdateClusterPages                            langs.MessageCode = "server_page@log_update_cluster_pages"                                // 修改集群 %d 自定义页面策略
 	ServerPage_LogUpdatePage                                    langs.MessageCode = "server_page@log_update_page"                                         // 修改自定义页面 %d
