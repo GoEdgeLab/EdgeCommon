@@ -3,6 +3,7 @@
 package serverconfigs
 
 import (
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
 	"net/http"
 	"regexp"
 	"strings"
@@ -84,6 +85,9 @@ type UserAgentConfig struct {
 	IsPrior bool               `yaml:"isPrior" json:"isPrior"`
 	IsOn    bool               `yaml:"isOn" json:"isOn"`
 	Filters []*UserAgentFilter `yaml:"filters" json:"filters"`
+
+	OnlyURLPatterns   []*shared.URLPattern `yaml:"onlyURLPatterns" json:"onlyURLPatterns"`     // 仅限的URL
+	ExceptURLPatterns []*shared.URLPattern `yaml:"exceptURLPatterns" json:"exceptURLPatterns"` // 排除的URL
 }
 
 func NewUserAgentConfig() *UserAgentConfig {
@@ -91,12 +95,29 @@ func NewUserAgentConfig() *UserAgentConfig {
 }
 
 func (this *UserAgentConfig) Init() error {
+	// filters
 	for _, filter := range this.Filters {
 		err := filter.Init()
 		if err != nil {
 			return err
 		}
 	}
+
+	// url patterns
+	for _, pattern := range this.ExceptURLPatterns {
+		err := pattern.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	for _, pattern := range this.OnlyURLPatterns {
+		err := pattern.Init()
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -111,6 +132,29 @@ func (this *UserAgentConfig) AllowRequest(req *http.Request) bool {
 		if filter.Match(userAgent) {
 			return filter.Action == UserAgentActionAllow
 		}
+	}
+
+	return true
+}
+
+func (this *UserAgentConfig) MatchURL(url string) bool {
+	// except
+	if len(this.ExceptURLPatterns) > 0 {
+		for _, pattern := range this.ExceptURLPatterns {
+			if pattern.Match(url) {
+				return false
+			}
+		}
+	}
+
+	// only
+	if len(this.OnlyURLPatterns) > 0 {
+		for _, pattern := range this.OnlyURLPatterns {
+			if pattern.Match(url) {
+				return true
+			}
+		}
+		return false
 	}
 
 	return true
