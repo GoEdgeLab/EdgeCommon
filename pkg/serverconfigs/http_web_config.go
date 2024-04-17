@@ -320,6 +320,14 @@ func (this *HTTPWebConfig) Init(ctx context.Context) error {
 		}
 	}
 
+	// referers
+	if this.Referers != nil {
+		err := this.Referers.Init()
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 

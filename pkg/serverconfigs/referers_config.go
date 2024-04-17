@@ -2,7 +2,10 @@
 
 package serverconfigs
 
-import "github.com/TeaOSLab/EdgeCommon/pkg/configutils"
+import (
+	"github.com/TeaOSLab/EdgeCommon/pkg/configutils"
+	"github.com/TeaOSLab/EdgeCommon/pkg/serverconfigs/shared"
+)
 
 // NewReferersConfig 获取新防盗链配置对象
 func NewReferersConfig() *ReferersConfig {
@@ -20,9 +23,27 @@ type ReferersConfig struct {
 	AllowDomains    []string `yaml:"allowDomains" json:"allowDomains"`       // 允许的来源域名列表
 	DenyDomains     []string `yaml:"denyDomains" json:"denyDomains"`         // 禁止的来源域名列表
 	CheckOrigin     bool     `yaml:"checkOrigin" json:"checkOrigin"`         // 是否检查Origin
+
+	OnlyURLPatterns   []*shared.URLPattern `yaml:"onlyURLPatterns" json:"onlyURLPatterns"`     // 仅限的URL
+	ExceptURLPatterns []*shared.URLPattern `yaml:"exceptURLPatterns" json:"exceptURLPatterns"` // 排除的URL
 }
 
 func (this *ReferersConfig) Init() error {
+	// url patterns
+	for _, pattern := range this.ExceptURLPatterns {
+		err := pattern.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	for _, pattern := range this.OnlyURLPatterns {
+		err := pattern.Init()
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -53,4 +74,27 @@ func (this *ReferersConfig) MatchDomain(requestDomain string, refererDomain stri
 	}
 
 	return false
+}
+
+func (this *ReferersConfig) MatchURL(url string) bool {
+	// except
+	if len(this.ExceptURLPatterns) > 0 {
+		for _, pattern := range this.ExceptURLPatterns {
+			if pattern.Match(url) {
+				return false
+			}
+		}
+	}
+
+	// only
+	if len(this.OnlyURLPatterns) > 0 {
+		for _, pattern := range this.OnlyURLPatterns {
+			if pattern.Match(url) {
+				return true
+			}
+		}
+		return false
+	}
+
+	return true
 }
