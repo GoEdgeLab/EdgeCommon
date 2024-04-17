@@ -118,6 +118,46 @@ func TestURLPattern_Match(t *testing.T) {
 			url:         "https://example.com/123456/789",
 			result:      false,
 		},
+		{
+			patternType: "images",
+			url:         "https://example.com/images/logo.png",
+			result:      true,
+		},
+		{
+			patternType: "images",
+			url:         "https://example.com/images/logo.webp",
+			result:      true,
+		},
+		{
+			patternType: "images",
+			url:         "https://example.com/images/logo.mp3",
+			result:      false,
+		},
+		{
+			patternType: "audios",
+			url:         "https://example.com/audios/music.mp3",
+			result:      true,
+		},
+		{
+			patternType: "audios",
+			url:         "https://example.com/audios/music.mm",
+			result:      false,
+		},
+		{
+			patternType: "videos",
+			url:         "https://example.com/images/movie.mp4",
+			result:      true,
+		},
+		{
+			patternType: "videos",
+			url:         "https://example.com/images/movie.ts",
+			result:      true,
+		},
+		{
+			patternType: "videos",
+			url:         "https://example.com/images/movie.mp5",
+			result:      false,
+		},
 	} {
 		var p = &shared.URLPattern{
 			Type:    ut.patternType,
