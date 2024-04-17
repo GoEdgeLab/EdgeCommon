@@ -41,6 +41,9 @@ type HTTPCompressionConfig struct {
 	Conds                *shared.HTTPRequestCondsConfig `yaml:"conds" json:"conds"`                               // 匹配条件
 	EnablePartialContent bool                           `yaml:"enablePartialContent" json:"enablePartialContent"` // 支持PartialContent压缩
 
+	OnlyURLPatterns   []*shared.URLPattern `yaml:"onlyURLPatterns" json:"onlyURLPatterns"`     // 仅限的URL
+	ExceptURLPatterns []*shared.URLPattern `yaml:"exceptURLPatterns" json:"exceptURLPatterns"` // 排除的URL
+
 	minLength        int64
 	maxLength        int64
 	mimeTypeRules    []*shared.MimeTypeRule
@@ -148,6 +151,21 @@ func (this *HTTPCompressionConfig) Init() error {
 			}
 		case HTTPCompressionTypeZSTD:
 			this.supportZSTD = true
+		}
+	}
+
+	// url patterns
+	for _, pattern := range this.ExceptURLPatterns {
+		err := pattern.Init()
+		if err != nil {
+			return err
+		}
+	}
+
+	for _, pattern := range this.OnlyURLPatterns {
+		err := pattern.Init()
+		if err != nil {
+			return err
 		}
 	}
 
@@ -278,4 +296,27 @@ func (this *HTTPCompressionConfig) MatchAcceptEncoding(acceptEncodings string) (
 	}
 
 	return "", "", false
+}
+
+func (this *HTTPCompressionConfig) MatchURL(url string) bool {
+	// except
+	if len(this.ExceptURLPatterns) > 0 {
+		for _, pattern := range this.ExceptURLPatterns {
+			if pattern.Match(url) {
+				return false
+			}
+		}
+	}
+
+	// only
+	if len(this.OnlyURLPatterns) > 0 {
+		for _, pattern := range this.OnlyURLPatterns {
+			if pattern.Match(url) {
+				return true
+			}
+		}
+		return false
+	}
+
+	return true
 }
