@@ -59,6 +59,8 @@ type GlobalServerConfig struct {
 
 		DomainAuditingIsOn   bool   `yaml:"domainAuditingIsOn" json:"domainAuditingIsOn"`     // 域名是否需要审核
 		DomainAuditingPrompt string `yaml:"domainAuditingPrompt" json:"domainAuditingPrompt"` // 域名审核的提示
+
+		RequestOriginsWithEncodings bool `yaml:"requestOriginsWithEncodings" json:"requestOriginsWithEncodings"` // 使用使用压缩编码回源
 	} `yaml:"httpAll" json:"httpAll"` // HTTP统一配置
 
 	TCPAll struct {
