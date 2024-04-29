@@ -20,6 +20,10 @@ type UserUIConfig struct {
 
 	TimeZone string `json:"timeZone"` // 时区
 
+	DNSResolver struct {
+		Type string `json:"type"` // 类型，参考 DNSResolverType*
+	} `json:"dnsResolver"` // DNS解析设置
+
 	ClientIPHeaderNames string `json:"clientIPHeaderNames"` // 客户端IP获取报头名称列表
 
 	Server struct {
@@ -57,6 +61,9 @@ func NewUserUIConfig() *UserUIConfig {
 		ShowTrafficCharts:   true,
 		TimeZone:            "Asia/Shanghai",
 	}
+
+	// DNS解析设置
+	config.DNSResolver.Type = "default"
 
 	// 服务相关
 	config.Server.CheckCNAME = true
