@@ -27,4 +27,6 @@ message NodeCluster {
 	bytes sshParamsJSON = 21;
 	bool autoSystemTuning = 23; // 是否自动调节系统参数
 	bool autoTrimDisks = 24; // 是否自动TRIM硬盘
+	int32 maxConcurrentReads = 25; // 最大并发读
+	int32 maxConcurrentWrites = 26; // 最大并发写
 }

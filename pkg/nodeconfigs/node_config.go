@@ -91,6 +91,8 @@ type NodeConfig struct {
 	AutoInstallNftables  bool                                    `yaml:"autoInstallNftables" json:"autoInstallNftables"` // 自动安装nftables
 	AutoSystemTuning     bool                                    `yaml:"autoSystemTuning" json:"autoSystemTuning"`       // 自动调整系统参数
 	AutoTrimDisks        bool                                    `yaml:"autoTrimDisks" json:"autoTrimDisks"`             // 自动执行TRIM
+	MaxConcurrentReads   int                                     `yaml:"maxConcurrentReads" json:"maxConcurrentReads"`   // 最大并发读
+	MaxConcurrentWrites  int                                     `yaml:"maxConcurrentWrites" json:"maxConcurrentWrites"` // 最大并发写
 
 	// 指标
 	MetricItems []*serverconfigs.MetricItemConfig `yaml:"metricItems" json:"metricItems"`

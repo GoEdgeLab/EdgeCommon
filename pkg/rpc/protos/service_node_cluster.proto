@@ -190,6 +190,8 @@ message CreateNodeClusterRequest {
 	bool autoInstallNftables = 11; // 自动安装nftables
 	bool autoSystemTuning = 12; // 是否自动调节系统参数
 	bool autoTrimDisks = 13; // 是否自动TRIM硬盘
+	int32 maxConcurrentReads = 15; // 最大并发读
+	int32 maxConcurrentWrites = 16; // 最大并发写
 }
 
 message CreateNodeClusterResponse {
@@ -211,6 +213,8 @@ message UpdateNodeClusterRequest {
 	bytes sshParamsJSON = 12;
 	bool autoSystemTuning = 13; // 是否自动调节系统参数
 	bool autoTrimDisks = 14; // 是否自动TRIM硬盘
+	int32 maxConcurrentReads = 15; // 最大并发读
+	int32 maxConcurrentWrites = 16; // 最大并发写
 }
 
 // 删除集群

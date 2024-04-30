@@ -15791,7 +15791,7 @@
     },
     {
       "name": "CreateNodeClusterRequest",
-      "code": "message CreateNodeClusterRequest {\n\tstring name = 1;\n\tint64 nodeGrantId = 2;\n\tstring installDir = 3;\n\tint64 dnsDomainId = 4;\n\tstring dnsName = 5;\n\tint32 dnsTTL = 9;\n\tint64 httpCachePolicyId = 6;\n\tint64 httpFirewallPolicyId = 7;\n\tbytes systemServicesJSON = 8; // 系统服务设置\n\tbytes globalServerConfigJSON = 10; // 服务全局设置\n\tbool autoInstallNftables = 11; // 自动安装nftables\n\tbool autoSystemTuning = 12; // 是否自动调节系统参数\n\tbool autoTrimDisks = 13; // 是否自动TRIM硬盘\n}",
+      "code": "message CreateNodeClusterRequest {\n\tstring name = 1;\n\tint64 nodeGrantId = 2;\n\tstring installDir = 3;\n\tint64 dnsDomainId = 4;\n\tstring dnsName = 5;\n\tint32 dnsTTL = 9;\n\tint64 httpCachePolicyId = 6;\n\tint64 httpFirewallPolicyId = 7;\n\tbytes systemServicesJSON = 8; // 系统服务设置\n\tbytes globalServerConfigJSON = 10; // 服务全局设置\n\tbool autoInstallNftables = 11; // 自动安装nftables\n\tbool autoSystemTuning = 12; // 是否自动调节系统参数\n\tbool autoTrimDisks = 13; // 是否自动TRIM硬盘\n\tint32 maxConcurrentReads = 15; // 最大并发读\n\tint32 maxConcurrentWrites = 16; // 最大并发写\n}",
       "doc": "创建集群"
     },
     {
@@ -21691,7 +21691,7 @@
     },
     {
       "name": "NodeCluster",
-      "code": "message NodeCluster {\n\tint64 id = 1;\n\tstring name = 2;\n\tint64 createdAt = 3;\n\tint64 nodeGrantId = 4;\n\tstring installDir = 5;\n\tstring uniqueId = 6;\n\tstring secret = 7;\n\tstring dnsName = 8;\n\tint64 dnsDomainId = 9;\n\tstring dnsDefaultRoute = 22; // DNS默认线路\n\tint64 httpCachePolicyId = 10;\n\tint64 httpFirewallPolicyId = 11;\n\tbool isOn = 12;\n\tstring timeZone = 13;\n\tint32 nodeMaxThreads = 14;\n\tbool autoOpenPorts = 16;\n\tbool isPinned = 17;\n\tbytes clockJSON = 18;\n\tbool autoRemoteStart = 19;\n\tbool autoInstallNftables = 20;\n\tbytes sshParamsJSON = 21;\n\tbool autoSystemTuning = 23; // 是否自动调节系统参数\n\tbool autoTrimDisks = 24; // 是否自动TRIM硬盘\n}",
+      "code": "message NodeCluster {\n\tint64 id = 1;\n\tstring name = 2;\n\tint64 createdAt = 3;\n\tint64 nodeGrantId = 4;\n\tstring installDir = 5;\n\tstring uniqueId = 6;\n\tstring secret = 7;\n\tstring dnsName = 8;\n\tint64 dnsDomainId = 9;\n\tstring dnsDefaultRoute = 22; // DNS默认线路\n\tint64 httpCachePolicyId = 10;\n\tint64 httpFirewallPolicyId = 11;\n\tbool isOn = 12;\n\tstring timeZone = 13;\n\tint32 nodeMaxThreads = 14;\n\tbool autoOpenPorts = 16;\n\tbool isPinned = 17;\n\tbytes clockJSON = 18;\n\tbool autoRemoteStart = 19;\n\tbool autoInstallNftables = 20;\n\tbytes sshParamsJSON = 21;\n\tbool autoSystemTuning = 23; // 是否自动调节系统参数\n\tbool autoTrimDisks = 24; // 是否自动TRIM硬盘\n\tint32 maxConcurrentReads = 25; // 最大并发读\n\tint32 maxConcurrentWrites = 26; // 最大并发写\n}",
       "doc": ""
     },
     {
@@ -23091,7 +23091,7 @@
     },
     {
       "name": "UpdateNodeClusterRequest",
-      "code": "message UpdateNodeClusterRequest {\n\tint64 nodeClusterId = 1;\n\tstring name = 2;\n\tint64 nodeGrantId = 3;\n\tstring installDir = 4;\n\tstring timeZone = 5;\n\tint32 nodeMaxThreads = 6;\n\tbool autoOpenPorts = 8;\n\tbytes clockJSON = 9;\n\tbool autoRemoteStart = 10;\n\tbool autoInstallNftables = 11;\n\tbytes sshParamsJSON = 12;\n\tbool autoSystemTuning = 13; // 是否自动调节系统参数\n\tbool autoTrimDisks = 14; // 是否自动TRIM硬盘\n}",
+      "code": "message UpdateNodeClusterRequest {\n\tint64 nodeClusterId = 1;\n\tstring name = 2;\n\tint64 nodeGrantId = 3;\n\tstring installDir = 4;\n\tstring timeZone = 5;\n\tint32 nodeMaxThreads = 6;\n\tbool autoOpenPorts = 8;\n\tbytes clockJSON = 9;\n\tbool autoRemoteStart = 10;\n\tbool autoInstallNftables = 11;\n\tbytes sshParamsJSON = 12;\n\tbool autoSystemTuning = 13; // 是否自动调节系统参数\n\tbool autoTrimDisks = 14; // 是否自动TRIM硬盘\n\tint32 maxConcurrentReads = 15; // 最大并发读\n\tint32 maxConcurrentWrites = 16; // 最大并发写\n}",
       "doc": "修改集群"
     },
     {
