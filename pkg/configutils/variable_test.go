@@ -115,6 +115,29 @@ func TestParseVariables_Modifier(t *testing.T) {
 		}
 		return "${" + varName + "}"
 	}))
+
+	// quote
+	t.Log("quote(abc)", "=>", configutils.ParseVariables("${var|quote}", func(varName string) (value string) {
+		switch varName {
+		case "var":
+			return "abc"
+		}
+		return "${" + varName + "}"
+	}))
+	t.Log("quote(\"ABC\"123)", "=>", configutils.ParseVariables("${var|quote}", func(varName string) (value string) {
+		switch varName {
+		case "var":
+			return "\"ABC\"123"
+		}
+		return "${" + varName + "}"
+	}))
+	t.Log("quote('ABC'123)", "=>", configutils.ParseVariables("${var|quote}", func(varName string) (value string) {
+		switch varName {
+		case "var":
+			return "'ABC'123"
+		}
+		return "${" + varName + "}"
+	}))
 }
 
 func TestParseHolders(t *testing.T) {
