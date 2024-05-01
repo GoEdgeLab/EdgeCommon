@@ -22,7 +22,7 @@ type HTTPFileCacheStorage struct {
 
 func NewHTTPFileCacheStorage() *HTTPFileCacheStorage {
 	return &HTTPFileCacheStorage{
-		EnableMMAP: true,
+		EnableMMAP: false,
 	}
 }
 
