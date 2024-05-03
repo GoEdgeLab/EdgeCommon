@@ -47,6 +47,9 @@ service HTTPWebService {
 	// 更改Pages
 	rpc updateHTTPWebPages (UpdateHTTPWebPagesRequest) returns (RPCSuccess);
 
+	// 更改系统自定义页面启用状态
+	rpc updateHTTPWebGlobalPagesEnabled(UpdateHTTPWebGlobalPagesEnabledRequest) returns (RPCSuccess);
+
 	// 更改访问日志配置
 	rpc updateHTTPWebAccessLog (UpdateHTTPWebAccessLogRequest) returns (RPCSuccess);
 
@@ -217,6 +220,12 @@ message UpdateHTTPWebShutdownRequest {
 message UpdateHTTPWebPagesRequest {
 	int64 httpWebId = 1;
 	bytes pagesJSON = 2;
+}
+
+// 更改系统自定义页面启用状态
+message UpdateHTTPWebGlobalPagesEnabledRequest {
+	int64 httpWebId = 1; // Web ID
+	bool isEnabled = 2; // 是否启用
 }
 
 // 更改访问日志配置

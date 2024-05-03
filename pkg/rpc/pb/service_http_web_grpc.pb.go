@@ -19,47 +19,48 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	HTTPWebService_CreateHTTPWeb_FullMethodName                = "/pb.HTTPWebService/createHTTPWeb"
-	HTTPWebService_FindEnabledHTTPWeb_FullMethodName           = "/pb.HTTPWebService/findEnabledHTTPWeb"
-	HTTPWebService_FindEnabledHTTPWebConfig_FullMethodName     = "/pb.HTTPWebService/findEnabledHTTPWebConfig"
-	HTTPWebService_UpdateHTTPWeb_FullMethodName                = "/pb.HTTPWebService/updateHTTPWeb"
-	HTTPWebService_UpdateHTTPWebCompression_FullMethodName     = "/pb.HTTPWebService/updateHTTPWebCompression"
-	HTTPWebService_UpdateHTTPWebOptimization_FullMethodName    = "/pb.HTTPWebService/updateHTTPWebOptimization"
-	HTTPWebService_UpdateHTTPWebWebP_FullMethodName            = "/pb.HTTPWebService/updateHTTPWebWebP"
-	HTTPWebService_UpdateHTTPWebRemoteAddr_FullMethodName      = "/pb.HTTPWebService/updateHTTPWebRemoteAddr"
-	HTTPWebService_UpdateHTTPWebCharset_FullMethodName         = "/pb.HTTPWebService/updateHTTPWebCharset"
-	HTTPWebService_UpdateHTTPWebRequestHeader_FullMethodName   = "/pb.HTTPWebService/updateHTTPWebRequestHeader"
-	HTTPWebService_UpdateHTTPWebResponseHeader_FullMethodName  = "/pb.HTTPWebService/updateHTTPWebResponseHeader"
-	HTTPWebService_UpdateHTTPWebShutdown_FullMethodName        = "/pb.HTTPWebService/updateHTTPWebShutdown"
-	HTTPWebService_UpdateHTTPWebPages_FullMethodName           = "/pb.HTTPWebService/updateHTTPWebPages"
-	HTTPWebService_UpdateHTTPWebAccessLog_FullMethodName       = "/pb.HTTPWebService/updateHTTPWebAccessLog"
-	HTTPWebService_UpdateHTTPWebStat_FullMethodName            = "/pb.HTTPWebService/updateHTTPWebStat"
-	HTTPWebService_UpdateHTTPWebCache_FullMethodName           = "/pb.HTTPWebService/updateHTTPWebCache"
-	HTTPWebService_UpdateHTTPWebFirewall_FullMethodName        = "/pb.HTTPWebService/updateHTTPWebFirewall"
-	HTTPWebService_UpdateHTTPWebLocations_FullMethodName       = "/pb.HTTPWebService/updateHTTPWebLocations"
-	HTTPWebService_UpdateHTTPWebRedirectToHTTPS_FullMethodName = "/pb.HTTPWebService/updateHTTPWebRedirectToHTTPS"
-	HTTPWebService_UpdateHTTPWebWebsocket_FullMethodName       = "/pb.HTTPWebService/updateHTTPWebWebsocket"
-	HTTPWebService_UpdateHTTPWebFastcgi_FullMethodName         = "/pb.HTTPWebService/updateHTTPWebFastcgi"
-	HTTPWebService_UpdateHTTPWebRewriteRules_FullMethodName    = "/pb.HTTPWebService/updateHTTPWebRewriteRules"
-	HTTPWebService_UpdateHTTPWebHostRedirects_FullMethodName   = "/pb.HTTPWebService/updateHTTPWebHostRedirects"
-	HTTPWebService_FindHTTPWebHostRedirects_FullMethodName     = "/pb.HTTPWebService/findHTTPWebHostRedirects"
-	HTTPWebService_UpdateHTTPWebAuth_FullMethodName            = "/pb.HTTPWebService/updateHTTPWebAuth"
-	HTTPWebService_UpdateHTTPWebCommon_FullMethodName          = "/pb.HTTPWebService/updateHTTPWebCommon"
-	HTTPWebService_UpdateHTTPWebRequestLimit_FullMethodName    = "/pb.HTTPWebService/updateHTTPWebRequestLimit"
-	HTTPWebService_FindHTTPWebRequestLimit_FullMethodName      = "/pb.HTTPWebService/findHTTPWebRequestLimit"
-	HTTPWebService_UpdateHTTPWebRequestScripts_FullMethodName  = "/pb.HTTPWebService/updateHTTPWebRequestScripts"
-	HTTPWebService_FindHTTPWebRequestScripts_FullMethodName    = "/pb.HTTPWebService/findHTTPWebRequestScripts"
-	HTTPWebService_UpdateHTTPWebUAM_FullMethodName             = "/pb.HTTPWebService/updateHTTPWebUAM"
-	HTTPWebService_FindHTTPWebUAM_FullMethodName               = "/pb.HTTPWebService/findHTTPWebUAM"
-	HTTPWebService_UpdateHTTPWebCC_FullMethodName              = "/pb.HTTPWebService/updateHTTPWebCC"
-	HTTPWebService_FindHTTPWebCC_FullMethodName                = "/pb.HTTPWebService/findHTTPWebCC"
-	HTTPWebService_UpdateHTTPWebReferers_FullMethodName        = "/pb.HTTPWebService/updateHTTPWebReferers"
-	HTTPWebService_FindHTTPWebReferers_FullMethodName          = "/pb.HTTPWebService/findHTTPWebReferers"
-	HTTPWebService_UpdateHTTPWebUserAgent_FullMethodName       = "/pb.HTTPWebService/updateHTTPWebUserAgent"
-	HTTPWebService_FindHTTPWebUserAgent_FullMethodName         = "/pb.HTTPWebService/findHTTPWebUserAgent"
-	HTTPWebService_UpdateHTTPWebHLS_FullMethodName             = "/pb.HTTPWebService/updateHTTPWebHLS"
-	HTTPWebService_FindHTTPWebHLS_FullMethodName               = "/pb.HTTPWebService/findHTTPWebHLS"
-	HTTPWebService_FindServerIdWithHTTPWebId_FullMethodName    = "/pb.HTTPWebService/findServerIdWithHTTPWebId"
+	HTTPWebService_CreateHTTPWeb_FullMethodName                   = "/pb.HTTPWebService/createHTTPWeb"
+	HTTPWebService_FindEnabledHTTPWeb_FullMethodName              = "/pb.HTTPWebService/findEnabledHTTPWeb"
+	HTTPWebService_FindEnabledHTTPWebConfig_FullMethodName        = "/pb.HTTPWebService/findEnabledHTTPWebConfig"
+	HTTPWebService_UpdateHTTPWeb_FullMethodName                   = "/pb.HTTPWebService/updateHTTPWeb"
+	HTTPWebService_UpdateHTTPWebCompression_FullMethodName        = "/pb.HTTPWebService/updateHTTPWebCompression"
+	HTTPWebService_UpdateHTTPWebOptimization_FullMethodName       = "/pb.HTTPWebService/updateHTTPWebOptimization"
+	HTTPWebService_UpdateHTTPWebWebP_FullMethodName               = "/pb.HTTPWebService/updateHTTPWebWebP"
+	HTTPWebService_UpdateHTTPWebRemoteAddr_FullMethodName         = "/pb.HTTPWebService/updateHTTPWebRemoteAddr"
+	HTTPWebService_UpdateHTTPWebCharset_FullMethodName            = "/pb.HTTPWebService/updateHTTPWebCharset"
+	HTTPWebService_UpdateHTTPWebRequestHeader_FullMethodName      = "/pb.HTTPWebService/updateHTTPWebRequestHeader"
+	HTTPWebService_UpdateHTTPWebResponseHeader_FullMethodName     = "/pb.HTTPWebService/updateHTTPWebResponseHeader"
+	HTTPWebService_UpdateHTTPWebShutdown_FullMethodName           = "/pb.HTTPWebService/updateHTTPWebShutdown"
+	HTTPWebService_UpdateHTTPWebPages_FullMethodName              = "/pb.HTTPWebService/updateHTTPWebPages"
+	HTTPWebService_UpdateHTTPWebGlobalPagesEnabled_FullMethodName = "/pb.HTTPWebService/updateHTTPWebGlobalPagesEnabled"
+	HTTPWebService_UpdateHTTPWebAccessLog_FullMethodName          = "/pb.HTTPWebService/updateHTTPWebAccessLog"
+	HTTPWebService_UpdateHTTPWebStat_FullMethodName               = "/pb.HTTPWebService/updateHTTPWebStat"
+	HTTPWebService_UpdateHTTPWebCache_FullMethodName              = "/pb.HTTPWebService/updateHTTPWebCache"
+	HTTPWebService_UpdateHTTPWebFirewall_FullMethodName           = "/pb.HTTPWebService/updateHTTPWebFirewall"
+	HTTPWebService_UpdateHTTPWebLocations_FullMethodName          = "/pb.HTTPWebService/updateHTTPWebLocations"
+	HTTPWebService_UpdateHTTPWebRedirectToHTTPS_FullMethodName    = "/pb.HTTPWebService/updateHTTPWebRedirectToHTTPS"
+	HTTPWebService_UpdateHTTPWebWebsocket_FullMethodName          = "/pb.HTTPWebService/updateHTTPWebWebsocket"
+	HTTPWebService_UpdateHTTPWebFastcgi_FullMethodName            = "/pb.HTTPWebService/updateHTTPWebFastcgi"
+	HTTPWebService_UpdateHTTPWebRewriteRules_FullMethodName       = "/pb.HTTPWebService/updateHTTPWebRewriteRules"
+	HTTPWebService_UpdateHTTPWebHostRedirects_FullMethodName      = "/pb.HTTPWebService/updateHTTPWebHostRedirects"
+	HTTPWebService_FindHTTPWebHostRedirects_FullMethodName        = "/pb.HTTPWebService/findHTTPWebHostRedirects"
+	HTTPWebService_UpdateHTTPWebAuth_FullMethodName               = "/pb.HTTPWebService/updateHTTPWebAuth"
+	HTTPWebService_UpdateHTTPWebCommon_FullMethodName             = "/pb.HTTPWebService/updateHTTPWebCommon"
+	HTTPWebService_UpdateHTTPWebRequestLimit_FullMethodName       = "/pb.HTTPWebService/updateHTTPWebRequestLimit"
+	HTTPWebService_FindHTTPWebRequestLimit_FullMethodName         = "/pb.HTTPWebService/findHTTPWebRequestLimit"
+	HTTPWebService_UpdateHTTPWebRequestScripts_FullMethodName     = "/pb.HTTPWebService/updateHTTPWebRequestScripts"
+	HTTPWebService_FindHTTPWebRequestScripts_FullMethodName       = "/pb.HTTPWebService/findHTTPWebRequestScripts"
+	HTTPWebService_UpdateHTTPWebUAM_FullMethodName                = "/pb.HTTPWebService/updateHTTPWebUAM"
+	HTTPWebService_FindHTTPWebUAM_FullMethodName                  = "/pb.HTTPWebService/findHTTPWebUAM"
+	HTTPWebService_UpdateHTTPWebCC_FullMethodName                 = "/pb.HTTPWebService/updateHTTPWebCC"
+	HTTPWebService_FindHTTPWebCC_FullMethodName                   = "/pb.HTTPWebService/findHTTPWebCC"
+	HTTPWebService_UpdateHTTPWebReferers_FullMethodName           = "/pb.HTTPWebService/updateHTTPWebReferers"
+	HTTPWebService_FindHTTPWebReferers_FullMethodName             = "/pb.HTTPWebService/findHTTPWebReferers"
+	HTTPWebService_UpdateHTTPWebUserAgent_FullMethodName          = "/pb.HTTPWebService/updateHTTPWebUserAgent"
+	HTTPWebService_FindHTTPWebUserAgent_FullMethodName            = "/pb.HTTPWebService/findHTTPWebUserAgent"
+	HTTPWebService_UpdateHTTPWebHLS_FullMethodName                = "/pb.HTTPWebService/updateHTTPWebHLS"
+	HTTPWebService_FindHTTPWebHLS_FullMethodName                  = "/pb.HTTPWebService/findHTTPWebHLS"
+	HTTPWebService_FindServerIdWithHTTPWebId_FullMethodName       = "/pb.HTTPWebService/findServerIdWithHTTPWebId"
 )
 
 // HTTPWebServiceClient is the client API for HTTPWebService service.
@@ -92,6 +93,8 @@ type HTTPWebServiceClient interface {
 	UpdateHTTPWebShutdown(ctx context.Context, in *UpdateHTTPWebShutdownRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 更改Pages
 	UpdateHTTPWebPages(ctx context.Context, in *UpdateHTTPWebPagesRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
+	// 更改系统自定义页面启用状态
+	UpdateHTTPWebGlobalPagesEnabled(ctx context.Context, in *UpdateHTTPWebGlobalPagesEnabledRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 更改访问日志配置
 	UpdateHTTPWebAccessLog(ctx context.Context, in *UpdateHTTPWebAccessLogRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 更改统计配置
@@ -269,6 +272,15 @@ func (c *hTTPWebServiceClient) UpdateHTTPWebShutdown(ctx context.Context, in *Up
 func (c *hTTPWebServiceClient) UpdateHTTPWebPages(ctx context.Context, in *UpdateHTTPWebPagesRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
 	out := new(RPCSuccess)
 	err := c.cc.Invoke(ctx, HTTPWebService_UpdateHTTPWebPages_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hTTPWebServiceClient) UpdateHTTPWebGlobalPagesEnabled(ctx context.Context, in *UpdateHTTPWebGlobalPagesEnabledRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, HTTPWebService_UpdateHTTPWebGlobalPagesEnabled_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -557,6 +569,8 @@ type HTTPWebServiceServer interface {
 	UpdateHTTPWebShutdown(context.Context, *UpdateHTTPWebShutdownRequest) (*RPCSuccess, error)
 	// 更改Pages
 	UpdateHTTPWebPages(context.Context, *UpdateHTTPWebPagesRequest) (*RPCSuccess, error)
+	// 更改系统自定义页面启用状态
+	UpdateHTTPWebGlobalPagesEnabled(context.Context, *UpdateHTTPWebGlobalPagesEnabledRequest) (*RPCSuccess, error)
 	// 更改访问日志配置
 	UpdateHTTPWebAccessLog(context.Context, *UpdateHTTPWebAccessLogRequest) (*RPCSuccess, error)
 	// 更改统计配置
@@ -657,6 +671,9 @@ func (UnimplementedHTTPWebServiceServer) UpdateHTTPWebShutdown(context.Context, 
 }
 func (UnimplementedHTTPWebServiceServer) UpdateHTTPWebPages(context.Context, *UpdateHTTPWebPagesRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebPages not implemented")
+}
+func (UnimplementedHTTPWebServiceServer) UpdateHTTPWebGlobalPagesEnabled(context.Context, *UpdateHTTPWebGlobalPagesEnabledRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebGlobalPagesEnabled not implemented")
 }
 func (UnimplementedHTTPWebServiceServer) UpdateHTTPWebAccessLog(context.Context, *UpdateHTTPWebAccessLogRequest) (*RPCSuccess, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateHTTPWebAccessLog not implemented")
@@ -984,6 +1001,24 @@ func _HTTPWebService_UpdateHTTPWebPages_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(HTTPWebServiceServer).UpdateHTTPWebPages(ctx, req.(*UpdateHTTPWebPagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HTTPWebService_UpdateHTTPWebGlobalPagesEnabled_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateHTTPWebGlobalPagesEnabledRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebGlobalPagesEnabled(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HTTPWebService_UpdateHTTPWebGlobalPagesEnabled_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HTTPWebServiceServer).UpdateHTTPWebGlobalPagesEnabled(ctx, req.(*UpdateHTTPWebGlobalPagesEnabledRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1550,6 +1585,10 @@ var HTTPWebService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "updateHTTPWebPages",
 			Handler:    _HTTPWebService_UpdateHTTPWebPages_Handler,
+		},
+		{
+			MethodName: "updateHTTPWebGlobalPagesEnabled",
+			Handler:    _HTTPWebService_UpdateHTTPWebGlobalPagesEnabled_Handler,
 		},
 		{
 			MethodName: "updateHTTPWebAccessLog",

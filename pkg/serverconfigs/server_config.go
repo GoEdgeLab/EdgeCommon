@@ -173,6 +173,7 @@ func (this *ServerConfig) Init(ctx context.Context) (results []error) {
 
 				// pages
 				if len(groupWeb.Pages) > 0 || (groupWeb.Shutdown != nil && groupWeb.Shutdown.IsOn) {
+					this.Web.EnableGlobalPages = groupWeb.EnableGlobalPages
 					this.Web.Pages = groupWeb.Pages
 					this.Web.Shutdown = groupWeb.Shutdown
 				}

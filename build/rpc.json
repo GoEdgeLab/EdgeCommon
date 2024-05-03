@@ -3290,6 +3290,15 @@
           "isDeprecated": false
         },
         {
+          "name": "updateHTTPWebGlobalPagesEnabled",
+          "requestMessageName": "UpdateHTTPWebGlobalPagesEnabledRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc updateHTTPWebGlobalPagesEnabled(UpdateHTTPWebGlobalPagesEnabledRequest) returns (RPCSuccess);",
+          "doc": "更改系统自定义页面启用状态",
+          "roles": [],
+          "isDeprecated": false
+        },
+        {
           "name": "updateHTTPWebAccessLog",
           "requestMessageName": "UpdateHTTPWebAccessLogRequest",
           "responseMessageName": "RPCSuccess",
@@ -22663,6 +22672,11 @@
       "name": "UpdateHTTPWebFirewallRequest",
       "code": "message UpdateHTTPWebFirewallRequest {\n\tint64 httpWebId = 1;\n\tbytes firewallJSON = 2; // @link json:http_firewall_ref\n}",
       "doc": "更改防火墙设置"
+    },
+    {
+      "name": "UpdateHTTPWebGlobalPagesEnabledRequest",
+      "code": "message UpdateHTTPWebGlobalPagesEnabledRequest {\n\tint64 httpWebId = 1; // Web ID\n\tbool isEnabled = 2; // 是否启用\n}",
+      "doc": "更改系统自定义页面启用状态"
     },
     {
       "name": "UpdateHTTPWebHLSRequest",

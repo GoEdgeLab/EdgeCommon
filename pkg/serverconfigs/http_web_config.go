@@ -7,16 +7,17 @@ import (
 )
 
 type HTTPWebConfig struct {
-	Id           int64                       `yaml:"id" json:"id"`                     // ID
-	IsOn         bool                        `yaml:"isOn" json:"isOn"`                 // 是否启用
-	Locations    []*HTTPLocationConfig       `yaml:"locations" json:"locations"`       // 路径规则 TODO
-	LocationRefs []*HTTPLocationRef          `yaml:"locationRefs" json:"locationRefs"` // 路径规则应用
-	Compression  *HTTPCompressionConfig      `yaml:"compression" json:"compression"`   // 压缩配置
-	Optimization *HTTPPageOptimizationConfig `yaml:"optimization" json:"optimization"` // 页面优化配置
-	WebP         *WebPImageConfig            `yaml:"webp" json:"webp"`                 // WebP配置
-	Charset      *HTTPCharsetConfig          `yaml:"charset" json:"charset"`           // 字符编码
-	Shutdown     *HTTPShutdownConfig         `yaml:"shutdown" json:"shutdown"`         // 临时关闭配置
-	Pages        []*HTTPPageConfig           `yaml:"pages" json:"pages"`               // 特殊页面配置
+	Id                int64                       `yaml:"id" json:"id"`                               // ID
+	IsOn              bool                        `yaml:"isOn" json:"isOn"`                           // 是否启用
+	Locations         []*HTTPLocationConfig       `yaml:"locations" json:"locations"`                 // 路径规则 TODO
+	LocationRefs      []*HTTPLocationRef          `yaml:"locationRefs" json:"locationRefs"`           // 路径规则应用
+	Compression       *HTTPCompressionConfig      `yaml:"compression" json:"compression"`             // 压缩配置
+	Optimization      *HTTPPageOptimizationConfig `yaml:"optimization" json:"optimization"`           // 页面优化配置
+	WebP              *WebPImageConfig            `yaml:"webp" json:"webp"`                           // WebP配置
+	Charset           *HTTPCharsetConfig          `yaml:"charset" json:"charset"`                     // 字符编码
+	Shutdown          *HTTPShutdownConfig         `yaml:"shutdown" json:"shutdown"`                   // 临时关闭配置
+	Pages             []*HTTPPageConfig           `yaml:"pages" json:"pages"`                         // 特殊页面配置
+	EnableGlobalPages bool                        `yaml:"enableGlobalPages" json:"enableGlobalPages"` // 启用系统配置的自定义页面
 
 	RedirectToHttps *HTTPRedirectToHTTPSConfig `yaml:"redirectToHTTPS" json:"redirectToHTTPS"` // 是否自动跳转到Https
 	Root            *HTTPRootConfig            `yaml:"root" json:"root"`                       // 资源根目录
