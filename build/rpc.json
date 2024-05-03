@@ -3295,7 +3295,10 @@
           "responseMessageName": "RPCSuccess",
           "code": "rpc updateHTTPWebGlobalPagesEnabled(UpdateHTTPWebGlobalPagesEnabledRequest) returns (RPCSuccess);",
           "doc": "更改系统自定义页面启用状态",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         },
         {
@@ -4395,6 +4398,17 @@
           "responseMessageName": "FindLoginSessionResponse",
           "code": "rpc findLoginSession(FindLoginSessionRequest) returns (FindLoginSessionResponse);",
           "doc": "查找SESSION",
+          "roles": [
+            "admin"
+          ],
+          "isDeprecated": false
+        },
+        {
+          "name": "clearOldLoginSessions",
+          "requestMessageName": "ClearOldLoginSessionsRequest",
+          "responseMessageName": "RPCSuccess",
+          "code": "rpc clearOldLoginSessions(ClearOldLoginSessionsRequest) returns (RPCSuccess);",
+          "doc": "清理老的SESSION",
           "roles": [
             "admin"
           ],
@@ -14459,6 +14473,11 @@
       "doc": "清理"
     },
     {
+      "name": "ClearOldLoginSessionsRequest",
+      "code": "message ClearOldLoginSessionsRequest {\n\tstring sid = 1; // 当前SESSION ID\n\tstring ip = 2; // 当前操作IP\n}",
+      "doc": "清理老的SESSION"
+    },
+    {
       "name": "ClientAgent",
       "code": "message ClientAgent {\n\tint64 id = 1;\n\tstring name = 2;\n\tstring code = 3;\n\tstring description = 4;\n\tint64 countIPs = 5;\n}",
       "doc": ""
@@ -16395,7 +16414,7 @@
     },
     {
       "name": "DeleteLoginSessionRequest",
-      "code": "message DeleteLoginSessionRequest {\n\tstring sid = 1;\n}",
+      "code": "message DeleteLoginSessionRequest {\n\tstring sid = 1; // SESSION ID\n}",
       "doc": "删除SESSION"
     },
     {
@@ -19490,12 +19509,12 @@
     },
     {
       "name": "FindLoginSessionRequest",
-      "code": "message FindLoginSessionRequest {\n\tstring sid = 1;\n}",
+      "code": "message FindLoginSessionRequest {\n\tstring sid = 1; // SESSION ID\n}",
       "doc": "查找SESSION"
     },
     {
       "name": "FindLoginSessionResponse",
-      "code": "message FindLoginSessionResponse {\n\tLoginSession loginSession = 1;\n}",
+      "code": "message FindLoginSessionResponse {\n\tLoginSession loginSession = 1; // SESSION信息\n}",
       "doc": ""
     },
     {
@@ -23815,7 +23834,7 @@
     },
     {
       "name": "WriteLoginSessionValueRequest",
-      "code": "message WriteLoginSessionValueRequest {\n\tstring sid = 1;\n\tstring key = 2;\n\tstring value = 3;\n}",
+      "code": "message WriteLoginSessionValueRequest {\n\tstring sid = 1; // SESSION ID\n\tstring key = 2; // 数据Key\n\tstring value = 3; // 数据值\n}",
       "doc": "写入SESSION数据"
     }
   ],

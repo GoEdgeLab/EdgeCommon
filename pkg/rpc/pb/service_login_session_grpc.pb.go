@@ -22,6 +22,7 @@ const (
 	LoginSessionService_WriteLoginSessionValue_FullMethodName = "/pb.LoginSessionService/writeLoginSessionValue"
 	LoginSessionService_DeleteLoginSession_FullMethodName     = "/pb.LoginSessionService/deleteLoginSession"
 	LoginSessionService_FindLoginSession_FullMethodName       = "/pb.LoginSessionService/findLoginSession"
+	LoginSessionService_ClearOldLoginSessions_FullMethodName  = "/pb.LoginSessionService/clearOldLoginSessions"
 )
 
 // LoginSessionServiceClient is the client API for LoginSessionService service.
@@ -34,6 +35,8 @@ type LoginSessionServiceClient interface {
 	DeleteLoginSession(ctx context.Context, in *DeleteLoginSessionRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 	// 查找SESSION
 	FindLoginSession(ctx context.Context, in *FindLoginSessionRequest, opts ...grpc.CallOption) (*FindLoginSessionResponse, error)
+	// 清理老的SESSION
+	ClearOldLoginSessions(ctx context.Context, in *ClearOldLoginSessionsRequest, opts ...grpc.CallOption) (*RPCSuccess, error)
 }
 
 type loginSessionServiceClient struct {
@@ -71,6 +74,15 @@ func (c *loginSessionServiceClient) FindLoginSession(ctx context.Context, in *Fi
 	return out, nil
 }
 
+func (c *loginSessionServiceClient) ClearOldLoginSessions(ctx context.Context, in *ClearOldLoginSessionsRequest, opts ...grpc.CallOption) (*RPCSuccess, error) {
+	out := new(RPCSuccess)
+	err := c.cc.Invoke(ctx, LoginSessionService_ClearOldLoginSessions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LoginSessionServiceServer is the server API for LoginSessionService service.
 // All implementations should embed UnimplementedLoginSessionServiceServer
 // for forward compatibility
@@ -81,6 +93,8 @@ type LoginSessionServiceServer interface {
 	DeleteLoginSession(context.Context, *DeleteLoginSessionRequest) (*RPCSuccess, error)
 	// 查找SESSION
 	FindLoginSession(context.Context, *FindLoginSessionRequest) (*FindLoginSessionResponse, error)
+	// 清理老的SESSION
+	ClearOldLoginSessions(context.Context, *ClearOldLoginSessionsRequest) (*RPCSuccess, error)
 }
 
 // UnimplementedLoginSessionServiceServer should be embedded to have forward compatible implementations.
@@ -95,6 +109,9 @@ func (UnimplementedLoginSessionServiceServer) DeleteLoginSession(context.Context
 }
 func (UnimplementedLoginSessionServiceServer) FindLoginSession(context.Context, *FindLoginSessionRequest) (*FindLoginSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindLoginSession not implemented")
+}
+func (UnimplementedLoginSessionServiceServer) ClearOldLoginSessions(context.Context, *ClearOldLoginSessionsRequest) (*RPCSuccess, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClearOldLoginSessions not implemented")
 }
 
 // UnsafeLoginSessionServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -162,6 +179,24 @@ func _LoginSessionService_FindLoginSession_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LoginSessionService_ClearOldLoginSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClearOldLoginSessionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LoginSessionServiceServer).ClearOldLoginSessions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LoginSessionService_ClearOldLoginSessions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LoginSessionServiceServer).ClearOldLoginSessions(ctx, req.(*ClearOldLoginSessionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // LoginSessionService_ServiceDesc is the grpc.ServiceDesc for LoginSessionService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,6 +215,10 @@ var LoginSessionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findLoginSession",
 			Handler:    _LoginSessionService_FindLoginSession_Handler,
+		},
+		{
+			MethodName: "clearOldLoginSessions",
+			Handler:    _LoginSessionService_ClearOldLoginSessions_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
