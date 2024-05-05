@@ -34,6 +34,9 @@ service IPListService {
 
 	// 查找IP名单对应的网站ID
 	rpc findServerIdWithIPListId(FindServerIdWithIPListIdRequest) returns (FindServerIdWithIPListIdResponse);
+
+	// 根据IP名单代号获取IP名单ID
+	rpc findIPListIdWithCode(FindIPListIdWithCodeRequest) returns (FindIPListIdWithCodeResponse);
 }
 
 // 创建IP列表
@@ -120,4 +123,13 @@ message FindServerIdWithIPListIdRequest {
 
 message FindServerIdWithIPListIdResponse {
 	int64 serverId = 1; // 网站ID（如果是公共IP名单，则对应的网站ID为0）
+}
+
+// 根据IP名单代号获取IP名单ID
+message FindIPListIdWithCodeRequest {
+	string code = 1; // IP名单代号
+}
+
+message FindIPListIdWithCodeResponse {
+	int64 ipListId = 1; // IP名单ID
 }

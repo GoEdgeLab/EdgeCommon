@@ -4230,6 +4230,15 @@
             "user"
           ],
           "isDeprecated": false
+        },
+        {
+          "name": "findIPListIdWithCode",
+          "requestMessageName": "FindIPListIdWithCodeRequest",
+          "responseMessageName": "FindIPListIdWithCodeResponse",
+          "code": "rpc findIPListIdWithCode(FindIPListIdWithCodeRequest) returns (FindIPListIdWithCodeResponse);",
+          "doc": "根据IP名单代号获取IP名单ID",
+          "roles": [],
+          "isDeprecated": false
         }
       ],
       "filename": "service_ip_list.proto",
@@ -19385,6 +19394,16 @@
     {
       "name": "FindIPLibraryFileResponse",
       "code": "message FindIPLibraryFileResponse {\n\tIPLibraryFile ipLibraryFile = 1;\n}",
+      "doc": ""
+    },
+    {
+      "name": "FindIPListIdWithCodeRequest",
+      "code": "message FindIPListIdWithCodeRequest {\n\tstring code = 1; // IP名单代号\n}",
+      "doc": "根据IP名单代号获取IP名单ID"
+    },
+    {
+      "name": "FindIPListIdWithCodeResponse",
+      "code": "message FindIPListIdWithCodeResponse {\n\tint64 ipListId = 1; // IP名单ID\n}",
       "doc": ""
     },
     {
