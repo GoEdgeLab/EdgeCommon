@@ -1189,7 +1189,7 @@ type CheckHTTPFirewallPolicyIPStatusResponse struct {
 	IsOk           bool            `protobuf:"varint,1,opt,name=isOk,proto3" json:"isOk,omitempty"`                    // 是否查询成功
 	Error          string          `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`                   // 错误信息
 	IsFound        bool            `protobuf:"varint,3,opt,name=isFound,proto3" json:"isFound,omitempty"`              // 是否找到
-	IsAllowed      bool            `protobuf:"varint,4,opt,name=isAllowed,proto3" json:"isAllowed,omitempty"`          // 是否允许
+	IsAllowed      bool            `protobuf:"varint,4,opt,name=isAllowed,proto3" json:"isAllowed,omitempty"`          // 是否允许访问
 	IpList         *IPList         `protobuf:"bytes,5,opt,name=ipList,proto3" json:"ipList,omitempty"`                 // 匹配的IPList
 	IpItem         *IPItem         `protobuf:"bytes,6,opt,name=ipItem,proto3" json:"ipItem,omitempty"`                 // 匹配的IPItem
 	RegionCountry  *RegionCountry  `protobuf:"bytes,7,opt,name=regionCountry,proto3" json:"regionCountry,omitempty"`   // 匹配到封禁的地区

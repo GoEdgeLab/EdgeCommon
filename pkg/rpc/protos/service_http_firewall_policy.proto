@@ -181,7 +181,7 @@ message CheckHTTPFirewallPolicyIPStatusResponse {
 	bool isOk = 1; // 是否查询成功
 	string error = 2; // 错误信息
 	bool isFound = 3; // 是否找到
-	bool isAllowed = 4; // 是否允许
+	bool isAllowed = 4; // 是否允许访问
 	IPList ipList = 5; // 匹配的IPList
 	IPItem ipItem = 6; // 匹配的IPItem
 	RegionCountry regionCountry = 7; // 匹配到封禁的地区

@@ -14291,7 +14291,7 @@
     },
     {
       "name": "CheckHTTPFirewallPolicyIPStatusResponse",
-      "code": "message CheckHTTPFirewallPolicyIPStatusResponse {\n\tbool isOk = 1; // 是否查询成功\n\tstring error = 2; // 错误信息\n\tbool isFound = 3; // 是否找到\n\tbool isAllowed = 4; // 是否允许\n\tIPList ipList = 5; // 匹配的IPList\n\tIPItem ipItem = 6; // 匹配的IPItem\n\tRegionCountry regionCountry = 7; // 匹配到封禁的地区\n\tRegionProvince regionProvince = 8; // 匹配到封禁的省份\n}",
+      "code": "message CheckHTTPFirewallPolicyIPStatusResponse {\n\tbool isOk = 1; // 是否查询成功\n\tstring error = 2; // 错误信息\n\tbool isFound = 3; // 是否找到\n\tbool isAllowed = 4; // 是否允许访问\n\tIPList ipList = 5; // 匹配的IPList\n\tIPItem ipItem = 6; // 匹配的IPItem\n\tRegionCountry regionCountry = 7; // 匹配到封禁的地区\n\tRegionProvince regionProvince = 8; // 匹配到封禁的省份\n}",
       "doc": ""
     },
     {
