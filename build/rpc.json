@@ -4237,7 +4237,10 @@
           "responseMessageName": "FindIPListIdWithCodeResponse",
           "code": "rpc findIPListIdWithCode(FindIPListIdWithCodeRequest) returns (FindIPListIdWithCodeResponse);",
           "doc": "根据IP名单代号获取IP名单ID",
-          "roles": [],
+          "roles": [
+            "admin",
+            "user"
+          ],
           "isDeprecated": false
         }
       ],
@@ -21133,12 +21136,12 @@
     },
     {
       "name": "ListIPItemsAfterVersionRequest",
-      "code": "message ListIPItemsAfterVersionRequest {\n\tint64 version = 1;\n\tint64 size = 2;\n}",
+      "code": "message ListIPItemsAfterVersionRequest {\n\tint64 version = 1; // 版本号\n\tint64 size = 2; // 数量\n}",
       "doc": "根据版本列出一组IP"
     },
     {
       "name": "ListIPItemsAfterVersionResponse",
-      "code": "message ListIPItemsAfterVersionResponse {\n\trepeated IPItem ipItems = 1;\n}",
+      "code": "message ListIPItemsAfterVersionResponse {\n\trepeated IPItem ipItems = 1;\n\tint64 version = 2; // 新的版本号\n}",
       "doc": ""
     },
     {

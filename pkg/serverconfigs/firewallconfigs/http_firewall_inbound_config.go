@@ -21,9 +21,11 @@ type HTTPFirewallInboundConfig struct {
 	// 绑定的IP名单
 	PublicAllowListRefs []*ipconfigs.IPListRef `yaml:"publicWhiteListRefs" json:"publicWhiteListRefs"`
 	PublicDenyListRefs  []*ipconfigs.IPListRef `yaml:"publicBlackListRefs" json:"publicBlackListRefs"`
+	PublicGreyListRefs  []*ipconfigs.IPListRef `yaml:"publicGreyListRefs" json:"publicGreyListRefs"`
 
 	allAllowListRefs []*ipconfigs.IPListRef
 	allDenyListRefs  []*ipconfigs.IPListRef
+	allGreyListRefs  []*ipconfigs.IPListRef
 }
 
 // Init 初始化
@@ -56,6 +58,14 @@ func (this *HTTPFirewallInboundConfig) Init() error {
 	}
 	if len(this.PublicDenyListRefs) > 0 {
 		this.allDenyListRefs = append(this.allDenyListRefs, this.PublicDenyListRefs...)
+	}
+
+	this.allGreyListRefs = []*ipconfigs.IPListRef{}
+	if this.GreyListRef != nil {
+		this.allGreyListRefs = append(this.allGreyListRefs, this.GreyListRef)
+	}
+	if len(this.PublicGreyListRefs) > 0 {
+		this.allGreyListRefs = append(this.allGreyListRefs, this.PublicGreyListRefs...)
 	}
 
 	return nil
@@ -99,6 +109,8 @@ func (this *HTTPFirewallInboundConfig) AddPublicList(listId int64, listType stri
 		refs = this.PublicDenyListRefs
 	case ipconfigs.IPListTypeWhite:
 		refs = this.PublicAllowListRefs
+	case ipconfigs.IPListTypeGrey:
+		refs = this.PublicGreyListRefs
 	}
 	var found = false
 	for _, ref := range refs {
@@ -119,6 +131,8 @@ func (this *HTTPFirewallInboundConfig) AddPublicList(listId int64, listType stri
 		this.PublicDenyListRefs = refs
 	case ipconfigs.IPListTypeWhite:
 		this.PublicAllowListRefs = refs
+	case ipconfigs.IPListTypeGrey:
+		this.PublicGreyListRefs = refs
 	}
 }
 
@@ -130,6 +144,8 @@ func (this *HTTPFirewallInboundConfig) RemovePublicList(listId int64, listType s
 		refs = this.PublicDenyListRefs
 	case ipconfigs.IPListTypeWhite:
 		refs = this.PublicAllowListRefs
+	case ipconfigs.IPListTypeGrey:
+		refs = this.PublicGreyListRefs
 	}
 	var newRefs = []*ipconfigs.IPListRef{}
 	for _, ref := range refs {
@@ -143,6 +159,8 @@ func (this *HTTPFirewallInboundConfig) RemovePublicList(listId int64, listType s
 		this.PublicDenyListRefs = newRefs
 	case ipconfigs.IPListTypeWhite:
 		this.PublicAllowListRefs = newRefs
+	case ipconfigs.IPListTypeGrey:
+		this.PublicGreyListRefs = newRefs
 	}
 }
 

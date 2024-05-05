@@ -62,6 +62,8 @@ func (this *HTTPFirewallPolicyDAO) FindEnabledPolicyIPListIdWithType(ctx context
 		return this.FindEnabledPolicyWhiteIPListId(ctx, policyId)
 	case ipconfigs.IPListTypeBlack:
 		return this.FindEnabledPolicyBlackIPListId(ctx, policyId)
+	case ipconfigs.IPListTypeGrey:
+		return this.FindEnabledPolicyGreyIPListId(ctx, policyId)
 	default:
 		return 0, errors.New("invalid ip list type '" + listType + "'")
 	}
@@ -89,7 +91,7 @@ func (this *HTTPFirewallPolicyDAO) FindEnabledPolicyWhiteIPListId(ctx context.Co
 		if err != nil {
 			return 0, err
 		}
-		listId := createResp.IpListId
+		var listId = createResp.IpListId
 		config.Inbound.AllowListRef = &ipconfigs.IPListRef{
 			IsOn:   true,
 			ListId: listId,
@@ -133,7 +135,7 @@ func (this *HTTPFirewallPolicyDAO) FindEnabledPolicyBlackIPListId(ctx context.Co
 		if err != nil {
 			return 0, err
 		}
-		listId := createResp.IpListId
+		var listId = createResp.IpListId
 		config.Inbound.DenyListRef = &ipconfigs.IPListRef{
 			IsOn:   true,
 			ListId: listId,
@@ -153,6 +155,50 @@ func (this *HTTPFirewallPolicyDAO) FindEnabledPolicyBlackIPListId(ctx context.Co
 	}
 
 	return config.Inbound.DenyListRef.ListId, nil
+}
+
+// FindEnabledPolicyGreyIPListId 查找WAF的灰名单
+func (this *HTTPFirewallPolicyDAO) FindEnabledPolicyGreyIPListId(ctx context.Context, policyId int64) (int64, error) {
+	config, err := this.FindEnabledHTTPFirewallPolicyConfig(ctx, policyId)
+	if err != nil {
+		return 0, err
+	}
+	if config == nil {
+		return 0, errors.New("not found")
+	}
+	if config.Inbound == nil {
+		config.Inbound = &firewallconfigs.HTTPFirewallInboundConfig{IsOn: true}
+	}
+	if config.Inbound.GreyListRef == nil || config.Inbound.GreyListRef.ListId == 0 {
+		createResp, err := this.RPC().IPListRPC().CreateIPList(ctx, &pb.CreateIPListRequest{
+			Type:        "grey",
+			Name:        "灰名单",
+			Code:        "grey",
+			TimeoutJSON: nil,
+		})
+		if err != nil {
+			return 0, err
+		}
+		var listId = createResp.IpListId
+		config.Inbound.GreyListRef = &ipconfigs.IPListRef{
+			IsOn:   true,
+			ListId: listId,
+		}
+		inboundJSON, err := json.Marshal(config.Inbound)
+		if err != nil {
+			return 0, err
+		}
+		_, err = this.RPC().HTTPFirewallPolicyRPC().UpdateHTTPFirewallInboundConfig(ctx, &pb.UpdateHTTPFirewallInboundConfigRequest{
+			HttpFirewallPolicyId: policyId,
+			InboundJSON:          inboundJSON,
+		})
+		if err != nil {
+			return 0, err
+		}
+		return listId, nil
+	}
+
+	return config.Inbound.GreyListRef.ListId, nil
 }
 
 // FindEnabledHTTPFirewallPolicyWithServerId 根据服务Id查找WAF策略
@@ -202,7 +248,7 @@ func (this *HTTPFirewallPolicyDAO) FindHTTPFirewallActionConfigs(ctx context.Con
 				return nil, err
 			}
 			if listId == 0 {
-				action.Options["ipListName"] = "全局黑名单"
+				action.Options["ipListName"] = firewallconfigs.FindGlobalListNameWithType(action.Options.GetString("type"))
 			} else if listResp.IpList != nil {
 				action.Options["ipListName"] = listResp.IpList.Name
 			} else {

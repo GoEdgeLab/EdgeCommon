@@ -15,7 +15,7 @@ type IPListDAO struct {
 	BaseDAO
 }
 
-// FindAllowIPListIdWithServerId 查找服务的允许IP列表
+// FindAllowIPListIdWithServerId 查找网站的允许IP列表
 func (this *IPListDAO) FindAllowIPListIdWithServerId(ctx context.Context, serverId int64) (int64, error) {
 	webConfig, err := SharedHTTPWebDAO.FindWebConfigWithServerId(ctx, serverId)
 	if err != nil {
@@ -30,7 +30,7 @@ func (this *IPListDAO) FindAllowIPListIdWithServerId(ctx context.Context, server
 	return webConfig.FirewallPolicy.Inbound.AllowListRef.ListId, nil
 }
 
-// FindDenyIPListIdWithServerId 查找服务的禁止IP列表
+// FindDenyIPListIdWithServerId 查找网站的禁止IP列表
 func (this *IPListDAO) FindDenyIPListIdWithServerId(ctx context.Context, serverId int64) (int64, error) {
 	webConfig, err := SharedHTTPWebDAO.FindWebConfigWithServerId(ctx, serverId)
 	if err != nil {
@@ -43,6 +43,21 @@ func (this *IPListDAO) FindDenyIPListIdWithServerId(ctx context.Context, serverI
 		return 0, nil
 	}
 	return webConfig.FirewallPolicy.Inbound.DenyListRef.ListId, nil
+}
+
+// FindGreyIPListIdWithServerId 查找网站的IP灰名单
+func (this *IPListDAO) FindGreyIPListIdWithServerId(ctx context.Context, serverId int64) (int64, error) {
+	webConfig, err := SharedHTTPWebDAO.FindWebConfigWithServerId(ctx, serverId)
+	if err != nil {
+		return 0, err
+	}
+	if webConfig == nil {
+		return 0, nil
+	}
+	if webConfig.FirewallPolicy == nil || webConfig.FirewallPolicy.Inbound == nil || webConfig.FirewallPolicy.Inbound.GreyListRef == nil {
+		return 0, nil
+	}
+	return webConfig.FirewallPolicy.Inbound.GreyListRef.ListId, nil
 }
 
 // CreateIPListForServerId 为服务创建IP名单
@@ -72,13 +87,13 @@ func (this *IPListDAO) CreateIPListForServerId(ctx context.Context, serverId int
 		}
 	}
 
-	inbound := webConfig.FirewallPolicy.Inbound
+	var inbound = webConfig.FirewallPolicy.Inbound
 	if inbound == nil {
 		inbound = &firewallconfigs.HTTPFirewallInboundConfig{
 			IsOn: true,
 		}
 	}
-	if listType == "white" {
+	if listType == ipconfigs.IPListTypeWhite {
 		if inbound.AllowListRef == nil {
 			inbound.AllowListRef = &ipconfigs.IPListRef{
 				IsOn: true,
@@ -87,13 +102,22 @@ func (this *IPListDAO) CreateIPListForServerId(ctx context.Context, serverId int
 		if inbound.AllowListRef.ListId > 0 {
 			return inbound.AllowListRef.ListId, nil
 		}
-	} else if listType == "black" {
+	} else if listType == ipconfigs.IPListTypeBlack {
 		if inbound.DenyListRef == nil {
 			inbound.DenyListRef = &ipconfigs.IPListRef{
 				IsOn: true,
 			}
 		}
 		if inbound.DenyListRef.ListId > 0 {
+			return inbound.DenyListRef.ListId, nil
+		}
+	} else if listType == ipconfigs.IPListTypeGrey {
+		if inbound.GreyListRef == nil {
+			inbound.GreyListRef = &ipconfigs.IPListRef{
+				IsOn: true,
+			}
+		}
+		if inbound.GreyListRef.ListId > 0 {
 			return inbound.DenyListRef.ListId, nil
 		}
 	}
@@ -109,10 +133,12 @@ func (this *IPListDAO) CreateIPListForServerId(ctx context.Context, serverId int
 		return 0, errors.Wrap(err)
 	}
 
-	if listType == "white" {
+	if listType == ipconfigs.IPListTypeWhite {
 		inbound.AllowListRef.ListId = ipListResp.IpListId
-	} else if listType == "black" {
+	} else if listType == ipconfigs.IPListTypeBlack {
 		inbound.DenyListRef.ListId = ipListResp.IpListId
+	} else if listType == ipconfigs.IPListTypeGrey {
+		inbound.GreyListRef.ListId = ipListResp.IpListId
 	}
 	inboundJSON, err := json.Marshal(inbound)
 	if err != nil {

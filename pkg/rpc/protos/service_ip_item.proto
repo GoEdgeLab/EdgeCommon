@@ -177,12 +177,13 @@ message FindEnabledIPItemResponse {
 
 // 根据版本列出一组IP
 message ListIPItemsAfterVersionRequest {
-	int64 version = 1;
-	int64 size = 2;
+	int64 version = 1; // 版本号
+	int64 size = 2; // 数量
 }
 
 message ListIPItemsAfterVersionResponse {
 	repeated IPItem ipItems = 1;
+	int64 version = 2; // 新的版本号
 }
 
 // 检查IP状态
