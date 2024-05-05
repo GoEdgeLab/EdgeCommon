@@ -219,7 +219,7 @@ message CheckAdminOTPWithUsernameResponse {
 
 // 取得管理员Dashboard数据
 message ComposeAdminDashboardRequest {
-	string apiVersion = 1;
+	string apiVersion = 1; // 当前API版本号
 }
 
 message ComposeAdminDashboardResponse {
@@ -254,13 +254,14 @@ message ComposeAdminDashboardResponse {
 	repeated MetricDataChart metricDataCharts = 40;
 
 	message DailyTrafficStat {
-		string day = 1;
+		string day = 1; // 日期 YYYYMMDD
 		int64 bytes = 2;
 		int64 cachedBytes = 3;
 		int64 countRequests = 4;
 		int64 countCachedRequests = 5;
 		int64 countAttackRequests = 6;
-		int64 attackBytes = 7;
+		int64 attackBytes = 7; // 攻击流量（字节）
+		int64 countIPs = 8; // 独立IP数量
 	}
 
 	message HourlyTrafficStat {
