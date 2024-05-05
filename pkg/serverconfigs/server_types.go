@@ -11,7 +11,6 @@ const (
 	ServerTypeHTTPProxy ServerType = "httpProxy"
 	ServerTypeHTTPWeb   ServerType = "httpWeb"
 	ServerTypeTCPProxy  ServerType = "tcpProxy"
-	ServerTypeUnixProxy ServerType = "unixProxy"
 	ServerTypeUDPProxy  ServerType = "udpProxy"
 )
 
@@ -77,11 +76,6 @@ func FindAllServerProtocols() []maps.Map {
 			"name":        "TLS",
 			"code":        "tls",
 			"serverTypes": []ServerType{ServerTypeTCPProxy},
-		},
-		{
-			"name":        "Unix",
-			"code":        "unix",
-			"serverTypes": []ServerType{ServerTypeUnixProxy},
 		},
 		{
 			"name":        "UDP",
